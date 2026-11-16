@@ -1,0 +1,82 @@
+/* Shared geometry stays in the component layer so template utilities can override it. */
+@layer components {
+  .carousel .carousel-control {
+    @apply absolute top-1/2 z-20 inline-flex items-center justify-center size-9 -translate-y-1/2 rounded-full border cursor-pointer;
+  }
+
+  .carousel .carousel-control:focus-visible {
+    @apply outline-2 outline-offset-2;
+  }
+
+  .carousel .carousel-control:disabled {
+    @apply opacity-40 cursor-not-allowed;
+  }
+
+  .carousel .carousel-fade {
+    @apply absolute inset-y-0 z-10 hidden w-5 pointer-events-none;
+  }
+
+  @media (min-width: 48rem) {
+    .carousel .carousel-fade {
+      @apply block w-12;
+    }
+  }
+}
+
+/* Hide carousel scrollbars while preserving native touch and keyboard scrolling. */
+.carousel-products-basic > div > div > [role="group"],
+.carousel-products-prescribe > div > div > [role="group"],
+.carousel .carousel-track {
+  scrollbar-width: none;
+}
+
+.carousel-products-basic > div > div > [role="group"]::-webkit-scrollbar,
+.carousel-products-prescribe > div > div > [role="group"]::-webkit-scrollbar,
+.carousel .carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Keep item sizing and gap on the same responsive configuration; spacing uses Tailwind's theme unit. */
+.carousel .carousel-track {
+  --carousel-active-gap: calc(var(--spacing, 0.25rem) * var(--carousel-gap));
+  gap: var(--carousel-active-gap);
+  grid-auto-columns: 85%;
+}
+
+@media (min-width: 48rem) {
+  .carousel .carousel-track {
+    --carousel-active-columns: var(--carousel-tablet-columns);
+    --carousel-active-gap: calc(var(--spacing, 0.25rem) * var(--carousel-tablet-gap));
+    grid-auto-columns: calc(
+      (100% - (var(--carousel-active-columns) - 1) * var(--carousel-active-gap)) /
+      var(--carousel-active-columns)
+    );
+  }
+}
+
+@media (min-width: 64rem) {
+  .carousel .carousel-track {
+    --carousel-active-columns: var(--carousel-desktop-columns);
+    --carousel-active-gap: calc(var(--spacing, 0.25rem) * var(--carousel-desktop-gap));
+  }
+}
+
+.carousel .carousel-fade-left {
+  background-image: linear-gradient(to right, var(--carousel-fade-color, #fff), transparent);
+}
+
+.carousel .carousel-fade-right {
+  background-image: linear-gradient(to left, var(--carousel-fade-color, #fff), transparent);
+}
+
+.carousel .carousel-control {
+  border-color: var(--carousel-control-border-color, var(--color-zinc-300, #d4d4d8));
+  background-color: var(--carousel-control-background, #fff);
+  color: var(--carousel-control-color, var(--color-zinc-800, #27272a));
+}
+
+@media (hover: hover) {
+  .carousel .carousel-control:hover {
+    background-color: var(--carousel-control-hover-background, var(--color-zinc-100, #f4f4f5));
+  }
+}

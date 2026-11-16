@@ -1,0 +1,70 @@
+/* Shared tabs: size controls density; variants change navigation surfaces without animating panel switches. */
+@layer components {
+  .tabs .tabs-list {
+    @apply flex flex-nowrap max-w-full overflow-x-auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
+  }
+
+  .tabs .tabs-trigger {
+    @apply shrink-0 min-h-10 px-5 py-0 text-small font-medium leading-normal color-muted cursor-pointer;
+    white-space: nowrap;
+  }
+
+  .tabs-small .tabs-trigger {
+    @apply min-h-8 px-3.5 text-caption;
+  }
+
+  .tabs .tabs-trigger:is([aria-selected="true"], [aria-pressed="true"]) {
+    @apply color-strong;
+  }
+
+  .tabs .tabs-panel {
+    @apply py-6;
+  }
+
+  .tabs .tabs-panel[hidden] {
+    display: none;
+  }
+
+  .tabs :is(.tabs-trigger, .tabs-panel):focus-visible {
+    @apply outline-2 outline-blue-700 -outline-offset-2;
+  }
+
+  /* Underline is the default; Segmented is an optional variant. */
+  .tabs-underline .tabs-list {
+    @apply gap-3 border-b border-zinc-200;
+  }
+
+  .tabs-underline .tabs-trigger {
+    @apply px-1 border-b-2 border-transparent;
+  }
+
+  .tabs-underline .tabs-trigger:is([aria-selected="true"], [aria-pressed="true"]) {
+    @apply border-zinc-800;
+  }
+
+  .tabs-segmented .tabs-list {
+    @apply gap-1 w-fit p-1 rounded-lg bg-zinc-200;
+  }
+
+  .tabs-segmented .tabs-trigger {
+    @apply rounded-md;
+  }
+
+  .tabs-segmented .tabs-trigger:is([aria-selected="true"], [aria-pressed="true"]) {
+    @apply bg-white shadow-sm;
+  }
+
+  @media (hover: hover) {
+    .tabs .tabs-trigger:hover {
+      @apply color-strong;
+    }
+    .tabs-underline .tabs-trigger:hover {
+      @apply bg-zinc-200;
+    }
+    .tabs-segmented .tabs-trigger:not(:is([aria-selected="true"], [aria-pressed="true"])):hover {
+      @apply bg-white/40;
+    }
+  }
+}

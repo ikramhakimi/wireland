@@ -1,0 +1,8 @@
+/* Hide the cart track scrollbar while preserving native touch and keyboard scrolling. */
+.drawer-cart .cart-pairing-track {
+  scrollbar-width: none;
+}
+
+.drawer-cart .cart-pairing-track::-webkit-scrollbar {
+  display: none;
+}

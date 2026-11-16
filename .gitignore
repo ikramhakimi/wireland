@@ -1,0 +1,24 @@
+# Dependencies
+/node_modules/
+
+# Generated exports and temporary output
+/dist/
+/output/
+/tmp/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Logs
+*.log
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+/.idea/
+/.vscode/
+*.swp
+*.swo

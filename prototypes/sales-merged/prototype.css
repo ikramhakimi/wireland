@@ -1,0 +1,41 @@
+.section-prototype { padding: 0 0 64px; }
+.prototype-stage { margin-top: 40px; }
+.prototype-neighbors { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+.prototype-products { margin-top: 8px; }
+.prototype-note { margin-top: 16px; font-size: 11px; color: #71717a; }
+.card-merged { display: grid; grid-template-columns: 240px minmax(0, 1fr); background: white; border-radius: 8px; box-shadow: 0 1px 3px #00000012; }
+.card-merged > .card-summary { padding: 24px 20px; border-right: 1px solid #f4f4f5; }
+.card-merged > .card-summary > .card-title { font-size: 16px; font-weight: 500; color: #27272a; }
+.card-merged > .card-summary > .card-description { margin-top: 4px; font-size: 12px; color: #71717a; }
+.card-merged .card-period { margin-top: 32px; font-size: 11px; color: #71717a; }
+.card-merged > .card-summary > .card-value { margin: 8px 0 16px; font-size: 30px; font-weight: 500; letter-spacing: -1px; color: #27272a; font-variant-numeric: tabular-nums; }
+.card-merged > .card-summary > .comparison { flex-direction: column; align-items: flex-start; }
+.card-merged .card-trend { min-width: 0; }
+.card-merged .card-chart { box-shadow: none; background: transparent; }
+.card-merged .sales-plot { min-width: 0; }
+.card-merged .sales-bars { height: 144px; }
+.card-merged .sales-readout { min-height: 64px; margin-bottom: 16px; }
+.card-merged .sales-value { font-size: 22px; }
+.card-merged .sales-change { max-width: 260px; }
+.card-chart-first { grid-template-columns: minmax(0, 1fr) 230px; }
+.card-chart-first > .card-summary { grid-column: 2; grid-row: 1; border-right: 0; border-left: 1px solid #f4f4f5; background: #fafafa; border-radius: 0 8px 8px 0; }
+.card-chart-first > .card-trend { grid-column: 1; grid-row: 1; }
+.card-chart-first .sales-bars { height: 180px; }
+.card-chart-first .card-period { margin-top: 64px; }
+.card-compact { grid-template-columns: 260px minmax(0, 1fr); }
+.card-compact .card-period { margin-top: 16px; }
+.card-compact .sales-bars { height: 64px; }
+.card-compact .sales-readout { min-height: 44px; margin-bottom: 8px; }
+.card-compact .sales-change { display: none; }
+.card-compact .sales-value { font-size: 16px; }
+.card-compact .card-chart > .card-header { display: none; }
+.card-compact .card-chart > .card-content { padding-bottom: 10px; }
+.card-compact .sales-meta { margin-bottom: 8px; }
+@media (max-width: 700px) {
+  .card-merged { grid-template-columns: minmax(0, 1fr); }
+  .card-merged > .card-summary { grid-column: auto; grid-row: auto; border: 0; border-bottom: 1px solid #f4f4f5; border-radius: 8px 8px 0 0; }
+  .card-merged > .card-trend { grid-column: auto; grid-row: auto; }
+  .card-merged .card-period { margin-top: 16px; }
+  .prototype-neighbors { grid-template-columns: minmax(0, 1fr); }
+  .card-merged .sales-plot { min-width: 440px; }
+}

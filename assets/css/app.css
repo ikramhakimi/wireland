@@ -1,0 +1,27 @@
+/* Shared CSS entry point for the website, dashboard, and design reference.
+ * Keep responsive and interaction rules beside the component they belong to.
+ * Existing cascade layers are preserved; utility overrides remain available.
+ */
+
+/* 1. Tailwind imports and source scanning */
+
+@import "tailwindcss" source(none);
+@import "./foundations.css";
+@import "./components/button.css";
+@import "./components/forms.css";
+@import "./components/tabs.css";
+@import "./components/media-comparison.css";
+@import "./components/carousel.css";
+@import "./components/marquee.css";
+@import "./components/footer.css";
+@import "./components/button-getstart.css";
+@import "./components/drawer-cart.css";
+@import "./components/drawer.css";
+
+@source "../../index.php";
+@source "../../layout.php";
+@source "../../layout-dashboard.php";
+@source "../../assets/js";
+@source "../../includes";
+@source "../../views";
+@source "../../prototypes/lifestyle-hero";

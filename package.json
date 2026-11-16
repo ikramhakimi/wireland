@@ -1,0 +1,15 @@
+{
+  "name": "wireland",
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i ./assets/css/app.css -o ./assets/build/app.css --minify",
+    "export:static": "php ./scripts/export-static.php",
+    "watch:css": "npx @tailwindcss/cli -i ./assets/css/app.css -o ./assets/build/app.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.4",
+    "tailwindcss": "^4.2.4"
+  },
+  "dependencies": {
+    "remixicon": "^4.9.1"
+  }
+}
