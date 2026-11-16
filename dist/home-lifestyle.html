@@ -1,0 +1,2157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lander</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/build/app.css?v=1794771677">
+  <script src="/assets/js/toggle-collapse.js?v=1794771677" defer></script>
+  <script src="/assets/js/list-field.js?v=1794765851" defer></script>
+  <script src="/assets/js/app.js?v=1794772572" defer></script>
+  <script src="/assets/js/marquee.js?v=1794588284" defer></script>
+  <script src="/assets/js/present-how-it-work.js?v=1793962923" defer></script>
+</head>
+<body class="bg-zinc-100 text-base leading-relaxeds text-zinc-600 tracking-[-2%]">
+  <main>
+    <header
+  class="fixed inset-x-0 top-0 z-40 bg-white sm:bg-zinc-100 transition-transform duration-300 ease-out
+    motion-reduce:transition-none lg:relative lg:translate-y-0 lg:transition-none js-component-navbar-mobile"
+>
+  <div class="container flex h-18 items-center justify-between px-4 lg:h-auto lg:px-6 lg:py-4">
+    <a href="/" class="navbar-logo text-lg color-strong flex items-center">
+      <span class="font-bold aspect-square w-9 flex-center border border-zinc-600 mr-2">RR</span>
+      <span class="font-semibold">HairClinic</span>
+    </a>
+
+    <nav class="hidden text-small items-center gap-6 lg:flex" aria-label="Main navigation">
+      <details class="group relative">
+        <summary class="text-small flex cursor-pointer list-none items-center gap-0.5 font-medium   color-strong">
+          Products
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-4 opacity-50 transition-transform group-open:rotate-180"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>        </summary>
+        <div class="absolute left-0 top-full z-10 mt-3 w-56 rounded-lg border border-zinc-200 bg-white p-2 shadow-lg">
+          <a href="#" class="block rounded-md px-3 py-2  color-strong hover:bg-zinc-100">All Products</a>
+          <a href="#" class="block rounded-md px-3 py-2  color-strong hover:bg-zinc-100">Hair Growth</a>
+          <a href="#" class="block rounded-md px-3 py-2  color-strong hover:bg-zinc-100">Hair Loss Shampoo</a>
+          <a href="#" class="block rounded-md px-3 py-2  color-strong hover:bg-zinc-100">Scalp Care</a>
+        </div>
+      </details>
+      
+      <details class="group relative">
+        <summary class="text-small flex cursor-pointer list-none items-center gap-0.5 font-medium   color-strong">
+          Hair Loss
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-4 opacity-50 transition-transform group-open:rotate-180"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>        </summary>
+        <div class="absolute left-0 top-full z-10 mt-3 w-56 rounded-lg border border-zinc-200 bg-white p-2 shadow-lg">
+          <a href="#" class="block rounded-md px-3 py-2  color-strong hover:bg-zinc-100">Male Pattern Baldness</a>
+          <a href="#" class="block rounded-md px-3 py-2  color-strong hover:bg-zinc-100">Female Hair Loss</a>
+          <a href="#" class="block rounded-md px-3 py-2  color-strong hover:bg-zinc-100">Receding Hairline</a>
+          <a href="#" class="block rounded-md px-3 py-2  color-strong hover:bg-zinc-100">Thinning Hair</a>
+          <a href="#" class="block rounded-md px-3 py-2  color-strong hover:bg-zinc-100">Crown Hair Loss</a>
+          <a href="#" class="block rounded-md px-3 py-2  color-strong hover:bg-zinc-100">Hair Shedding</a>
+        </div>
+      </details>
+
+      <details class="group relative">
+        <summary class="text-small flex cursor-pointer list-none items-center gap-0.5 font-medium   color-strong">
+          Treatments
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-4 opacity-50 transition-transform group-open:rotate-180"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>        </summary>
+        <div class="absolute left-0 top-full z-10 mt-3 w-56 rounded-lg border border-zinc-200 bg-white p-2 shadow-lg">
+          <a href="#" class="block rounded-md px-3 py-2  color-strong hover:bg-zinc-100">Hair Transplant</a>
+          <a href="#" class="block rounded-md px-3 py-2  color-strong hover:bg-zinc-100">Sapphire FUE</a>
+          <a href="#" class="block rounded-md px-3 py-2  color-strong hover:bg-zinc-100">PRP Hair Treatment</a>
+          <a href="#" class="block rounded-md px-3 py-2  color-strong hover:bg-zinc-100">Hair Loss Medication</a>
+          <a href="#" class="block rounded-md px-3 py-2  color-strong hover:bg-zinc-100">Scalp Treatment</a>
+          <a href="#" class="block rounded-md px-3 py-2  color-strong hover:bg-zinc-100">Hair Regrowth Treatment</a>
+        </div>
+      </details>
+
+      
+
+      <a href="#" class="text-small font-medium color-strong">Doctors</a>
+
+    </nav>
+
+    <div class="flex items-center gap-1 lg:gap-2">
+      <a href="/login" class="button button-small button-default"
+      >
+    <span class="button-label">Log In</span>
+  </a>
+
+      <button
+        type="button"
+        class="flex-center size-10 rounded-full color-strong transition-colors
+          hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950"
+        aria-label="View cart"
+        aria-controls="site-cart"
+        aria-expanded="false"
+        data-drawer-open="site-cart"
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-6"><path d="M9 6H15C15 4.34315 13.6569 3 12 3C10.3431 3 9 4.34315 9 6ZM7 6C7 3.23858 9.23858 1 12 1C14.7614 1 17 3.23858 17 6H20C20.5523 6 21 6.44772 21 7V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V7C3 6.44772 3.44772 6 4 6H7ZM5 8V20H19V8H5ZM9 10C9 11.6569 10.3431 13 12 13C13.6569 13 15 11.6569 15 10H17C17 12.7614 14.7614 15 12 15C9.23858 15 7 12.7614 7 10H9Z"/></svg>      </button>
+
+      <span class="h-6 w-px bg-zinc-200 lg:h-8 lg:bg-gradient-to-b lg:from-transparent lg:via-zinc-300 lg:to-transparent" aria-hidden="true"></span>
+
+      <button
+        type="button"
+        class="flex-center size-10 cursor-pointer rounded-full color-strong transition-colors
+          hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950"
+        aria-label="Open menu"
+        aria-controls="site-mobile-menu"
+        aria-expanded="false"
+        data-drawer-open="site-mobile-menu"
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-6"><path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"/></svg>      </button>
+    </div>
+  </div>
+</header>
+<div class="h-18 lg:hidden" aria-hidden="true"></div>
+
+<div
+  id="site-mobile-menu"
+  class="pointer-events-none fixed inset-0 z-50"
+  aria-hidden="true"
+  inert
+>
+  <button
+    type="button"
+    class="absolute inset-0 cursor-pointer bg-zinc-950/50 opacity-0 transition-opacity duration-200 ease-out
+      motion-reduce:transition-none js-component-navbar-drawer-backdrop"
+    aria-label="Close menu"
+    tabindex="-1"
+    data-drawer-close
+  ></button>
+
+  <aside
+    class="absolute inset-y-0 right-0 flex w-[min(24rem,calc(100%-2rem))] translate-x-full flex-col overflow-hidden bg-white
+      shadow-xl transition-transform duration-300 ease-[cubic-bezier(0.2,0,0,1)]
+      motion-reduce:transition-none js-component-navbar-drawer-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Site navigation"
+    tabindex="-1"
+  >
+    <div class="flex min-h-18 shrink-0 items-center justify-between gap-3 border-b border-zinc-200 px-4
+      pt-[env(safe-area-inset-top)]">
+      <a href="/" class="flex items-center text-lg tracking-tight   color-strong
+          focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
+        <span class="aspect-square w-9 flex-center border border-zinc-600 mr-2 font-bold">RR</span>
+        <span class="font-medium">HairClinic</span>
+      </a>
+
+      <button
+        type="button"
+        class="flex-center size-12 shrink-0 cursor-pointer rounded-full color-strong transition-colors
+          hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950"
+        aria-label="Close menu"
+        data-drawer-close
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-6"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"/></svg>      </button>
+    </div>
+
+    <nav class="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 py-2" aria-label="Main navigation">
+      <details class="group border-b border-zinc-200">
+        <summary class="flex min-h-14 cursor-pointer list-none items-start justify-between gap-4 rounded-md px-2 py-4
+          font-medium color-strong transition-colors hover:bg-zinc-100
+          focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950
+          [&::-webkit-details-marker]:hidden">
+          <span class="min-w-0">
+            <span class="block">Hair Loss</span>
+            <span class="mt-1 block text-small font-normal leading-relaxed color-default">
+              Explore common causes and patterns of hair loss.
+            </span>
+          </span>
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="mt-0.5 size-5 shrink-0 transition-transform group-open:rotate-180 motion-reduce:transition-none"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>        </summary>
+        <div class="space-y-1 pb-4 pl-2">
+          <a href="#" class="flex min-h-11 items-center rounded-md px-3 py-2  color-strong transition-colors
+              hover:bg-zinc-100 hover:color-strong focus-visible:outline-2
+              focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
+            Male Pattern Baldness
+          </a>
+          <a href="#" class="flex min-h-11 items-center rounded-md px-3 py-2  color-strong transition-colors
+              hover:bg-zinc-100 hover:color-strong focus-visible:outline-2
+              focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
+            Female Hair Loss
+          </a>
+          <a href="#" class="flex min-h-11 items-center rounded-md px-3 py-2  color-strong transition-colors
+              hover:bg-zinc-100 hover:color-strong focus-visible:outline-2
+              focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
+            Receding Hairline
+          </a>
+          <a href="#" class="flex min-h-11 items-center rounded-md px-3 py-2  color-strong transition-colors
+              hover:bg-zinc-100 hover:color-strong focus-visible:outline-2
+              focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
+            Thinning Hair
+          </a>
+          <a href="#" class="flex min-h-11 items-center rounded-md px-3 py-2  color-strong transition-colors
+              hover:bg-zinc-100 hover:color-strong focus-visible:outline-2
+              focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
+            Crown Hair Loss
+          </a>
+          <a href="#" class="flex min-h-11 items-center rounded-md px-3 py-2  color-strong transition-colors
+              hover:bg-zinc-100 hover:color-strong focus-visible:outline-2
+              focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
+            Hair Shedding
+          </a>
+        </div>
+      </details>
+
+      <details class="group border-b border-zinc-200">
+        <summary class="flex min-h-14 cursor-pointer list-none items-start justify-between gap-4 rounded-md px-2 py-4
+          font-medium color-strong transition-colors hover:bg-zinc-100
+          focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950
+          [&::-webkit-details-marker]:hidden">
+          <span class="min-w-0">
+            <span class="block">Treatments</span>
+            <span class="mt-1 block text-small font-normal leading-relaxed color-default">
+              Find out about our hair and scalp treatment options.
+            </span>
+          </span>
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="mt-0.5 size-5 shrink-0 transition-transform group-open:rotate-180 motion-reduce:transition-none"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>        </summary>
+        <div class="space-y-1 pb-4 pl-2">
+          <a href="#" class="flex min-h-11 items-center rounded-md px-3 py-2  color-strong transition-colors
+              hover:bg-zinc-100 hover:color-strong focus-visible:outline-2
+              focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
+            Hair Transplant
+          </a>
+          <a href="#" class="flex min-h-11 items-center rounded-md px-3 py-2  color-strong transition-colors
+              hover:bg-zinc-100 hover:color-strong focus-visible:outline-2
+              focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
+            Sapphire FUE
+          </a>
+          <a href="#" class="flex min-h-11 items-center rounded-md px-3 py-2  color-strong transition-colors
+              hover:bg-zinc-100 hover:color-strong focus-visible:outline-2
+              focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
+            PRP Hair Treatment
+          </a>
+          <a href="#" class="flex min-h-11 items-center rounded-md px-3 py-2  color-strong transition-colors
+              hover:bg-zinc-100 hover:color-strong focus-visible:outline-2
+              focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
+            Hair Loss Medication
+          </a>
+          <a href="#" class="flex min-h-11 items-center rounded-md px-3 py-2  color-strong transition-colors
+              hover:bg-zinc-100 hover:color-strong focus-visible:outline-2
+              focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
+            Scalp Treatment
+          </a>
+          <a href="#" class="flex min-h-11 items-center rounded-md px-3 py-2  color-strong transition-colors
+              hover:bg-zinc-100 hover:color-strong focus-visible:outline-2
+              focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
+            Hair Regrowth Treatment
+          </a>
+        </div>
+      </details>
+
+      <details class="group border-b border-zinc-200">
+        <summary class="flex min-h-14 cursor-pointer list-none items-start justify-between gap-4 rounded-md px-2 py-4
+          font-medium color-strong transition-colors hover:bg-zinc-100
+          focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950
+          [&::-webkit-details-marker]:hidden">
+          <span class="min-w-0">
+            <span class="block">Products</span>
+            <span class="mt-1 block text-small font-normal leading-relaxed color-default">
+              Browse products for hair growth and scalp care.
+            </span>
+          </span>
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="mt-0.5 size-5 shrink-0 transition-transform group-open:rotate-180 motion-reduce:transition-none"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>        </summary>
+        <div class="space-y-1 pb-4 pl-2">
+          <a href="#" class="flex min-h-11 items-center rounded-md px-3 py-2  color-strong transition-colors
+              hover:bg-zinc-100 hover:color-strong focus-visible:outline-2
+              focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
+            All Products
+          </a>
+          <a href="#" class="flex min-h-11 items-center rounded-md px-3 py-2  color-strong transition-colors
+              hover:bg-zinc-100 hover:color-strong focus-visible:outline-2
+              focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
+            Hair Growth
+          </a>
+          <a href="#" class="flex min-h-11 items-center rounded-md px-3 py-2  color-strong transition-colors
+              hover:bg-zinc-100 hover:color-strong focus-visible:outline-2
+              focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
+            Hair Loss Shampoo
+          </a>
+          <a href="#" class="flex min-h-11 items-center rounded-md px-3 py-2  color-strong transition-colors
+              hover:bg-zinc-100 hover:color-strong focus-visible:outline-2
+              focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
+            Scalp Care
+          </a>
+        </div>
+      </details>
+
+      <a href="#" class="flex min-h-14 items-center border-b border-zinc-200 px-2 font-medium color-strong
+          transition-colors hover:bg-zinc-100 focus-visible:outline-2
+          focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
+        Our Doctors
+      </a>
+      <a href="#" class="flex min-h-14 items-center border-b border-zinc-200 px-2 font-medium color-strong
+          transition-colors hover:bg-zinc-100 focus-visible:outline-2
+          focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
+        Case Studies
+      </a>
+      <a href="#" class="flex min-h-14 items-center border-b border-zinc-200 px-2 font-medium color-strong
+          transition-colors hover:bg-zinc-100 focus-visible:outline-2
+          focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
+        About
+      </a>
+    </nav>
+
+  </aside>
+</div>
+
+
+<div id="site-cart" class="drawer-cart pointer-events-none fixed inset-0 z-50" aria-hidden="true" inert>
+  <button
+    type="button"
+    class="cart-backdrop absolute inset-0 cursor-pointer bg-zinc-950/50 opacity-0 transition-opacity duration-200 ease-out
+      motion-reduce:transition-none js-component-navbar-drawer-backdrop"
+    aria-label="Close cart"
+    tabindex="-1"
+    data-drawer-close
+  ></button>
+
+  <aside
+    class="cart-panel absolute inset-y-0 right-0 flex w-full max-w-lg translate-x-full flex-col overflow-hidden bg-white
+      shadow-xl transition-transform duration-300 ease-[cubic-bezier(0.2,0,0,1)]
+      motion-reduce:transition-none js-component-navbar-drawer-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="cart-title"
+    tabindex="-1"
+  >
+    <div class="cart-header flex-split min-h-18 shrink-0 gap-3 border-b border-zinc-200 px-5
+      pt-[env(safe-area-inset-top)]">
+      <h2 id="cart-title" class="cart-title font-semibold color-strong">Your Cart</h2>
+      <button
+        type="button"
+        class="cart-close flex-center size-11 cursor-pointer rounded-full color-strong hover:bg-zinc-100
+          focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-950"
+        aria-label="Close cart"
+        data-drawer-close
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-6"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"/></svg>      </button>
+    </div>
+
+    <div class="cart-content min-h-0 flex-1 overflow-y-auto overscroll-contain">
+      <ul class="cart-items divide-y divide-zinc-200 border-b border-zinc-200 px-5 js-component-cart-items" aria-label="Cart items">
+                  <li class="cart-item flex items-start gap-4 py-5 js-component-cart-item"
+            data-unit-price="350.00">
+            <div class="cart-item-thumbnail size-20 sm:size-30 shrink-0 rounded-lg bg-zinc-200">
+              <img src="/assets/images/mockup-bottle-02.webp" alt=""
+                class="cart-item-image size-full object-contain">
+            </div>
+            <div class="cart-item-content flex min-w-0 flex-1 flex-col self-stretch">
+              <div class="cart-item-header flex items-start justify-between gap-3">
+                <h3 class="cart-item-title min-w-0 font-medium color-strong">Root Activator Deluxe Kit</h3>
+                <button type="button"
+                  class="cart-item-remove-icon flex-center size-6 shrink-0 cursor-pointer
+                    rounded-md bg-zinc-100 color-default focus-visible:outline-2 js-component-cart-remove"
+                  aria-label="Remove Root Activator Deluxe Kit from cart">
+                  <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="cart-item-remove-svg size-4"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"/></svg>                </button>
+              </div>
+              <p class="cart-item-brief mt-1 text-caption color-muted">Hair growth &amp; scalp care kit</p>
+              <div class="cart-item-actions mt-auto flex items-center gap-4 pt-3">
+                <div class="cart-item-stepper inline-flex items-center rounded-md border border-zinc-300
+                  js-component-cart-stepper">
+                  <button type="button"
+                    class="cart-item-decrease flex-center size-10 cursor-pointer rounded-l-md hover:bg-zinc-100
+                      focus-visible:outline-2 disabled:cursor-default disabled:opacity-40 js-component-cart-decrease"
+                    aria-label="Decrease quantity for Root Activator Deluxe Kit" disabled>−</button>
+                  <input type="number" min="1" step="1" value="1" readonly tabindex="-1"
+                    class="cart-item-quantity w-10 appearance-none bg-transparent text-center text-small outline-none
+                      [&::-webkit-inner-spin-button]:appearance-none
+                      [&::-webkit-outer-spin-button]:appearance-none [-moz-appearance:textfield]
+                      js-component-cart-quantity"
+                    aria-label="Quantity for Root Activator Deluxe Kit">
+                  <button type="button"
+                    class="cart-item-increase flex-center size-10 cursor-pointer rounded-r-md hover:bg-zinc-100
+                      focus-visible:outline-2 js-component-cart-increase"
+                    aria-label="Increase quantity for Root Activator Deluxe Kit">+</button>
+                </div>
+                <div class="cart-item-pricing shrink-0">
+                  <p class="cart-item-price leading-tight font-medium color-strong js-component-cart-price">RM 350.00</p>
+                  <p class="cart-item-unit-price hidden text-caption color-muted js-component-cart-unit-price">
+                    RM 350.00 each
+                  </p>
+                </div>
+              </div>
+            </div>
+            <template class="cart-item-undo-template js-component-cart-undo-template">
+              <li class="cart-item-notice flex-split gap-4 py-5">
+                <p class="cart-item-notice-text text-small color-muted" role="status">
+                  Root Activator Deluxe Kit removed from your cart.
+                </p>
+                <button type="button"
+                  class="cart-item-undo min-h-11 shrink-0 cursor-pointer text-small font-medium color-strong
+                    underline underline-offset-2 focus-visible:outline-2 js-component-cart-undo">
+                  Undo
+                </button>
+              </li>
+            </template>
+          </li>
+                  <li class="cart-item flex items-start gap-4 py-5 js-component-cart-item"
+            data-unit-price="85.00">
+            <div class="cart-item-thumbnail size-20 sm:size-30 shrink-0 rounded-lg bg-zinc-200">
+              <img src="/assets/images/mockup-bottle-02.webp" alt=""
+                class="cart-item-image size-full object-contain">
+            </div>
+            <div class="cart-item-content flex min-w-0 flex-1 flex-col self-stretch">
+              <div class="cart-item-header flex items-start justify-between gap-3">
+                <h3 class="cart-item-title min-w-0 font-medium color-strong">Hair &amp; Scalp Shampoo</h3>
+                <button type="button"
+                  class="cart-item-remove-icon flex-center size-6 shrink-0 cursor-pointer
+                    rounded-md bg-zinc-100 color-default focus-visible:outline-2 js-component-cart-remove"
+                  aria-label="Remove Hair &amp; Scalp Shampoo from cart">
+                  <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="cart-item-remove-svg size-4"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"/></svg>                </button>
+              </div>
+              <p class="cart-item-brief mt-1 text-caption color-muted">Daily hair &amp; scalp care</p>
+              <div class="cart-item-actions mt-auto flex items-center gap-4 pt-3">
+                <div class="cart-item-stepper inline-flex items-center rounded-md border border-zinc-300
+                  js-component-cart-stepper">
+                  <button type="button"
+                    class="cart-item-decrease flex-center size-10 cursor-pointer rounded-l-md hover:bg-zinc-100
+                      focus-visible:outline-2 disabled:cursor-default disabled:opacity-40 js-component-cart-decrease"
+                    aria-label="Decrease quantity for Hair &amp; Scalp Shampoo" disabled>−</button>
+                  <input type="number" min="1" step="1" value="1" readonly tabindex="-1"
+                    class="cart-item-quantity w-10 appearance-none bg-transparent text-center text-small outline-none
+                      [&::-webkit-inner-spin-button]:appearance-none
+                      [&::-webkit-outer-spin-button]:appearance-none [-moz-appearance:textfield]
+                      js-component-cart-quantity"
+                    aria-label="Quantity for Hair &amp; Scalp Shampoo">
+                  <button type="button"
+                    class="cart-item-increase flex-center size-10 cursor-pointer rounded-r-md hover:bg-zinc-100
+                      focus-visible:outline-2 js-component-cart-increase"
+                    aria-label="Increase quantity for Hair &amp; Scalp Shampoo">+</button>
+                </div>
+                <div class="cart-item-pricing shrink-0">
+                  <p class="cart-item-price leading-tight font-medium color-strong js-component-cart-price">RM 85.00</p>
+                  <p class="cart-item-unit-price hidden text-caption color-muted js-component-cart-unit-price">
+                    RM 85.00 each
+                  </p>
+                </div>
+              </div>
+            </div>
+            <template class="cart-item-undo-template js-component-cart-undo-template">
+              <li class="cart-item-notice flex-split gap-4 py-5">
+                <p class="cart-item-notice-text text-small color-muted" role="status">
+                  Hair &amp; Scalp Shampoo removed from your cart.
+                </p>
+                <button type="button"
+                  class="cart-item-undo min-h-11 shrink-0 cursor-pointer text-small font-medium color-strong
+                    underline underline-offset-2 focus-visible:outline-2 js-component-cart-undo">
+                  Undo
+                </button>
+              </li>
+            </template>
+          </li>
+              </ul>
+
+      <div class="cart-promo border-b border-zinc-200 p-5">
+        <div class="cart-promo-field flex items-end gap-2">
+          <div class="cart-promo-control flex-1 min-w-0">
+            <div class="field">
+  <label id="cart-promo-code-label" for="cart-promo-code" class="field-label">
+    Promo code      </label>
+      <input id="cart-promo-code" type="text" value=""
+            name="promo_code"      placeholder="Promo code"                                                      class="field-control field-input">
+      </div>
+          </div>
+          <button type="button" class="button button-medium button-secondary"
+          >
+    <span class="button-label">Apply</span>
+    </button>
+        </div>
+      </div>
+
+      <section class="cart-pairing pt-5 pb-10 js-component-drawer-cart-pairing" aria-labelledby="cart-pairing-title">
+        <div class="cart-pairing-header mb-4 flex-split gap-3 px-5">
+          <h3 id="cart-pairing-title" class="cart-pairing-title font-semibold color-strong">More for your routine</h3>
+          <div class="cart-pairing-controls hidden gap-1 md:flex">
+            <button type="button"
+              class="cart-pairing-prev flex-center size-9 cursor-pointer rounded-full border border-zinc-300 hover:bg-zinc-100
+                focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-default disabled:opacity-40
+                js-component-drawer-cart-prev"
+              aria-label="Previous recommended products" aria-controls="cart-pairing-track" disabled>
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-4"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"/></svg>            </button>
+            <button type="button"
+              class="cart-pairing-next flex-center size-9 cursor-pointer rounded-full border border-zinc-300 hover:bg-zinc-100
+                focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-default disabled:opacity-40
+                js-component-drawer-cart-next"
+              aria-label="Next recommended products" aria-controls="cart-pairing-track">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-4"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/></svg>            </button>
+          </div>
+        </div>
+        <div id="cart-pairing-track"
+          class="cart-pairing-track px-5 grid auto-cols-[200px] md:auto-cols-[calc((100%_-_1rem)*3/7)] grid-flow-col gap-2 overflow-x-auto
+            overscroll-x-contain snap-x snap-mandatory pb-2 focus-visible:outline-2
+            focus-visible:outline-offset-2 js-component-drawer-cart-track"
+          role="group" aria-roledescription="carousel" aria-label="Recommended products" tabindex="0">
+                      <article class="cart-product flex min-w-0 snap-start flex-col rounded-lg bg-zinc-200 p-3 text-center first:scroll-ml-5">
+              <div class="cart-product-thumbnail mb-3 aspect-square">
+                <img src="/assets/images/mockup-bottle-02.webp" alt=""
+                  class="cart-product-image size-full object-contain" loading="lazy">
+              </div>
+              <h4 class="cart-product-title mt-auto text-small md:mt-0 font-medium color-strong">Hair &amp; Scalp Shampoo</h4>
+              <p class="cart-product-price mt-1 mb-3 text-small color-default">RM 85.00</p>
+              <button type="button" class="button button-medium button-default cart-product-action w-full bg-zinc-800 color-invert-strong hover:bg-zinc-700 md:mt-auto"
+    aria-label="Add Hair &amp; Scalp Shampoo to cart"      >
+    <span class="button-label">Add to Cart</span>
+    </button>
+            </article>
+                      <article class="cart-product flex min-w-0 snap-start flex-col rounded-lg bg-zinc-200 p-3 text-center first:scroll-ml-5">
+              <div class="cart-product-thumbnail mb-3 aspect-square">
+                <img src="/assets/images/mockup-bottle-02.webp" alt=""
+                  class="cart-product-image size-full object-contain" loading="lazy">
+              </div>
+              <h4 class="cart-product-title mt-auto text-small md:mt-0 font-medium color-strong">Hair Conditioner</h4>
+              <p class="cart-product-price mt-1 mb-3 text-small color-default">RM 85.00</p>
+              <button type="button" class="button button-medium button-default cart-product-action w-full bg-zinc-800 color-invert-strong hover:bg-zinc-700 md:mt-auto"
+    aria-label="Add Hair Conditioner to cart"      >
+    <span class="button-label">Add to Cart</span>
+    </button>
+            </article>
+                      <article class="cart-product flex min-w-0 snap-start flex-col rounded-lg bg-zinc-200 p-3 text-center first:scroll-ml-5">
+              <div class="cart-product-thumbnail mb-3 aspect-square">
+                <img src="/assets/images/mockup-bottle-02.webp" alt=""
+                  class="cart-product-image size-full object-contain" loading="lazy">
+              </div>
+              <h4 class="cart-product-title mt-auto text-small md:mt-0 font-medium color-strong">Root Activator Deluxe Kit</h4>
+              <p class="cart-product-price mt-1 mb-3 text-small color-default">RM 350.00</p>
+              <button type="button" class="button button-medium button-default cart-product-action w-full bg-zinc-800 color-invert-strong hover:bg-zinc-700 md:mt-auto"
+    aria-label="Add Root Activator Deluxe Kit to cart"      >
+    <span class="button-label">Add to Cart</span>
+    </button>
+            </article>
+                      <article class="cart-product flex min-w-0 snap-start flex-col rounded-lg bg-zinc-200 p-3 text-center first:scroll-ml-5">
+              <div class="cart-product-thumbnail mb-3 aspect-square">
+                <img src="/assets/images/mockup-bottle-02.webp" alt=""
+                  class="cart-product-image size-full object-contain" loading="lazy">
+              </div>
+              <h4 class="cart-product-title mt-auto text-small md:mt-0 font-medium color-strong">Finas Blue 100 Capsules</h4>
+              <p class="cart-product-price mt-1 mb-3 text-small color-default">RM 120.00</p>
+              <button type="button" class="button button-medium button-default cart-product-action w-full bg-zinc-800 color-invert-strong hover:bg-zinc-700 md:mt-auto"
+    aria-label="Add Finas Blue 100 Capsules to cart"      >
+    <span class="button-label">Add to Cart</span>
+    </button>
+            </article>
+                  </div>
+      </section>
+    </div>
+
+    <div class="cart-footer relative z-10 shrink-0 shadow-[0_-4px_16px_rgba(0,0,0,0.08)] border-t border-zinc-900/20 bg-white px-5 pt-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
+      <div id="cart-breakdown" class="cart-breakdown hidden js-component-cart-breakdown">
+        <dl class="cart-summary divide-y divide-dashed divide-zinc-200 text-small color-default border-b-2 border-zinc-300 pb-5 mb-5">
+          <div class="cart-subtotal flex justify-between gap-4 py-2">
+            <dt class="cart-summary-label js-component-cart-count">Subtotal (2 items)</dt>
+            <dd class="cart-summary-value font-medium color-strong js-component-cart-subtotal">RM 435.00</dd>
+          </div>
+          <div class="cart-delivery flex justify-between gap-4 py-2">
+            <dt class="cart-summary-label">Delivery</dt>
+            <dd class="cart-summary-value font-medium color-strong">Free</dd>
+          </div>
+          <div class="cart-cashback flex justify-between gap-4 py-2">
+            <dt class="cart-summary-label">Cashback on this order (2%)</dt>
+            <dd class="cart-summary-value font-medium js-component-cart-cashback">+ RM 8.70</dd>
+          </div>
+        </dl>
+      </div>
+      <button type="button"
+        class="cart-summary-toggle group flex-split min-h-11 w-full cursor-pointer gap-4
+          text-left focus-visible:outline-2 focus-visible:outline-offset-2 js-component-cart-summary-toggle"
+        aria-expanded="false" aria-controls="cart-breakdown">
+        <span class="cart-summary-toggle-content">
+          <span class="cart-summary-toggle-label block font-medium color-strong">Total</span>
+          <span class="cart-summary-toggle-hint block text-caption color-muted">
+            Free delivery · <span class="cart-summary-toggle-action js-component-cart-summary-label">View breakdown</span>
+          </span>
+        </span>
+        <span class="cart-summary-toggle-value flex items-center gap-2 font-semibold color-strong">
+          <span class="cart-summary-value js-component-cart-total">RM 435.00</span>
+          <div class="rounded-full size-6 flex-center bg-zinc-200 color-default"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="cart-summary-toggle-icon size-4 transition-transform group-aria-expanded:rotate-180 motion-reduce:transition-none"><path d="M11.9999 10.8284L7.0502 15.7782L5.63599 14.364L11.9999 8L18.3639 14.364L16.9497 15.7782L11.9999 10.8284Z"/></svg></div>
+        </span>
+      </button>
+      <button type="button" class="button button-large button-default cart-checkout w-full mt-5 bg-zinc-800 color-invert-strong hover:bg-zinc-700 js-component-cart-checkout"
+          >
+    <span class="button-label">Continue to Checkout</span>
+    </button>
+    </div>
+  </aside>
+</div>
+<section class="hero bg-zinc-100 color-default relative py-10 sm:py-15 overflow-hidden js-component-home-hero">
+  <div class="hero-container container">
+    <div class="hero-grid grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-2">
+      <div class="hero-header col-span-2 sm:pr-20">
+        <h1 class="hero-title font-semibold sm:font-medium color-strong text-title-lg text-balance sm:max-w-2xl">
+          Hair loss treatment made for you
+        </h1>
+        <div class="reviews mt-5 text-left">
+          <div class="reviews-stars flex justify-start mb-2 color-muted" role="img" aria-label="5 out of 5 stars">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="reviews-star size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="reviews-star size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="reviews-star size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="reviews-star size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="reviews-star size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>          </div>
+          <div class="reviews-label text-small color-muted">From 500+ verified Google Reviews</div>
+          <div class="reviews-avatars flex justify-start mt-3" aria-hidden="true">
+            <div class="reviews-avatar aspect-square w-9 rounded-full border-2 border-white bg-zinc-500"></div>
+            <div class="reviews-avatar aspect-square w-9 -ml-2 rounded-full border-2 border-white bg-zinc-500"></div>
+            <div class="reviews-avatar aspect-square w-9 -ml-2 rounded-full border-2 border-white bg-zinc-500"></div>
+            <div class="reviews-avatar aspect-square w-9 -ml-2 rounded-full border-2 border-white bg-zinc-500"></div>
+            <div class="reviews-avatar aspect-square w-9 -ml-2 rounded-full border-2 border-white bg-zinc-500"></div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-content col-span-1">
+        <div class="hero-subtitle text-pretty sm:max-w-3xl">
+          Get hair loss medication and treatment prescribed online.
+        </div>
+        <div class="benefits font-medium text-small mt-5">
+          <div class="benefit flex items-center justify-start gap-3 my-0.5">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="benefit-icon size-3 shrink-0"><path d="M1 11C6.52285 11 11 6.52285 11 1H13C13 6.52285 17.4772 11 23 11V13C17.4772 13 13 17.4772 13 23H11C11 17.4772 6.52285 13 1 13V11ZM5.80342 12C8.56895 13.2093 10.7907 15.431 12 18.1966C13.2093 15.431 15.431 13.2093 18.1966 12C15.431 10.7907 13.2093 8.56895 12 5.80342C10.7907 8.56895 8.56895 10.7907 5.80342 12Z"/></svg>            <div class="benefit-text">Prescribed by MY-licensed clinicians</div>
+          </div>
+          <div class="benefit flex items-center justify-start gap-3 my-0.5">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="benefit-icon size-3 shrink-0"><path d="M1 11C6.52285 11 11 6.52285 11 1H13C13 6.52285 17.4772 11 23 11V13C17.4772 13 13 17.4772 13 23H11C11 17.4772 6.52285 13 1 13V11ZM5.80342 12C8.56895 13.2093 10.7907 15.431 12 18.1966C13.2093 15.431 15.431 13.2093 18.1966 12C15.431 10.7907 13.2093 8.56895 12 5.80342C10.7907 8.56895 8.56895 10.7907 5.80342 12Z"/></svg>            <div class="benefit-text">Regrow hair in as few as 3-6 months *</div>
+          </div>
+          <div class="benefit flex items-center justify-start gap-3 my-0.5">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="benefit-icon size-3 shrink-0"><path d="M1 11C6.52285 11 11 6.52285 11 1H13C13 6.52285 17.4772 11 23 11V13C17.4772 13 13 17.4772 13 23H11C11 17.4772 6.52285 13 1 13V11ZM5.80342 12C8.56895 13.2093 10.7907 15.431 12 18.1966C13.2093 15.431 15.431 13.2093 18.1966 12C15.431 10.7907 13.2093 8.56895 12 5.80342C10.7907 8.56895 8.56895 10.7907 5.80342 12Z"/></svg>            <div class="benefit-text">Confidential & Secure.</div>
+          </div>
+        </div>
+        <div class="hero-actions inline-flex items-center gap-2 mt-7">
+          <a href="#" class="button button-large button-default"
+      >
+    <span class="button-label">Start Free Hair Assessment</span>
+      <span class="button-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="button-glyph"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/></svg>    </span>
+  </a>
+        </div>
+        <div class="hero-disclaimer color-muted text-caption mt-5 text-pretty leading-relaxed">
+          Free & confidential consultations. Tell us about your hair loss and get a treatment recommendation tailored to your needs. 
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <div class="marquee mt-15 js-component-marquee" role="region" aria-label="Hair treatment highlights"
+  data-speed="18" data-autoplay="true"
+  data-autoplay-mobile="false"
+  style="--marquee-gap: 2; --marquee-fade-color: var(--color-zinc-100, #f4f4f5);">
+  <div id="marquee-6afa5a1bce628-viewport" class="marquee-viewport js-component-marquee-viewport"
+    role="group" tabindex="0" aria-label="Hair treatment highlights">
+    <div class="marquee-track js-component-marquee-track">
+      <div class="marquee-group">
+                  <div class="marquee-card aspect-2/3 w-90 rounded-xl bg-white"></div>
+          <div class="marquee-card aspect-2/3 w-90 rounded-xl bg-zinc-200"></div>
+          <div class="marquee-card aspect-2/3 w-90 rounded-xl bg-zinc-400"></div>
+          <div class="marquee-card aspect-2/3 w-90 rounded-xl bg-white"></div>
+          <div class="marquee-card aspect-2/3 w-90 rounded-xl bg-zinc-200"></div>
+          <div class="marquee-card aspect-2/3 w-90 rounded-xl bg-zinc-400"></div>
+          <div class="marquee-card aspect-2/3 w-90 rounded-xl bg-white"></div>
+          <div class="marquee-card aspect-2/3 w-90 rounded-xl bg-zinc-200"></div>
+          <div class="marquee-card aspect-2/3 w-90 rounded-xl bg-zinc-400"></div>
+              </div>
+    </div>
+  </div>
+        <div class="marquee-controls">
+              <button type="button" aria-label="Previous Item" aria-controls="marquee-6afa5a1bce628-viewport"
+          class="marquee-control js-component-marquee-prev">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="marquee-icon size-5"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"/></svg>        </button>
+        <button type="button" aria-label="Next Item" aria-controls="marquee-6afa5a1bce628-viewport"
+          class="marquee-control js-component-marquee-next">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="marquee-icon size-5"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/></svg>        </button>
+                    <button type="button" aria-controls="marquee-6afa5a1bce628-viewport" hidden
+          class="marquee-control js-component-marquee-toggle">Pause</button>
+          </div>
+    <p class="marquee-status sr-only js-component-marquee-status" role="status" aria-atomic="true"></p>
+</div>
+</section>
+<section class="section">
+  <div class="section-header container">
+    <div class="headline sm:text-center sm:flex sm:flex-col sm:items-center">
+      <div class="headline-topic inline-flex items-center justify-start font-medium text-small text-orange-600 mb-5 tracking-[1%]">
+      <div class="font-semibold text-small text-orange-600 size-7 leading-7 flex-center border border-orange-500 mr-1.5">RR</div>
+      <div class="leading-6 color-strong">Our Products</div>
+    </div>
+        <h2 class="headline-title font-medium color-strong text-title-md text-pretty sm:max-w-2xl">Everyday hair care and prescription treatments for your hair needs</h2>
+        <div class="headline-subtitle text-pretty mt-4 sm:max-w-3xl">Explore daily essentials for your routine and prescription options guided by a clinician.</div>
+    </div>
+  </div>
+
+  <div class="carousel relative overflow-hidden mt-10  js-component-carousel"
+  data-desktop-columns="4" data-tablet-columns="3"
+  data-gap="3" data-tablet-gap="3" data-desktop-gap="3"
+  data-fade-color="var(--color-zinc-100, #f4f4f5)" data-control-background="#fff"
+  data-control-color="var(--color-zinc-800, #27272a)" data-control-border-color="var(--color-zinc-300, #d4d4d8)"
+  data-control-hover-background="var(--color-zinc-100, #f4f4f5)"
+  style="--carousel-desktop-columns: 4; --carousel-tablet-columns: 3;
+    --carousel-gap: 3; --carousel-tablet-gap: 3;
+    --carousel-desktop-gap: 3;
+    --carousel-fade-color: var(--color-zinc-100, #f4f4f5); --carousel-control-background: #fff;
+    --carousel-control-color: var(--color-zinc-800, #27272a);
+    --carousel-control-border-color: var(--color-zinc-300, #d4d4d8);
+    --carousel-control-hover-background: var(--color-zinc-100, #f4f4f5);">
+  <div class="carousel-viewport md:px-12 lg:px-16">
+    <div class="carousel-container max-w-6xl mx-auto">
+      <div id="products-option-7-basic-track"
+        class="carousel-track grid grid-flow-col px-5 py-2 overflow-x-auto overscroll-x-contain snap-x snap-mandatory scroll-px-5
+          motion-reduce:transition-none
+          md:px-0 md:overflow-visible md:transition-transform md:duration-300 md:ease-out
+          js-component-carousel-track"
+        role="group" aria-label="Everyday hair care products" tabindex="0">
+                      <article class="product-item relative flex flex-col min-w-0 rounded-xl bg-white overflow-hidden snap-start">
+          <div class="product-image relative flex-center aspect-4/3 max-lg:shrink-0" aria-hidden="true">
+            <img src="assets/images/mockup-bottle-02.webp" alt="" class="product-image-source size-full object-contain
+              max-lg:absolute max-lg:inset-0" loading="lazy">
+          </div>
+          <div class="product-brief flex-1 flex flex-col px-5 pb-4">
+            <div class="product-pill absolute top-3 left-3 inline-flex mb-4 px-2.5 py-1.5 text-caption leading-3 rounded-md bg-zinc-100">Daily</div>
+            <h3 class="product-title font-display font-semibold color-strong">Root Activator Deluxe Kit</h3>
+            <div class="product-formula text-caption text-green-800">Finasteride 0.1% + minoxidil 5% foam</div>
+            <div class="product-desc mt-2 text-caption color-muted">
+              A daily tablet, plus a tonic for thinning spots twice a day.
+            </div>
+            <div class="product-actions flex-split mt-auto pt-5">
+              <div class="product-price">
+                <div class="product-price-label text-caption color-muted">From</div>
+                <span class="product-price-current font-semibold color-strong">RM 85</span>
+                <span class="product-price-original text-caption font-normal line-through decoration-zinc-400 color-muted">RM 120</span>
+              </div>
+              <a href="#" class="button button-medium button-default"
+      >
+    <span class="button-label">Add to Cart</span>
+  </a>
+            </div>
+          </div>
+        </article>
+              <article class="product-item relative flex flex-col min-w-0 rounded-xl bg-white overflow-hidden snap-start">
+          <div class="product-image relative flex-center aspect-4/3 max-lg:shrink-0" aria-hidden="true">
+            <img src="assets/images/mockup-bottle-02.webp" alt="" class="product-image-source size-full object-contain
+              max-lg:absolute max-lg:inset-0" loading="lazy">
+          </div>
+          <div class="product-brief flex-1 flex flex-col px-5 pb-4">
+            <div class="product-pill absolute top-3 left-3 inline-flex mb-4 px-2.5 py-1.5 text-caption leading-3 rounded-md bg-zinc-100">Daily</div>
+            <h3 class="product-title font-display font-semibold color-strong">Root Activator Deluxe Kit</h3>
+            <div class="product-formula text-caption text-green-800">Finasteride 0.1% + minoxidil 5% foam</div>
+            <div class="product-desc mt-2 text-caption color-muted">
+              A daily tablet, plus a tonic for thinning spots twice a day.
+            </div>
+            <div class="product-actions flex-split mt-auto pt-5">
+              <div class="product-price">
+                <div class="product-price-label text-caption color-muted">From</div>
+                <span class="product-price-current font-semibold color-strong">RM 85</span>
+                <span class="product-price-original text-caption font-normal line-through decoration-zinc-400 color-muted">RM 120</span>
+              </div>
+              <a href="#" class="button button-medium button-default"
+      >
+    <span class="button-label">Add to Cart</span>
+  </a>
+            </div>
+          </div>
+        </article>
+              <article class="product-item relative flex flex-col min-w-0 rounded-xl bg-white overflow-hidden snap-start">
+          <div class="product-image relative flex-center aspect-4/3 max-lg:shrink-0" aria-hidden="true">
+            <img src="assets/images/mockup-bottle-02.webp" alt="" class="product-image-source size-full object-contain
+              max-lg:absolute max-lg:inset-0" loading="lazy">
+          </div>
+          <div class="product-brief flex-1 flex flex-col px-5 pb-4">
+            <div class="product-pill absolute top-3 left-3 inline-flex mb-4 px-2.5 py-1.5 text-caption leading-3 rounded-md bg-zinc-100">Daily</div>
+            <h3 class="product-title font-display font-semibold color-strong">Root Activator Deluxe Kit</h3>
+            <div class="product-formula text-caption text-green-800">Finasteride 0.1% + minoxidil 5% foam</div>
+            <div class="product-desc mt-2 text-caption color-muted">
+              A daily tablet, plus a tonic for thinning spots twice a day.
+            </div>
+            <div class="product-actions flex-split mt-auto pt-5">
+              <div class="product-price">
+                <div class="product-price-label text-caption color-muted">From</div>
+                <span class="product-price-current font-semibold color-strong">RM 85</span>
+                <span class="product-price-original text-caption font-normal line-through decoration-zinc-400 color-muted">RM 120</span>
+              </div>
+              <a href="#" class="button button-medium button-default"
+      >
+    <span class="button-label">Add to Cart</span>
+  </a>
+            </div>
+          </div>
+        </article>
+              <article class="product-item relative flex flex-col min-w-0 rounded-xl bg-white overflow-hidden snap-start">
+          <div class="product-image relative flex-center aspect-4/3 max-lg:shrink-0" aria-hidden="true">
+            <img src="assets/images/mockup-bottle-02.webp" alt="" class="product-image-source size-full object-contain
+              max-lg:absolute max-lg:inset-0" loading="lazy">
+          </div>
+          <div class="product-brief flex-1 flex flex-col px-5 pb-4">
+            <div class="product-pill absolute top-3 left-3 inline-flex mb-4 px-2.5 py-1.5 text-caption leading-3 rounded-md bg-zinc-100">Daily</div>
+            <h3 class="product-title font-display font-semibold color-strong">Root Activator Deluxe Kit</h3>
+            <div class="product-formula text-caption text-green-800">Finasteride 0.1% + minoxidil 5% foam</div>
+            <div class="product-desc mt-2 text-caption color-muted">
+              A daily tablet, plus a tonic for thinning spots twice a day.
+            </div>
+            <div class="product-actions flex-split mt-auto pt-5">
+              <div class="product-price">
+                <div class="product-price-label text-caption color-muted">From</div>
+                <span class="product-price-current font-semibold color-strong">RM 85</span>
+                <span class="product-price-original text-caption font-normal line-through decoration-zinc-400 color-muted">RM 120</span>
+              </div>
+              <a href="#" class="button button-medium button-default"
+      >
+    <span class="button-label">Add to Cart</span>
+  </a>
+            </div>
+          </div>
+        </article>
+              <article class="product-item relative flex flex-col min-w-0 rounded-xl bg-white overflow-hidden snap-start">
+          <div class="product-image relative flex-center aspect-4/3 max-lg:shrink-0" aria-hidden="true">
+            <img src="assets/images/mockup-bottle-02.webp" alt="" class="product-image-source size-full object-contain
+              max-lg:absolute max-lg:inset-0" loading="lazy">
+          </div>
+          <div class="product-brief flex-1 flex flex-col px-5 pb-4">
+            <div class="product-pill absolute top-3 left-3 inline-flex mb-4 px-2.5 py-1.5 text-caption leading-3 rounded-md bg-zinc-100">Daily</div>
+            <h3 class="product-title font-display font-semibold color-strong">Root Activator Deluxe Kit</h3>
+            <div class="product-formula text-caption text-green-800">Finasteride 0.1% + minoxidil 5% foam</div>
+            <div class="product-desc mt-2 text-caption color-muted">
+              A daily tablet, plus a tonic for thinning spots twice a day.
+            </div>
+            <div class="product-actions flex-split mt-auto pt-5">
+              <div class="product-price">
+                <div class="product-price-label text-caption color-muted">From</div>
+                <span class="product-price-current font-semibold color-strong">RM 85</span>
+                <span class="product-price-original text-caption font-normal line-through decoration-zinc-400 color-muted">RM 120</span>
+              </div>
+              <a href="#" class="button button-medium button-default"
+      >
+    <span class="button-label">Add to Cart</span>
+  </a>
+            </div>
+          </div>
+        </article>
+              <article class="product-item relative flex flex-col min-w-0 rounded-xl bg-white overflow-hidden snap-start">
+          <div class="product-image relative flex-center aspect-4/3 max-lg:shrink-0" aria-hidden="true">
+            <img src="assets/images/mockup-bottle-02.webp" alt="" class="product-image-source size-full object-contain
+              max-lg:absolute max-lg:inset-0" loading="lazy">
+          </div>
+          <div class="product-brief flex-1 flex flex-col px-5 pb-4">
+            <div class="product-pill absolute top-3 left-3 inline-flex mb-4 px-2.5 py-1.5 text-caption leading-3 rounded-md bg-zinc-100">Daily</div>
+            <h3 class="product-title font-display font-semibold color-strong">Root Activator Deluxe Kit</h3>
+            <div class="product-formula text-caption text-green-800">Finasteride 0.1% + minoxidil 5% foam</div>
+            <div class="product-desc mt-2 text-caption color-muted">
+              A daily tablet, plus a tonic for thinning spots twice a day.
+            </div>
+            <div class="product-actions flex-split mt-auto pt-5">
+              <div class="product-price">
+                <div class="product-price-label text-caption color-muted">From</div>
+                <span class="product-price-current font-semibold color-strong">RM 85</span>
+                <span class="product-price-original text-caption font-normal line-through decoration-zinc-400 color-muted">RM 120</span>
+              </div>
+              <a href="#" class="button button-medium button-default"
+      >
+    <span class="button-label">Add to Cart</span>
+  </a>
+            </div>
+          </div>
+        </article>
+              <article class="product-item relative flex flex-col min-w-0 rounded-xl bg-white overflow-hidden snap-start">
+          <div class="product-image relative flex-center aspect-4/3 max-lg:shrink-0" aria-hidden="true">
+            <img src="assets/images/mockup-bottle-02.webp" alt="" class="product-image-source size-full object-contain
+              max-lg:absolute max-lg:inset-0" loading="lazy">
+          </div>
+          <div class="product-brief flex-1 flex flex-col px-5 pb-4">
+            <div class="product-pill absolute top-3 left-3 inline-flex mb-4 px-2.5 py-1.5 text-caption leading-3 rounded-md bg-zinc-100">Daily</div>
+            <h3 class="product-title font-display font-semibold color-strong">Root Activator Deluxe Kit</h3>
+            <div class="product-formula text-caption text-green-800">Finasteride 0.1% + minoxidil 5% foam</div>
+            <div class="product-desc mt-2 text-caption color-muted">
+              A daily tablet, plus a tonic for thinning spots twice a day.
+            </div>
+            <div class="product-actions flex-split mt-auto pt-5">
+              <div class="product-price">
+                <div class="product-price-label text-caption color-muted">From</div>
+                <span class="product-price-current font-semibold color-strong">RM 85</span>
+                <span class="product-price-original text-caption font-normal line-through decoration-zinc-400 color-muted">RM 120</span>
+              </div>
+              <a href="#" class="button button-medium button-default"
+      >
+    <span class="button-label">Add to Cart</span>
+  </a>
+            </div>
+          </div>
+        </article>
+              <article class="product-item relative flex flex-col min-w-0 rounded-xl bg-white overflow-hidden snap-start">
+          <div class="product-image relative flex-center aspect-4/3 max-lg:shrink-0" aria-hidden="true">
+            <img src="assets/images/mockup-bottle-02.webp" alt="" class="product-image-source size-full object-contain
+              max-lg:absolute max-lg:inset-0" loading="lazy">
+          </div>
+          <div class="product-brief flex-1 flex flex-col px-5 pb-4">
+            <div class="product-pill absolute top-3 left-3 inline-flex mb-4 px-2.5 py-1.5 text-caption leading-3 rounded-md bg-zinc-100">Daily</div>
+            <h3 class="product-title font-display font-semibold color-strong">Root Activator Deluxe Kit</h3>
+            <div class="product-formula text-caption text-green-800">Finasteride 0.1% + minoxidil 5% foam</div>
+            <div class="product-desc mt-2 text-caption color-muted">
+              A daily tablet, plus a tonic for thinning spots twice a day.
+            </div>
+            <div class="product-actions flex-split mt-auto pt-5">
+              <div class="product-price">
+                <div class="product-price-label text-caption color-muted">From</div>
+                <span class="product-price-current font-semibold color-strong">RM 85</span>
+                <span class="product-price-original text-caption font-normal line-through decoration-zinc-400 color-muted">RM 120</span>
+              </div>
+              <a href="#" class="button button-medium button-default"
+      >
+    <span class="button-label">Add to Cart</span>
+  </a>
+            </div>
+          </div>
+        </article>
+                </div>
+    </div>
+  </div>
+  <div class="carousel-fade carousel-fade-left left-0
+    lg:w-25" aria-hidden="true"></div>
+  <div class="carousel-fade carousel-fade-right right-0
+    lg:w-25" aria-hidden="true"></div>
+  <div class="carousel-controls hidden
+    md:block
+    js-component-carousel-controls" hidden>
+    <button type="button"
+      class="carousel-control carousel-prev left-2
+        js-component-carousel-prev"
+      aria-label="Previous slide" aria-controls="products-option-7-basic-track">
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"/></svg>    </button>
+    <button type="button"
+      class="carousel-control carousel-next right-2
+        js-component-carousel-next"
+      aria-label="Next slide" aria-controls="products-option-7-basic-track">
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/></svg>    </button>
+  </div>
+  <p class="carousel-status sr-only
+    js-component-carousel-status" role="status" aria-atomic="true"></p>
+</div>
+
+  <div class="section-banners container mt-15">
+    <div class="banners grid grid-cols-1 gap-3 max-w-248 mx-auto
+      md:grid-cols-2">
+      <article class="card card-testimonial flex flex-col min-w-0 p-6 rounded-xl bg-white color-strong
+        sm:p-8
+        js-component-testimonial" aria-label="Sample testimonials" aria-roledescription="carousel">
+        <header class="card-header flex items-center justify-between gap-4">
+          <p class="card-eyebrow text-caption font-medium">A little clarity. A real difference.</p>
+          <span class="testimonial-mark block h-7.5 text-zinc-400">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="testimonial-icon w-10 h-7.5"><path d="M4.58341 17.3211C3.55316 16.2274 3 15 3 13.0103C3 9.51086 5.45651 6.37366 9.03059 4.82318L9.92328 6.20079C6.58804 8.00539 5.93618 10.346 5.67564 11.822C6.21263 11.5443 6.91558 11.4466 7.60471 11.5105C9.40908 11.6778 10.8312 13.159 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0095 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2274 13 15 13 13.0103C13 9.51086 15.4565 6.37366 19.0306 4.82318L19.9233 6.20079C16.588 8.00539 15.9362 10.346 15.6756 11.822C16.2126 11.5443 16.9156 11.4466 17.6047 11.5105C19.4091 11.6778 20.8312 13.159 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0095 14.5834 17.3211Z"/></svg>          </span>
+        </header>
+        <div class="testimonial-slides grid flex-1 mt-10" aria-live="polite" aria-atomic="true">
+                      <figure class="testimonial-slide col-start-1 row-start-1 flex flex-col m-0               js-component-testimonial-slide" role="group" aria-roledescription="slide"
+              aria-label="1 of 3"
+              aria-hidden="false" >
+              <blockquote class="testimonial-quote flex-1 mb-9 text-title-sm font-medium tracking-tighter text-pretty">
+                For the first time, I understood my options. No guesswork, just a routine I could stick to.              </blockquote>
+              <figcaption class="testimonial-author flex items-center gap-3 mt-auto">
+                <span class="testimonial-avatar grid shrink-0 place-items-center size-12 text-small font-medium rounded-full border border-zinc-200 bg-zinc-100 color-default"
+                  aria-hidden="true">DL</span>
+                <div class="testimonial-identity">
+                  <p class="testimonial-name text-small font-medium">Daniel L.</p>
+                  <p class="testimonial-detail mt-1 text-caption color-muted">A simpler daily routine</p>
+                </div>
+              </figcaption>
+            </figure>
+                      <figure class="testimonial-slide col-start-1 row-start-1 flex flex-col m-0 invisible              js-component-testimonial-slide" role="group" aria-roledescription="slide"
+              aria-label="2 of 3"
+              aria-hidden="true" inert>
+              <blockquote class="testimonial-quote flex-1 mb-9 text-title-sm font-medium tracking-tighter text-pretty">
+                I had questions I’d put off asking for years. Having someone listen made taking the first step easier.              </blockquote>
+              <figcaption class="testimonial-author flex items-center gap-3 mt-auto">
+                <span class="testimonial-avatar grid shrink-0 place-items-center size-12 text-small font-medium rounded-full border border-zinc-200 bg-zinc-100 color-default"
+                  aria-hidden="true">AH</span>
+                <div class="testimonial-identity">
+                  <p class="testimonial-name text-small font-medium">Amir H.</p>
+                  <p class="testimonial-detail mt-1 text-caption color-muted">Support from the first conversation</p>
+                </div>
+              </figcaption>
+            </figure>
+                      <figure class="testimonial-slide col-start-1 row-start-1 flex flex-col m-0 invisible              js-component-testimonial-slide" role="group" aria-roledescription="slide"
+              aria-label="3 of 3"
+              aria-hidden="true" inert>
+              <blockquote class="testimonial-quote flex-1 mb-9 text-title-sm font-medium tracking-tighter text-pretty">
+                Clear advice, a straightforward plan, and space to ask questions. That made all the difference for me.              </blockquote>
+              <figcaption class="testimonial-author flex items-center gap-3 mt-auto">
+                <span class="testimonial-avatar grid shrink-0 place-items-center size-12 text-small font-medium rounded-full border border-zinc-200 bg-zinc-100 color-default"
+                  aria-hidden="true">MT</span>
+                <div class="testimonial-identity">
+                  <p class="testimonial-name text-small font-medium">Marcus T.</p>
+                  <p class="testimonial-detail mt-1 text-caption color-muted">Clarity at every step</p>
+                </div>
+              </figcaption>
+            </figure>
+                  </div>
+        <footer class="card-footer flex shrink-0 items-center justify-between gap-4 mt-8">
+          <div class="testimonial-pagination flex items-center gap-4">
+            <div class="testimonial-dots flex items-center gap-1" role="group" aria-label="Choose testimonial">
+                              <button type="button" class="testimonial-dot grid place-items-center w-6 h-9 rounded-full cursor-pointer group
+                  focus-visible:outline-2 focus-visible:outline-offset-2
+                  js-component-testimonial-dot" aria-label="Show testimonial 1"
+                  aria-current="true">
+                  <span class="testimonial-dot-mark size-1.5 rounded-full bg-zinc-300
+                    group-aria-[current=true]:bg-zinc-800" aria-hidden="true"></span>
+                </button>
+                              <button type="button" class="testimonial-dot grid place-items-center w-6 h-9 rounded-full cursor-pointer group
+                  focus-visible:outline-2 focus-visible:outline-offset-2
+                  js-component-testimonial-dot" aria-label="Show testimonial 2"
+                  aria-current="false">
+                  <span class="testimonial-dot-mark size-1.5 rounded-full bg-zinc-300
+                    group-aria-[current=true]:bg-zinc-800" aria-hidden="true"></span>
+                </button>
+                              <button type="button" class="testimonial-dot grid place-items-center w-6 h-9 rounded-full cursor-pointer group
+                  focus-visible:outline-2 focus-visible:outline-offset-2
+                  js-component-testimonial-dot" aria-label="Show testimonial 3"
+                  aria-current="false">
+                  <span class="testimonial-dot-mark size-1.5 rounded-full bg-zinc-300
+                    group-aria-[current=true]:bg-zinc-800" aria-hidden="true"></span>
+                </button>
+                          </div>
+            <span class="testimonial-count text-caption tabular-nums color-muted
+              js-component-testimonial-count">01 / 03</span>
+          </div>
+          <div class="testimonial-controls flex items-center gap-1.5">
+            <button type="button" class="testimonial-control grid place-items-center size-11 rounded-full border border-zinc-200 cursor-pointer transition-transform duration-150
+              hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-offset-2 active:scale-95 motion-reduce:transform-none motion-reduce:transition-none
+              js-component-testimonial-prev" aria-label="Previous testimonial">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"/></svg>            </button>
+            <button type="button" class="testimonial-control grid place-items-center size-11 rounded-full border border-zinc-200 cursor-pointer transition-transform duration-150
+              hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-offset-2 active:scale-95 motion-reduce:transform-none motion-reduce:transition-none
+              js-component-testimonial-next" aria-label="Next testimonial">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/></svg>            </button>
+          </div>
+        </footer>
+      </article>
+      <article class="card card-assessment relative isolate flex flex-col min-w-0 p-6 rounded-xl bg-zinc-800 color-invert-strong
+        sm:p-8
+        js-component-assessment">
+        <div class="assessment-wallpaper absolute inset-0 -z-10 rounded-xl bg-[url('../images/chat-wallpaper.svg')] bg-auto opacity-2 pointer-events-none"
+          aria-hidden="true"></div>
+        <header class="card-header">
+          <p class="card-eyebrow text-caption font-medium">Your starting point</p>
+        </header>
+        <h2 class="assessment-title mt-7 mb-3 text-title-sm font-medium tracking-tighter">
+          Good care starts<br>with one question.
+        </h2>
+        <p class="assessment-description max-w-80 text-small color-invert-muted">
+          A quick question to help us understand where you’re starting.
+        </p>
+        <div class="assessment-panels grid mt-6">
+          <div class="assessment-panel assessment-question-panel col-start-1 row-start-1 min-w-0
+            js-component-assessment-question">
+            <div class="assessment-speaker flex items-center gap-2 mb-2 text-caption color-invert-muted">
+              <img src="assets/images/avatar-dr-rujhan.webp" alt="" width="32" height="32"
+                class="assessment-avatar shrink-0 size-8 rounded-full object-cover">
+              <span class="assessment-speaker-name">Dr Rujhan</span>
+            </div>
+            <p class="assessment-question w-fit max-w-9/10 mb-3 px-4 py-3 text-small color-invert-default rounded-tl-sm rounded-tr-xl rounded-b-xl border border-white/16 bg-zinc-700/30 shadow-sm backdrop-blur-xs backdrop-saturate-115 wrap-anywhere">
+              When did you first notice hair thinning?
+            </p>
+            <div class="assessment-options grid gap-2" role="group" aria-label="When did you first notice hair thinning?">
+                              <button type="button" class="assessment-option flex items-center gap-3 w-full min-h-12 px-5 py-3 text-left text-small color-invert-default rounded-lg border border-white/16 bg-zinc-700/30 shadow-sm backdrop-blur-xs backdrop-saturate-115 cursor-pointer transition-transform duration-150
+                  hover:border-zinc-400 focus-visible:outline-2 focus-visible:outline-offset-4 active:scale-98 motion-reduce:transform-none motion-reduce:transition-none
+                  js-component-assessment-option" data-label="I’m just exploring">
+                  <span class="assessment-letter grid shrink-0 place-items-center size-6 text-caption rounded border border-zinc-500 color-invert-default"
+                    aria-hidden="true">A</span>
+                  <span class="assessment-label">I’m just exploring</span>
+                </button>
+                              <button type="button" class="assessment-option flex items-center gap-3 w-full min-h-12 px-5 py-3 text-left text-small color-invert-default rounded-lg border border-white/16 bg-zinc-700/30 shadow-sm backdrop-blur-xs backdrop-saturate-115 cursor-pointer transition-transform duration-150
+                  hover:border-zinc-400 focus-visible:outline-2 focus-visible:outline-offset-4 active:scale-98 motion-reduce:transform-none motion-reduce:transition-none
+                  js-component-assessment-option" data-label="In the last month">
+                  <span class="assessment-letter grid shrink-0 place-items-center size-6 text-caption rounded border border-zinc-500 color-invert-default"
+                    aria-hidden="true">B</span>
+                  <span class="assessment-label">In the last month</span>
+                </button>
+                              <button type="button" class="assessment-option flex items-center gap-3 w-full min-h-12 px-5 py-3 text-left text-small color-invert-default rounded-lg border border-white/16 bg-zinc-700/30 shadow-sm backdrop-blur-xs backdrop-saturate-115 cursor-pointer transition-transform duration-150
+                  hover:border-zinc-400 focus-visible:outline-2 focus-visible:outline-offset-4 active:scale-98 motion-reduce:transform-none motion-reduce:transition-none
+                  js-component-assessment-option" data-label="In the last 6–12 months">
+                  <span class="assessment-letter grid shrink-0 place-items-center size-6 text-caption rounded border border-zinc-500 color-invert-default"
+                    aria-hidden="true">C</span>
+                  <span class="assessment-label">In the last 6–12 months</span>
+                </button>
+                              <button type="button" class="assessment-option flex items-center gap-3 w-full min-h-12 px-5 py-3 text-left text-small color-invert-default rounded-lg border border-white/16 bg-zinc-700/30 shadow-sm backdrop-blur-xs backdrop-saturate-115 cursor-pointer transition-transform duration-150
+                  hover:border-zinc-400 focus-visible:outline-2 focus-visible:outline-offset-4 active:scale-98 motion-reduce:transform-none motion-reduce:transition-none
+                  js-component-assessment-option" data-label="More than a year ago">
+                  <span class="assessment-letter grid shrink-0 place-items-center size-6 text-caption rounded border border-zinc-500 color-invert-default"
+                    aria-hidden="true">D</span>
+                  <span class="assessment-label">More than a year ago</span>
+                </button>
+                          </div>
+          </div>
+          <div class="assessment-panel assessment-answer-panel col-start-1 row-start-1 flex flex-col min-w-0 invisible
+            js-component-assessment-answer" inert aria-hidden="true">
+            <div class="assessment-speaker flex items-center gap-2 mb-2 text-caption color-invert-muted">
+              <img src="assets/images/avatar-dr-rujhan.webp" alt="" width="32" height="32"
+                class="assessment-avatar shrink-0 size-8 rounded-full object-cover">
+              <span class="assessment-speaker-name">Dr Rujhan</span>
+            </div>
+            <p class="assessment-question w-fit max-w-9/10 mb-3 px-4 py-3 text-small color-invert-default rounded-tl-sm rounded-tr-xl rounded-b-xl border border-white/16 bg-zinc-700/30 shadow-sm backdrop-blur-xs backdrop-saturate-115 wrap-anywhere">
+              When did you first notice hair thinning?
+            </p>
+            <p class="assessment-selection w-fit max-w-9/10 ml-auto px-4 py-3 text-small color-invert-default rounded-xl rounded-br-sm border border-white/16 bg-zinc-500/45 shadow-sm backdrop-blur-xs backdrop-saturate-115 wrap-anywhere
+              js-component-assessment-selection">In the last 6–12 months</p>
+            <div class="assessment-reply-speaker mt-5">
+              <div class="assessment-speaker flex items-center gap-2 mb-2 text-caption color-invert-muted">
+                <img src="assets/images/avatar-dr-rujhan.webp" alt="" width="32" height="32"
+                  class="assessment-avatar shrink-0 size-8 rounded-full object-cover">
+                <span class="assessment-speaker-name">Dr Rujhan</span>
+              </div>
+            </div>
+            <div class="assessment-responses grid self-start w-fit max-w-9/10 px-4 py-3 text-small color-invert-default rounded-tl-sm rounded-tr-xl rounded-b-xl border border-white/16 bg-zinc-700/30 shadow-sm backdrop-blur-xs backdrop-saturate-115 wrap-anywhere
+              focus:outline-none
+              js-component-assessment-responses" tabindex="-1" role="status" aria-atomic="true">
+                              <p class="assessment-response col-start-1 row-start-1 text-small invisible                  js-component-assessment-response" aria-hidden="true">
+                  Curious is a good place to start. Let’s help you understand your hair and your options.                </p>
+                              <p class="assessment-response col-start-1 row-start-1 text-small invisible                  js-component-assessment-response" aria-hidden="true">
+                  You’ve noticed a recent change. Tell us a little more so a clinician can guide your next step.                </p>
+                              <p class="assessment-response col-start-1 row-start-1 text-small invisible                  js-component-assessment-response" aria-hidden="true">
+                  Let’s take a closer look. A clinician can review what’s changed and discuss suitable options.                </p>
+                              <p class="assessment-response col-start-1 row-start-1 text-small                   js-component-assessment-response" aria-hidden="false">
+                  You can still take the next step. Start with a review of your hair concerns and what you’ve tried.                </p>
+                          </div>
+            <div class="assessment-actions flex items-center justify-between gap-3 mt-auto pt-5">
+              <button type="button" class="assessment-reset min-h-11 px-5 py-3 text-small color-invert-default rounded-lg border border-zinc-500 cursor-pointer
+                focus-visible:outline-2 focus-visible:outline-offset-4
+                js-component-assessment-reset">Start Again</button>
+              <a href="#" class="button button-medium button-secondary"
+      >
+    <span class="button-label">Start Free Assessment</span>
+      <span class="button-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="button-glyph"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/></svg>    </span>
+  </a>
+            </div>
+          </div>
+        </div>
+        <p class="card-note mt-auto pt-5 text-caption color-invert-muted">
+          A starting point, not a diagnosis. No personal details needed.
+        </p>
+      </article>
+    </div>
+  </div>
+
+  <div class="section-subheader container mt-15">
+    <div class="section-subheader-content items-center justify-between pb-5 border-b border-zinc-200 sm:flex">
+      <h2 class="section-subheader-title text-title-sm font-medium color-strong">Prescription Treatments</h2>
+      <div class="section-subheader-description text-small">Subject to a clinician’s assessment of what’s suitable for you.</div>
+    </div>
+  </div>
+
+  <div class="carousel relative overflow-hidden mt-5  js-component-carousel"
+  data-desktop-columns="3" data-tablet-columns="3"
+  data-gap="3" data-tablet-gap="3" data-desktop-gap="3"
+  data-fade-color="var(--color-zinc-100, #f4f4f5)" data-control-background="#fff"
+  data-control-color="var(--color-zinc-800, #27272a)" data-control-border-color="var(--color-zinc-300, #d4d4d8)"
+  data-control-hover-background="var(--color-zinc-100, #f4f4f5)"
+  style="--carousel-desktop-columns: 3; --carousel-tablet-columns: 3;
+    --carousel-gap: 3; --carousel-tablet-gap: 3;
+    --carousel-desktop-gap: 3;
+    --carousel-fade-color: var(--color-zinc-100, #f4f4f5); --carousel-control-background: #fff;
+    --carousel-control-color: var(--color-zinc-800, #27272a);
+    --carousel-control-border-color: var(--color-zinc-300, #d4d4d8);
+    --carousel-control-hover-background: var(--color-zinc-100, #f4f4f5);">
+  <div class="carousel-viewport md:px-12 lg:px-16">
+    <div class="carousel-container max-w-6xl mx-auto">
+      <div id="products-option-7-prescribe-track"
+        class="carousel-track grid grid-flow-col px-5 py-2 overflow-x-auto overscroll-x-contain snap-x snap-mandatory scroll-px-5
+          motion-reduce:transition-none
+          md:px-0 md:overflow-visible md:transition-transform md:duration-300 md:ease-out
+          js-component-carousel-track"
+        role="group" aria-label="Prescription hair treatments" tabindex="0">
+                      <article class="product-item relative flex flex-col min-w-0 rounded-xl bg-white overflow-hidden snap-start">
+          <div class="product-image relative shrink-0 flex-center aspect-4/3" aria-hidden="true">
+            <img src="assets/images/mockup-bottle-02.webp" alt="" class="product-image-source absolute inset-0 size-full object-contain" loading="lazy">
+          </div>
+          <div class="product-brief flex-1 flex flex-col px-5 pb-4">
+            <div class="product-pill absolute top-3 left-3 inline-flex mb-4 px-2.5 py-1.5 text-caption leading-3 rounded-md bg-zinc-100">Rx Required</div>
+            <h3 class="product-title font-display font-semibold color-strong">Root Activator Deluxe Kit</h3>
+            <div class="product-formula text-caption text-green-800">Finasteride 0.1% + minoxidil 5% foam</div>
+            <div class="product-desc mt-2 text-caption color-muted">
+              A daily tablet, plus a tonic for thinning spots twice a day.
+            </div>
+            <div class="product-actions flex-split mt-auto pt-5">
+              <div class="product-price">
+                <div class="product-price-label text-caption color-muted">From</div>
+                <span class="product-price-current font-semibold color-strong">RM 350</span>
+                <span class="product-price-original text-caption font-normal line-through decoration-zinc-400 color-muted">RM 450</span>
+              </div>
+              <a href="#" class="button button-medium button-default"
+      >
+    <span class="button-label">Start Assessment</span>
+  </a>
+            </div>
+          </div>
+        </article>
+              <article class="product-item relative flex flex-col min-w-0 rounded-xl bg-white overflow-hidden snap-start">
+          <div class="product-image relative shrink-0 flex-center aspect-4/3" aria-hidden="true">
+            <img src="assets/images/mockup-bottle-02.webp" alt="" class="product-image-source absolute inset-0 size-full object-contain" loading="lazy">
+          </div>
+          <div class="product-brief flex-1 flex flex-col px-5 pb-4">
+            <div class="product-pill absolute top-3 left-3 inline-flex mb-4 px-2.5 py-1.5 text-caption leading-3 rounded-md bg-zinc-100">Rx Required</div>
+            <h3 class="product-title font-display font-semibold color-strong">Root Activator Deluxe Kit</h3>
+            <div class="product-formula text-caption text-green-800">Finasteride 0.1% + minoxidil 5% foam</div>
+            <div class="product-desc mt-2 text-caption color-muted">
+              A daily tablet, plus a tonic for thinning spots twice a day.
+            </div>
+            <div class="product-actions flex-split mt-auto pt-5">
+              <div class="product-price">
+                <div class="product-price-label text-caption color-muted">From</div>
+                <span class="product-price-current font-semibold color-strong">RM 350</span>
+                <span class="product-price-original text-caption font-normal line-through decoration-zinc-400 color-muted">RM 450</span>
+              </div>
+              <a href="#" class="button button-medium button-default"
+      >
+    <span class="button-label">Start Assessment</span>
+  </a>
+            </div>
+          </div>
+        </article>
+              <article class="product-item relative flex flex-col min-w-0 rounded-xl bg-white overflow-hidden snap-start">
+          <div class="product-image relative shrink-0 flex-center aspect-4/3" aria-hidden="true">
+            <img src="assets/images/mockup-bottle-02.webp" alt="" class="product-image-source absolute inset-0 size-full object-contain" loading="lazy">
+          </div>
+          <div class="product-brief flex-1 flex flex-col px-5 pb-4">
+            <div class="product-pill absolute top-3 left-3 inline-flex mb-4 px-2.5 py-1.5 text-caption leading-3 rounded-md bg-zinc-100">Rx Required</div>
+            <h3 class="product-title font-display font-semibold color-strong">Root Activator Deluxe Kit</h3>
+            <div class="product-formula text-caption text-green-800">Finasteride 0.1% + minoxidil 5% foam</div>
+            <div class="product-desc mt-2 text-caption color-muted">
+              A daily tablet, plus a tonic for thinning spots twice a day.
+            </div>
+            <div class="product-actions flex-split mt-auto pt-5">
+              <div class="product-price">
+                <div class="product-price-label text-caption color-muted">From</div>
+                <span class="product-price-current font-semibold color-strong">RM 350</span>
+                <span class="product-price-original text-caption font-normal line-through decoration-zinc-400 color-muted">RM 450</span>
+              </div>
+              <a href="#" class="button button-medium button-default"
+      >
+    <span class="button-label">Start Assessment</span>
+  </a>
+            </div>
+          </div>
+        </article>
+              <article class="product-item relative flex flex-col min-w-0 rounded-xl bg-white overflow-hidden snap-start">
+          <div class="product-image relative shrink-0 flex-center aspect-4/3" aria-hidden="true">
+            <img src="assets/images/mockup-bottle-02.webp" alt="" class="product-image-source absolute inset-0 size-full object-contain" loading="lazy">
+          </div>
+          <div class="product-brief flex-1 flex flex-col px-5 pb-4">
+            <div class="product-pill absolute top-3 left-3 inline-flex mb-4 px-2.5 py-1.5 text-caption leading-3 rounded-md bg-zinc-100">Rx Required</div>
+            <h3 class="product-title font-display font-semibold color-strong">Root Activator Deluxe Kit</h3>
+            <div class="product-formula text-caption text-green-800">Finasteride 0.1% + minoxidil 5% foam</div>
+            <div class="product-desc mt-2 text-caption color-muted">
+              A daily tablet, plus a tonic for thinning spots twice a day.
+            </div>
+            <div class="product-actions flex-split mt-auto pt-5">
+              <div class="product-price">
+                <div class="product-price-label text-caption color-muted">From</div>
+                <span class="product-price-current font-semibold color-strong">RM 350</span>
+                <span class="product-price-original text-caption font-normal line-through decoration-zinc-400 color-muted">RM 450</span>
+              </div>
+              <a href="#" class="button button-medium button-default"
+      >
+    <span class="button-label">Start Assessment</span>
+  </a>
+            </div>
+          </div>
+        </article>
+              <article class="product-item relative flex flex-col min-w-0 rounded-xl bg-white overflow-hidden snap-start">
+          <div class="product-image relative shrink-0 flex-center aspect-4/3" aria-hidden="true">
+            <img src="assets/images/mockup-bottle-02.webp" alt="" class="product-image-source absolute inset-0 size-full object-contain" loading="lazy">
+          </div>
+          <div class="product-brief flex-1 flex flex-col px-5 pb-4">
+            <div class="product-pill absolute top-3 left-3 inline-flex mb-4 px-2.5 py-1.5 text-caption leading-3 rounded-md bg-zinc-100">Rx Required</div>
+            <h3 class="product-title font-display font-semibold color-strong">Root Activator Deluxe Kit</h3>
+            <div class="product-formula text-caption text-green-800">Finasteride 0.1% + minoxidil 5% foam</div>
+            <div class="product-desc mt-2 text-caption color-muted">
+              A daily tablet, plus a tonic for thinning spots twice a day.
+            </div>
+            <div class="product-actions flex-split mt-auto pt-5">
+              <div class="product-price">
+                <div class="product-price-label text-caption color-muted">From</div>
+                <span class="product-price-current font-semibold color-strong">RM 350</span>
+                <span class="product-price-original text-caption font-normal line-through decoration-zinc-400 color-muted">RM 450</span>
+              </div>
+              <a href="#" class="button button-medium button-default"
+      >
+    <span class="button-label">Start Assessment</span>
+  </a>
+            </div>
+          </div>
+        </article>
+              <article class="product-item relative flex flex-col min-w-0 rounded-xl bg-white overflow-hidden snap-start">
+          <div class="product-image relative shrink-0 flex-center aspect-4/3" aria-hidden="true">
+            <img src="assets/images/mockup-bottle-02.webp" alt="" class="product-image-source absolute inset-0 size-full object-contain" loading="lazy">
+          </div>
+          <div class="product-brief flex-1 flex flex-col px-5 pb-4">
+            <div class="product-pill absolute top-3 left-3 inline-flex mb-4 px-2.5 py-1.5 text-caption leading-3 rounded-md bg-zinc-100">Rx Required</div>
+            <h3 class="product-title font-display font-semibold color-strong">Root Activator Deluxe Kit</h3>
+            <div class="product-formula text-caption text-green-800">Finasteride 0.1% + minoxidil 5% foam</div>
+            <div class="product-desc mt-2 text-caption color-muted">
+              A daily tablet, plus a tonic for thinning spots twice a day.
+            </div>
+            <div class="product-actions flex-split mt-auto pt-5">
+              <div class="product-price">
+                <div class="product-price-label text-caption color-muted">From</div>
+                <span class="product-price-current font-semibold color-strong">RM 350</span>
+                <span class="product-price-original text-caption font-normal line-through decoration-zinc-400 color-muted">RM 450</span>
+              </div>
+              <a href="#" class="button button-medium button-default"
+      >
+    <span class="button-label">Start Assessment</span>
+  </a>
+            </div>
+          </div>
+        </article>
+                </div>
+    </div>
+  </div>
+  <div class="carousel-fade carousel-fade-left left-0
+    lg:w-16" aria-hidden="true"></div>
+  <div class="carousel-fade carousel-fade-right right-0
+    lg:w-16" aria-hidden="true"></div>
+  <div class="carousel-controls hidden
+    md:block
+    js-component-carousel-controls" hidden>
+    <button type="button"
+      class="carousel-control carousel-prev left-2
+        js-component-carousel-prev"
+      aria-label="Previous slide" aria-controls="products-option-7-prescribe-track">
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"/></svg>    </button>
+    <button type="button"
+      class="carousel-control carousel-next right-2
+        js-component-carousel-next"
+      aria-label="Next slide" aria-controls="products-option-7-prescribe-track">
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/></svg>    </button>
+  </div>
+  <p class="carousel-status sr-only
+    js-component-carousel-status" role="status" aria-atomic="true"></p>
+</div>
+
+  <div class="section-disclaimer container">
+    <p class="section-disclaimer-text mt-5 mx-auto text-center text-caption leading-relaxed lg:max-w-2xl">
+      <strong class="font-semibold">Price includes medication only, if prescribed.</strong>
+      Compounded drug products are not approved or evaluated for safety, effectiveness, or quality by the FDA.
+      Doctor Prescription (Rx) required.
+    </p>
+  </div>
+
+  <div class="section-banner">
+    <div class="consultation max-w-248 mx-auto mt-15">
+              <div class="consultation-banner relative rounded-xl bg-white overflow-hidden sm:h-100"
+             style="
+               background-image: url('assets/images/mockup-hand-hold-iphone-002-transparent.png');
+               background-size: cover;
+               background-position: top center;
+               background-repeat: no-repeat;">
+          <div class="consultation-overlay absolute inset-0 bg-linear-to-r from-zinc-200 via-transparent to-zinc-200
+            sm:p-10">
+            <div class="consultation-content flex justify-between">
+              <div class="consultation-brief max-w-80">
+                <h3 class="consultation-title text-title-md font-medium text-pretty color-strong">Your hair concerns deserve a closer look.</h3>
+                <p class="consultation-description mt-4">Start an assessment so a clinician can review your concerns and recommend suitable treatment options.</p>
+              </div>
+              <div class="consultation-actions">
+                <a href="#" class="button button-large button-default"
+      >
+    <span class="button-label">Start Free Assessment</span>
+      <span class="button-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="button-glyph"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/></svg>    </span>
+  </a>
+                <div class="consultation-note mt-2 text-center text-caption">Free, Confidential & Secure.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+          </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container">
+    <div class="headline sm:text-center sm:flex sm:flex-col sm:items-center">
+      <div class="headline-topic inline-flex items-center justify-start font-medium text-small text-orange-600 mb-5 tracking-[1%]">
+      <div class="font-semibold text-small text-orange-600 size-7 leading-7 flex-center border border-orange-500 mr-1.5">RR</div>
+      <div class="leading-6 color-strong">Results</div>
+    </div>
+        <h2 class="headline-title font-medium color-strong text-title-md text-pretty sm:max-w-2xl">Results you can actually see. Nothing retouched.</h2>
+        <div class="headline-subtitle text-pretty mt-4 sm:max-w-3xl">See what our customers have to say about their experience.</div>
+    </div>
+    <div class="results-list grid grid-cols-1 sm:grid-cols-6 gap-3 mt-5 sm:mt-10">
+              <div class="sm:col-span-2">
+          <div class="results-item bg-white rounded-xl">
+            <div class="p-1">
+              <div class="media-comparison relative isolate aspect-5/3 overflow-hidden rounded-lg select-none uppercase
+  [&amp;.media-comparison]:aspect-4/5 [&amp;_.layer-before]:aspect-4/5 [&amp;_.layer-after]:aspect-4/5 js-component-media-comparison" style="--position: 50%;">
+  <div class="layer-after absolute inset-0 aspect-5/3 bg-zinc-200 rounded-lg">
+        <span class="pointer-events-none absolute right-4 top-4 bg-zinc-800/50 px-3 py-2 font-medium text-caption color-invert-strong rounded-full">
+      After    </span>
+  </div>
+  <div class="layer-before absolute inset-0 aspect-5/3 bg-zinc-300 rounded-lg
+    [clip-path:inset(0_calc(100%_-_var(--position))_0_0)]">
+        <span class="pointer-events-none absolute left-4 top-4 bg-zinc-800/50 px-3 py-2 font-medium text-caption color-invert-strong rounded-full">
+      Before    </span>
+  </div>
+  <input type="range" min="0" max="100" step="0.1" value="50"
+    aria-label="Before and after comparison"
+    aria-valuetext="50% Before, 50% After"
+    data-before-label="Before" data-after-label="After"
+    class="media-comparison-range peer absolute -left-5.5 top-0 z-20 m-0 h-full w-[calc(100%+2.75rem)]
+      cursor-ew-resize touch-pan-y appearance-none border-0 bg-transparent p-0 outline-none
+      js-component-media-comparison-range">
+  <div class="pointer-events-none absolute inset-y-0 left-[var(--position)] z-10 w-px -translate-x-1/2
+    bg-zinc-900/10" aria-hidden="true">
+    <span class="absolute left-1/2 top-1/2 flex-center size-11 -translate-x-1/2 -translate-y-1/2
+ rounded-full bg-white   color-strong
+      shadow-lg shadow-zinc-900/50 ring-4 ring-zinc-900/50">
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-6"><path d="M9 6 3 12 9 18V6ZM15 18 21 12 15 6V18Z"/></svg>    </span>
+  </div>
+  <div class="pointer-events-none absolute inset-0 z-30 hidden rounded-lg border-2 border-zinc-800
+    peer-focus-visible:block" aria-hidden="true"></div>
+</div>
+            </div>
+            <div class="flex flex-col items-stretch justify-between p-6 pt-2">
+              <div>
+                <h3 class="font-semibold text-pretty color-strong">Frontal Hairline Restoration</h3>
+                <div class="mt-0.5 text-small color-muted flex items-center justify-start gap-3">
+                  <span>FUE Hair Transplant</span>
+                  <span class="w-px h-4 bg-zinc-200"></span>
+                  <span>Results at 12 months</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+              <div class="sm:col-span-2">
+          <div class="results-item bg-white rounded-xl">
+            <div class="p-1">
+              <div class="media-comparison relative isolate aspect-5/3 overflow-hidden rounded-lg select-none uppercase
+  [&amp;.media-comparison]:aspect-4/5 [&amp;_.layer-before]:aspect-4/5 [&amp;_.layer-after]:aspect-4/5 js-component-media-comparison" style="--position: 50%;">
+  <div class="layer-after absolute inset-0 aspect-5/3 bg-zinc-200 rounded-lg">
+        <span class="pointer-events-none absolute right-4 top-4 bg-zinc-800/50 px-3 py-2 font-medium text-caption color-invert-strong rounded-full">
+      After    </span>
+  </div>
+  <div class="layer-before absolute inset-0 aspect-5/3 bg-zinc-300 rounded-lg
+    [clip-path:inset(0_calc(100%_-_var(--position))_0_0)]">
+        <span class="pointer-events-none absolute left-4 top-4 bg-zinc-800/50 px-3 py-2 font-medium text-caption color-invert-strong rounded-full">
+      Before    </span>
+  </div>
+  <input type="range" min="0" max="100" step="0.1" value="50"
+    aria-label="Before and after comparison"
+    aria-valuetext="50% Before, 50% After"
+    data-before-label="Before" data-after-label="After"
+    class="media-comparison-range peer absolute -left-5.5 top-0 z-20 m-0 h-full w-[calc(100%+2.75rem)]
+      cursor-ew-resize touch-pan-y appearance-none border-0 bg-transparent p-0 outline-none
+      js-component-media-comparison-range">
+  <div class="pointer-events-none absolute inset-y-0 left-[var(--position)] z-10 w-px -translate-x-1/2
+    bg-zinc-900/10" aria-hidden="true">
+    <span class="absolute left-1/2 top-1/2 flex-center size-11 -translate-x-1/2 -translate-y-1/2
+ rounded-full bg-white   color-strong
+      shadow-lg shadow-zinc-900/50 ring-4 ring-zinc-900/50">
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-6"><path d="M9 6 3 12 9 18V6ZM15 18 21 12 15 6V18Z"/></svg>    </span>
+  </div>
+  <div class="pointer-events-none absolute inset-0 z-30 hidden rounded-lg border-2 border-zinc-800
+    peer-focus-visible:block" aria-hidden="true"></div>
+</div>
+            </div>
+            <div class="flex flex-col items-stretch justify-between p-6 pt-2">
+              <div>
+                <h3 class="font-semibold text-pretty color-strong">Frontal Hairline Restoration</h3>
+                <div class="mt-0.5 text-small color-muted flex items-center justify-start gap-3">
+                  <span>FUE Hair Transplant</span>
+                  <span class="w-px h-4 bg-zinc-200"></span>
+                  <span>Results at 12 months</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+              <div class="sm:col-span-2">
+          <div class="results-item bg-white rounded-xl">
+            <div class="p-1">
+              <div class="media-comparison relative isolate aspect-5/3 overflow-hidden rounded-lg select-none uppercase
+  [&amp;.media-comparison]:aspect-4/5 [&amp;_.layer-before]:aspect-4/5 [&amp;_.layer-after]:aspect-4/5 js-component-media-comparison" style="--position: 50%;">
+  <div class="layer-after absolute inset-0 aspect-5/3 bg-zinc-200 rounded-lg">
+        <span class="pointer-events-none absolute right-4 top-4 bg-zinc-800/50 px-3 py-2 font-medium text-caption color-invert-strong rounded-full">
+      After    </span>
+  </div>
+  <div class="layer-before absolute inset-0 aspect-5/3 bg-zinc-300 rounded-lg
+    [clip-path:inset(0_calc(100%_-_var(--position))_0_0)]">
+        <span class="pointer-events-none absolute left-4 top-4 bg-zinc-800/50 px-3 py-2 font-medium text-caption color-invert-strong rounded-full">
+      Before    </span>
+  </div>
+  <input type="range" min="0" max="100" step="0.1" value="50"
+    aria-label="Before and after comparison"
+    aria-valuetext="50% Before, 50% After"
+    data-before-label="Before" data-after-label="After"
+    class="media-comparison-range peer absolute -left-5.5 top-0 z-20 m-0 h-full w-[calc(100%+2.75rem)]
+      cursor-ew-resize touch-pan-y appearance-none border-0 bg-transparent p-0 outline-none
+      js-component-media-comparison-range">
+  <div class="pointer-events-none absolute inset-y-0 left-[var(--position)] z-10 w-px -translate-x-1/2
+    bg-zinc-900/10" aria-hidden="true">
+    <span class="absolute left-1/2 top-1/2 flex-center size-11 -translate-x-1/2 -translate-y-1/2
+ rounded-full bg-white   color-strong
+      shadow-lg shadow-zinc-900/50 ring-4 ring-zinc-900/50">
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-6"><path d="M9 6 3 12 9 18V6ZM15 18 21 12 15 6V18Z"/></svg>    </span>
+  </div>
+  <div class="pointer-events-none absolute inset-0 z-30 hidden rounded-lg border-2 border-zinc-800
+    peer-focus-visible:block" aria-hidden="true"></div>
+</div>
+            </div>
+            <div class="flex flex-col items-stretch justify-between p-6 pt-2">
+              <div>
+                <h3 class="font-semibold text-pretty color-strong">Frontal Hairline Restoration</h3>
+                <div class="mt-0.5 text-small color-muted flex items-center justify-start gap-3">
+                  <span>FUE Hair Transplant</span>
+                  <span class="w-px h-4 bg-zinc-200"></span>
+                  <span>Results at 12 months</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          </div>
+    <div class="mt-5 sm:text-center">
+      <div class="inline-flex items-center gap-1 p-1 bg-zinc-300 rounded-lg">
+        <div class="size-10 rounded-md bg-zinc-500"></div>
+        <div class="size-10 rounded-md bg-zinc-500"></div>
+      </div>
+    </div>
+    
+  </div>
+  <div class="marquee mt-10 js-component-marquee" role="region" aria-label="Sample testimonials"
+  data-speed="40" data-autoplay="true"
+  data-autoplay-mobile="true"
+  style="--marquee-gap: 2; --marquee-fade-color: var(--color-zinc-100, #f4f4f5);">
+  <div id="marquee-6afa5a1bceed4-viewport" class="marquee-viewport js-component-marquee-viewport"
+    role="group" tabindex="0" aria-label="Sample testimonials">
+    <div class="marquee-track js-component-marquee-track">
+      <div class="marquee-group">
+                  <div class="bg-white rounded-lg p-5 w-80">
+        <div class="flex flex-col items-stretch justify-between">
+          <div class="flex items-start justify-between">
+            <div class="color-muted flex justify-start">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>            </div>
+            <div class="bg-zinc-300 w-12 aspect-square rounded-md"></div>
+          </div>
+          <div>
+            <div class="text-pretty mt-10 sm:mt-20">The consultation gave me a clearer picture of my options and what to expect from treatment.</div>
+            <div class="mt-4 pt-4 border-t border-zinc-200 text-small">
+              <div class="font-semibold   color-strong">Faizal Nordin</div>
+              <div class="color-muted mt-0.5">Bangsar, Kuala Lumpur</div>
+            </div>
+          </div>
+        </div>
+      </div>
+          <div class="bg-white rounded-lg p-5 w-80">
+        <div class="flex flex-col items-stretch justify-between">
+          <div class="flex items-start justify-between">
+            <div class="color-muted flex justify-start">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>            </div>
+            <div class="bg-zinc-300 w-12 aspect-square rounded-md"></div>
+          </div>
+          <div>
+            <div class="text-pretty mt-10 sm:mt-20">The consultation gave me a clearer picture of my options and what to expect from treatment.</div>
+            <div class="mt-4 pt-4 border-t border-zinc-200 text-small">
+              <div class="font-semibold   color-strong">Faizal Nordin</div>
+              <div class="color-muted mt-0.5">Bangsar, Kuala Lumpur</div>
+            </div>
+          </div>
+        </div>
+      </div>
+          <div class="bg-white rounded-lg p-5 w-80">
+        <div class="flex flex-col items-stretch justify-between">
+          <div class="flex items-start justify-between">
+            <div class="color-muted flex justify-start">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>            </div>
+            <div class="bg-zinc-300 w-12 aspect-square rounded-md"></div>
+          </div>
+          <div>
+            <div class="text-pretty mt-10 sm:mt-20">The consultation gave me a clearer picture of my options and what to expect from treatment.</div>
+            <div class="mt-4 pt-4 border-t border-zinc-200 text-small">
+              <div class="font-semibold   color-strong">Faizal Nordin</div>
+              <div class="color-muted mt-0.5">Bangsar, Kuala Lumpur</div>
+            </div>
+          </div>
+        </div>
+      </div>
+          <div class="bg-white rounded-lg p-5 w-80">
+        <div class="flex flex-col items-stretch justify-between">
+          <div class="flex items-start justify-between">
+            <div class="color-muted flex justify-start">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>            </div>
+            <div class="bg-zinc-300 w-12 aspect-square rounded-md"></div>
+          </div>
+          <div>
+            <div class="text-pretty mt-10 sm:mt-20">The consultation gave me a clearer picture of my options and what to expect from treatment.</div>
+            <div class="mt-4 pt-4 border-t border-zinc-200 text-small">
+              <div class="font-semibold   color-strong">Faizal Nordin</div>
+              <div class="color-muted mt-0.5">Bangsar, Kuala Lumpur</div>
+            </div>
+          </div>
+        </div>
+      </div>
+          <div class="bg-white rounded-lg p-5 w-80">
+        <div class="flex flex-col items-stretch justify-between">
+          <div class="flex items-start justify-between">
+            <div class="color-muted flex justify-start">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5 fill-zinc-500"><path d="M11.9998 17L6.12197 20.5902L7.72007 13.8906L2.48926 9.40983L9.35479 8.85942L11.9998 2.5L14.6449 8.85942L21.5104 9.40983L16.2796 13.8906L17.8777 20.5902L11.9998 17Z"/></svg>            </div>
+            <div class="bg-zinc-300 w-12 aspect-square rounded-md"></div>
+          </div>
+          <div>
+            <div class="text-pretty mt-10 sm:mt-20">The consultation gave me a clearer picture of my options and what to expect from treatment.</div>
+            <div class="mt-4 pt-4 border-t border-zinc-200 text-small">
+              <div class="font-semibold   color-strong">Faizal Nordin</div>
+              <div class="color-muted mt-0.5">Bangsar, Kuala Lumpur</div>
+            </div>
+          </div>
+        </div>
+      </div>
+              </div>
+    </div>
+  </div>
+      <div class="marquee-fade marquee-fade-left" aria-hidden="true"></div>
+    <div class="marquee-fade marquee-fade-right" aria-hidden="true"></div>
+        <div class="marquee-controls">
+              <button type="button" aria-label="Previous Item" aria-controls="marquee-6afa5a1bceed4-viewport"
+          class="marquee-control js-component-marquee-prev">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="marquee-icon size-5"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"/></svg>        </button>
+        <button type="button" aria-label="Next Item" aria-controls="marquee-6afa5a1bceed4-viewport"
+          class="marquee-control js-component-marquee-next">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="marquee-icon size-5"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/></svg>        </button>
+                    <button type="button" aria-controls="marquee-6afa5a1bceed4-viewport" hidden
+          class="marquee-control js-component-marquee-toggle">Pause</button>
+          </div>
+    <p class="marquee-status sr-only js-component-marquee-status" role="status" aria-atomic="true"></p>
+</div>
+</section>
+
+<section class="how-it-works-alt section">
+  <div class="flow-container container">
+    <header class="section-header">
+      <div class="headline sm:text-center sm:flex sm:flex-col sm:items-center flex flex-col items-center text-center sm:[&amp;&gt;.headline-title]:whitespace-pre-line">
+      <div class="headline-topic inline-flex items-center justify-start font-medium text-small text-orange-600 mb-5 tracking-[1%]">
+      <div class="font-semibold text-small text-orange-600 size-7 leading-7 flex-center border border-orange-500 mr-1.5">RR</div>
+      <div class="leading-6 color-strong">How It Works</div>
+    </div>
+        <h2 class="headline-title font-medium color-strong text-title-md text-pretty sm:max-w-2xl">Your next chapter in four
+simple steps.</h2>
+      </div>
+    </header>
+
+    <ol class="flow-steps grid grid-cols-1 gap-3 mt-10 sm:grid-cols-2 lg:mx-30">
+              <li class="step flex flex-col p-5 rounded-xl bg-white">
+          <div class="step-header flex items-center gap-2">
+            <span class="step-pill inline-flex items-center justify-center size-10 text-small font-medium
+              rounded-lg bg-zinc-100 color-strong">
+              <span class="step-label sr-only">Step </span>1            </span>
+            
+          </div>
+          <div class="step-content flex-1 mt-4">
+            <h3 class="step-title text-title-sm font-semibold text-balance color-strong">
+              Tell us about your hair            </h3>
+            <p class="step-description mt-1 text-small leading-relaxed text-pretty color-muted">
+              Complete a short assessment about your hair concerns, health history, and goals.            </p>
+          </div>
+                      <div class="step-image relative flex items-center justify-center min-h-92 aspect-4/3 -mx-4 mt-5 -mb-4 p-4
+              rounded-lg bg-zinc-200 overflow-hidden select-none">
+              <div class="assessment-preview flex items-center justify-center w-full pointer-events-none">
+                <div class="assessment-card flex flex-col w-full max-w-80 min-h-84 p-4 rounded-lg bg-white shadow-sm">
+                  <div class="assessment-header flex items-center justify-between gap-2 text-[10px] font-medium">
+                    <span class="assessment-label text-zinc-800">Hair assessment</span>
+                    <span class="assessment-count text-zinc-400">Question 2 of 6</span>
+                  </div>
+                  <div class="assessment-progress h-1 mt-2 rounded-full bg-zinc-100" aria-hidden="true">
+                    <div class="assessment-progress-fill w-1/3 h-full rounded-full bg-orange-500"></div>
+                  </div>
+                  <p class="assessment-question mt-4 text-sm font-medium leading-snug text-zinc-800">
+                    When did you first notice hair loss?
+                  </p>
+                  <ul class="assessment-options flex flex-col gap-1.5 mt-3 text-xs">
+                    <li class="assessment-option flex items-center justify-between gap-2 px-3 py-2
+                      rounded-md border border-zinc-200 text-zinc-500">
+                      <span class="assessment-option-label">Less than a month ago</span>
+                      <span class="assessment-option-radio size-3 shrink-0 rounded-full border border-zinc-300"
+                        aria-hidden="true"></span>
+                    </li>
+                    <li class="assessment-option flex items-center justify-between gap-2 px-3 py-2
+                      rounded-md border border-orange-500 bg-orange-50 text-zinc-800">
+                      <span class="assessment-option-label">1–6 months ago<span class="sr-only"> (selected)</span></span>
+                      <span class="assessment-option-check flex items-center justify-center size-3 shrink-0
+                        rounded-full bg-orange-500 text-white" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="assessment-check-icon size-2.5"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"/></svg>                      </span>
+                    </li>
+                    <li class="assessment-option flex items-center justify-between gap-2 px-3 py-2
+                      rounded-md border border-zinc-200 text-zinc-500">
+                      <span class="assessment-option-label">More than 6 months ago</span>
+                      <span class="assessment-option-radio size-3 shrink-0 rounded-full border border-zinc-300"
+                        aria-hidden="true"></span>
+                    </li>
+                  </ul>
+                  <p class="assessment-note mt-auto pt-3 text-[10px] text-zinc-500">
+                    Your answers help guide your doctor.
+                  </p>
+                </div>
+              </div>
+            </div>
+                  </li>
+              <li class="step flex flex-col p-5 rounded-xl bg-white">
+          <div class="step-header flex items-center gap-2">
+            <span class="step-pill inline-flex items-center justify-center size-10 text-small font-medium
+              rounded-lg bg-zinc-100 color-strong">
+              <span class="step-label sr-only">Step </span>2            </span>
+            
+          </div>
+          <div class="step-content flex-1 mt-4">
+            <h3 class="step-title text-title-sm font-semibold text-balance color-strong">
+              Get a plan tailored to you            </h3>
+            <p class="step-description mt-1 text-small leading-relaxed text-pretty color-muted">
+              A doctor reviews your assessment and recommends treatment suited to your needs.            </p>
+          </div>
+                      <div class="step-image relative flex items-center justify-center min-h-92 aspect-4/3 -mx-4 mt-5 -mb-4 p-4
+              rounded-lg bg-zinc-200 overflow-hidden select-none">
+              <div class="plan-preview flex items-center justify-center w-full pointer-events-none">
+                <div class="plan-card flex flex-col w-full max-w-80 min-h-84 p-4 rounded-lg bg-white shadow-sm">
+                  <div class="plan-header flex items-start justify-between gap-2">
+                    <div class="plan-heading">
+                      <p class="plan-eyebrow text-[10px] font-medium tracking-wide uppercase text-zinc-400">
+                        Made for you
+                      </p>
+                      <p class="plan-title mt-1 text-sm font-medium leading-snug text-zinc-800">
+                        Your personalised plan
+                      </p>
+                    </div>
+                    <span class="plan-status flex items-center justify-center size-6 shrink-0 rounded-full
+                      bg-orange-50 text-orange-600" aria-label="Reviewed">
+                      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="plan-status-icon size-3.5"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"/></svg>                    </span>
+                  </div>
+                  <ul class="plan-items flex flex-1 flex-col gap-2 mt-3 mb-3" aria-label="Example treatment items">
+                                          <li class="treatment flex items-center gap-3 p-2 rounded-md bg-zinc-50">
+                        <div class="treatment-thumbnail size-10 shrink-0 rounded bg-zinc-200">
+                          <img src="/assets/images/mockup-bottle-02.webp" alt=""
+                            class="treatment-image size-full object-contain" width="40" height="40" loading="lazy">
+                        </div>
+                        <div class="treatment-content min-w-0">
+                          <p class="treatment-name text-xs font-medium leading-snug text-zinc-800">
+                            Root Activator Deluxe Kit                          </p>
+                          <p class="treatment-brief mt-0.5 text-[10px] text-zinc-500">Hair growth &amp; scalp care</p>
+                        </div>
+                      </li>
+                                          <li class="treatment flex items-center gap-3 p-2 rounded-md bg-zinc-50">
+                        <div class="treatment-thumbnail size-10 shrink-0 rounded bg-zinc-200">
+                          <img src="/assets/images/mockup-bottle-02.webp" alt=""
+                            class="treatment-image size-full object-contain" width="40" height="40" loading="lazy">
+                        </div>
+                        <div class="treatment-content min-w-0">
+                          <p class="treatment-name text-xs font-medium leading-snug text-zinc-800">
+                            Hair &amp; Scalp Shampoo                          </p>
+                          <p class="treatment-brief mt-0.5 text-[10px] text-zinc-500">Daily scalp care</p>
+                        </div>
+                      </li>
+                                      </ul>
+                  <div class="plan-doctor flex items-center gap-2 mt-auto pt-3 border-t border-zinc-100">
+                    <img src="/assets/images/avatar-dr-rujhan.webp" alt=""
+                      class="plan-doctor-avatar size-7 shrink-0 rounded-full object-cover"
+                      width="28" height="28" loading="lazy">
+                    <p class="plan-doctor-label text-[10px] leading-snug text-zinc-500">
+                      Reviewed by <span class="plan-doctor-name font-medium text-zinc-800">Dr Rujhan</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+                  </li>
+              <li class="step flex flex-col p-5 rounded-xl bg-white">
+          <div class="step-header flex items-center gap-2">
+            <span class="step-pill inline-flex items-center justify-center size-10 text-small font-medium
+              rounded-lg bg-zinc-100 color-strong">
+              <span class="step-label sr-only">Step </span>3            </span>
+            
+          </div>
+          <div class="step-content flex-1 mt-4">
+            <h3 class="step-title text-title-sm font-semibold text-balance color-strong">
+              Your treatment, delivered            </h3>
+            <p class="step-description mt-1 text-small leading-relaxed text-pretty color-muted">
+              Have your prescribed treatment delivered to your door, ready to fit into your routine.            </p>
+          </div>
+                      <div class="step-image relative flex items-center justify-center min-h-92 aspect-4/3 -mx-4 mt-5 -mb-4 p-4
+              rounded-lg bg-zinc-200 overflow-hidden select-none">
+              <div class="delivery-preview flex items-center justify-center w-full pointer-events-none">
+                <div class="delivery-card flex flex-col w-full max-w-80 min-h-84 p-4 rounded-lg bg-white shadow-sm">
+                  <div class="delivery-header flex items-center justify-between gap-2">
+                    <p class="delivery-label text-[10px] font-medium tracking-wide uppercase text-zinc-400">
+                      Your order
+                    </p>
+                    <span class="delivery-status px-2 py-1 text-[10px] font-medium rounded-full
+                      bg-orange-50 text-orange-600">On its way</span>
+                  </div>
+                  <div class="delivery-package flex items-center gap-3 mt-3">
+                    <div class="delivery-package-thumbnail size-9 shrink-0 rounded bg-zinc-100">
+                      <img src="/assets/images/mockup-bottle-02.webp" alt=""
+                        class="delivery-package-image size-full object-contain"
+                        width="36" height="36" loading="lazy" draggable="false">
+                    </div>
+                    <div class="delivery-package-content">
+                      <p class="delivery-package-title text-xs font-medium text-zinc-800">Your treatment package</p>
+                      <p class="delivery-package-label mt-0.5 text-[10px] text-zinc-500">Prepared for your routine</p>
+                    </div>
+                  </div>
+                  <div class="delivery-estimate mt-3 p-3 rounded-md bg-zinc-50">
+                    <p class="delivery-estimate-label text-[10px] text-zinc-500">Estimated arrival</p>
+                    <p class="delivery-estimate-time mt-1 text-sm font-medium text-zinc-800">Today, by 4:30 pm</p>
+                  </div>
+                  <ol class="delivery-timeline grid grid-cols-4 gap-1 mt-4 mb-3 text-center text-[10px]"
+                    aria-label="Example order progress">
+                    <li class="delivery-stage flex flex-col items-center gap-2 text-zinc-500">
+                      <span class="delivery-stage-marker flex items-center justify-center size-5 rounded-full
+                        bg-zinc-800 text-white" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="delivery-stage-icon size-3"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"/></svg>                      </span>
+                      <span class="delivery-stage-label">Confirmed</span>
+                    </li>
+                    <li class="delivery-stage flex flex-col items-center gap-2 text-zinc-500">
+                      <span class="delivery-stage-marker flex items-center justify-center size-5 rounded-full
+                        bg-zinc-800 text-white" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="delivery-stage-icon size-3"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"/></svg>                      </span>
+                      <span class="delivery-stage-label">Packed</span>
+                    </li>
+                    <li class="delivery-stage flex flex-col items-center gap-2 font-medium text-orange-600"
+                      aria-current="step">
+                      <span class="delivery-stage-marker flex items-center justify-center size-5 rounded-full
+                        bg-orange-500" aria-hidden="true">
+                        <span class="delivery-stage-dot size-1.5 rounded-full bg-white"></span>
+                      </span>
+                      <span class="delivery-stage-label">Shipped</span>
+                    </li>
+                    <li class="delivery-stage flex flex-col items-center gap-2 text-zinc-400">
+                      <span class="delivery-stage-marker size-5 rounded-full border border-zinc-200"
+                        aria-hidden="true"></span>
+                      <span class="delivery-stage-label">Delivered</span>
+                    </li>
+                  </ol>
+                  <p class="delivery-note mt-auto pt-3 text-[10px] text-zinc-500 border-t border-zinc-100">
+                    Your treatment is on the way to your door.
+                  </p>
+                </div>
+              </div>
+            </div>
+                  </li>
+              <li class="step flex flex-col p-5 rounded-xl bg-white">
+          <div class="step-header flex items-center gap-2">
+            <span class="step-pill inline-flex items-center justify-center size-10 text-small font-medium
+              rounded-lg bg-zinc-100 color-strong">
+              <span class="step-label sr-only">Step </span>4            </span>
+            
+          </div>
+          <div class="step-content flex-1 mt-4">
+            <h3 class="step-title text-title-sm font-semibold text-balance color-strong">
+              Stay supported along the way            </h3>
+            <p class="step-description mt-1 text-small leading-relaxed text-pretty color-muted">
+              Get ongoing guidance from your care team as you follow your plan and track your progress.            </p>
+          </div>
+                      <div class="step-image relative flex items-center justify-center min-h-92 aspect-4/3 -mx-4 mt-5 -mb-4 p-4
+              rounded-lg bg-zinc-200 overflow-hidden select-none">
+              <div class="chat-preview flex items-center justify-center w-full pointer-events-none">
+                <div class="chat-card flex flex-col w-full max-w-80 min-h-84 p-4 rounded-lg bg-white shadow-sm">
+                  <div class="chat-header flex items-center gap-2 pb-3 border-b border-zinc-100">
+                    <img src="/assets/images/avatar-dr-rujhan.webp" alt=""
+                      class="chat-doctor-avatar size-8 shrink-0 rounded-full object-cover"
+                      width="32" height="32" loading="lazy">
+                    <div class="chat-doctor-content">
+                      <p class="chat-doctor-name text-xs font-medium text-zinc-800">Dr Rujhan</p>
+                      <p class="chat-doctor-label mt-0.5 text-[10px] text-zinc-500">Your care team</p>
+                    </div>
+                    <span class="chat-status ml-auto px-2 py-1 text-[10px] font-medium rounded-full
+                      bg-orange-50 text-orange-600">Check-in</span>
+                  </div>
+                  <p class="chat-timestamp mt-3 text-center text-[10px] text-zinc-400">Today</p>
+                  <ol class="chat-messages flex flex-col gap-2 mt-2 mb-3 text-xs leading-snug"
+                    aria-label="Example follow-up conversation">
+                    <li class="chat-message max-w-[90%] self-start px-3 py-2 rounded-lg bg-zinc-100 text-zinc-700">
+                      <span class="chat-speaker sr-only">Dr Rujhan: </span>
+                      Hi! How’s your treatment routine going?
+                    </li>
+                    <li class="chat-message max-w-[90%] self-end px-3 py-2 rounded-lg bg-orange-50 text-zinc-800">
+                      <span class="chat-speaker sr-only">Patient: </span>
+                      Going well. I’ve been keeping to my plan.
+                    </li>
+                    <li class="chat-message max-w-[90%] self-start px-3 py-2 rounded-lg bg-zinc-100 text-zinc-700">
+                      <span class="chat-speaker sr-only">Dr Rujhan: </span>
+                      Great! Let me know if you have any questions along the way.
+                    </li>
+                  </ol>
+                  <p class="chat-note mt-auto pt-3 text-[10px] text-zinc-500 border-t border-zinc-100">
+                    Support throughout your treatment.
+                  </p>
+                </div>
+              </div>
+            </div>
+                  </li>
+          </ol>
+
+    <div class="flow-cta flex flex-col items-center mt-10 text-center">
+      <p class="cta-title text-title-sm font-medium text-balance color-strong">Your next chapter starts here.</p>
+      <p class="cta-description mt-2 text-pretty color-muted">
+        Take the first step towards understanding your hair.
+      </p>
+      <div class="cta-action mt-5">
+        <a href="#" class="button button-medium button-default"
+      >
+    <span class="button-label">Start Hair Assesment</span>
+  </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section doctors">
+  <div class="section-content container">
+    <div class="headline sm:text-center sm:flex sm:flex-col sm:items-center">
+      <div class="headline-topic inline-flex items-center justify-start font-medium text-small text-orange-600 mb-5 tracking-[1%]">
+      <div class="font-semibold text-small text-orange-600 size-7 leading-7 flex-center border border-orange-500 mr-1.5">RR</div>
+      <div class="leading-6 color-strong">Our Standard</div>
+    </div>
+        <h2 class="headline-title font-medium color-strong text-title-md text-pretty sm:max-w-2xl">Backed by Science, Led by Experts</h2>
+        <div class="headline-subtitle text-pretty mt-4 sm:max-w-3xl">Specialists in medicine, nutrition, performance, and behavioural science.</div>
+    </div>
+    <div class="doctors-grid grid grid-cols-1 gap-2 mt-10
+      sm:grid-cols-2">
+              <div class="doctors-item col-span-1">
+          <div class="card card-doctor p-1 rounded-xl bg-white">
+            <div class="card-content flex flex-col items-stretch justify-between">
+              <div class="card-header flex-split p-4">
+                <div class="doctor-details">
+                  <h3 class="doctor-name font-semibold color-strong">Dr Rujhan Raqibi</h3>
+                  <div class="doctor-role text-small">Lead Hair Specialist</div>
+                  <div class="doctor-qualification text-small color-muted"> BSc Surgery (Hons) UiTM</div>
+                </div>
+              </div>
+              <div class="doctor-image relative aspect-2/1 mt-1 rounded-md bg-zinc-200">
+                <div class="doctor-social absolute top-3 left-3 flex-center size-8 rounded-md bg-zinc-600 color-invert-strong">
+                  <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5"><path d="M18.3362 18.339H15.6707V14.1622C15.6707 13.1662 15.6505 11.8845 14.2817 11.8845C12.892 11.8845 12.6797 12.9683 12.6797 14.0887V18.339H10.0142V9.75H12.5747V10.9207H12.6092C12.967 10.2457 13.837 9.53325 15.1367 9.53325C17.8375 9.53325 18.337 11.3108 18.337 13.6245V18.339H18.3362ZM7.00373 8.57475C6.14573 8.57475 5.45648 7.88025 5.45648 7.026C5.45648 6.1725 6.14648 5.47875 7.00373 5.47875C7.85873 5.47875 8.55173 6.1725 8.55173 7.026C8.55173 7.88025 7.85798 8.57475 7.00373 8.57475ZM8.34023 18.339H5.66723V9.75H8.34023V18.339ZM19.6697 3H4.32923C3.59498 3 3.00098 3.5805 3.00098 4.29675V19.7033C3.00098 20.4202 3.59498 21 4.32923 21H19.6675C20.401 21 21.001 20.4202 21.001 19.7033V4.29675C21.001 3.5805 20.401 3 19.6675 3H19.6697Z"/></svg>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="doctors-item col-span-1">
+          <div class="card card-doctor p-1 rounded-xl bg-white">
+            <div class="card-content flex flex-col items-stretch justify-between">
+              <div class="card-header flex-split p-4">
+                <div class="doctor-details">
+                  <h3 class="doctor-name font-semibold color-strong">Dr Safwan Jamael</h3>
+                  <div class="doctor-role text-small">Lead Hair Specialist</div>
+                  <div class="doctor-qualification text-small color-muted"> BSc Surgery (Hons) UiTM</div>
+                </div>
+              </div>
+              <div class="doctor-image relative aspect-2/1 mt-1 rounded-md bg-zinc-200">
+                <div class="doctor-social absolute top-3 left-3 flex-center size-8 rounded-md bg-zinc-600 color-invert-strong">
+                  <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-5"><path d="M18.3362 18.339H15.6707V14.1622C15.6707 13.1662 15.6505 11.8845 14.2817 11.8845C12.892 11.8845 12.6797 12.9683 12.6797 14.0887V18.339H10.0142V9.75H12.5747V10.9207H12.6092C12.967 10.2457 13.837 9.53325 15.1367 9.53325C17.8375 9.53325 18.337 11.3108 18.337 13.6245V18.339H18.3362ZM7.00373 8.57475C6.14573 8.57475 5.45648 7.88025 5.45648 7.026C5.45648 6.1725 6.14648 5.47875 7.00373 5.47875C7.85873 5.47875 8.55173 6.1725 8.55173 7.026C8.55173 7.88025 7.85798 8.57475 7.00373 8.57475ZM8.34023 18.339H5.66723V9.75H8.34023V18.339ZM19.6697 3H4.32923C3.59498 3 3.00098 3.5805 3.00098 4.29675V19.7033C3.00098 20.4202 3.59498 21 4.32923 21H19.6675C20.401 21 21.001 20.4202 21.001 19.7033V4.29675C21.001 3.5805 20.401 3 19.6675 3H19.6697Z"/></svg>                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          </div>
+  </div>
+</section>
+
+<section id="faq" class="py-10 sm:py-15">
+  <div class="mx-auto max-w-6xl px-5 sm:px-0">
+    <div class="headline sm:text-center sm:flex sm:flex-col sm:items-center">
+      <div class="headline-topic inline-flex items-center justify-start font-medium text-small text-orange-600 mb-5 tracking-[1%]">
+      <div class="font-semibold text-small text-orange-600 size-7 leading-7 flex-center border border-orange-500 mr-1.5">RR</div>
+      <div class="leading-6 color-strong">FAQ</div>
+    </div>
+        <h2 class="headline-title font-medium color-strong text-title-md text-pretty sm:max-w-2xl">A little clarity before you begin.</h2>
+        <div class="headline-subtitle text-pretty mt-4 sm:max-w-3xl">Answers to common questions about taking the next step.</div>
+    </div>
+    <div class="faq-groups grid gap-5 max-w-3xl mx-auto mt-10">
+              <div class="faq-group">
+          <div class="collapse-heading">
+            <button type="button" aria-expanded="false" aria-controls="home-faq-answer-0"
+  class="toggle-collapse toggle-collapse-plain group flex flex-wrap items-center justify-between gap-x-3 gap-y-1 w-full text-left py-3 color-strong cursor-pointer
+        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
+     js-component-toggle-collapse">
+  <span class="toggle-collapse-label text-small font-medium">How do I get started?</span>
+  <span class="toggle-collapse-details flex items-center gap-2">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="toggle-collapse-icon size-4 group-aria-[expanded=false]:-rotate-90"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>  </span>
+</button>
+          </div>
+          <div id="home-faq-answer-0" hidden class="collapse-content pt-3">
+            <p class="faq-answer">Contact our team to discuss your concerns and arrange a consultation.</p>
+          </div>
+        </div>
+              <div class="faq-group">
+          <div class="collapse-heading">
+            <button type="button" aria-expanded="false" aria-controls="home-faq-answer-1"
+  class="toggle-collapse toggle-collapse-plain group flex flex-wrap items-center justify-between gap-x-3 gap-y-1 w-full text-left py-3 color-strong cursor-pointer
+        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
+     js-component-toggle-collapse">
+  <span class="toggle-collapse-label text-small font-medium">What should I prepare for my consultation?</span>
+  <span class="toggle-collapse-details flex items-center gap-2">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="toggle-collapse-icon size-4 group-aria-[expanded=false]:-rotate-90"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>  </span>
+</button>
+          </div>
+          <div id="home-faq-answer-1" hidden class="collapse-content pt-3">
+            <p class="faq-answer">Bring your questions and details of any current hair care products or previous treatments.</p>
+          </div>
+        </div>
+              <div class="faq-group">
+          <div class="collapse-heading">
+            <button type="button" aria-expanded="false" aria-controls="home-faq-answer-2"
+  class="toggle-collapse toggle-collapse-plain group flex flex-wrap items-center justify-between gap-x-3 gap-y-1 w-full text-left py-3 color-strong cursor-pointer
+        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
+     js-component-toggle-collapse">
+  <span class="toggle-collapse-label text-small font-medium">How do I know which treatment to choose?</span>
+  <span class="toggle-collapse-details flex items-center gap-2">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="toggle-collapse-icon size-4 group-aria-[expanded=false]:-rotate-90"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>  </span>
+</button>
+          </div>
+          <div id="home-faq-answer-2" hidden class="collapse-content pt-3">
+            <p class="faq-answer">Discuss your goals with the team during your consultation to understand the available options.</p>
+          </div>
+        </div>
+              <div class="faq-group">
+          <div class="collapse-heading">
+            <button type="button" aria-expanded="false" aria-controls="home-faq-answer-3"
+  class="toggle-collapse toggle-collapse-plain group flex flex-wrap items-center justify-between gap-x-3 gap-y-1 w-full text-left py-3 color-strong cursor-pointer
+        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
+     js-component-toggle-collapse">
+  <span class="toggle-collapse-label text-small font-medium">Where can I find pricing information?</span>
+  <span class="toggle-collapse-details flex items-center gap-2">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="toggle-collapse-icon size-4 group-aria-[expanded=false]:-rotate-90"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>  </span>
+</button>
+          </div>
+          <div id="home-faq-answer-3" hidden class="collapse-content pt-3">
+            <p class="faq-answer">Contact our team for details about treatment options and their associated costs.</p>
+          </div>
+        </div>
+          </div>
+  </div>
+</section>
+<section class="section footer footer-alt py-10
+  md:pt-30">
+  <div class="section-banner md:text-small">
+    <div class="consultation container mb-15">
+              <div class="consultation-banner relative rounded-xl bg-white overflow-hidden sm:h-100"
+             style="
+               background-image: url('assets/images/mockup-hand-hold-iphone-002-transparent.png');
+               background-size: cover;
+               background-position: top center;
+               background-repeat: no-repeat;">
+          <div class="consultation-overlay absolute inset-0 bg-linear-to-r from-zinc-200 via-transparent to-zinc-200
+            sm:p-10">
+            <div class="consultation-content flex justify-between">
+              <div class="consultation-brief max-w-80">
+                <h3 class="consultation-title text-title-md font-medium text-pretty color-strong">Your hair concerns deserve a closer look.</h3>
+                <p class="consultation-description mt-4">Start an assessment so a clinician can review your concerns and recommend suitable treatment options.</p>
+              </div>
+              <div class="consultation-actions">
+                <a href="#" class="button button-large button-default"
+      >
+    <span class="button-label">Start Free Assessment</span>
+      <span class="button-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="button-glyph"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/></svg>    </span>
+  </a>
+                <div class="consultation-note mt-2 text-center text-caption">Free, Confidential & Secure.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+          </div>
+  </div>
+  <div class="footer-container container">
+    <div class="footer-columns items-start gap-25 md:flex">
+      <div class="footer-address mr-auto">
+        <h3 class="footer-topic mt-8 mb-3 text-caption uppercase color-muted sm:mt-6">Our Address</h3>
+        <div class="footer-address-details">
+          <div class="footer-clinic-name">RR Hair Clinic,</div>
+          <div class="footer-address-location mb-3">
+            C-03-03 Blok C, Tamarind Square,<br>
+            63000 Cyberjaya, Selangor.
+          </div>
+        </div>
+        <div class="footer-phone">+6011-1674-1858</div>
+        <div class="footer-email md:text-small">support@rrhairclinic.com</div>
+
+        <h3 class="footer-topic mt-8 mb-3 text-caption uppercase color-muted sm:mt-6">Working Hours</h3>
+        <ul class="footer-list space-y-1 md:text-small">
+          <li>Mon–Fri: 9:00 AM–6:00 PM</li>
+          <li>Sat: 9:00 AM–1:00 PM</li>
+          <li>Sun: Closed</li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h3 class="footer-topic mt-8 mb-3 text-caption uppercase color-muted sm:mt-6">Hair Loss</h3>
+        <ul class="footer-list space-y-1">
+          <li><a href="#">Male Pattern Baldness</a></li>
+          <li><a href="#">Female Hair Loss</a></li>
+          <li><a href="#">Receding Hairline</a></li>
+          <li><a href="#">Thinning Hair</a></li>
+          <li><a href="#">Crown Hair Loss</a></li>
+          <li><a href="#">Hair Shedding</a></li>
+        </ul>
+
+        <h3 class="footer-topic mt-8 mb-3 text-caption uppercase color-muted sm:mt-6">Treatments</h3>
+        <ul class="footer-list space-y-1">
+          <li><a href="#">Hair Transplant</a></li>
+          <li><a href="#">Sapphire FUE</a></li>
+          <li><a href="#">PRP Hair Treatment</a></li>
+          <li><a href="#">Hair Loss Medication</a></li>
+          <li><a href="#">Scalp Treatment</a></li>
+          <li><a href="#">Hair Regrowth Treatment</a></li>
+        </ul>
+      </div>
+      <div class="footer-links md:text-small">
+        <h3 class="footer-topic mt-8 mb-3 text-caption uppercase color-muted sm:mt-6">Products</h3>
+        <ul class="footer-list space-y-1">
+          <li><a href="#">All Products</a></li>
+          <li><a href="#">Hair Growth</a></li>
+          <li><a href="#">Hair Loss Shampoo</a></li>
+          <li><a href="#">Scalp Care</a></li>
+        </ul>
+
+        <h3 class="footer-topic mt-8 mb-3 text-caption uppercase color-muted sm:mt-6">Clinic</h3>
+        <ul class="footer-list space-y-1">
+          <li><a href="#">Our Doctors</a></li>
+          <li><a href="#">Results & Case Studies</a></li>
+          <li><a href="#">Frequently Asked Questions</a></li>
+          <li><a href="#">Book Consultation</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li class="footer-divider w-5 my-3 border-t border-zinc-300"></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Cancellation & Refund</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom mt-5 pt-5 text-caption border-t border-zinc-300 color-muted
+      md:flex md:items-center md:justify-between md:mt-20">
+      <div class="footer-copyright">RR Hair Clinic &copy; 2026 - All Rights Reserved.</div>
+      <div class="footer-company mt-2 md:mt-0">RR Medical Group Sdn Bhd 202401006850 (1552710-H)</div>
+    </div>
+
+  </div>
+</section>
+<a
+  href="https://wa.me/601116741858"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="whatsapp-button fixed bottom-6 right-5 z-40 flex size-16 items-center justify-center rounded-full
+    bg-linear-to-br from-zinc-400 via-zinc-600 to-zinc-500
+    ring-1 ring-inset ring-zinc-900/50
+    shadow-xl shadow-zinc-900/40
+    color-invert-strong transition-all duration-300 ease-out motion-reduce:transition-none
+    hover:bg-zinc-700 focus-visible:outline-2
+    focus-visible:outline-offset-2 focus-visible:outline-green-700 js-component-button-whatsapp"
+  aria-label="Chat with RR Hair Clinic on WhatsApp (opens in a new tab)"
+>
+  <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-8"><path d="M7.25361 18.4944L7.97834 18.917C9.18909 19.623 10.5651 20 12.001 20C16.4193 20 20.001 16.4183 20.001 12C20.001 7.58172 16.4193 4 12.001 4C7.5827 4 4.00098 7.58172 4.00098 12C4.00098 13.4363 4.37821 14.8128 5.08466 16.0238L5.50704 16.7478L4.85355 19.1494L7.25361 18.4944ZM2.00516 22L3.35712 17.0315C2.49494 15.5536 2.00098 13.8345 2.00098 12C2.00098 6.47715 6.47813 2 12.001 2C17.5238 2 22.001 6.47715 22.001 12C22.001 17.5228 17.5238 22 12.001 22C10.1671 22 8.44851 21.5064 6.97086 20.6447L2.00516 22ZM8.39232 7.30833C8.5262 7.29892 8.66053 7.29748 8.79459 7.30402C8.84875 7.30758 8.90265 7.31384 8.95659 7.32007C9.11585 7.33846 9.29098 7.43545 9.34986 7.56894C9.64818 8.24536 9.93764 8.92565 10.2182 9.60963C10.2801 9.76062 10.2428 9.95633 10.125 10.1457C10.0652 10.2428 9.97128 10.379 9.86248 10.5183C9.74939 10.663 9.50599 10.9291 9.50599 10.9291C9.50599 10.9291 9.40738 11.0473 9.44455 11.1944C9.45903 11.25 9.50521 11.331 9.54708 11.3991C9.57027 11.4368 9.5918 11.4705 9.60577 11.4938C9.86169 11.9211 10.2057 12.3543 10.6259 12.7616C10.7463 12.8783 10.8631 12.9974 10.9887 13.108C11.457 13.5209 11.9868 13.8583 12.559 14.1082L12.5641 14.1105C12.6486 14.1469 12.692 14.1668 12.8157 14.2193C12.8781 14.2457 12.9419 14.2685 13.0074 14.2858C13.0311 14.292 13.0554 14.2955 13.0798 14.2972C13.2415 14.3069 13.335 14.2032 13.3749 14.1555C14.0984 13.279 14.1646 13.2218 14.1696 13.2222V13.2238C14.2647 13.1236 14.4142 13.0888 14.5476 13.097C14.6085 13.1007 14.6691 13.1124 14.7245 13.1377C15.2563 13.3803 16.1258 13.7587 16.1258 13.7587L16.7073 14.0201C16.8047 14.0671 16.8936 14.1778 16.8979 14.2854C16.9005 14.3523 16.9077 14.4603 16.8838 14.6579C16.8525 14.9166 16.7738 15.2281 16.6956 15.3913C16.6406 15.5058 16.5694 15.6074 16.4866 15.6934C16.3743 15.81 16.2909 15.8808 16.1559 15.9814C16.0737 16.0426 16.0311 16.0714 16.0311 16.0714C15.8922 16.159 15.8139 16.2028 15.6484 16.2909C15.391 16.428 15.1066 16.5068 14.8153 16.5218C14.6296 16.5313 14.4444 16.5447 14.2589 16.5347C14.2507 16.5342 13.6907 16.4482 13.6907 16.4482C12.2688 16.0742 10.9538 15.3736 9.85034 14.402C9.62473 14.2034 9.4155 13.9885 9.20194 13.7759C8.31288 12.8908 7.63982 11.9364 7.23169 11.0336C7.03043 10.5884 6.90299 10.1116 6.90098 9.62098C6.89729 9.01405 7.09599 8.4232 7.46569 7.94186C7.53857 7.84697 7.60774 7.74855 7.72709 7.63586C7.85348 7.51651 7.93392 7.45244 8.02057 7.40811C8.13607 7.34902 8.26293 7.31742 8.39232 7.30833Z"/></svg></a>
+<div class="button-getstart fixed left-1/2 z-40 
+     bg-zinc-900/20
+    backdrop-blur-xs 
+    ring ring-white/20 
+    js-component-button-getstart" aria-hidden="true" inert>
+  <a href="#" class="button-getstart-link flex items-center justify-center rounded-full bg-zinc-800 color-invert-strong
+    focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-800 px-8">
+    <span class="button-getstart-content inline-flex items-center gap-8 whitespace-nowrap font-medium">
+      <span>Start Free Hair Assesment</span>
+      <span class="bg-white size-7 rounded-full flex-center color-muted -mr-4"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="size-4 shrink-0"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/></svg></span>
+    </span>
+  </a>
+</div>
+  </main>
+  </body>
+</html>

@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register Patient</title>
+      <meta name="description" content="Register a patient from the dashboard.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/build/app.css?v=1794771677">
+  <script src="/assets/js/toggle-collapse.js?v=1794771677" defer></script>
+  <script src="/assets/js/file-upload.js?v=1794763358" defer></script>
+          <script src="/assets/js/overlays.js?v=1794768213" defer></script>
+        <script src="/assets/js/patients.js?v=1794771677" defer></script>
+    <script src="/assets/js/drawer.js?v=1794624707" defer></script>
+    <script src="/assets/js/list-field.js?v=1794765851" defer></script>
+  <script src="/assets/js/dashboard.js?v=1794245160" defer></script>
+  <script src="/assets/js/sales-chart.js?v=1794401494" defer></script>
+  <script src="/assets/js/product-spotlight.js?v=1794589037" defer></script>
+</head>
+<body class="dashboard-body min-h-screen font-sans text-sm bg-zinc-100 text-zinc-600 tracking-tight">
+  <a href="#dashboard-content" class="dashboard-skip sr-only
+    focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:w-auto focus:h-auto focus:p-3 focus:bg-white focus:text-zinc-800 focus:not-sr-only">Skip to content</a>
+  <div class="dashboard-shell min-h-screen">
+    <aside class="dashboard-sidebar hidden lg:fixed lg:inset-y-0 lg:left-0 lg:w-64 lg:block lg:overflow-y-auto">
+      <div class="sidebar-content flex flex-col flex-1 gap-8 h-full px-2 py-5">
+  <a href="/dashboard/" aria-label="RR Hair Clinic dashboard"
+    class="sidebar-brand inline-flex items-center self-start min-h-11 mx-3 text-lg text-zinc-800
+      focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">
+    <span class="sidebar-brand-mark flex items-center justify-center w-9 aspect-square font-semibold border border-zinc-600">RR</span>
+  </a>
+  <nav aria-label="Dashboard navigation" class="sidebar-navigation flex flex-col gap-5">
+    <a href="/dashboard/"       class="sidebar-link flex items-center gap-2 min-h-8 px-3 py-2 font-medium rounded-lg text-zinc-600
+        focus-visible:outline-2 focus-visible:outline-blue-800
+        aria-[current=page]:bg-zinc-100 aria-[current=page]:text-zinc-800
+        hover:bg-zinc-200 hover:text-zinc-800">
+      <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+      Overview
+    </a>
+    <div class="sidebar-group">
+      <h2 class="sidebar-group-title px-3 text-xs uppercase tracking-normal text-zinc-400">Clinical</h2>
+      <ul class="sidebar-items grid mt-2">
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3 text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Assessments
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3 text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Prescriptions
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="/dashboard/patients/"
+            aria-current="page"            class="sidebar-link flex items-center gap-2 min-h-8 px-3 rounded-md text-zinc-600
+              hover:bg-zinc-200 hover:text-zinc-800
+              focus-visible:outline-2 focus-visible:outline-blue-800
+              aria-[current=page]:bg-zinc-200 aria-[current=page]:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Patients
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="sidebar-group">
+      <h2 class="sidebar-group-title px-3 text-xs uppercase tracking-normal text-zinc-400">Operations</h2>
+      <ul class="sidebar-items grid mt-2">
+        <li class="sidebar-item">
+          <a href="/dashboard/products/"
+                        class="sidebar-link flex items-center gap-2 min-h-8 px-3 rounded-md text-zinc-600
+              hover:bg-zinc-200 hover:text-zinc-800
+              focus-visible:outline-2 focus-visible:outline-blue-800
+              aria-[current=true]:bg-zinc-200 aria-[current=true]:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Products
+          </a>
+                  </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3 text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Orders
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="sidebar-group">
+      <h2 class="sidebar-group-title px-3 text-xs uppercase tracking-normal text-zinc-400">Management</h2>
+      <ul class="sidebar-items mt-2">
+        <li class="sidebar-item">
+          <a href="/dashboard/assessment-workflow/"
+                        class="sidebar-link flex items-center gap-2 min-h-8 px-3 rounded-md text-zinc-600
+              hover:bg-zinc-200 hover:text-zinc-800
+              focus-visible:outline-2 focus-visible:outline-blue-800
+              aria-[current=page]:bg-zinc-200 aria-[current=page]:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Workflow Reference
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3  text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Team &amp; access
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="sidebar-account mt-auto pt-4">
+    <details class="account-menu relative js-component-dashboard-account">
+      <summary class="account-trigger flex items-center gap-3 min-h-11 p-2 rounded-lg text-zinc-800 cursor-pointer list-none
+        hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800 [&::-webkit-details-marker]:hidden">
+        <img src="/assets/images/avatar-dr-rujhan.webp" alt="" width="36" height="36"
+          class="account-avatar size-9 shrink-0 rounded-lg outline outline-black/10 -outline-offset-1 object-cover">
+        <span class="account-identity flex-1 min-w-0">
+          <span class="account-name block text-sm font-medium truncate">Your account</span>
+          <span class="account-role block text-xs text-zinc-500">Business owner</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="account-indicator size-4 shrink-0 rotate-180"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>      </summary>
+      <div class="account-panel absolute inset-x-0 bottom-full z-20 mb-2 p-1 rounded-lg border border-zinc-200 bg-white shadow-sm">
+        <a href="#" class="account-action flex items-center w-full min-h-11 px-3 text-left text-sm rounded-md text-zinc-600
+          hover:bg-zinc-100 hover:text-zinc-800 focus-visible:outline-2 focus-visible:outline-blue-800">My profile</a>
+        <div class="account-divider my-1 border-t border-zinc-200"></div>
+        <a href="#" class="account-action flex items-center w-full min-h-11 px-3 text-left text-sm rounded-md text-zinc-600
+          hover:bg-zinc-100 hover:text-zinc-800 focus-visible:outline-2 focus-visible:outline-blue-800">Sign out</a>
+      </div>
+    </details>
+  </div>
+</div>
+    </aside>
+    <main id="dashboard-content" tabindex="-1" class="dashboard-content min-w-0 max-w-5xl p-5 lg:ml-64">
+      <div class="dashboard-controls mb-4 lg:hidden">
+  <button type="button" aria-label="Open navigation" aria-controls="dashboard-navigation" aria-expanded="false"
+    class="sidebar-toggle flex items-center justify-center size-11 rounded-lg text-zinc-800
+      hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-blue-800 js-component-dashboard-menu">
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="sidebar-toggle-icon size-5"><path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"/></svg>  </button>
+</div>
+      <section class="section min-w-0 py-0!" aria-labelledby="register-patient-title">
+  <header class="section-header">
+    <h1 id="register-patient-title" class="section-title text-3xl font-medium color-strong">Register Patient</h1>
+    <p class="section-description mt-2 text-small color-muted">
+      Demo only. Use fictional details. Records are kept for this browser session.
+    </p>
+  </header>
+  <form action="/dashboard/patient-register/" method="post"
+    class="patient-registration grid min-w-0 max-w-2xl gap-6 mt-6">
+    <input type="hidden" name="token" value="2edc988d9f38d7e79ec30129a4328417bd2b530631cc268a894765f8292c37f7">
+        <article class="card  flex flex-col min-w-0 rounded-lg bg-white">
+      <header class="card-header flex flex-col gap-1 px-5 pt-5">
+            <h3 class="card-title text-base font-medium text-zinc-800">Patient Information</h3>
+                </header>
+    <div class="card-content flex-1 p-5">
+              <div class="patient-fields grid min-w-0 gap-6">
+              <div class="field">
+  <label id="patient-name-label" for="patient-name" class="field-label">
+    Full Name          <span class="field-required">Required</span>
+      </label>
+      <input id="patient-name" type="text" value=""
+            name="name"            autocomplete="name"            maxlength="150"      required                              class="field-control field-input">
+      </div>
+              <div class="field">
+  <label id="patient-email-label" for="patient-email" class="field-label">
+    Email Address          <span class="field-required">Required</span>
+      </label>
+      <input id="patient-email" type="email" value=""
+            name="email"            autocomplete="email"            maxlength="254"      required                              class="field-control field-input">
+      </div>
+              <div class="field">
+  <label id="patient-phone-label" for="patient-phone" class="field-label">
+    Phone Number          <span class="field-required">Required</span>
+      </label>
+      <input id="patient-phone" type="text" value=""
+            name="phone"            autocomplete="tel"            maxlength="30"      required                              class="field-control field-input">
+      </div>
+          </div>
+          </div>
+  </article>
+    <footer class="patient-actions flex flex-wrap items-center gap-3">
+      <button type="submit" class="button button-medium button-primary"
+          >
+    <span class="button-label">Register Patient</span>
+    </button>
+      <a href="/dashboard/patients/" class="button button-medium button-secondary"
+      >
+    <span class="button-label">Cancel</span>
+  </a>
+    </footer>
+  </form>
+</section>
+    </main>
+  </div>
+  <dialog id="dashboard-navigation" aria-label="Dashboard navigation"
+    class="dashboard-drawer fixed inset-y-0 left-0 w-72 max-w-[calc(100%-2rem)] h-dvh max-h-none m-0 border-0 bg-zinc-100 overflow-y-auto
+      backdrop:bg-zinc-800/30 js-component-dashboard-drawer">
+    <div class="drawer-content flex flex-col min-h-full">
+    <div class="drawer-controls flex justify-end px-3 pt-3">
+      <button type="button" aria-label="Close navigation"
+        class="drawer-close flex items-center justify-center size-11 rounded-lg text-zinc-800
+          hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-blue-800 js-component-dashboard-close">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="drawer-icon size-5"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"/></svg>      </button>
+    </div>
+    <div class="sidebar-content flex flex-col flex-1 gap-8 h-full px-2 py-5">
+  <a href="/dashboard/" aria-label="RR Hair Clinic dashboard"
+    class="sidebar-brand inline-flex items-center self-start min-h-11 mx-3 text-lg text-zinc-800
+      focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">
+    <span class="sidebar-brand-mark flex items-center justify-center w-9 aspect-square font-semibold border border-zinc-600">RR</span>
+  </a>
+  <nav aria-label="Dashboard navigation" class="sidebar-navigation flex flex-col gap-5">
+    <a href="/dashboard/"       class="sidebar-link flex items-center gap-2 min-h-8 px-3 py-2 font-medium rounded-lg text-zinc-600
+        focus-visible:outline-2 focus-visible:outline-blue-800
+        aria-[current=page]:bg-zinc-100 aria-[current=page]:text-zinc-800
+        hover:bg-zinc-200 hover:text-zinc-800">
+      <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+      Overview
+    </a>
+    <div class="sidebar-group">
+      <h2 class="sidebar-group-title px-3 text-xs uppercase tracking-normal text-zinc-400">Clinical</h2>
+      <ul class="sidebar-items grid mt-2">
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3 text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Assessments
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3 text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Prescriptions
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="/dashboard/patients/"
+            aria-current="page"            class="sidebar-link flex items-center gap-2 min-h-8 px-3 rounded-md text-zinc-600
+              hover:bg-zinc-200 hover:text-zinc-800
+              focus-visible:outline-2 focus-visible:outline-blue-800
+              aria-[current=page]:bg-zinc-200 aria-[current=page]:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Patients
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="sidebar-group">
+      <h2 class="sidebar-group-title px-3 text-xs uppercase tracking-normal text-zinc-400">Operations</h2>
+      <ul class="sidebar-items grid mt-2">
+        <li class="sidebar-item">
+          <a href="/dashboard/products/"
+                        class="sidebar-link flex items-center gap-2 min-h-8 px-3 rounded-md text-zinc-600
+              hover:bg-zinc-200 hover:text-zinc-800
+              focus-visible:outline-2 focus-visible:outline-blue-800
+              aria-[current=true]:bg-zinc-200 aria-[current=true]:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Products
+          </a>
+                  </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3 text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Orders
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="sidebar-group">
+      <h2 class="sidebar-group-title px-3 text-xs uppercase tracking-normal text-zinc-400">Management</h2>
+      <ul class="sidebar-items mt-2">
+        <li class="sidebar-item">
+          <a href="/dashboard/assessment-workflow/"
+                        class="sidebar-link flex items-center gap-2 min-h-8 px-3 rounded-md text-zinc-600
+              hover:bg-zinc-200 hover:text-zinc-800
+              focus-visible:outline-2 focus-visible:outline-blue-800
+              aria-[current=page]:bg-zinc-200 aria-[current=page]:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Workflow Reference
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3  text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Team &amp; access
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="sidebar-account mt-auto pt-4">
+    <details class="account-menu relative js-component-dashboard-account">
+      <summary class="account-trigger flex items-center gap-3 min-h-11 p-2 rounded-lg text-zinc-800 cursor-pointer list-none
+        hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800 [&::-webkit-details-marker]:hidden">
+        <img src="/assets/images/avatar-dr-rujhan.webp" alt="" width="36" height="36"
+          class="account-avatar size-9 shrink-0 rounded-lg outline outline-black/10 -outline-offset-1 object-cover">
+        <span class="account-identity flex-1 min-w-0">
+          <span class="account-name block text-sm font-medium truncate">Your account</span>
+          <span class="account-role block text-xs text-zinc-500">Business owner</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="account-indicator size-4 shrink-0 rotate-180"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>      </summary>
+      <div class="account-panel absolute inset-x-0 bottom-full z-20 mb-2 p-1 rounded-lg border border-zinc-200 bg-white shadow-sm">
+        <a href="#" class="account-action flex items-center w-full min-h-11 px-3 text-left text-sm rounded-md text-zinc-600
+          hover:bg-zinc-100 hover:text-zinc-800 focus-visible:outline-2 focus-visible:outline-blue-800">My profile</a>
+        <div class="account-divider my-1 border-t border-zinc-200"></div>
+        <a href="#" class="account-action flex items-center w-full min-h-11 px-3 text-left text-sm rounded-md text-zinc-600
+          hover:bg-zinc-100 hover:text-zinc-800 focus-visible:outline-2 focus-visible:outline-blue-800">Sign out</a>
+      </div>
+    </details>
+  </div>
+</div>
+    </div>
+  </dialog>
+</body>
+</html>

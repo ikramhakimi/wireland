@@ -108,80 +108,24 @@ function render_route(string $project_root, string $request_path): string
   return $html;
 }
 
-function asset_path_from_url(string $url): ?string
-{
-  $path = parse_url(trim($url), PHP_URL_PATH);
-  if (!is_string($path)) {
-    return null;
-  }
-
-  $asset_path = ltrim($path, '/');
-
-  if (strpos($asset_path, 'assets/') !== 0) {
-    return null;
-  }
-
-  return $asset_path;
-}
-
-function collect_asset_paths(string $html): array
-{
-  $document = new DOMDocument();
-  $previous_errors = libxml_use_internal_errors(true);
-  $document->loadHTML($html);
-  libxml_clear_errors();
-  libxml_use_internal_errors($previous_errors);
-
-  $asset_paths = [];
-
-  foreach (['href', 'src'] as $attribute) {
-    foreach ($document->getElementsByTagName('*') as $element) {
-      if (!$element->hasAttribute($attribute)) {
-        continue;
-      }
-
-      $asset_path = asset_path_from_url($element->getAttribute($attribute));
-      if ($asset_path !== null) {
-        $asset_paths[$asset_path] = true;
-      }
-    }
-  }
-
-  foreach ($document->getElementsByTagName('*') as $element) {
-    if (!$element->hasAttribute('style')) {
-      continue;
-    }
-
-    preg_match_all('/url\((["\']?)(\/?assets\/[^)"\']+)\1\)/', $element->getAttribute('style'), $matches);
-
-    foreach ($matches[2] ?? [] as $url) {
-      $asset_path = asset_path_from_url($url);
-      if ($asset_path !== null) {
-        $asset_paths[$asset_path] = true;
-      }
-    }
-  }
-
-  ksort($asset_paths);
-
-  return array_keys($asset_paths);
-}
-
 ensure_directory($dist_root);
 delete_directory_contents($dist_root);
 
 $pages_root = $project_root . '/views/pages';
-$page_files = glob($pages_root . '/*.php');
-if (!is_array($page_files)) {
-  fail_export('Unable to read page templates: ' . $pages_root);
-}
+$page_files = new RecursiveIteratorIterator(
+  new RecursiveDirectoryIterator($pages_root, FilesystemIterator::SKIP_DOTS),
+);
 
 $pages = [
   '/' => $dist_root . '/index.html',
 ];
 
 foreach ($page_files as $page_file) {
-  $page_name = basename($page_file, '.php');
+  if (!$page_file->isFile() || $page_file->getExtension() !== 'php') {
+    continue;
+  }
+
+  $page_name = substr($page_file->getPathname(), strlen($pages_root) + 1, -4);
   if ($page_name === 'home' || $page_name === '404') {
     continue;
   }
@@ -191,24 +135,16 @@ foreach ($page_files as $page_file) {
 
 $pages['/404'] = $dist_root . '/404.html';
 
-$asset_paths = [];
-
 foreach ($pages as $request_path => $output_path) {
   $html = render_route($project_root, $request_path);
+
+  ensure_directory(dirname($output_path));
 
   if (file_put_contents($output_path, $html) === false) {
     fail_export('Unable to write static page: ' . $output_path);
   }
-
-  foreach (collect_asset_paths($html) as $asset_path) {
-    $asset_paths[$asset_path] = true;
-  }
 }
 
-ksort($asset_paths);
-
-foreach (array_keys($asset_paths) as $asset_path) {
-  copy_path($project_root . '/' . $asset_path, $dist_root . '/' . $asset_path);
-}
+copy_path($project_root . '/assets', $dist_root . '/assets');
 
 fwrite(STDOUT, 'Exported static site to dist/.' . PHP_EOL);

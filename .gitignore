@@ -1,8 +1,8 @@
 # Dependencies
 /node_modules/
 
-# Generated exports and temporary output
-/dist/
+# Local deployment metadata and temporary output
+/.vercel/
 /output/
 /tmp/
 

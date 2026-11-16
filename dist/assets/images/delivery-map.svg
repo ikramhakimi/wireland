@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" fill="none">
+  <defs>
+    <radialGradient id="map-fade">
+      <stop offset="0.55" stop-color="white"/>
+      <stop offset="1" stop-color="white" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="map-vignette">
+      <rect width="480" height="300" fill="url(#map-fade)"/>
+    </mask>
+  </defs>
+  <rect width="480" height="300" fill="#fafafa"/>
+  <g mask="url(#map-vignette)">
+    <circle cx="240" cy="150" r="205" fill="#f5f6f7"/>
+    <g transform="rotate(-16 240 150)">
+      <g fill="#eceef0" fill-opacity="0.7">
+        <rect x="99" y="165" width="91" height="112" rx="2"/>
+        <rect x="251" y="49" width="37" height="42" rx="2"/>
+        <rect x="355" y="176" width="40" height="64" rx="2"/>
+      </g>
+      <g stroke="#e6e8eb" stroke-opacity="0.8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M40-70V370M91-70V370M142-70V151M194-70V370M245-70V370M296-70V370M347-70V370M399-70V370M450-70V370"/>
+        <path d="M-40 102H91M142 102H520M-40 151H296V370M347 151H520M40 277H194M296 244H450"/>
+        <path d="M91 165H194M99 165V277H194" stroke-opacity="0.55"/>
+      </g>
+    </g>
+  </g>
+</svg>

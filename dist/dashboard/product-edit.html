@@ -1,0 +1,960 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create Product</title>
+      <meta name="description" content="Update product information, pricing and care requirements.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/build/app.css?v=1794771677">
+  <script src="/assets/js/toggle-collapse.js?v=1794771677" defer></script>
+  <script src="/assets/js/file-upload.js?v=1794763358" defer></script>
+        <script id="product-catalogue-data" type="application/json">{"products":[{"id":"PRD-001","sku":"RR-0001","product_type":"single","category_id":"CAT-001","stock":48,"restock_threshold":10,"name":"Daily Balance Shampoo","category":"Hair Care","base_price":80,"discount_price":68,"discount_percent":"15","price":68,"requirement":"Basic","status":"Active","size":"250 ml","format":"Liquid","short_description":"A rinse-out shampoo for everyday cleansing, supplied in a 250 ml bottle for a straightforward hair-care routine.","description":"Daily Balance Shampoo is a rinse-out cleanser for washing the hair and scalp as part of an everyday hair-care routine. Its liquid format is applied to wet hair, worked into a lather and rinsed away thoroughly.\n\nEach bottle contains 250 ml. Use the shampoo at the cleansing step of your routine, before any rinse-out conditioner you normally use. Follow the directions on the bottle and any individual guidance provided by your clinic.\n\nThis is a cleansing product, not a treatment for hair loss or a substitute for a clinical assessment. If you have concerns about your scalp or changes in your hair, ask your clinic for advice.","benefits":["Cleanses the hair and scalp as part of a regular washing routine.","Provides a rinse-out cleansing step before conditioning.","Liquid format can be distributed through wet hair before rinsing.","Supplied in a 250 ml bottle for use at home."],"ingredients":"Aqua.\nCleansing base.\nGlycerin.\nDemo summary only. Refer to the bottle for the complete ingredient list.","usage":"Wet the hair and scalp thoroughly with water.\nDispense a small amount into your palm and distribute through wet hair.\nMassage gently with your fingertips to work the shampoo into a lather.\nRinse thoroughly until no shampoo remains.\nFollow with your usual rinse-out conditioner if this is part of your routine, using it according to its own directions.","precautions":"For external use only.\nAvoid contact with eyes.\nStop use if irritation occurs.\nCheck the complete ingredient list on the bottle before use.\nFollow the product label and any individual instructions provided by your clinic.","image":"\/assets\/images\/mockup-bottle-01.webp","images":["\/assets\/images\/mockup-bottle-01.webp"],"follow_up":"Product-specific Interval","interval":30,"reminder":3,"created":"12 Oct 2026","updated":"16 Nov 2026","updated_by":"Dr Rujhan","updated_by_avatar":"assets\/images\/avatar-dr-rujhan.webp"},{"id":"PRD-002","sku":"RR-0002","stock":8,"restock_threshold":10,"name":"Gentle Scalp Shampoo","category":"Scalp Care","price":78,"requirement":"Basic","status":"Active","size":"250 ml","format":"Liquid","description":"A gentle cleanser for a scalp-focused care routine.","ingredients":"Aqua, mild cleansing base, panthenol.","usage":"Apply to wet scalp, lather gently and rinse.","precautions":"For external use only.","image":"\/assets\/images\/mockup-bottle-01.webp","follow_up":"Use Category Default","interval":"","reminder":"","created":"12 Oct 2026","updated":"15 Nov 2026","updated_by":"Dr Rujhan"},{"id":"PRD-003","sku":"RR-0003","stock":32,"restock_threshold":10,"name":"Daily Soft Conditioner","category":"Hair Care","price":72,"requirement":"Basic","status":"Active","size":"200 ml","format":"Cream","description":"A rinse-out conditioner for use after shampooing.","ingredients":"Aqua, conditioning base, glycerin.","usage":"Apply to hair lengths after cleansing, then rinse.","precautions":"Avoid contact with eyes.","image":"\/assets\/images\/mockup-bottle-01.webp","follow_up":"Use Category Default","interval":"","reminder":"","created":"12 Oct 2026","updated":"15 Nov 2026","updated_by":"Dr Rujhan"},{"id":"PRD-004","sku":"RR-0004","stock":4,"restock_threshold":8,"name":"Scalp Hydration Serum","category":"Scalp Care","price":98,"requirement":"Basic","status":"Active","size":"50 ml","format":"Serum","description":"A lightweight leave-in scalp-care serum.","ingredients":"Aqua, glycerin, panthenol.","usage":"Apply a small amount according to the package directions.","precautions":"Stop use if irritation occurs.","image":"\/assets\/images\/mockup-bottle-01.webp","follow_up":"Use Category Default","interval":"","reminder":"","created":"12 Oct 2026","updated":"15 Nov 2026","updated_by":"Dr Rujhan"},{"id":"PRD-005","sku":"RR-0005","stock":0,"restock_threshold":10,"name":"Hair Density Tonic","category":"Scalp Care","price":118,"requirement":"Basic","status":"Active","size":"100 ml","format":"Liquid","description":"A leave-in tonic designed to fit into a daily scalp-care routine.","ingredients":"Aqua, glycerin, botanical fragrance.","usage":"Use according to the package directions.","precautions":"For external use only.","image":"\/assets\/images\/mockup-bottle-01.webp","follow_up":"Use Category Default","interval":"","reminder":"","created":"12 Oct 2026","updated":"15 Nov 2026","updated_by":"Dr Rujhan"},{"id":"PRD-006","sku":"RR-0006","stock":12,"restock_threshold":15,"name":"Minoxidil 5% Solution","category":"Prescription","price":128,"requirement":"Prescription Required","status":"Active","size":"60 ml","format":"Solution","description":"A prescription-controlled topical item within the clinic catalogue.","ingredients":"Minoxidil 5%; vehicle as specified on the dispensing label.","usage":"Follow the prescribing doctor\u2019s directions and dispensing label.","precautions":"Prescription review required. Refer to the approved product information.","image":"\/assets\/images\/mockup-bottle-01.webp","follow_up":"Use Category Default","interval":"","reminder":"","created":"12 Oct 2026","updated":"15 Nov 2026","updated_by":"Dr Rujhan"},{"id":"PRD-007","sku":"RR-0007","stock":6,"restock_threshold":10,"name":"Finasteride 1 mg","category":"Prescription","price":148,"requirement":"Prescription Required","status":"Active","size":"30 tablets","format":"Tablet","description":"An oral prescription item dispensed following doctor review.","ingredients":"Finasteride 1 mg per tablet.","usage":"Follow the prescribing doctor\u2019s directions and dispensing label.","precautions":"Prescription review required. Refer to the approved product information.","image":"\/assets\/images\/mockup-bottle-01.webp","follow_up":"Use Category Default","interval":"","reminder":"","created":"12 Oct 2026","updated":"15 Nov 2026","updated_by":"Dr Rujhan"},{"id":"PRD-008","sku":"RR-0008","stock":25,"restock_threshold":10,"name":"Minoxidil 2% Solution","category":"Prescription","price":108,"requirement":"Prescription Required","status":"Active","size":"60 ml","format":"Solution","description":"A topical prescription item for a doctor-directed care plan.","ingredients":"Minoxidil 2%; vehicle as specified on the dispensing label.","usage":"Follow the prescribing doctor\u2019s directions and dispensing label.","precautions":"Prescription review required. Refer to the approved product information.","image":"\/assets\/images\/mockup-bottle-01.webp","follow_up":"Use Category Default","interval":"","reminder":"","created":"12 Oct 2026","updated":"15 Nov 2026","updated_by":"Dr Rujhan"},{"id":"PRD-009","sku":"RR-0009","stock":25,"restock_threshold":8,"name":"Scalp Care Foam","category":"Scalp Care","price":88,"requirement":"Basic","status":"Active","size":"100 ml","format":"Foam","description":"A foam-format product for a scalp-care routine.","ingredients":"Aqua, cleansing base, glycerin.","usage":"Use according to the package directions.","precautions":"For external use only.","image":"\/assets\/images\/mockup-bottle-01.webp","follow_up":"Use Category Default","interval":"","reminder":"","created":"12 Oct 2026","updated":"15 Nov 2026","updated_by":"Dr Rujhan"},{"id":"PRD-010","sku":"RR-0010","stock":25,"restock_threshold":10,"name":"Weekly Hair Mask","category":"Hair Care","price":85,"requirement":"Basic","status":"Active","size":"200 ml","format":"Cream","description":"A rinse-out mask for a weekly hair-care routine.","ingredients":"Aqua, conditioning base, plant oils.","usage":"Apply to hair lengths and rinse as directed on the pack.","precautions":"Avoid contact with eyes.","image":"\/assets\/images\/mockup-bottle-01.webp","follow_up":"Use Category Default","interval":"","reminder":"","created":"12 Oct 2026","updated":"15 Nov 2026","updated_by":"Dr Rujhan"},{"id":"PRD-011","sku":"RR-0011","stock":36,"restock_threshold":10,"name":"Leave-in Hair Mist","category":"Hair Care","price":65,"requirement":"Basic","status":"Active","size":"100 ml","format":"Spray","description":"A lightweight finishing mist for everyday hair care.","ingredients":"Aqua, conditioning base, fragrance.","usage":"Spray onto hair according to the package directions.","precautions":"Do not spray towards the eyes.","image":"\/assets\/images\/mockup-bottle-01.webp","follow_up":"Use Category Default","interval":"","reminder":"","created":"12 Oct 2026","updated":"15 Nov 2026","updated_by":"Dr Rujhan"},{"id":"PRD-012","sku":"RR-0012","stock":0,"restock_threshold":5,"name":"Scalp Cleansing Scrub","category":"Scalp Care","price":92,"requirement":"Basic","status":"Draft","size":"150 ml","format":"Gel","description":"A rinse-out scalp cleanser in a gel format.","ingredients":"Aqua, cleansing base, cellulose.","usage":"Use according to the package directions.","precautions":"Do not apply to broken skin.","image":"\/assets\/images\/mockup-bottle-01.webp","follow_up":"Use Category Default","interval":"","reminder":"","created":"12 Oct 2026","updated":"15 Nov 2026","updated_by":"Dr Rujhan"},{"id":"PRD-013","sku":"RR-0013","stock":25,"restock_threshold":10,"name":"Travel Shampoo","category":"Hair Care","price":28,"requirement":"Basic","status":"Active","size":"75 ml","format":"Liquid","description":"A travel-size daily cleansing shampoo.","ingredients":"Aqua, cleansing base, glycerin.","usage":"Massage into wet hair and rinse thoroughly.","precautions":"Avoid contact with eyes.","image":"\/assets\/images\/mockup-bottle-01.webp","follow_up":"Use Category Default","interval":"","reminder":"","created":"12 Oct 2026","updated":"15 Nov 2026","updated_by":"Dr Rujhan"},{"id":"PRD-014","sku":"RR-0014","stock":18,"restock_threshold":10,"name":"Travel Conditioner","category":"Hair Care","price":26,"requirement":"Basic","status":"Active","size":"75 ml","format":"Cream","description":"A travel-size rinse-out conditioner.","ingredients":"Aqua, conditioning base, glycerin.","usage":"Apply to hair lengths after cleansing, then rinse.","precautions":"Avoid contact with eyes.","image":"\/assets\/images\/mockup-bottle-01.webp","follow_up":"Use Category Default","interval":"","reminder":"","created":"12 Oct 2026","updated":"15 Nov 2026","updated_by":"Dr Rujhan"},{"id":"PRD-015","sku":"RR-0015","stock":42,"restock_threshold":10,"name":"Scalp Massage Brush","category":"Accessories","price":35,"requirement":"Basic","status":"Active","size":"1 piece","format":"Accessory","description":"A handheld brush for a scalp-care routine.","ingredients":"Silicone bristles; polymer handle.","usage":"Use gentle pressure and clean after use.","precautions":"Do not use on irritated or broken skin.","image":"\/assets\/images\/mockup-bottle-01.webp","follow_up":"Use Category Default","interval":"","reminder":"","created":"12 Oct 2026","updated":"15 Nov 2026","updated_by":"Dr Rujhan"},{"id":"PRD-016","sku":"RR-0016","stock":30,"restock_threshold":10,"name":"Wide-tooth Comb","category":"Accessories","price":25,"requirement":"Basic","status":"Active","size":"1 piece","format":"Accessory","description":"A wide-tooth comb for everyday hair grooming.","ingredients":"Polymer.","usage":"Detangle gently, starting at the hair ends.","precautions":"Keep clean and avoid excessive pulling.","image":"\/assets\/images\/mockup-bottle-01.webp","follow_up":"Use Category Default","interval":"","reminder":"","created":"12 Oct 2026","updated":"15 Nov 2026","updated_by":"Dr Rujhan"},{"id":"PRD-017","sku":"RR-0017","stock":23,"restock_threshold":8,"name":"Microfibre Hair Towel","category":"Accessories","price":42,"requirement":"Basic","status":"Active","size":"1 piece","format":"Accessory","description":"A reusable towel for drying hair after washing.","ingredients":"Polyester and polyamide.","usage":"Gently wrap wet hair; wash according to the care label.","precautions":"Do not pull or wrap too tightly.","image":"\/assets\/images\/mockup-bottle-01.webp","follow_up":"Use Category Default","interval":"","reminder":"","created":"12 Oct 2026","updated":"15 Nov 2026","updated_by":"Dr Rujhan"},{"id":"PRD-018","sku":"RR-0018","stock":0,"restock_threshold":5,"name":"Scalp Serum Refill","category":"Scalp Care","price":148,"requirement":"Basic","status":"Draft","size":"100 ml","format":"Serum","description":"A refill format for the scalp hydration serum.","ingredients":"Aqua, glycerin, panthenol.","usage":"Refill only a clean, compatible container.","precautions":"For external use only.","image":"\/assets\/images\/mockup-bottle-01.webp","follow_up":"Use Category Default","interval":"","reminder":"","created":"12 Oct 2026","updated":"15 Nov 2026","updated_by":"Dr Rujhan"},{"id":"PRD-019","sku":"RR-0019","stock":20,"restock_threshold":5,"name":"Daily Care Duo","category":"Hair Care","price":125,"requirement":"Basic","status":"Active","size":"2 \u00d7 250 ml","format":"Set","description":"A shampoo and conditioner set for a daily routine.","ingredients":"Refer to the individual product labels.","usage":"Follow the directions on each product.","precautions":"Refer to the precautions on each product.","image":"\/assets\/images\/mockup-bottle-01.webp","follow_up":"Use Category Default","interval":"","reminder":"","created":"12 Oct 2026","updated":"15 Nov 2026","updated_by":"Dr Rujhan"},{"id":"PRD-020","sku":"RR-0020","stock":0,"restock_threshold":5,"name":"Original Scalp Tonic","category":"Scalp Care","price":95,"requirement":"Basic","status":"Archived","size":"100 ml","format":"Liquid","description":"An earlier scalp tonic in the clinic catalogue.","ingredients":"Aqua, glycerin, fragrance.","usage":"Refer to the package directions.","precautions":"For external use only.","image":"\/assets\/images\/mockup-bottle-01.webp","follow_up":"Use Category Default","interval":"","reminder":"","created":"12 Oct 2026","updated":"15 Nov 2026","updated_by":"Dr Rujhan"}],"categories":[{"id":"CAT-001","name":"Hair Care"},{"id":"CAT-002","name":"Scalp Care"},{"id":"CAT-003","name":"Prescription"},{"id":"CAT-004","name":"Accessories"},{"id":"CAT-005","name":"Care Collections"}],"categories_url":"\/dashboard\/product-categories\/","category_edit_url":"\/dashboard\/product-category-edit\/","detail_url":"\/dashboard\/product\/","edit_url":"\/dashboard\/product-edit\/"}</script>
+    <script src="/assets/js/products.js?v=1794772602" defer></script>
+    <script src="/assets/js/modal.js?v=1794630917" defer></script>
+        <script src="/assets/js/overlays.js?v=1794768213" defer></script>
+      <script src="/assets/js/list-field.js?v=1794765851" defer></script>
+  <script src="/assets/js/dashboard.js?v=1794245160" defer></script>
+  <script src="/assets/js/sales-chart.js?v=1794401494" defer></script>
+  <script src="/assets/js/product-spotlight.js?v=1794589037" defer></script>
+</head>
+<body class="dashboard-body min-h-screen font-sans text-sm bg-zinc-100 text-zinc-600 tracking-tight">
+  <a href="#dashboard-content" class="dashboard-skip sr-only
+    focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:w-auto focus:h-auto focus:p-3 focus:bg-white focus:text-zinc-800 focus:not-sr-only">Skip to content</a>
+  <div class="dashboard-shell min-h-screen">
+    <aside class="dashboard-sidebar hidden lg:fixed lg:inset-y-0 lg:left-0 lg:w-64 lg:block lg:overflow-y-auto">
+      <div class="sidebar-content flex flex-col flex-1 gap-8 h-full px-2 py-5">
+  <a href="/dashboard/" aria-label="RR Hair Clinic dashboard"
+    class="sidebar-brand inline-flex items-center self-start min-h-11 mx-3 text-lg text-zinc-800
+      focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">
+    <span class="sidebar-brand-mark flex items-center justify-center w-9 aspect-square font-semibold border border-zinc-600">RR</span>
+  </a>
+  <nav aria-label="Dashboard navigation" class="sidebar-navigation flex flex-col gap-5">
+    <a href="/dashboard/"       class="sidebar-link flex items-center gap-2 min-h-8 px-3 py-2 font-medium rounded-lg text-zinc-600
+        focus-visible:outline-2 focus-visible:outline-blue-800
+        aria-[current=page]:bg-zinc-100 aria-[current=page]:text-zinc-800
+        hover:bg-zinc-200 hover:text-zinc-800">
+      <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+      Overview
+    </a>
+    <div class="sidebar-group">
+      <h2 class="sidebar-group-title px-3 text-xs uppercase tracking-normal text-zinc-400">Clinical</h2>
+      <ul class="sidebar-items grid mt-2">
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3 text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Assessments
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3 text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Prescriptions
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="/dashboard/patients/"
+                        class="sidebar-link flex items-center gap-2 min-h-8 px-3 rounded-md text-zinc-600
+              hover:bg-zinc-200 hover:text-zinc-800
+              focus-visible:outline-2 focus-visible:outline-blue-800
+              aria-[current=page]:bg-zinc-200 aria-[current=page]:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Patients
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="sidebar-group">
+      <h2 class="sidebar-group-title px-3 text-xs uppercase tracking-normal text-zinc-400">Operations</h2>
+      <ul class="sidebar-items grid mt-2">
+        <li class="sidebar-item">
+          <a href="/dashboard/products/"
+            aria-current="true"            class="sidebar-link flex items-center gap-2 min-h-8 px-3 rounded-md text-zinc-600
+              hover:bg-zinc-200 hover:text-zinc-800
+              focus-visible:outline-2 focus-visible:outline-blue-800
+              aria-[current=true]:bg-zinc-200 aria-[current=true]:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Products
+          </a>
+                      <ul class="sidebar-submenu grid gap-1 mt-2 ps-7">
+              <li class="sidebar-item"><a href="/dashboard/products/" class="sidebar-link block px-3 py-2 text-caption underline underline-offset-4">Product List</a></li>
+              <li class="sidebar-item"><a href="/dashboard/product-categories/" class="sidebar-link block px-3 py-2 text-caption underline underline-offset-4">Categories</a></li>
+              <li class="sidebar-item"><a href="/dashboard/product/?id=PRD-001" class="sidebar-link block px-3 py-2 text-caption underline underline-offset-4">Product Detail</a></li>
+              <li class="sidebar-item"><a href="/dashboard/product-edit/?id=PRD-001" class="sidebar-link block px-3 py-2 text-caption underline underline-offset-4">Product Edit</a></li>
+            </ul>
+                  </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3 text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Orders
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="sidebar-group">
+      <h2 class="sidebar-group-title px-3 text-xs uppercase tracking-normal text-zinc-400">Management</h2>
+      <ul class="sidebar-items mt-2">
+        <li class="sidebar-item">
+          <a href="/dashboard/assessment-workflow/"
+                        class="sidebar-link flex items-center gap-2 min-h-8 px-3 rounded-md text-zinc-600
+              hover:bg-zinc-200 hover:text-zinc-800
+              focus-visible:outline-2 focus-visible:outline-blue-800
+              aria-[current=page]:bg-zinc-200 aria-[current=page]:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Workflow Reference
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3  text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Team &amp; access
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="sidebar-account mt-auto pt-4">
+    <details class="account-menu relative js-component-dashboard-account">
+      <summary class="account-trigger flex items-center gap-3 min-h-11 p-2 rounded-lg text-zinc-800 cursor-pointer list-none
+        hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800 [&::-webkit-details-marker]:hidden">
+        <img src="/assets/images/avatar-dr-rujhan.webp" alt="" width="36" height="36"
+          class="account-avatar size-9 shrink-0 rounded-lg outline outline-black/10 -outline-offset-1 object-cover">
+        <span class="account-identity flex-1 min-w-0">
+          <span class="account-name block text-sm font-medium truncate">Your account</span>
+          <span class="account-role block text-xs text-zinc-500">Business owner</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="account-indicator size-4 shrink-0 rotate-180"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>      </summary>
+      <div class="account-panel absolute inset-x-0 bottom-full z-20 mb-2 p-1 rounded-lg border border-zinc-200 bg-white shadow-sm">
+        <a href="#" class="account-action flex items-center w-full min-h-11 px-3 text-left text-sm rounded-md text-zinc-600
+          hover:bg-zinc-100 hover:text-zinc-800 focus-visible:outline-2 focus-visible:outline-blue-800">My profile</a>
+        <div class="account-divider my-1 border-t border-zinc-200"></div>
+        <a href="#" class="account-action flex items-center w-full min-h-11 px-3 text-left text-sm rounded-md text-zinc-600
+          hover:bg-zinc-100 hover:text-zinc-800 focus-visible:outline-2 focus-visible:outline-blue-800">Sign out</a>
+      </div>
+    </details>
+  </div>
+</div>
+    </aside>
+    <main id="dashboard-content" tabindex="-1" class="dashboard-content min-w-0 max-w-5xl p-5 lg:ml-64">
+      <div class="dashboard-controls mb-4 lg:hidden">
+  <button type="button" aria-label="Open navigation" aria-controls="dashboard-navigation" aria-expanded="false"
+    class="sidebar-toggle flex items-center justify-center size-11 rounded-lg text-zinc-800
+      hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-blue-800 js-component-dashboard-menu">
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="sidebar-toggle-icon size-5"><path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"/></svg>  </button>
+</div>
+      <section class="section min-w-0 py-0!" aria-labelledby="edit-title">
+  <nav aria-label="Breadcrumb" class="product-navigation mb-5">
+    <a href="/dashboard/products/" class="product-back text-small underline underline-offset-4">Products</a>
+      </nav>
+  <header class="section-header">
+    <h1 id="edit-title" class="section-title text-3xl font-medium color-strong">Create Product</h1>
+      </header>
+      <form method="dialog" data-product-id="" class="product-editor grid min-w-0 gap-6 mt-6 js-component-products-editor">
+      <article class="card  flex flex-col min-w-0 rounded-lg bg-white">
+      <header class="card-header flex items-center gap-3 px-5 pt-5">
+              <span class="card-icon flex shrink-0 items-center justify-center size-12 font-medium bg-zinc-200 text-zinc-800 rounded-md">
+                      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="card-glyph size-6 text-zinc-500"><path d="M17 2V4H20C20.5523 4 21 4.44772 21 5V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V5C3 4.44772 3.44772 4 4 4H7V2H17ZM7 6H5V20H19V6H17V8H7V6ZM13 11V13H15V15H12.999L13 17H11L10.999 15H9V13H11V11H13ZM15 4H9V6H15V4Z"/></svg>                  </span>
+        <div class="card-heading flex flex-col min-w-0">
+            <h3 class="card-title text-base font-medium text-zinc-800">Basic Information</h3>
+                    </div>
+          </header>
+    <div class="card-content flex-1 p-5">
+                          <div class="product-fields grid min-w-0 items-start gap-x-6 gap-y-8
+          md:grid-cols-2">
+                                  <div class="product-field min-w-0 md:col-span-2">
+                              <div class="field">
+  <label id="product-name-label" for="product-name" class="field-label">
+    Product Name          <span class="field-required">Required</span>
+      </label>
+      <input id="product-name" type="text" value=""
+            name="name"                              required                              class="field-control field-input">
+      </div>
+                                  <div class="product-type flex flex-wrap items-center gap-x-6 gap-y-3 mt-2">
+                    <label for="product-type" class="choice-label">
+  <span class="choice-wrapper">
+    <input id="product-type" type="checkbox" value="combo"
+      name="product_type"      role="switch"                        aria-controls="product-included-products"      class="choice-control ">
+          <span aria-hidden="true" class="switch-track"></span>
+      </span>
+  <span class="choice-text">
+    Product Collection      </span>
+</label>
+                    <label for="product-requirement" class="choice-label">
+  <span class="choice-wrapper">
+    <input id="product-requirement" type="checkbox" value="Prescription Required"
+      name="requirement"      role="switch"                              class="choice-control ">
+          <span aria-hidden="true" class="switch-track"></span>
+      </span>
+  <span class="choice-text">
+    Prescription Required      </span>
+</label>
+                  </div>
+                                          </div>
+                                  <div class="product-field min-w-0 ">
+                              <div class="field">
+  <label id="product-sku-label" for="product-sku" class="field-label">
+    SKU          <span class="field-required">Required</span>
+      </label>
+      <input id="product-sku" type="text" value=""
+            name="sku"                              required                              class="field-control field-input">
+      </div>
+                                          </div>
+                                  <div class="product-field min-w-0 ">
+                              <div class="field">
+  <label id="product-category-label" for="product-category" class="field-label">
+    Category      </label>
+      <div class="field-select-wrapper">
+      <select id="product-category"
+        name="category"                                        class="field-control field-select">
+                  <option value="Hair Care" selected>
+            Hair Care          </option>
+                  <option value="Scalp Care" >
+            Scalp Care          </option>
+                  <option value="Prescription" >
+            Prescription          </option>
+                  <option value="Accessories" >
+            Accessories          </option>
+                  <option value="Care Collections" >
+            Care Collections          </option>
+              </select>
+      <span aria-hidden="true" class="field-select-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="field-icon"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>      </span>
+    </div>
+      </div>
+                                          </div>
+                                  <div class="product-field min-w-0 ">
+                              <div class="field">
+  <label id="product-format-label" for="product-format" class="field-label">
+    Format      </label>
+      <div class="field-select-wrapper">
+      <select id="product-format"
+        name="format"                                        class="field-control field-select">
+                  <option value="Liquid" >
+            Liquid          </option>
+                  <option value="Cream" >
+            Cream          </option>
+                  <option value="Serum" >
+            Serum          </option>
+                  <option value="Solution" >
+            Solution          </option>
+                  <option value="Tablet" >
+            Tablet          </option>
+                  <option value="Foam" >
+            Foam          </option>
+                  <option value="Spray" >
+            Spray          </option>
+                  <option value="Gel" >
+            Gel          </option>
+                  <option value="Accessory" >
+            Accessory          </option>
+                  <option value="Set" >
+            Set          </option>
+              </select>
+      <span aria-hidden="true" class="field-select-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="field-icon"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>      </span>
+    </div>
+      </div>
+                                          </div>
+                                  <div class="product-field min-w-0 ">
+                              <div class="field">
+  <label id="product-size-label" for="product-size" class="field-label">
+    Size / Contents          <span class="field-required">Required</span>
+      </label>
+      <input id="product-size" type="text" value=""
+            name="size"                              required                              class="field-control field-input">
+      </div>
+                                          </div>
+                  </div>
+                  <section id="product-included-products" hidden aria-labelledby="included-products-title"
+            class="product-combo min-w-0 -mx-5 mt-8 p-5 bg-zinc-50 js-component-products-combo">
+            <h4 id="included-products-title" class="product-heading mb-1 text-base font-medium color-strong">Included Products</h4>
+            <p id="combo-help" class="product-help mb-5 text-small color-muted">
+              Choose at least 2 different products, set quantities, then set the collection price below.
+            </p>
+            <div class="product-items grid divide-y divide-dashed divide-zinc-200 js-component-products-items"></div>
+            <div class="product-actions flex flex-wrap items-center gap-4 mt-6">
+              <button type="button" class="button button-medium button-default js-component-products-add-item"
+          >
+    <span class="button-label">Add More Products</span>
+    </button>
+              <p role="status" class="product-combo-summary text-caption color-muted">
+                <span class="product-combo-count block js-component-products-combo-summary"></span>
+                <span class="product-combo-minimum block">Minimum 2 different products.</span>
+              </p>
+            </div>
+            <template class="js-component-products-item-template">
+              <div class="product-item flex min-w-0 items-start gap-4 py-3">
+                <div class="product-actions shrink-0">
+                  <div data-placement="top"
+  class="tooltip inline-flex js-component-tooltip">
+      <button type="button" class="button button-small button-secondary button-icon-only button-disabled js-component-tooltip-trigger"
+  title="Remove Product"      disabled  >
+    <span class="button-label">Remove Product</span>
+      <span class="button-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="button-glyph"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"/></svg>    </span>
+    </button>
+    <div id="combo-remove-tooltip" role="tooltip" popover="manual"
+    class="tooltip-content fixed inset-auto w-max max-w-[min(16rem,calc(100vw-2rem))] m-0 px-4 py-3 text-caption rounded-md border-0 bg-zinc-800 color-invert-strong wrap-anywhere overflow-visible
+      js-component-tooltip-content">
+    <span class="tooltip-text">Remove Product</span>
+    <span aria-hidden="true" class="tooltip-arrow absolute size-2 bg-zinc-800 rotate-45 pointer-events-none
+      js-component-tooltip-arrow"></span>
+  </div>
+</div>
+                </div>
+                <div aria-hidden="true"
+                  class="product-photo flex shrink-0 items-center justify-center size-18 rounded-md bg-zinc-100 color-muted">
+                  <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="product-photo-icon size-6"><path d="M2.9918 21C2.44405 21 2 20.5551 2 20.0066V3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082C21.556 3 22 3.44495 22 3.9934V20.0066C22 20.5552 21.5447 21 21.0082 21H2.9918ZM20 15V5H4V19L14 9L20 15ZM20 17.8284L14 11.8284L6.82843 19H20V17.8284ZM8 11C6.89543 11 6 10.1046 6 9C6 7.89543 6.89543 7 8 7C9.10457 7 10 7.89543 10 9C10 10.1046 9.10457 11 8 11Z"/></svg>                </div>
+              <div class="product-fields grid flex-1 min-w-0 items-start gap-4
+                  md:grid-cols-3">
+                <div class="product-field min-w-0 md:col-span-2">
+                  <div class="field">
+  <label id="combo-product-label" for="combo-product" class="field-label">
+    Included Product      </label>
+      <div class="field-select-wrapper">
+      <select id="combo-product"
+                                                class="field-control field-select">
+                  <option value="" selected>
+            Select a product          </option>
+              </select>
+      <span aria-hidden="true" class="field-select-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="field-icon"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>      </span>
+    </div>
+      </div>
+                </div>
+                <div class="product-field min-w-0">
+                  <div class="field">
+  <label id="combo-quantity-label" for="combo-quantity" class="field-label">
+    Quantity      </label>
+      <div class="field-select-wrapper">
+      <select id="combo-quantity"
+                                                class="field-control field-select">
+                  <option value="1" selected>
+            1          </option>
+                  <option value="2" >
+            2          </option>
+                  <option value="3" >
+            3          </option>
+                  <option value="4" >
+            4          </option>
+                  <option value="5" >
+            5          </option>
+                  <option value="6" >
+            6          </option>
+                  <option value="7" >
+            7          </option>
+                  <option value="8" >
+            8          </option>
+                  <option value="9" >
+            9          </option>
+                  <option value="10" >
+            10          </option>
+              </select>
+      <span aria-hidden="true" class="field-select-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="field-icon"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>      </span>
+    </div>
+      </div>
+                </div>
+                </div>
+              </div>
+            </template>
+          </section>
+          <div class="product-pricing mt-8">
+            <div class="product-fields grid min-w-0 items-start gap-x-6 gap-y-8
+              md:grid-cols-2">
+              <div class="product-field min-w-0 js-component-products-base-price-field">
+                <div class="field input-group min-w-0">
+  <label for="product-base-price" class="field-label">
+    Regular Price (RM)    <span class="field-required">Required</span>  </label>
+  <div data-disabled="false" data-readonly="false"
+        class="input-group-outline field-control flex items-center gap-0.5 min-w-0 h-10 px-4 py-px      focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-600/40
+      data-[disabled=true]:border-zinc-200 data-[disabled=true]:bg-zinc-100 data-[readonly=true]:bg-zinc-100">
+          <span id="product-base-price-before" class="input-group-text shrink-0 text-small color-muted">RM</span>
+        <input id="product-base-price" type="text" value=""
+      name="base_price"      placeholder="0.00"      inputmode="decimal"                  required      aria-describedby="product-base-price-before"            class="input-group-control flex-1 min-w-0 w-full h-9 font-normal border-0 bg-transparent color-strong
+        placeholder:color-muted focus:outline-none disabled:color-muted disabled:cursor-not-allowed">
+              </div>
+    </div>
+              </div>
+              <div hidden class="product-field min-w-0 js-component-products-combo-price-field">
+                <div class="product-price-input relative">
+                  <p aria-live="polite"
+                    class="product-price-saving absolute top-0 end-0 flex items-center min-h-5 text-caption color-muted tabular-nums js-component-products-combined-saving">
+                    Combined Saving: —
+                  </p>
+                  <div class="field input-group min-w-0">
+  <label for="product-combo-price" class="field-label">
+    Collection Price      </label>
+  <div data-disabled="false" data-readonly="false"
+        class="input-group-outline field-control flex items-center gap-0.5 min-w-0 h-10 px-4 py-px      focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-600/40
+      data-[disabled=true]:border-zinc-200 data-[disabled=true]:bg-zinc-100 data-[readonly=true]:bg-zinc-100">
+          <span id="product-combo-price-before" class="input-group-text shrink-0 text-small color-muted">RM</span>
+        <input id="product-combo-price" type="text" value=""
+      name="combo_price"      placeholder="0.00"      inputmode="decimal"                        aria-describedby="product-combo-price-before product-combo-price-after product-combo-price-help"            class="input-group-control flex-1 min-w-0 w-full h-9 font-normal border-0 bg-transparent color-strong
+        placeholder:color-muted focus:outline-none disabled:color-muted disabled:cursor-not-allowed">
+          <span id="product-combo-price-after" class="input-group-text shrink-0 text-small color-muted tabular-nums">—</span>
+              </div>
+  <p id="product-combo-price-help" class="field-help">Combined item price shown on the right.</p>  </div>
+                </div>
+              </div>
+              <div class="product-field min-w-0">
+                <div class="field input-group min-w-0">
+  <label for="product-discount-price" class="field-label">
+    Discount Price (RM)      </label>
+  <div data-disabled="false" data-readonly="false"
+        class="input-group-outline field-control flex items-center gap-0.5 min-w-0 h-10 px-4 py-px      focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-600/40
+      data-[disabled=true]:border-zinc-200 data-[disabled=true]:bg-zinc-100 data-[readonly=true]:bg-zinc-100">
+          <span id="product-discount-price-before" class="input-group-text shrink-0 text-small color-muted">RM</span>
+        <input id="product-discount-price" type="text" value=""
+      name="discount_price"      placeholder="0.00"      inputmode="decimal"                        aria-describedby="product-discount-price-before product-discount-price-help"            class="input-group-control flex-1 min-w-0 w-full h-9 font-normal border-0 bg-transparent color-strong
+        placeholder:color-muted focus:outline-none disabled:color-muted disabled:cursor-not-allowed">
+              <div class="input-group-select relative shrink-0">
+        <label for="product-discount-percent" class="input-group-label sr-only">Discount Percentage</label>
+        <select id="product-discount-percent" name="discount_percent"
+                    class="input-group-select-control h-9 max-w-32 pe-6 text-right text-small border-0 bg-transparent color-strong appearance-none
+            focus:outline-none disabled:color-muted disabled:cursor-not-allowed">
+                      <option value="" selected>
+              Custom            </option>
+                      <option value="0" >
+              No Discount            </option>
+                      <option value="5" >
+              5%            </option>
+                      <option value="10" >
+              10%            </option>
+                      <option value="15" >
+              15%            </option>
+                      <option value="20" >
+              20%            </option>
+                      <option value="25" >
+              25%            </option>
+                      <option value="30" >
+              30%            </option>
+                      <option value="40" >
+              40%            </option>
+                      <option value="50" >
+              50%            </option>
+                  </select>
+        <span aria-hidden="true" class="input-group-select-icon absolute inset-y-0 end-0 flex items-center pointer-events-none">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="input-group-icon size-4"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>        </span>
+      </div>
+          </div>
+  <p id="product-discount-price-help" class="field-help">Rounded down to whole RM. Select Custom for manual pricing.</p>  </div>
+              </div>
+            </div>
+            <div class="product-pricing-summary flex flex-col gap-5 -mx-4 -mb-4 mt-5 p-4 rounded-md bg-zinc-100">
+              <div hidden class="product-breakdown pb-5 border-b border-zinc-300 js-component-products-price-breakdown">
+                <h4 class="product-heading mb-5 text-small font-medium color-strong">Combined Product Prices</h4>
+                <ul class="product-price-items grid divide-y divide-dashed divide-zinc-200 js-component-products-price-items"></ul>
+                <p class="product-price-empty text-small color-muted js-component-products-price-empty">
+                  No products selected. Choose products above to see their prices.
+                </p>
+              </div>
+              <dl aria-live="polite" class="product-price-summary grid text-small divide-y divide-dashed divide-zinc-200">
+                <div class="product-price-row flex flex-wrap justify-between gap-2 pb-3">
+                  <dt class="product-label">Additional Discount</dt>
+                  <dd class="product-value font-normal color-muted tabular-nums js-component-products-savings">Not Set</dd>
+                </div>
+                <div class="product-price-row flex flex-wrap justify-between gap-2 pt-3 font-medium color-strong">
+                  <dt class="product-label">Final Selling Price</dt>
+                  <dd class="product-value font-normal color-muted tabular-nums js-component-products-final-price">Not Set</dd>
+                </div>
+              </dl>
+              <p role="status" hidden
+                class="product-price-status flex items-start gap-2 text-small color-muted js-component-products-price-status">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="product-price-icon shrink-0 size-5"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20ZM11 7H13V9H11V7ZM11 11H13V17H11V11Z"/></svg>                <span class="product-price-message min-w-0 js-component-products-price-message"></span>
+              </p>
+            </div>
+          </div>
+                      </div>
+  </article>
+      <article class="card  flex flex-col min-w-0 rounded-lg bg-white">
+      <header class="card-header flex items-center gap-3 px-5 pt-5">
+              <span class="card-icon flex shrink-0 items-center justify-center size-12 font-medium bg-zinc-200 text-zinc-800 rounded-md">
+                      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="card-glyph size-6 text-zinc-500"><path d="M17 2V4H20C20.5523 4 21 4.44772 21 5V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V5C3 4.44772 3.44772 4 4 4H7V2H17ZM7 6H5V20H19V6H17V8H7V6ZM13 11V13H15V15H12.999L13 17H11L10.999 15H9V13H11V11H13ZM15 4H9V6H15V4Z"/></svg>                  </span>
+        <div class="card-heading flex flex-col min-w-0">
+            <h3 class="card-title text-base font-medium text-zinc-800">Product Images</h3>
+              <p class="card-description text-small leading-relaxed text-pretty text-zinc-500">Up to 4 images · JPEG, PNG or WebP · 1 MB each. First image is primary.</p>
+                    </div>
+          </header>
+    <div class="card-content flex-1 p-5">
+              <div data-max-files="4" data-max-size="1048576"
+  class="uploader js-component-file-upload-root">
+  <header class="uploader-header flex items-center justify-between gap-4 mb-3">
+    <label for="product-images" class="uploader-label field-label">Upload Images</label>
+    <p aria-live="polite"
+      class="uploader-count text-caption color-muted tabular-nums js-component-file-upload-image-count">0/4 files selected</p>
+  </header>
+  <div class="uploader-surface js-component-file-upload-dropzone">
+    <input id="product-images" name="product_images[]" type="file" accept="image/jpeg,image/png,image/webp" multiple
+      aria-describedby="product-images-help" class="uploader-input sr-only js-component-file-upload-upload">
+    <ul aria-label="Selected files" class="uploader-gallery flex flex-wrap gap-3 js-component-file-upload-gallery"></ul>
+    <div class="uploader-empty grid rounded-lg bg-zinc-50 js-component-file-upload-empty">
+      <ul aria-hidden="true" inert
+        class="uploader-spacer col-start-1 row-start-1 invisible pointer-events-none js-component-file-upload-spacer"></ul>
+      <div class="uploader-prompt col-start-1 row-start-1 flex flex-col items-center justify-center gap-3 p-5
+        rounded-lg border border-dashed border-zinc-300">
+        <p class="uploader-message text-caption color-muted">No files selected. Drop files here or choose below.</p>
+        <div class="uploader-empty-action js-component-file-upload-empty-action"></div>
+      </div>
+    </div>
+    <footer class="uploader-footer flex flex-wrap items-center justify-between gap-3 mt-4
+      js-component-file-upload-footer">
+      <div class="uploader-add-action js-component-file-upload-add-action">
+        <button type="button" class="button button-small button-secondary js-component-file-upload-add-image"
+      aria-controls="product-images"    >
+    <span class="button-label">Add Images</span>
+    </button>
+      </div>
+      <button type="button" class="button button-small button-secondary button-disabled js-component-file-upload-clear-images"
+        disabled  >
+    <span class="button-label">Clear All</span>
+    </button>
+    </footer>
+  </div>
+  <p id="product-images-help" class="uploader-help mt-3 text-caption color-muted">Drop files in this panel. Drag selected files to reorder, or use the arrow buttons.</p>
+  <p role="status" class="uploader-status mt-3 text-small color-muted js-component-file-upload-image-status"></p>
+  <template class="js-component-file-upload-image-template">
+    <li draggable="true" class="uploader-item relative w-48 rounded-lg border border-zinc-200 bg-white overflow-hidden
+      js-component-file-upload-item">
+      <div class="uploader-preview h-40 m-1 rounded-md border-overlay bg-zinc-50 overflow-hidden js-component-file-upload-preview">
+        <img alt="" draggable="false" class="uploader-image size-full object-cover js-component-file-upload-image">
+      </div>
+      <div class="uploader-details flex items-center gap-3 p-3">
+        <div class="uploader-info min-w-0 flex-1">
+          <p class="uploader-name text-caption font-normal truncate js-component-file-upload-name"></p>
+          <p class="uploader-meta text-caption color-muted js-component-file-upload-meta"></p>
+        </div>
+      </div>
+      <div class="uploader-actions flex items-center justify-between gap-1 px-3 pb-3">
+        <span aria-hidden="true" class="uploader-position flex items-center color-muted cursor-grab">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="uploader-icon size-4"><path d="M8.5 7C9.32843 7 10 6.32843 10 5.5C10 4.67157 9.32843 4 8.5 4C7.67157 4 7 4.67157 7 5.5C7 6.32843 7.67157 7 8.5 7ZM8.5 13.5C9.32843 13.5 10 12.8284 10 12C10 11.1716 9.32843 10.5 8.5 10.5C7.67157 10.5 7 11.1716 7 12C7 12.8284 7.67157 13.5 8.5 13.5ZM10 18.5C10 19.3284 9.32843 20 8.5 20C7.67157 20 7 19.3284 7 18.5C7 17.6716 7.67157 17 8.5 17C9.32843 17 10 17.6716 10 18.5ZM15.5 7C16.3284 7 17 6.32843 17 5.5C17 4.67157 16.3284 4 15.5 4C14.6716 4 14 4.67157 14 5.5C14 6.32843 14.6716 7 15.5 7ZM17 12C17 12.8284 16.3284 13.5 15.5 13.5C14.6716 13.5 14 12.8284 14 12C14 11.1716 14.6716 10.5 15.5 10.5C16.3284 10.5 17 11.1716 17 12ZM15.5 20C16.3284 20 17 19.3284 17 18.5C17 17.6716 16.3284 17 15.5 17C14.6716 17 14 17.6716 14 18.5C14 19.3284 14.6716 20 15.5 20Z"/></svg>        </span>
+        <div class="uploader-controls flex gap-1">
+          <button type="button" class="button button-small button-secondary button-icon-only js-component-file-upload-image-earlier"
+  title="Move Earlier"        >
+    <span class="button-label">Move Earlier</span>
+      <span class="button-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="button-glyph"><path d="M10.8284 12.0007L15.7782 16.9504L14.364 18.3646L8 12.0007L14.364 5.63672L15.7782 7.05093L10.8284 12.0007Z"/></svg>    </span>
+    </button>
+          <button type="button" class="button button-small button-secondary button-icon-only js-component-file-upload-image-later"
+  title="Move Later"        >
+    <span class="button-label">Move Later</span>
+      <span class="button-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="button-glyph"><path d="M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z"/></svg>    </span>
+    </button>
+          <button type="button" class="button button-small button-secondary button-icon-only js-component-file-upload-image-remove"
+  title="Remove File"        >
+    <span class="button-label">Remove File</span>
+      <span class="button-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="button-glyph"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM18 8H6V20H18V8ZM9 11H11V17H9V11ZM13 11H15V17H13V11ZM9 4V6H15V4H9Z"/></svg>    </span>
+    </button>
+        </div>
+      </div>
+      <div aria-hidden="true"
+        class="uploader-target absolute inset-0 hidden items-center justify-center text-caption font-normal
+          rounded-lg border border-solid border-blue-600 bg-blue-600 color-invert-strong pointer-events-none
+          js-component-file-upload-target">
+        Drop Here
+      </div>
+    </li>
+  </template>
+</div>
+          </div>
+  </article>
+              <article class="card  flex flex-col min-w-0 rounded-lg bg-white">
+      <header class="card-header flex items-center gap-3 px-5 pt-5">
+              <span class="card-icon flex shrink-0 items-center justify-center size-12 font-medium bg-zinc-200 text-zinc-800 rounded-md">
+                      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="card-glyph size-6 text-zinc-500"><path d="M17 2V4H20C20.5523 4 21 4.44772 21 5V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V5C3 4.44772 3.44772 4 4 4H7V2H17ZM7 6H5V20H19V6H17V8H7V6ZM13 11V13H15V15H12.999L13 17H11L10.999 15H9V13H11V11H13ZM15 4H9V6H15V4Z"/></svg>                  </span>
+        <div class="card-heading flex flex-col min-w-0">
+            <h3 class="card-title text-base font-medium text-zinc-800">Product Content</h3>
+              <p class="card-description text-small leading-relaxed text-pretty text-zinc-500">Use clinic-approved product information.</p>
+                    </div>
+          </header>
+    <div class="card-content flex-1 p-5">
+                          <div class="product-fields grid min-w-0 items-start gap-x-6 gap-y-8
+          md:grid-cols-2">
+                                  <div class="product-field min-w-0 md:col-span-2">
+                              <div class="field">
+  <label id="product-short_description-label" for="product-short_description" class="field-label">
+    Short Description      </label>
+      <textarea id="product-short_description" rows="2" style="--field-rows: 2;"
+      name="short_description"                  maxlength="160"                        aria-describedby="product-short_description-help"            class="field-control field-textarea min-h-[calc(var(--field-rows)*1lh+var(--spacing)*6+2px)] field-sizing-content"></textarea>
+            <p id="product-short_description-help" class="field-help">
+      Up to 160 characters.    </p>
+    </div>
+                                          </div>
+                                  <div class="product-field min-w-0 md:col-span-2">
+                              <div class="field">
+  <label id="product-description-label" for="product-description" class="field-label">
+    Description          <span class="field-required">Required</span>
+      </label>
+      <textarea id="product-description" rows="3" style="--field-rows: 3;"
+      name="description"                        required                              class="field-control field-textarea min-h-[calc(var(--field-rows)*1lh+var(--spacing)*6+2px)] field-sizing-content"></textarea>
+          </div>
+                                          </div>
+                                  <div class="product-field min-w-0 md:col-span-2">
+                              <div class="field">
+  <label id="product-benefits-label" for="product-benefits" class="field-label">
+    Benefits      </label>
+      <textarea id="product-benefits" rows="3" style="--field-rows: 3;"
+      name="benefits"                                          aria-describedby="product-benefits-help"            class="field-control field-textarea min-h-[calc(var(--field-rows)*1lh+var(--spacing)*6+2px)] field-sizing-content js-component-list-field-source"></textarea>
+          <div id="product-benefits-editor" hidden contenteditable="true" role="textbox" aria-multiline="true"
+        aria-labelledby="product-benefits-label"
+        aria-describedby="product-benefits-help"                class="field-control field-textarea break-words js-component-list-field-editor"></div>
+            <p id="product-benefits-help" class="field-help">
+      One approved benefit per line.    </p>
+    </div>
+                                          </div>
+                                  <div class="product-field min-w-0 md:col-span-2">
+                              <div class="field">
+  <label id="product-usage-label" for="product-usage" class="field-label">
+    How to Use      </label>
+      <textarea id="product-usage" rows="3" style="--field-rows: 3;"
+      name="usage"                                                      class="field-control field-textarea min-h-[calc(var(--field-rows)*1lh+var(--spacing)*6+2px)] field-sizing-content js-component-list-field-source"></textarea>
+          <div id="product-usage-editor" hidden contenteditable="true" role="textbox" aria-multiline="true"
+        aria-labelledby="product-usage-label"
+                        class="field-control field-textarea break-words js-component-list-field-editor"></div>
+          </div>
+                                          </div>
+                                  <div class="product-field min-w-0 md:col-span-2">
+                              <div class="field">
+  <label id="product-ingredients-label" for="product-ingredients" class="field-label">
+    Ingredients / Materials      </label>
+      <textarea id="product-ingredients" rows="3" style="--field-rows: 3;"
+      name="ingredients"                                                      class="field-control field-textarea min-h-[calc(var(--field-rows)*1lh+var(--spacing)*6+2px)] field-sizing-content js-component-list-field-source"></textarea>
+          <div id="product-ingredients-editor" hidden contenteditable="true" role="textbox" aria-multiline="true"
+        aria-labelledby="product-ingredients-label"
+                        class="field-control field-textarea break-words js-component-list-field-editor"></div>
+          </div>
+                                          </div>
+                                  <div class="product-field min-w-0 md:col-span-2">
+                              <fieldset class="product-choices field min-w-0" aria-describedby="product-precautions-help">
+                  <legend class="field-label mb-2">Precautions</legend>
+                  <div class="product-options grid gap-2">
+                                          <label for="product-precautions-0" class="choice-label">
+  <span class="choice-wrapper">
+    <input id="product-precautions-0" type="checkbox" value="For external use only."
+      name="precaution_options"                                    class="choice-control ">
+          <span aria-hidden="true" class="checkbox-box">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="choice-icon"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"/></svg>      </span>
+      </span>
+  <span class="choice-text">
+    For External Use Only      </span>
+</label>
+                                          <label for="product-precautions-1" class="choice-label">
+  <span class="choice-wrapper">
+    <input id="product-precautions-1" type="checkbox" value="Avoid contact with eyes."
+      name="precaution_options"                                    class="choice-control ">
+          <span aria-hidden="true" class="checkbox-box">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="choice-icon"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"/></svg>      </span>
+      </span>
+  <span class="choice-text">
+    Avoid Contact with Eyes      </span>
+</label>
+                                          <label for="product-precautions-2" class="choice-label">
+  <span class="choice-wrapper">
+    <input id="product-precautions-2" type="checkbox" value="Stop use if irritation occurs."
+      name="precaution_options"                                    class="choice-control ">
+          <span aria-hidden="true" class="checkbox-box">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="choice-icon"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"/></svg>      </span>
+      </span>
+  <span class="choice-text">
+    Stop Use if Irritation Occurs      </span>
+</label>
+                                      </div>
+                                      <p id="product-precautions-help" class="field-help">Select all that apply.</p>
+                                  </fieldset>
+                                  <div class="product-custom mt-6">
+                    <div class="field">
+  <label id="product-precautions-custom-label" for="product-precautions-custom" class="field-label">
+    Other Precautions      </label>
+      <textarea id="product-precautions-custom" rows="3" style="--field-rows: 3;"
+      name="precautions_custom"                                          aria-describedby="product-precautions-custom-help"            class="field-control field-textarea min-h-[calc(var(--field-rows)*1lh+var(--spacing)*6+2px)] field-sizing-content js-component-list-field-source"></textarea>
+          <div id="product-precautions-custom-editor" hidden contenteditable="true" role="textbox" aria-multiline="true"
+        aria-labelledby="product-precautions-custom-label"
+        aria-describedby="product-precautions-custom-help"                class="field-control field-textarea break-words js-component-list-field-editor"></div>
+            <p id="product-precautions-custom-help" class="field-help">
+      One precaution per line.    </p>
+    </div>
+                  </div>
+                                          </div>
+                  </div>
+                      </div>
+  </article>
+              <article class="card  flex flex-col min-w-0 rounded-lg bg-white">
+      <header class="card-header flex items-center gap-3 px-5 pt-5">
+              <span class="card-icon flex shrink-0 items-center justify-center size-12 font-medium bg-zinc-200 text-zinc-800 rounded-md">
+                      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="card-glyph size-6 text-zinc-500"><path d="M17 2V4H20C20.5523 4 21 4.44772 21 5V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V5C3 4.44772 3.44772 4 4 4H7V2H17ZM7 6H5V20H19V6H17V8H7V6ZM13 11V13H15V15H12.999L13 17H11L10.999 15H9V13H11V11H13ZM15 4H9V6H15V4Z"/></svg>                  </span>
+        <div class="card-heading flex flex-col min-w-0">
+            <h3 class="card-title text-base font-medium text-zinc-800">Inventory</h3>
+              <p class="card-description text-small leading-relaxed text-pretty text-zinc-500">Restock when stock is at or below the threshold.</p>
+                    </div>
+          </header>
+    <div class="card-content flex-1 p-5">
+                            <p role="status" class="product-restock mb-6 text-small color-muted js-component-products-restock-notice">Enter a stock quantity and restock threshold to see stock status.</p>
+                <div class="product-fields grid min-w-0 items-start gap-x-6 gap-y-8
+          md:grid-cols-2">
+                                  <div class="product-field min-w-0 ">
+                              <div class="field">
+  <label id="product-stock-label" for="product-stock" class="field-label">
+    Stock Quantity      </label>
+      <input id="product-stock" type="number" value=""
+              min="0"                step="1"            name="stock"                                                            class="field-control field-input">
+      </div>
+                                          </div>
+                                  <div class="product-field min-w-0 ">
+                              <div class="field">
+  <label id="product-restock_threshold-label" for="product-restock_threshold" class="field-label">
+    Restock Threshold      </label>
+      <input id="product-restock_threshold" type="number" value=""
+              min="0"                step="1"            name="restock_threshold"                                                            class="field-control field-input">
+      </div>
+                                          </div>
+                  </div>
+                      </div>
+  </article>
+              <article class="card  flex flex-col min-w-0 rounded-lg bg-white">
+      <header class="card-header flex items-center gap-3 px-5 pt-5">
+              <span class="card-icon flex shrink-0 items-center justify-center size-12 font-medium bg-zinc-200 text-zinc-800 rounded-md">
+                      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="card-glyph size-6 text-zinc-500"><path d="M17 2V4H20C20.5523 4 21 4.44772 21 5V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V5C3 4.44772 3.44772 4 4 4H7V2H17ZM7 6H5V20H19V6H17V8H7V6ZM13 11V13H15V15H12.999L13 17H11L10.999 15H9V13H11V11H13ZM15 4H9V6H15V4Z"/></svg>                  </span>
+        <div class="card-heading flex flex-col min-w-0">
+            <h3 class="card-title text-base font-medium text-zinc-800">Follow-up Rule</h3>
+              <p class="card-description text-small leading-relaxed text-pretty text-zinc-500">Timing starts from the clinic’s agreed event.</p>
+                    </div>
+          </header>
+    <div class="card-content flex-1 p-5">
+                          <div class="product-fields grid min-w-0 items-start gap-x-6 gap-y-8
+          md:grid-cols-2">
+                                  <div class="product-field min-w-0 md:col-span-2">
+                              <div class="field">
+  <label id="product-follow_up-label" for="product-follow_up" class="field-label">
+    Timing Rule      </label>
+      <div class="field-select-wrapper">
+      <select id="product-follow_up"
+        name="follow_up"                                        class="field-control field-select">
+                  <option value="Use Category Default" selected>
+            Use Category Default          </option>
+                  <option value="Product-specific Interval" >
+            Product-specific Interval          </option>
+              </select>
+      <span aria-hidden="true" class="field-select-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="field-icon"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>      </span>
+    </div>
+      </div>
+                                          </div>
+                                  <div class="product-field min-w-0 ">
+                              <div class="field">
+  <label id="product-interval-label" for="product-interval" class="field-label">
+    Follow-up Interval (Days)      </label>
+      <input id="product-interval" type="text" value=""
+            name="interval"                                                aria-describedby="product-interval-help"            class="field-control field-input">
+        <p id="product-interval-help" class="field-help">
+      Enter 1 or more days for a custom rule.    </p>
+    </div>
+                                          </div>
+                                  <div class="product-field min-w-0 ">
+                              <div class="field">
+  <label id="product-reminder-label" for="product-reminder" class="field-label">
+    Reminder Lead Time (Days)      </label>
+      <input id="product-reminder" type="text" value=""
+            name="reminder"                                                aria-describedby="product-reminder-help"            class="field-control field-input">
+        <p id="product-reminder-help" class="field-help">
+      Enter 0 up to the follow-up interval.    </p>
+    </div>
+                                          </div>
+                  </div>
+                      </div>
+  </article>
+              <article class="card  flex flex-col min-w-0 rounded-lg bg-white">
+      <header class="card-header flex items-center gap-3 px-5 pt-5">
+              <span class="card-icon flex shrink-0 items-center justify-center size-12 font-medium bg-zinc-200 text-zinc-800 rounded-md">
+                      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="card-glyph size-6 text-zinc-500"><path d="M17 2V4H20C20.5523 4 21 4.44772 21 5V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V5C3 4.44772 3.44772 4 4 4H7V2H17ZM7 6H5V20H19V6H17V8H7V6ZM13 11V13H15V15H12.999L13 17H11L10.999 15H9V13H11V11H13ZM15 4H9V6H15V4Z"/></svg>                  </span>
+        <div class="card-heading flex flex-col min-w-0">
+            <h3 class="card-title text-base font-medium text-zinc-800">Publishing</h3>
+              <p class="card-description text-small leading-relaxed text-pretty text-zinc-500">Drafts stay unpublished. Archived products remain in past records.</p>
+                    </div>
+          </header>
+    <div class="card-content flex-1 p-5">
+                          <div class="product-fields grid min-w-0 items-start gap-x-6 gap-y-8
+          md:grid-cols-2">
+                                  <div class="product-field min-w-0 ">
+                              <div class="field">
+  <label id="product-status-label" for="product-status" class="field-label">
+    Publishing Status      </label>
+      <div class="field-select-wrapper">
+      <select id="product-status"
+        name="status"                                        class="field-control field-select">
+                  <option value="Draft" selected>
+            Draft          </option>
+                  <option value="Active" >
+            Active          </option>
+                  <option value="Archived" >
+            Archived          </option>
+              </select>
+      <span aria-hidden="true" class="field-select-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="field-icon"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>      </span>
+    </div>
+      </div>
+                                          </div>
+                  </div>
+                      </div>
+  </article>
+            <p role="status" class="product-feedback text-small color-negative js-component-products-feedback"></p>
+      <div class="product-completion grid gap-2" aria-labelledby="product-completion-label">
+        <div class="product-completion-header flex flex-wrap items-center justify-between gap-2 text-small">
+          <label id="product-completion-label" for="product-completion" class="product-label font-medium color-strong">Required Information</label>
+          <span class="product-completion-count tabular-nums js-component-products-completion-count">0% complete</span>
+        </div>
+        <progress id="product-completion" value="0" max="100"
+          aria-describedby="product-completion-help" class="product-progress w-full h-2 js-component-products-progress">0%</progress>
+        <p id="product-completion-help" role="status"
+          class="product-completion-help text-caption color-muted js-component-products-completion-help">Complete the required information to continue.</p>
+      </div>
+      <footer class="product-actions flex flex-wrap items-center gap-3 py-4">
+        <button type="submit" class="button button-medium button-primary button-disabled"
+        disabled  >
+    <span class="button-label">Create Product</span>
+    </button>
+        <a href="/dashboard/products/" class="button button-medium button-secondary"
+      >
+    <span class="button-label">Cancel</span>
+  </a>
+      </footer>
+    </form>
+  </section>
+    </main>
+  </div>
+  <dialog id="dashboard-navigation" aria-label="Dashboard navigation"
+    class="dashboard-drawer fixed inset-y-0 left-0 w-72 max-w-[calc(100%-2rem)] h-dvh max-h-none m-0 border-0 bg-zinc-100 overflow-y-auto
+      backdrop:bg-zinc-800/30 js-component-dashboard-drawer">
+    <div class="drawer-content flex flex-col min-h-full">
+    <div class="drawer-controls flex justify-end px-3 pt-3">
+      <button type="button" aria-label="Close navigation"
+        class="drawer-close flex items-center justify-center size-11 rounded-lg text-zinc-800
+          hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-blue-800 js-component-dashboard-close">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="drawer-icon size-5"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"/></svg>      </button>
+    </div>
+    <div class="sidebar-content flex flex-col flex-1 gap-8 h-full px-2 py-5">
+  <a href="/dashboard/" aria-label="RR Hair Clinic dashboard"
+    class="sidebar-brand inline-flex items-center self-start min-h-11 mx-3 text-lg text-zinc-800
+      focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">
+    <span class="sidebar-brand-mark flex items-center justify-center w-9 aspect-square font-semibold border border-zinc-600">RR</span>
+  </a>
+  <nav aria-label="Dashboard navigation" class="sidebar-navigation flex flex-col gap-5">
+    <a href="/dashboard/"       class="sidebar-link flex items-center gap-2 min-h-8 px-3 py-2 font-medium rounded-lg text-zinc-600
+        focus-visible:outline-2 focus-visible:outline-blue-800
+        aria-[current=page]:bg-zinc-100 aria-[current=page]:text-zinc-800
+        hover:bg-zinc-200 hover:text-zinc-800">
+      <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+      Overview
+    </a>
+    <div class="sidebar-group">
+      <h2 class="sidebar-group-title px-3 text-xs uppercase tracking-normal text-zinc-400">Clinical</h2>
+      <ul class="sidebar-items grid mt-2">
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3 text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Assessments
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3 text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Prescriptions
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="/dashboard/patients/"
+                        class="sidebar-link flex items-center gap-2 min-h-8 px-3 rounded-md text-zinc-600
+              hover:bg-zinc-200 hover:text-zinc-800
+              focus-visible:outline-2 focus-visible:outline-blue-800
+              aria-[current=page]:bg-zinc-200 aria-[current=page]:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Patients
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="sidebar-group">
+      <h2 class="sidebar-group-title px-3 text-xs uppercase tracking-normal text-zinc-400">Operations</h2>
+      <ul class="sidebar-items grid mt-2">
+        <li class="sidebar-item">
+          <a href="/dashboard/products/"
+            aria-current="true"            class="sidebar-link flex items-center gap-2 min-h-8 px-3 rounded-md text-zinc-600
+              hover:bg-zinc-200 hover:text-zinc-800
+              focus-visible:outline-2 focus-visible:outline-blue-800
+              aria-[current=true]:bg-zinc-200 aria-[current=true]:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Products
+          </a>
+                      <ul class="sidebar-submenu grid gap-1 mt-2 ps-7">
+              <li class="sidebar-item"><a href="/dashboard/products/" class="sidebar-link block px-3 py-2 text-caption underline underline-offset-4">Product List</a></li>
+              <li class="sidebar-item"><a href="/dashboard/product-categories/" class="sidebar-link block px-3 py-2 text-caption underline underline-offset-4">Categories</a></li>
+              <li class="sidebar-item"><a href="/dashboard/product/?id=PRD-001" class="sidebar-link block px-3 py-2 text-caption underline underline-offset-4">Product Detail</a></li>
+              <li class="sidebar-item"><a href="/dashboard/product-edit/?id=PRD-001" class="sidebar-link block px-3 py-2 text-caption underline underline-offset-4">Product Edit</a></li>
+            </ul>
+                  </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3 text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Orders
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="sidebar-group">
+      <h2 class="sidebar-group-title px-3 text-xs uppercase tracking-normal text-zinc-400">Management</h2>
+      <ul class="sidebar-items mt-2">
+        <li class="sidebar-item">
+          <a href="/dashboard/assessment-workflow/"
+                        class="sidebar-link flex items-center gap-2 min-h-8 px-3 rounded-md text-zinc-600
+              hover:bg-zinc-200 hover:text-zinc-800
+              focus-visible:outline-2 focus-visible:outline-blue-800
+              aria-[current=page]:bg-zinc-200 aria-[current=page]:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Workflow Reference
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3  text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Team &amp; access
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="sidebar-account mt-auto pt-4">
+    <details class="account-menu relative js-component-dashboard-account">
+      <summary class="account-trigger flex items-center gap-3 min-h-11 p-2 rounded-lg text-zinc-800 cursor-pointer list-none
+        hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800 [&::-webkit-details-marker]:hidden">
+        <img src="/assets/images/avatar-dr-rujhan.webp" alt="" width="36" height="36"
+          class="account-avatar size-9 shrink-0 rounded-lg outline outline-black/10 -outline-offset-1 object-cover">
+        <span class="account-identity flex-1 min-w-0">
+          <span class="account-name block text-sm font-medium truncate">Your account</span>
+          <span class="account-role block text-xs text-zinc-500">Business owner</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="account-indicator size-4 shrink-0 rotate-180"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>      </summary>
+      <div class="account-panel absolute inset-x-0 bottom-full z-20 mb-2 p-1 rounded-lg border border-zinc-200 bg-white shadow-sm">
+        <a href="#" class="account-action flex items-center w-full min-h-11 px-3 text-left text-sm rounded-md text-zinc-600
+          hover:bg-zinc-100 hover:text-zinc-800 focus-visible:outline-2 focus-visible:outline-blue-800">My profile</a>
+        <div class="account-divider my-1 border-t border-zinc-200"></div>
+        <a href="#" class="account-action flex items-center w-full min-h-11 px-3 text-left text-sm rounded-md text-zinc-600
+          hover:bg-zinc-100 hover:text-zinc-800 focus-visible:outline-2 focus-visible:outline-blue-800">Sign out</a>
+      </div>
+    </details>
+  </div>
+</div>
+    </div>
+  </dialog>
+</body>
+</html>

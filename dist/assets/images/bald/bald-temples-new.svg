@@ -1,0 +1,66 @@
+<svg width="74" height="74" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg"
+  role="img" aria-labelledby="bald-temples-new-title">
+  <title id="bald-temples-new-title">Bowed head with receding hair at both temples</title>
+  <defs>
+    <!-- Tailwind gray: 50 #f9fafb, 100 #f3f4f6, 200 #e5e7eb, 300 #d1d5db, 600 #4b5563, 800 #1f2937. -->
+    <linearGradient id="bald-temples-new-skin" x1="37" y1="26" x2="37" y2="69" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f9fafb"/>
+      <stop offset="0.55" stop-color="#f3f4f6"/>
+      <stop offset="1" stop-color="#e5e7eb"/>
+    </linearGradient>
+    <radialGradient id="bald-temples-new-shade" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+      gradientTransform="translate(37 35) rotate(90) scale(33 24)">
+      <stop offset="0.45" stop-color="#d1d5db" stop-opacity="0"/>
+      <stop offset="1" stop-color="#d1d5db" stop-opacity="0.65"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Ears sit behind the head; short inner folds stay readable at the native size. -->
+  <g fill="#e5e7eb" stroke="#4b5563" stroke-width="0.65" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16.5 42.2C12.1 39.8 13.1 45.7 14.7 49.1C15.8 51.5 17.1 54.2 19.8 54.1L20.1 48.1Z"/>
+    <path d="M57.5 42.2C61.9 39.8 60.9 45.7 59.3 49.1C58.2 51.5 56.9 54.2 54.2 54.1L53.9 48.1Z"/>
+  </g>
+
+  <!-- Original head geometry: broad crown and a foreshortened face for the downward angle. -->
+  <path d="M37 5.8C22.1 5.8 14.2 17.1 14.2 30.8C14.2 38.4 16.4 42.2 18.4 46.5
+    C19.5 48.9 19.9 51.1 20.1 53.6C20.5 59.4 25.2 62.5 31.7 64.2
+    C33.1 64.6 34.1 68.4 37 68.4C39.9 68.4 40.9 64.6 42.3 64.2
+    C48.8 62.5 53.5 59.4 53.9 53.6C54.1 51.1 54.5 48.9 55.6 46.5
+    C57.6 42.2 59.8 38.4 59.8 30.8C59.8 17.1 51.9 5.8 37 5.8Z"
+    fill="url(#bald-temples-new-skin)"/>
+  <path d="M37 5.8C22.1 5.8 14.2 17.1 14.2 30.8C14.2 38.4 16.4 42.2 18.4 46.5
+    C19.5 48.9 19.9 51.1 20.1 53.6C20.5 59.4 25.2 62.5 31.7 64.2
+    C33.1 64.6 34.1 68.4 37 68.4C39.9 68.4 40.9 64.6 42.3 64.2
+    C48.8 62.5 53.5 59.4 53.9 53.6C54.1 51.1 54.5 48.9 55.6 46.5
+    C57.6 42.2 59.8 38.4 59.8 30.8C59.8 17.1 51.9 5.8 37 5.8Z"
+    fill="url(#bald-temples-new-shade)"/>
+
+  <!-- Solid hair with two recessed temples and a rounded central forelock. -->
+  <path d="M37 5.8C22.1 5.8 14.2 17.1 14.2 30.8C14.2 36.3 15.4 40.3 17.1 43.5
+    C18.2 45.5 19.2 47.6 19.7 50.1C20.3 47.8 20.1 45.2 19.3 42.9
+    C18.6 40.8 18.6 39 19.6 38.7C20.6 38.4 21.5 41.4 22.6 41.1
+    C24.5 40.5 22.4 35.6 21.8 32.6C21.2 29.7 21.5 27 23.3 26.6
+    C27 25.6 29.8 35.1 37 35.1C44.2 35.1 47 25.6 50.7 26.6
+    C52.5 27 52.8 29.7 52.2 32.6C51.6 35.6 49.5 40.5 51.4 41.1
+    C52.5 41.4 53.4 38.4 54.4 38.7C55.4 39 55.4 40.8 54.7 42.9
+    C53.9 45.2 53.7 47.8 54.3 50.1C54.8 47.6 55.8 45.5 56.9 43.5
+    C58.6 40.3 59.8 36.3 59.8 30.8C59.8 17.1 51.9 5.8 37 5.8Z" fill="#1f2937"/>
+
+  <g stroke="#4b5563" stroke-width="0.65" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M37 5.8C22.1 5.8 14.2 17.1 14.2 30.8C14.2 38.4 16.4 42.2 18.4 46.5
+      C19.5 48.9 19.9 51.1 20.1 53.6C20.5 59.4 25.2 62.5 31.7 64.2
+      C33.1 64.6 34.1 68.4 37 68.4C39.9 68.4 40.9 64.6 42.3 64.2
+      C48.8 62.5 53.5 59.4 53.9 53.6C54.1 51.1 54.5 48.9 55.6 46.5
+      C57.6 42.2 59.8 38.4 59.8 30.8C59.8 17.1 51.9 5.8 37 5.8Z"/>
+    <path d="M15.5 44.2C16.9 44.6 17.3 47 17.6 48.9L16.7 48.3M17.6 48.9L18.1 51.2"/>
+    <path d="M58.5 44.2C57.1 44.6 56.7 47 56.4 48.9L57.3 48.3M56.4 48.9L55.9 51.2"/>
+
+    <!-- Low brows and closed eyelids reinforce the bowed pose. -->
+    <path d="M24.3 52.9C26.6 54.1 29.2 54.7 32.1 54.8M41.9 54.8C44.8 54.7 47.4 54.1 49.7 52.9"/>
+    <path d="M25.4 55.2C27.2 56.5 29.7 56.9 31.7 56.1M42.3 56.1C44.3 56.9 46.8 56.5 48.6 55.2"/>
+    <path d="M33.1 55.4C35 56.1 35.2 58 34.8 59.8L34.1 61.8"/>
+    <path d="M40.9 55.4C39.9 55.8 39.6 56.5 39.8 57.4"/>
+    <path d="M35.6 62.3C36.5 62.9 37.5 62.9 38.4 62.3"/>
+    <path d="M35.2 65.2C36.4 65.5 37.6 65.5 38.8 65.2" stroke-opacity="0.65"/>
+  </g>
+</svg>

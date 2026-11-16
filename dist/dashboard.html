@@ -1,0 +1,1507 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Overview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/build/app.css?v=1794771677">
+  <script src="/assets/js/toggle-collapse.js?v=1794771677" defer></script>
+  <script src="/assets/js/file-upload.js?v=1794763358" defer></script>
+          <script src="/assets/js/list-field.js?v=1794765851" defer></script>
+  <script src="/assets/js/dashboard.js?v=1794245160" defer></script>
+  <script src="/assets/js/sales-chart.js?v=1794401494" defer></script>
+  <script src="/assets/js/product-spotlight.js?v=1794589037" defer></script>
+</head>
+<body class="dashboard-body min-h-screen font-sans text-sm bg-zinc-100 text-zinc-600 tracking-tight">
+  <a href="#dashboard-content" class="dashboard-skip sr-only
+    focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:w-auto focus:h-auto focus:p-3 focus:bg-white focus:text-zinc-800 focus:not-sr-only">Skip to content</a>
+  <div class="dashboard-shell min-h-screen">
+    <aside class="dashboard-sidebar hidden lg:fixed lg:inset-y-0 lg:left-0 lg:w-64 lg:block lg:overflow-y-auto">
+      <div class="sidebar-content flex flex-col flex-1 gap-8 h-full px-2 py-5">
+  <a href="/dashboard/" aria-label="RR Hair Clinic dashboard"
+    class="sidebar-brand inline-flex items-center self-start min-h-11 mx-3 text-lg text-zinc-800
+      focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">
+    <span class="sidebar-brand-mark flex items-center justify-center w-9 aspect-square font-semibold border border-zinc-600">RR</span>
+  </a>
+  <nav aria-label="Dashboard navigation" class="sidebar-navigation flex flex-col gap-5">
+    <a href="/dashboard/" aria-current="page"      class="sidebar-link flex items-center gap-2 min-h-8 px-3 py-2 font-medium rounded-lg text-zinc-600
+        focus-visible:outline-2 focus-visible:outline-blue-800
+        aria-[current=page]:bg-zinc-100 aria-[current=page]:text-zinc-800
+        hover:bg-zinc-200 hover:text-zinc-800">
+      <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+      Overview
+    </a>
+    <div class="sidebar-group">
+      <h2 class="sidebar-group-title px-3 text-xs uppercase tracking-normal text-zinc-400">Clinical</h2>
+      <ul class="sidebar-items grid mt-2">
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3 text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Assessments
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3 text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Prescriptions
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="/dashboard/patients/"
+                        class="sidebar-link flex items-center gap-2 min-h-8 px-3 rounded-md text-zinc-600
+              hover:bg-zinc-200 hover:text-zinc-800
+              focus-visible:outline-2 focus-visible:outline-blue-800
+              aria-[current=page]:bg-zinc-200 aria-[current=page]:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Patients
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="sidebar-group">
+      <h2 class="sidebar-group-title px-3 text-xs uppercase tracking-normal text-zinc-400">Operations</h2>
+      <ul class="sidebar-items grid mt-2">
+        <li class="sidebar-item">
+          <a href="/dashboard/products/"
+                        class="sidebar-link flex items-center gap-2 min-h-8 px-3 rounded-md text-zinc-600
+              hover:bg-zinc-200 hover:text-zinc-800
+              focus-visible:outline-2 focus-visible:outline-blue-800
+              aria-[current=true]:bg-zinc-200 aria-[current=true]:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Products
+          </a>
+                  </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3 text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Orders
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="sidebar-group">
+      <h2 class="sidebar-group-title px-3 text-xs uppercase tracking-normal text-zinc-400">Management</h2>
+      <ul class="sidebar-items mt-2">
+        <li class="sidebar-item">
+          <a href="/dashboard/assessment-workflow/"
+                        class="sidebar-link flex items-center gap-2 min-h-8 px-3 rounded-md text-zinc-600
+              hover:bg-zinc-200 hover:text-zinc-800
+              focus-visible:outline-2 focus-visible:outline-blue-800
+              aria-[current=page]:bg-zinc-200 aria-[current=page]:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Workflow Reference
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3  text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Team &amp; access
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="sidebar-account mt-auto pt-4">
+    <details class="account-menu relative js-component-dashboard-account">
+      <summary class="account-trigger flex items-center gap-3 min-h-11 p-2 rounded-lg text-zinc-800 cursor-pointer list-none
+        hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800 [&::-webkit-details-marker]:hidden">
+        <img src="/assets/images/avatar-dr-rujhan.webp" alt="" width="36" height="36"
+          class="account-avatar size-9 shrink-0 rounded-lg outline outline-black/10 -outline-offset-1 object-cover">
+        <span class="account-identity flex-1 min-w-0">
+          <span class="account-name block text-sm font-medium truncate">Your account</span>
+          <span class="account-role block text-xs text-zinc-500">Business owner</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="account-indicator size-4 shrink-0 rotate-180"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>      </summary>
+      <div class="account-panel absolute inset-x-0 bottom-full z-20 mb-2 p-1 rounded-lg border border-zinc-200 bg-white shadow-sm">
+        <a href="#" class="account-action flex items-center w-full min-h-11 px-3 text-left text-sm rounded-md text-zinc-600
+          hover:bg-zinc-100 hover:text-zinc-800 focus-visible:outline-2 focus-visible:outline-blue-800">My profile</a>
+        <div class="account-divider my-1 border-t border-zinc-200"></div>
+        <a href="#" class="account-action flex items-center w-full min-h-11 px-3 text-left text-sm rounded-md text-zinc-600
+          hover:bg-zinc-100 hover:text-zinc-800 focus-visible:outline-2 focus-visible:outline-blue-800">Sign out</a>
+      </div>
+    </details>
+  </div>
+</div>
+    </aside>
+    <main id="dashboard-content" tabindex="-1" class="dashboard-content min-w-0 max-w-5xl p-5 lg:ml-64">
+      <div class="dashboard-controls mb-4 lg:hidden">
+  <button type="button" aria-label="Open navigation" aria-controls="dashboard-navigation" aria-expanded="false"
+    class="sidebar-toggle flex items-center justify-center size-11 rounded-lg text-zinc-800
+      hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-blue-800 js-component-dashboard-menu">
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="sidebar-toggle-icon size-5"><path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"/></svg>  </button>
+</div>
+      <section class="section section-overview py-0!" aria-labelledby="dashboard-title">
+  <div class="section-content">
+    <header class="section-header flex flex-wrap items-start justify-between gap-4">
+      <div class="section-heading">
+        <h1 id="dashboard-title" class="section-title text-3xl font-medium text-balance text-zinc-800">Overview</h1>
+        <p class="section-description max-w-xl mt-2 text-sm text-pretty text-zinc-500">The numbers behind your business.</p>
+      </div>
+    </header>
+
+    <section class="section section-business mt-10 py-0!" aria-labelledby="business-title">
+      <div class="summary-cards grid gap-3">
+        <article class="card card-chart shadow-sm flex flex-col min-w-0 rounded-lg bg-white">
+    <div class="card-content flex-1 p-5">
+                  <section class="sales js-component-sales-chart" aria-label="Interactive daily sales">
+              <div class="sales-readout flex items-center justify-between gap-4 mb-5">
+          <div class="sales-reading min-w-0" aria-live="polite" aria-atomic="true">
+            <p class="sales-date text-xs text-zinc-500 js-component-sales-date">Tue, 10 Nov 2026</p>
+            <p class="sales-value mt-1 text-2xl font-medium leading-tight tabular-nums text-zinc-800 js-component-sales-value">
+              RM 2,480.00            </p>
+            <p class="sales-change min-h-4 mt-2 text-xs text-zinc-500 js-component-sales-change">
+                              RM 480.00                more than the previous day
+                          </p>
+          </div>
+          <div class="sales-navigation flex gap-2 shrink-0" aria-label="Explore days">
+            <button type="button" aria-label="Previous day"
+              class="sales-nav flex items-center justify-center size-11 rounded-lg border border-zinc-200 bg-white text-zinc-600 cursor-pointer
+                hover:bg-zinc-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
+                disabled:bg-zinc-50 disabled:text-zinc-400 disabled:cursor-not-allowed
+                js-component-sales-previous">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="sales-nav-icon size-4"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"/></svg>            </button>
+            <button type="button" aria-label="Next day" disabled
+              class="sales-nav flex items-center justify-center size-11 rounded-lg border border-zinc-200 bg-white text-zinc-600 cursor-pointer
+                hover:bg-zinc-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
+                disabled:bg-zinc-50 disabled:text-zinc-400 disabled:cursor-not-allowed
+                js-component-sales-next">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="sales-nav-icon size-4"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/></svg>            </button>
+          </div>
+        </div>
+        <div class="sales-meta flex items-center justify-between gap-3 mb-3 text-xs text-zinc-500">
+          <span class="sales-unit">Sales in RM</span>
+          <span class="sales-period">
+            12 Sep–10 Nov 2026          </span>
+        </div>
+        <div class="sales-scroll overflow-x-auto js-component-sales-scroll">
+          <div class="sales-plot min-w-[45rem]" role="group"
+            aria-label="Daily sales. Use left and right arrow keys on a day to explore.">
+            <div class="sales-bars relative grid gap-1 h-52" style="grid-template-columns: repeat(60, minmax(0, 1fr));">
+              <div aria-hidden="true" class="sales-grid absolute inset-0 flex flex-col justify-between pointer-events-none">
+                <span class="sales-gridline w-full border-t border-zinc-200"></span>
+                <span class="sales-gridline w-full border-t border-zinc-200"></span>
+                <span class="sales-gridline w-full border-t border-zinc-200"></span>
+              </div>
+                              <button type="button" data-day="0"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Sat, 12 Sep 2026, RM 1,450.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 45.3125%;"></span>
+                </button>
+                              <button type="button" data-day="1"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Sun, 13 Sep 2026, RM 1,960.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 61.25%;"></span>
+                </button>
+                              <button type="button" data-day="2"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Mon, 14 Sep 2026, RM 2,280.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 71.25%;"></span>
+                </button>
+                              <button type="button" data-day="3"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Tue, 15 Sep 2026, RM 2,300.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 71.875%;"></span>
+                </button>
+                              <button type="button" data-day="4"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Wed, 16 Sep 2026, RM 2,070.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 64.6875%;"></span>
+                </button>
+                              <button type="button" data-day="5"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Thu, 17 Sep 2026, RM 1,740.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 54.375%;"></span>
+                </button>
+                              <button type="button" data-day="6"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Fri, 18 Sep 2026, RM 1,010.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 31.5625%;"></span>
+                </button>
+                              <button type="button" data-day="7"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Sat, 19 Sep 2026, RM 1,080.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 33.75%;"></span>
+                </button>
+                              <button type="button" data-day="8"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Sun, 20 Sep 2026, RM 1,430.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 44.6875%;"></span>
+                </button>
+                              <button type="button" data-day="9"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Mon, 21 Sep 2026, RM 1,960.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 61.25%;"></span>
+                </button>
+                              <button type="button" data-day="10"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Tue, 22 Sep 2026, RM 2,450.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 76.5625%;"></span>
+                </button>
+                              <button type="button" data-day="11"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Wed, 23 Sep 2026, RM 2,200.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 68.75%;"></span>
+                </button>
+                              <button type="button" data-day="12"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Thu, 24 Sep 2026, RM 2,170.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 67.8125%;"></span>
+                </button>
+                              <button type="button" data-day="13"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Fri, 25 Sep 2026, RM 1,910.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 59.6875%;"></span>
+                </button>
+                              <button type="button" data-day="14"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Sat, 26 Sep 2026, RM 1,600.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 50%;"></span>
+                </button>
+                              <button type="button" data-day="15"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Sun, 27 Sep 2026, RM 1,430.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 44.6875%;"></span>
+                </button>
+                              <button type="button" data-day="16"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Mon, 28 Sep 2026, RM 1,540.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 48.125%;"></span>
+                </button>
+                              <button type="button" data-day="17"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Tue, 29 Sep 2026, RM 1,400.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 43.75%;"></span>
+                </button>
+                              <button type="button" data-day="18"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Wed, 30 Sep 2026, RM 1,940.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 60.625%;"></span>
+                </button>
+                              <button type="button" data-day="19"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Thu, 1 Oct 2026, RM 2,410.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 75.3125%;"></span>
+                </button>
+                              <button type="button" data-day="20"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Fri, 2 Oct 2026, RM 2,640.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 82.5%;"></span>
+                </button>
+                              <button type="button" data-day="21"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Sat, 3 Oct 2026, RM 2,570.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 80.3125%;"></span>
+                </button>
+                              <button type="button" data-day="22"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Sun, 4 Oct 2026, RM 1,760.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 55%;"></span>
+                </button>
+                              <button type="button" data-day="23"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Mon, 5 Oct 2026, RM 1,450.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 45.3125%;"></span>
+                </button>
+                              <button type="button" data-day="24"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Tue, 6 Oct 2026, RM 1,320.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 41.25%;"></span>
+                </button>
+                              <button type="button" data-day="25"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Wed, 7 Oct 2026, RM 1,480.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 46.25%;"></span>
+                </button>
+                              <button type="button" data-day="26"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Thu, 8 Oct 2026, RM 1,900.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 59.375%;"></span>
+                </button>
+                              <button type="button" data-day="27"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Fri, 9 Oct 2026, RM 2,440.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 76.25%;"></span>
+                </button>
+                              <button type="button" data-day="28"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Sat, 10 Oct 2026, RM 2,360.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 73.75%;"></span>
+                </button>
+                              <button type="button" data-day="29"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Sun, 11 Oct 2026, RM 2,540.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 79.375%;"></span>
+                </button>
+                              <button type="button" data-day="30"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Mon, 12 Oct 2026, RM 2,440.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 76.25%;"></span>
+                </button>
+                              <button type="button" data-day="31"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Tue, 13 Oct 2026, RM 2,140.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 66.875%;"></span>
+                </button>
+                              <button type="button" data-day="32"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Wed, 14 Oct 2026, RM 1,840.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 57.5%;"></span>
+                </button>
+                              <button type="button" data-day="33"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Thu, 15 Oct 2026, RM 1,220.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 38.125%;"></span>
+                </button>
+                              <button type="button" data-day="34"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Fri, 16 Oct 2026, RM 1,420.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 44.375%;"></span>
+                </button>
+                              <button type="button" data-day="35"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Sat, 17 Oct 2026, RM 1,880.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 58.75%;"></span>
+                </button>
+                              <button type="button" data-day="36"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Sun, 18 Oct 2026, RM 2,410.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 75.3125%;"></span>
+                </button>
+                              <button type="button" data-day="37"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Mon, 19 Oct 2026, RM 2,830.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 88.4375%;"></span>
+                </button>
+                              <button type="button" data-day="38"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Tue, 20 Oct 2026, RM 2,970.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 92.8125%;"></span>
+                </button>
+                              <button type="button" data-day="39"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Wed, 21 Oct 2026, RM 2,290.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 71.5625%;"></span>
+                </button>
+                              <button type="button" data-day="40"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Thu, 22 Oct 2026, RM 1,980.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 61.875%;"></span>
+                </button>
+                              <button type="button" data-day="41"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Fri, 23 Oct 2026, RM 1,710.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 53.4375%;"></span>
+                </button>
+                              <button type="button" data-day="42"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Sat, 24 Oct 2026, RM 1,660.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 51.875%;"></span>
+                </button>
+                              <button type="button" data-day="43"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Sun, 25 Oct 2026, RM 1,900.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 59.375%;"></span>
+                </button>
+                              <button type="button" data-day="44"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Mon, 26 Oct 2026, RM 1,850.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 57.8125%;"></span>
+                </button>
+                              <button type="button" data-day="45"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Tue, 27 Oct 2026, RM 2,390.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 74.6875%;"></span>
+                </button>
+                              <button type="button" data-day="46"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Wed, 28 Oct 2026, RM 2,770.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 86.5625%;"></span>
+                </button>
+                              <button type="button" data-day="47"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Thu, 29 Oct 2026, RM 2,860.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 89.375%;"></span>
+                </button>
+                              <button type="button" data-day="48"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Fri, 30 Oct 2026, RM 2,680.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 83.75%;"></span>
+                </button>
+                              <button type="button" data-day="49"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Sat, 31 Oct 2026, RM 2,360.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 73.75%;"></span>
+                </button>
+                              <button type="button" data-day="50"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Sun, 1 Nov 2026, RM 1,580.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 49.375%;"></span>
+                </button>
+                              <button type="button" data-day="51"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Mon, 2 Nov 2026, RM 1,570.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 49.0625%;"></span>
+                </button>
+                              <button type="button" data-day="52"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Tue, 3 Nov 2026, RM 1,860.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 58.125%;"></span>
+                </button>
+                              <button type="button" data-day="53"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Wed, 4 Nov 2026, RM 1,200.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 37.5%;"></span>
+                </button>
+                              <button type="button" data-day="54"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Thu, 5 Nov 2026, RM 1,600.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 50%;"></span>
+                </button>
+                              <button type="button" data-day="55"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Fri, 6 Nov 2026, RM 1,400.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 43.75%;"></span>
+                </button>
+                              <button type="button" data-day="56"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Sat, 7 Nov 2026, RM 2,100.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 65.625%;"></span>
+                </button>
+                              <button type="button" data-day="57"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Sun, 8 Nov 2026, RM 1,700.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 53.125%;"></span>
+                </button>
+                              <button type="button" data-day="58"
+                  tabindex="-1"
+                  aria-pressed="false"
+                  aria-label="Mon, 9 Nov 2026, RM 2,000.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 62.5%;"></span>
+                </button>
+                              <button type="button" data-day="59"
+                  tabindex="0"
+                  aria-pressed="true"
+                  aria-label="Tue, 10 Nov 2026, RM 2,480.00"
+                  class="sales-day relative flex items-end justify-center min-w-0 h-full px-px pt-2 border-0 bg-transparent cursor-crosshair touch-auto
+                    hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800
+                    [&[aria-pressed=true]]:bg-zinc-100 [&[aria-pressed=true]_.sales-bar]:bg-zinc-800
+                    js-component-sales-day">
+                  <span aria-hidden="true" class="sales-bar block w-full rounded-t-sm bg-zinc-400"
+                    style="height: 77.5%;"></span>
+                </button>
+                          </div>
+            <div aria-hidden="true" class="sales-labels relative h-5 mt-2 text-[10px] tabular-nums text-zinc-500">
+                                              <span class="sales-tick absolute -translate-x-1/2"
+                  style="left: clamp(1.5rem, 0.83333333333333%, calc(100% - 1.5rem));">
+                  12 Sep                </span>
+                                                                                                                                                                                                                                                                              <span class="sales-tick absolute -translate-x-1/2"
+                  style="left: clamp(1.5rem, 25.833333333333%, calc(100% - 1.5rem));">
+                  27 Sep                </span>
+                                                                                                                                                                                                                                                                              <span class="sales-tick absolute -translate-x-1/2"
+                  style="left: clamp(1.5rem, 50.833333333333%, calc(100% - 1.5rem));">
+                  12 Oct                </span>
+                                                                                                                                                                                                                                                                              <span class="sales-tick absolute -translate-x-1/2"
+                  style="left: clamp(1.5rem, 75.833333333333%, calc(100% - 1.5rem));">
+                  27 Oct                </span>
+                                                                                                                                                                                                                                                              <span class="sales-tick absolute -translate-x-1/2"
+                  style="left: clamp(1.5rem, 99.166666666667%, calc(100% - 1.5rem));">
+                  10 Nov                </span>
+                          </div>
+          </div>
+        </div>
+            <script type="application/json" class="sales-data js-component-sales-data">[{"date":"2026-09-12","label":"Sat, 12 Sep 2026","tick":"12 Sep","value":1450},{"date":"2026-09-13","label":"Sun, 13 Sep 2026","tick":"13 Sep","value":1960},{"date":"2026-09-14","label":"Mon, 14 Sep 2026","tick":"14 Sep","value":2280},{"date":"2026-09-15","label":"Tue, 15 Sep 2026","tick":"15 Sep","value":2300},{"date":"2026-09-16","label":"Wed, 16 Sep 2026","tick":"16 Sep","value":2070},{"date":"2026-09-17","label":"Thu, 17 Sep 2026","tick":"17 Sep","value":1740},{"date":"2026-09-18","label":"Fri, 18 Sep 2026","tick":"18 Sep","value":1010},{"date":"2026-09-19","label":"Sat, 19 Sep 2026","tick":"19 Sep","value":1080},{"date":"2026-09-20","label":"Sun, 20 Sep 2026","tick":"20 Sep","value":1430},{"date":"2026-09-21","label":"Mon, 21 Sep 2026","tick":"21 Sep","value":1960},{"date":"2026-09-22","label":"Tue, 22 Sep 2026","tick":"22 Sep","value":2450},{"date":"2026-09-23","label":"Wed, 23 Sep 2026","tick":"23 Sep","value":2200},{"date":"2026-09-24","label":"Thu, 24 Sep 2026","tick":"24 Sep","value":2170},{"date":"2026-09-25","label":"Fri, 25 Sep 2026","tick":"25 Sep","value":1910},{"date":"2026-09-26","label":"Sat, 26 Sep 2026","tick":"26 Sep","value":1600},{"date":"2026-09-27","label":"Sun, 27 Sep 2026","tick":"27 Sep","value":1430},{"date":"2026-09-28","label":"Mon, 28 Sep 2026","tick":"28 Sep","value":1540},{"date":"2026-09-29","label":"Tue, 29 Sep 2026","tick":"29 Sep","value":1400},{"date":"2026-09-30","label":"Wed, 30 Sep 2026","tick":"30 Sep","value":1940},{"date":"2026-10-01","label":"Thu, 1 Oct 2026","tick":"1 Oct","value":2410},{"date":"2026-10-02","label":"Fri, 2 Oct 2026","tick":"2 Oct","value":2640},{"date":"2026-10-03","label":"Sat, 3 Oct 2026","tick":"3 Oct","value":2570},{"date":"2026-10-04","label":"Sun, 4 Oct 2026","tick":"4 Oct","value":1760},{"date":"2026-10-05","label":"Mon, 5 Oct 2026","tick":"5 Oct","value":1450},{"date":"2026-10-06","label":"Tue, 6 Oct 2026","tick":"6 Oct","value":1320},{"date":"2026-10-07","label":"Wed, 7 Oct 2026","tick":"7 Oct","value":1480},{"date":"2026-10-08","label":"Thu, 8 Oct 2026","tick":"8 Oct","value":1900},{"date":"2026-10-09","label":"Fri, 9 Oct 2026","tick":"9 Oct","value":2440},{"date":"2026-10-10","label":"Sat, 10 Oct 2026","tick":"10 Oct","value":2360},{"date":"2026-10-11","label":"Sun, 11 Oct 2026","tick":"11 Oct","value":2540},{"date":"2026-10-12","label":"Mon, 12 Oct 2026","tick":"12 Oct","value":2440},{"date":"2026-10-13","label":"Tue, 13 Oct 2026","tick":"13 Oct","value":2140},{"date":"2026-10-14","label":"Wed, 14 Oct 2026","tick":"14 Oct","value":1840},{"date":"2026-10-15","label":"Thu, 15 Oct 2026","tick":"15 Oct","value":1220},{"date":"2026-10-16","label":"Fri, 16 Oct 2026","tick":"16 Oct","value":1420},{"date":"2026-10-17","label":"Sat, 17 Oct 2026","tick":"17 Oct","value":1880},{"date":"2026-10-18","label":"Sun, 18 Oct 2026","tick":"18 Oct","value":2410},{"date":"2026-10-19","label":"Mon, 19 Oct 2026","tick":"19 Oct","value":2830},{"date":"2026-10-20","label":"Tue, 20 Oct 2026","tick":"20 Oct","value":2970},{"date":"2026-10-21","label":"Wed, 21 Oct 2026","tick":"21 Oct","value":2290},{"date":"2026-10-22","label":"Thu, 22 Oct 2026","tick":"22 Oct","value":1980},{"date":"2026-10-23","label":"Fri, 23 Oct 2026","tick":"23 Oct","value":1710},{"date":"2026-10-24","label":"Sat, 24 Oct 2026","tick":"24 Oct","value":1660},{"date":"2026-10-25","label":"Sun, 25 Oct 2026","tick":"25 Oct","value":1900},{"date":"2026-10-26","label":"Mon, 26 Oct 2026","tick":"26 Oct","value":1850},{"date":"2026-10-27","label":"Tue, 27 Oct 2026","tick":"27 Oct","value":2390},{"date":"2026-10-28","label":"Wed, 28 Oct 2026","tick":"28 Oct","value":2770},{"date":"2026-10-29","label":"Thu, 29 Oct 2026","tick":"29 Oct","value":2860},{"date":"2026-10-30","label":"Fri, 30 Oct 2026","tick":"30 Oct","value":2680},{"date":"2026-10-31","label":"Sat, 31 Oct 2026","tick":"31 Oct","value":2360},{"date":"2026-11-01","label":"Sun, 1 Nov 2026","tick":"1 Nov","value":1580},{"date":"2026-11-02","label":"Mon, 2 Nov 2026","tick":"2 Nov","value":1570},{"date":"2026-11-03","label":"Tue, 3 Nov 2026","tick":"3 Nov","value":1860},{"date":"2026-11-04","label":"Wed, 4 Nov 2026","tick":"4 Nov","value":1200},{"date":"2026-11-05","label":"Thu, 5 Nov 2026","tick":"5 Nov","value":1600},{"date":"2026-11-06","label":"Fri, 6 Nov 2026","tick":"6 Nov","value":1400},{"date":"2026-11-07","label":"Sat, 7 Nov 2026","tick":"7 Nov","value":2100},{"date":"2026-11-08","label":"Sun, 8 Nov 2026","tick":"8 Nov","value":1700},{"date":"2026-11-09","label":"Mon, 9 Nov 2026","tick":"9 Nov","value":2000},{"date":"2026-11-10","label":"Tue, 10 Nov 2026","tick":"10 Nov","value":2480}]</script>
+      <dialog id="sales-report" aria-labelledby="sales-report-title"
+        class="report-dialog w-[min(34rem,calc(100vw-2rem))] max-h-[calc(100dvh-3rem)] m-auto p-6 rounded-lg border border-zinc-200 bg-white text-zinc-600 overflow-y-auto
+          backdrop:bg-zinc-800/30 js-component-sales-dialog">
+        <header class="report-header flex items-start justify-between gap-4">
+          <div class="report-heading">
+            <h2 id="sales-report-title" class="report-title text-xl font-medium text-zinc-800">Daily sales report</h2>
+            <p class="report-period mt-1 text-xs text-zinc-500">
+              12 Sep–10 Nov 2026            </p>
+          </div>
+          <form method="dialog" class="report-close-form">
+            <button type="submit" aria-label="Close sales report"
+              class="report-close flex items-center justify-center size-11 rounded-lg bg-zinc-100 cursor-pointer
+                hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="report-close-icon size-4"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"/></svg>            </button>
+          </form>
+        </header>
+        <table class="table w-full mt-6 text-left text-xs">
+          <caption class="table-caption sr-only">Daily sales in RM before refunds</caption>
+          <thead class="table-header">
+            <tr class="table-row border-b border-zinc-100">
+              <th scope="col" class="table-heading py-3 font-medium">Day</th>
+              <th scope="col" class="table-heading py-3 text-right font-medium">Sales</th>
+            </tr>
+          </thead>
+          <tbody class="table-body divide-y divide-zinc-100">
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Sat, 12 Sep 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,450.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Sun, 13 Sep 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,960.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Mon, 14 Sep 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,280.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Tue, 15 Sep 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,300.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Wed, 16 Sep 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,070.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Thu, 17 Sep 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,740.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Fri, 18 Sep 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,010.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Sat, 19 Sep 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,080.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Sun, 20 Sep 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,430.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Mon, 21 Sep 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,960.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Tue, 22 Sep 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,450.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Wed, 23 Sep 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,200.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Thu, 24 Sep 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,170.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Fri, 25 Sep 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,910.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Sat, 26 Sep 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,600.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Sun, 27 Sep 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,430.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Mon, 28 Sep 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,540.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Tue, 29 Sep 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,400.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Wed, 30 Sep 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,940.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Thu, 1 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,410.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Fri, 2 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,640.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Sat, 3 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,570.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Sun, 4 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,760.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Mon, 5 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,450.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Tue, 6 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,320.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Wed, 7 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,480.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Thu, 8 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,900.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Fri, 9 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,440.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Sat, 10 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,360.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Sun, 11 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,540.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Mon, 12 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,440.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Tue, 13 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,140.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Wed, 14 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,840.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Thu, 15 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,220.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Fri, 16 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,420.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Sat, 17 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,880.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Sun, 18 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,410.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Mon, 19 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,830.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Tue, 20 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,970.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Wed, 21 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,290.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Thu, 22 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,980.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Fri, 23 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,710.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Sat, 24 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,660.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Sun, 25 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,900.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Mon, 26 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,850.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Tue, 27 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,390.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Wed, 28 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,770.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Thu, 29 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,860.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Fri, 30 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,680.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Sat, 31 Oct 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,360.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Sun, 1 Nov 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,580.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Mon, 2 Nov 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,570.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Tue, 3 Nov 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,860.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Wed, 4 Nov 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,200.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Thu, 5 Nov 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,600.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Fri, 6 Nov 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,400.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Sat, 7 Nov 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,100.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Sun, 8 Nov 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 1,700.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Mon, 9 Nov 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,000.00</td>
+              </tr>
+                          <tr class="table-row">
+                <th scope="row" class="table-heading py-3 font-normal">Tue, 10 Nov 2026</th>
+                <td class="table-cell py-3 text-right tabular-nums">RM 2,480.00</td>
+              </tr>
+                      </tbody>
+          <tfoot class="table-footer border-t border-zinc-200 text-zinc-800">
+            <tr class="table-row">
+              <th scope="row" class="table-heading py-3 font-medium">Total</th>
+              <td class="table-cell py-3 text-right font-medium tabular-nums">RM 117,880.00</td>
+            </tr>
+          </tfoot>
+        </table>
+      </dialog>
+    </section>
+          </div>
+  </article>
+      </div>
+      <div class="summary-cards grid gap-3 mt-3 md:grid-cols-3">
+        <article class="card card-summary shadow-sm flex flex-col min-w-0 rounded-lg bg-white">
+      <header class="card-header flex flex-col gap-1 px-5 pt-5">
+            <h3 class="card-title text-base font-medium text-zinc-800">Sales</h3>
+              <p class="card-description text-small leading-relaxed text-pretty text-zinc-500">Paid order value before refunds.</p>
+                </header>
+    <div class="card-content flex-1 p-5">
+              <div class="card-metrics grid gap-8 py-1">
+      <div class="card-primary flex flex-col gap-3 min-w-0">
+        <p class="card-value text-3xl font-medium leading-tight tabular-nums text-zinc-800 break-words">RM 12,480</p>
+        <div class="card-comparison mt-auto [&_.comparison]:flex-col [&_.comparison]:items-start">
+          <span class="comparison inline-flex flex-wrap items-center gap-x-1 gap-y-1 text-xs text-zinc-500">
+      <span class="comparison-change inline-flex items-center gap-1 font-medium text-green-700">
+      <span aria-hidden="true" class="comparison-mark flex items-center justify-center size-5 shrink-0 rounded-sm bg-green-200">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="comparison-icon size-4 shrink-0"><path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"/></svg>      </span>
+      <span class="comparison-value">18% higher</span>
+    </span>
+    <span class="comparison-context">than the previous 7 days</span>
+</span>
+        </div>
+      </div>
+    </div>
+          </div>
+      <div class="card-actions border-t border-zinc-100 ">
+              <a href="#" aria-label="View sales: Sales"
+      class="card-action inline-flex items-center justify-between gap-3 w-full min-h-9 px-5 py-3 text-sm font-medium rounded-b-lg text-zinc-800 transition-colors duration-150
+        hover:bg-zinc-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
+        motion-reduce:transition-none">
+      <span class="card-action-label">View sales</span>
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="card-action-icon size-4 shrink-0"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/></svg>    </a>
+        </div>
+  </article>
+        <article class="card card-summary shadow-sm flex flex-col min-w-0 rounded-lg bg-white">
+      <header class="card-header flex flex-col gap-1 px-5 pt-5">
+            <h3 class="card-title text-base font-medium text-zinc-800">Orders</h3>
+              <p class="card-description text-small leading-relaxed text-pretty text-zinc-500">Orders with a successful payment.</p>
+                </header>
+    <div class="card-content flex-1 p-5">
+              <div class="card-metrics grid gap-8 py-1">
+      <div class="card-primary flex flex-col gap-3 min-w-0">
+        <p class="card-value text-3xl font-medium leading-tight tabular-nums text-zinc-800 break-words">42</p>
+        <div class="card-comparison mt-auto [&_.comparison]:flex-col [&_.comparison]:items-start">
+          <span class="comparison inline-flex flex-wrap items-center gap-x-1 gap-y-1 text-xs text-zinc-500">
+      <span class="comparison-change inline-flex items-center gap-1 font-medium text-red-700">
+      <span aria-hidden="true" class="comparison-mark flex items-center justify-center size-5 shrink-0 rounded-sm bg-red-200">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="comparison-icon size-4 shrink-0"><path d="M14.5895 16.0032L5.98291 7.39664L7.39712 5.98242L16.0037 14.589V7.00324H18.0037V18.0032H7.00373V16.0032H14.5895Z"/></svg>      </span>
+      <span class="comparison-value">12% fewer</span>
+    </span>
+    <span class="comparison-context">than the previous 7 days</span>
+</span>
+        </div>
+      </div>
+    </div>
+          </div>
+      <div class="card-actions border-t border-zinc-100 ">
+                <a href="#"
+        class="card-action flex items-center justify-between gap-3 w-full min-h-12 px-5 py-3 text-sm font-medium text-zinc-800 transition-colors duration-150
+          hover:bg-zinc-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
+          motion-reduce:transition-none">
+        <span class="card-action-label">View 8 orders</span>
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="card-action-icon size-4 shrink-0"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/></svg>      </a>
+        <a href="#" aria-label="View orders: Orders"
+      class="card-action inline-flex items-center justify-between gap-3 w-full min-h-9 px-5 py-3 text-sm font-medium rounded-b-lg text-zinc-800 transition-colors duration-150
+        hover:bg-zinc-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
+        motion-reduce:transition-none">
+      <span class="card-action-label">View orders</span>
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="card-action-icon size-4 shrink-0"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/></svg>    </a>
+        </div>
+  </article>
+        <article class="card card-summary shadow-sm flex flex-col min-w-0 rounded-lg bg-white">
+      <header class="card-header flex flex-col gap-1 px-5 pt-5">
+            <h3 class="card-title text-base font-medium text-zinc-800">Assessments</h3>
+              <p class="card-description text-small leading-relaxed text-pretty text-zinc-500">Quizzes completed during this period.</p>
+                </header>
+    <div class="card-content flex-1 p-5">
+              <div class="card-metrics grid gap-8 py-1">
+      <div class="card-primary flex flex-col gap-3 min-w-0">
+        <p class="card-value text-3xl font-medium leading-tight tabular-nums text-zinc-800 break-words">128</p>
+        <div class="card-comparison mt-auto [&_.comparison]:flex-col [&_.comparison]:items-start">
+          <span class="comparison inline-flex flex-wrap items-center gap-x-1 gap-y-1 text-xs text-zinc-500">
+      <span class="comparison-change inline-flex items-center gap-1 font-medium text-green-700">
+      <span aria-hidden="true" class="comparison-mark flex items-center justify-center size-5 shrink-0 rounded-sm bg-green-200">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="comparison-icon size-4 shrink-0"><path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"/></svg>      </span>
+      <span class="comparison-value">18% more</span>
+    </span>
+    <span class="comparison-context">than the previous 7 days</span>
+</span>
+        </div>
+      </div>
+    </div>
+          </div>
+      <div class="card-actions border-t border-zinc-100 ">
+                <a href="#"
+        class="card-action flex items-center justify-between gap-3 w-full min-h-12 px-5 py-3 text-sm font-medium text-zinc-800 transition-colors duration-150
+          hover:bg-zinc-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
+          motion-reduce:transition-none">
+        <span class="card-action-label">View 24 assessments</span>
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="card-action-icon size-4 shrink-0"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/></svg>      </a>
+        <a href="#" aria-label="View assessments: Assessments"
+      class="card-action inline-flex items-center justify-between gap-3 w-full min-h-9 px-5 py-3 text-sm font-medium rounded-b-lg text-zinc-800 transition-colors duration-150
+        hover:bg-zinc-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
+        motion-reduce:transition-none">
+      <span class="card-action-label">View assessments</span>
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="card-action-icon size-4 shrink-0"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/></svg>    </a>
+        </div>
+  </article>
+      </div>
+      <div class="report-cards grid gap-3 mt-3">
+        <article class="card card-ranking card-spotlight shadow-sm flex flex-col min-w-0 rounded-lg bg-white">
+      <header class="card-header flex flex-col gap-1 px-5 pt-5">
+            <h3 class="card-title text-base font-medium text-zinc-800">Products</h3>
+              <p class="card-description text-small leading-relaxed text-pretty text-zinc-500">Products across successful orders, ranked by your selected metric.</p>
+                </header>
+    <div class="card-content flex-1 ">
+              <section class="product-view js-component-products-view" aria-label="Product sales ranking">
+      <div class="ranking-toolbar flex flex-wrap items-center justify-between gap-3 px-5 pt-5">
+        <div class="tabs tabs-segmented tabs-small min-w-0">
+  <div role="group" aria-label="Rank products by" class="tabs-list">
+          <button id="products-sort-6afa5a1bbb5bd-control-units" type="button"
+        data-value="units" aria-pressed="false"
+        class="tabs-trigger js-component-products-sort">Units Sold</button>
+          <button id="products-sort-6afa5a1bbb5bd-control-revenue" type="button"
+        data-value="revenue" aria-pressed="true"
+        class="tabs-trigger js-component-products-sort">Sales</button>
+      </div>
+</div>
+        <span class="ranking-period text-caption color-muted">4 Nov–10 Nov</span>
+      </div>
+      <p role="status" class="ranking-summary min-h-9 mx-5 mt-3 pb-4 text-caption leading-relaxed color-muted js-component-products-summary">
+        60 units · RM 12,480 sales · Ranked by sales
+      </p>
+      <div class="ranking-content min-h-85">
+                  <div class="ranking-table overflow-x-auto">
+            <table class="report-table w-full mt-4 text-caption border-collapse">
+              <caption class="report-caption sr-only">Product performance for the selected reporting period</caption>
+              <thead class="report-table-head">
+                <tr class="report-row">
+                  <th scope="col" class="report-heading pl-5 pr-0 py-3.5 text-left font-normal border-b border-zinc-100">Product</th>
+                  <th scope="col" class="report-heading ranking-number px-3 py-3.5 text-right tabular-nums font-normal border-b border-zinc-100 whitespace-nowrap">Units</th>
+                  <th scope="col" class="report-heading ranking-number px-3 py-3.5 text-right tabular-nums font-normal border-b border-zinc-100 whitespace-nowrap">Sales</th>
+                  <th scope="col" class="report-heading ranking-number pl-0 pr-5 py-3.5 text-right tabular-nums font-normal border-b border-zinc-100 whitespace-nowrap">Share</th>
+                </tr>
+              </thead>
+              <tbody class="report-table-body js-component-products-list">
+                                  <tr data-product="product-0" class="report-row js-component-products-row">
+                    <th scope="row" class="report-cell pl-5 pr-0 py-3.5 text-left font-normal border-b border-zinc-100">
+                      <div class="product-summary flex items-center gap-2 min-h-11 text-left">
+                        <img src="/assets/images/mockup-bottle-01.webp" alt="" width="36" height="36" class="ranking-image shrink-0 w-9 h-9 p-1 rounded-md bg-zinc-100 object-contain outline outline-black/6 -outline-offset-1
+                            max-[480px]:w-7 max-[480px]:h-8">
+                        <span class="ranking-name flex-1 min-w-0 text-caption font-normal color-default">Growth serum</span>
+                      </div>
+                    </th>
+                    <td class="report-cell ranking-number px-3 py-3.5 text-right tabular-nums font-normal border-b border-zinc-100 whitespace-nowrap">18</td>
+                    <td class="report-cell ranking-number px-3 py-3.5 text-right tabular-nums font-normal border-b border-zinc-100 whitespace-nowrap">RM 4,320</td>
+                    <td class="report-cell ranking-number pl-0 pr-5 py-3.5 text-right tabular-nums font-normal border-b border-zinc-100 whitespace-nowrap">34.6%</td>
+                  </tr>
+                                  <tr data-product="product-3" class="report-row js-component-products-row">
+                    <th scope="row" class="report-cell pl-5 pr-0 py-3.5 text-left font-normal border-b border-zinc-100">
+                      <div class="product-summary flex items-center gap-2 min-h-11 text-left">
+                        <img src="/assets/images/mockup-bottle-02.webp" alt="" width="36" height="36" class="ranking-image shrink-0 w-9 h-9 p-1 rounded-md bg-zinc-100 object-contain outline outline-black/6 -outline-offset-1
+                            max-[480px]:w-7 max-[480px]:h-8">
+                        <span class="ranking-name flex-1 min-w-0 text-caption font-normal color-default">Growth bundle</span>
+                      </div>
+                    </th>
+                    <td class="report-cell ranking-number px-3 py-3.5 text-right tabular-nums font-normal border-b border-zinc-100 whitespace-nowrap">10</td>
+                    <td class="report-cell ranking-number px-3 py-3.5 text-right tabular-nums font-normal border-b border-zinc-100 whitespace-nowrap">RM 3,600</td>
+                    <td class="report-cell ranking-number pl-0 pr-5 py-3.5 text-right tabular-nums font-normal border-b border-zinc-100 whitespace-nowrap">28.8%</td>
+                  </tr>
+                                  <tr data-product="product-1" class="report-row js-component-products-row">
+                    <th scope="row" class="report-cell pl-5 pr-0 py-3.5 text-left font-normal border-b border-zinc-100">
+                      <div class="product-summary flex items-center gap-2 min-h-11 text-left">
+                        <img src="/assets/images/mockup-bottle-02.webp" alt="" width="36" height="36" class="ranking-image shrink-0 w-9 h-9 p-1 rounded-md bg-zinc-100 object-contain outline outline-black/6 -outline-offset-1
+                            max-[480px]:w-7 max-[480px]:h-8">
+                        <span class="ranking-name flex-1 min-w-0 text-caption font-normal color-default">Scalp essentials</span>
+                      </div>
+                    </th>
+                    <td class="report-cell ranking-number px-3 py-3.5 text-right tabular-nums font-normal border-b border-zinc-100 whitespace-nowrap">14</td>
+                    <td class="report-cell ranking-number px-3 py-3.5 text-right tabular-nums font-normal border-b border-zinc-100 whitespace-nowrap">RM 2,520</td>
+                    <td class="report-cell ranking-number pl-0 pr-5 py-3.5 text-right tabular-nums font-normal border-b border-zinc-100 whitespace-nowrap">20.2%</td>
+                  </tr>
+                                  <tr data-product="product-2" class="report-row js-component-products-row">
+                    <th scope="row" class="report-cell pl-5 pr-0 py-3.5 text-left font-normal border-b border-zinc-100">
+                      <div class="product-summary flex items-center gap-2 min-h-11 text-left">
+                        <img src="/assets/images/mockup-bottle-01.webp" alt="" width="36" height="36" class="ranking-image shrink-0 w-9 h-9 p-1 rounded-md bg-zinc-100 object-contain outline outline-black/6 -outline-offset-1
+                            max-[480px]:w-7 max-[480px]:h-8">
+                        <span class="ranking-name flex-1 min-w-0 text-caption font-normal color-default">Daily shampoo</span>
+                      </div>
+                    </th>
+                    <td class="report-cell ranking-number px-3 py-3.5 text-right tabular-nums font-normal border-b border-zinc-100 whitespace-nowrap">12</td>
+                    <td class="report-cell ranking-number px-3 py-3.5 text-right tabular-nums font-normal border-b border-zinc-100 whitespace-nowrap">RM 1,440</td>
+                    <td class="report-cell ranking-number pl-0 pr-5 py-3.5 text-right tabular-nums font-normal border-b border-zinc-100 whitespace-nowrap">11.5%</td>
+                  </tr>
+                                  <tr data-product="product-4" class="report-row js-component-products-row">
+                    <th scope="row" class="report-cell pl-5 pr-0 py-3.5 text-left font-normal border-b border-zinc-100">
+                      <div class="product-summary flex items-center gap-2 min-h-11 text-left">
+                        <img src="/assets/images/mockup-bottle-01.webp" alt="" width="36" height="36" class="ranking-image shrink-0 w-9 h-9 p-1 rounded-md bg-zinc-100 object-contain outline outline-black/6 -outline-offset-1
+                            max-[480px]:w-7 max-[480px]:h-8">
+                        <span class="ranking-name flex-1 min-w-0 text-caption font-normal color-default">Daily conditioner</span>
+                      </div>
+                    </th>
+                    <td class="report-cell ranking-number px-3 py-3.5 text-right tabular-nums font-normal border-b border-zinc-100 whitespace-nowrap">6</td>
+                    <td class="report-cell ranking-number px-3 py-3.5 text-right tabular-nums font-normal border-b border-zinc-100 whitespace-nowrap">RM 600</td>
+                    <td class="report-cell ranking-number pl-0 pr-5 py-3.5 text-right tabular-nums font-normal border-b border-zinc-100 whitespace-nowrap">4.8%</td>
+                  </tr>
+                              </tbody>
+              <tfoot class="report-table-foot">
+                <tr class="report-row">
+                  <th scope="row" class="report-cell pl-5 pr-0 py-3.5 text-left font-medium border-b border-zinc-100 color-strong">Total</th>
+                  <td class="report-cell ranking-number px-3 py-3.5 text-right tabular-nums font-medium border-b border-zinc-100 color-strong whitespace-nowrap">60</td>
+                  <td class="report-cell ranking-number px-3 py-3.5 text-right tabular-nums font-medium border-b border-zinc-100 color-strong whitespace-nowrap">RM 12,480</td>
+                  <td class="report-cell ranking-number pl-0 pr-5 py-3.5 text-right tabular-nums font-medium border-b border-zinc-100 color-strong whitespace-nowrap">100%</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+              </div>
+      <script type="application/json" class="products-data js-component-products-data">[{"id":"product-0","name":"Growth serum","image":"\/assets\/images\/mockup-bottle-01.webp","units":18,"revenue":4320},{"id":"product-3","name":"Growth bundle","image":"\/assets\/images\/mockup-bottle-02.webp","units":10,"revenue":3600},{"id":"product-1","name":"Scalp essentials","image":"\/assets\/images\/mockup-bottle-02.webp","units":14,"revenue":2520},{"id":"product-2","name":"Daily shampoo","image":"\/assets\/images\/mockup-bottle-01.webp","units":12,"revenue":1440},{"id":"product-4","name":"Daily conditioner","image":"\/assets\/images\/mockup-bottle-01.webp","units":6,"revenue":600}]</script>
+    </section>
+          </div>
+      <div class="card-actions border-t border-zinc-100 ">
+          <a href="#"
+      class="card-action flex items-center justify-between gap-3 w-full min-h-12 px-5 py-3 text-small font-medium color-strong transition-colors duration-150
+        hover:bg-zinc-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
+        motion-reduce:transition-none">
+      <span class="card-action-label">View low-stock products</span>
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="card-action-icon size-4 shrink-0"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/></svg>    </a>
+        </div>
+  </article>
+      </div>
+    </section>
+  </div>
+</section>
+    </main>
+  </div>
+  <dialog id="dashboard-navigation" aria-label="Dashboard navigation"
+    class="dashboard-drawer fixed inset-y-0 left-0 w-72 max-w-[calc(100%-2rem)] h-dvh max-h-none m-0 border-0 bg-zinc-100 overflow-y-auto
+      backdrop:bg-zinc-800/30 js-component-dashboard-drawer">
+    <div class="drawer-content flex flex-col min-h-full">
+    <div class="drawer-controls flex justify-end px-3 pt-3">
+      <button type="button" aria-label="Close navigation"
+        class="drawer-close flex items-center justify-center size-11 rounded-lg text-zinc-800
+          hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-blue-800 js-component-dashboard-close">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="drawer-icon size-5"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"/></svg>      </button>
+    </div>
+    <div class="sidebar-content flex flex-col flex-1 gap-8 h-full px-2 py-5">
+  <a href="/dashboard/" aria-label="RR Hair Clinic dashboard"
+    class="sidebar-brand inline-flex items-center self-start min-h-11 mx-3 text-lg text-zinc-800
+      focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">
+    <span class="sidebar-brand-mark flex items-center justify-center w-9 aspect-square font-semibold border border-zinc-600">RR</span>
+  </a>
+  <nav aria-label="Dashboard navigation" class="sidebar-navigation flex flex-col gap-5">
+    <a href="/dashboard/" aria-current="page"      class="sidebar-link flex items-center gap-2 min-h-8 px-3 py-2 font-medium rounded-lg text-zinc-600
+        focus-visible:outline-2 focus-visible:outline-blue-800
+        aria-[current=page]:bg-zinc-100 aria-[current=page]:text-zinc-800
+        hover:bg-zinc-200 hover:text-zinc-800">
+      <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+      Overview
+    </a>
+    <div class="sidebar-group">
+      <h2 class="sidebar-group-title px-3 text-xs uppercase tracking-normal text-zinc-400">Clinical</h2>
+      <ul class="sidebar-items grid mt-2">
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3 text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Assessments
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3 text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Prescriptions
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="/dashboard/patients/"
+                        class="sidebar-link flex items-center gap-2 min-h-8 px-3 rounded-md text-zinc-600
+              hover:bg-zinc-200 hover:text-zinc-800
+              focus-visible:outline-2 focus-visible:outline-blue-800
+              aria-[current=page]:bg-zinc-200 aria-[current=page]:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Patients
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="sidebar-group">
+      <h2 class="sidebar-group-title px-3 text-xs uppercase tracking-normal text-zinc-400">Operations</h2>
+      <ul class="sidebar-items grid mt-2">
+        <li class="sidebar-item">
+          <a href="/dashboard/products/"
+                        class="sidebar-link flex items-center gap-2 min-h-8 px-3 rounded-md text-zinc-600
+              hover:bg-zinc-200 hover:text-zinc-800
+              focus-visible:outline-2 focus-visible:outline-blue-800
+              aria-[current=true]:bg-zinc-200 aria-[current=true]:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Products
+          </a>
+                  </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3 text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Orders
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="sidebar-group">
+      <h2 class="sidebar-group-title px-3 text-xs uppercase tracking-normal text-zinc-400">Management</h2>
+      <ul class="sidebar-items mt-2">
+        <li class="sidebar-item">
+          <a href="/dashboard/assessment-workflow/"
+                        class="sidebar-link flex items-center gap-2 min-h-8 px-3 rounded-md text-zinc-600
+              hover:bg-zinc-200 hover:text-zinc-800
+              focus-visible:outline-2 focus-visible:outline-blue-800
+              aria-[current=page]:bg-zinc-200 aria-[current=page]:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Workflow Reference
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link flex items-center gap-2 min-h-8 px-3  text-zinc-600 rounded-md
+        hover:bg-zinc-200 hover:text-zinc-800">
+            <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+            Team &amp; access
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="sidebar-account mt-auto pt-4">
+    <details class="account-menu relative js-component-dashboard-account">
+      <summary class="account-trigger flex items-center gap-3 min-h-11 p-2 rounded-lg text-zinc-800 cursor-pointer list-none
+        hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800 [&::-webkit-details-marker]:hidden">
+        <img src="/assets/images/avatar-dr-rujhan.webp" alt="" width="36" height="36"
+          class="account-avatar size-9 shrink-0 rounded-lg outline outline-black/10 -outline-offset-1 object-cover">
+        <span class="account-identity flex-1 min-w-0">
+          <span class="account-name block text-sm font-medium truncate">Your account</span>
+          <span class="account-role block text-xs text-zinc-500">Business owner</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="account-indicator size-4 shrink-0 rotate-180"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"/></svg>      </summary>
+      <div class="account-panel absolute inset-x-0 bottom-full z-20 mb-2 p-1 rounded-lg border border-zinc-200 bg-white shadow-sm">
+        <a href="#" class="account-action flex items-center w-full min-h-11 px-3 text-left text-sm rounded-md text-zinc-600
+          hover:bg-zinc-100 hover:text-zinc-800 focus-visible:outline-2 focus-visible:outline-blue-800">My profile</a>
+        <div class="account-divider my-1 border-t border-zinc-200"></div>
+        <a href="#" class="account-action flex items-center w-full min-h-11 px-3 text-left text-sm rounded-md text-zinc-600
+          hover:bg-zinc-100 hover:text-zinc-800 focus-visible:outline-2 focus-visible:outline-blue-800">Sign out</a>
+      </div>
+    </details>
+  </div>
+</div>
+    </div>
+  </dialog>
+</body>
+</html>

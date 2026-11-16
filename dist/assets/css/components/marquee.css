@@ -1,0 +1,83 @@
+/* One original group remains readable without JavaScript and when motion is reduced. */
+@layer components {
+  .marquee {
+    @apply relative min-w-0;
+  }
+
+  .marquee .marquee-viewport {
+    @apply overflow-x-auto overscroll-x-contain;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+  }
+
+  .marquee .marquee-viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .marquee .marquee-track {
+    @apply flex w-max;
+  }
+
+  .marquee .marquee-group {
+    @apply flex shrink-0 items-center;
+    gap: calc(var(--spacing, 0.25rem) * var(--marquee-gap));
+    padding-inline-end: calc(var(--spacing, 0.25rem) * var(--marquee-gap));
+  }
+
+  .marquee .marquee-group > * {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+
+  .marquee[data-animated="true"] .marquee-viewport {
+    @apply overflow-hidden;
+    scroll-snap-type: none;
+  }
+
+  .marquee .marquee-viewport:focus-visible,
+  .marquee .marquee-control:focus-visible {
+    @apply outline-2 -outline-offset-2 outline-blue-700;
+  }
+
+  .marquee .marquee-controls {
+    @apply flex justify-end gap-2 mt-3;
+  }
+
+  .marquee .marquee-control {
+    @apply inline-flex items-center justify-center min-w-11 min-h-11 px-3 text-small font-medium rounded-full border border-zinc-300 bg-white color-strong cursor-pointer;
+  }
+
+  .marquee .marquee-control[hidden] {
+    display: none;
+  }
+
+  .marquee .marquee-control:disabled {
+    @apply opacity-40 cursor-not-allowed;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .marquee .marquee-control:not(:disabled):hover {
+      @apply bg-zinc-200;
+    }
+  }
+
+  .marquee .marquee-fade {
+    @apply absolute inset-y-0 w-12 pointer-events-none;
+  }
+
+  .marquee:has(> .marquee-controls) .marquee-fade {
+    bottom: 3.5rem;
+  }
+
+  .marquee .marquee-fade-left {
+    left: 0;
+    right: auto;
+    background-image: linear-gradient(to right, var(--marquee-fade-color), transparent);
+  }
+
+  .marquee .marquee-fade-right {
+    right: 0;
+    left: auto;
+    background-image: linear-gradient(to left, var(--marquee-fade-color), transparent);
+  }
+}
