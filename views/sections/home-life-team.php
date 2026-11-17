@@ -3,7 +3,7 @@ $headline_center_no_button = [
   'topic'      => 'Our Standard',
   'emoji'      => '👥',
   'title'      => 'Backed by Science, Led by Experts',
-  'subtitle'   => 'Specialists in medicine, nutrition, performance, and behavioural science.',
+  'subtitle'   => 'Led by doctors who focus on hair and scalp care.',
   'alignment'  => 'center',
 ];
 ?>
@@ -27,9 +27,6 @@ $headline_center_no_button = [
                 </div>
               </div>
               <div class="doctor-image relative aspect-2/1 mt-1 rounded-md bg-zinc-200">
-                <div class="doctor-social absolute top-3 left-3 flex-center size-8 rounded-md bg-zinc-600 color-invert-strong">
-                  <?php svg('linkedin-box-fill', 'size-5'); ?>
-                </div>
               </div>
             </div>
           </div>
@@ -45,9 +42,6 @@ $headline_center_no_button = [
                 </div>
               </div>
               <div class="doctor-image relative aspect-2/1 mt-1 rounded-md bg-zinc-200">
-                <div class="doctor-social absolute top-3 left-3 flex-center size-8 rounded-md bg-zinc-600 color-invert-strong">
-                  <?php svg('linkedin-box-fill', 'size-5'); ?>
-                </div>
               </div>
             </div>
           </div>

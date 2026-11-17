@@ -40,7 +40,7 @@ section('home-faq');
 // section('home-life-startup');
 // section('home-life-solutions');
 // section('home-faq');
-section('footer');
+section('footer', ['show_banner' => false]);
 
 component('button-whatsapp');
 component('button-getstart');

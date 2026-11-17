@@ -17,8 +17,8 @@ $popular_products = $show_products ? array_slice(array_values(array_filter(
 )), 0, $popular_limit) : [];
 $show_products = $popular_products !== [];
 $consultation_button = [
-  'label' => 'Start Free Assessment',
-  'href'  => '#',
+  'label' => 'Start Free Hair Assessment',
+  'href'  => asset_url('assessment'),
   'size'  => 'large',
   'icon'  => 'arrow-right-line',
 ];

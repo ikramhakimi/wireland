@@ -33,8 +33,8 @@ $steps = [
   ],
 ];
 $cta_button = [
-  'label' => 'Start Hair Assesment',
-  'href'  => '#',
+  'label' => 'Start Free Hair Assessment',
+  'href'  => asset_url('assessment'),
 ];
 $treatment_items = [
   ['name' => 'Root Activator Deluxe Kit', 'brief' => 'Hair growth & scalp care'],

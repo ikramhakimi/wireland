@@ -7,20 +7,32 @@ $headline = [
 ];
 $faqs = [
   [
-    'question' => 'How do I get started?',
-    'answer'   => 'Contact our team to discuss your concerns and arrange a consultation.',
+    'question' => 'How does the online assessment work?',
+    'answer'   => 'You answer questions about your hair concerns, health history and goals. '
+      . 'A clinician reviews your answers and recommends options that may suit you.',
   ],
   [
-    'question' => 'What should I prepare for my consultation?',
-    'answer'   => 'Bring your questions and details of any current hair care products or previous treatments.',
+    'question' => 'Is the assessment free?',
+    'answer'   => 'Yes. You only pay for treatment if a clinician prescribes it and you choose to go ahead.',
   ],
   [
-    'question' => 'How do I know which treatment to choose?',
-    'answer'   => 'Discuss your goals with the team during your consultation to understand the available options.',
+    'question' => 'Do I need a prescription for every product?',
+    'answer'   => 'No. Everyday hair and scalp care products can be bought directly. Prescription treatments are '
+      . 'only available after a clinician reviews your assessment and confirms they are suitable for you.',
   ],
   [
-    'question' => 'Where can I find pricing information?',
-    'answer'   => 'Contact our team for details about treatment options and their associated costs.',
+    'question' => 'How much does treatment cost?',
+    'answer'   => 'Prices are shown on each product. Prescription prices cover the medication only, if prescribed.',
+  ],
+  [
+    'question' => 'When might I notice results?',
+    'answer'   => 'Results vary between people and treatments. Most treatments need to be followed for several '
+      . 'months before changes are noticeable. Your clinician can explain what to expect for your plan.',
+  ],
+  [
+    'question' => 'How is my treatment delivered?',
+    'answer'   => 'If treatment is prescribed, it is delivered to your door. '
+      . 'Your care team stays available if you have questions along the way.',
   ],
 ];
 ?>
@@ -39,7 +51,7 @@ $faqs = [
             ]); ?>
           </div>
           <div id="home-faq-answer-<?= $index; ?>" hidden class="collapse-content pt-3">
-            <p class="faq-answer"><?= e($faq['answer']); ?></p>
+            <p class="faq-answer text-small leading-relaxed color-muted"><?=e($faq['answer']); ?></p>
           </div>
         </div>
       <?php endforeach; ?>

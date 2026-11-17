@@ -7,7 +7,7 @@ $hero_card_colors = [
 $hero_card_count  = 9;
 $hero_button      = [
   'label'   => 'Start Free Hair Assessment',
-  'href'    => '#',
+  'href'    => asset_url('assessment'),
   'size'    => 'large',
   'icon'    => 'arrow-right-line',
 ];
@@ -18,7 +18,7 @@ $hero_marquee = [
   'render_items' => function () use ($hero_card_count, $hero_card_colors): void {
     ?>
     <?php for ($card_index = 0; $card_index < $hero_card_count; $card_index++): ?>
-      <div class="marquee-card aspect-2/3 w-90 rounded-xl <?= e($hero_card_colors[$card_index % 3]); ?>"></div>
+      <div class="marquee-card aspect-2/3 w-90 rounded-xl bg-zinc-100"></div>
     <?php endfor; ?>
     <?php
   },
@@ -61,7 +61,7 @@ $hero_marquee = [
           </div>
           <div class="benefit flex items-center justify-start gap-3 my-0.5">
             <?php svg('shining-line', 'benefit-icon size-3 shrink-0'); ?>
-            <div class="benefit-text">Regrow hair in as few as 3-6 months *</div>
+            <div class="benefit-text">Many people see results in 3–6 months</div>
           </div>
           <div class="benefit flex items-center justify-start gap-3 my-0.5">
             <?php svg('shining-line', 'benefit-icon size-3 shrink-0'); ?>

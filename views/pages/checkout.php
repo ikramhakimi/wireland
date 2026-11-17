@@ -148,13 +148,13 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
       <div class="checkout-layout grid items-start gap-8 mt-10
         md:grid-cols-[minmax(0,1fr)_400px]">
         <div class="checkout-content min-w-0">
-          <form id="checkout-form" method="post" action="<?= asset_url('checkout/'); ?>" class="checkout-form grid gap-6">
+          <form id="checkout-form" method="post" action="<?= asset_url('checkout/'); ?>" class="checkout-form grid gap-10">
             <input type="hidden" name="token" value="<?= e($store_token); ?>">
             <input type="hidden" name="cart_fingerprint" value="<?= e($fingerprint); ?>">
             <?php foreach ($field_groups as $group => $group_label): ?>
-              <fieldset class="checkout-fields grid gap-5 rounded-lg bg-white p-6
+              <fieldset class="checkout-fields grid gap-y-4 gap-x-3
                 sm:grid-cols-2">
-                <legend class="checkout-legend float-left w-full text-title-sm font-medium color-strong
+                <legend class="checkout-legend block w-full text-base bg-zinc-100 px-5 leading-12 mb-5 rounded-lg font-medium color-strong
                   sm:col-span-2"><?= e($group_label); ?></legend>
                 <?php if ($group === 'contact'): ?>
                   <p class="checkout-login text-small color-muted
@@ -178,8 +178,8 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
                 <?php endforeach; ?>
               </fieldset>
             <?php endforeach; ?>
-            <fieldset class="checkout-payment grid gap-4 rounded-lg bg-white p-6">
-              <legend class="checkout-legend float-left w-full text-title-sm font-medium color-strong">Payment</legend>
+            <fieldset class="checkout-payment grid gap-4">
+              <legend class="checkout-legend block w-full text-base bg-zinc-100 px-5 leading-12 mb-5 rounded-lg font-medium color-strong">Payment</legend>
               <p class="checkout-payment-note text-small color-muted">Demo only. No payment is taken.</p>
               <div class="checkout-payment-options flex flex-col items-start gap-2">
                 <?php foreach ($payment_methods as $method => $method_label): ?>

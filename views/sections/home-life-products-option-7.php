@@ -65,39 +65,36 @@ $assessment_answers = [
   ],
 ];
 $consultation_button = [
-  'label' => 'Start Free Assessment',
-  'href'  => '#',
+  'label' => 'Start Free Hair Assessment',
+  'href'  => asset_url('assessment'),
   'size'  => 'large',
   'icon'  => 'arrow-right-line',
 ];
-$product_button = [
-  'label'   => 'Add to Cart',
-  'href'    => '#',
+// Active catalogue products, split by requirement for the two carousels.
+$catalogue_products = array_values(array_filter(
+  require __DIR__ . '/../../includes/dashboard-products-data.php',
+  static fn (array $product): bool => ($product['status'] ?? '') === 'Active',
+));
+$basic_products = array_slice(array_values(array_filter(
+  $catalogue_products,
+  static fn (array $product): bool => ($product['requirement'] ?? '') === 'Basic',
+)), 0, 8);
+$prescription_products = array_slice(array_values(array_filter(
+  $catalogue_products,
+  static fn (array $product): bool => ($product['requirement'] ?? '') === 'Prescription Required',
+)), 0, 6);
+// Maps a catalogue product to card-product data; prescription items show the Rx pill.
+$product_card = static fn (array $product, string $pill): array => [
+  'name'        => $product['name'],
+  'href'        => asset_url('product/?id=' . rawurlencode($product['id'])),
+  'pill'        => $pill,
+  'description' => $product['short_description'] ?? $product['description'] ?? '',
+  'price'       => $product['price'],
+  'base_price'  => $product['base_price'] ?? 0,
 ];
-$prescription_button = [
-  'label'   => 'Start Assessment',
-  'href'    => '#',
-];
-// Mockup card data, repeated per carousel until real product data is wired in.
-$basic_card = [
-  'name'        => 'Root Activator Deluxe Kit',
-  'href'        => '#',
-  'pill'        => 'Daily',
-  'formula'     => 'Finasteride 0.1% + minoxidil 5% foam',
-  'description' => 'A daily tablet, plus a tonic for thinning spots twice a day.',
-  'price'       => 85,
-  'base_price'  => 120,
-  'button'      => $product_button,
-];
-$prescription_card = array_merge($basic_card, [
-  'pill'       => 'Rx Required',
-  'price'      => 350,
-  'base_price' => 450,
-  'button'     => $prescription_button,
-]);
 $assessment_button = [
-  'label'   => 'Start Free Assessment',
-  'href'    => '#',
+  'label'   => 'Start Free Hair Assessment',
+  'href'    => asset_url('assessment'),
   'color'   => 'secondary',
   'icon'    => 'arrow-right-line',
 ];
@@ -108,9 +105,9 @@ $assessment_button = [
   </div>
 
   <?php component('carousel', array_merge($carousels['basic-7'], [
-    'render_items' => static function () use ($basic_card): void {
-      for ($index = 1; $index <= 8; $index++) {
-        component('card-product', $basic_card);
+    'render_items' => static function () use ($basic_products, $product_card): void {
+      foreach ($basic_products as $product) {
+        component('card-product', $product_card($product, $product['category'] ?? ''));
       }
     },
   ])); ?>
@@ -266,9 +263,9 @@ $assessment_button = [
   </div>
 
   <?php component('carousel', array_merge($carousels['prescribe-7'], [
-    'render_items' => static function () use ($prescription_card): void {
-      for ($index = 1; $index <= 6; $index++) {
-        component('card-product', $prescription_card);
+    'render_items' => static function () use ($prescription_products, $product_card): void {
+      foreach ($prescription_products as $product) {
+        component('card-product', $product_card($product, 'Rx Required'));
       }
     },
   ])); ?>

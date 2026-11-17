@@ -70,7 +70,7 @@ $cart_href = $cart_href ?? '';
 
       
 
-      <a href="#" class="text-small font-medium color-strong">Doctors</a>
+      <a href="#" class="text-small font-medium color-strong">Our Doctors</a>
 
     </nav>
 

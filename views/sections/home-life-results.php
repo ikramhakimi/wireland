@@ -3,7 +3,7 @@ $headline_center_no_button = [
   'topic'      => 'Results',
   'emoji'      => '🎉',
   'title'      => 'Results you can actually see. Nothing retouched.',
-  'subtitle'   => 'See what our customers have to say about their experience.',
+  'subtitle'   => 'Before and after photos from patients at their treatment reviews.',
   'alignment'  => 'center',
 ];
 $results_comparison = [
@@ -85,12 +85,6 @@ $testimonials_marquee = [
           </div>
         </div>
       <?php } ?>
-    </div>
-    <div class="mt-5 sm:text-center">
-      <div class="inline-flex items-center gap-1 p-1 bg-zinc-300 rounded-lg">
-        <div class="size-10 rounded-md bg-zinc-500"></div>
-        <div class="size-10 rounded-md bg-zinc-500"></div>
-      </div>
     </div>
     
   </div>
