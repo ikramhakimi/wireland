@@ -314,23 +314,23 @@ $image_card = [
 ];
 $cancel_url = $is_new ? asset_url('dashboard/products/') : asset_url('dashboard/product/') . '?id=' . rawurlencode($product_id);
 
+$page_header = [
+  'title'       => $product !== null ? $page_title : 'Product Not Found',
+  'title_id'    => 'edit-title',
+  'description' => $product === null
+    ? 'Return to Products and select another product.'
+    : ($is_new ? 'Add product information, pricing and care requirements.' : $page_description),
+  'breadcrumb'  => array_merge(
+    [['label' => 'Products', 'href' => asset_url('dashboard/products/')]],
+    !$is_new && $product !== null ? [['label' => $product['name'], 'href' => $cancel_url]] : [],
+    [['label' => $product !== null ? $page_title : 'Product Not Found']],
+  ),
+];
+
 ?>
-<section class="section min-w-0 py-0!" aria-labelledby="edit-title">
-  <nav aria-label="Breadcrumb" class="product-navigation mb-5">
-    <a href="<?= asset_url('dashboard/products/'); ?>" class="product-back text-small underline underline-offset-4">Products</a>
-    <?php if (!$is_new && $product !== null): ?>
-      <span aria-hidden="true" class="product-separator mx-2">/</span>
-      <a href="<?= e($cancel_url); ?>" class="product-back text-small underline underline-offset-4"><?= e($product['name']); ?></a>
-    <?php endif; ?>
-  </nav>
-  <header class="section-header">
-    <h1 id="edit-title" class="section-title text-3xl font-medium color-strong"><?= e($product !== null ? $page_title : 'Product Not Found'); ?></h1>
-    <?php if ($product === null): ?>
-      <p class="section-description mt-2 text-small color-muted">Return to Products and select another product.</p>
-    <?php endif; ?>
-  </header>
+  <?php component('dashboard/header', $page_header); ?>
   <?php if ($product !== null): ?>
-    <form method="dialog" data-product-id="<?= e($product['id']); ?>" class="product-editor grid min-w-0 gap-6 mt-6 js-component-products-editor">
+    <form method="dialog" data-product-id="<?= e($product['id']); ?>" class="product-editor grid min-w-0 gap-6 mt-10 js-component-products-editor">
       <?php component('card', $edit_cards[0]); ?>
       <?php component('card', $image_card); ?>
       <?php foreach (array_slice($edit_cards, 1) as $edit_card): ?>

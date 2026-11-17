@@ -174,26 +174,30 @@ $detail_image_modal = [
   },
 ];
 
+$page_header = [
+  'title'       => $product['name'] ?? 'Product Not Found',
+  'title_id'    => 'product-title',
+  'title_hook'  => 'js-component-products-name',
+  'description' => $product === null
+    ? 'Return to Products and select another product.'
+    : $page_description,
+  'breadcrumb'  => [
+    ['label' => 'Products', 'href' => asset_url('dashboard/products/')],
+    ['label' => $product['id'] ?? 'Unavailable'],
+  ],
+  'actions'     => $product === null ? [] : [
+    [
+      'label' => 'Edit Product',
+      'href'  => asset_url('dashboard/product-edit/') . '?id=' . rawurlencode($product['id']),
+      'color' => 'primary',
+    ],
+  ],
+];
+
 ?>
-<section data-product-id="<?= e($product['id'] ?? ''); ?>" class="section min-w-0 py-0! js-component-products-detail" aria-labelledby="product-title">
-  <nav aria-label="Breadcrumb" class="product-navigation mb-5">
-    <a href="<?= asset_url('dashboard/products/'); ?>" class="product-back text-small underline underline-offset-4">Products</a>
-    <span aria-hidden="true" class="product-separator mx-2">/</span>
-    <span class="product-reference text-small color-muted"><?= e($product['id'] ?? 'Unavailable'); ?></span>
-  </nav>
-  <header class="section-header flex flex-wrap items-start justify-between gap-4">
-    <div class="section-heading min-w-0">
-      <h1 id="product-title" class="section-title text-title-md font-medium color-strong wrap-anywhere js-component-products-name"><?= e($product['name'] ?? 'Product Not Found'); ?></h1>
-      <?php if ($product === null): ?>
-        <p class="section-description mt-2 text-small color-muted">Return to Products and select another product.</p>
-      <?php endif; ?>
-    </div>
-    <?php if ($product !== null): ?>
-      <?php component('button', ['label' => 'Edit Product', 'href' => asset_url('dashboard/product-edit/') . '?id=' . $product['id'], 'color' => 'primary']); ?>
-    <?php endif; ?>
-  </header>
+  <?php component('dashboard/header', $page_header); ?>
   <?php if ($product !== null): ?>
-    <div class="section-content grid min-w-0 gap-6 mt-6">
+    <div class="section-content grid min-w-0 gap-6 mt-10">
       <div aria-label="Product Images" class="product-gallery grid grid-cols-4 gap-3 js-component-products-gallery">
         <?php for ($index = 0; $index < 4; $index++): ?>
           <button type="button" aria-label="View Product Image <?= $index + 1; ?>"

@@ -26,8 +26,8 @@ $alignment_class = $alignment_classes[$alignment] ?? '';
 ?>
 <div class="headline <?= e(trim($alignment_class . ' ' . $class)); ?>">
   <?php if ($topic !== ''): ?>
-    <div class="headline-topic inline-flex items-center justify-start font-medium text-small text-orange-600 mb-5 tracking-[1%]">
-      <div class="font-semibold text-small text-orange-600 size-7 leading-7 flex-center border border-orange-500 mr-1.5">RR</div>
+    <div class="headline-topic inline-flex items-center justify-start font-medium text-small text-zinc-600 mb-5 tracking-[1%]">
+      <div class="font-semibold text-small text-zinc-600 size-7 leading-7 flex-center border border-zinc-400 mr-1.5">RR</div>
       <div class="leading-6 color-strong"><?= e($topic); ?></div>
     </div>
   <?php endif; ?>

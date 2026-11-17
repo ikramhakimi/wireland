@@ -8,8 +8,12 @@
  *       (CSS colors, mirrored to root data attributes; defaults match the existing white/zinc palette);
  *       desktop_columns (default 4), tablet_columns (default 3), gap (default 2, Tailwind spacing units),
  *       tablet_gap and desktop_gap (each defaults to gap). Gap accepts non-negative numbers.
+ *       layout ('default' with edge controls and fades, or 'simple' with a title row and header controls),
+ *       title (heading text for the simple layout, rendered as h2).
  *       Use a unique id per instance; an omitted id is generated automatically.
  */
+$layout                   = ($layout ?? 'default') === 'simple' ? 'simple' : 'default';
+$title                    = $title ?? '';
 $id                       = $id ?? uniqid('carousel-');
 $label                    = $label ?? 'Items';
 $class                    = $class ?? '';
@@ -45,7 +49,7 @@ if (!is_callable($render_items)) {
   return;
 }
 ?>
-<div class="carousel relative overflow-hidden <?= e($class); ?>
+<div class="carousel carousel-<?= e($layout); ?> relative overflow-hidden <?= e($class); ?>
   js-component-carousel"
   data-desktop-columns="<?= e($desktop_columns); ?>" data-tablet-columns="<?= e($tablet_columns); ?>"
   data-gap="<?= e($gap); ?>" data-tablet-gap="<?= e($tablet_gap); ?>" data-desktop-gap="<?= e($desktop_gap); ?>"
@@ -59,8 +63,29 @@ if (!is_callable($render_items)) {
     --carousel-control-color: <?= e($control_color); ?>;
     --carousel-control-border-color: <?= e($control_border_color); ?>;
     --carousel-control-hover-background: <?= e($control_hover_background); ?>;">
-  <div class="carousel-viewport md:px-12 lg:px-16">
-    <div class="carousel-container max-w-6xl mx-auto">
+  <?php if ($layout === 'simple'): ?>
+    <div class="container mb-5">
+      <div class="carousel-header flex-split gap-4 bg-zinc-200 px-5 py-3 rounded-lg">
+        <?php if ($title !== ''): ?>
+          <h2 id="<?= e($id); ?>-title" class="carousel-title text-base font-semibold color-strong"><?= e($title); ?></h2>
+        <?php endif; ?>
+        <div class="carousel-controls hidden items-center gap-1 ml-auto -mr-1
+          md:flex
+          js-component-carousel-controls" hidden>
+          <button type="button" class="carousel-prev bg-zinc-300 rounded-md size-7 flex-center
+            js-component-carousel-prev" aria-label="Previous slide" aria-controls="<?= e($track_id); ?>">
+            <?php svg('arrow-left-line', 'size-5'); ?>
+          </button>
+          <button type="button" class="carousel-next bg-zinc-300 rounded-md size-7 flex-center
+            js-component-carousel-next" aria-label="Next slide" aria-controls="<?= e($track_id); ?>">
+            <?php svg('arrow-right-line', 'size-5'); ?>
+          </button>
+        </div>
+      </div>
+    </div>
+  <?php endif; ?>
+  <div class="carousel-viewport <?= $layout === 'simple' ? 'container max-md:px-0' : 'md:px-12 lg:px-16'; ?>">
+    <div class="carousel-container <?= $layout === 'simple' ? 'md:overflow-hidden' : 'max-w-6xl mx-auto'; ?>">
       <div id="<?= e($track_id); ?>"
         class="carousel-track grid grid-flow-col px-5 py-2 overflow-x-auto overscroll-x-contain snap-x snap-mandatory scroll-px-5
           motion-reduce:transition-none
@@ -71,26 +96,28 @@ if (!is_callable($render_items)) {
       </div>
     </div>
   </div>
-  <div class="carousel-fade carousel-fade-left left-0
-    <?= e($fade_class); ?>" aria-hidden="true"></div>
-  <div class="carousel-fade carousel-fade-right right-0
-    <?= e($fade_class); ?>" aria-hidden="true"></div>
-  <div class="carousel-controls hidden
-    md:block
-    js-component-carousel-controls" hidden>
-    <button type="button"
-      class="carousel-control carousel-prev left-2
-        js-component-carousel-prev"
-      aria-label="Previous slide" aria-controls="<?= e($track_id); ?>">
-      <?php svg('arrow-left-line', 'size-5'); ?>
-    </button>
-    <button type="button"
-      class="carousel-control carousel-next right-2
-        js-component-carousel-next"
-      aria-label="Next slide" aria-controls="<?= e($track_id); ?>">
-      <?php svg('arrow-right-line', 'size-5'); ?>
-    </button>
-  </div>
+  <?php if ($layout === 'default'): ?>
+    <div class="carousel-fade carousel-fade-left left-0
+      <?= e($fade_class); ?>" aria-hidden="true"></div>
+    <div class="carousel-fade carousel-fade-right right-0
+      <?= e($fade_class); ?>" aria-hidden="true"></div>
+    <div class="carousel-controls hidden
+      md:block
+      js-component-carousel-controls" hidden>
+      <button type="button"
+        class="carousel-control carousel-prev left-2
+          js-component-carousel-prev"
+        aria-label="Previous slide" aria-controls="<?= e($track_id); ?>">
+        <?php svg('arrow-left-line', 'size-5'); ?>
+      </button>
+      <button type="button"
+        class="carousel-control carousel-next right-2
+          js-component-carousel-next"
+        aria-label="Next slide" aria-controls="<?= e($track_id); ?>">
+        <?php svg('arrow-right-line', 'size-5'); ?>
+      </button>
+    </div>
+  <?php endif; ?>
   <p class="carousel-status sr-only
     js-component-carousel-status" role="status" aria-atomic="true"></p>
 </div>

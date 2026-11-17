@@ -34,7 +34,7 @@ $testimonials_marquee = [
   'render_items'    => function (): void {
     ?>
     <?php for ($c = 0; $c < 5; $c++): ?>
-      <div class="bg-white rounded-lg p-5 w-80">
+      <div class="bg-zinc-100 rounded-lg p-5 w-80">
         <div class="flex flex-col items-stretch justify-between">
           <div class="flex items-start justify-between">
             <div class="color-muted flex justify-start">
@@ -70,18 +70,16 @@ $testimonials_marquee = [
     <div class="results-list grid grid-cols-1 sm:grid-cols-6 gap-3 mt-5 sm:mt-10">
       <?php for($c=0; $c<3; $c++) { ?>
         <div class="sm:col-span-2">
-          <div class="results-item bg-white rounded-xl">
+          <div class="results-item bg-zinc-100 rounded-xl">
             <div class="p-1">
               <?php component('media-comparison', $results_comparison_portrait); ?>
             </div>
-            <div class="flex flex-col items-stretch justify-between p-6 pt-2">
-              <div>
-                <h3 class="font-semibold text-pretty color-strong">Frontal Hairline Restoration</h3>
-                <div class="mt-0.5 text-small color-muted flex items-center justify-start gap-3">
-                  <span>FUE Hair Transplant</span>
-                  <span class="w-px h-4 bg-zinc-200"></span>
-                  <span>Results at 12 months</span>
-                </div>
+            <div class="text-center py-4 px-5">
+              <h3 class="font-semibold text-pretty color-strong">Frontal Hairline Restoration</h3>
+              <div class="mt-0.5 text-small color-muted">
+                <span>FUE Hair Transplant</span>
+                <span class="w-px h-4 bg-zinc-200"></span>
+                <span>Results at 12 months</span>
               </div>
             </div>
           </div>

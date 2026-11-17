@@ -78,6 +78,23 @@ $prescription_button = [
   'label'   => 'Start Assessment',
   'href'    => '#',
 ];
+// Mockup card data, repeated per carousel until real product data is wired in.
+$basic_card = [
+  'name'        => 'Root Activator Deluxe Kit',
+  'href'        => '#',
+  'pill'        => 'Daily',
+  'formula'     => 'Finasteride 0.1% + minoxidil 5% foam',
+  'description' => 'A daily tablet, plus a tonic for thinning spots twice a day.',
+  'price'       => 85,
+  'base_price'  => 120,
+  'button'      => $product_button,
+];
+$prescription_card = array_merge($basic_card, [
+  'pill'       => 'Rx Required',
+  'price'      => 350,
+  'base_price' => 450,
+  'button'     => $prescription_button,
+]);
 $assessment_button = [
   'label'   => 'Start Free Assessment',
   'href'    => '#',
@@ -91,38 +108,17 @@ $assessment_button = [
   </div>
 
   <?php component('carousel', array_merge($carousels['basic-7'], [
-    'render_items' => static function () use ($product_button): void { ?>
-      <?php for ($index = 1; $index <= 8; $index++): ?>
-        <article class="product-item relative flex flex-col min-w-0 rounded-xl bg-white overflow-hidden snap-start">
-          <div class="product-image relative flex-center aspect-4/3 max-lg:shrink-0" aria-hidden="true">
-            <img src="assets/images/mockup-bottle-02.webp" alt="" class="product-image-source size-full object-contain
-              max-lg:absolute max-lg:inset-0" loading="lazy">
-          </div>
-          <div class="product-brief flex-1 flex flex-col px-5 pb-4">
-            <div class="product-pill absolute top-3 left-3 inline-flex mb-4 px-2.5 py-1.5 text-caption leading-3 rounded-md bg-zinc-100">Daily</div>
-            <h3 class="product-title font-display font-semibold color-strong">Root Activator Deluxe Kit</h3>
-            <div class="product-formula text-caption text-green-800">Finasteride 0.1% + minoxidil 5% foam</div>
-            <div class="product-desc mt-2 text-caption color-muted">
-              A daily tablet, plus a tonic for thinning spots twice a day.
-            </div>
-            <div class="product-actions flex-split mt-auto pt-5">
-              <div class="product-price">
-                <div class="product-price-label text-caption color-muted">From</div>
-                <span class="product-price-current font-semibold color-strong">RM 85</span>
-                <span class="product-price-original text-caption font-normal line-through decoration-zinc-400 color-muted">RM 120</span>
-              </div>
-              <?php component('button', $product_button); ?>
-            </div>
-          </div>
-        </article>
-      <?php endfor; ?>
-    <?php },
+    'render_items' => static function () use ($basic_card): void {
+      for ($index = 1; $index <= 8; $index++) {
+        component('card-product', $basic_card);
+      }
+    },
   ])); ?>
 
   <div class="section-banners container mt-15">
     <div class="banners grid grid-cols-1 gap-3 max-w-248 mx-auto
       md:grid-cols-2">
-      <article class="card card-testimonial flex flex-col min-w-0 p-6 rounded-xl bg-white color-strong
+      <article class="card card-testimonial flex flex-col min-w-0 p-6 rounded-xl bg-zinc-100 color-strong
         sm:p-8
         js-component-testimonial" aria-label="Sample testimonials" aria-roledescription="carousel">
         <header class="card-header flex items-center justify-between gap-4">
@@ -270,31 +266,11 @@ $assessment_button = [
   </div>
 
   <?php component('carousel', array_merge($carousels['prescribe-7'], [
-    'render_items' => static function () use ($prescription_button): void { ?>
-      <?php for ($index = 1; $index <= 6; $index++): ?>
-        <article class="product-item relative flex flex-col min-w-0 rounded-xl bg-white overflow-hidden snap-start">
-          <div class="product-image relative shrink-0 flex-center aspect-4/3" aria-hidden="true">
-            <img src="assets/images/mockup-bottle-02.webp" alt="" class="product-image-source absolute inset-0 size-full object-contain" loading="lazy">
-          </div>
-          <div class="product-brief flex-1 flex flex-col px-5 pb-4">
-            <div class="product-pill absolute top-3 left-3 inline-flex mb-4 px-2.5 py-1.5 text-caption leading-3 rounded-md bg-zinc-100">Rx Required</div>
-            <h3 class="product-title font-display font-semibold color-strong">Root Activator Deluxe Kit</h3>
-            <div class="product-formula text-caption text-green-800">Finasteride 0.1% + minoxidil 5% foam</div>
-            <div class="product-desc mt-2 text-caption color-muted">
-              A daily tablet, plus a tonic for thinning spots twice a day.
-            </div>
-            <div class="product-actions flex-split mt-auto pt-5">
-              <div class="product-price">
-                <div class="product-price-label text-caption color-muted">From</div>
-                <span class="product-price-current font-semibold color-strong">RM 350</span>
-                <span class="product-price-original text-caption font-normal line-through decoration-zinc-400 color-muted">RM 450</span>
-              </div>
-              <?php component('button', $prescription_button); ?>
-            </div>
-          </div>
-        </article>
-      <?php endfor; ?>
-    <?php },
+    'render_items' => static function () use ($prescription_card): void {
+      for ($index = 1; $index <= 6; $index++) {
+        component('card-product', $prescription_card);
+      }
+    },
   ])); ?>
 
   <div class="section-disclaimer container">

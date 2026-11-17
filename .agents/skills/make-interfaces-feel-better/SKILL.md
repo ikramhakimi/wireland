@@ -50,10 +50,6 @@ Use a small fixed `translateY` instead of full height. Exits should be softer th
 
 Animate icons with `opacity`, `scale`, and `blur` instead of toggling visibility. Use exactly these values: scale from `0.25` to `1`, opacity from `0` to `1`, blur from `4px` to `0px`. If the project has `motion` or `framer-motion` in `package.json`, match that package's import path (or the established nearby imports when both exist) and use `transition: { type: "spring", duration: 0.3, bounce: 0 }` — bounce must always be `0`. If no motion library is installed, keep both icons in the DOM (one absolute-positioned) and cross-fade with CSS transitions using `cubic-bezier(0.2, 0, 0, 1)` — this gives both enter and exit animations without any dependency.
 
-### 8. Font Smoothing
-
-Apply `-webkit-font-smoothing: antialiased` to the root layout on macOS for crisper text.
-
 ### 9. Tabular Numbers
 
 Use `font-variant-numeric: tabular-nums` for any dynamically updating numbers to prevent layout shift.
@@ -107,7 +103,6 @@ No custom animation on high-frequency interactions: the attention cost repeats o
 | Border used only to fake elevation | Use layered `box-shadow` with transparency; keep structural and state borders |
 | Jarring staged entrance or contextual exit | Stagger infrequent entrances and keep context-preserving exits subtle |
 | Numbers cause layout shift | Apply `tabular-nums` |
-| Heavy text on macOS | Apply `antialiased` to root |
 | Animation plays on page load | Add `initial={false}` to `AnimatePresence` |
 | `transition: all` on elements | Specify exact properties |
 | First-frame animation stutter | Add `will-change: transform` (sparingly) |

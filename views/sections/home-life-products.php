@@ -24,7 +24,6 @@ $headline2 = [
 ];
 ?>
 
-<!-- <section class="section bg-white rounded-2xl lg:mx-2 my-10"> -->
 <section class="section">
   <div class="container">
     <?php component('headline', $headline); ?>

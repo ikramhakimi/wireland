@@ -22,7 +22,7 @@ if ($id === '' || $title === '') {
 ?>
 <dialog id="<?= e($id); ?>" aria-labelledby="<?= e($id); ?>-title"
   <?php if ($description !== ''): ?>aria-describedby="<?= e($id); ?>-description"<?php endif; ?>
-  class="drawer fixed inset-y-0 left-auto right-0 w-full max-w-lg h-dvh max-h-none m-0 p-0 border-0 bg-white text-zinc-600 antialiased overflow-hidden
+  class="drawer fixed inset-y-0 left-auto right-0 w-full max-w-lg h-dvh max-h-none m-0 p-0 border-0 bg-white text-zinc-600 overflow-hidden
     backdrop:bg-zinc-800/30
     js-component-drawer">
   <div class="drawer-panel flex flex-col h-full">

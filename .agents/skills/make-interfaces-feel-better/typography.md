@@ -62,34 +62,18 @@ p, li, figcaption, blockquote {
 | Short-to-medium text — paragraphs, descriptions, captions, UI text | `text-wrap: pretty` |
 | Long text (10+ lines), code blocks, pre-formatted text | Neither — leave default |
 
-## Font Smoothing (macOS)
-
-On macOS, text renders heavier than intended by default. Apply antialiased smoothing to the root layout so all text renders crisper and thinner.
-
-```css
-/* CSS */
-html {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-```
-
-```tsx
-// Tailwind — apply to root layout
-<html className="antialiased">
-```
 
 ### Good vs. Bad
 
 ```css
 /* Good — applied once at the root */
 html {
-  -webkit-font-smoothing: antialiased;
+  
 }
 
 /* Bad — applied per-element, inconsistent */
 .heading {
-  -webkit-font-smoothing: antialiased;
+  
 }
 .body {
   /* no smoothing → heavier than heading */

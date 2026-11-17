@@ -8,12 +8,16 @@
  *       size (small/medium/large), variant (optional pill/icon-only; icon-only requires icon and label), icon (name or empty),
  *       icon_position (start/end), color (default/primary/secondary), disabled and loading (native buttons only).
  *       optional aria_label, aria_controls and js_hook for accessible context and behavior hooks.
+ *       Optional name and value identify native submit actions; form links a native button to a form by ID.
  *       Rounded corners are the default; medium is 40px. Loading keeps the label and width.
  */
 $label         = $label ?? '';
 $aria_label    = $aria_label ?? '';
 $aria_controls = $aria_controls ?? '';
 $js_hook       = $js_hook ?? '';
+$name          = $name ?? '';
+$value         = $value ?? '';
+$form          = $form ?? '';
 $href          = $href ?? '#';
 $element       = $element ?? 'a';
 $type          = $type ?? 'button';
@@ -50,6 +54,8 @@ if ($js_hook !== '') {
 ?>
 <?php if ($element === 'button'): ?>
 <button type="<?= e($type); ?>" class="<?= e($button_class); ?>"
+  <?php if ($name !== ''): ?>name="<?= e($name); ?>" value="<?= e($value); ?>"<?php endif; ?>
+  <?php if ($form !== ''): ?>form="<?= e($form); ?>"<?php endif; ?>
   <?php if ($variant === 'icon-only'): ?>title="<?= e($label); ?>"<?php endif; ?>
   <?php if ($aria_label !== ''): ?>aria-label="<?= e($aria_label); ?>"<?php endif; ?>
   <?php if ($aria_controls !== ''): ?>aria-controls="<?= e($aria_controls); ?>"<?php endif; ?>

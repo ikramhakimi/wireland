@@ -4,7 +4,7 @@
  * Component: Navbar
  * Purpose: Provides responsive site navigation and a shared modal drawer.
  * Structure: Header, desktop links, drawer accordions, and contact action.
- * Data: None.
+ * Data: Optional cart_href links to a cart page instead of the sample drawer.
  */
 
 $login_button = [
@@ -12,9 +12,10 @@ $login_button = [
   'href'    => asset_url('login'),
   'size'    => 'small',
 ];
+$cart_href = $cart_href ?? '';
 ?>
 <header
-  class="fixed inset-x-0 top-0 z-40 bg-white sm:bg-zinc-100 transition-transform duration-300 ease-out
+  class="fixed inset-x-0 top-0 z-40 bg-white transition-transform duration-300 ease-out
     motion-reduce:transition-none lg:relative lg:translate-y-0 lg:transition-none js-component-navbar-mobile"
 >
   <div class="container flex h-18 items-center justify-between px-4 lg:h-auto lg:px-6 lg:py-4">
@@ -76,6 +77,13 @@ $login_button = [
     <div class="flex items-center gap-1 lg:gap-2">
       <?php component('button', $login_button); ?>
 
+      <?php if ($cart_href !== ''): ?>
+        <a href="<?= e($cart_href); ?>" aria-label="View cart"
+          class="navbar-cart flex-center size-10 rounded-full color-strong
+            hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-2">
+          <?php svg('shopping-bag-4-line', 'navbar-cart-icon size-6'); ?>
+        </a>
+      <?php else: ?>
       <button
         type="button"
         class="flex-center size-10 rounded-full color-strong transition-colors
@@ -87,6 +95,7 @@ $login_button = [
       >
         <?php svg('shopping-bag-4-line', 'size-6'); ?>
       </button>
+      <?php endif; ?>
 
       <span class="h-6 w-px bg-zinc-200 lg:h-8 lg:bg-gradient-to-b lg:from-transparent lg:via-zinc-300 lg:to-transparent" aria-hidden="true"></span>
 
@@ -310,4 +319,6 @@ $login_button = [
   </aside>
 </div>
 
-<?php component('drawer-cart'); ?>
+<?php if ($cart_href === ''): ?>
+  <?php component('drawer-cart'); ?>
+<?php endif; ?>

@@ -13,11 +13,17 @@
   <link rel="stylesheet" href="<?= asset_url('assets/build/app.css'); ?>?v=<?= filemtime(__DIR__ . '/assets/build/app.css'); ?>">
   <script src="<?= asset_url('assets/js/toggle-collapse.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/toggle-collapse.js'); ?>" defer></script>
   <script src="<?= asset_url('assets/js/list-field.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/list-field.js'); ?>" defer></script>
+  <script src="<?= asset_url('assets/js/stepper.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/stepper.js'); ?>" defer></script>
+  <script src="<?= asset_url('assets/js/overlays.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/overlays.js'); ?>" defer></script>
   <script src="<?= asset_url('assets/js/app.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/app.js'); ?>" defer></script>
   <script src="<?= asset_url('assets/js/marquee.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/marquee.js'); ?>" defer></script>
   <script src="<?= asset_url('assets/js/present-how-it-work.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/present-how-it-work.js'); ?>" defer></script>
+  <script src="<?= asset_url('assets/js/product-sticky.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/product-sticky.js'); ?>" defer></script>
+  <script src="<?= asset_url('assets/js/product-share.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/product-share.js'); ?>" defer></script>
+  <script src="<?= asset_url('assets/js/modal.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/modal.js'); ?>" defer></script>
+  <script src="<?= asset_url('assets/js/gallery.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/gallery.js'); ?>" defer></script>
 </head>
-<body class="bg-zinc-100 text-base leading-relaxeds text-zinc-600 tracking-[-2%]">
+<body class="text-base leading-relaxeds text-zinc-600 tracking-[-2%]">
   <main>
     <?= $content ?? ''; ?>
   </main>

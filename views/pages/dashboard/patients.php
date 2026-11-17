@@ -12,21 +12,24 @@ $register_button = [
   'color' => 'primary',
 ];
 
-?>
-<section class="section py-0!" aria-labelledby="patients-title">
-  <header class="section-header">
-    <h1 id="patients-title" class="section-title text-3xl font-medium text-zinc-800">Patients</h1>
-    <p class="section-description mt-2 text-sm text-zinc-500">Find patient records and keep track of follow-ups.</p>
-  </header>
+$page_header = [
+  'title'       => $page_title,
+  'title_id'    => 'patients-title',
+  'description' => 'Find patient records and keep track of follow-ups.',
+  'breadcrumb'  => [
+    ['label' => 'Dashboard', 'href' => asset_url('dashboard/')],
+    ['label' => 'Patients'],
+  ],
+  'actions'     => [$register_button],
+];
 
-  <div class="section-actions mt-4">
-    <?php component('button', $register_button); ?>
-  </div>
+?>
+  <?php component('dashboard/header', $page_header); ?>
   <?php if ($registered): ?>
     <p role="status" class="section-status mt-4 text-small color-strong">Patient registered for this demo session.</p>
   <?php endif; ?>
 
-  <div class="report-cards grid gap-3 mt-3">
+  <div class="report-cards grid gap-3 mt-10">
     <?php component('dashboard/patient-records', ['directory' => $directory]); ?>
   </div>
 </section>

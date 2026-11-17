@@ -44,18 +44,22 @@ $list_card = [
   },
 ];
 
+$page_header = [
+  'title'       => $page_title,
+  'title_id'    => 'categories-title',
+  'description' => $page_description,
+  'breadcrumb'  => [
+    ['label' => 'Products', 'href' => asset_url('dashboard/products/')],
+    ['label' => 'Product Categories'],
+  ],
+  'actions'     => [
+    ['label' => 'Create Category', 'href' => asset_url('dashboard/product-category-edit/'), 'color' => 'primary'],
+  ],
+];
+
 ?>
-<section class="section min-w-0 py-0!" aria-labelledby="categories-title">
-  <nav aria-label="Breadcrumb" class="category-navigation mb-5">
-    <a href="<?= asset_url('dashboard/products/'); ?>" class="category-back text-small underline underline-offset-4">Products</a>
-  </nav>
-  <header class="section-header flex flex-wrap items-start justify-between gap-4">
-    <div class="section-heading">
-      <h1 id="categories-title" class="section-title text-3xl font-medium color-strong">Product Categories</h1>
-    </div>
-    <?php component('button', ['label' => 'Create Category', 'href' => asset_url('dashboard/product-category-edit/'), 'color' => 'primary']); ?>
-  </header>
-  <div class="section-content min-w-0 mt-6">
+  <?php component('dashboard/header', $page_header); ?>
+  <div class="section-content min-w-0 mt-10">
     <?php component('card', $list_card); ?>
   </div>
 </section>

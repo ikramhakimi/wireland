@@ -50,10 +50,10 @@ $treatment_items = [
 
     <ol class="flow-steps grid grid-cols-1 gap-3 mt-10 sm:grid-cols-2 lg:mx-30">
       <?php foreach ($steps as $step): ?>
-        <li class="step flex flex-col p-5 rounded-xl bg-white">
+        <li class="step flex flex-col p-5 rounded-xl bg-zinc-100">
           <div class="step-header flex items-center gap-2">
             <span class="step-pill inline-flex items-center justify-center size-10 text-small font-medium
-              rounded-lg bg-zinc-100 color-strong">
+              rounded-lg bg-zinc-500 text-white">
               <span class="step-label sr-only">Step </span><?= e($step['number']); ?>
             </span>
             

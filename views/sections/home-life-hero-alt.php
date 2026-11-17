@@ -25,7 +25,7 @@ $hero_marquee = [
 ];
 
 ?>
-<section class="hero bg-zinc-100 color-default relative py-10 sm:py-15 overflow-hidden js-component-home-hero">
+<section class="hero color-default relative py-10 sm:py-15 overflow-hidden js-component-home-hero">
   <div class="hero-container container">
     <div class="hero-grid grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-2">
       <div class="hero-header col-span-2 sm:pr-20">

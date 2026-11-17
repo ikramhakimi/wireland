@@ -28,7 +28,7 @@ $list_card = [
   'title' => 'Product Catalogue',
   'content' => static function () use ($products, $category_items, $product_groups, $grouped_products): void {
     ?>
-    <form role="search" class="filter mb-6 js-component-products-filters">
+    <form role="search" class="filter mb-10 js-component-products-filters">
       <div class="filter-controls flex flex-col gap-3
         @3xl:flex-row @3xl:items-end @3xl:gap-3">
         <div class="filter-fields flex flex-col gap-3 min-w-0 [&_.field-label]:sr-only
@@ -107,19 +107,23 @@ $list_card = [
   },
 ];
 
+$page_header = [
+  'title'       => $page_title,
+  'title_id'    => 'products-title',
+  'description' => 'Manage products and keep track of stock that needs restocking.',
+  'breadcrumb'  => [
+    ['label' => 'Dashboard', 'href' => asset_url('dashboard/')],
+    ['label' => 'Products'],
+  ],
+  'actions'     => [
+    ['label' => 'Categories', 'href' => asset_url('dashboard/product-categories/'), 'color' => 'secondary'],
+    ['label' => 'Create Product', 'href' => asset_url('dashboard/product-edit/'), 'color' => 'primary'],
+  ],
+];
+
 ?>
-<section class="section min-w-0 py-0!" aria-labelledby="products-title">
-  <header class="section-header flex flex-wrap items-start justify-between gap-4">
-    <div class="section-heading">
-      <h1 id="products-title" class="section-title text-title-md font-medium color-strong">Products</h1>
-      <p class="section-description mt-2 text-sm text-zinc-500">Manage products and keep track of stock that needs restocking.</p>
-    </div>
-    <div class="product-actions flex flex-wrap gap-3">
-      <?php component('button', ['label' => 'Categories', 'href' => asset_url('dashboard/product-categories/'), 'color' => 'secondary']); ?>
-      <?php component('button', ['label' => 'Create Product', 'href' => asset_url('dashboard/product-edit/'), 'color' => 'primary']); ?>
-    </div>
-  </header>
-  <div class="section-content @container min-w-0 mt-6">
+  <?php component('dashboard/header', $page_header); ?>
+  <div class="section-content @container min-w-0 mt-10">
     <?php $list_card['content'](); ?>
   </div>
 </section>

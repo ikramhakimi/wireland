@@ -682,6 +682,28 @@
   });
 })();
 
+// Cart page: submit a line's quantity form shortly after its stepper value changes; the server recalculates.
+// Required hooks: .js-component-cart-autosubmit form containing the stepper number input.
+(() => {
+  document.querySelectorAll('.js-component-cart-autosubmit').forEach((form) => {
+    const input = form.querySelector('input[type="number"]');
+    if (!input) return;
+
+    let saved = input.value;
+    let timer;
+
+    input.addEventListener('change', () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        if (input.value === saved) return;
+
+        saved = input.value;
+        form.requestSubmit();
+      }, 400);
+    });
+  });
+})();
+
 // Cart summary: toggle the breakdown above the persistent total and checkout action on all screen sizes.
 // Required hooks: .js-component-cart-summary-toggle, -breakdown, and -summary-label.
 (() => {

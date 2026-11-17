@@ -83,7 +83,7 @@ $group_switch = [
 ?>
 <section aria-label="Patient records" class="directory @container">
   <form id="patients-filter" action="<?= asset_url('dashboard/patients/'); ?>" method="get"
-    class="filter mb-6" role="search">
+    class="filter mb-10" role="search">
     <input type="hidden" name="per_page" value="<?= e($directory['per_page']); ?>">
     <div class="filter-controls flex flex-col gap-3
       @3xl:flex-row @3xl:items-end @3xl:gap-3">

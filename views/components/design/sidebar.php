@@ -29,6 +29,7 @@ $navigation_groups = [
     ['label' => 'Input', 'target' => 'design-input'],
     ['label' => 'Input Group', 'target' => 'design-input-group'],
     ['label' => 'Input Group Text', 'target' => 'design-input-group-text'],
+    ['label' => 'Stepper', 'target' => 'design-stepper'],
     ['label' => 'Textarea', 'target' => 'design-textarea'],
     ['label' => 'Select', 'target' => 'design-select'],
     ['label' => 'Checkbox', 'target' => 'design-checkbox'],

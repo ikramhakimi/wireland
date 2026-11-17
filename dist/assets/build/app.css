@@ -2835,7 +2835,7 @@
     text-underline-offset: 3px;
   }
   .antialiased {
-    -webkit-font-smoothing: antialiased;
+    
     -moz-osx-font-smoothing: grayscale;
   }
   .accent-orange-600 {

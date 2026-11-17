@@ -54,7 +54,7 @@
       <?php component('components/dashboard/sidebar', ['page_current' => $page_current ?? '']); ?>
     </aside>
     <main id="dashboard-content" tabindex="-1" class="dashboard-content min-w-0 max-w-5xl p-5 lg:ml-64">
-      <?php component('components/dashboard/header'); ?>
+      <?php component('components/dashboard/menu-toggle'); ?>
       <?= $content ?? ''; ?>
     </main>
   </div>

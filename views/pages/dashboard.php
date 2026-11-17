@@ -28,15 +28,16 @@ $product_sales = [
   'report_end'   => $report_end,
 ];
 
+$page_header = [
+  'title'       => $page_title,
+  'title_id'    => 'dashboard-title',
+  'description' => 'The numbers behind your business.',
+];
+
 ?>
 <section class="section section-overview py-0!" aria-labelledby="dashboard-title">
   <div class="section-content">
-    <header class="section-header flex flex-wrap items-start justify-between gap-4">
-      <div class="section-heading">
-        <h1 id="dashboard-title" class="section-title text-3xl font-medium text-balance text-zinc-800">Overview</h1>
-        <p class="section-description max-w-xl mt-2 text-sm text-pretty text-zinc-500">The numbers behind your business.</p>
-      </div>
-    </header>
+    <?php component('dashboard/header', $page_header); ?>
 
     <section class="section section-business mt-10 py-0!" aria-labelledby="business-title">
       <div class="summary-cards grid gap-3">

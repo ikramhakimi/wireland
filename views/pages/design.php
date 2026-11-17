@@ -4,6 +4,28 @@ $page_title       = 'UI Design Guideline';
 $page_description = 'Shared visual foundations and components for the website and dashboards.';
 $page_current     = 'design';
 
+$design_dashboard_header = [
+  'title'       => 'Products',
+  'title_id'    => 'design-dashboard-header-example',
+  'description' => 'Manage products and keep track of stock that needs restocking.',
+  'breadcrumb'  => [
+    ['label' => 'Dashboard', 'href' => asset_url('dashboard/')],
+    ['label' => 'Products'],
+  ],
+  'actions'     => [
+    ['label' => 'Categories', 'href' => asset_url('dashboard/product-categories/'), 'color' => 'secondary'],
+    ['label' => 'Create Product', 'href' => asset_url('dashboard/product-edit/'), 'color' => 'primary'],
+  ],
+];
+
+$design_breadcrumbs = [
+  'items' => [
+    ['label' => 'Dashboard', 'href' => asset_url('dashboard/')],
+    ['label' => 'Design Reference', 'href' => asset_url('design')],
+    ['label' => 'Breadcrumbs'],
+  ],
+];
+
 $design_collapse_expanded = [
   'label'       => 'Plain (Default)',
   'controls'    => 'design-collapse-expanded',
@@ -32,6 +54,27 @@ $design_input_group = [
   'placeholder'  => 'Name, ID, email or phone',
   'value'        => $input_group_query,
   'button_label' => 'Search',
+];
+
+$design_steppers = [
+  [
+    'title' => 'Default (min 1)',
+    'data'  => ['id' => 'design-stepper-default', 'name' => 'quantity', 'label' => 'Quantity'],
+  ],
+  [
+    'title' => 'Min & Max (1–5)',
+    'data'  => [
+      'id'     => 'design-stepper-range',
+      'label'  => 'Quantity',
+      'value'  => 5,
+      'max'    => 5,
+      'helper' => 'Maximum 5 per order.',
+    ],
+  ],
+  [
+    'title' => 'Disabled',
+    'data'  => ['id' => 'design-stepper-disabled', 'label' => 'Quantity', 'value' => 2, 'disabled' => true],
+  ],
 ];
 
 $button_sizes = [
@@ -1444,6 +1487,30 @@ $input_group_text_examples = [
       </div>
     </section>
 
+    <section id="design-stepper" aria-labelledby="design-stepper-title" class="section border-t border-zinc-200">
+      <header class="section-header">
+        <h2 id="design-stepper-title" class="section-title text-title-md font-semibold color-strong">Stepper</h2>
+        <p class="section-description mt-3 text-small leading-relaxed">
+          Change a small whole number, such as quantity, with minus and plus buttons. The value can also be typed.
+          Minimum defaults to 1; buttons disable at the limits. One size: 40px.
+        </p>
+        <p class="section-source mt-3 text-small">Source: <code>views/components/forms/stepper.php</code></p>
+      </header>
+      <div class="section-content mt-6">
+        <div class="section-demo p-5 rounded-md border border-zinc-200 bg-zinc-100
+          sm:p-10">
+          <div class="form-examples grid gap-6 md:grid-cols-3">
+            <?php foreach ($design_steppers as $stepper): ?>
+              <div class="form-example">
+                <h4 class="form-example-title mb-3 text-small font-medium color-default"><?= e($stepper['title']); ?></h4>
+                <?php component('forms/stepper', $stepper['data']); ?>
+              </div>
+            <?php endforeach; ?>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="design-textarea" aria-labelledby="design-textarea-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-textarea-title" class="section-title text-title-md font-semibold color-strong">Textarea</h2>
@@ -1933,6 +2000,23 @@ $input_group_text_examples = [
       </div>
     </section>
 
+    <section id="design-dashboard-header" aria-labelledby="design-dashboard-header-title"
+      class="section border-t border-zinc-200">
+      <header class="section-header">
+        <h2 id="design-dashboard-header-title" class="section-title text-title-md font-semibold color-strong">Dashboard Header</h2>
+        <p class="section-description mt-3 text-small leading-relaxed">
+          Use one page title with optional description, breadcrumb items and button actions.
+          Link parent breadcrumb items and omit href on the current page.
+        </p>
+        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>views/components/dashboard/header.php</code></p>
+      </header>
+      <div class="section-content mt-6">
+        <div class="section-demo p-5 rounded-md border border-zinc-200 bg-zinc-100">
+          <?php component('dashboard/header', $design_dashboard_header); ?>
+        </div>
+      </div>
+    </section>
+
     <section id="design-breadcrumbs" aria-labelledby="design-breadcrumbs-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-breadcrumbs-title" class="section-title text-title-md font-semibold color-strong">Breadcrumbs</h2>
@@ -1940,28 +2024,12 @@ $input_group_text_examples = [
           Use breadcrumbs to show where a page sits in a hierarchy. Link to parent pages and mark the current page
           without making it a link.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>views/pages/design.php</code></p>
+        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>views/components/breadcrumbs.php</code></p>
       </header>
       <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Page Hierarchy</h3>
-          <nav aria-label="Breadcrumb" class="breadcrumbs">
-            <ol class="breadcrumbs-items flex flex-wrap items-center gap-2 text-small">
-              <li class="breadcrumbs-item">
-                <a href="<?= asset_url('dashboard/'); ?>" class="breadcrumbs-link color-primary underline underline-offset-4
-                  hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">Dashboard</a>
-              </li>
-              <li class="breadcrumbs-item flex items-center gap-2">
-                <span aria-hidden="true" class="breadcrumbs-separator color-muted">/</span>
-                <a href="<?= asset_url('design'); ?>" class="breadcrumbs-link color-primary underline underline-offset-4
-                  hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">Design Reference</a>
-              </li>
-              <li class="breadcrumbs-item flex items-center gap-2">
-                <span aria-hidden="true" class="breadcrumbs-separator color-muted">/</span>
-                <span aria-current="page" class="breadcrumbs-current color-strong">Breadcrumbs</span>
-              </li>
-            </ol>
-          </nav>
+          <?php component('breadcrumbs', $design_breadcrumbs); ?>
         </div>
       </div>
     </section>

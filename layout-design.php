@@ -19,6 +19,7 @@
   <script src="<?= asset_url('assets/js/tabs.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/tabs.js'); ?>" defer></script>
   <script src="<?= asset_url('assets/js/overlays.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/overlays.js'); ?>" defer></script>
   <script src="<?= asset_url('assets/js/list-field.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/list-field.js'); ?>" defer></script>
+  <script src="<?= asset_url('assets/js/stepper.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/stepper.js'); ?>" defer></script>
   <script src="<?= asset_url('assets/js/design.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/design.js'); ?>" defer></script>
   <script src="<?= asset_url('assets/js/marquee.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/marquee.js'); ?>" defer></script>
 </head>

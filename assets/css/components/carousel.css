@@ -12,6 +12,11 @@
     @apply opacity-40 cursor-not-allowed;
   }
 
+  /* Simple layout: controls sit in the title row instead of over the track edges. */
+  .carousel-simple .carousel-control {
+    @apply static translate-y-0;
+  }
+
   .carousel .carousel-fade {
     @apply absolute inset-y-0 z-10 hidden w-5 pointer-events-none;
   }
