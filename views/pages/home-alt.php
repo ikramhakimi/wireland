@@ -6,7 +6,7 @@ $page_current     = 'home';
 
 component('navbar');
 section('home-hero');
-section('home-how-it-works');
+section('how-it-works');
 section('home-results');
 // section('home-problems-2');
 // section('home-problems');

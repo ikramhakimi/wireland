@@ -2,7 +2,7 @@
 $headline_center_no_button = [
   'topic'      => 'Hair Loss Issue',
   'emoji'      => '🔍',
-  'title'      => 'Understand what your hair loss trying to tell you',
+  'title'      => 'Understand what your hair loss is telling you',
   'subtitle'   => 'A changing hairline. A wider part. Less volume than before. Whatever you’ve noticed, understanding the cause is the first step towards suitable care.',
   'alignment'  => 'center',
 ];

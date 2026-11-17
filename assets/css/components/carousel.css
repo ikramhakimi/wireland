@@ -29,14 +29,10 @@
 }
 
 /* Hide carousel scrollbars while preserving native touch and keyboard scrolling. */
-.carousel-products-basic > div > div > [role="group"],
-.carousel-products-prescribe > div > div > [role="group"],
 .carousel .carousel-track {
   scrollbar-width: none;
 }
 
-.carousel-products-basic > div > div > [role="group"]::-webkit-scrollbar,
-.carousel-products-prescribe > div > div > [role="group"]::-webkit-scrollbar,
 .carousel .carousel-track::-webkit-scrollbar {
   display: none;
 }

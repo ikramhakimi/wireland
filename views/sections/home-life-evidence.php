@@ -1,7 +1,7 @@
 <?php
 $headline_center_no_button = [
   'topic'      => 'Clinical Evidence',
-  'title'      => 'Evidence-backed treatments to stop hair loss and improve growth',
+  'title'      => 'Treatments supported by clinical research',
   // 'subtitle'   => 'See what our customers have to say about their experience.',
   'alignment'  => 'center',
 ];

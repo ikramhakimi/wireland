@@ -1,8 +1,8 @@
 <?php
 $headline_center_no_button = [
   'topic'      => 'Testimonial',
-  'title'      => 'More than 50,000 clients trust our treatment plans',
-  'subtitle'   => 'See what our customers have to say about their experience.',
+  'title'      => 'What our patients say about their care',
+  'subtitle'   => 'Real experiences from people who started treatment with us.',
   'alignment'  => 'center',
 ];
 ?>
