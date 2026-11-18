@@ -1,7 +1,9 @@
 /**
  * Assessment quiz
  * Purpose: Runs the assessment flow (quiz → register → account) from one localStorage record.
- *   quiz:     one question per screen, progress, back navigation; the last answer opens the register page.
+ *   quiz:     one question per screen, progress, back navigation; the last answer opens the register page,
+ *             or routes.complete when set (treatment check-in). Photo steps (data-type="photos", data-min) take
+ *             file inputs: each shows a local preview (.js-quiz-photo-preview); nothing is uploaded.
  *   register: UI-only sign-up; a valid form or the Google button marks the record registered.
  *   account:  fills saved answers and suggested products; no redirect (the account page has its own data).
  *   all:      Exit Assessment and Start Again clear the record before following their link.
@@ -68,8 +70,10 @@
     state.index = Math.min(Math.max(Number(state.index) || 0, 0), total - 1);
 
     const inputsOf   = (step) => [...step.querySelectorAll('.js-quiz-input')];
-    const valuesOf   = (step) => inputsOf(step).filter((input) => input.checked).map((input) => input.value);
-    const isAnswered = (step) => valuesOf(step).length > 0;
+    const isFilled   = (input) => (input.type === 'file' ? input.files.length > 0 : input.checked);
+    const valuesOf   = (step) => inputsOf(step).filter(isFilled)
+      .map((input) => (input.type === 'file' ? input.name : input.value));
+    const isAnswered = (step) => valuesOf(step).length >= (Number(step.dataset.min) || 1);
     const isRequired = (step) => step.dataset.required === 'true';
 
     const updateNextButton = (step) => {
@@ -80,7 +84,11 @@
       const label    = button.querySelector('.button-label');
       const blocked  = isRequired(step) && !answered;
 
-      if (label) label.textContent = answered || isRequired(step) ? 'Continue' : 'I’m Not Sure';
+      // Required steps keep their own label (e.g. Send to Your Doctor); optional ones offer I’m Not Sure.
+      if (label) {
+        label.dataset.label ??= isRequired(step) ? label.textContent.trim() : 'Continue';
+        label.textContent = answered || isRequired(step) ? label.dataset.label : 'I’m Not Sure';
+      }
       button.disabled = blocked;
       button.classList.toggle('button-disabled', blocked);
     };
@@ -89,7 +97,7 @@
       steps.forEach((step) => {
         const saved = state.answers[step.dataset.question] || [];
         inputsOf(step).forEach((input) => {
-          input.checked = saved.includes(input.value);
+          if (input.type !== 'file') input.checked = saved.includes(input.value);
         });
         updateNextButton(step);
       });
@@ -132,7 +140,7 @@
 
       state.completed = true;
       saveState();
-      window.location.href = state.registered ? routes.account : routes.register;
+      window.location.href = routes.complete || (state.registered ? routes.account : routes.register);
     };
 
     const applyExclusive = (input) => {
@@ -144,11 +152,24 @@
       });
     };
 
+    // Photo inputs: show the picked image in the slot and mark the slot filled (styles use [data-filled]).
+    const showPhoto = (input) => {
+      const preview = input.closest('label')?.querySelector('.js-quiz-photo-preview');
+      const file    = input.files[0];
+      if (!preview) return;
+
+      if (preview.src) URL.revokeObjectURL(preview.src);
+      preview.hidden = !file;
+      if (file) preview.src = URL.createObjectURL(file);
+      input.toggleAttribute('data-filled', Boolean(file));
+    };
+
     root.addEventListener('change', (event) => {
       const input = event.target.closest('.js-quiz-input');
       if (!input) return;
 
       const step = input.closest('.js-quiz-step');
+      if (input.type === 'file') showPhoto(input);
       applyExclusive(input);
       recordAnswer(step);
       updateNextButton(step);

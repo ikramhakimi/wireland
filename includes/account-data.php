@@ -4,15 +4,15 @@
  * Data: Patient account (prototype)
  * Purpose: Sample signed-in patient, assessments, prescriptions, orders and account navigation for /account pages.
  * Preview: the 'patient' group in includes/preview-states.php
- *          (?state=new|pending|needs_info|plan_ready|on_treatment|checkin_due) switches the current assessment and
- *          what follows from it. on_treatment and checkin_due follow an ordered plan: the assessment stays
+ *          (?state=new|pending|needs_info|plan_ready|on_treatment|checkin_due|checkin_review) switches the current
+ *          assessment and what follows from it. The last three follow an ordered plan: the assessment stays
  *          plan_ready and 'treatment' holds the follow-up (supply and check-ins).
  */
 
 $doctors        = require __DIR__ . '/doctors-data.php';
 $preview_state  = preview_state('patient');
 $is_new_patient = $preview_state === 'new';
-$is_treating    = in_array($preview_state, ['on_treatment', 'checkin_due'], true);
+$is_treating    = in_array($preview_state, ['on_treatment', 'checkin_due', 'checkin_review'], true);
 $is_plan_ready  = $preview_state === 'plan_ready' || $is_treating;
 $state_query    = preview_query('patient');
 $current_doctor = $doctors['rujhan']['name'];
@@ -152,13 +152,14 @@ return [
     $is_plan_ready ? $current_prescription : null,
     $past_prescription,
   ])),
-  // Follow-up after the plan is ordered (null until then). status: on_treatment | checkin_due.
+  // Follow-up after the plan is ordered (null until then). status: on_treatment | checkin_due | checkin_review.
   'treatment' => $is_treating ? [
     'status'       => $preview_state,
     'order_id'     => 'RR-10531',
     'ordered_on'   => '21 Nov 2026',
     'started_on'   => '22 Nov 2026',
-    'supply_day'   => $preview_state === 'checkin_due' ? 28 : 18,
+    'supply_day'   => $preview_state === 'on_treatment' ? 18 : 28,
+    'checkin_sent' => $preview_state === 'checkin_review' ? '20 Dec 2026' : '',
     'supply_total' => 30,
     // First check-in is the next one; dates follow the doctor's plan note (check in after 4 weeks).
     'checkins'     => [

@@ -11,7 +11,8 @@
  *   needs_info doctor asked a question → thread + chat composer (reply saved by account-reply.js); answers.
  *   plan_ready plan ready → doctor notes + plan products + order; answers.
  *   on_treatment plan ordered → supply progress + check-in dates; answers.
- *   checkin_due  check-in due → check-in steps + start check-in; answers.
+ *   checkin_due  check-in due → check-in steps + start check-in (account/checkin); answers.
+ *   checkin_review check-in sent → what happens next; answers.
  * Data: includes/account-data.php (sample patient; ?state= previews a mode),
  *       includes/assessment-quiz-data.php (questions, products). assets/js/assessment-quiz.js fills
  *       answers and picks products from localStorage.
@@ -34,13 +35,14 @@ $first_name    = $account['patient']['first_name'];
 $whatsapp_href = static fn (string $text): string => 'https://wa.me/601116741858?text=' . rawurlencode($text);
 
 $mode_titles = [
-  'new'          => 'Hi ' . $first_name . ', let’s start with your hair',
-  'pending'      => 'Hi ' . $first_name . ', your assessment is with our doctor',
-  'needs_info'   => 'Hi ' . $first_name . ', our doctor has a question for you',
-  'plan_ready'   => 'Hi ' . $first_name . ', your plan is ready',
-  'replied'      => 'Hi ' . $first_name . ', thanks for your reply',
-  'on_treatment' => 'Hi ' . $first_name . ', your treatment is underway',
-  'checkin_due'  => 'Hi ' . $first_name . ', it’s time for your check-in',
+  'new'            => 'Hi ' . $first_name . ', let’s start with your hair',
+  'pending'        => 'Hi ' . $first_name . ', your assessment is with our doctor',
+  'needs_info'     => 'Hi ' . $first_name . ', our doctor has a question for you',
+  'plan_ready'     => 'Hi ' . $first_name . ', your plan is ready',
+  'replied'        => 'Hi ' . $first_name . ', thanks for your reply',
+  'on_treatment'   => 'Hi ' . $first_name . ', your treatment is underway',
+  'checkin_due'    => 'Hi ' . $first_name . ', it’s time for your check-in',
+  'checkin_review' => 'Hi ' . $first_name . ', thanks for your check-in',
 ];
 $start_steps = [
   [
@@ -115,12 +117,13 @@ $whatsapp_button = [
 // Aside facts per mode: label => value.
 $next_checkin = $treatment['checkins'][0] ?? null;
 $aside_facts  = $treatment !== null
-  ? [
+  ? array_filter([
     'Started'       => $treatment['started_on'],
     'Supply'        => ($treatment['supply_total'] - $treatment['supply_day']) . ' days left',
-    'Next check-in' => $next_checkin['date'],
+    'Next check-in' => $treatment['checkin_sent'] !== '' ? '' : $next_checkin['date'],
+    'Check-in sent' => $treatment['checkin_sent'],
     'Doctor'        => $current['doctor'],
-  ]
+  ])
   : ($current === null
   ? [
     'Takes'         => 'About 3 minutes',
@@ -146,12 +149,13 @@ $tracker = [
     [
       'label' => 'Doctor review',
       'note'  => [
-        'new'          => 'Within ' . $review_time,
-        'pending'      => 'Within ' . $review_time,
-        'needs_info'   => 'Action needed',
-        'plan_ready'   => 'Done ' . $plan_issued_on,
-        'on_treatment' => 'Done ' . $plan_issued_on,
-        'checkin_due'  => 'Done ' . $plan_issued_on,
+        'new'            => 'Within ' . $review_time,
+        'pending'        => 'Within ' . $review_time,
+        'needs_info'     => 'Action needed',
+        'plan_ready'     => 'Done ' . $plan_issued_on,
+        'on_treatment'   => 'Done ' . $plan_issued_on,
+        'checkin_due'    => 'Done ' . $plan_issued_on,
+        'checkin_review' => 'Done ' . $plan_issued_on,
       ][$mode],
     ],
     [
@@ -163,22 +167,25 @@ $tracker = [
     [
       'label' => 'Treatment',
       'note'  => [
-        'on_treatment' => 'Day ' . ($treatment['supply_day'] ?? 0) . ' of ' . ($treatment['supply_total'] ?? 0),
-        'checkin_due'  => 'Check-in due',
+        'on_treatment'   => 'Day ' . ($treatment['supply_day'] ?? 0) . ' of ' . ($treatment['supply_total'] ?? 0),
+        'checkin_due'    => 'Check-in due',
+        'checkin_review' => 'Check-in sent',
       ][$mode] ?? '',
     ],
   ],
   'active'     => [
-    'new'          => 0,
-    'pending'      => 1,
-    'needs_info'   => 1,
-    'plan_ready'   => 2,
-    'on_treatment' => 3,
-    'checkin_due'  => 3,
+    'new'            => 0,
+    'pending'        => 1,
+    'needs_info'     => 1,
+    'plan_ready'     => 2,
+    'on_treatment'   => 3,
+    'checkin_due'    => 3,
+    'checkin_review' => 3,
   ][$mode],
   'icon'       => [
-    'on_treatment' => 'progress-4-line',
-    'checkin_due'  => 'calendar-line',
+    'on_treatment'   => 'progress-4-line',
+    'checkin_due'    => 'calendar-line',
+    'checkin_review' => 'time-line',
   ][$mode] ?? $account['statuses'][$mode]['icon'] ?? 'progress-2-line',
   'attention'  => in_array($mode, ['needs_info', 'checkin_due'], true),
   'reply_for'  => $mode === 'needs_info' ? $current['id'] : '',
@@ -186,32 +193,37 @@ $tracker = [
 ];
 // Status section per mode: heading + summary ('sent' replaces 'text' once the reply to the doctor is sent).
 $status_sections = [
-  'new'        => [
+  'new'            => [
     'title' => 'How it works',
     'text'  => 'Tell us about your hair and a doctor will recommend what suits you.',
   ],
-  'pending'    => [
+  'pending'        => [
     'title' => 'What happens next',
     'text'  => 'You don’t need to do anything right now. We’ll message you within ' . $review_time
       . ' with your plan.',
   ],
-  'needs_info' => [
+  'needs_info'     => [
     'title' => 'Your doctor’s question',
     'text'  => 'Reply below. Your plan is on hold until the doctor hears back.',
     'sent'  => ($current['doctor'] ?? '') . ' has your reply and usually responds within ' . $review_time . '.',
   ],
-  'plan_ready'   => [
+  'plan_ready'     => [
     'title' => 'Your plan',
     'text'  => $current['plan']['note'] ?? '',
   ],
-  'on_treatment' => [
+  'on_treatment'   => [
     'title' => 'Your treatment',
     'text'  => 'Keep using your plan as directed. Results usually take 3 to 6 months, so steady use matters '
       . 'more than quick changes.',
   ],
-  'checkin_due'  => [
+  'checkin_due'    => [
     'title' => 'Your ' . strtolower($next_checkin['title'] ?? '') . ' check-in',
     'text'  => 'Tell ' . ($current['doctor'] ?? '') . ' how your hair and scalp are doing. It takes about 2 minutes.',
+  ],
+  'checkin_review' => [
+    'title' => 'Your ' . strtolower($next_checkin['title'] ?? '') . ' check-in is with your doctor',
+    'text'  => 'You don’t need to do anything right now. Keep using your plan as usual while '
+      . ($current['doctor'] ?? '') . ' reviews it.',
   ],
 ];
 $checkin_steps = [
@@ -222,14 +234,27 @@ $checkin_steps = [
     'text'  => 'Usually within ' . $review_time . '. They’ll continue or adjust your plan.',
   ],
 ];
+$checkin_next_steps = [
+  [
+    'title' => 'Your doctor reviews your check-in',
+    'text'  => 'Usually within ' . $review_time . '. They may message you if they need more detail.',
+  ],
+  [
+    'title' => 'Your plan continues or changes',
+    'text'  => 'Any change appears here, and we’ll let you know by WhatsApp and email.',
+  ],
+  [
+    'title' => 'Your next check-in',
+    'text'  => ($treatment['checkins'][1]['title'] ?? '') . ', around ' . ($treatment['checkins'][1]['date'] ?? '') . '.',
+  ],
+];
 $checkin_dates = array_map(
   static fn (array $checkin): array => ['title' => $checkin['title'], 'text' => $checkin['date']],
   $treatment['checkins'] ?? [],
 );
-// Placeholder link: the check-in form is not built yet.
 $checkin_button = [
   'label' => 'Start Check-in',
-  'href'  => '#',
+  'href'  => asset_url('account/checkin'),
   'size'  => 'large',
   'color' => 'primary',
   'class' => 'account-checkin w-full sm:w-auto',
@@ -272,6 +297,7 @@ $account_layout = [
     $treatment,
     $next_checkin,
     $checkin_steps,
+    $checkin_next_steps,
     $checkin_dates,
     $checkin_button,
     $whatsapp_button,
@@ -383,6 +409,8 @@ $account_layout = [
               </div>
             <?php elseif ($mode === 'checkin_due'): ?>
               <?php component('timeline', ['items' => $checkin_steps, 'class' => 'account-steps']); ?>
+            <?php elseif ($mode === 'checkin_review'): ?>
+              <?php component('timeline', ['items' => $checkin_next_steps, 'class' => 'account-steps']); ?>
             <?php elseif ($mode === 'plan_ready'): ?>
               <ul class="account-plan-list grid divide-y divide-dashed divide-zinc-200" role="list">
                 <?php foreach ($plan_items as $plan_item): ?>

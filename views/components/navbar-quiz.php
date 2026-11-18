@@ -5,7 +5,7 @@
  * Purpose: Focus header for the assessment flow.
  * Structure: Desktop: logo, back + progress pill, WhatsApp help.
  *            Mobile: back + progress pill, more button that opens a bottom drawer (Contact Support, Exit Assessment).
- * Data: back_href, step_label, percent (0–100), whatsapp_href, exit_href.
+ * Data: back_href, step_label, percent (0–100), whatsapp_href, exit_href, exit_label (default Exit Assessment).
  *       Requires assets/js/drawer.js on the page. JS hooks (js-quiz-back, js-quiz-step-label, js-quiz-percent,
  *       js-quiz-ring, js-quiz-exit) let assets/js/assessment-quiz.js update progress and clear saved answers.
  */
@@ -14,13 +14,14 @@ $step_label    = $step_label ?? '';
 $percent       = max(0, min(100, (int) ($percent ?? 0)));
 $whatsapp_href = $whatsapp_href ?? 'https://wa.me/601116741858';
 $exit_href     = $exit_href ?? asset_url('');
+$exit_label    = $exit_label ?? 'Exit Assessment';
 
 $menu_id     = 'quiz-menu';
 $menu_drawer = [
   'id'       => $menu_id,
   'title'    => 'How can we help?',
   'position' => 'bottom',
-  'content'  => static function () use ($whatsapp_href, $exit_href): void {
+  'content'  => static function () use ($whatsapp_href, $exit_href, $exit_label): void {
     $support_button = [
       'label'  => 'Contact Support',
       'href'   => $whatsapp_href,
@@ -31,7 +32,7 @@ $menu_drawer = [
       'class'  => 'quiz-menu-support w-full',
     ];
     $exit_button = [
-      'label'   => 'Exit Assessment',
+      'label'   => $exit_label,
       'href'    => $exit_href,
       'size'    => 'large',
       'color'   => 'secondary',

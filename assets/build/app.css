@@ -1044,6 +1044,9 @@
   .min-h-18 {
     min-height: calc(var(--spacing) * 18);
   }
+  .min-h-20 {
+    min-height: calc(var(--spacing) * 20);
+  }
   .min-h-22 {
     min-height: calc(var(--spacing) * 22);
   }
@@ -3272,6 +3275,21 @@
       opacity: 100%;
     }
   }
+  .group-has-\[\[data-filled\]\]\:border-zinc-800 {
+    &:is(:where(.group):has(*:is([data-filled])) *) {
+      border-color: var(--color-zinc-800);
+    }
+  }
+  .group-has-\[\[data-filled\]\]\:bg-zinc-800 {
+    &:is(:where(.group):has(*:is([data-filled])) *) {
+      background-color: var(--color-zinc-800);
+    }
+  }
+  .group-has-\[\[data-filled\]\]\:opacity-100 {
+    &:is(:where(.group):has(*:is([data-filled])) *) {
+      opacity: 100%;
+    }
+  }
   .group-aria-expanded\:rotate-180 {
     &:is(:where(.group)[aria-expanded="true"] *) {
       rotate: 180deg;
@@ -3980,6 +3998,11 @@
   .has-\[\.product-link\:focus-visible\]\:outline-zinc-950 {
     &:has(*:is(.product-link:focus-visible)) {
       outline-color: var(--color-zinc-950);
+    }
+  }
+  .has-\[\[data-filled\]\]\:border-zinc-800 {
+    &:has(*:is([data-filled])) {
+      border-color: var(--color-zinc-800);
     }
   }
   .aria-current\:text-zinc-800 {
