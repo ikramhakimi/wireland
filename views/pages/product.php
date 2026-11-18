@@ -180,20 +180,20 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
         </div>
         <div class="product-content min-w-0
           lg:col-span-5">
-          <p class="product-category mb-3 text-small color-muted"><?= e($product['category']); ?></p>
+          <p class="product-category mb-3 text-sm color-muted"><?= e($product['category']); ?></p>
           <h1 id="product-title" class="product-title text-title-md font-medium color-strong text-pretty">
             <?= e($product['name']); ?>
           </h1>
           <ul class="product-format flex flex-wrap gap-1 mt-5" aria-label="Product format">
             <?php foreach ($format_pills as $pill): ?>
-              <li class="badge inline-flex px-2.5 py-0.5 text-caption font-medium rounded-full border border-zinc-300 text-zinc-700">
+              <li class="badge inline-flex px-2.5 py-0.5 text-xs font-medium rounded-full border border-zinc-300 text-zinc-700">
                 <?= e($pill); ?>
               </li>
             <?php endforeach; ?>
           </ul>
           <p class="product-introduction mt-5 leading-relaxed"><?= e($page_description); ?></p>
           <?php if ($product_ingredients !== []): ?>
-            <p class="product-ingredients mt-2 text-caption color-muted">
+            <p class="product-ingredients mt-2 text-xs color-muted">
               <span class="product-ingredients-label font-medium">Ingredients:</span>
               <?= e(implode(', ', array_map(static fn (string $line): string => rtrim($line, '.'), $product_ingredients)) . '.'); ?>
             </p>
@@ -204,16 +204,16 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
                 <?= e(store_money((int) round($product['price'] * 100))); ?>
               </p>
               <?php if (($product['base_price'] ?? 0) > $product['price']): ?>
-                <p class="product-regular text-small color-muted">
+                <p class="product-regular text-sm color-muted">
                   <span class="product-regular-label sr-only">Regular price</span>
                   <s class="product-regular-value"><?= e(store_money((int) round($product['base_price'] * 100))); ?></s>
                 </p>
-                <p class="product-saving text-small color-positive">
+                <p class="product-saving text-sm color-positive">
                   Save <?= e(store_money((int) round(($product['base_price'] - $product['price']) * 100))); ?>
                 </p>
               <?php endif; ?>
             </div>
-            <p class="product-installment flex flex-wrap items-center gap-1.5 mt-1.5 text-caption leading-4 color-muted">
+            <p class="product-installment flex flex-wrap items-center gap-1.5 mt-1.5 text-xs leading-4 color-muted">
               <span>or <?= $installment_count; ?> payments of</span>
               <span class="font-medium color-strong"><?= e(store_money($installment_cents)); ?></span>
               <span>with</span>
@@ -221,7 +221,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
               <span class="sr-only">Atome</span>
             </p>
           </div>
-          <div class="product-delivery grid mt-5 text-small divide-y divide-dashed divide-zinc-300">
+          <div class="product-delivery grid mt-5 text-sm divide-y divide-dashed divide-zinc-300">
             <?php foreach ($delivery_facts as $fact): ?>
               <div class="product-delivery-row grid grid-cols-2 items-baseline justify-between gap-4 py-1.5">
                 <div class="product-delivery-label color-muted"><?= e($fact['label']); ?></div>
@@ -230,7 +230,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
             <?php endforeach; ?>
           </div>
           <?php if ($store_error !== ''): ?>
-            <p role="alert" class="product-error mt-4 text-small color-negative"><?= e($store_error); ?></p>
+            <p role="alert" class="product-error mt-4 text-sm color-negative"><?= e($store_error); ?></p>
           <?php endif; ?>
           <form id="product-purchase" method="post"
             action="<?= e(asset_url('product/') . '?id=' . rawurlencode($product_id)); ?>"
@@ -241,7 +241,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
             <div class="product-actions">
               <?php component('button', $add_button); ?>
             </div>
-            <ul class="product-assurances flex flex-wrap justify-center gap-x-5 gap-y-1 mt-3 text-caption color-muted"
+            <ul class="product-assurances flex flex-wrap justify-center gap-x-5 gap-y-1 mt-3 text-xs color-muted"
               aria-label="Purchase assurances">
               <?php foreach ($purchase_assurances as $assurance): ?>
                 <li class="product-assurance flex items-center gap-1.5">
@@ -252,7 +252,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
             </ul>
           </form>
           <?php if ($has_follow_up): ?>
-            <div class="product-follow-up flex items-start gap-5 mt-10 text-small">
+            <div class="product-follow-up flex items-start gap-5 mt-10 text-sm">
               <div class="product-follow-up-content min-w-0">
                 <p class="product-follow-up-title font-medium color-strong"><?= e($product_follow_up['title']); ?></p>
                 <p class="product-follow-up-text mt-1 color-muted"><?= e($product_follow_up['text']); ?></p>
@@ -275,7 +275,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
                   ]); ?>
                 </h2>
                 <div id="product-detail-panel-<?= e($detail['id']); ?>" <?= $detail['expanded'] ? '' : 'hidden'; ?>
-                  class="product-detail-content pb-5 text-small leading-relaxed">
+                  class="product-detail-content pb-5 text-sm leading-relaxed">
                   <?php if ($detail['list'] !== [] && ($detail['ordered'] ?? false)): ?>
                     <ol class="product-detail-list grid gap-1 pl-5 list-[square]">
                       <?php foreach ($detail['list'] as $line): ?>
@@ -300,7 +300,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
           </div>
           <div class="product-share flex items-center gap-3 mt-6">
             <?php component('button', $share_button); ?>
-            <p class="product-share-status text-small color-muted" role="status" aria-live="polite"></p>
+            <p class="product-share-status text-sm color-muted" role="status" aria-live="polite"></p>
           </div>
         </div>
       </div>
@@ -319,11 +319,11 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
     js-component-product-sticky" aria-hidden="true" inert>
     <div class="product-sticky-content container flex items-center justify-between gap-4">
       <div class="product-sticky-summary min-w-0">
-        <p class="product-sticky-name truncate text-small font-medium color-strong"><?= e($product['name']); ?></p>
-        <p class="product-sticky-price text-small color-muted"><?= e(store_money((int) round($product['price'] * 100))); ?></p>
+        <p class="product-sticky-name truncate text-sm font-medium color-strong"><?= e($product['name']); ?></p>
+        <p class="product-sticky-price text-sm color-muted"><?= e(store_money((int) round($product['price'] * 100))); ?></p>
       </div>
       <div class="product-sticky-actions flex shrink-0 items-center gap-6">
-        <p class="product-sticky-delivery hidden text-small color-muted
+        <p class="product-sticky-delivery hidden text-sm color-muted
           md:block">Free delivery · 1–2 working days</p>
         <?php component('button', $sticky_button); ?>
       </div>

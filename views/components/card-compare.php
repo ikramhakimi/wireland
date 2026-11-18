@@ -25,7 +25,7 @@ $meta_align  = $align === 'center' ? 'justify-center' : 'justify-start';
       <h3 class="compare-title font-semibold text-pretty color-strong"><?= e($title); ?></h3>
     <?php endif; ?>
     <?php if ($treatment !== '' || $timeframe !== ''): ?>
-      <p class="compare-meta flex flex-wrap items-center <?= $meta_align; ?> gap-2 mt-0.5 text-small color-muted">
+      <p class="compare-meta flex flex-wrap items-center <?= $meta_align; ?> gap-2 mt-0.5 text-sm color-muted">
         <?php if ($treatment !== ''): ?>
           <span class="compare-treatment"><?= e($treatment); ?></span>
         <?php endif; ?>

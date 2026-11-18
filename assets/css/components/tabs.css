@@ -7,12 +7,12 @@
   }
 
   .tabs .tabs-trigger {
-    @apply shrink-0 min-h-10 px-5 py-0 text-small font-medium leading-normal color-muted cursor-pointer;
+    @apply shrink-0 min-h-10 px-5 py-0 text-sm font-medium leading-normal color-muted cursor-pointer;
     white-space: nowrap;
   }
 
   .tabs-small .tabs-trigger {
-    @apply min-h-8 px-3.5 text-caption;
+    @apply min-h-8 px-3.5 text-xs;
   }
 
   .tabs .tabs-trigger:is([aria-selected="true"], [aria-pressed="true"]) {

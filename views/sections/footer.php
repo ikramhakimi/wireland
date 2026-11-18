@@ -23,7 +23,7 @@ $consultation_button = [
   'icon'  => 'arrow-right-line',
 ];
 ?>
-<section class="section footer footer-alt py-10 text-small">
+<section class="section footer footer-alt py-10 text-sm">
   <div class="footer-container container grid gap-12 md:gap-20">
     <?php if ($show_banner): ?>
       <div class="footer-banner">
@@ -46,7 +46,7 @@ $consultation_button = [
               </div>
               <div class="consultation-actions">
                 <?php component('button', $consultation_button); ?>
-                <div class="consultation-note mt-2 text-center text-caption">Free, Confidential & Secure.</div>
+                <div class="consultation-note mt-2 text-center text-xs">Free, Confidential & Secure.</div>
               </div>
             </div>
           </div>
@@ -58,7 +58,7 @@ $consultation_button = [
       <div class="footer-split grid gap-12 md:grid-cols-2 md:gap-10">
         <?php if ($show_products): ?>
           <div class="footer-products">
-            <h3 class="footer-topic mb-3 text-caption uppercase color-muted">Popular Products</h3>
+            <h3 class="footer-topic mb-3 text-xs uppercase color-muted">Popular Products</h3>
             <div class="footer-products-list space-y-3">
               <?php foreach ($popular_products as $product): ?>
                 <?php component('card-product-horizontal', [
@@ -77,7 +77,7 @@ $consultation_button = [
           <div class="footer-menu grid gap-8 md:grid-cols-2 md:gap-20 <?= $show_products ? '' : 'md:col-span-2'; ?>">
             <div class="footer-links space-y-8">
               <div class="footer-group footer-address">
-                <h3 class="footer-topic mb-3 text-caption uppercase color-muted">Our Address</h3>
+                <h3 class="footer-topic mb-3 text-xs uppercase color-muted">Our Address</h3>
                 <div class="footer-address-details">
                   <div class="footer-clinic-name">RR Hair Clinic,</div>
                   <div class="footer-address-location mb-3">
@@ -90,7 +90,7 @@ $consultation_button = [
               </div>
 
               <div class="footer-group">
-                <h3 class="footer-topic mb-3 text-caption uppercase color-muted">Working Hours</h3>
+                <h3 class="footer-topic mb-3 text-xs uppercase color-muted">Working Hours</h3>
                 <ul class="footer-list space-y-1">
                   <li>Mon–Fri: 9:00 AM–6:00 PM</li>
                   <li>Sat: 9:00 AM–1:00 PM</li>
@@ -99,7 +99,7 @@ $consultation_button = [
               </div>
 
               <div class="footer-group">
-                <h3 class="footer-topic mb-3 text-caption uppercase color-muted">Hair Loss</h3>
+                <h3 class="footer-topic mb-3 text-xs uppercase color-muted">Hair Loss</h3>
                 <ul class="footer-list space-y-1">
                   <li><a href="#">Male Pattern Baldness</a></li>
                   <li><a href="#">Female Hair Loss</a></li>
@@ -111,7 +111,7 @@ $consultation_button = [
               </div>
 
               <div class="footer-group">
-                <h3 class="footer-topic mb-3 text-caption uppercase color-muted">Treatments</h3>
+                <h3 class="footer-topic mb-3 text-xs uppercase color-muted">Treatments</h3>
                 <ul class="footer-list space-y-1">
                   <li><a href="#">Hair Transplant</a></li>
                   <li><a href="#">Sapphire FUE</a></li>
@@ -125,7 +125,7 @@ $consultation_button = [
 
             <div class="footer-links space-y-8">
               <div class="footer-group">
-                <h3 class="footer-topic mb-3 text-caption uppercase color-muted">Products</h3>
+                <h3 class="footer-topic mb-3 text-xs uppercase color-muted">Products</h3>
                 <ul class="footer-list space-y-1">
                   <li><a href="#">All Products</a></li>
                   <li><a href="#">Hair Growth</a></li>
@@ -135,7 +135,7 @@ $consultation_button = [
               </div>
 
               <div class="footer-group">
-                <h3 class="footer-topic mb-3 text-caption uppercase color-muted">Clinic</h3>
+                <h3 class="footer-topic mb-3 text-xs uppercase color-muted">Clinic</h3>
                 <ul class="footer-list space-y-1">
                   <li><a href="#">Our Doctors</a></li>
                   <li><a href="#">Results & Case Studies</a></li>
@@ -155,7 +155,7 @@ $consultation_button = [
       </div>
     <?php endif; ?>
 
-    <div class="footer-bottom pt-5 text-caption border-t border-zinc-100 color-muted
+    <div class="footer-bottom pt-5 text-xs border-t border-zinc-100 color-muted
       md:flex md:items-center md:justify-between">
       <div class="footer-copyright">RR Hair Clinic &copy; 2026 - All Rights Reserved.</div>
       <div class="footer-company mt-2 md:mt-0">RR Medical Group Sdn Bhd 202401006850 (1552710-H)</div>

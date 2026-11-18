@@ -42,7 +42,7 @@ $cancel_button = [
 <section class="section min-w-0 py-0!" aria-labelledby="register-patient-title">
   <header class="section-header">
     <h1 id="register-patient-title" class="section-title text-3xl font-medium color-strong">Register Patient</h1>
-    <p class="section-description mt-2 text-small color-muted">
+    <p class="section-description mt-2 text-sm color-muted">
       Demo only. Use fictional details. Records are kept for this browser session.
     </p>
   </header>
@@ -50,7 +50,7 @@ $cancel_button = [
     class="patient-registration grid min-w-0 max-w-2xl gap-6 mt-6">
     <input type="hidden" name="token" value="<?= e($registration['token']); ?>">
     <?php if ($registration['errors'] !== []): ?>
-      <p role="alert" class="patient-error text-small color-negative">
+      <p role="alert" class="patient-error text-sm color-negative">
         <?= e($registration['errors']['form'] ?? 'Patient was not registered. Check the highlighted fields and try again.'); ?>
       </p>
     <?php endif; ?>

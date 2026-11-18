@@ -614,7 +614,7 @@
         }
         regular += subtotal;
         const line = document.createElement('li');
-        line.className = 'product-price-item flex flex-wrap justify-between gap-2 py-3 text-small first:pt-0 last:pb-0';
+        line.className = 'product-price-item flex flex-wrap justify-between gap-2 py-3 text-sm first:pt-0 last:pb-0';
         const label = document.createElement('span');
         label.className = 'product-price-label min-w-0 wrap-anywhere';
         label.textContent = `${product.name} × ${quantity} (${money(unit / 100)} each)`;

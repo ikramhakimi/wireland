@@ -44,7 +44,7 @@
   }
 
   .marquee .marquee-control {
-    @apply inline-flex items-center justify-center min-w-11 min-h-11 px-3 text-small font-medium rounded-full border border-zinc-300 bg-white color-strong cursor-pointer;
+    @apply inline-flex items-center justify-center min-w-11 min-h-11 px-3 text-sm font-medium rounded-full border border-zinc-300 bg-white color-strong cursor-pointer;
   }
 
   .marquee .marquee-control[hidden] {

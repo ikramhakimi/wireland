@@ -55,7 +55,7 @@ $testimonials_marquee = [
           </div>
           <div>
             <div class="text-pretty mt-10 sm:mt-20">The consultation gave me a clearer picture of my options and what to expect from treatment.</div>
-            <div class="mt-4 pt-4 border-t border-zinc-200 text-small">
+            <div class="mt-4 pt-4 border-t border-zinc-200 text-sm">
               <div class="font-semibold   color-strong">Faizal Nordin</div>
               <div class="color-muted mt-0.5">Bangsar, Kuala Lumpur</div>
             </div>

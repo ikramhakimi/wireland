@@ -26,7 +26,7 @@ $alignment_class = $alignment_classes[$alignment] ?? '';
 ?>
 <div class="headline <?= e(trim($alignment_class . ' ' . $class)); ?>">
   <?php if ($topic !== ''): ?>
-    <div class="headline-topic inline-flex items-center justify-start text-caption color-muted mb-5 uppercase">
+    <div class="headline-topic inline-flex items-center justify-start text-xs color-muted mb-5 uppercase">
       <div class="leading-6"><?= e($topic); ?></div>
     </div>
   <?php endif; ?>

@@ -86,7 +86,7 @@ $account_layout = [
     <div class="account-orders">
       <header class="account-header">
         <h1 class="account-title text-title-md font-semibold text-pretty color-strong">Orders</h1>
-        <p class="account-description mt-2 max-w-lg text-small text-pretty color-muted">
+        <p class="account-description mt-2 max-w-lg text-sm text-pretty color-muted">
           Track deliveries and buy your care products again.
         </p>
       </header>
@@ -97,7 +97,7 @@ $account_layout = [
           <h2 id="account-empty-title" class="account-empty-title text-title-sm font-semibold color-strong">
             No orders yet
           </h2>
-          <p class="account-empty-description max-w-md mx-auto mt-2 text-small text-pretty color-default">
+          <p class="account-empty-description max-w-md mx-auto mt-2 text-sm text-pretty color-default">
             Shop everyday hair and scalp care, or start an assessment to get a doctor-reviewed plan.
           </p>
           <div class="account-empty-action flex flex-col justify-center gap-3 mt-6 sm:flex-row">
@@ -118,14 +118,14 @@ $account_layout = [
                       class="account-order-title text-title-sm font-semibold color-strong">
                       Order <?= e($order['id']); ?>
                     </h2>
-                    <p class="account-order-date mt-1 text-small color-muted">
+                    <p class="account-order-date mt-1 text-sm color-muted">
                       Placed <?= e($order['placed_on']); ?> ·
                       <?= $order['count']; ?> <?= $order['count'] === 1 ? 'item' : 'items'; ?>
                     </p>
                   </div>
                   <div class="account-order-status flex flex-col items-start gap-1 sm:items-end">
                     <?php component('account/status-pill', $status); ?>
-                    <p class="account-order-status-note text-caption color-muted"><?= e($order['status_note']); ?></p>
+                    <p class="account-order-status-note text-xs color-muted"><?= e($order['status_note']); ?></p>
                   </div>
                 </div>
 
@@ -139,16 +139,16 @@ $account_layout = [
 
                 <dl class="account-order-meta grid gap-4 mt-6 pt-5 border-t border-zinc-100 sm:grid-cols-3">
                   <div class="account-order-meta-item">
-                    <dt class="text-small color-muted">Total</dt>
-                    <dd class="mt-1 text-small font-medium color-strong"><?= e($money($order['total'])); ?></dd>
+                    <dt class="text-sm color-muted">Total</dt>
+                    <dd class="mt-1 text-sm font-medium color-strong"><?= e($money($order['total'])); ?></dd>
                   </div>
                   <div class="account-order-meta-item">
-                    <dt class="text-small color-muted">Delivery to</dt>
-                    <dd class="mt-1 text-small font-medium text-pretty color-strong"><?= e($order['address']); ?></dd>
+                    <dt class="text-sm color-muted">Delivery to</dt>
+                    <dd class="mt-1 text-sm font-medium text-pretty color-strong"><?= e($order['address']); ?></dd>
                   </div>
                   <div class="account-order-meta-item">
-                    <dt class="text-small color-muted">Tracking</dt>
-                    <dd class="mt-1 text-small font-medium color-strong">
+                    <dt class="text-sm color-muted">Tracking</dt>
+                    <dd class="mt-1 text-sm font-medium color-strong">
                       <?= e($order['courier']); ?> · <span class="tabular-nums"><?= e($order['tracking']); ?></span>
                     </dd>
                   </div>
@@ -160,7 +160,7 @@ $account_layout = [
                       <?php component('button', $buy_again_button($order['buy_again'])); ?>
                     <?php endif; ?>
                     <?php if ($order['has_prescription']): ?>
-                      <p class="account-order-hint text-small text-pretty color-muted">
+                      <p class="account-order-hint text-sm text-pretty color-muted">
                         Prescription items from <?= e($order['prescription']); ?> need a valid prescription to reorder.
                       </p>
                     <?php endif; ?>

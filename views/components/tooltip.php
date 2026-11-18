@@ -27,7 +27,7 @@ if ($id === '' || $label === '' || $text === '') {
   <?php if (is_callable($trigger_content)): ?>
     <?php $trigger_content(); ?>
   <?php elseif ($trigger === 'text'): ?>
-    <span tabindex="0" class="tooltip-trigger inline-flex items-center text-small color-strong cursor-pointer
+    <span tabindex="0" class="tooltip-trigger inline-flex items-center text-sm color-strong cursor-pointer
       hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
       js-component-tooltip-trigger">
       <span class="tooltip-label"><?= e($label); ?></span>
@@ -49,7 +49,7 @@ if ($id === '' || $label === '' || $text === '') {
   ]); ?>
   <?php endif; ?>
   <div id="<?= e($id); ?>" role="tooltip" popover="manual"
-    class="tooltip-content fixed inset-auto w-max max-w-[min(16rem,calc(100vw-2rem))] m-0 px-4 py-3 text-caption rounded-md border-0 bg-zinc-800 color-invert-strong wrap-anywhere overflow-visible
+    class="tooltip-content fixed inset-auto w-max max-w-[min(16rem,calc(100vw-2rem))] m-0 px-4 py-3 text-xs rounded-md border-0 bg-zinc-800 color-invert-strong wrap-anywhere overflow-visible
       js-component-tooltip-content">
     <span class="tooltip-text"><?= e($text); ?></span>
     <span aria-hidden="true" class="tooltip-arrow absolute size-2 bg-zinc-800 rotate-45 pointer-events-none

@@ -17,13 +17,13 @@ $installments = (int) ($installments ?? 0);
   <h2 class="order-title text-base font-semibold color-strong">Order Summary</h2>
   <ul class="order-items grid divide-y divide-dashed divide-zinc-200" aria-label="Order items">
     <?php foreach ($lines as $line): ?>
-      <li class="order-item flex items-start justify-between py-2 text-small">
+      <li class="order-item flex items-start justify-between py-2 text-sm">
         <span class="order-name min-w-0"><?= e($line['product']['name']); ?> × <?= $line['quantity']; ?></span>
         <span class="order-amount shrink-0 font-medium color-strong"><?= e(store_money($line['amount'])); ?></span>
       </li>
     <?php endforeach; ?>
   </ul>
-  <dl class="order-totals grid border-t border-zinc-200 pt-5 text-small divide-y divide-dashed divide-zinc-200">
+  <dl class="order-totals grid border-t border-zinc-200 pt-5 text-sm divide-y divide-dashed divide-zinc-200">
     <div class="order-subtotal flex justify-between  py-2">
       <dt class="order-label">Subtotal</dt>
       <dd class="order-value"><?= e(store_money($total)); ?></dd>
@@ -44,7 +44,7 @@ $installments = (int) ($installments ?? 0);
     </div>
   </dl>
   <?php if ($installments > 0 && $total > 0): ?>
-    <p class="order-installment flex flex-wrap items-center justify-center gap-1.5 text-caption color-muted bg-zinc-50 py-2.5 rounded-md">
+    <p class="order-installment flex flex-wrap items-center justify-center gap-1.5 text-xs color-muted bg-zinc-50 py-2.5 rounded-md">
       or <?= $installments; ?> payments of
       <span class="font-medium color-strong"><?= e(store_money((int) round($total / $installments))); ?></span> with
       <?php svg('atome', 'h-4 w-auto'); ?>

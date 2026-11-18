@@ -28,7 +28,7 @@ $actions     = $actions ?? [];
         class="dashboard-header-title text-title-md font-medium color-strong wrap-anywhere
           <?= e($title_hook); ?>"><?= e($title); ?></h1>
       <?php if ($description !== ''): ?>
-        <p class="dashboard-header-description mt-2 text-small color-muted"><?= e($description); ?></p>
+        <p class="dashboard-header-description mt-2 text-sm color-muted"><?= e($description); ?></p>
       <?php endif; ?>
     </div>
     <?php if ($actions !== []): ?>

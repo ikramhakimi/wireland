@@ -14,7 +14,7 @@ if ($label === '') {
   return;
 }
 ?>
-<p class="account-status-pill badge inline-flex items-center gap-1.5 px-2 py-0.5 text-caption font-medium rounded-md
+<p class="account-status-pill badge inline-flex items-center gap-1.5 px-2 py-0.5 text-xs font-medium rounded-md
   border border-zinc-300 text-zinc-700<?= $class !== '' ? ' ' . e($class) : ''; ?>">
   <?php if ($icon !== ''): ?>
     <?php svg($icon, 'size-3.5 shrink-0'); ?>

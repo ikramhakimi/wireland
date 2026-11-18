@@ -110,7 +110,7 @@ $group_switch = [
   <div id="patients-directory" role="region" aria-label="Patient directory"
     class="directory-content min-w-0 js-component-patients-directory">
     <div aria-hidden="true" <?= $directory['group_by'] !== 'none' ? 'hidden' : ''; ?>
-      class="directory-head hidden text-caption color-muted
+      class="directory-head hidden text-xs color-muted
         @3xl:[&:not([hidden])]:grid @3xl:grid-cols-[50%_minmax(0,1fr)_11rem]
         js-component-patients-head">
       <span class="directory-label px-5 py-3">Patient</span>
@@ -154,7 +154,7 @@ $group_switch = [
       </section>
     <?php endforeach; ?>
   </div>
-  <p hidden role="status" class="patient-notice px-5 py-3 text-small color-muted js-component-patients-action-status"></p>
+  <p hidden role="status" class="patient-notice px-5 py-3 text-sm color-muted js-component-patients-action-status"></p>
   <?php if ($directory['rows'] === []): ?>
     <?php component('dashboard/directory-empty', [
       'title'       => 'No matching patients',
@@ -162,7 +162,7 @@ $group_switch = [
     ]); ?>
   <?php endif; ?>
   <div class="directory-footer flex flex-wrap items-center gap-4 mt-5">
-    <p class="directory-count flex-1 basis-full text-caption tabular-nums color-muted
+    <p class="directory-count flex-1 basis-full text-xs tabular-nums color-muted
       @xl:basis-0">
       <?= e($directory['first']); ?>–<?= e($directory['last']); ?> of <?= e($directory['total']); ?> patients
     </p>
@@ -187,14 +187,14 @@ $group_switch = [
         'disabled' => true,
       ]); ?>
       <button type="button" aria-label="Go to page 1" aria-current="page"
-        class="pagination-button flex items-center justify-center min-w-10 min-h-10 px-3 text-small font-medium rounded-lg border border-zinc-200 bg-white color-default cursor-pointer
+        class="pagination-button flex items-center justify-center min-w-10 min-h-10 px-3 text-sm font-medium rounded-lg border border-zinc-200 bg-white color-default cursor-pointer
           hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
           aria-[current=page]:border-zinc-800 aria-[current=page]:bg-zinc-800 aria-[current=page]:color-invert-strong">1</button>
       <button type="button" aria-label="Go to page 2"
-        class="pagination-button flex items-center justify-center min-w-10 min-h-10 px-3 text-small font-medium rounded-lg border border-zinc-200 bg-white color-default cursor-pointer
+        class="pagination-button flex items-center justify-center min-w-10 min-h-10 px-3 text-sm font-medium rounded-lg border border-zinc-200 bg-white color-default cursor-pointer
           hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">2</button>
       <button type="button" aria-label="Go to page 3"
-        class="pagination-button flex items-center justify-center min-w-10 min-h-10 px-3 text-small font-medium rounded-lg border border-zinc-200 bg-white color-default cursor-pointer
+        class="pagination-button flex items-center justify-center min-w-10 min-h-10 px-3 text-sm font-medium rounded-lg border border-zinc-200 bg-white color-default cursor-pointer
           hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">3</button>
       <?php component('button', [
         'label'   => 'Next',

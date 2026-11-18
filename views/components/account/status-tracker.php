@@ -57,7 +57,7 @@ $look_attrs = static fn (string $look): string => $look === '' || $reply_for ===
           <?php endif; ?>
         </span>
         <span class="account-tracker-text hidden gap-0.5 sm:grid">
-          <span class="account-tracker-label flex items-center gap-1 text-caption
+          <span class="account-tracker-label flex items-center gap-1 text-xs
             <?= $is_active ? 'font-semibold color-strong' : ($is_done ? 'font-medium color-strong' : 'color-muted'); ?>">
             <?php if ($is_done): ?>
               <?php svg('check-line', 'size-3.5 shrink-0'); ?>
@@ -74,19 +74,19 @@ $look_attrs = static fn (string $look): string => $look === '' || $reply_for ===
           <?php if ($is_active): ?>
             <?php foreach ($active_looks as $look => $style): ?>
               <?php if ($style['text'] !== ''): ?>
-                <span class="account-tracker-note text-caption <?= $style['note']; ?>"<?= $look_attrs($look); ?>>
+                <span class="account-tracker-note text-xs <?= $style['note']; ?>"<?= $look_attrs($look); ?>>
                   <?= e($style['text']); ?>
                 </span>
               <?php endif; ?>
             <?php endforeach; ?>
           <?php elseif ($note !== ''): ?>
-            <span class="account-tracker-note text-caption color-muted"><?= e($note); ?></span>
+            <span class="account-tracker-note text-xs color-muted"><?= e($note); ?></span>
           <?php endif; ?>
         </span>
       </li>
     <?php endforeach; ?>
   </ol>
-  <p class="account-tracker-summary flex flex-wrap items-center gap-x-1.5 mt-2.5 text-caption sm:hidden"
+  <p class="account-tracker-summary flex flex-wrap items-center gap-x-1.5 mt-2.5 text-xs sm:hidden"
     aria-hidden="true">
     <span class="color-muted">Step <?= $active + 1; ?> of <?= $stage_count; ?> ·</span>
     <span class="font-semibold color-strong"><?= e($stages[$active]['label']); ?></span>

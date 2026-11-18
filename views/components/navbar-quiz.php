@@ -42,7 +42,7 @@ $menu_drawer = [
     <div class="quiz-menu-actions flex flex-col gap-3 pb-[env(safe-area-inset-bottom)]">
       <?php component('button', $support_button); ?>
       <?php component('button', $exit_button); ?>
-      <p class="quiz-menu-note text-center text-caption color-muted">Exiting clears your answers.</p>
+      <p class="quiz-menu-note text-center text-xs color-muted">Exiting clears your answers.</p>
     </div>
     <?php
   },
@@ -66,7 +66,7 @@ $menu_drawer = [
         aria-label="Go back">
         <?php svg('arrow-left-line', 'size-5'); ?>
       </a>
-      <div class="quiz-progress flex flex-1 items-center justify-between gap-3 min-w-0 h-11 px-4 text-small
+      <div class="quiz-progress flex flex-1 items-center justify-between gap-3 min-w-0 h-11 px-4 text-sm
         rounded-xl bg-zinc-200/70">
         <p class="quiz-progress-step truncate color-muted">
           <span class="js-quiz-step-label"><?= e($step_label); ?></span>

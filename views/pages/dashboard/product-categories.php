@@ -9,12 +9,12 @@ $list_card = [
   'title' => 'Category List',
   'content' => static function () use ($product_categories, $products): void {
     ?>
-    <p role="status" class="category-count mb-3 text-small color-muted js-component-categories-count">
+    <p role="status" class="category-count mb-3 text-sm color-muted js-component-categories-count">
       <?= count($product_categories); ?> categories
     </p>
     <div tabindex="0" role="region" aria-label="Product categories"
       class="category-table min-w-0 overflow-x-auto focus-visible:outline-2 focus-visible:outline-blue-800">
-      <table class="category-grid w-full text-left text-small">
+      <table class="category-grid w-full text-left text-sm">
         <caption class="category-caption sr-only">Product categories, product counts and edit actions</caption>
         <thead class="category-head border-b border-zinc-200">
           <tr class="category-row">

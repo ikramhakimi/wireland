@@ -29,8 +29,8 @@ $headline_center_no_button = [
                 <div class="doctor-details<?= $details_class; ?>">
                   <h3 class="doctor-name font-semibold color-strong">Dr Rujhan Raqibi</h3>
                   <div>
-                    <span class="doctor-role text-small">Lead Hair Specialist</span>
-                    <span class="doctor-qualification text-small color-muted"> BSc Surgery (Hons) UiTM</span>
+                    <span class="doctor-role text-sm">Lead Hair Specialist</span>
+                    <span class="doctor-qualification text-sm color-muted"> BSc Surgery (Hons) UiTM</span>
                   </div>
                 </div>
               </div>
@@ -47,8 +47,8 @@ $headline_center_no_button = [
                 <div class="doctor-details<?= $details_class; ?>">
                   <h3 class="doctor-name font-semibold color-strong">Dr Safwan Jamael</h3>
                   <div>
-                    <span class="doctor-role text-small">Lead Hair Specialist</span>
-                    <span class="doctor-qualification text-small color-muted"> BSc Surgery (Hons) UiTM</span>
+                    <span class="doctor-role text-sm">Lead Hair Specialist</span>
+                    <span class="doctor-qualification text-sm color-muted"> BSc Surgery (Hons) UiTM</span>
                   </div>
                 </div>
               </div>

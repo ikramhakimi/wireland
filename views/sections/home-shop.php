@@ -71,7 +71,7 @@ $headline        = [
       <ul class="shop-facts-list flex flex-col items-center gap-4 pt-8 border-t border-zinc-200 sm:flex-row
         sm:flex-wrap sm:justify-center sm:gap-x-10">
         <?php foreach ($shop_facts as $fact): ?>
-          <li class="shop-fact flex items-center gap-2 text-small color-strong">
+          <li class="shop-fact flex items-center gap-2 text-sm color-strong">
             <span class="size-8 flex-center bg-zinc-200 rounded-md"><?php svg($fact['icon'], 'size-5 shrink-0'); ?></span>
             <span><?= e($fact['text']); ?></span>
           </li>
@@ -87,7 +87,7 @@ $headline        = [
           <h3 class="shop-category flex items-baseline justify-between pb-3 font-semibold border-b border-zinc-950
             color-strong">
             <?= e($category); ?>
-            <span class="shop-count text-small font-normal color-muted"><?= count($items); ?></span>
+            <span class="shop-count text-sm font-normal color-muted"><?= count($items); ?></span>
           </h3>
           <ul class="shop-items">
             <?php foreach ($items as $item): ?>
@@ -99,9 +99,9 @@ $headline        = [
                     <?php svg('image-line', 'product-image-placeholder size-5'); ?>
                   </span>
                   <span class="shop-info flex flex-1 flex-col gap-0.5">
-                    <span class="shop-name text-small font-semibold color-strong underline-offset-4
+                    <span class="shop-name text-sm font-semibold color-strong underline-offset-4
                       group-hover:underline"><?= e($item['name']); ?></span>
-                    <span class="shop-price text-small"><?= e($money((float) $item['price'])); ?></span>
+                    <span class="shop-price text-sm"><?= e($money((float) $item['price'])); ?></span>
                   </span>
                 </a>
               </li>
@@ -115,9 +115,9 @@ $headline        = [
             <?php svg($note['icon'], 'size-6'); ?>
           </span>
           <h3 class="card-title mt-auto pt-6 font-semibold color-strong"><?= e($note['title']); ?></h3>
-          <p class="card-text mt-1 text-small text-pretty color-muted"><?= e($note['text']); ?></p>
+          <p class="card-text mt-1 text-sm text-pretty color-muted"><?= e($note['text']); ?></p>
           <?php if (isset($note['link'])): ?>
-            <a href="<?= e($note['link']['href']); ?>" target="_blank" rel="noopener" class="card-link mt-3 text-small
+            <a href="<?= e($note['link']['href']); ?>" target="_blank" rel="noopener" class="card-link mt-3 text-sm
               font-medium color-strong underline underline-offset-4"><?= e($note['link']['label']); ?></a>
           <?php endif; ?>
         </article>
@@ -127,12 +127,12 @@ $headline        = [
 
   <div class="shop-rx container mt-10">
     <div class="shop-rx-content pt-5 border-t border-zinc-200 sm:flex sm:items-baseline sm:justify-between sm:gap-6">
-      <p class="shop-rx-text text-small color-strong">
+      <p class="shop-rx-text text-sm color-strong">
         Prescription treatments are available after a clinician reviews your assessment.
         <a href="<?= e($rx_link['href']); ?>" class="shop-rx-link font-medium underline underline-offset-4">
           <?= e($rx_link['label']); ?></a>
       </p>
-      <p class="shop-rx-disclaimer mt-2 text-caption color-muted sm:mt-0 sm:max-w-md">
+      <p class="shop-rx-disclaimer mt-2 text-xs color-muted sm:mt-0 sm:max-w-md">
         Price includes medication only, if prescribed. Doctor Prescription (Rx) required.
       </p>
     </div>

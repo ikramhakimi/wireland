@@ -52,7 +52,7 @@ $faqs = [
             ]); ?>
           </div>
           <div id="home-faq-answer-<?= $index; ?>" hidden class="collapse-content pt-3">
-            <p class="faq-answer text-small leading-relaxed color-muted"><?=e($faq['answer']); ?></p>
+            <p class="faq-answer text-sm leading-relaxed color-muted"><?=e($faq['answer']); ?></p>
           </div>
         </div>
       <?php endforeach; ?>

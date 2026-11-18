@@ -35,9 +35,9 @@ $money       = static fn (float $amount): string => 'RM ' . number_format($amoun
         hover:underline focus-visible:outline-none"><?= e($name); ?></a>
     </h3>
     <?php if ($description !== ''): ?>
-      <p class="product-desc mt-1 mb-2 text-small text-pretty color-muted line-clamp-2"><?= e($description); ?></p>
+      <p class="product-desc mt-1 mb-2 text-sm text-pretty color-muted line-clamp-2"><?= e($description); ?></p>
     <?php endif; ?>
-    <p class="product-price mt-0.5 text-small">
+    <p class="product-price mt-0.5 text-sm">
       <span class="product-price-current"><?= e($money($price)); ?></span>
       <?php if ($base_price > $price): ?>
         <span class="product-price-original line-through decoration-zinc-400">

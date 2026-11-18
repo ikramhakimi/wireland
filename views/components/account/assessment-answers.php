@@ -67,13 +67,13 @@ if ($questions === []) {
       ));
       ?>
       <div class="account-answers-item grid gap-1 <?= $styles['row']; ?> sm:grid-cols-2 sm:gap-6">
-        <dt class="account-answers-question text-small color-muted"><?= e($question['title']); ?></dt>
+        <dt class="account-answers-question text-sm color-muted"><?= e($question['title']); ?></dt>
         <?php
         $flag      = $flags[$question['id']] ?? '';
         $value     = $answer_text !== '' ? $answer_text : 'Not sure';
         $show_icon = $reviewed || $flag !== '';
         ?>
-        <dd class="account-answers-value text-small font-medium color-strong<?= $show_icon ? ' flex items-start gap-2' : ''; ?>">
+        <dd class="account-answers-value text-sm font-medium color-strong<?= $show_icon ? ' flex items-start gap-2' : ''; ?>">
           <?php if ($flag !== ''): ?>
             <?php svg('error-warning-line', 'size-4 shrink-0 mt-0.5 color-warning'); ?>
           <?php elseif ($reviewed): ?>
@@ -92,7 +92,7 @@ if ($questions === []) {
               <?= e($value); ?>
             <?php endif; ?>
             <?php if ($flag !== ''): ?>
-              <span class="account-answers-flag block mt-1 text-caption font-normal text-pretty color-muted">
+              <span class="account-answers-flag block mt-1 text-xs font-normal text-pretty color-muted">
                 <?= e($flag); ?>
               </span>
             <?php endif; ?>
@@ -104,11 +104,11 @@ if ($questions === []) {
         <?php $has_reply = ($follow_up['reply'] ?? '') !== ''; ?>
         <div class="account-answers-item account-answers-follow-up grid gap-1 <?= $styles['follow_up']; ?>
           sm:grid-cols-2 sm:gap-6">
-          <dt class="account-answers-question text-small text-pretty color-muted">
-            <span class="block text-caption font-medium color-strong">Follow-up from <?= e($follow_up['doctor']); ?></span>
+          <dt class="account-answers-question text-sm text-pretty color-muted">
+            <span class="block text-xs font-medium color-strong">Follow-up from <?= e($follow_up['doctor']); ?></span>
             <span class="block mt-1"><?= e($follow_up['question']); ?></span>
           </dt>
-          <dd class="account-answers-value text-small font-medium color-strong">
+          <dd class="account-answers-value text-sm font-medium color-strong">
             <?php if ($has_reply): ?>
               <span class="flex items-start gap-2">
                 <?php svg('check-line', 'size-4 shrink-0 mt-0.5 color-positive'); ?>
@@ -120,7 +120,7 @@ if ($questions === []) {
                 <span class="min-w-0">
                   <span class="sr-only">Needs attention:</span>Waiting for your reply
                   <?php if ($reply_href !== ''): ?>
-                    <a href="<?= e($reply_href); ?>" class="block mt-1 text-caption color-strong underline">Reply now</a>
+                    <a href="<?= e($reply_href); ?>" class="block mt-1 text-xs color-strong underline">Reply now</a>
                   <?php endif; ?>
                 </span>
               </span>
@@ -133,7 +133,7 @@ if ($questions === []) {
     <?php endforeach; ?>
   </dl>
   <?php if ($restart_href !== ''): ?>
-    <p class="account-answers-restart <?= $styles['restart']; ?> text-small color-muted">
+    <p class="account-answers-restart <?= $styles['restart']; ?> text-sm color-muted">
       Something wrong?
       <a href="<?= e($restart_href); ?>" class="font-medium color-strong underline js-quiz-restart">
         Start the assessment again</a>

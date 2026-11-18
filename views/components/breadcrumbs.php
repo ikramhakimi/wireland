@@ -18,7 +18,7 @@ if ($items === []) {
 
 ?>
 <nav aria-label="<?= e($label); ?>" class="breadcrumbs">
-  <ol class="breadcrumbs-items flex flex-wrap items-center gap-1 text-caption color-muted">
+  <ol class="breadcrumbs-items flex flex-wrap items-center gap-1 text-xs color-muted">
     <?php foreach ($items as $index => $item): ?>
       <?php $is_current = $item['current'] ?? $index === count($items) - 1; ?>
       <li class="breadcrumbs-item flex min-w-0 items-center gap-1">

@@ -71,10 +71,10 @@ $product_link_id = preg_match('/^(PRD-[0-9]{3}|NEW-[a-z0-9-]+)$/i', $product_lin
           </a>
           <?php if ($page_current === 'products'): ?>
             <ul class="sidebar-submenu grid gap-1 mt-2 ps-7">
-              <li class="sidebar-item"><a href="<?= asset_url('dashboard/products/'); ?>" class="sidebar-link block px-3 py-2 text-caption underline underline-offset-4">Product List</a></li>
-              <li class="sidebar-item"><a href="<?= asset_url('dashboard/product-categories/'); ?>" class="sidebar-link block px-3 py-2 text-caption underline underline-offset-4">Categories</a></li>
-              <li class="sidebar-item"><a href="<?= asset_url('dashboard/product/'); ?>?id=<?= e($product_link_id); ?>" class="sidebar-link block px-3 py-2 text-caption underline underline-offset-4">Product Detail</a></li>
-              <li class="sidebar-item"><a href="<?= asset_url('dashboard/product-edit/'); ?>?id=<?= e($product_link_id); ?>" class="sidebar-link block px-3 py-2 text-caption underline underline-offset-4">Product Edit</a></li>
+              <li class="sidebar-item"><a href="<?= asset_url('dashboard/products/'); ?>" class="sidebar-link block px-3 py-2 text-xs underline underline-offset-4">Product List</a></li>
+              <li class="sidebar-item"><a href="<?= asset_url('dashboard/product-categories/'); ?>" class="sidebar-link block px-3 py-2 text-xs underline underline-offset-4">Categories</a></li>
+              <li class="sidebar-item"><a href="<?= asset_url('dashboard/product/'); ?>?id=<?= e($product_link_id); ?>" class="sidebar-link block px-3 py-2 text-xs underline underline-offset-4">Product Detail</a></li>
+              <li class="sidebar-item"><a href="<?= asset_url('dashboard/product-edit/'); ?>?id=<?= e($product_link_id); ?>" class="sidebar-link block px-3 py-2 text-xs underline underline-offset-4">Product Edit</a></li>
             </ul>
           <?php endif; ?>
         </li>

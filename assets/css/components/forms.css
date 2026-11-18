@@ -1,16 +1,16 @@
 /* Form semantics and data stay in PHP; native/ARIA attributes own visual states. */
 @layer components {
   .field .field-label {
-    @apply block mb-2 text-small font-medium color-default;
+    @apply block mb-2 text-sm font-medium color-default;
   }
 
   .field .field-required,
   .choice-label .field-required {
-    @apply ml-2 text-caption font-normal color-muted;
+    @apply ml-2 text-xs font-normal color-muted;
   }
 
   .field .field-control {
-    @apply w-full text-small rounded-lg border border-zinc-300 bg-white color-strong;
+    @apply w-full text-sm rounded-lg border border-zinc-300 bg-white color-strong;
   }
 
   .field .field-input {
@@ -70,7 +70,7 @@
   }
 
   .field .field-help {
-    @apply mt-2 text-caption font-normal leading-6 color-muted;
+    @apply mt-2 text-xs font-normal leading-6 color-muted;
   }
 
   .field .field-error {
@@ -79,7 +79,7 @@
 
   /* Native controls drive checkbox, radio, and switch visual states. */
   .choice-label {
-    @apply inline-flex items-center gap-3 min-h-6 text-small font-normal color-default;
+    @apply inline-flex items-center gap-3 min-h-6 text-sm font-normal color-default;
   }
 
   .choice-label .choice-wrapper {
@@ -162,7 +162,7 @@
 
   /* Image choices retain the assessment selection treatment. */
   .choice-label.choice-image-option {
-    @apply relative flex flex-col items-center justify-center gap-2 min-h-30 px-2 py-3 text-center text-small font-medium rounded-2xl border-2 border-transparent bg-white shadow-sm cursor-pointer;
+    @apply relative flex flex-col items-center justify-center gap-2 min-h-30 px-2 py-3 text-center text-sm font-medium rounded-2xl border-2 border-transparent bg-white shadow-sm cursor-pointer;
   }
 
   .choice-image-option:has(:checked) {

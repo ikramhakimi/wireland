@@ -19,7 +19,7 @@ if ($items === []) {
       <?php $is_current = $item['key'] === $current; ?>
       <li class="account-nav-item shrink-0">
         <a href="<?= e($item['href']); ?>"
-          class="account-nav-link block px-3 py-2 text-small font-medium rounded-lg whitespace-nowrap
+          class="account-nav-link block px-3 py-2 text-sm font-medium rounded-lg whitespace-nowrap
             <?= $is_current ? 'bg-zinc-100 color-strong' : 'color-muted hover:bg-zinc-50 hover:color-strong'; ?>"
           <?= $is_current ? 'aria-current="page"' : ''; ?>><?= e($item['label']); ?></a>
       </li>

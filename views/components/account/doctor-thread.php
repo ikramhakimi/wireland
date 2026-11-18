@@ -45,24 +45,24 @@ if ($assessment_id === '' || $message === '') {
   data-assessment-id="<?= e($assessment_id); ?>">
   <ol class="account-thread-list grid gap-4" role="list">
     <li class="account-thread-message flex gap-3">
-      <span class="account-thread-avatar flex-center shrink-0 size-9 rounded-full bg-zinc-200 text-caption
+      <span class="account-thread-avatar flex-center shrink-0 size-9 rounded-full bg-zinc-200 text-xs
         font-semibold color-strong" aria-hidden="true"><?= e($doctor_initials); ?></span>
       <div class="account-thread-content min-w-0 max-w-lg">
-        <p class="account-thread-meta text-caption color-muted">
+        <p class="account-thread-meta text-xs color-muted">
           <span class="font-medium color-strong"><?= e($doctor); ?></span> · <?= e($asked_at); ?>
         </p>
-        <p class="account-thread-bubble mt-1 px-4 py-3 rounded-2xl rounded-tl-sm bg-zinc-100 text-small
+        <p class="account-thread-bubble mt-1 px-4 py-3 rounded-2xl rounded-tl-sm bg-zinc-100 text-sm
           text-pretty color-strong"><?= e($message); ?></p>
       </div>
     </li>
     <li class="account-thread-message account-thread-message-own flex justify-end js-account-reply-item" hidden>
       <div class="account-thread-content flex flex-col items-end min-w-0 max-w-lg">
-        <p class="account-thread-meta text-caption color-muted">
+        <p class="account-thread-meta text-xs color-muted">
           <span class="font-medium color-strong">You</span> · <time class="js-account-reply-time"></time>
         </p>
         <ul class="account-thread-images flex flex-wrap justify-end gap-2 mt-1 js-account-reply-images"
           role="list" hidden></ul>
-        <p class="account-thread-bubble mt-1 px-4 py-3 rounded-2xl rounded-tr-sm bg-zinc-800 text-small
+        <p class="account-thread-bubble mt-1 px-4 py-3 rounded-2xl rounded-tr-sm bg-zinc-800 text-sm
           text-pretty whitespace-pre-line color-invert-strong js-account-reply-text" hidden></p>
       </div>
     </li>
@@ -75,7 +75,7 @@ if ($assessment_id === '' || $message === '') {
       <?php component('button', $reply_link); ?>
     <?php endif; ?>
   </div>
-  <p class="account-thread-sent mt-5 text-small text-pretty color-muted" data-reply-for="<?= e($assessment_id); ?>"
+  <p class="account-thread-sent mt-5 text-sm text-pretty color-muted" data-reply-for="<?= e($assessment_id); ?>"
     data-reply-show="sent" role="status" hidden>
     Reply sent and saved to your assessment. <?= e($doctor); ?> usually replies within <?= e($review_time); ?>.
     <button type="button" class="account-thread-reset font-medium color-strong underline cursor-pointer

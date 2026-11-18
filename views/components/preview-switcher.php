@@ -20,7 +20,7 @@ $current_label = $config['states'][$current]['label'] ?? '';
 ?>
 <details class="preview-switcher group fixed bottom-4 left-4 z-50">
   <summary class="preview-switcher-toggle flex items-center gap-2 py-2 pl-3 pr-2.5 rounded-full bg-zinc-900
-    text-caption font-medium shadow-lg ring-1 ring-white/10 color-invert-strong list-none cursor-pointer
+    text-xs font-medium shadow-lg ring-1 ring-white/10 color-invert-strong list-none cursor-pointer
     hover:bg-zinc-800">
     <span class="preview-switcher-dot size-2 rounded-full bg-emerald-400" aria-hidden="true"></span>
     <span class="preview-switcher-label">
@@ -30,7 +30,7 @@ $current_label = $config['states'][$current]['label'] ?? '';
   </summary>
   <div class="preview-switcher-panel absolute bottom-full left-0 w-64 max-w-[calc(100vw-2rem)] mb-2 p-1.5
     rounded-2xl bg-zinc-900 shadow-xl ring-1 ring-white/10">
-    <p class="preview-switcher-title px-2.5 pt-1.5 pb-2 text-caption text-zinc-400">
+    <p class="preview-switcher-title px-2.5 pt-1.5 pb-2 text-xs text-zinc-400">
       Prototype · <?= e($config['title'] ?? 'Page state'); ?>
     </p>
     <ul class="preview-switcher-list grid gap-0.5" role="list">
@@ -42,9 +42,9 @@ $current_label = $config['states'][$current]['label'] ?? '';
               <?= $is_current ? 'bg-white/10' : 'hover:bg-white/5'; ?>"
             <?= $is_current ? 'aria-current="page"' : ''; ?>>
             <span class="preview-switcher-text">
-              <span class="block text-small font-medium color-invert-strong"><?= e($state['label']); ?></span>
+              <span class="block text-sm font-medium color-invert-strong"><?= e($state['label']); ?></span>
               <?php if (($state['text'] ?? '') !== ''): ?>
-                <span class="block text-caption text-zinc-400"><?= e($state['text']); ?></span>
+                <span class="block text-xs text-zinc-400"><?= e($state['text']); ?></span>
               <?php endif; ?>
             </span>
             <?php if ($is_current): ?>

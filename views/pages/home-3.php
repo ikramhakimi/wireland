@@ -116,7 +116,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
   <div class="container grid gap-10
     lg:grid-cols-2 lg:items-center">
     <div class="hero-copy min-w-0">
-      <p class="hero-eyebrow text-small font-medium color-default">Hair and scalp care for men</p>
+      <p class="hero-eyebrow text-sm font-medium color-default">Hair and scalp care for men</p>
       <h1 id="home-hero-title" class="hero-title mt-4 text-title-lg font-medium text-pretty color-strong">
         My hair is <span class="hero-word underline decoration-zinc-300 underline-offset-8
           js-component-home-concern-word"><?= e($concerns[$concern_active]['label']); ?></span>.
@@ -125,7 +125,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
         <?php foreach ($concerns as $key => $concern): ?>
           <button type="button" data-value="<?= e($key); ?>"
             aria-pressed="<?= $key === $concern_active ? 'true' : 'false'; ?>"
-            class="hero-concern inline-flex items-center min-h-10 px-4 text-small font-medium rounded-full border
+            class="hero-concern inline-flex items-center min-h-10 px-4 text-sm font-medium rounded-full border
               border-zinc-300 bg-white color-strong cursor-pointer
               not-aria-pressed:hover:bg-zinc-100
               focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-800
@@ -169,18 +169,18 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
             <?php endforeach; ?>
           </div>
           <div class="hero-feature mt-6">
-            <p class="hero-feature-kicker text-caption font-medium color-muted">
+            <p class="hero-feature-kicker text-xs font-medium color-muted">
               Everyday care · <?= e($featured['category']); ?>
             </p>
             <h2 class="hero-feature-title mt-1 text-title-sm font-semibold color-strong">
               <a href="<?= e($product_url($featured['id'])); ?>" class="underline-offset-4
                 hover:underline"><?= e($featured['name']); ?></a>
             </h2>
-            <p class="hero-feature-text mt-2 text-small leading-relaxed text-pretty color-default">
+            <p class="hero-feature-text mt-2 text-sm leading-relaxed text-pretty color-default">
               <?= e($featured['short_description'] ?? ''); ?>
             </p>
             <a href="<?= e($assessment_url(['concern' => $key])); ?>" class="hero-feature-link inline-flex items-center gap-1 mt-4
-              text-small font-medium color-strong underline underline-offset-4">
+              text-sm font-medium color-strong underline underline-offset-4">
               Looking for treatment? That starts with a doctor's review
               <?php svg('arrow-right-line', 'size-4'); ?>
             </a>
@@ -223,7 +223,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
       lg:grid-cols-2">
       <div class="ask-quiz p-5 rounded-xl bg-zinc-100
         sm:p-8">
-        <p class="ask-quiz-label text-caption font-medium color-muted"><?= e($question['label']); ?></p>
+        <p class="ask-quiz-label text-xs font-medium color-muted"><?= e($question['label']); ?></p>
         <p class="ask-quiz-title mt-1 text-title-sm font-semibold color-strong"><?= e($question['title']); ?></p>
         <ul class="ask-quiz-answers grid gap-2 mt-6">
           <?php foreach ($question['answers'] as $answer): ?>
@@ -238,7 +238,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
             </li>
           <?php endforeach; ?>
         </ul>
-        <p class="ask-quiz-note mt-4 text-caption color-muted">
+        <p class="ask-quiz-note mt-4 text-xs color-muted">
           This continues in the full assessment. A doctor reviews your answers before any plan.
         </p>
       </div>
@@ -248,7 +248,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
         <blockquote class="ask-quote-text text-title-sm font-medium text-pretty color-strong">
           <?= e($ask_review['quote']); ?>
         </blockquote>
-        <figcaption class="ask-quote-person pt-4 border-t border-zinc-200 text-small">
+        <figcaption class="ask-quote-person pt-4 border-t border-zinc-200 text-sm">
           <span class="block font-semibold color-strong"><?= e($ask_review['name']); ?></span>
           <span class="block mt-0.5 color-muted"><?= e($ask_review['place']); ?></span>
         </figcaption>
@@ -266,7 +266,7 @@ section('home-faq');
 <section class="home-clinic pb-15
   sm:pb-20" aria-label="Clinic services">
   <div class="container flex flex-col items-center gap-4 text-center">
-    <p class="clinic-text text-small"><strong class="color-strong">Prefer to be seen in person?</strong> Our clinic also offers:</p>
+    <p class="clinic-text text-sm"><strong class="color-strong">Prefer to be seen in person?</strong> Our clinic also offers:</p>
     <ul class="clinic-services flex flex-wrap justify-center gap-2">
       <?php foreach ($clinic_services as $service): ?>
         <li>

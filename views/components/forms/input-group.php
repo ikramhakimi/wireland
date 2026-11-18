@@ -53,7 +53,7 @@ if ($id === '' || $label === '') {
       focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-600/40
       data-[disabled=true]:border-zinc-200 data-[disabled=true]:bg-zinc-100 data-[readonly=true]:bg-zinc-100">
     <?php if ($before !== ''): ?>
-      <span id="<?= e($id); ?>-before" class="input-group-text shrink-0 text-small color-muted"><?= e($before); ?></span>
+      <span id="<?= e($id); ?>-before" class="input-group-text shrink-0 text-sm color-muted"><?= e($before); ?></span>
     <?php endif; ?>
     <input id="<?= e($id); ?>" type="text" value="<?= e($value); ?>"
       <?php if ($name !== ''): ?>name="<?= e($name); ?>"<?php endif; ?>
@@ -67,14 +67,14 @@ if ($id === '' || $label === '') {
       class="input-group-control flex-1 min-w-0 w-full <?= $button_label !== '' ? 'h-8 px-3' : 'h-9'; ?> font-normal border-0 bg-transparent color-strong
         placeholder:color-muted focus:outline-none disabled:color-muted disabled:cursor-not-allowed">
     <?php if ($after !== ''): ?>
-      <span id="<?= e($id); ?>-after" class="input-group-text shrink-0 text-small color-muted tabular-nums"><?= e($after); ?></span>
+      <span id="<?= e($id); ?>-after" class="input-group-text shrink-0 text-sm color-muted tabular-nums"><?= e($after); ?></span>
     <?php endif; ?>
     <?php if ($select !== null): ?>
       <div class="input-group-select relative shrink-0">
         <label for="<?= e($select['id']); ?>" class="input-group-label sr-only"><?= e($select['label']); ?></label>
         <select id="<?= e($select['id']); ?>" name="<?= e($select['name']); ?>"
           <?php if ($disabled || $readonly): ?>disabled<?php endif; ?>
-          class="input-group-select-control <?= $button_label !== '' ? 'h-8' : 'h-9'; ?> max-w-32 pe-6 text-right text-small border-0 bg-transparent color-strong appearance-none
+          class="input-group-select-control <?= $button_label !== '' ? 'h-8' : 'h-9'; ?> max-w-32 pe-6 text-right text-sm border-0 bg-transparent color-strong appearance-none
             focus:outline-none disabled:color-muted disabled:cursor-not-allowed">
           <?php foreach ($select['options'] as $option): ?>
             <option value="<?= e($option['value']); ?>" <?= (string) ($select['value'] ?? '') === (string) $option['value'] ? 'selected' : ''; ?>>

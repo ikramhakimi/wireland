@@ -163,7 +163,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
 <section class="concerns section pt-24 lg:pt-15" aria-labelledby="concerns-title">
   <div class="concerns-container container">
     <div class="concerns-header max-w-2xl">
-      <p class="concerns-eyebrow text-small font-medium color-muted">Hair and scalp care, guided by doctors</p>
+      <p class="concerns-eyebrow text-sm font-medium color-muted">Hair and scalp care, guided by doctors</p>
       <h1 id="concerns-title" class="concerns-title mt-3 text-title-lg font-medium text-pretty color-strong">
         Start with what's changing.
       </h1>
@@ -181,7 +181,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
           <button id="concern-tab-<?= e($concern_key); ?>" type="button" role="tab"
             aria-controls="concern-panel-<?= e($concern_key); ?>"
             aria-selected="<?= $is_active ? 'true' : 'false'; ?>" tabindex="<?= $is_active ? '0' : '-1'; ?>"
-            class="concerns-tab shrink-0 flex items-center gap-2 h-12 pl-2 pr-5 text-small font-medium whitespace-nowrap
+            class="concerns-tab shrink-0 flex items-center gap-2 h-12 pl-2 pr-5 text-sm font-medium whitespace-nowrap
               rounded-full border border-zinc-200 bg-white color-strong cursor-pointer transition-colors
               hover:border-zinc-400
               focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700
@@ -211,7 +211,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
               lg:col-span-4 lg:p-8">
               <h2 class="concern-title text-title-sm font-medium color-strong"><?= e($concern['title']); ?></h2>
               <p class="concern-description mt-3 text-pretty"><?= e($concern['description']); ?></p>
-              <p class="concern-note mt-6 pt-6 text-small text-pretty border-t border-zinc-200 color-muted">
+              <p class="concern-note mt-6 pt-6 text-sm text-pretty border-t border-zinc-200 color-muted">
                 <?= e($concern_note); ?>
               </p>
               <div class="concern-actions flex flex-col items-start gap-3 mt-6
@@ -222,13 +222,13 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
                   'size'  => 'large',
                   'icon'  => 'arrow-right-line',
                 ]); ?>
-                <span class="concern-actions-hint text-caption color-muted">Reviewed by a doctor</span>
+                <span class="concern-actions-hint text-xs color-muted">Reviewed by a doctor</span>
               </div>
             </div>
             <div class="concern-products lg:col-span-8">
               <div class="concern-products-header flex-split gap-4 mb-3">
-                <h3 class="concern-products-title text-small font-medium color-strong">Products that may help</h3>
-                <a href="#shop" class="concern-products-link text-small color-muted underline-offset-4
+                <h3 class="concern-products-title text-sm font-medium color-strong">Products that may help</h3>
+                <a href="#shop" class="concern-products-link text-sm color-muted underline-offset-4
                   hover:underline">See all products</a>
               </div>
               <div class="concern-products-grid grid grid-cols-2 gap-3
@@ -251,11 +251,11 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
       lg:grid-cols-2">
       <article class="path path-shop relative flex flex-col min-h-120 p-8 rounded-2xl bg-zinc-100 overflow-hidden
         lg:p-10">
-        <p class="path-label text-small font-medium color-muted">Shop now</p>
+        <p class="path-label text-sm font-medium color-muted">Shop now</p>
         <h2 class="path-title mt-3 max-w-sm text-title-md font-medium text-pretty color-strong">
           Hair and scalp care, delivered.
         </h2>
-        <ul class="path-facts grid gap-2 mt-6 text-small">
+        <ul class="path-facts grid gap-2 mt-6 text-sm">
           <?php foreach ($store_delivery_facts as $fact): ?>
             <li class="path-fact flex items-center gap-2">
               <?php svg('check-line', 'size-4 shrink-0 color-muted'); ?>
@@ -277,14 +277,14 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
           loading="lazy" class="path-image absolute inset-y-0 right-0 w-1/2 h-full object-cover opacity-60
             mask-l-from-10% pointer-events-none">
         <div class="path-content relative flex flex-col h-full">
-          <p class="path-label text-small font-medium color-invert-muted">Doctor-led</p>
+          <p class="path-label text-sm font-medium color-invert-muted">Doctor-led</p>
           <h2 class="path-title mt-3 max-w-sm text-title-md font-medium text-pretty color-invert-strong">
             Not sure what you need? Ask a doctor.
           </h2>
-          <ol class="path-steps grid gap-3 max-w-xs mt-6 text-small color-invert-default">
+          <ol class="path-steps grid gap-3 max-w-xs mt-6 text-sm color-invert-default">
             <?php foreach ($path_plan_steps as $index => $step): ?>
               <li class="path-step flex gap-3">
-                <span class="path-step-number flex-center shrink-0 size-6 text-caption font-medium rounded-full
+                <span class="path-step-number flex-center shrink-0 size-6 text-xs font-medium rounded-full
                   bg-white/10 color-invert-strong"><?= $index + 1; ?></span>
                 <span><?= e($step); ?></span>
               </li>
@@ -310,11 +310,11 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
       <ul class="shop-categories flex flex-wrap gap-2" aria-label="Categories">
         <?php foreach ($shop_categories as $category => $count): ?>
           <li>
-            <a href="#shop" class="shop-category inline-flex items-center gap-2 h-9 px-4 text-small font-medium
+            <a href="#shop" class="shop-category inline-flex items-center gap-2 h-9 px-4 text-sm font-medium
               rounded-full bg-white color-strong border-overlay
               hover:bg-zinc-100">
               <?= e($category); ?>
-              <span class="shop-category-count text-caption color-muted"><?= (int) $count; ?></span>
+              <span class="shop-category-count text-xs color-muted"><?= (int) $count; ?></span>
             </a>
           </li>
         <?php endforeach; ?>
@@ -345,7 +345,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
         <div class="plan-doctor flex items-center gap-3 mt-8">
           <img src="<?= e(asset_url($doctor['avatar'])); ?>" alt="" width="48" height="48"
             class="plan-doctor-avatar size-12 rounded-full object-cover bg-zinc-200">
-          <div class="plan-doctor-text text-small">
+          <div class="plan-doctor-text text-sm">
             <p class="plan-doctor-name font-medium color-strong"><?= e($doctor['name']); ?></p>
             <p class="plan-doctor-role color-muted"><?= e($doctor['role']); ?></p>
           </div>
@@ -359,9 +359,9 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
         lg:col-span-8">
         <?php foreach ($plan_steps as $index => $step): ?>
           <li class="plan-step flex flex-col min-h-48 p-6 rounded-2xl border border-zinc-200">
-            <span class="plan-step-number font-mono text-small color-muted">0<?= $index + 1; ?></span>
+            <span class="plan-step-number font-mono text-sm color-muted">0<?= $index + 1; ?></span>
             <h3 class="plan-step-title mt-auto pt-8 font-semibold color-strong"><?= e($step['title']); ?></h3>
-            <p class="plan-step-description mt-2 text-small text-pretty color-muted"><?= e($step['description']); ?></p>
+            <p class="plan-step-description mt-2 text-sm text-pretty color-muted"><?= e($step['description']); ?></p>
           </li>
         <?php endforeach; ?>
       </ol>
@@ -375,12 +375,12 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
       md:flex-row md:items-center md:justify-between md:px-8">
       <div class="clinic-header">
         <h2 id="clinic-title" class="clinic-title font-semibold color-strong">Prefer to be seen in person?</h2>
-        <p class="clinic-subtitle mt-1 text-small color-muted">Our clinic also offers in-person treatments.</p>
+        <p class="clinic-subtitle mt-1 text-sm color-muted">Our clinic also offers in-person treatments.</p>
       </div>
       <ul class="clinic-services flex flex-wrap gap-2">
         <?php foreach ($clinic_services as $service): ?>
           <li>
-            <a href="#" class="clinic-service inline-flex items-center gap-1 h-9 px-4 text-small font-medium
+            <a href="#" class="clinic-service inline-flex items-center gap-1 h-9 px-4 text-sm font-medium
               rounded-full bg-white color-strong
               hover:bg-zinc-200">
               <?= e($service); ?>
@@ -426,7 +426,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
       </div>
       <div class="closing-actions flex flex-wrap items-center gap-x-6 gap-y-3">
         <?php component('button', $final_plan_button); ?>
-        <a href="#shop" class="closing-link text-small font-medium color-invert-strong underline underline-offset-4
+        <a href="#shop" class="closing-link text-sm font-medium color-invert-strong underline underline-offset-4
           hover:no-underline">Shop products</a>
       </div>
     </div>

@@ -50,7 +50,7 @@ $continue_button = [
             <?= e($question['title']); ?>
           </legend>
           <?php if ($question['helper'] !== ''): ?>
-            <p id="<?= e($question_id); ?>-help" class="quiz-step-help mt-2 text-small color-muted">
+            <p id="<?= e($question_id); ?>-help" class="quiz-step-help mt-2 text-sm color-muted">
               <?= e($question['helper']); ?>
             </p>
           <?php endif; ?>

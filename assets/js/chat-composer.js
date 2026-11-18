@@ -59,7 +59,7 @@
         image.alt        = `Photo ${index + 1}`;
         remove.type      = 'button';
         remove.className = 'chat-composer-remove absolute -top-1.5 -right-1.5 flex-center size-6 rounded-full '
-          + 'bg-zinc-900 text-white text-caption cursor-pointer';
+          + 'bg-zinc-900 text-white text-xs cursor-pointer';
         remove.textContent = '×';
         remove.setAttribute('aria-label', `Remove photo ${index + 1}`);
         remove.addEventListener('click', () => {

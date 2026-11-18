@@ -289,7 +289,7 @@ $account_layout = [
     <div class="account-overview js-component-quiz" data-quiz-page="account"
       data-quiz-config="<?= e(json_encode($quiz_config)); ?>">
       <header class="account-header">
-        <p class="account-topic text-small font-medium color-muted">My account</p>
+        <p class="account-topic text-sm font-medium color-muted">My account</p>
         <h1 class="account-title mt-2 text-title-md font-semibold text-pretty color-strong">
           <?php if ($mode === 'needs_info'): ?>
             <span data-reply-for="<?= e($reply_id); ?>" data-reply-show="open"><?= e($mode_titles[$mode]); ?></span>
@@ -310,14 +310,14 @@ $account_layout = [
             <div class="account-status-header">
               <?php if ($mode === 'checkin_due'): ?>
                 <p class="account-status-alert inline-flex items-center gap-1.5 mb-3 px-2 py-0.5 rounded-md bg-amber-50
-                  text-caption font-medium text-amber-800 ring-1 ring-amber-200">
+                  text-xs font-medium text-amber-800 ring-1 ring-amber-200">
                   <?php svg('error-warning-line', 'size-3.5 shrink-0'); ?>
                   Due <?= e($next_checkin['date']); ?>
                 </p>
               <?php endif; ?>
               <?php if ($mode === 'needs_info'): ?>
                 <p class="account-status-alert inline-flex items-center gap-1.5 mb-3 px-2 py-0.5 rounded-md bg-amber-50
-                  text-caption font-medium text-amber-800 ring-1 ring-amber-200"
+                  text-xs font-medium text-amber-800 ring-1 ring-amber-200"
                   data-reply-for="<?= e($reply_id); ?>" data-reply-show="open">
                   <?php svg('error-warning-line', 'size-3.5 shrink-0'); ?>
                   Your reply is needed
@@ -326,17 +326,17 @@ $account_layout = [
               <h2 id="account-status-title" class="account-status-title text-title-sm font-semibold text-pretty
                 color-strong"><?= e($section['title']); ?></h2>
               <?php if (isset($section['sent'])): ?>
-                <p class="account-status-text mt-2 max-w-lg text-small text-pretty color-default"
+                <p class="account-status-text mt-2 max-w-lg text-sm text-pretty color-default"
                   data-reply-for="<?= e($reply_id); ?>" data-reply-show="open"><?= e($section['text']); ?></p>
-                <p class="account-status-text mt-2 max-w-lg text-small text-pretty color-default"
+                <p class="account-status-text mt-2 max-w-lg text-sm text-pretty color-default"
                   data-reply-for="<?= e($reply_id); ?>" data-reply-show="sent" hidden><?= e($section['sent']); ?></p>
               <?php else: ?>
-                <p class="account-status-text mt-2 max-w-lg text-small text-pretty color-default">
+                <p class="account-status-text mt-2 max-w-lg text-sm text-pretty color-default">
                   <?= e($section['text']); ?>
                 </p>
               <?php endif; ?>
               <?php if ($mode === 'plan_ready'): ?>
-                <p class="account-status-author mt-1 text-small color-muted">— <?= e($current['doctor']); ?></p>
+                <p class="account-status-author mt-1 text-sm color-muted">— <?= e($current['doctor']); ?></p>
               <?php endif; ?>
             </div>
 
@@ -355,7 +355,7 @@ $account_layout = [
             <?php elseif ($mode === 'on_treatment'): ?>
               <?php $supply_percent = (int) round($treatment['supply_day'] / $treatment['supply_total'] * 100); ?>
               <div class="account-supply">
-                <p class="account-supply-label flex justify-between gap-4 text-small">
+                <p class="account-supply-label flex justify-between gap-4 text-sm">
                   <span class="font-medium color-strong">
                     Day <?= e($treatment['supply_day']); ?> of <?= e($treatment['supply_total']); ?>
                   </span>
@@ -371,8 +371,8 @@ $account_layout = [
                 </span>
               </div>
               <div class="account-checkins">
-                <h3 class="account-checkins-title text-small font-semibold color-strong">Your check-ins</h3>
-                <p class="account-checkins-text mt-1 text-small text-pretty color-muted">
+                <h3 class="account-checkins-title text-sm font-semibold color-strong">Your check-ins</h3>
+                <p class="account-checkins-text mt-1 text-sm text-pretty color-muted">
                   Your doctor checks your progress and adjusts your plan if needed.
                 </p>
                 <?php component('timeline', [
@@ -393,7 +393,7 @@ $account_layout = [
               </ul>
               <div class="account-plan-summary flex flex-col gap-4 p-4 rounded-lg bg-zinc-100 sm:flex-row sm:items-center
                 sm:justify-between">
-                <p class="account-plan-total text-small">
+                <p class="account-plan-total text-sm">
                   <span class="block color-muted"><?= count($plan_items); ?> products</span>
                   <span class="block mt-0.5 text-base font-semibold color-strong">
                     RM <?= e(number_format($plan_total, 2)); ?>
@@ -416,7 +416,7 @@ $account_layout = [
           </div>
 
           <dl class="account-status-facts flex flex-wrap gap-x-6 gap-y-1 pt-4 border-t border-dashed border-zinc-300
-            text-caption">
+            text-xs">
             <?php foreach ($aside_facts as $fact_label => $fact_value): ?>
               <div class="account-status-fact flex gap-1">
                 <dt class="color-muted"><?= e($fact_label); ?>:</dt>
@@ -432,7 +432,7 @@ $account_layout = [
                 'id'    => 'account-products-title',
                 'title' => $products_headings[$mode]['title'],
               ]); ?>
-              <p class="account-section-text mt-4 text-small text-pretty color-muted">
+              <p class="account-section-text mt-4 text-sm text-pretty color-muted">
                 <?= e($products_headings[$mode]['text']); ?>
               </p>
               <ul class="account-products-list grid grid-cols-2 gap-x-4 gap-y-2 mt-5 sm:grid-cols-3" role="list">

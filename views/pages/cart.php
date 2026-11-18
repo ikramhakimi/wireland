@@ -186,13 +186,13 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
 
                   <ul class="cart-item-badges flex flex-wrap gap-1 mt-3" aria-label="Product details">
                     <?php foreach ([$item['format'], $item['size']] as $badge): ?>
-                      <li class="badge cart-item-badge inline-flex px-2 py-0.5 text-caption font-medium rounded-md border border-zinc-300 text-zinc-700">
+                      <li class="badge cart-item-badge inline-flex px-2 py-0.5 text-xs font-medium rounded-md border border-zinc-300 text-zinc-700">
                         <?= e($badge); ?>
                       </li>
                     <?php endforeach; ?>
                   </ul>
                   <?php if (($item['short_description'] ?? '') !== ''): ?>
-                    <p class="cart-item-description mt-3 text-small color-muted"><?= e($item['short_description']); ?></p>
+                    <p class="cart-item-description mt-3 text-sm color-muted"><?= e($item['short_description']); ?></p>
                   <?php endif; ?>
                   <div class="cart-item-footer flex flex-wrap items-center gap-x-4 gap-y-3 mt-4">
                     <form method="post" class="cart-controls js-component-cart-autosubmit">
@@ -206,7 +206,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
                     <div class="cart-item-pricing">
                       <p class="cart-item-price font-semibold color-strong"><?= e(store_money($line['amount'])); ?></p>
                       <?php if ($line_saving > 0): ?>
-                        <p class="cart-item-saving flex flex-wrap justify-end gap-x-2 text-caption leading-3">
+                        <p class="cart-item-saving flex flex-wrap justify-end gap-x-2 text-xs leading-3">
                           <s class="cart-item-regular color-muted">
                             <span class="cart-item-regular-label sr-only">Regular price</span>
                             <?= e(store_money($line['amount'] + $line_saving)); ?>
@@ -225,7 +225,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
         <aside class="cart-summary min-w-0" aria-label="Order summary">
           <?php component('store/summary', $cart_summary); ?>
           <?php component('button', $checkout_button); ?>
-          <ul class="cart-assurances flex flex-wrap justify-center gap-x-5 gap-y-1 mt-3 text-caption color-muted"
+          <ul class="cart-assurances flex flex-wrap justify-center gap-x-5 gap-y-1 mt-3 text-xs color-muted"
             aria-label="Purchase assurances">
             <?php foreach ($store_purchase_assurances as $assurance): ?>
               <li class="cart-assurance flex items-center gap-1.5">
@@ -234,7 +234,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
               </li>
             <?php endforeach; ?>
           </ul>
-          <dl class="cart-delivery grid mt-6 text-small divide-y divide-dashed divide-zinc-300">
+          <dl class="cart-delivery grid mt-6 text-sm divide-y divide-dashed divide-zinc-300">
             <?php foreach ($store_delivery_facts as $fact): ?>
               <div class="cart-delivery-row grid grid-cols-2 items-baseline gap-4 py-1.5">
                 <dt class="cart-delivery-label color-muted"><?= e($fact['label']); ?></dt>
@@ -243,7 +243,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
             <?php endforeach; ?>
           </dl>
           <?php if ($has_follow_up): ?>
-            <div class="cart-follow-up flex items-start gap-5 mt-8 text-small">
+            <div class="cart-follow-up flex items-start gap-5 mt-8 text-sm">
               <div class="cart-follow-up-content min-w-0">
                 <p class="cart-follow-up-title font-medium color-strong"><?= e($cart_follow_up['title']); ?></p>
                 <p class="cart-follow-up-text mt-1 color-muted"><?= e($cart_follow_up['text']); ?></p>

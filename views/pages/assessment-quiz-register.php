@@ -89,7 +89,7 @@ $gate_privacy_note = 'Your answers stay private, are seen only by our clinical t
         <h1 id="quiz-gate-title" class="quiz-gate-title text-title-md font-semibold text-pretty color-strong">
           Send your answers to our doctor
         </h1>
-        <p class="quiz-gate-description mt-2 text-small text-pretty color-default">
+        <p class="quiz-gate-description mt-2 text-sm text-pretty color-default">
           Create a free account. A doctor will review your answers and reply within 24 hours.
         </p>
       </div>
@@ -97,7 +97,7 @@ $gate_privacy_note = 'Your answers stay private, are seen only by our clinical t
       <div class="quiz-gate-social mt-6">
         <?php component('button', $google_button); ?>
       </div>
-      <div class="quiz-gate-divider flex items-center gap-3.5 my-6 text-caption color-muted">
+      <div class="quiz-gate-divider flex items-center gap-3.5 my-6 text-xs color-muted">
         <span class="quiz-gate-divider-line flex-1 h-px bg-zinc-200" aria-hidden="true"></span>
         <span class="quiz-gate-divider-label">or sign up with email</span>
         <span class="quiz-gate-divider-line flex-1 h-px bg-zinc-200" aria-hidden="true"></span>
@@ -108,11 +108,11 @@ $gate_privacy_note = 'Your answers stay private, are seen only by our clinical t
         <?php endforeach; ?>
         <?php component('button', $gate_submit_button); ?>
       </form>
-      <p class="quiz-gate-login mt-5 text-center text-small color-muted">
+      <p class="quiz-gate-login mt-5 text-center text-sm color-muted">
         Already have an account?
         <a href="<?= asset_url('login'); ?>" class="font-medium color-strong underline underline-offset-4">Log In</a>
       </p>
-      <p class="quiz-gate-privacy mt-6 pt-5 text-caption text-pretty border-t border-zinc-200 color-muted">
+      <p class="quiz-gate-privacy mt-6 pt-5 text-xs text-pretty border-t border-zinc-200 color-muted">
         <?= e($gate_privacy_note); ?>
       </p>
     </section>

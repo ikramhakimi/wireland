@@ -452,7 +452,7 @@ $design_card = [
   'title'       => 'Related Information',
   'description' => 'A shared card with a header, content, and an action.',
   'content'     => static function () {
-    echo '<p class="card-text text-small leading-relaxed color-default">'
+    echo '<p class="card-text text-sm leading-relaxed color-default">'
       . 'Keep supporting details together in the card content area.'
       . '</p>';
   },
@@ -728,7 +728,7 @@ $design_marquees = [
       ?>
       <?php foreach ($highlight_widths as $item_index => $item_width): ?>
         <article class="card flex items-end <?= e($item_width); ?> h-64 p-5 rounded-xl bg-zinc-200">
-          <h3 class="card-title text-small font-medium color-strong">Highlight <?= e($item_index + 1); ?></h3>
+          <h3 class="card-title text-sm font-medium color-strong">Highlight <?= e($item_index + 1); ?></h3>
         </article>
       <?php endforeach; ?>
       <?php
@@ -744,8 +744,8 @@ $design_marquees = [
       ?>
       <?php for ($item_index = 1; $item_index <= 6; $item_index++): ?>
         <article class="card flex flex-col justify-between gap-6 w-80 min-h-48 p-5 rounded-lg border border-zinc-200 bg-white">
-          <p class="card-text text-small color-default">Sample testimonial content for reviewing the scrolling layout.</p>
-          <p class="card-label text-caption font-medium color-muted">Sample <?= e($item_index); ?></p>
+          <p class="card-text text-sm color-default">Sample testimonial content for reviewing the scrolling layout.</p>
+          <p class="card-label text-xs font-medium color-muted">Sample <?= e($item_index); ?></p>
         </article>
       <?php endfor; ?>
       <?php
@@ -808,46 +808,46 @@ $input_group_text_examples = [
     <section id="design-colors" aria-labelledby="design-colors-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-colors-title" class="section-title text-title-md font-semibold color-strong">Colors</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Choose colors by purpose: backgrounds, text, actions, and messages. Pair status colors with clear text
           so meaning does not depend on color alone.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>assets/css/app.css</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>assets/css/app.css</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Neutral Palette</h3>
-          <p class="foundation-description mt-2 text-small">Use the shade labels as Tailwind references.</p>
+          <p class="foundation-description mt-2 text-sm">Use the shade labels as Tailwind references.</p>
           <div class="color-swatches grid grid-cols-2 gap-3 mt-5 sm:grid-cols-3 lg:grid-cols-6">
             <div class="swatch">
               <div class="swatch-color h-20 rounded-xl border border-zinc-200 bg-white"></div>
-              <p class="swatch-name mt-3 text-small font-medium color-strong">White</p>
-              <p class="swatch-role mt-1 text-caption">Surface</p>
+              <p class="swatch-name mt-3 text-sm font-medium color-strong">White</p>
+              <p class="swatch-role mt-1 text-xs">Surface</p>
             </div>
             <div class="swatch">
               <div class="swatch-color h-20 rounded-xl bg-zinc-100"></div>
-              <p class="swatch-name mt-3 text-small font-medium color-strong">Zinc 100</p>
-              <p class="swatch-role mt-1 text-caption">Page background</p>
+              <p class="swatch-name mt-3 text-sm font-medium color-strong">Zinc 100</p>
+              <p class="swatch-role mt-1 text-xs">Page background</p>
             </div>
             <div class="swatch">
               <div class="swatch-color h-20 rounded-xl bg-zinc-200"></div>
-              <p class="swatch-name mt-3 text-small font-medium color-strong">Zinc 200</p>
-              <p class="swatch-role mt-1 text-caption">Dividers</p>
+              <p class="swatch-name mt-3 text-sm font-medium color-strong">Zinc 200</p>
+              <p class="swatch-role mt-1 text-xs">Dividers</p>
             </div>
             <div class="swatch">
               <div class="swatch-color h-20 rounded-xl bg-zinc-400"></div>
-              <p class="swatch-name mt-3 text-small font-medium color-strong">Zinc 400</p>
-              <p class="swatch-role mt-1 text-caption">Disabled details</p>
+              <p class="swatch-name mt-3 text-sm font-medium color-strong">Zinc 400</p>
+              <p class="swatch-role mt-1 text-xs">Disabled details</p>
             </div>
             <div class="swatch">
               <div class="swatch-color h-20 rounded-xl bg-zinc-600"></div>
-              <p class="swatch-name mt-3 text-small font-medium color-strong">Zinc 600</p>
-              <p class="swatch-role mt-1 text-caption">Body text</p>
+              <p class="swatch-name mt-3 text-sm font-medium color-strong">Zinc 600</p>
+              <p class="swatch-role mt-1 text-xs">Body text</p>
             </div>
             <div class="swatch">
               <div class="swatch-color h-20 rounded-xl bg-zinc-800"></div>
-              <p class="swatch-name mt-3 text-small font-medium color-strong">Zinc 800</p>
-              <p class="swatch-role mt-1 text-caption">Headings</p>
+              <p class="swatch-name mt-3 text-sm font-medium color-strong">Zinc 800</p>
+              <p class="swatch-role mt-1 text-xs">Headings</p>
             </div>
           </div>
         </div>
@@ -857,21 +857,21 @@ $input_group_text_examples = [
             sm:grid-cols-3">
             <div class="swatch">
               <div class="swatch-color h-20 rounded-xl bg-blue-600"></div>
-              <p class="swatch-name mt-3 text-small font-medium color-strong">Blue 600</p>
-              <p class="swatch-role mt-1 text-caption">Primary buttons and form focus</p>
-              <code class="swatch-code block mt-1 text-caption color-muted">bg-blue-600</code>
+              <p class="swatch-name mt-3 text-sm font-medium color-strong">Blue 600</p>
+              <p class="swatch-role mt-1 text-xs">Primary buttons and form focus</p>
+              <code class="swatch-code block mt-1 text-xs color-muted">bg-blue-600</code>
             </div>
             <div class="swatch">
               <div class="swatch-color h-20 rounded-xl bg-blue-700"></div>
-              <p class="swatch-name mt-3 text-small font-medium color-strong">Blue 700</p>
-              <p class="swatch-role mt-1 text-caption">Button hover and text links</p>
-              <code class="swatch-code block mt-1 text-caption color-muted">bg-blue-700</code>
+              <p class="swatch-name mt-3 text-sm font-medium color-strong">Blue 700</p>
+              <p class="swatch-role mt-1 text-xs">Button hover and text links</p>
+              <code class="swatch-code block mt-1 text-xs color-muted">bg-blue-700</code>
             </div>
             <div class="swatch">
               <div class="swatch-color h-20 rounded-xl bg-blue-800"></div>
-              <p class="swatch-name mt-3 text-small font-medium color-strong">Blue 800</p>
-              <p class="swatch-role mt-1 text-caption">Button pressed and link hover</p>
-              <code class="swatch-code block mt-1 text-caption color-muted">bg-blue-800</code>
+              <p class="swatch-name mt-3 text-sm font-medium color-strong">Blue 800</p>
+              <p class="swatch-role mt-1 text-xs">Button pressed and link hover</p>
+              <code class="swatch-code block mt-1 text-xs color-muted">bg-blue-800</code>
             </div>
           </div>
         </div>
@@ -880,18 +880,18 @@ $input_group_text_examples = [
           <div class="color-swatches grid grid-cols-2 gap-3">
             <div class="swatch">
               <div class="swatch-color h-20 rounded-xl bg-green-700"></div>
-              <p class="swatch-name mt-3 text-small font-medium color-strong">Green 700</p>
-              <p class="swatch-role mt-1 text-caption">Positive messages and changes</p>
-              <code class="swatch-code block mt-1 text-caption color-muted">bg-green-700</code>
+              <p class="swatch-name mt-3 text-sm font-medium color-strong">Green 700</p>
+              <p class="swatch-role mt-1 text-xs">Positive messages and changes</p>
+              <code class="swatch-code block mt-1 text-xs color-muted">bg-green-700</code>
             </div>
             <div class="swatch">
               <div class="swatch-color h-20 rounded-xl bg-red-700"></div>
-              <p class="swatch-name mt-3 text-small font-medium color-strong">Red 700</p>
-              <p class="swatch-role mt-1 text-caption">Errors and negative changes</p>
-              <code class="swatch-code block mt-1 text-caption color-muted">bg-red-700</code>
+              <p class="swatch-name mt-3 text-sm font-medium color-strong">Red 700</p>
+              <p class="swatch-role mt-1 text-xs">Errors and negative changes</p>
+              <code class="swatch-code block mt-1 text-xs color-muted">bg-red-700</code>
             </div>
           </div>
-          <p class="section-demo-note mt-6 text-small color-default">
+          <p class="section-demo-note mt-6 text-sm color-default">
             These swatches show the palette. Use color-positive and color-negative for status text on light surfaces.
             Warning message styles are not defined yet. Informational alerts use the primary text color.
           </p>
@@ -902,28 +902,28 @@ $input_group_text_examples = [
     <section id="design-surfaces" aria-labelledby="design-surfaces-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-surfaces-title" class="section-title text-title-md font-semibold color-strong">Surfaces</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use surfaces to separate the page background from controls and panels. Keep related content on the same
           surface.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>assets/css/app.css</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>assets/css/app.css</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Surface Backgrounds</h3>
           <div class="surface-examples grid gap-6
             md:grid-cols-3">
             <div class="surface-sample p-5 rounded-md border border-zinc-200 bg-zinc-100">
               <p class="surface-label font-medium color-strong">Page</p>
-              <code class="surface-code block mt-2 text-caption color-muted">bg-zinc-100</code>
+              <code class="surface-code block mt-2 text-xs color-muted">bg-zinc-100</code>
             </div>
             <div class="surface-sample p-5 rounded-md border border-zinc-200 bg-white">
               <p class="surface-label font-medium color-strong">Panel</p>
-              <code class="surface-code block mt-2 text-caption color-muted">bg-white</code>
+              <code class="surface-code block mt-2 text-xs color-muted">bg-white</code>
             </div>
             <div class="surface-sample p-5 rounded-md bg-zinc-800">
               <p class="surface-label font-medium color-invert-strong">Dark</p>
-              <code class="surface-code block mt-2 text-caption color-invert-muted">bg-zinc-800</code>
+              <code class="surface-code block mt-2 text-xs color-invert-muted">bg-zinc-800</code>
             </div>
           </div>
         </div>
@@ -933,20 +933,20 @@ $input_group_text_examples = [
     <section id="design-font-family" aria-labelledby="design-font-family-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-font-family-title" class="section-title text-title-md font-semibold color-strong">Font Family</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use Poppins as the shared font family across the website and dashboards. Apply font-sans to keep text
           consistent.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>assets/css/app.css</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>assets/css/app.css</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Poppins</h3>
           <div class="font-specimen">
             <p class="font-sample font-sans">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
             <p class="font-sample font-sans">abcdefghijklmnopqrstuvwxyz</p>
             <p class="font-sample font-sans">0123456789</p>
-            <code class="font-code block mt-4 text-caption color-muted">font-sans / Poppins</code>
+            <code class="font-code block mt-4 text-xs color-muted">font-sans / Poppins</code>
           </div>
         </div>
       </div>
@@ -955,16 +955,16 @@ $input_group_text_examples = [
     <section id="design-font-size" aria-labelledby="design-font-size-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-font-size-title" class="section-title text-title-md font-semibold color-strong">Font Size</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Choose a size that matches the role of the text. Use a responsive title when a heading should grow on
           desktop; use a fixed size when the text sits inside a component with a fixed layout.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>assets/css/foundations.css</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>assets/css/foundations.css</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Responsive Titles</h3>
-          <p class="foundation-note max-w-3xl mt-3 text-small">
+          <p class="foundation-note max-w-3xl mt-3 text-sm">
             Title tokens switch size at md, so one class covers mobile and desktop. Use them for page, section, and
             content headings. Each size utility includes its line-height; keep font weight separate.
           </p>
@@ -972,12 +972,12 @@ $input_group_text_examples = [
             <div class="type-specimen grid gap-4 py-6
               md:grid-cols-3">
               <div class="type-details min-w-0">
-                <p class="type-label text-small font-medium color-strong">Title / Large</p>
-                <p class="type-metrics mt-2 text-caption color-muted">36px / 60px · Line-height 1.1</p>
-                <p class="type-usage mt-2 text-small">
+                <p class="type-label text-sm font-medium color-strong">Title / Large</p>
+                <p class="type-metrics mt-2 text-xs color-muted">36px / 60px · Line-height 1.1</p>
+                <p class="type-usage mt-2 text-sm">
                   Hero and single-page titles.
                 </p>
-                <code class="type-code block mt-3 text-caption color-default break-words">text-title-lg font-medium</code>
+                <code class="type-code block mt-3 text-xs color-default break-words">text-title-lg font-medium</code>
               </div>
               <p class="type-sample text-title-lg font-medium color-strong
                 md:col-span-2">Care starts here.</p>
@@ -985,12 +985,12 @@ $input_group_text_examples = [
             <div class="type-specimen grid gap-4 py-6
               md:grid-cols-3">
               <div class="type-details min-w-0">
-                <p class="type-label text-small font-medium color-strong">Title / Medium</p>
-                <p class="type-metrics mt-2 text-caption color-muted">28px / 36px · Line-height 1.25</p>
-                <p class="type-usage mt-2 text-small">
+                <p class="type-label text-sm font-medium color-strong">Title / Medium</p>
+                <p class="type-metrics mt-2 text-xs color-muted">28px / 36px · Line-height 1.25</p>
+                <p class="type-usage mt-2 text-sm">
                   Section headings and consultation banners. The default headline variant uses this token.
                 </p>
-                <code class="type-code block mt-3 text-caption color-default break-words">text-title-md font-medium</code>
+                <code class="type-code block mt-3 text-xs color-default break-words">text-title-md font-medium</code>
               </div>
               <p class="type-sample text-title-md font-medium color-strong
                 md:col-span-2">Care that fits your life.</p>
@@ -998,13 +998,13 @@ $input_group_text_examples = [
             <div class="type-specimen grid gap-4 py-6
               md:grid-cols-3">
               <div class="type-details min-w-0">
-                <p class="type-label text-small font-medium color-strong">Title / Small</p>
-                <p class="type-metrics mt-2 text-caption color-muted">20px / 24px · Line-height 1.3</p>
-                <p class="type-usage mt-2 text-small">
+                <p class="type-label text-sm font-medium color-strong">Title / Small</p>
+                <p class="type-metrics mt-2 text-xs color-muted">20px / 24px · Line-height 1.3</p>
+                <p class="type-usage mt-2 text-sm">
                   Subheadings, testimonial quotes, and assessment titles. For headings inside fixed-size
                   components, use text-xl.
                 </p>
-                <code class="type-code block mt-3 text-caption color-default break-words">text-title-sm font-medium</code>
+                <code class="type-code block mt-3 text-xs color-default break-words">text-title-sm font-medium</code>
               </div>
               <p class="type-sample text-title-sm font-medium color-strong
                 md:col-span-2">Your next chapter starts here.</p>
@@ -1014,7 +1014,7 @@ $input_group_text_examples = [
 
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Fixed Sizes</h3>
-          <p class="foundation-note max-w-3xl mt-3 text-small">
+          <p class="foundation-note max-w-3xl mt-3 text-sm">
             Fixed sizes stay the same at every breakpoint. Use Tailwind's text-xl and text-lg for component headings
             and emphasised labels. Body text uses text-base or inherits 16px; there is no text-body token. Avoid
             leading-* overrides unless a control needs specific alignment.
@@ -1023,12 +1023,12 @@ $input_group_text_examples = [
             <div class="type-specimen grid gap-4 py-6
               md:grid-cols-3">
               <div class="type-details min-w-0">
-                <p class="type-label text-small font-medium color-strong">X-Large</p>
-                <p class="type-metrics mt-2 text-caption color-muted">20px · Line-height 1.4</p>
-                <p class="type-usage mt-2 text-small">
+                <p class="type-label text-sm font-medium color-strong">X-Large</p>
+                <p class="type-metrics mt-2 text-xs color-muted">20px · Line-height 1.4</p>
+                <p class="type-usage mt-2 text-sm">
                   Headings inside fixed-size components: timeline steps, drawers, modals, and report cards.
                 </p>
-                <code class="type-code block mt-3 text-caption color-default break-words">text-xl font-semibold</code>
+                <code class="type-code block mt-3 text-xs color-default break-words">text-xl font-semibold</code>
               </div>
               <p class="type-sample text-xl font-semibold color-strong
                 md:col-span-2">Book your consultation.</p>
@@ -1036,12 +1036,12 @@ $input_group_text_examples = [
             <div class="type-specimen grid gap-4 py-6
               md:grid-cols-3">
               <div class="type-details min-w-0">
-                <p class="type-label text-small font-medium color-strong">Large</p>
-                <p class="type-metrics mt-2 text-caption color-muted">18px · Line-height 1.55</p>
-                <p class="type-usage mt-2 text-small">
+                <p class="type-label text-sm font-medium color-strong">Large</p>
+                <p class="type-metrics mt-2 text-xs color-muted">18px · Line-height 1.55</p>
+                <p class="type-usage mt-2 text-sm">
                   Emphasised labels, step numbers, brand marks, and lead text in fixed containers.
                 </p>
-                <code class="type-code block mt-3 text-caption color-default break-words">text-lg font-medium</code>
+                <code class="type-code block mt-3 text-xs color-default break-words">text-lg font-medium</code>
               </div>
               <p class="type-sample text-lg font-medium color-strong
                 md:col-span-2">Step 1</p>
@@ -1049,13 +1049,13 @@ $input_group_text_examples = [
             <div class="type-specimen grid gap-4 py-6
               md:grid-cols-3">
               <div class="type-details min-w-0">
-                <p class="type-label text-small font-medium color-strong">Body / Default</p>
-                <p class="type-metrics mt-2 text-caption color-muted">16px / 16px · Line-height 1.5</p>
-                <p class="type-usage mt-2 text-small">
+                <p class="type-label text-sm font-medium color-strong">Body / Default</p>
+                <p class="type-metrics mt-2 text-xs color-muted">16px / 16px · Line-height 1.5</p>
+                <p class="type-usage mt-2 text-sm">
                   Reading content and compact titles. Inherit 16px where the parent already provides it;
                   use text-base when an explicit size is needed.
                 </p>
-                <code class="type-code block mt-3 text-caption color-default break-words">text-base font-normal</code>
+                <code class="type-code block mt-3 text-xs color-default break-words">text-base font-normal</code>
               </div>
               <p class="type-sample text-base font-normal color-strong
                 md:col-span-2">Find the information you need in one place.</p>
@@ -1063,27 +1063,27 @@ $input_group_text_examples = [
             <div class="type-specimen grid gap-4 py-6
               md:grid-cols-3">
               <div class="type-details min-w-0">
-                <p class="type-label text-small font-medium color-strong">Small</p>
-                <p class="type-metrics mt-2 text-caption color-muted">14px / 14px · Line-height 1.5</p>
-                <p class="type-usage mt-2 text-small">
+                <p class="type-label text-sm font-medium color-strong">Small</p>
+                <p class="type-metrics mt-2 text-xs color-muted">14px · Line-height 1.5</p>
+                <p class="type-usage mt-2 text-sm">
                   Supporting descriptions, navigation, field labels, and compact interface text.
                 </p>
-                <code class="type-code block mt-3 text-caption color-default break-words">text-small font-normal</code>
+                <code class="type-code block mt-3 text-xs color-default break-words">text-sm font-normal</code>
               </div>
-              <p class="type-sample text-small font-normal color-strong
+              <p class="type-sample text-sm font-normal color-strong
                 md:col-span-2">Additional information about your account.</p>
             </div>
             <div class="type-specimen grid gap-4 py-6
               md:grid-cols-3">
               <div class="type-details min-w-0">
-                <p class="type-label text-small font-medium color-strong">Caption</p>
-                <p class="type-metrics mt-2 text-caption color-muted">12px / 12px · Line-height 1.5</p>
-                <p class="type-usage mt-2 text-small">
+                <p class="type-label text-sm font-medium color-strong">X-Small</p>
+                <p class="type-metrics mt-2 text-xs color-muted">12px · Line-height 1.5</p>
+                <p class="type-usage mt-2 text-sm">
                   Metadata, badges, helper text, and short supporting notes.
                 </p>
-                <code class="type-code block mt-3 text-caption color-default break-words">text-caption font-normal</code>
+                <code class="type-code block mt-3 text-xs color-default break-words">text-xs font-normal</code>
               </div>
-              <p class="type-sample text-caption font-normal color-strong
+              <p class="type-sample text-xs font-normal color-strong
                 md:col-span-2">Additional product details.</p>
             </div>
           </div>
@@ -1094,43 +1094,43 @@ $input_group_text_examples = [
     <section id="design-font-color" aria-labelledby="design-font-color-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-font-color-title" class="section-title text-title-md font-semibold color-strong">Font Color</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Choose text colors by role and surface. Keep headings, body text, and supporting details distinct, and
           pair status colors with clear messages.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>assets/css/app.css</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>assets/css/app.css</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Light Surface</h3>
 
           <p class="color-sample mt-4 font-medium color-strong">Heading, name, price, navigation</p>
-          <code class="color-code block mt-1 text-caption color-muted">color-strong / zinc-800</code>
+          <code class="color-code block mt-1 text-xs color-muted">color-strong / zinc-800</code>
           <p class="color-sample mt-4 color-default">Body text and primary descriptions</p>
-          <code class="color-code block mt-1 text-caption color-muted">color-default / zinc-600</code>
-          <p class="color-sample mt-4 text-small color-muted">Metadata, helper text, and disclaimers</p>
-          <code class="color-code block mt-1 text-caption color-muted">color-muted / zinc-500</code>
+          <code class="color-code block mt-1 text-xs color-muted">color-default / zinc-600</code>
+          <p class="color-sample mt-4 text-sm color-muted">Metadata, helper text, and disclaimers</p>
+          <code class="color-code block mt-1 text-xs color-muted">color-muted / zinc-500</code>
         </div>
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Dark Surface</h3>
           <div class="color-surface p-6 rounded-2xl bg-zinc-800">
             <p class="color-sample mt-4 font-medium color-invert-strong">Heading and primary emphasis</p>
-            <code class="color-code block mt-1 text-caption color-invert-muted">color-invert-strong / white</code>
+            <code class="color-code block mt-1 text-xs color-invert-muted">color-invert-strong / white</code>
             <p class="color-sample mt-4 color-invert-default">Questions, answers, and body text</p>
-            <code class="color-code block mt-1 text-caption color-invert-muted">color-invert-default / zinc-300</code>
-            <p class="color-sample mt-4 text-small color-invert-muted">Speaker labels and supporting notes</p>
-            <code class="color-code block mt-1 text-caption color-invert-muted">color-invert-muted / zinc-400</code>
+            <code class="color-code block mt-1 text-xs color-invert-muted">color-invert-default / zinc-300</code>
+            <p class="color-sample mt-4 text-sm color-invert-muted">Speaker labels and supporting notes</p>
+            <code class="color-code block mt-1 text-xs color-invert-muted">color-invert-muted / zinc-400</code>
           </div>
         </div>
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Accent Colors</h3>
           <p class="color-sample color-primary">Text links and primary emphasis</p>
-          <code class="color-code block mt-1 text-caption color-muted">color-primary / blue-700</code>
+          <code class="color-code block mt-1 text-xs color-muted">color-primary / blue-700</code>
 
-          <p class="color-sample mt-4 text-small color-positive">Your changes have been saved.</p>
-          <code class="color-code block mt-1 text-caption color-muted">color-positive / green-700</code>
-          <p class="color-sample mt-4 text-small color-negative">Enter a valid email address.</p>
-          <code class="color-code block mt-1 text-caption color-muted">color-negative / red-700</code>
+          <p class="color-sample mt-4 text-sm color-positive">Your changes have been saved.</p>
+          <code class="color-code block mt-1 text-xs color-muted">color-positive / green-700</code>
+          <p class="color-sample mt-4 text-sm color-negative">Enter a valid email address.</p>
+          <code class="color-code block mt-1 text-xs color-muted">color-negative / red-700</code>
         </div>
       </div>
     </section>
@@ -1138,16 +1138,16 @@ $input_group_text_examples = [
     <section id="design-font-weight" aria-labelledby="design-font-weight-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-font-weight-title" class="section-title text-title-md font-semibold color-strong">Font Weight</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Choose font weight independently of size. Use regular for reading, medium for labels and headings, and
           heavier weights for deliberate emphasis.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>assets/css/app.css</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>assets/css/app.css</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Weight Scale</h3>
-          <p class="type-description mt-2 text-small leading-relaxed">
+          <p class="type-description mt-2 text-sm leading-relaxed">
             Use regular (400) for reading and input values, and medium (500) for labels, buttons, and metrics.
             Use semibold (600) for section headings or selected emphasis, and bold (700) for deliberate emphasis.
             Font weight stays independent of size and does not change automatically by viewport.
@@ -1157,23 +1157,23 @@ $input_group_text_examples = [
             lg:grid-cols-4">
             <div class="weight-specimen">
               <p class="weight-sample text-title-sm font-normal color-strong">Aa / Poppins</p>
-              <p class="weight-label mt-2 text-small">Regular / 400</p>
-              <code class="weight-code block mt-1 text-caption color-default">font-normal</code>
+              <p class="weight-label mt-2 text-sm">Regular / 400</p>
+              <code class="weight-code block mt-1 text-xs color-default">font-normal</code>
             </div>
             <div class="weight-specimen">
               <p class="weight-sample text-title-sm font-medium color-strong">Aa / Poppins</p>
-              <p class="weight-label mt-2 text-small">Medium / 500</p>
-              <code class="weight-code block mt-1 text-caption color-default">font-medium</code>
+              <p class="weight-label mt-2 text-sm">Medium / 500</p>
+              <code class="weight-code block mt-1 text-xs color-default">font-medium</code>
             </div>
             <div class="weight-specimen">
               <p class="weight-sample text-title-sm font-semibold color-strong">Aa / Poppins</p>
-              <p class="weight-label mt-2 text-small">Semibold / 600</p>
-              <code class="weight-code block mt-1 text-caption color-default">font-semibold</code>
+              <p class="weight-label mt-2 text-sm">Semibold / 600</p>
+              <code class="weight-code block mt-1 text-xs color-default">font-semibold</code>
             </div>
             <div class="weight-specimen">
               <p class="weight-sample text-title-sm font-bold color-strong">Aa / Poppins</p>
-              <p class="weight-label mt-2 text-small">Bold / 700</p>
-              <code class="weight-code block mt-1 text-caption color-default">font-bold</code>
+              <p class="weight-label mt-2 text-sm">Bold / 700</p>
+              <code class="weight-code block mt-1 text-xs color-default">font-bold</code>
             </div>
           </div>
         </div>
@@ -1183,20 +1183,20 @@ $input_group_text_examples = [
     <section id="design-spacing" aria-labelledby="design-spacing-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-spacing-title" class="section-title text-title-md font-semibold color-strong">Spacing &amp; Layout</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use consistent spacing to group related content and separate sections. Keep page content aligned with
           the shared container.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>assets/css/app.css</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>assets/css/app.css</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Spacing Scale</h3>
           <div class="spacing-examples flex flex-wrap items-end gap-6">
-            <div class="spacing-example"><div class="spacing-bar w-2 h-8 bg-zinc-300"></div><p class="spacing-label mt-2 text-caption">2 / 8px</p></div>
-            <div class="spacing-example"><div class="spacing-bar w-4 h-8 bg-zinc-400"></div><p class="spacing-label mt-2 text-caption">4 / 16px</p></div>
-            <div class="spacing-example"><div class="spacing-bar w-6 h-8 bg-zinc-500"></div><p class="spacing-label mt-2 text-caption">6 / 24px</p></div>
-            <div class="spacing-example"><div class="spacing-bar w-8 h-8 bg-zinc-600"></div><p class="spacing-label mt-2 text-caption">8 / 32px</p></div>
+            <div class="spacing-example"><div class="spacing-bar w-2 h-8 bg-zinc-300"></div><p class="spacing-label mt-2 text-xs">2 / 8px</p></div>
+            <div class="spacing-example"><div class="spacing-bar w-4 h-8 bg-zinc-400"></div><p class="spacing-label mt-2 text-xs">4 / 16px</p></div>
+            <div class="spacing-example"><div class="spacing-bar w-6 h-8 bg-zinc-500"></div><p class="spacing-label mt-2 text-xs">6 / 24px</p></div>
+            <div class="spacing-example"><div class="spacing-bar w-8 h-8 bg-zinc-600"></div><p class="spacing-label mt-2 text-xs">8 / 32px</p></div>
           </div>
         </div>
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
@@ -1204,32 +1204,32 @@ $input_group_text_examples = [
           <div class="layout-preview py-5 rounded-md border border-zinc-200 bg-white">
             <div class="layout-container container">
               <div class="layout-content p-5 rounded-md bg-zinc-100">
-                <p class="layout-label text-small font-medium color-strong">Aligned Content</p>
-                <p class="layout-description mt-2 text-small leading-relaxed color-default">
+                <p class="layout-label text-sm font-medium color-strong">Aligned Content</p>
+                <p class="layout-description mt-2 text-sm leading-relaxed color-default">
                   The container stays centered and fills the available space up to its maximum width.
                 </p>
               </div>
             </div>
           </div>
-          <code class="layout-code block mt-4 text-caption color-muted">container / mx-auto max-w-6xl px-5 lg:px-0</code>
+          <code class="layout-code block mt-4 text-xs color-muted">container / mx-auto max-w-6xl px-5 lg:px-0</code>
         </div>
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Content Groups</h3>
           <div class="layout-groups grid gap-8">
             <div class="layout-group grid gap-2">
-              <p class="layout-label text-small font-medium color-strong">Related Content</p>
-              <p class="layout-description text-small leading-relaxed color-default">
+              <p class="layout-label text-sm font-medium color-strong">Related Content</p>
+              <p class="layout-description text-sm leading-relaxed color-default">
                 Keep a heading and its description close together.
               </p>
             </div>
             <div class="layout-group grid gap-2">
-              <p class="layout-label text-small font-medium color-strong">Next Group</p>
-              <p class="layout-description text-small leading-relaxed color-default">
+              <p class="layout-label text-sm font-medium color-strong">Next Group</p>
+              <p class="layout-description text-sm leading-relaxed color-default">
                 Use a larger gap to separate the next topic.
               </p>
             </div>
           </div>
-          <code class="layout-code block mt-4 text-caption color-muted">
+          <code class="layout-code block mt-4 text-xs color-muted">
             Within a group: gap-2 (8px) / between groups: gap-8 (32px)
           </code>
         </div>
@@ -1239,30 +1239,30 @@ $input_group_text_examples = [
     <section id="design-borders" aria-labelledby="design-borders-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-borders-title" class="section-title text-title-md font-semibold color-strong">Borders &amp; Radius</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use borders to define edges and corner radii to distinguish controls, panels, and pills. Keep the same
           treatment for elements with the same role.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>assets/css/app.css</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>assets/css/app.css</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Borders &amp; Radius</h3>
           <div class="shape-examples flex flex-wrap gap-4">
             <div class="shape-example">
-              <span class="shape-sample inline-flex px-4 py-3 text-small rounded-lg border border-zinc-300">Control</span>
-              <code class="shape-code block mt-3 text-caption color-muted">rounded-lg</code>
-              <code class="shape-code block mt-1 text-caption color-muted">border border-zinc-300</code>
+              <span class="shape-sample inline-flex px-4 py-3 text-sm rounded-lg border border-zinc-300">Control</span>
+              <code class="shape-code block mt-3 text-xs color-muted">rounded-lg</code>
+              <code class="shape-code block mt-1 text-xs color-muted">border border-zinc-300</code>
             </div>
             <div class="shape-example">
-              <span class="shape-sample inline-flex px-4 py-3 text-small rounded-2xl border border-zinc-300">Panel</span>
-              <code class="shape-code block mt-3 text-caption color-muted">rounded-2xl</code>
-              <code class="shape-code block mt-1 text-caption color-muted">border border-zinc-300</code>
+              <span class="shape-sample inline-flex px-4 py-3 text-sm rounded-2xl border border-zinc-300">Panel</span>
+              <code class="shape-code block mt-3 text-xs color-muted">rounded-2xl</code>
+              <code class="shape-code block mt-1 text-xs color-muted">border border-zinc-300</code>
             </div>
             <div class="shape-example">
-              <span class="shape-sample inline-flex px-4 py-3 text-small rounded-full border border-zinc-300">Pill</span>
-              <code class="shape-code block mt-3 text-caption color-muted">rounded-full</code>
-              <code class="shape-code block mt-1 text-caption color-muted">border border-zinc-300</code>
+              <span class="shape-sample inline-flex px-4 py-3 text-sm rounded-full border border-zinc-300">Pill</span>
+              <code class="shape-code block mt-3 text-xs color-muted">rounded-full</code>
+              <code class="shape-code block mt-1 text-xs color-muted">border border-zinc-300</code>
             </div>
           </div>
         </div>
@@ -1272,26 +1272,26 @@ $input_group_text_examples = [
     <section id="design-icons" aria-labelledby="design-icons-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-icons-title" class="section-title text-title-md font-semibold color-strong">Icons</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use registered icons to support clear labels. Icons inherit the current text color; give icon-only
           controls an accessible name.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>includes/svg.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>includes/svg.php</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Registered Icons</h3>
           <div class="icon-groups grid gap-10">
             <?php foreach ($design_icon_groups as $design_icon_category => $design_category_icons): ?>
               <section class="icon-group">
-                <h4 class="icon-group-title mb-4 text-small font-semibold color-strong"><?= e($design_icon_category); ?></h4>
+                <h4 class="icon-group-title mb-4 text-sm font-semibold color-strong"><?= e($design_icon_category); ?></h4>
                 <div class="icon-examples grid gap-6
                   sm:grid-cols-2
                   lg:grid-cols-3">
                   <?php foreach ($design_category_icons as $design_icon): ?>
                     <div class="icon-example flex items-center gap-3 min-w-0">
                       <?php svg($design_icon, 'icon-glyph size-5 shrink-0 color-strong'); ?>
-                      <code class="icon-name min-w-0 text-caption color-muted break-words"><?= e($design_icon); ?></code>
+                      <code class="icon-name min-w-0 text-xs color-muted break-words"><?= e($design_icon); ?></code>
                     </div>
                   <?php endforeach; ?>
                 </div>
@@ -1304,15 +1304,15 @@ $input_group_text_examples = [
           <div class="icon-examples flex flex-wrap items-end gap-10">
             <div class="icon-example">
               <?php svg('search-line', 'icon-glyph size-4 color-strong'); ?>
-              <code class="icon-code block mt-3 text-caption color-muted">size-4 / 16px</code>
+              <code class="icon-code block mt-3 text-xs color-muted">size-4 / 16px</code>
             </div>
             <div class="icon-example">
               <?php svg('search-line', 'icon-glyph size-5 color-strong'); ?>
-              <code class="icon-code block mt-3 text-caption color-muted">size-5 / 20px</code>
+              <code class="icon-code block mt-3 text-xs color-muted">size-5 / 20px</code>
             </div>
             <div class="icon-example">
               <?php svg('search-line', 'icon-glyph size-6 color-strong'); ?>
-              <code class="icon-code block mt-3 text-caption color-muted">size-6 / 24px</code>
+              <code class="icon-code block mt-3 text-xs color-muted">size-6 / 24px</code>
             </div>
           </div>
         </div>
@@ -1322,20 +1322,20 @@ $input_group_text_examples = [
     <section id="design-buttons" aria-labelledby="design-buttons-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-buttons-title" class="section-title text-title-md font-semibold color-strong">Buttons</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use buttons to perform actions. Choose a size, color, and icon treatment that suits the action, and show
           when a button is disabled or loading.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>views/components/button.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/button.php</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <?php foreach ($button_colors as $button_color => $button_color_label): ?>
           <section class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
             <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong"><?= e($button_color_label); ?></h3>
             <div class="button-sizes grid gap-10 mt-5">
               <?php foreach ($button_sizes as $button_size => $button_size_label): ?>
                 <section class="button-size" aria-label="<?= e($button_color_label . ' / ' . $button_size_label); ?>">
-                  <h4 class="button-size-title text-small font-medium color-default"><?= e($button_size_label); ?></h4>
+                  <h4 class="button-size-title text-sm font-medium color-default"><?= e($button_size_label); ?></h4>
                   <div class="button-examples flex flex-wrap items-center gap-4 mt-3">
                     <?php foreach ($button_examples as $button_example): ?>
                       <?php component('button', array_merge($button_example, [
@@ -1351,14 +1351,14 @@ $input_group_text_examples = [
         <?php endforeach; ?>
         <section class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Button Icon</h3>
-          <p class="section-demo-description mb-6 text-small color-default">
+          <p class="section-demo-description mb-6 text-sm color-default">
             Use the icon-only variant with an icon and a descriptive label. The label stays available to
             screen readers and appears as a native tooltip.
           </p>
           <div class="button-sizes grid gap-10">
             <?php foreach ($button_sizes as $button_size => $button_size_label): ?>
               <section class="button-size" aria-label="<?= e('Button Icon / ' . $button_size_label); ?>">
-                <h4 class="button-size-title text-small font-medium color-default"><?= e($button_size_label); ?></h4>
+                <h4 class="button-size-title text-sm font-medium color-default"><?= e($button_size_label); ?></h4>
                 <div class="button-examples flex flex-wrap items-center gap-4 mt-3">
                   <?php foreach ($button_colors as $button_color => $button_color_label): ?>
                     <div class="button-group flex items-center gap-2" role="group" aria-label="<?= e($button_color_label); ?>">
@@ -1381,20 +1381,20 @@ $input_group_text_examples = [
     <section id="design-links" aria-labelledby="design-links-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-links-title" class="section-title text-title-md font-semibold color-strong">Links</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use links to navigate to another page or section. Name the destination clearly and underline links
           within paragraphs.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>views/pages/design.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/pages/design.php</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Text Link</h3>
           <a href="#design-buttons" class="link inline-block color-primary underline underline-offset-4
             hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-700">
             Explore Buttons
           </a>
-          <code class="color-code block mt-1 text-caption color-muted">color-primary / blue-700</code>
+          <code class="color-code block mt-1 text-xs color-muted">color-primary / blue-700</code>
         </div>
       </div>
     </section>
@@ -1402,26 +1402,26 @@ $input_group_text_examples = [
     <section id="design-form-states" aria-labelledby="design-form-states-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-form-states-title" class="section-title text-title-md font-semibold color-strong">Fields</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Pair each form control with a clear label. Add helper text when guidance is needed, mark required
           fields, and explain how to fix errors beside the affected control.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>views/components/forms/field.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/forms/field.php</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Field Structure</h3>
           <div class="form-examples grid gap-6 md:grid-cols-2">
             <div class="form-example">
-              <h4 class="form-example-title mb-3 text-small font-medium color-default">Label &amp; Helper Text</h4>
+              <h4 class="form-example-title mb-3 text-sm font-medium color-default">Label &amp; Helper Text</h4>
               <?php component('forms/field', $design_fields['design-name']); ?>
             </div>
             <div class="form-example">
-              <h4 class="form-example-title mb-3 text-small font-medium color-default">Disabled Field</h4>
+              <h4 class="form-example-title mb-3 text-sm font-medium color-default">Disabled Field</h4>
               <?php component('forms/field', $design_fields['design-reference']); ?>
             </div>
           </div>
-          <p class="section-demo-note mt-6 text-small color-default">
+          <p class="section-demo-note mt-6 text-sm color-default">
             These are independent state specimens, not a submitted form. Error messages are static examples; runtime
             validation and backend integration are not implemented on this reference page.
           </p>
@@ -1432,42 +1432,42 @@ $input_group_text_examples = [
     <section id="design-input" aria-labelledby="design-input-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-input-title" class="section-title text-title-md font-semibold color-strong">Input</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use inputs for short, single-line values such as names, email addresses, and passwords. Keep filled,
           read-only, disabled, and error states easy to distinguish.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>views/components/forms/field.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/forms/field.php</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Input States</h3>
           <div class="form-examples grid gap-6 md:grid-cols-2">
             <div class="form-example">
-              <h4 class="form-example-title mb-3 text-small font-medium color-default">Default &amp; Required</h4>
+              <h4 class="form-example-title mb-3 text-sm font-medium color-default">Default &amp; Required</h4>
               <?php component('forms/field', $design_fields['state-default']); ?>
             </div>
             <div class="form-example">
-              <h4 class="form-example-title mb-3 text-small font-medium color-default">Filled</h4>
+              <h4 class="form-example-title mb-3 text-sm font-medium color-default">Filled</h4>
               <?php component('forms/field', $design_fields['state-filled']); ?>
             </div>
             <div class="form-example">
-              <h4 class="form-example-title mb-3 text-small font-medium color-default">Read-only</h4>
+              <h4 class="form-example-title mb-3 text-sm font-medium color-default">Read-only</h4>
               <?php component('forms/field', $design_fields['state-readonly']); ?>
             </div>
             <div class="form-example">
-              <h4 class="form-example-title mb-3 text-small font-medium color-default">Disabled</h4>
+              <h4 class="form-example-title mb-3 text-sm font-medium color-default">Disabled</h4>
               <?php component('forms/field', $design_fields['state-disabled']); ?>
             </div>
             <div class="form-example">
-              <h4 class="form-example-title mb-3 text-small font-medium color-default">Email Error</h4>
+              <h4 class="form-example-title mb-3 text-sm font-medium color-default">Email Error</h4>
               <?php component('forms/field', $design_fields['state-email']); ?>
             </div>
             <div class="form-example">
-              <h4 class="form-example-title mb-3 text-small font-medium color-default">Password</h4>
+              <h4 class="form-example-title mb-3 text-sm font-medium color-default">Password</h4>
               <?php component('forms/field', $design_fields['state-password']); ?>
             </div>
             <div class="form-example">
-              <h4 class="form-example-title mb-3 text-small font-medium color-default">Password Error</h4>
+              <h4 class="form-example-title mb-3 text-sm font-medium color-default">Password Error</h4>
               <?php component('forms/field', $design_fields['state-password-error']); ?>
             </div>
           </div>
@@ -1478,11 +1478,11 @@ $input_group_text_examples = [
     <section id="design-input-group" aria-labelledby="design-input-group-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-input-group-title" class="section-title text-title-md font-semibold color-strong">Input Group</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           A text input and action button inside one field outline. The action uses the shared small button (32px).
           Place the component inside a form to submit its value.
         </p>
-        <p class="section-source mt-3 text-small color-muted">
+        <p class="section-source mt-3 text-sm color-muted">
           Source: <code>views/components/forms/input-group.php</code>
         </p>
       </header>
@@ -1492,7 +1492,7 @@ $input_group_text_examples = [
             <?php component('forms/input-group', $design_input_group); ?>
           </form>
           <?php if ($input_group_query !== ''): ?>
-            <p class="input-group-result mt-4 text-small color-default" role="status">
+            <p class="input-group-result mt-4 text-sm color-default" role="status">
               Demo submitted: <?= e($input_group_query); ?>
             </p>
           <?php endif; ?>
@@ -1504,10 +1504,10 @@ $input_group_text_examples = [
       class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-input-group-text-title" class="section-title text-title-md font-semibold color-strong">Input Group Text</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Keep currency, units or reference values visible before or after an input. The surrounding text cannot be edited.
         </p>
-        <p class="section-source mt-3 text-small">Source: <code>views/components/forms/input-group.php</code></p>
+        <p class="section-source mt-3 text-sm">Source: <code>views/components/forms/input-group.php</code></p>
       </header>
       <div class="section-content grid gap-8 mt-6">
         <div class="section-demo grid min-w-0 gap-8 p-5 rounded-md border border-zinc-200 bg-zinc-100
@@ -1517,7 +1517,7 @@ $input_group_text_examples = [
               <?php component('forms/input-group', $example); ?>
             </div>
           <?php endforeach; ?>
-          <p class="section-demo-note text-caption color-muted">
+          <p class="section-demo-note text-xs color-muted">
             Set <code>before</code> for a prefix, <code>after</code> for a suffix, or both for combined.
             Only the input value is submitted; text stays visible while typing. Use short affixes.
           </p>
@@ -1528,11 +1528,11 @@ $input_group_text_examples = [
     <section id="design-stepper" aria-labelledby="design-stepper-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-stepper-title" class="section-title text-title-md font-semibold color-strong">Stepper</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Change a small whole number, such as quantity, with minus and plus buttons. The value can also be typed.
           Minimum defaults to 1; buttons disable at the limits. One size: 40px.
         </p>
-        <p class="section-source mt-3 text-small">Source: <code>views/components/forms/stepper.php</code></p>
+        <p class="section-source mt-3 text-sm">Source: <code>views/components/forms/stepper.php</code></p>
       </header>
       <div class="section-content mt-6">
         <div class="section-demo p-5 rounded-md border border-zinc-200 bg-zinc-100
@@ -1540,7 +1540,7 @@ $input_group_text_examples = [
           <div class="form-examples grid gap-6 md:grid-cols-3">
             <?php foreach ($design_steppers as $stepper): ?>
               <div class="form-example">
-                <h4 class="form-example-title mb-3 text-small font-medium color-default"><?= e($stepper['title']); ?></h4>
+                <h4 class="form-example-title mb-3 text-sm font-medium color-default"><?= e($stepper['title']); ?></h4>
                 <?php component('forms/stepper', $stepper['data']); ?>
               </div>
             <?php endforeach; ?>
@@ -1552,33 +1552,33 @@ $input_group_text_examples = [
     <section id="design-textarea" aria-labelledby="design-textarea-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-textarea-title" class="section-title text-title-md font-semibold color-strong">Textarea</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use textareas for longer responses. They grow with their content and shrink back to the minimum
           height set by rows (default: 3 lines), including the control padding and border.
           Browsers without native field sizing use the configured row count and manual resizing.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>views/components/forms/field.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/forms/field.php</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Textarea States</h3>
           <div class="form-examples grid gap-6 md:grid-cols-2">
             <div class="form-example">
-              <h4 class="form-example-title mb-3 text-small font-medium color-default">Default</h4>
+              <h4 class="form-example-title mb-3 text-sm font-medium color-default">Default</h4>
               <?php component('forms/field', $design_fields['state-notes']); ?>
             </div>
             <div class="form-example">
-              <h4 class="form-example-title mb-3 text-small font-medium color-default">Disabled</h4>
+              <h4 class="form-example-title mb-3 text-sm font-medium color-default">Disabled</h4>
               <?php component('forms/field', $design_fields['state-notes-disabled']); ?>
             </div>
             <div class="form-example">
-              <h4 class="form-example-title mb-3 text-small font-medium color-default">Error</h4>
+              <h4 class="form-example-title mb-3 text-sm font-medium color-default">Error</h4>
               <?php component('forms/field', $design_fields['state-notes-error']); ?>
             </div>
             <div class="form-example">
-              <h4 class="form-example-title mb-3 text-small font-medium color-default">Square Bullet List</h4>
+              <h4 class="form-example-title mb-3 text-sm font-medium color-default">Square Bullet List</h4>
               <?php component('forms/field', $design_fields['state-list']); ?>
-              <p class="form-description mt-3 text-small color-muted">
+              <p class="form-description mt-3 text-sm color-muted">
                 Press Enter to add an item. Square bullets are muted and wrapped text aligns with the item text.
               </p>
             </div>
@@ -1590,30 +1590,30 @@ $input_group_text_examples = [
     <section id="design-select" aria-labelledby="design-select-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-select-title" class="section-title text-title-md font-semibold color-strong">Select</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use selects to choose one value from a list. Show a clear prompt before a choice is made and keep the
           selected value visible.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>views/components/forms/field.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/forms/field.php</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Select States</h3>
           <div class="form-examples grid gap-6 md:grid-cols-2">
             <div class="form-example">
-              <h4 class="form-example-title mb-3 text-small font-medium color-default">Empty Prompt</h4>
+              <h4 class="form-example-title mb-3 text-sm font-medium color-default">Empty Prompt</h4>
               <?php component('forms/field', $design_fields['state-select']); ?>
             </div>
             <div class="form-example">
-              <h4 class="form-example-title mb-3 text-small font-medium color-default">Selected</h4>
+              <h4 class="form-example-title mb-3 text-sm font-medium color-default">Selected</h4>
               <?php component('forms/field', $design_fields['state-selected']); ?>
             </div>
             <div class="form-example">
-              <h4 class="form-example-title mb-3 text-small font-medium color-default">Disabled</h4>
+              <h4 class="form-example-title mb-3 text-sm font-medium color-default">Disabled</h4>
               <?php component('forms/field', $design_fields['state-select-disabled']); ?>
             </div>
             <div class="form-example">
-              <h4 class="form-example-title mb-3 text-small font-medium color-default">Error</h4>
+              <h4 class="form-example-title mb-3 text-sm font-medium color-default">Error</h4>
               <?php component('forms/field', $design_fields['state-select-error']); ?>
             </div>
           </div>
@@ -1624,44 +1624,44 @@ $input_group_text_examples = [
     <section id="design-checkbox" aria-labelledby="design-checkbox-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-checkbox-title" class="section-title text-title-md font-semibold color-strong">Checkbox</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use checkboxes for choices that can be selected independently. Write each label so it is clear what
           selecting it means.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>views/components/forms/choice.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/forms/choice.php</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Checkbox States</h3>
           <fieldset class="choice-group">
             <legend class="choice-title sr-only">Checkbox states</legend>
             <div class="choice-options flex flex-wrap gap-6">
               <div class="choice-example">
-                <p class="choice-example-label mb-3 text-small font-medium color-default">Unchecked</p>
+                <p class="choice-example-label mb-3 text-sm font-medium color-default">Unchecked</p>
                 <?php component('forms/choice', $design_choices['demo-checkbox-0-1']); ?>
               </div>
               <div class="choice-example">
-                <p class="choice-example-label mb-3 text-small font-medium color-default">Checked</p>
+                <p class="choice-example-label mb-3 text-sm font-medium color-default">Checked</p>
                 <?php component('forms/choice', $design_choices['demo-checkbox-1-2']); ?>
               </div>
               <div class="choice-example">
-                <p class="choice-example-label mb-3 text-small font-medium color-default">Disabled &amp; Unchecked</p>
+                <p class="choice-example-label mb-3 text-sm font-medium color-default">Disabled &amp; Unchecked</p>
                 <?php component('forms/choice', $design_choices['demo-checkbox-2-3']); ?>
               </div>
               <div class="choice-example">
-                <p class="choice-example-label mb-3 text-small font-medium color-default">Disabled &amp; Checked</p>
+                <p class="choice-example-label mb-3 text-sm font-medium color-default">Disabled &amp; Checked</p>
                 <?php component('forms/choice', $design_choices['demo-checkbox-3-4']); ?>
               </div>
             </div>
           </fieldset>
-          <p class="section-demo-note mt-4 text-caption color-muted">Press Space to toggle the value. Selected and active states use blue, with a blue outline for keyboard focus.</p>
+          <p class="section-demo-note mt-4 text-xs color-muted">Press Space to toggle the value. Selected and active states use blue, with a blue outline for keyboard focus.</p>
         </div>
         <div class="section-demo min-w-0 p-5 rounded-md border border-zinc-200 bg-zinc-100
           sm:p-10">
           <h3 class="section-demo-title mb-6 text-title-sm font-semibold color-strong">Checkbox Layouts</h3>
           <div class="choice-layouts grid min-w-0 gap-8">
             <fieldset class="choice-group min-w-0">
-              <legend class="choice-title mb-3 text-small font-medium color-strong">Vertical</legend>
+              <legend class="choice-title mb-3 text-sm font-medium color-strong">Vertical</legend>
               <div class="choice-options flex flex-col items-start gap-2">
                 <?php foreach ($choice_layouts['checkbox'] as $index => $option): ?>
                   <?php component('forms/choice', [
@@ -1673,7 +1673,7 @@ $input_group_text_examples = [
               </div>
             </fieldset>
             <fieldset class="choice-group min-w-0">
-              <legend class="choice-title mb-3 text-small font-medium color-strong">Horizontal</legend>
+              <legend class="choice-title mb-3 text-sm font-medium color-strong">Horizontal</legend>
               <div class="choice-options flex flex-wrap items-start gap-x-6 gap-y-3">
                 <?php foreach ($choice_layouts['checkbox'] as $index => $option): ?>
                   <?php component('forms/choice', [
@@ -1685,12 +1685,12 @@ $input_group_text_examples = [
               </div>
             </fieldset>
           </div>
-          <p class="section-demo-note mt-6 text-caption color-muted">
+          <p class="section-demo-note mt-6 text-xs color-muted">
             Rows have a 24px minimum height and grow with wrapped labels. Vertical groups use an 8px gap.
             Horizontal groups use a 24px column gap and a 12px row gap, wrapping onto the next line.
             These examples demonstrate selection only; they do not change account settings.
           </p>
-          <p class="section-demo-source mt-3 text-caption color-muted">
+          <p class="section-demo-source mt-3 text-xs color-muted">
             Vertical: <code>flex flex-col items-start gap-2</code><br>
             Horizontal: <code>flex flex-wrap items-start gap-x-6 gap-y-3</code><br>
             Group label: <code>mb-3</code>. Between groups: <code>gap-8</code>.
@@ -1703,44 +1703,44 @@ $input_group_text_examples = [
     <section id="design-radio" aria-labelledby="design-radio-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-radio-title" class="section-title text-title-md font-semibold color-strong">Radio</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use radio buttons when only one option can be selected from a group. Keep the options together under a
           clear group label.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>views/components/forms/choice.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/forms/choice.php</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Radio States</h3>
           <fieldset class="choice-group">
             <legend class="choice-title sr-only">Radio states</legend>
             <div class="choice-options flex flex-wrap gap-6">
               <div class="choice-example">
-                <p class="choice-example-label mb-3 text-small font-medium color-default">Unselected</p>
+                <p class="choice-example-label mb-3 text-sm font-medium color-default">Unselected</p>
                 <?php component('forms/choice', $design_choices['demo-radio-enabled-5']); ?>
               </div>
               <div class="choice-example">
-                <p class="choice-example-label mb-3 text-small font-medium color-default">Selected</p>
+                <p class="choice-example-label mb-3 text-sm font-medium color-default">Selected</p>
                 <?php component('forms/choice', $design_choices['demo-radio-enabled-6']); ?>
               </div>
               <div class="choice-example">
-                <p class="choice-example-label mb-3 text-small font-medium color-default">Disabled &amp; Unselected</p>
+                <p class="choice-example-label mb-3 text-sm font-medium color-default">Disabled &amp; Unselected</p>
                 <?php component('forms/choice', $design_choices['demo-radio-2-7']); ?>
               </div>
               <div class="choice-example">
-                <p class="choice-example-label mb-3 text-small font-medium color-default">Disabled &amp; Selected</p>
+                <p class="choice-example-label mb-3 text-sm font-medium color-default">Disabled &amp; Selected</p>
                 <?php component('forms/choice', $design_choices['demo-radio-3-8']); ?>
               </div>
             </div>
           </fieldset>
-          <p class="section-demo-note mt-4 text-caption color-muted">Use arrow keys to change the selected option within a group.</p>
+          <p class="section-demo-note mt-4 text-xs color-muted">Use arrow keys to change the selected option within a group.</p>
         </div>
         <div class="section-demo min-w-0 p-5 rounded-md border border-zinc-200 bg-zinc-100
           sm:p-10">
           <h3 class="section-demo-title mb-6 text-title-sm font-semibold color-strong">Radio Layouts</h3>
           <div class="choice-layouts grid min-w-0 gap-8">
             <fieldset class="choice-group min-w-0">
-              <legend class="choice-title mb-3 text-small font-medium color-strong">Vertical</legend>
+              <legend class="choice-title mb-3 text-sm font-medium color-strong">Vertical</legend>
               <div class="choice-options flex flex-col items-start gap-2">
                 <?php foreach ($choice_layouts['radio'] as $index => $option): ?>
                   <?php component('forms/choice', [
@@ -1752,7 +1752,7 @@ $input_group_text_examples = [
               </div>
             </fieldset>
             <fieldset class="choice-group min-w-0">
-              <legend class="choice-title mb-3 text-small font-medium color-strong">Horizontal</legend>
+              <legend class="choice-title mb-3 text-sm font-medium color-strong">Horizontal</legend>
               <div class="choice-options flex flex-wrap items-start gap-x-6 gap-y-3">
                 <?php foreach ($choice_layouts['radio'] as $index => $option): ?>
                   <?php component('forms/choice', [
@@ -1764,12 +1764,12 @@ $input_group_text_examples = [
               </div>
             </fieldset>
           </div>
-          <p class="section-demo-note mt-6 text-caption color-muted">
+          <p class="section-demo-note mt-6 text-xs color-muted">
             Rows have a 24px minimum height and grow with wrapped labels. Vertical groups use an 8px gap.
             Horizontal groups use a 24px column gap and a 12px row gap, wrapping onto the next line.
             These examples demonstrate selection only; they do not change account settings.
           </p>
-          <p class="section-demo-source mt-3 text-caption color-muted">
+          <p class="section-demo-source mt-3 text-xs color-muted">
             Vertical: <code>flex flex-col items-start gap-2</code><br>
             Horizontal: <code>flex flex-wrap items-start gap-x-6 gap-y-3</code><br>
             Group label: <code>mb-3</code>. Between groups: <code>gap-8</code>.
@@ -1782,37 +1782,37 @@ $input_group_text_examples = [
     <section id="design-switch" aria-labelledby="design-switch-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-switch-title" class="section-title text-title-md font-semibold color-strong">Switch</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use switches for settings with an on or off state. Write the label to describe what happens when the
           setting is on.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>views/components/forms/choice.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/forms/choice.php</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Switch States</h3>
           <fieldset class="choice-group">
             <legend class="choice-title sr-only">Switch toggle states</legend>
             <div class="choice-options flex flex-wrap gap-6">
               <div class="choice-example">
-                <p class="choice-example-label mb-3 text-small font-medium color-default">Off</p>
+                <p class="choice-example-label mb-3 text-sm font-medium color-default">Off</p>
                 <?php component('forms/choice', $design_choices['demo-switch-0-9']); ?>
               </div>
               <div class="choice-example">
-                <p class="choice-example-label mb-3 text-small font-medium color-default">On</p>
+                <p class="choice-example-label mb-3 text-sm font-medium color-default">On</p>
                 <?php component('forms/choice', $design_choices['demo-switch-1-10']); ?>
               </div>
               <div class="choice-example">
-                <p class="choice-example-label mb-3 text-small font-medium color-default">Disabled &amp; Off</p>
+                <p class="choice-example-label mb-3 text-sm font-medium color-default">Disabled &amp; Off</p>
                 <?php component('forms/choice', $design_choices['demo-switch-2-11']); ?>
               </div>
               <div class="choice-example">
-                <p class="choice-example-label mb-3 text-small font-medium color-default">Disabled &amp; On</p>
+                <p class="choice-example-label mb-3 text-sm font-medium color-default">Disabled &amp; On</p>
                 <?php component('forms/choice', $design_choices['demo-switch-3-12']); ?>
               </div>
             </div>
           </fieldset>
-          <p class="section-demo-note mt-4 text-caption color-muted">
+          <p class="section-demo-note mt-4 text-xs color-muted">
             Press Space to toggle the value. Switch thumbs move over 150ms; reduced-motion preferences cross-fade
             the thumb between positions.
           </p>
@@ -1822,7 +1822,7 @@ $input_group_text_examples = [
           <h3 class="section-demo-title mb-6 text-title-sm font-semibold color-strong">Switch Layouts</h3>
           <div class="choice-layouts grid min-w-0 gap-8">
             <fieldset class="choice-group min-w-0">
-              <legend class="choice-title mb-3 text-small font-medium color-strong">Vertical</legend>
+              <legend class="choice-title mb-3 text-sm font-medium color-strong">Vertical</legend>
               <div class="choice-options flex flex-col items-start gap-2">
                 <?php foreach ($choice_layouts['switch'] as $index => $option): ?>
                   <?php component('forms/choice', [
@@ -1834,7 +1834,7 @@ $input_group_text_examples = [
               </div>
             </fieldset>
             <fieldset class="choice-group min-w-0">
-              <legend class="choice-title mb-3 text-small font-medium color-strong">Horizontal</legend>
+              <legend class="choice-title mb-3 text-sm font-medium color-strong">Horizontal</legend>
               <div class="choice-options flex flex-wrap items-start gap-x-6 gap-y-3">
                 <?php foreach ($choice_layouts['switch'] as $index => $option): ?>
                   <?php component('forms/choice', [
@@ -1846,12 +1846,12 @@ $input_group_text_examples = [
               </div>
             </fieldset>
           </div>
-          <p class="section-demo-note mt-6 text-caption color-muted">
+          <p class="section-demo-note mt-6 text-xs color-muted">
             Rows have a 24px minimum height and grow with wrapped labels. Vertical groups use an 8px gap.
             Horizontal groups use a 24px column gap and a 12px row gap, wrapping onto the next line.
             These examples demonstrate selection only; they do not change account settings.
           </p>
-          <p class="section-demo-source mt-3 text-caption color-muted">
+          <p class="section-demo-source mt-3 text-xs color-muted">
             Vertical: <code>flex flex-col items-start gap-2</code><br>
             Horizontal: <code>flex flex-wrap items-start gap-x-6 gap-y-3</code><br>
             Group label: <code>mb-3</code>. Between groups: <code>gap-8</code>.
@@ -1864,18 +1864,18 @@ $input_group_text_examples = [
     <section id="design-file-upload" aria-labelledby="design-file-upload-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-file-upload-title" class="section-title text-title-md font-semibold color-strong">File Upload</h2>
-        <p class="section-description mt-2 text-small color-muted">Local selection, previews, removal and ordering. The consuming page handles saving or uploading.</p>
+        <p class="section-description mt-2 text-sm color-muted">Local selection, previews, removal and ordering. The consuming page handles saving or uploading.</p>
       </header>
       <div class="upload-examples grid gap-8 mt-6">
         <div class="upload-example rounded-lg bg-white p-5">
-          <p class="upload-description mb-4 text-small color-muted">Up to 4 images · JPEG, PNG or WebP · 1 MB each.</p>
+          <p class="upload-description mb-4 text-sm color-muted">Up to 4 images · JPEG, PNG or WebP · 1 MB each.</p>
           <?php component('forms/file-upload', $design_upload_images); ?>
         </div>
         <div class="upload-example rounded-lg bg-white p-5">
-          <p class="upload-description mb-4 text-small color-muted">Up to 2 documents · PDF or TXT · 5 MB each.</p>
+          <p class="upload-description mb-4 text-sm color-muted">Up to 2 documents · PDF or TXT · 5 MB each.</p>
           <?php component('forms/file-upload', $design_upload_documents); ?>
         </div>
-        <div class="upload-documentation text-small color-default">
+        <div class="upload-documentation text-sm color-default">
           <p class="upload-usage">Use <code>component('forms/file-upload', $config)</code> with a unique <code>id</code>, <code>name</code>, <code>label</code>, <code>accept</code>, <code>max_files</code> and <code>max_size</code> in bytes.</p>
           <p class="upload-api mt-2">Load <code>assets/js/file-upload.js</code> once. Use <code>FileUpload.init(root)</code> to access <code>getFiles()</code> for FormData, <code>getItems()</code> for ordered files and existing URLs, <code>setValues(urls)</code> for existing images, and <code>isBusy()</code>. Listen for <code>file-upload:change</code>.</p>
         </div>
@@ -1885,13 +1885,13 @@ $input_group_text_examples = [
     <section id="design-image-choices" aria-labelledby="design-image-choices-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-image-choices-title" class="section-title text-title-md font-semibold color-strong">Image Choices</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use image choices when illustrations help explain the options. Pair each image with a clear label and
           allow one selection per group.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>views/components/forms/choice.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/forms/choice.php</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Image Choices</h3>
           <fieldset class="choice-group">
@@ -1899,7 +1899,7 @@ $input_group_text_examples = [
             <div class="choice-options grid grid-cols-2 gap-2.5 max-w-80">
               <?php foreach ($assessment_choices as $assessment_choice): ?>
                 <div class="choice-example min-w-0">
-                  <p class="choice-example-label mb-3 text-small font-medium color-default">
+                  <p class="choice-example-label mb-3 text-sm font-medium color-default">
                     <?= ($assessment_choice['checked'] ?? false) ? 'Selected' : 'Unselected'; ?>
                   </p>
                   <?php component('forms/choice', $assessment_choice); ?>
@@ -1907,7 +1907,7 @@ $input_group_text_examples = [
               <?php endforeach; ?>
             </div>
           </fieldset>
-          <p class="section-demo-note mt-4 text-caption color-muted">Image choices retain the assessment’s zinc selection and focus styling.</p>
+          <p class="section-demo-note mt-4 text-xs color-muted">Image choices retain the assessment’s zinc selection and focus styling.</p>
         </div>
       </div>
     </section>
@@ -1916,8 +1916,8 @@ $input_group_text_examples = [
       class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-toggle-collapse-title" class="section-title text-title-md font-semibold color-strong">Toggle Collapse</h2>
-        <p class="section-description mt-2 text-small color-muted">Show or hide a content group with an optional count.</p>
-        <p class="section-source mt-3 text-small color-default">Source: <code>views/components/toggle-collapse.php</code></p>
+        <p class="section-description mt-2 text-sm color-muted">Show or hide a content group with an optional count.</p>
+        <p class="section-source mt-3 text-sm color-default">Source: <code>views/components/toggle-collapse.php</code></p>
       </header>
       <div class="section-content grid gap-5 mt-6">
         <div class="collapse-example">
@@ -1932,11 +1932,11 @@ $input_group_text_examples = [
           <div class="collapse-heading">
             <?php component('toggle-collapse', $design_collapse_closed); ?>
           </div>
-          <div id="design-collapse-closed" hidden class="collapse-content mt-3 p-4 text-small rounded-lg bg-white">
+          <div id="design-collapse-closed" hidden class="collapse-content mt-3 p-4 text-sm rounded-lg bg-white">
             <p class="collapse-description">This group starts collapsed and has no count.</p>
           </div>
         </div>
-        <div class="collapse-documentation text-small color-default">
+        <div class="collapse-documentation text-sm color-default">
           <p class="collapse-usage">Use <code>component('toggle-collapse', $config)</code> with <code>label</code> and
             <code>controls</code> matching a unique panel ID. Optional: <code>count_label</code> and
             <code>expanded</code> (default <code>true</code>). Use <code>variant: plain</code> (default)
@@ -1954,13 +1954,13 @@ $input_group_text_examples = [
     <section id="design-cards" aria-labelledby="design-cards-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-cards-title" class="section-title text-title-md font-semibold color-strong">Cards</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use cards to group related information. Give each card a clear heading and keep its supporting content
           together. The shared component supports a header, content, and optional actions.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>views/components/card.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/card.php</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Content Card</h3>
           <?php component('card', $design_card); ?>
@@ -1971,19 +1971,19 @@ $input_group_text_examples = [
     <section id="design-badges" aria-labelledby="design-badges-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-badges-title" class="section-title text-title-md font-semibold color-strong">Badges</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use badges for short category or status labels. Keep the wording brief and make the meaning clear
           without relying on color.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>views/pages/design.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/pages/design.php</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Neutral Badge</h3>
-          <span class="badge inline-flex px-3 py-1 text-caption font-medium rounded-full border border-zinc-300 text-zinc-700">
+          <span class="badge inline-flex px-3 py-1 text-xs font-medium rounded-full border border-zinc-300 text-zinc-700">
             Example
           </span>
-          <p class="section-demo-note mt-6 text-small color-default">
+          <p class="section-demo-note mt-6 text-sm color-default">
             Only the neutral badge style is defined. Status badge styles are still to be defined.
           </p>
         </div>
@@ -1993,14 +1993,14 @@ $input_group_text_examples = [
     <section id="design-tabs" aria-labelledby="design-tabs-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-tabs-title" class="section-title text-title-md font-semibold color-strong">Tabs</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use tabs to switch between related panels. Underline is the default; Segmented is an optional
           variant. Choose default (14px, 40px tall) or small (12px, 32px tall). Tabs stay on one horizontally scrolling
           row. Use arrow keys, Home, and End to move between tabs.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>views/components/tabs.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/tabs.php</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <?php foreach ($design_tab_examples as $tab_example): ?>
           <?php
 
@@ -2042,11 +2042,11 @@ $input_group_text_examples = [
       class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-dashboard-header-title" class="section-title text-title-md font-semibold color-strong">Dashboard Header</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use one page title with optional description, breadcrumb items and button actions.
           Link parent breadcrumb items and omit href on the current page.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>views/components/dashboard/header.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/dashboard/header.php</code></p>
       </header>
       <div class="section-content mt-6">
         <div class="section-demo p-5 rounded-md border border-zinc-200 bg-zinc-100">
@@ -2058,13 +2058,13 @@ $input_group_text_examples = [
     <section id="design-breadcrumbs" aria-labelledby="design-breadcrumbs-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-breadcrumbs-title" class="section-title text-title-md font-semibold color-strong">Breadcrumbs</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use breadcrumbs to show where a page sits in a hierarchy. Link to parent pages and mark the current page
           without making it a link.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>views/components/breadcrumbs.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/breadcrumbs.php</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Page Hierarchy</h3>
           <?php component('breadcrumbs', $design_breadcrumbs); ?>
@@ -2075,13 +2075,13 @@ $input_group_text_examples = [
     <section id="design-pagination" aria-labelledby="design-pagination-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-pagination-title" class="section-title text-title-md font-semibold color-strong">Pagination</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use pagination to move through a collection in smaller groups. Show the current page and disable
           Previous or Next when there are no more pages in that direction.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>views/pages/design.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/pages/design.php</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Paged Collection</h3>
           <div class="pagination-example js-component-design-pagination">
@@ -2089,10 +2089,10 @@ $input_group_text_examples = [
               <?php foreach ($design_pages as $page_number => $page_items): ?>
                 <div data-page="<?= e($page_number); ?>" <?= $page_number !== 1 ? 'hidden' : ''; ?>
                   class="pagination-page js-component-design-pagination-panel">
-                  <p class="pagination-summary mb-4 text-small color-default">Page <?= e($page_number); ?> of 3</p>
+                  <p class="pagination-summary mb-4 text-sm color-default">Page <?= e($page_number); ?> of 3</p>
                   <ul class="pagination-items grid gap-3">
                     <?php foreach ($page_items as $page_item): ?>
-                      <li class="pagination-item p-4 text-small rounded-md border border-zinc-200 bg-white color-strong">
+                      <li class="pagination-item p-4 text-sm rounded-md border border-zinc-200 bg-white color-strong">
                         <?= e($page_item); ?>
                       </li>
                     <?php endforeach; ?>
@@ -2105,7 +2105,7 @@ $input_group_text_examples = [
               <?php foreach ($design_pages as $page_number => $page_items): ?>
                 <button type="button" data-page="<?= e($page_number); ?>" aria-label="Go to page <?= e($page_number); ?>"
                   <?= $page_number === 1 ? 'aria-current="page"' : ''; ?>
-                  class="pagination-button flex items-center justify-center min-w-10 min-h-10 px-3 text-small font-medium rounded-lg border border-zinc-200 bg-white color-default cursor-pointer
+                  class="pagination-button flex items-center justify-center min-w-10 min-h-10 px-3 text-sm font-medium rounded-lg border border-zinc-200 bg-white color-default cursor-pointer
                     hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
                     aria-[current=page]:border-zinc-800 aria-[current=page]:bg-zinc-800 aria-[current=page]:color-invert-strong
                     js-component-design-pagination-page">
@@ -2122,20 +2122,20 @@ $input_group_text_examples = [
     <section id="design-alerts" aria-labelledby="design-alerts-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-alerts-title" class="section-title text-title-md font-semibold color-strong">Alerts</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use alerts for important information, confirmations, and errors. Pair a clear heading with a short
           message and explain the next step when something fails.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>views/pages/design.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/pages/design.php</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Information</h3>
           <div class="alert flex items-start gap-3 p-5 rounded-md border border-zinc-200 bg-white">
             <?php svg('notification-3-line', 'alert-icon size-5 shrink-0 color-primary'); ?>
             <div class="alert-content min-w-0">
-              <h4 class="alert-title text-small font-medium color-primary">Before You Continue</h4>
-              <p class="alert-description mt-2 text-small leading-relaxed color-default">Review the details before saving your changes.</p>
+              <h4 class="alert-title text-sm font-medium color-primary">Before You Continue</h4>
+              <p class="alert-description mt-2 text-sm leading-relaxed color-default">Review the details before saving your changes.</p>
             </div>
           </div>
         </div>
@@ -2144,8 +2144,8 @@ $input_group_text_examples = [
           <div class="alert flex items-start gap-3 p-5 rounded-md border border-zinc-200 bg-white">
             <?php svg('check-line', 'alert-icon size-5 shrink-0 color-positive'); ?>
             <div class="alert-content min-w-0">
-              <h4 class="alert-title text-small font-medium color-positive">Changes Saved</h4>
-              <p class="alert-description mt-2 text-small leading-relaxed color-default">Your updated details are ready to use.</p>
+              <h4 class="alert-title text-sm font-medium color-positive">Changes Saved</h4>
+              <p class="alert-description mt-2 text-sm leading-relaxed color-default">Your updated details are ready to use.</p>
             </div>
           </div>
         </div>
@@ -2154,8 +2154,8 @@ $input_group_text_examples = [
           <div class="alert flex items-start gap-3 p-5 rounded-md border border-zinc-200 bg-white">
             <?php svg('close-line', 'alert-icon size-5 shrink-0 color-negative'); ?>
             <div class="alert-content min-w-0">
-              <h4 class="alert-title text-small font-medium color-negative">Changes Not Saved</h4>
-              <p class="alert-description mt-2 text-small leading-relaxed color-default">Check your connection and try saving again.</p>
+              <h4 class="alert-title text-sm font-medium color-negative">Changes Not Saved</h4>
+              <p class="alert-description mt-2 text-sm leading-relaxed color-default">Check your connection and try saving again.</p>
             </div>
           </div>
         </div>
@@ -2165,18 +2165,18 @@ $input_group_text_examples = [
     <section id="design-loading" aria-labelledby="design-loading-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-loading-title" class="section-title text-title-md font-semibold color-strong">Loading</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Show loading feedback while content or an action is in progress. Keep a visible text label, and respect
           reduced-motion preferences.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>views/pages/design.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/pages/design.php</code></p>
       </header>
-      <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Spinner</h3>
           <div role="status" class="loading flex items-center gap-3">
             <?php svg('loading-spinner', 'loading-icon size-5 shrink-0 color-primary motion-safe:animate-spin'); ?>
-            <p class="loading-label text-small color-default">Loading content…</p>
+            <p class="loading-label text-sm color-default">Loading content…</p>
           </div>
         </div>
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
@@ -2201,12 +2201,12 @@ $input_group_text_examples = [
     <section id="design-modal" aria-labelledby="design-modal-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-modal-title" class="section-title text-title-md font-semibold color-strong">Modal</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use a centered modal for a short review or decision. One size, with a maximum width of 32rem.
           Close with the close button, Cancel, Escape, or the backdrop. Focus returns to the opening control.
           Longer content scrolls while the header and optional footer stay visible. Open one dialog at a time.
         </p>
-        <p class="section-source mt-3 text-small color-muted">
+        <p class="section-source mt-3 text-sm color-muted">
           Source: <code>views/components/modal.php</code> · <code>assets/js/modal.js</code>
         </p>
       </header>
@@ -2224,12 +2224,12 @@ $input_group_text_examples = [
     <section id="design-drawer" aria-labelledby="design-drawer-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-drawer-title" class="section-title text-title-md font-semibold color-strong">Drawer</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use a right-side drawer for a short preview while keeping the current page in place.
           The header and optional footer stay visible while longer content scrolls.
           Close with the close button, Escape, or the backdrop. Focus returns to the opening control.
         </p>
-        <p class="section-source mt-3 text-small color-muted">
+        <p class="section-source mt-3 text-sm color-muted">
           Source: <code>views/components/drawer.php</code> · <code>assets/js/drawer.js</code>
         </p>
       </header>
@@ -2247,12 +2247,12 @@ $input_group_text_examples = [
     <section id="design-dropdown" aria-labelledby="design-dropdown-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-dropdown-title" class="section-title text-title-md font-semibold color-strong">Dropdown</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Use dropdowns for actions and links. Open below or above the trigger, with automatic fallback when space is limited.
           Use arrow keys, Home and End to navigate; Escape closes the menu and returns focus.
           Use Select for form values. Demo actions only report your selection; they do not change records.
         </p>
-        <p class="section-source mt-3 text-small color-muted">
+        <p class="section-source mt-3 text-sm color-muted">
           Source: <code>views/components/dropdown.php</code> · <code>assets/js/overlays.js</code>
         </p>
       </header>
@@ -2262,20 +2262,20 @@ $input_group_text_examples = [
             <?php component('dropdown', $dropdown_config); ?>
           <?php endforeach; ?>
         </div>
-        <p role="status" class="section-status mt-3 text-small color-muted js-component-design-dropdown-status">No action selected.</p>
+        <p role="status" class="section-status mt-3 text-sm color-muted js-component-design-dropdown-status">No action selected.</p>
       </div>
     </section>
 
     <section id="design-tooltip" aria-labelledby="design-tooltip-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-tooltip-title" class="section-title text-title-md font-semibold color-strong">Tooltip</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Desktop only: hover or focus a control for a short label or multiline explanation.
           Label and Multiline open above the trigger.
           Placement adjusts when space is limited. Press Escape to dismiss.
           Keep essential information visible on the page; use a popover for longer or interactive content.
         </p>
-        <p class="section-source mt-3 text-small color-muted">
+        <p class="section-source mt-3 text-sm color-muted">
           Source: <code>views/components/tooltip.php</code> · <code>assets/js/overlays.js</code>
         </p>
       </header>
@@ -2291,12 +2291,12 @@ $input_group_text_examples = [
     <section id="design-marquee" aria-labelledby="design-marquee-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-marquee-title" class="section-title text-title-md font-semibold color-strong">Marquee</h2>
-        <p class="section-description mt-3 text-small leading-relaxed">
+        <p class="section-description mt-3 text-sm leading-relaxed">
           Highlights scroll manually on mobile and autoplay on desktop. Testimonials autoplay on both.
           Use Pause to stop autoplay or Previous and Next to browse items. Hover and keyboard focus pause motion;
           reduced-motion preferences use manual scrolling.
         </p>
-        <p class="section-source mt-3 text-small color-muted">
+        <p class="section-source mt-3 text-sm color-muted">
           Source: <code>views/components/marquee.php</code>
         </p>
       </header>

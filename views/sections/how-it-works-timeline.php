@@ -51,7 +51,7 @@ $cta_button = [
   ]); ?>
 
   <div class="timeline-footer container mt-10<?= $is_center ? ' flex flex-col items-center text-center' : ''; ?>">
-    <p class="timeline-note text-small color-muted">
+    <p class="timeline-note text-sm color-muted">
       Prescription treatments are only offered if a doctor confirms they suit you.
     </p>
     <div class="timeline-action mt-6">

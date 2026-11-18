@@ -120,7 +120,7 @@ $assessment_button = [
         sm:p-8
         js-component-testimonial" aria-label="Sample testimonials" aria-roledescription="carousel">
         <header class="card-header flex items-center justify-between gap-4">
-          <p class="card-eyebrow text-caption font-medium">A little clarity. A real difference.</p>
+          <p class="card-eyebrow text-xs font-medium">A little clarity. A real difference.</p>
           <span class="testimonial-mark block h-7.5 text-zinc-400">
             <?php svg('double-quotes-l', 'testimonial-icon w-10 h-7.5'); ?>
           </span>
@@ -135,11 +135,11 @@ $assessment_button = [
                 <?= e($testimonial['quote']); ?>
               </blockquote>
               <figcaption class="testimonial-author flex items-center gap-3 mt-auto">
-                <span class="testimonial-avatar grid shrink-0 place-items-center size-12 text-small font-medium rounded-full border border-zinc-200 bg-zinc-100 color-default"
+                <span class="testimonial-avatar grid shrink-0 place-items-center size-12 text-sm font-medium rounded-full border border-zinc-200 bg-zinc-100 color-default"
                   aria-hidden="true"><?= e($testimonial['initials']); ?></span>
                 <div class="testimonial-identity">
-                  <p class="testimonial-name text-small font-medium"><?= e($testimonial['name']); ?></p>
-                  <p class="testimonial-detail mt-1 text-caption color-muted"><?= e($testimonial['detail']); ?></p>
+                  <p class="testimonial-name text-sm font-medium"><?= e($testimonial['name']); ?></p>
+                  <p class="testimonial-detail mt-1 text-xs color-muted"><?= e($testimonial['detail']); ?></p>
                 </div>
               </figcaption>
             </figure>
@@ -158,7 +158,7 @@ $assessment_button = [
                 </button>
               <?php endforeach; ?>
             </div>
-            <span class="testimonial-count text-caption tabular-nums color-muted
+            <span class="testimonial-count text-xs tabular-nums color-muted
               js-component-testimonial-count">01 / <?= str_pad((string) count($testimonials), 2, '0', STR_PAD_LEFT); ?></span>
           </div>
           <div class="testimonial-controls flex items-center gap-1.5">
@@ -181,31 +181,31 @@ $assessment_button = [
         <div class="assessment-wallpaper absolute inset-0 -z-10 rounded-xl bg-[url('../images/chat-wallpaper.svg')] bg-auto opacity-2 pointer-events-none"
           aria-hidden="true"></div>
         <header class="card-header">
-          <p class="card-eyebrow text-caption font-medium">Your starting point</p>
+          <p class="card-eyebrow text-xs font-medium">Your starting point</p>
         </header>
         <h2 class="assessment-title mt-7 mb-3 text-title-sm font-medium tracking-tighter">
           Good care starts<br>with one question.
         </h2>
-        <p class="assessment-description max-w-80 text-small color-invert-muted">
+        <p class="assessment-description max-w-80 text-sm color-invert-muted">
           A quick question to help us understand where you’re starting.
         </p>
         <div class="assessment-panels grid mt-6">
           <div class="assessment-panel assessment-question-panel col-start-1 row-start-1 min-w-0
             js-component-assessment-question">
-            <div class="assessment-speaker flex items-center gap-2 mb-2 text-caption color-invert-muted">
+            <div class="assessment-speaker flex items-center gap-2 mb-2 text-xs color-invert-muted">
               <img src="assets/images/avatar-dr-rujhan.webp" alt="" width="32" height="32"
                 class="assessment-avatar shrink-0 size-8 rounded-full object-cover">
               <span class="assessment-speaker-name">Dr Rujhan</span>
             </div>
-            <p class="assessment-question w-fit max-w-9/10 mb-3 px-4 py-3 text-small color-invert-default rounded-tl-sm rounded-tr-xl rounded-b-xl border border-white/16 bg-zinc-700/30 shadow-sm backdrop-blur-xs backdrop-saturate-115 wrap-anywhere">
+            <p class="assessment-question w-fit max-w-9/10 mb-3 px-4 py-3 text-sm color-invert-default rounded-tl-sm rounded-tr-xl rounded-b-xl border border-white/16 bg-zinc-700/30 shadow-sm backdrop-blur-xs backdrop-saturate-115 wrap-anywhere">
               When did you first notice hair thinning?
             </p>
             <div class="assessment-options grid gap-2" role="group" aria-label="When did you first notice hair thinning?">
               <?php foreach ($assessment_answers as $index => $answer): ?>
-                <button type="button" class="assessment-option flex items-center gap-3 w-full min-h-12 px-5 py-3 text-left text-small color-invert-default rounded-lg border border-white/16 bg-zinc-700/30 shadow-sm backdrop-blur-xs backdrop-saturate-115 cursor-pointer transition-transform duration-150
+                <button type="button" class="assessment-option flex items-center gap-3 w-full min-h-12 px-5 py-3 text-left text-sm color-invert-default rounded-lg border border-white/16 bg-zinc-700/30 shadow-sm backdrop-blur-xs backdrop-saturate-115 cursor-pointer transition-transform duration-150
                   hover:border-zinc-400 focus-visible:outline-2 focus-visible:outline-offset-4 active:scale-98 motion-reduce:transform-none motion-reduce:transition-none
                   js-component-assessment-option" data-label="<?= e($answer['label']); ?>">
-                  <span class="assessment-letter grid shrink-0 place-items-center size-6 text-caption rounded border border-zinc-500 color-invert-default"
+                  <span class="assessment-letter grid shrink-0 place-items-center size-6 text-xs rounded border border-zinc-500 color-invert-default"
                     aria-hidden="true"><?= chr(65 + $index); ?></span>
                   <span class="assessment-label"><?= e($answer['label']); ?></span>
                 </button>
@@ -214,42 +214,42 @@ $assessment_button = [
           </div>
           <div class="assessment-panel assessment-answer-panel col-start-1 row-start-1 flex flex-col min-w-0 invisible
             js-component-assessment-answer" inert aria-hidden="true">
-            <div class="assessment-speaker flex items-center gap-2 mb-2 text-caption color-invert-muted">
+            <div class="assessment-speaker flex items-center gap-2 mb-2 text-xs color-invert-muted">
               <img src="assets/images/avatar-dr-rujhan.webp" alt="" width="32" height="32"
                 class="assessment-avatar shrink-0 size-8 rounded-full object-cover">
               <span class="assessment-speaker-name">Dr Rujhan</span>
             </div>
-            <p class="assessment-question w-fit max-w-9/10 mb-3 px-4 py-3 text-small color-invert-default rounded-tl-sm rounded-tr-xl rounded-b-xl border border-white/16 bg-zinc-700/30 shadow-sm backdrop-blur-xs backdrop-saturate-115 wrap-anywhere">
+            <p class="assessment-question w-fit max-w-9/10 mb-3 px-4 py-3 text-sm color-invert-default rounded-tl-sm rounded-tr-xl rounded-b-xl border border-white/16 bg-zinc-700/30 shadow-sm backdrop-blur-xs backdrop-saturate-115 wrap-anywhere">
               When did you first notice hair thinning?
             </p>
-            <p class="assessment-selection w-fit max-w-9/10 ml-auto px-4 py-3 text-small color-invert-default rounded-xl rounded-br-sm border border-white/16 bg-zinc-500/45 shadow-sm backdrop-blur-xs backdrop-saturate-115 wrap-anywhere
+            <p class="assessment-selection w-fit max-w-9/10 ml-auto px-4 py-3 text-sm color-invert-default rounded-xl rounded-br-sm border border-white/16 bg-zinc-500/45 shadow-sm backdrop-blur-xs backdrop-saturate-115 wrap-anywhere
               js-component-assessment-selection">In the last 6–12 months</p>
             <div class="assessment-reply-speaker mt-5">
-              <div class="assessment-speaker flex items-center gap-2 mb-2 text-caption color-invert-muted">
+              <div class="assessment-speaker flex items-center gap-2 mb-2 text-xs color-invert-muted">
                 <img src="assets/images/avatar-dr-rujhan.webp" alt="" width="32" height="32"
                   class="assessment-avatar shrink-0 size-8 rounded-full object-cover">
                 <span class="assessment-speaker-name">Dr Rujhan</span>
               </div>
             </div>
-            <div class="assessment-responses grid self-start w-fit max-w-9/10 px-4 py-3 text-small color-invert-default rounded-tl-sm rounded-tr-xl rounded-b-xl border border-white/16 bg-zinc-700/30 shadow-sm backdrop-blur-xs backdrop-saturate-115 wrap-anywhere
+            <div class="assessment-responses grid self-start w-fit max-w-9/10 px-4 py-3 text-sm color-invert-default rounded-tl-sm rounded-tr-xl rounded-b-xl border border-white/16 bg-zinc-700/30 shadow-sm backdrop-blur-xs backdrop-saturate-115 wrap-anywhere
               focus:outline-none
               js-component-assessment-responses" tabindex="-1" role="status" aria-atomic="true">
               <?php foreach ($assessment_answers as $index => $answer): ?>
-                <p class="assessment-response col-start-1 row-start-1 text-small <?= $index !== 3 ? 'invisible' : ''; ?>
+                <p class="assessment-response col-start-1 row-start-1 text-sm <?= $index !== 3 ? 'invisible' : ''; ?>
                   js-component-assessment-response" aria-hidden="<?= $index !== 3 ? 'true' : 'false'; ?>">
                   <?= e($answer['reply']); ?>
                 </p>
               <?php endforeach; ?>
             </div>
             <div class="assessment-actions flex items-center justify-between gap-3 mt-auto pt-5">
-              <button type="button" class="assessment-reset min-h-11 px-5 py-3 text-small color-invert-default rounded-lg border border-zinc-500 cursor-pointer
+              <button type="button" class="assessment-reset min-h-11 px-5 py-3 text-sm color-invert-default rounded-lg border border-zinc-500 cursor-pointer
                 focus-visible:outline-2 focus-visible:outline-offset-4
                 js-component-assessment-reset">Start Again</button>
               <?php component('button', $assessment_button); ?>
             </div>
           </div>
         </div>
-        <p class="card-note mt-auto pt-5 text-caption color-invert-muted">
+        <p class="card-note mt-auto pt-5 text-xs color-invert-muted">
           A starting point, not a diagnosis. No personal details needed.
         </p>
       </article>
@@ -259,7 +259,7 @@ $assessment_button = [
   <div class="section-subheader container mt-15">
     <div class="section-subheader-content items-center justify-between pb-5 border-b border-zinc-200 sm:flex">
       <h2 class="section-subheader-title text-title-sm font-medium color-strong">Prescription Treatments</h2>
-      <div class="section-subheader-description text-small">Subject to a clinician’s assessment of what’s suitable for you.</div>
+      <div class="section-subheader-description text-sm">Subject to a clinician’s assessment of what’s suitable for you.</div>
     </div>
   </div>
 
@@ -272,7 +272,7 @@ $assessment_button = [
   ])); ?>
 
   <div class="section-disclaimer container">
-    <p class="section-disclaimer-text mt-5 mx-auto text-center text-caption leading-relaxed lg:max-w-2xl">
+    <p class="section-disclaimer-text mt-5 mx-auto text-center text-xs leading-relaxed lg:max-w-2xl">
       <strong class="font-semibold">Price includes medication only, if prescribed.</strong>
       Compounded drug products are not approved or evaluated for safety, effectiveness, or quality by the FDA.
       Doctor Prescription (Rx) required.
@@ -297,7 +297,7 @@ $assessment_button = [
               </div>
               <div class="consultation-actions">
                 <?php component('button', $consultation_button); ?>
-                <div class="consultation-note mt-2 text-center text-caption">Free, Confidential & Secure.</div>
+                <div class="consultation-note mt-2 text-center text-xs">Free, Confidential & Secure.</div>
               </div>
             </div>
           </div>

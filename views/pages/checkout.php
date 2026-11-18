@@ -139,12 +139,12 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
     <?php endif; ?>
     <?php if ($complete): ?>
       <div class="checkout-confirmation grid gap-6 max-w-xl mt-10">
-        <p class="checkout-reference text-small color-muted">Reference: <?= e($order['reference']); ?></p>
+        <p class="checkout-reference text-sm color-muted">Reference: <?= e($order['reference']); ?></p>
         <?php if (($order['payment'] ?? '') !== ''): ?>
-          <p class="checkout-payment-summary text-small color-muted">Payment method: <?= e($order['payment']); ?> (demo, not charged)</p>
+          <p class="checkout-payment-summary text-sm color-muted">Payment method: <?= e($order['payment']); ?> (demo, not charged)</p>
         <?php endif; ?>
         <?php component('store/summary', ['lines' => $order['lines'], 'total' => $order['total']]); ?>
-        <p class="checkout-confirmation-note text-small">No confirmation email will be sent. Your demo cart has been cleared.</p>
+        <p class="checkout-confirmation-note text-sm">No confirmation email will be sent. Your demo cart has been cleared.</p>
         <?php component('button', ['label' => 'Continue Shopping', 'href' => asset_url('product/?id=PRD-001')]); ?>
       </div>
     <?php elseif ($store_lines === []): ?>
@@ -153,7 +153,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
         <?php component('button', ['label' => 'View Product', 'href' => asset_url('product/?id=PRD-001')]); ?>
       </div>
     <?php else: ?>
-      <nav aria-label="Checkout progress" class="checkout-progress flex flex-wrap gap-3 mt-6 text-small color-muted">
+      <nav aria-label="Checkout progress" class="checkout-progress flex flex-wrap gap-3 mt-6 text-sm color-muted">
         <a href="<?= asset_url('cart/'); ?>" class="checkout-step underline underline-offset-4">1. Cart</a>
         <span class="checkout-step" aria-current="step">2. Checkout</span>
       </nav>
@@ -169,7 +169,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
                 <legend class="checkout-legend block w-full text-base bg-zinc-100 px-5 leading-12 mb-5 rounded-lg font-medium color-strong
                   sm:col-span-2"><?= e($group_label); ?></legend>
                 <?php if ($group === 'contact'): ?>
-                  <p class="checkout-login text-small color-muted
+                  <p class="checkout-login text-sm color-muted
                     sm:col-span-2">
                     Already have an account?
                     <a href="<?= asset_url('login'); ?>" class="checkout-login-link font-medium color-strong underline underline-offset-4">Log in</a>
@@ -192,7 +192,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
             <?php endforeach; ?>
             <fieldset class="checkout-payment grid gap-4">
               <legend class="checkout-legend block w-full text-base bg-zinc-100 px-5 leading-12 mb-5 rounded-lg font-medium color-strong">Payment</legend>
-              <p class="checkout-payment-note text-small color-muted">Demo only. No payment is taken.</p>
+              <p class="checkout-payment-note text-sm color-muted">Demo only. No payment is taken.</p>
               <div class="checkout-payment-options flex flex-col items-start gap-2">
                 <?php foreach ($payment_methods as $method => $method_label): ?>
                   <?php component('forms/choice', [
@@ -212,7 +212,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
         <aside class="checkout-summary min-w-0" aria-label="Order summary">
           <?php component('store/summary', $checkout_summary); ?>
           <?php component('button', $confirm_button); ?>
-          <ul class="checkout-assurances flex flex-wrap justify-center gap-x-5 gap-y-1 mt-3 text-caption color-muted"
+          <ul class="checkout-assurances flex flex-wrap justify-center gap-x-5 gap-y-1 mt-3 text-xs color-muted"
             aria-label="Purchase assurances">
             <?php foreach ($store_purchase_assurances as $assurance): ?>
               <li class="checkout-assurance flex items-center gap-1.5">
@@ -221,7 +221,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
               </li>
             <?php endforeach; ?>
           </ul>
-          <dl class="checkout-delivery grid mt-6 text-small divide-y divide-dashed divide-zinc-300">
+          <dl class="checkout-delivery grid mt-6 text-sm divide-y divide-dashed divide-zinc-300">
             <?php foreach ($store_delivery_facts as $fact): ?>
               <div class="checkout-delivery-row grid grid-cols-2 items-baseline gap-4 py-1.5">
                 <dt class="checkout-delivery-label color-muted"><?= e($fact['label']); ?></dt>

@@ -79,7 +79,7 @@ if ($product !== null) {
       'content' => static function () use ($group, $product): void {
         ?>
         <?php if ($group['title'] === 'Inventory'): ?>
-          <p role="status" class="product-restock mb-6 text-small color-muted js-component-products-restock-notice">Enter a stock quantity and restock threshold to see stock status.</p>
+          <p role="status" class="product-restock mb-6 text-sm color-muted js-component-products-restock-notice">Enter a stock quantity and restock threshold to see stock status.</p>
         <?php endif; ?>
         <div class="product-fields grid min-w-0 items-start gap-x-6 gap-y-8
           md:grid-cols-2">
@@ -156,7 +156,7 @@ if ($product !== null) {
           <section id="product-included-products" hidden aria-labelledby="included-products-title"
             class="product-combo min-w-0 -mx-5 mt-8 p-5 bg-zinc-50 js-component-products-combo">
             <h4 id="included-products-title" class="product-heading mb-1 text-base font-medium color-strong">Included Products</h4>
-            <p id="combo-help" class="product-help mb-5 text-small color-muted">
+            <p id="combo-help" class="product-help mb-5 text-sm color-muted">
               Choose at least 2 different products, set quantities, then set the collection price below.
             </p>
             <div class="product-items grid divide-y divide-dashed divide-zinc-200 js-component-products-items"></div>
@@ -168,7 +168,7 @@ if ($product !== null) {
                 'color' => 'default',
                 'class' => 'js-component-products-add-item',
               ]); ?>
-              <p role="status" class="product-combo-summary text-caption color-muted">
+              <p role="status" class="product-combo-summary text-xs color-muted">
                 <span class="product-combo-count block js-component-products-combo-summary"></span>
                 <span class="product-combo-minimum block">Minimum 2 different products.</span>
               </p>
@@ -234,7 +234,7 @@ if ($product !== null) {
               <div hidden class="product-field min-w-0 js-component-products-combo-price-field">
                 <div class="product-price-input relative">
                   <p aria-live="polite"
-                    class="product-price-saving absolute top-0 end-0 flex items-center min-h-5 text-caption color-muted tabular-nums js-component-products-combined-saving">
+                    class="product-price-saving absolute top-0 end-0 flex items-center min-h-5 text-xs color-muted tabular-nums js-component-products-combined-saving">
                     Combined Saving: —
                   </p>
                   <?php component('forms/input-group', [
@@ -270,13 +270,13 @@ if ($product !== null) {
             </div>
             <div class="product-pricing-summary flex flex-col gap-5 -mx-4 -mb-4 mt-5 p-4 rounded-md bg-zinc-100">
               <div hidden class="product-breakdown pb-5 border-b border-zinc-300 js-component-products-price-breakdown">
-                <h4 class="product-heading mb-5 text-small font-medium color-strong">Combined Product Prices</h4>
+                <h4 class="product-heading mb-5 text-sm font-medium color-strong">Combined Product Prices</h4>
                 <ul class="product-price-items grid divide-y divide-dashed divide-zinc-200 js-component-products-price-items"></ul>
-                <p class="product-price-empty text-small color-muted js-component-products-price-empty">
+                <p class="product-price-empty text-sm color-muted js-component-products-price-empty">
                   No products selected. Choose products above to see their prices.
                 </p>
               </div>
-              <dl aria-live="polite" class="product-price-summary grid text-small divide-y divide-dashed divide-zinc-200">
+              <dl aria-live="polite" class="product-price-summary grid text-sm divide-y divide-dashed divide-zinc-200">
                 <div class="product-price-row flex flex-wrap justify-between gap-2 pb-3">
                   <dt class="product-label">Additional Discount</dt>
                   <dd class="product-value font-normal color-muted tabular-nums js-component-products-savings">Not Set</dd>
@@ -287,7 +287,7 @@ if ($product !== null) {
                 </div>
               </dl>
               <p role="status" hidden
-                class="product-price-status flex items-start gap-2 text-small color-muted js-component-products-price-status">
+                class="product-price-status flex items-start gap-2 text-sm color-muted js-component-products-price-status">
                 <?php svg('information-line', 'product-price-icon shrink-0 size-5'); ?>
                 <span class="product-price-message min-w-0 js-component-products-price-message"></span>
               </p>
@@ -336,16 +336,16 @@ $page_header = [
       <?php foreach (array_slice($edit_cards, 1) as $edit_card): ?>
         <?php component('card', $edit_card); ?>
       <?php endforeach; ?>
-      <p role="status" class="product-feedback text-small color-negative js-component-products-feedback"></p>
+      <p role="status" class="product-feedback text-sm color-negative js-component-products-feedback"></p>
       <div class="product-completion grid gap-2" aria-labelledby="product-completion-label">
-        <div class="product-completion-header flex flex-wrap items-center justify-between gap-2 text-small">
+        <div class="product-completion-header flex flex-wrap items-center justify-between gap-2 text-sm">
           <label id="product-completion-label" for="product-completion" class="product-label font-medium color-strong">Required Information</label>
           <span class="product-completion-count tabular-nums js-component-products-completion-count">0% complete</span>
         </div>
         <progress id="product-completion" value="0" max="100"
           aria-describedby="product-completion-help" class="product-progress w-full h-2 js-component-products-progress">0%</progress>
         <p id="product-completion-help" role="status"
-          class="product-completion-help text-caption color-muted js-component-products-completion-help">Complete the required information to continue.</p>
+          class="product-completion-help text-xs color-muted js-component-products-completion-help">Complete the required information to continue.</p>
       </div>
       <footer class="product-actions flex flex-wrap items-center gap-3 py-4">
         <?php component('button', ['label' => $is_new ? 'Create Product' : 'Save Changes', 'element' => 'button', 'type' => 'submit', 'color' => 'primary', 'disabled' => true]); ?>

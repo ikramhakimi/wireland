@@ -8,10 +8,10 @@
   --text-title-md--line-height: 1.25;
   --text-title-sm: 1.25rem;
   --text-title-sm--line-height: 1.3;
-  --text-small: 0.875rem;
-  --text-small--line-height: 1.5;
-  --text-caption: 0.75rem;
-  --text-caption--line-height: 1.5;
+
+  /* Tailwind text-sm/text-xs keep their sizes; looser line-height for readable small text. */
+  --text-sm--line-height: 1.5;
+  --text-xs--line-height: 1.5;
 
   --font-sans: "Poppins", "Inter Tight", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Fragment Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",

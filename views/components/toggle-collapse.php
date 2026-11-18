@@ -30,10 +30,10 @@ $appearance  = $variant === 'filled'
     <?= $variant === 'filled' ? 'aria-[expanded=false]:bg-zinc-800 aria-[expanded=false]:color-invert-strong' : ''; ?>
     focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
     <?= e($toggle_hook); ?> js-component-toggle-collapse">
-  <span class="toggle-collapse-label text-small font-medium"><?= e($label); ?></span>
+  <span class="toggle-collapse-label text-sm font-medium"><?= e($label); ?></span>
   <span class="toggle-collapse-details flex items-center gap-2">
     <?php if ($count_label !== ''): ?>
-      <span class="toggle-collapse-count text-caption font-medium tabular-nums <?= e($count_hook); ?>"><?= e($count_label); ?></span>
+      <span class="toggle-collapse-count text-xs font-medium tabular-nums <?= e($count_hook); ?>"><?= e($count_label); ?></span>
     <?php endif; ?>
     <?php if ($icon === 'plus'): ?>
       <?php svg('add-line', 'toggle-collapse-icon size-4 group-aria-[expanded=true]:hidden'); ?>

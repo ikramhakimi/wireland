@@ -40,7 +40,7 @@ $hero_marquee = [
             <?php svg('star-s-fill', 'reviews-star size-5 fill-zinc-500'); ?>
             <?php svg('star-s-fill', 'reviews-star size-5 fill-zinc-500'); ?>
           </div>
-          <div class="reviews-label text-small color-muted">From 500+ verified Google Reviews</div>
+          <div class="reviews-label text-sm color-muted">From 500+ verified Google Reviews</div>
           <div class="reviews-avatars flex justify-start mt-3" aria-hidden="true">
             <div class="reviews-avatar aspect-square w-9 rounded-full border-2 border-white bg-zinc-500"></div>
             <div class="reviews-avatar aspect-square w-9 -ml-2 rounded-full border-2 border-white bg-zinc-500"></div>
@@ -54,7 +54,7 @@ $hero_marquee = [
         <div class="hero-subtitle text-pretty sm:max-w-3xl">
           Get hair loss medication and treatment prescribed online.
         </div>
-        <div class="benefits font-medium text-small mt-5">
+        <div class="benefits font-medium text-sm mt-5">
           <div class="benefit flex items-center justify-start gap-3 my-0.5">
             <?php svg('shining-line', 'benefit-icon size-3 shrink-0'); ?>
             <div class="benefit-text">Prescribed by MY-licensed clinicians</div>
@@ -71,7 +71,7 @@ $hero_marquee = [
         <div class="hero-actions inline-flex items-center gap-2 mt-7">
           <?php component('button', $hero_button); ?>
         </div>
-        <div class="hero-disclaimer color-muted text-caption mt-5 text-pretty leading-relaxed">
+        <div class="hero-disclaimer color-muted text-xs mt-5 text-pretty leading-relaxed">
           Free & confidential consultations. Tell us about your hair loss and get a treatment recommendation tailored to your needs. 
         </div>
       </div>

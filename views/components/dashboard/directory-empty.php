@@ -17,6 +17,6 @@ $js_hook  = $js_hook ?? '';
   <?php if ($icon !== ''): ?>
     <?php svg($icon, 'directory-empty-icon size-8 mx-auto mb-4 color-muted'); ?>
   <?php endif; ?>
-  <h3 class="directory-empty-title <?= $bordered ? 'text-base' : 'text-small'; ?> font-medium color-strong"><?= e($title); ?></h3>
-  <p class="directory-empty-description mt-2 <?= $bordered ? 'text-small' : 'text-caption'; ?> color-muted"><?= e($description); ?></p>
+  <h3 class="directory-empty-title <?= $bordered ? 'text-base' : 'text-sm'; ?> font-medium color-strong"><?= e($title); ?></h3>
+  <p class="directory-empty-description mt-2 <?= $bordered ? 'text-sm' : 'text-xs'; ?> color-muted"><?= e($description); ?></p>
 </div>

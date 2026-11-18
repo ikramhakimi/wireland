@@ -47,7 +47,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
       <p class="shop-empty mt-10">No products are available right now. Please check back soon.</p>
     <?php else: ?>
       <nav class="shop-filter flex flex-wrap items-center gap-2 mt-8" aria-label="Product categories">
-        <p class="shop-total text-small color-muted mr-2"><?= $shop_count; ?> products</p>
+        <p class="shop-total text-sm color-muted mr-2"><?= $shop_count; ?> products</p>
         <?php foreach (array_keys($shop_groups) as $index => $category): ?>
           <?php component('button', [
             'label' => $category . ' (' . count($shop_groups[$category]) . ')',
@@ -67,7 +67,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
           <h2 id="<?= e($shop_group_id($index)); ?>-title" class="shop-group-title font-medium color-strong text-title-sm">
             <?= e($category); ?>
           </h2>
-          <p class="shop-group-count text-small color-muted"><?= count($items); ?> products</p>
+          <p class="shop-group-count text-sm color-muted"><?= count($items); ?> products</p>
         </div>
         <ul class="shop-grid grid grid-cols-2 gap-x-3 gap-y-6 mt-6 md:grid-cols-3 lg:grid-cols-4">
           <?php foreach ($items as $item): ?>

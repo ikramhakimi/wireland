@@ -26,7 +26,7 @@ $page_header = [
 ?>
   <?php component('dashboard/header', $page_header); ?>
   <?php if ($registered): ?>
-    <p role="status" class="section-status mt-4 text-small color-strong">Patient registered for this demo session.</p>
+    <p role="status" class="section-status mt-4 text-sm color-strong">Patient registered for this demo session.</p>
   <?php endif; ?>
 
   <div class="report-cards grid gap-3 mt-10">

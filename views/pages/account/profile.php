@@ -202,7 +202,7 @@ $delete_modal = [
   'description' => 'This can’t be undone.',
   'content'     => static function () use ($delete_consequences, $delete_password_field): void {
     ?>
-    <ul class="account-delete-list grid gap-2 pl-5 text-small text-pretty list-disc" role="list">
+    <ul class="account-delete-list grid gap-2 pl-5 text-sm text-pretty list-disc" role="list">
       <?php foreach ($delete_consequences as $consequence): ?>
         <li class="account-delete-item"><?= e($consequence); ?></li>
       <?php endforeach; ?>
@@ -275,7 +275,7 @@ $account_layout = [
     <div class="account-profile">
       <header class="account-header">
         <h1 class="account-title text-title-md font-semibold text-pretty color-strong">Profile</h1>
-        <p class="account-description mt-2 max-w-lg text-small text-pretty color-muted">
+        <p class="account-description mt-2 max-w-lg text-sm text-pretty color-muted">
           Keep your details up to date so your doctor and deliveries can reach you.
         </p>
       </header>
@@ -288,7 +288,7 @@ $account_layout = [
                 'id'    => $section['id'] . '-title',
                 'title' => $section['title'],
               ]); ?>
-              <p class="account-section-text mt-4 text-small text-pretty color-muted"><?= e($section['description']); ?></p>
+              <p class="account-section-text mt-4 text-sm text-pretty color-muted"><?= e($section['description']); ?></p>
               <form id="<?= e($section['id']); ?>-form" method="post" action="#"
                 class="account-profile-form grid gap-y-4 gap-x-3 mt-5 sm:grid-cols-2">
                 <?php foreach ($section['fields'] as $field): ?>
@@ -308,7 +308,7 @@ $account_layout = [
               'id'    => 'profile-notifications-title',
               'title' => 'Notifications',
             ]); ?>
-            <p class="account-section-text mt-4 text-small text-pretty color-muted">
+            <p class="account-section-text mt-4 text-sm text-pretty color-muted">
               Choose how we contact you. Order and delivery updates are always sent.
             </p>
             <form id="profile-notifications-form" method="post" action="#"
@@ -322,7 +322,7 @@ $account_layout = [
                     'name'    => 'notifications[' . $option['key'] . ']',
                     'checked' => $patient['notifications'][$option['key']] ?? false,
                   ]); ?>
-                  <p class="account-profile-option-text mt-1 text-small text-pretty color-muted"><?= e($option['text']); ?></p>
+                  <p class="account-profile-option-text mt-1 text-sm text-pretty color-muted"><?= e($option['text']); ?></p>
                 </div>
               <?php endforeach; ?>
             </form>
@@ -351,9 +351,9 @@ $account_layout = [
             <h2 id="account-aside-title" class="account-aside-title text-base font-semibold color-strong">
               <?= e($patient['full_name']); ?>
             </h2>
-            <p class="account-aside-email mt-1 text-small color-muted wrap-anywhere"><?= e($patient['email']); ?></p>
+            <p class="account-aside-email mt-1 text-sm color-muted wrap-anywhere"><?= e($patient['email']); ?></p>
           </div>
-          <dl class="account-aside-facts grid text-small divide-y divide-dashed divide-zinc-300">
+          <dl class="account-aside-facts grid text-sm divide-y divide-dashed divide-zinc-300">
             <?php foreach ($aside_facts as $fact_label => $fact_value): ?>
               <div class="account-aside-fact grid grid-cols-2 items-baseline gap-4 py-1.5">
                 <dt class="color-muted"><?= e($fact_label); ?></dt>
@@ -363,8 +363,8 @@ $account_layout = [
           </dl>
 
           <section class="account-privacy grid gap-3 pt-4 border-t border-zinc-200" aria-labelledby="profile-privacy-title">
-            <h3 id="profile-privacy-title" class="account-privacy-title text-small font-semibold color-strong">Your data</h3>
-            <p class="account-privacy-text text-small text-pretty color-muted">
+            <h3 id="profile-privacy-title" class="account-privacy-title text-sm font-semibold color-strong">Your data</h3>
+            <p class="account-privacy-text text-sm text-pretty color-muted">
               Your assessments and prescriptions are seen only by our clinical team and protected under Malaysia’s
               PDPA. Download a copy any time, or ask us to delete your account.
             </p>

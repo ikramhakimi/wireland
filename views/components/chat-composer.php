@@ -60,8 +60,8 @@ $send_button = [
     </div>
   </div>
   <?php if ($hint !== ''): ?>
-    <p id="<?= e($id); ?>-hint" class="chat-composer-hint mt-2 text-caption text-pretty color-muted"><?= e($hint); ?></p>
+    <p id="<?= e($id); ?>-hint" class="chat-composer-hint mt-2 text-xs text-pretty color-muted"><?= e($hint); ?></p>
   <?php endif; ?>
-  <p class="chat-composer-status mt-2 text-caption color-negative js-chat-composer-status" role="status"
+  <p class="chat-composer-status mt-2 text-xs color-negative js-chat-composer-status" role="status"
     aria-live="polite"></p>
 </form>

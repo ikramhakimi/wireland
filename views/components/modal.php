@@ -30,7 +30,7 @@ if ($id === '' || $title === '') {
       <div class="modal-heading flex-1 min-w-0">
         <h2 id="<?= e($id); ?>-title" class="modal-title text-base font-medium text-pretty color-strong wrap-anywhere"><?= e($title); ?></h2>
         <?php if ($description !== ''): ?>
-          <p id="<?= e($id); ?>-description" class="modal-description mt-1 text-small leading-relaxed text-pretty color-muted wrap-anywhere">
+          <p id="<?= e($id); ?>-description" class="modal-description mt-1 text-sm leading-relaxed text-pretty color-muted wrap-anywhere">
             <?= e($description); ?>
           </p>
         <?php endif; ?>
@@ -43,7 +43,7 @@ if ($id === '' || $title === '') {
       </button>
     </header>
     <div tabindex="0" role="region" aria-labelledby="<?= e($id); ?>-title"
-      class="modal-content flex-1 min-h-0 p-5 text-small leading-relaxed wrap-anywhere overflow-y-auto overscroll-contain
+      class="modal-content flex-1 min-h-0 p-5 text-sm leading-relaxed wrap-anywhere overflow-y-auto overscroll-contain
         focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800">
       <?php if (is_callable($content)): ?>
         <?php $content(); ?>

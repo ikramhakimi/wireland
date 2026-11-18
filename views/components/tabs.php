@@ -50,8 +50,8 @@ if ($id === '' || $items === []) {
     <div id="<?= e($id . '-panel-' . $item_key); ?>" role="tabpanel"
       aria-labelledby="<?= e($id . '-tab-' . $item_key); ?>" tabindex="0"
       <?= $item_key !== $active ? 'hidden' : ''; ?> class="tabs-panel">
-      <h4 class="tabs-title text-small font-medium color-strong"><?= e($item['title']); ?></h4>
-      <p class="tabs-description mt-2 text-small leading-relaxed color-default"><?= e($item['description']); ?></p>
+      <h4 class="tabs-title text-sm font-medium color-strong"><?= e($item['title']); ?></h4>
+      <p class="tabs-description mt-2 text-sm leading-relaxed color-default"><?= e($item['description']); ?></p>
     </div>
   <?php endforeach; ?>
 </div>

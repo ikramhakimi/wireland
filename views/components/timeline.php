@@ -40,7 +40,7 @@ if ($items === []) {
           <h3 class="timeline-title text-xl font-semibold color-strong lg:mt-6">
             <span class="sr-only"><?= e($label); ?> <?= $index + 1; ?>: </span><?= e($item['title'] ?? ''); ?>
           </h3>
-          <p class="timeline-text max-w-64 mt-2 text-small text-pretty color-muted<?= $alignment === 'center' ? ' lg:mx-auto' : ''; ?>">
+          <p class="timeline-text max-w-64 mt-2 text-sm text-pretty color-muted<?= $alignment === 'center' ? ' lg:mx-auto' : ''; ?>">
             <?= e($item['text'] ?? ''); ?>
           </p>
         </div>

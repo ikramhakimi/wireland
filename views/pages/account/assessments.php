@@ -66,7 +66,7 @@ $account_layout = [
       <header class="account-header flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div class="account-header-text">
           <h1 class="account-title text-title-md font-semibold text-pretty color-strong">Assessments</h1>
-          <p class="account-description mt-2 text-small text-pretty color-muted">
+          <p class="account-description mt-2 text-sm text-pretty color-muted">
             Your answers and what our doctor said about them.
           </p>
         </div>
@@ -81,7 +81,7 @@ $account_layout = [
           <h2 id="account-empty-title" class="account-empty-title text-title-sm font-semibold color-strong">
             You haven’t done an assessment yet
           </h2>
-          <p class="account-empty-description max-w-md mx-auto mt-2 text-small text-pretty color-default">
+          <p class="account-empty-description max-w-md mx-auto mt-2 text-sm text-pretty color-default">
             Answer a few questions about your hair. A doctor reviews them and recommends a plan, usually
             within 24 hours.
           </p>
@@ -103,7 +103,7 @@ $account_layout = [
                         class="account-assessment-title text-title-sm font-semibold color-strong">
                         <?= e($assessment['title']); ?>
                       </h2>
-                      <p class="account-assessment-date mt-1 text-small color-muted">
+                      <p class="account-assessment-date mt-1 text-sm color-muted">
                         Sent <?= e($assessment['submitted_on']); ?> · <?= e($assessment['id']); ?>
                       </p>
                     </div>
@@ -118,7 +118,7 @@ $account_layout = [
                       <?php component('account/status-pill', $status); ?>
                     <?php endif; ?>
                   </div>
-                  <p class="account-assessment-note mt-4 max-w-lg text-small text-pretty color-default">
+                  <p class="account-assessment-note mt-4 max-w-lg text-sm text-pretty color-default">
                     <?= e($assessment['note']); ?>
                   </p>
                   <?php if ($assessment['status'] === 'needs_info'): ?>

@@ -20,7 +20,7 @@ $after    = array_merge(['src' => '', 'alt' => '', 'label' => 'After'], $after);
       <img src="<?= e($after['src']); ?>" alt="<?= e($after['alt']); ?>"
         class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" draggable="false">
     <?php endif; ?>
-    <span class="pointer-events-none absolute right-4 top-4 bg-zinc-800/50 px-3 py-2 font-medium text-caption color-invert-strong rounded-full">
+    <span class="pointer-events-none absolute right-4 top-4 bg-zinc-800/50 px-3 py-2 font-medium text-xs color-invert-strong rounded-full">
       <?= e($after['label']); ?>
     </span>
   </div>
@@ -30,7 +30,7 @@ $after    = array_merge(['src' => '', 'alt' => '', 'label' => 'After'], $after);
       <img src="<?= e($before['src']); ?>" alt="<?= e($before['alt']); ?>"
         class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" draggable="false">
     <?php endif; ?>
-    <span class="pointer-events-none absolute left-4 top-4 bg-zinc-800/50 px-3 py-2 font-medium text-caption color-invert-strong rounded-full">
+    <span class="pointer-events-none absolute left-4 top-4 bg-zinc-800/50 px-3 py-2 font-medium text-xs color-invert-strong rounded-full">
       <?= e($before['label']); ?>
     </span>
   </div>

@@ -79,7 +79,7 @@ $hq_focus = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visibl
 $hq_tile  = 'hc-tile flex items-center gap-3 p-2.5 border border-transparent rounded-lg bg-white color-strong
   hover:border-zinc-800 aria-[current=true]:border-zinc-800 ' . $hq_focus . '
   lg:flex-col lg:items-start lg:justify-between lg:gap-3 lg:p-3';
-$hq_link  = 'hc-link shrink-0 text-small font-medium color-strong underline underline-offset-4 ' . $hq_focus;
+$hq_link  = 'hc-link shrink-0 text-sm font-medium color-strong underline underline-offset-4 ' . $hq_focus;
 
 $kits = [];
 foreach ($hq_concerns as $key => $concern) {
@@ -94,7 +94,7 @@ foreach ($hq_concerns as $key => $concern) {
 >
   <div class="hc-wrap w-full max-w-6xl mx-auto px-5 lg:px-0">
     <header class="section-header flex flex-col items-center max-w-176 mx-auto text-center">
-      <p class="hc-eyebrow text-small font-medium color-default">
+      <p class="hc-eyebrow text-sm font-medium color-default">
         Free Online Assessment · Reply in 24 hours
       </p>
       <h1
@@ -130,7 +130,7 @@ foreach ($hq_concerns as $key => $concern) {
                       title="Illustration to come"></span>
                   <?php endif; ?>
                 </span>
-                <span class="hc-tile-label text-small/snug font-semibold"><?= e($concern['label']); ?></span>
+                <span class="hc-tile-label text-sm/snug font-semibold"><?= e($concern['label']); ?></span>
               </a>
             <?php endforeach; ?>
           </div>
@@ -149,7 +149,7 @@ foreach ($hq_concerns as $key => $concern) {
                 <span class="hc-tile-icon flex shrink-0 items-center justify-center size-14 rounded-full bg-zinc-100" aria-hidden="true">
                   <?php svg($noticed['icon'], 'size-6 color-default'); ?>
                 </span>
-                <span class="hc-tile-label text-small/snug font-semibold"><?= e($noticed['label']); ?></span>
+                <span class="hc-tile-label text-sm/snug font-semibold"><?= e($noticed['label']); ?></span>
               </a>
             <?php endforeach; ?>
           </div>
@@ -162,15 +162,15 @@ foreach ($hq_concerns as $key => $concern) {
           </h2>
           <ul class="hc-summary flex flex-wrap gap-1.5 mt-3 js-component-hq-summary" aria-label="Your answers"></ul>
           <template class="js-component-hq-summary-item">
-            <li class="hc-summary-item inline-flex items-center gap-1.5 py-0.5 pr-3 pl-1 text-small font-medium rounded-full bg-white color-strong">
+            <li class="hc-summary-item inline-flex items-center gap-1.5 py-0.5 pr-3 pl-1 text-sm font-medium rounded-full bg-white color-strong">
               <span class="hc-summary-icon flex shrink-0 items-center justify-center size-5 rounded-full bg-zinc-500 color-invert-strong" aria-hidden="true">
                 <?php svg('check-line', 'size-3.5'); ?>
               </span>
               <span class="js-component-hq-summary-label"></span>
             </li>
           </template>
-          <p class="hc-done-text mt-2 text-small text-pretty color-default js-component-hq-reply"></p>
-          <p class="hc-disclaimer mt-1 text-caption color-default">
+          <p class="hc-done-text mt-2 text-sm text-pretty color-default js-component-hq-reply"></p>
+          <p class="hc-disclaimer mt-1 text-xs color-default">
             This is not a diagnosis. Only a doctor can recommend treatment.
           </p>
           <div class="hc-kit-doctor flex flex-wrap items-center gap-x-3 gap-y-1 pt-5">
@@ -182,7 +182,7 @@ foreach ($hq_concerns as $key => $concern) {
               'icon'    => '',
               'js_hook' => 'js-component-hq-continue',
             ]); ?>
-            <p class="hc-kit-doctor-facts text-caption color-muted">Free · Reply within 24 hours · No commitment</p>
+            <p class="hc-kit-doctor-facts text-xs color-muted">Free · Reply within 24 hours · No commitment</p>
           </div>
           <button type="button" class="<?= $hq_link; ?> mt-4 cursor-pointer js-component-hq-restart">Start again</button>
         </div>
@@ -195,7 +195,7 @@ foreach ($hq_concerns as $key => $concern) {
         aria-labelledby="hq-kit-title" aria-live="polite"
       >
         <div class="hc-kit-header flex items-baseline justify-between gap-4">
-          <p id="hq-kit-title" class="hc-kit-kicker text-caption font-medium tracking-wider uppercase color-default js-component-hq-kit-title">
+          <p id="hq-kit-title" class="hc-kit-kicker text-xs font-medium tracking-wider uppercase color-default js-component-hq-kit-title">
             Everyday care
           </p>
           <a href="<?= e($hq_browse_href); ?>" class="<?= $hq_link; ?>">Browse All</a>
@@ -215,9 +215,9 @@ foreach ($hq_concerns as $key => $concern) {
                       <span class="hc-product-name font-semibold color-strong group-hover/product:underline group-hover/product:underline-offset-4">
                         <?= e($product['name']); ?>
                       </span>
-                      <span class="hc-product-meta text-small"><?= e($product['category']); ?></span>
+                      <span class="hc-product-meta text-sm"><?= e($product['category']); ?></span>
                     </span>
-                    <span class="hc-product-price text-small font-medium whitespace-nowrap color-strong">
+                    <span class="hc-product-price text-sm font-medium whitespace-nowrap color-strong">
                       <?= e($hq_money((float) $product['price'])); ?>
                     </span>
                   </a>
@@ -225,7 +225,7 @@ foreach ($hq_concerns as $key => $concern) {
               <?php endforeach; ?>
             </ul>
             <div class="hc-kit-buy flex flex-wrap items-center justify-between gap-3 mt-5">
-              <p class="hc-kit-total flex flex-col text-small">
+              <p class="hc-kit-total flex flex-col text-sm">
                 <span class="hc-kit-total-label">All <?= count($items); ?></span>
                 <span class="hc-kit-total-value text-title-sm/tight font-semibold color-strong">
                   <?= e($hq_money($hq_kit_sum($items))); ?>
@@ -239,7 +239,7 @@ foreach ($hq_concerns as $key => $concern) {
           </div>
         <?php endforeach; ?>
 
-        <p class="hc-kit-status text-small color-strong empty:hidden js-component-hq-add-status" role="status"></p>
+        <p class="hc-kit-status text-sm color-strong empty:hidden js-component-hq-add-status" role="status"></p>
         <input type="hidden" class="js-component-hq-token" value="<?= e($store_token); ?>">
       </aside>
     </div>

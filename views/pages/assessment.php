@@ -43,18 +43,18 @@ component('navbar');
     <ol class="assessment-steps grid grid-cols-1 gap-3 max-w-3xl mx-auto mt-10 sm:grid-cols-3">
       <?php foreach ($assessment_steps as $index => $step): ?>
         <li class="assessment-step p-5 rounded-xl bg-zinc-100">
-          <span class="assessment-step-number text-small font-medium color-muted">
+          <span class="assessment-step-number text-sm font-medium color-muted">
             <span class="sr-only">Step </span><?= $index + 1; ?>
           </span>
           <h2 class="assessment-step-title mt-2 font-semibold color-strong"><?= e($step['title']); ?></h2>
-          <p class="assessment-step-description mt-1 text-small color-muted"><?= e($step['description']); ?></p>
+          <p class="assessment-step-description mt-1 text-sm color-muted"><?= e($step['description']); ?></p>
         </li>
       <?php endforeach; ?>
     </ol>
 
     <div class="assessment-actions flex flex-col items-center mt-10 text-center">
       <?php component('button', $start_button); ?>
-      <p class="assessment-note mt-3 text-caption color-muted">
+      <p class="assessment-note mt-3 text-xs color-muted">
         A starting point, not a diagnosis. A clinician reviews your answers.
       </p>
     </div>

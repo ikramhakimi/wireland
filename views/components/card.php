@@ -39,7 +39,7 @@ $class          = $class ?? '';
       <?php endif; ?>
       <h3 class="card-title text-base font-medium text-zinc-800"><?= e($title); ?></h3>
       <?php if ($description !== ''): ?>
-        <p class="card-description text-small leading-relaxed text-pretty text-zinc-500"><?= e($description); ?></p>
+        <p class="card-description text-sm leading-relaxed text-pretty text-zinc-500"><?= e($description); ?></p>
       <?php endif; ?>
       <?php if ($header_number !== '' || $header_icon !== ''): ?>
         </div>

@@ -75,7 +75,7 @@ $remove_button = [
   <header class="uploader-header flex items-center justify-between gap-4 mb-3">
     <label for="<?= e($id); ?>" class="uploader-label field-label"><?= e($label); ?></label>
     <p aria-live="polite"
-      class="uploader-count text-caption color-muted tabular-nums js-component-file-upload-image-count">0/<?= e((string) $max_files); ?> files selected</p>
+      class="uploader-count text-xs color-muted tabular-nums js-component-file-upload-image-count">0/<?= e((string) $max_files); ?> files selected</p>
   </header>
   <div class="uploader-surface js-component-file-upload-dropzone">
     <input id="<?= e($id); ?>" name="<?= e($name); ?>" type="file" accept="<?= e($accept); ?>" multiple
@@ -86,7 +86,7 @@ $remove_button = [
         class="uploader-spacer col-start-1 row-start-1 invisible pointer-events-none js-component-file-upload-spacer"></ul>
       <div class="uploader-prompt col-start-1 row-start-1 flex flex-col items-center justify-center gap-3 p-5
         rounded-lg border border-dashed border-zinc-300">
-        <p class="uploader-message text-caption color-muted">No files selected. Drop files here or choose below.</p>
+        <p class="uploader-message text-xs color-muted">No files selected. Drop files here or choose below.</p>
         <div class="uploader-empty-action js-component-file-upload-empty-action"></div>
       </div>
     </div>
@@ -98,8 +98,8 @@ $remove_button = [
       <?php component('button', $clear_button); ?>
     </footer>
   </div>
-  <p id="<?= e($id); ?>-help" class="uploader-help mt-3 text-caption color-muted">Drop files in this panel. Drag selected files to reorder, or use the arrow buttons.</p>
-  <p role="status" class="uploader-status mt-3 text-small color-muted js-component-file-upload-image-status"></p>
+  <p id="<?= e($id); ?>-help" class="uploader-help mt-3 text-xs color-muted">Drop files in this panel. Drag selected files to reorder, or use the arrow buttons.</p>
+  <p role="status" class="uploader-status mt-3 text-sm color-muted js-component-file-upload-image-status"></p>
   <template class="js-component-file-upload-image-template">
     <li draggable="true" class="uploader-item relative w-48 rounded-lg border border-zinc-200 bg-white overflow-hidden
       js-component-file-upload-item">
@@ -108,8 +108,8 @@ $remove_button = [
       </div>
       <div class="uploader-details flex items-center gap-3 p-3">
         <div class="uploader-info min-w-0 flex-1">
-          <p class="uploader-name text-caption font-normal truncate js-component-file-upload-name"></p>
-          <p class="uploader-meta text-caption color-muted js-component-file-upload-meta"></p>
+          <p class="uploader-name text-xs font-normal truncate js-component-file-upload-name"></p>
+          <p class="uploader-meta text-xs color-muted js-component-file-upload-meta"></p>
         </div>
       </div>
       <div class="uploader-actions flex items-center justify-between gap-1 px-3 pb-3">
@@ -123,7 +123,7 @@ $remove_button = [
         </div>
       </div>
       <div aria-hidden="true"
-        class="uploader-target absolute inset-0 hidden items-center justify-center text-caption font-normal
+        class="uploader-target absolute inset-0 hidden items-center justify-center text-xs font-normal
           rounded-lg border border-solid border-blue-600 bg-blue-600 color-invert-strong pointer-events-none
           js-component-file-upload-target">
         Drop Here

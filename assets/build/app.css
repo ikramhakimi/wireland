@@ -59,9 +59,9 @@
     --container-6xl: 72rem;
     --container-7xl: 80rem;
     --text-xs: 0.75rem;
-    --text-xs--line-height: calc(1 / 0.75);
+    --text-xs--line-height: 1.5;
     --text-sm: 0.875rem;
-    --text-sm--line-height: calc(1.25 / 0.875);
+    --text-sm--line-height: 1.5;
     --text-base: 1rem;
     --text-base--line-height: calc(1.5 / 1);
     --text-lg: 1.125rem;
@@ -120,10 +120,6 @@
     --text-title-md--line-height: 1.25;
     --text-title-sm: 1.25rem;
     --text-title-sm--line-height: 1.3;
-    --text-small: 0.875rem;
-    --text-small--line-height: 1.5;
-    --text-caption: 0.75rem;
-    --text-caption--line-height: 1.5;
   }
 }
 @layer base {
@@ -2589,10 +2585,6 @@
     font-size: var(--text-base);
     line-height: var(--tw-leading, var(--text-base--line-height));
   }
-  .text-caption {
-    font-size: var(--text-caption);
-    line-height: var(--tw-leading, var(--text-caption--line-height));
-  }
   .text-lg {
     font-size: var(--text-lg);
     line-height: var(--tw-leading, var(--text-lg--line-height));
@@ -2601,12 +2593,8 @@
     font-size: var(--text-sm);
     line-height: var(--tw-leading, var(--text-sm--line-height));
   }
-  .text-small {
-    font-size: var(--text-small);
-    line-height: var(--tw-leading, var(--text-small--line-height));
-  }
-  .text-small\/snug {
-    font-size: var(--text-small);
+  .text-sm\/snug {
+    font-size: var(--text-sm);
     line-height: var(--leading-snug);
   }
   .text-title-lg {
@@ -6135,8 +6123,8 @@
   }
   .button-small {
     height: calc(var(--spacing) * 8);
-    font-size: var(--text-small);
-    line-height: var(--tw-leading, var(--text-small--line-height));
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
     --tw-leading: calc(var(--spacing) * 5);
     line-height: calc(var(--spacing) * 5);
     --button-padding: 16px;
@@ -6150,8 +6138,8 @@
   }
   .button-medium {
     height: calc(var(--spacing) * 10);
-    font-size: var(--text-small);
-    line-height: var(--tw-leading, var(--text-small--line-height));
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
     --tw-leading: calc(var(--spacing) * 5);
     line-height: calc(var(--spacing) * 5);
     --button-padding: 20px;
@@ -6342,16 +6330,16 @@
   .field .field-label {
     margin-bottom: calc(var(--spacing) * 2);
     display: block;
-    font-size: var(--text-small);
-    line-height: var(--tw-leading, var(--text-small--line-height));
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
     color: var(--color-zinc-600);
   }
   .field .field-required, .choice-label .field-required {
     margin-left: calc(var(--spacing) * 2);
-    font-size: var(--text-caption);
-    line-height: var(--tw-leading, var(--text-caption--line-height));
+    font-size: var(--text-xs);
+    line-height: var(--tw-leading, var(--text-xs--line-height));
     --tw-font-weight: var(--font-weight-normal);
     font-weight: var(--font-weight-normal);
     color: var(--color-zinc-500);
@@ -6363,8 +6351,8 @@
     border-width: 1px;
     border-color: var(--color-zinc-300);
     background-color: var(--color-white);
-    font-size: var(--text-small);
-    line-height: var(--tw-leading, var(--text-small--line-height));
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
     color: var(--color-zinc-800);
   }
   .field .field-input {
@@ -6445,8 +6433,8 @@
   }
   .field .field-help {
     margin-top: calc(var(--spacing) * 2);
-    font-size: var(--text-caption);
-    line-height: var(--tw-leading, var(--text-caption--line-height));
+    font-size: var(--text-xs);
+    line-height: var(--tw-leading, var(--text-xs--line-height));
     --tw-leading: calc(var(--spacing) * 6);
     line-height: calc(var(--spacing) * 6);
     --tw-font-weight: var(--font-weight-normal);
@@ -6461,8 +6449,8 @@
     min-height: calc(var(--spacing) * 6);
     align-items: center;
     gap: calc(var(--spacing) * 3);
-    font-size: var(--text-small);
-    line-height: var(--tw-leading, var(--text-small--line-height));
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
     --tw-font-weight: var(--font-weight-normal);
     font-weight: var(--font-weight-normal);
     color: var(--color-zinc-600);
@@ -6591,8 +6579,8 @@
     padding-inline: calc(var(--spacing) * 2);
     padding-block: calc(var(--spacing) * 3);
     text-align: center;
-    font-size: var(--text-small);
-    line-height: var(--tw-leading, var(--text-small--line-height));
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
     --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
@@ -6690,8 +6678,8 @@
     cursor: pointer;
     padding-inline: calc(var(--spacing) * 5);
     padding-block: calc(var(--spacing) * 0);
-    font-size: var(--text-small);
-    line-height: var(--tw-leading, var(--text-small--line-height));
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
     --tw-leading: var(--leading-normal);
     line-height: var(--leading-normal);
     --tw-font-weight: var(--font-weight-medium);
@@ -6702,8 +6690,8 @@
   .tabs-small .tabs-trigger {
     min-height: calc(var(--spacing) * 8);
     padding-inline: calc(var(--spacing) * 3.5);
-    font-size: var(--text-caption);
-    line-height: var(--tw-leading, var(--text-caption--line-height));
+    font-size: var(--text-xs);
+    line-height: var(--tw-leading, var(--text-xs--line-height));
   }
   .tabs .tabs-trigger:is([aria-selected="true"], [aria-pressed="true"]) {
     color: var(--color-zinc-800);
@@ -6932,8 +6920,8 @@
     border-color: var(--color-zinc-300);
     background-color: var(--color-white);
     padding-inline: calc(var(--spacing) * 3);
-    font-size: var(--text-small);
-    line-height: var(--tw-leading, var(--text-small--line-height));
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
     color: var(--color-zinc-800);

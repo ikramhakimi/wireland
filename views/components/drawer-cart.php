@@ -88,7 +88,7 @@ $checkout_button = [
                   <?php svg('close-line', 'cart-item-remove-svg size-4'); ?>
                 </button>
               </div>
-              <p class="cart-item-brief mt-1 text-caption color-muted"><?= e($item['brief']); ?></p>
+              <p class="cart-item-brief mt-1 text-xs color-muted"><?= e($item['brief']); ?></p>
               <div class="cart-item-actions mt-auto flex items-center gap-4 pt-3">
                 <div class="cart-item-stepper inline-flex items-center rounded-md border border-zinc-300
                   js-component-cart-stepper">
@@ -97,7 +97,7 @@ $checkout_button = [
                       focus-visible:outline-2 disabled:cursor-default disabled:opacity-40 js-component-cart-decrease"
                     aria-label="Decrease quantity for <?= e($item['name']); ?>" disabled>−</button>
                   <input type="number" min="1" step="1" value="1" readonly tabindex="-1"
-                    class="cart-item-quantity w-10 appearance-none bg-transparent text-center text-small outline-none
+                    class="cart-item-quantity w-10 appearance-none bg-transparent text-center text-sm outline-none
                       [&::-webkit-inner-spin-button]:appearance-none
                       [&::-webkit-outer-spin-button]:appearance-none [-moz-appearance:textfield]
                       js-component-cart-quantity"
@@ -109,7 +109,7 @@ $checkout_button = [
                 </div>
                 <div class="cart-item-pricing shrink-0">
                   <p class="cart-item-price leading-tight font-medium color-strong js-component-cart-price"><?= e($item['price']); ?></p>
-                  <p class="cart-item-unit-price hidden text-caption color-muted js-component-cart-unit-price">
+                  <p class="cart-item-unit-price hidden text-xs color-muted js-component-cart-unit-price">
                     <?= e($item['price']); ?> each
                   </p>
                 </div>
@@ -117,11 +117,11 @@ $checkout_button = [
             </div>
             <template class="cart-item-undo-template js-component-cart-undo-template">
               <li class="cart-item-notice flex-split gap-4 py-5">
-                <p class="cart-item-notice-text text-small color-muted" role="status">
+                <p class="cart-item-notice-text text-sm color-muted" role="status">
                   <?= e($item['name']); ?> removed from your cart.
                 </p>
                 <button type="button"
-                  class="cart-item-undo min-h-11 shrink-0 cursor-pointer text-small font-medium color-strong
+                  class="cart-item-undo min-h-11 shrink-0 cursor-pointer text-sm font-medium color-strong
                     underline underline-offset-2 focus-visible:outline-2 js-component-cart-undo">
                   Undo
                 </button>
@@ -171,8 +171,8 @@ $checkout_button = [
                 <img src="<?= asset_url('assets/images/mockup-bottle-02.webp'); ?>" alt=""
                   class="cart-product-image size-full object-contain" loading="lazy">
               </div>
-              <h4 class="cart-product-title mt-auto text-small md:mt-0 font-medium color-strong"><?= e($product['name']); ?></h4>
-              <p class="cart-product-price mt-1 mb-3 text-small color-default"><?= e($product['price']); ?></p>
+              <h4 class="cart-product-title mt-auto text-sm md:mt-0 font-medium color-strong"><?= e($product['name']); ?></h4>
+              <p class="cart-product-price mt-1 mb-3 text-sm color-default"><?= e($product['price']); ?></p>
               <?php component('button', [
                 'label'      => 'Add to Cart',
                 'element'    => 'button',
@@ -187,7 +187,7 @@ $checkout_button = [
 
     <div class="cart-footer relative z-10 shrink-0 shadow-[0_-4px_16px_rgba(0,0,0,0.08)] border-t border-zinc-900/20 bg-white px-5 pt-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
       <div id="cart-breakdown" class="cart-breakdown hidden js-component-cart-breakdown">
-        <dl class="cart-summary divide-y divide-dashed divide-zinc-200 text-small color-default border-b-2 border-zinc-300 pb-5 mb-5">
+        <dl class="cart-summary divide-y divide-dashed divide-zinc-200 text-sm color-default border-b-2 border-zinc-300 pb-5 mb-5">
           <div class="cart-subtotal flex justify-between gap-4 py-2">
             <dt class="cart-summary-label js-component-cart-count">Subtotal (2 items)</dt>
             <dd class="cart-summary-value font-medium color-strong js-component-cart-subtotal">RM 435.00</dd>
@@ -208,7 +208,7 @@ $checkout_button = [
         aria-expanded="false" aria-controls="cart-breakdown">
         <span class="cart-summary-toggle-content">
           <span class="cart-summary-toggle-label block font-medium color-strong">Total</span>
-          <span class="cart-summary-toggle-hint block text-caption color-muted">
+          <span class="cart-summary-toggle-hint block text-xs color-muted">
             Free delivery · <span class="cart-summary-toggle-action js-component-cart-summary-label">View breakdown</span>
           </span>
         </span>

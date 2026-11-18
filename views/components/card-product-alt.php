@@ -33,7 +33,7 @@ $money       = static fn (float $amount): string => 'RM ' . number_format($amoun
   </div>
   <div class="product-brief flex-1 flex flex-col pt-4 pl-1 pr-5">
     <?php if ($pill !== ''): ?>
-      <p class="product-pill absolute top-3 left-3 inline-flex px-2.5 py-1.5 text-caption leading-3 rounded-md bg-zinc-100">
+      <p class="product-pill absolute top-3 left-3 inline-flex px-2.5 py-1.5 text-xs leading-3 rounded-md bg-zinc-100">
         <?= e($pill); ?>
       </p>
     <?php endif; ?>
@@ -41,7 +41,7 @@ $money       = static fn (float $amount): string => 'RM ' . number_format($amoun
       <a href="<?= e($href); ?>" class="product-link underline-offset-4
         hover:underline focus-visible:outline-none"><?= e($name); ?></a>
     </h3>
-    <p class="product-price mt-1 text-small ">
+    <p class="product-price mt-1 text-sm ">
       <?php if ($price_label !== ''): ?>
         <span class="product-price-label"><?= e($price_label); ?></span>
       <?php endif; ?>
@@ -54,7 +54,7 @@ $money       = static fn (float $amount): string => 'RM ' . number_format($amoun
       <?php endif; ?>
     </p>
     <?php if ($description !== ''): ?>
-      <p class="product-desc mt-1 text-small color-muted"><?= e($description); ?></p>
+      <p class="product-desc mt-1 text-sm color-muted"><?= e($description); ?></p>
     <?php endif; ?>
   </div>
 </article>

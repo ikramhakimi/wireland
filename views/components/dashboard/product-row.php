@@ -24,9 +24,9 @@
         <img src="<?= asset_url($item['image']); ?>" alt="" width="64" height="64" loading="lazy"
           class="product-image size-16 shrink-0 rounded-lg bg-zinc-100 object-cover js-component-products-image">
         <span class="product-heading min-w-0">
-          <span class="product-sku block mb-1 text-caption color-muted js-component-products-sku"><?= e($item['sku']); ?></span>
-          <span class="product-name block text-small font-medium color-strong wrap-anywhere js-component-products-name"><?= e($item['name']); ?></span>
-          <span class="product-meta flex flex-wrap items-center gap-2 mt-2 text-caption color-muted">
+          <span class="product-sku block mb-1 text-xs color-muted js-component-products-sku"><?= e($item['sku']); ?></span>
+          <span class="product-name block text-sm font-medium color-strong wrap-anywhere js-component-products-name"><?= e($item['name']); ?></span>
+          <span class="product-meta flex flex-wrap items-center gap-2 mt-2 text-xs color-muted">
             <span <?= $item['status'] === 'Active' ? 'hidden' : ''; ?>
               class="product-status font-medium js-component-products-status"><?= e($item['status']); ?></span>
             <span class="product-category js-component-products-category"><?= e($item['category']); ?></span>
@@ -47,18 +47,18 @@
       </div>
     </div>
     <div class="product-pricing min-w-0 sm:p-4">
-      <p class="product-price text-small leading-tight tabular-nums
+      <p class="product-price text-sm leading-tight tabular-nums
         sm:leading-normal
         js-component-products-price">RM <?= number_format($item['price'], 2); ?></p>
       <p <?= $item['requirement'] !== 'Prescription Required' ? 'hidden' : ''; ?>
-        class="product-requirement mt-1 text-caption color-muted js-component-products-requirement"><?= e($item['requirement']); ?></p>
+        class="product-requirement mt-1 text-xs color-muted js-component-products-requirement"><?= e($item['requirement']); ?></p>
     </div>
     <div class="product-inventory min-w-0 text-right leading-tight sm:p-4 sm:text-left sm:leading-normal">
-      <p class="product-stock text-small leading-tight tabular-nums
+      <p class="product-stock text-sm leading-tight tabular-nums
         sm:leading-normal
         js-component-products-stock"><?= e($item['stock'] ?? 'Not Set'); ?> units</p>
       <p <?= !isset($item['stock'], $item['restock_threshold']) || $item['stock'] > $item['restock_threshold'] || $item['status'] === 'Archived' ? 'hidden' : ''; ?>
-        class="product-restock mt-1 text-caption leading-tight color-negative
+        class="product-restock mt-1 text-xs leading-tight color-negative
           sm:leading-normal
           js-component-products-restock"><?= ($item['stock'] ?? null) === 0 ? 'Out of Stock' : 'Restock Needed'; ?></p>
     </div>

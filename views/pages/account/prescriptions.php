@@ -84,7 +84,7 @@ $account_layout = [
       data-quiz-config="<?= e(json_encode($quiz_config)); ?>">
       <header class="account-header">
         <h1 class="account-title text-title-md font-semibold text-pretty color-strong">Prescriptions</h1>
-        <p class="account-description mt-2 max-w-lg text-small text-pretty color-muted">
+        <p class="account-description mt-2 max-w-lg text-sm text-pretty color-muted">
           Treatment our doctors prescribed for you. Prescription products can be ordered while the
           prescription is valid.
         </p>
@@ -93,7 +93,7 @@ $account_layout = [
       <?php if (isset($review_notices[$review_status])): ?>
         <div class="account-notice flex flex-col gap-3 mt-8 p-4 rounded-xl bg-zinc-100 sm:flex-row sm:items-center
           sm:justify-between" role="status">
-          <p class="account-notice-text flex gap-2 text-small text-pretty color-strong">
+          <p class="account-notice-text flex gap-2 text-sm text-pretty color-strong">
             <?php svg('information-line', 'size-5 shrink-0'); ?>
             <?= e($review_notices[$review_status]); ?>
           </p>
@@ -107,7 +107,7 @@ $account_layout = [
           <h2 id="account-empty-title" class="account-empty-title text-title-sm font-semibold color-strong">
             No prescriptions yet
           </h2>
-          <p class="account-empty-description max-w-md mx-auto mt-2 text-small text-pretty color-default">
+          <p class="account-empty-description max-w-md mx-auto mt-2 text-sm text-pretty color-default">
             Prescriptions come from a doctor review. Start with a short hair assessment and a doctor will
             recommend what suits you.
           </p>
@@ -132,7 +132,7 @@ $account_layout = [
                       class="account-prescription-title text-title-sm font-semibold color-strong">
                       Prescription <?= e($prescription['id']); ?>
                     </h2>
-                    <p class="account-prescription-doctor mt-1 text-small color-muted">
+                    <p class="account-prescription-doctor mt-1 text-sm color-muted">
                       <?= e($prescription['doctor']); ?> · Issued <?= e($prescription['issued_on']); ?>
                     </p>
                   </div>
@@ -150,12 +150,12 @@ $account_layout = [
 
                 <dl class="account-prescription-meta grid gap-4 mt-6 pt-5 border-t border-zinc-100 sm:grid-cols-2">
                   <div class="account-prescription-meta-item">
-                    <dt class="text-small color-muted"><?= $is_valid ? 'Valid until' : 'Expired on'; ?></dt>
-                    <dd class="mt-1 text-small font-medium color-strong"><?= e($prescription['valid_until']); ?></dd>
+                    <dt class="text-sm color-muted"><?= $is_valid ? 'Valid until' : 'Expired on'; ?></dt>
+                    <dd class="mt-1 text-sm font-medium color-strong"><?= e($prescription['valid_until']); ?></dd>
                   </div>
                   <div class="account-prescription-meta-item">
-                    <dt class="text-small color-muted">From assessment</dt>
-                    <dd class="mt-1 text-small font-medium color-strong"><?= e($prescription['assessment_id']); ?></dd>
+                    <dt class="text-sm color-muted">From assessment</dt>
+                    <dd class="mt-1 text-sm font-medium color-strong"><?= e($prescription['assessment_id']); ?></dd>
                   </div>
                 </dl>
 
@@ -164,7 +164,7 @@ $account_layout = [
                     <?php component('button', $order_button($first_item, $prescription['status'] === 'active')); ?>
                   <?php else: ?>
                     <?php component('button', $renew_button); ?>
-                    <p class="account-prescription-hint text-small text-pretty color-muted">
+                    <p class="account-prescription-hint text-sm text-pretty color-muted">
                       A doctor needs to review you again before you can reorder.
                     </p>
                   <?php endif; ?>

@@ -25,16 +25,16 @@ $follow_up_color = $patient['next_follow_up'] === null ? 'color-muted'
       <div class="patient-profile flex flex-row-reverse items-start gap-4 min-w-0
         sm:flex-row">
         <span aria-hidden="true"
-          class="patient-avatar flex shrink-0 items-center justify-center size-12 text-caption font-medium rounded-lg border border-zinc-300 bg-zinc-200 color-strong"><?= e(implode('', array_map(
+          class="patient-avatar flex shrink-0 items-center justify-center size-12 text-xs font-medium rounded-lg border border-zinc-300 bg-zinc-200 color-strong"><?= e(implode('', array_map(
             static fn (string $part): string => substr($part, 0, 1),
             array_slice(explode(' ', $patient['name']), 0, 2)
           ))); ?></span>
         <div class="patient-heading flex-1 min-w-0 sm:flex-none">
-          <p class="patient-reference mb-1 text-caption color-muted">
+          <p class="patient-reference mb-1 text-xs color-muted">
             <?= e($patient['id']); ?> · <span class="sr-only">Assessment: </span><?= e($patient['assessment']); ?>
           </p>
-          <h3 class="patient-name text-small font-medium color-strong wrap-anywhere"><?= e($patient['name']); ?></h3>
-          <p class="patient-contact flex flex-wrap gap-x-1 mt-2 text-caption color-muted">
+          <h3 class="patient-name text-sm font-medium color-strong wrap-anywhere"><?= e($patient['name']); ?></h3>
+          <p class="patient-contact flex flex-wrap gap-x-1 mt-2 text-xs color-muted">
             <span class="patient-phone"><?= e($patient['phone']); ?></span>
             <span aria-hidden="true" class="patient-separator">·</span>
             <span class="patient-email wrap-anywhere"><?= e($patient['email']); ?></span>
@@ -43,13 +43,13 @@ $follow_up_color = $patient['next_follow_up'] === null ? 'color-muted'
       </div>
     </div>
     <div class="patient-care min-w-0 sm:p-4">
-      <p class="patient-label text-caption color-muted">Next Follow-up</p>
-      <p class="patient-schedule flex flex-wrap items-baseline gap-x-1 mt-1 text-small leading-tight
+      <p class="patient-label text-xs color-muted">Next Follow-up</p>
+      <p class="patient-schedule flex flex-wrap items-baseline gap-x-1 mt-1 text-sm leading-tight
         sm:leading-normal">
         <span class="patient-date font-medium tabular-nums <?= e($follow_up_color); ?>"><?= $patient['next_follow_up'] !== null
           ? e((new DateTimeImmutable($patient['next_follow_up']))->format('j M Y')) : 'Not scheduled'; ?></span>
       </p>
-      <p class="patient-activity hidden flex-wrap items-center gap-2 mt-2 text-caption color-muted
+      <p class="patient-activity hidden flex-wrap items-center gap-2 mt-2 text-xs color-muted
         sm:flex">
         <span class="patient-purchases">Purchase <strong class="patient-count font-medium tabular-nums color-strong"><?= e($patient['products_purchased']); ?></strong></span>
         <?php if ($patient['clinic_visits'] > 0): ?>

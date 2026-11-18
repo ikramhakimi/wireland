@@ -52,7 +52,7 @@ $treatment_items = [
       <?php foreach ($steps as $step): ?>
         <li class="step flex flex-col p-5 rounded-xl bg-zinc-100">
           <div class="step-header flex items-center gap-2">
-            <span class="step-pill inline-flex items-center justify-center size-10 text-small font-medium
+            <span class="step-pill inline-flex items-center justify-center size-10 text-sm font-medium
               rounded-lg bg-zinc-500 text-white">
               <span class="step-label sr-only">Step </span><?= e($step['number']); ?>
             </span>
@@ -62,7 +62,7 @@ $treatment_items = [
             <h3 class="step-title text-title-sm font-semibold text-pretty color-strong">
               <?= e($step['title']); ?>
             </h3>
-            <p class="step-description mt-1 text-small leading-relaxed text-pretty color-muted">
+            <p class="step-description mt-1 text-sm leading-relaxed text-pretty color-muted">
               <?= e($step['description']); ?>
             </p>
           </div>

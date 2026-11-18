@@ -79,7 +79,7 @@ $navigation_groups = [
   <nav aria-label="Design sections" class="sidebar-navigation flex flex-col gap-5">
     <?php foreach ($navigation_groups as $group_label => $group_items): ?>
       <div class="sidebar-group">
-        <h2 class="sidebar-group-title px-3 text-caption font-normal color-muted"><?= e($group_label); ?></h2>
+        <h2 class="sidebar-group-title px-3 text-xs font-normal color-muted"><?= e($group_label); ?></h2>
         <ul class="sidebar-items grid mt-2">
           <?php foreach ($group_items as $item): ?>
             <li class="sidebar-item">

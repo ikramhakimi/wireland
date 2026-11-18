@@ -26,7 +26,7 @@ if ($id === '' || $groups === []) {
   class="dropdown inline-flex js-component-dropdown">
   <?php if ($trigger === 'text'): ?>
     <button type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="<?= e($id); ?>"
-      class="dropdown-trigger inline-flex items-center min-h-11 text-small color-strong cursor-pointer
+      class="dropdown-trigger inline-flex items-center min-h-11 text-sm color-strong cursor-pointer
         hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
         js-component-dropdown-trigger">
       <span class="dropdown-label"><?= e($label); ?></span>
@@ -51,10 +51,10 @@ if ($id === '' || $groups === []) {
       <div role="group" <?= !empty($group['label']) ? 'aria-label="' . e($group['label']) . '"' : ''; ?>
         class="dropdown-group <?= $group_index > 0 ? '-mx-1 mt-1 px-1 pt-1 border-t border-zinc-200' : ''; ?>">
         <?php if (!empty($group['label'])): ?>
-          <p aria-hidden="true" class="dropdown-heading px-3 py-2 text-caption color-muted"><?= e($group['label']); ?></p>
+          <p aria-hidden="true" class="dropdown-heading px-3 py-2 text-xs color-muted"><?= e($group['label']); ?></p>
         <?php endif; ?>
         <?php foreach ($group['items'] as $item): ?>
-          <?php $item_class = 'dropdown-item flex items-center gap-3 w-full min-h-11 px-3 py-2 text-left text-small rounded-sm cursor-pointer '
+          <?php $item_class = 'dropdown-item flex items-center gap-3 w-full min-h-11 px-3 py-2 text-left text-sm rounded-sm cursor-pointer '
             . (!empty($item['destructive']) ? 'color-negative ' : 'color-strong ')
             . 'hover:bg-zinc-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-blue-800 '
             . 'disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent '
@@ -67,7 +67,7 @@ if ($id === '' || $groups === []) {
                 'name' => $item['name'], 'value' => $item['value'], 'label' => $item['label'],
                 'type' => 'checkbox',
               ]); ?>
-              <span class="dropdown-count text-caption tabular-nums color-muted"><?= e($item['count'] ?? 0); ?></span>
+              <span class="dropdown-count text-xs tabular-nums color-muted"><?= e($item['count'] ?? 0); ?></span>
             </div>
           <?php elseif (!empty($item['href']) && empty($item['disabled'])): ?>
             <a role="menuitem" tabindex="-1" href="<?= e($item['href']); ?>" class="<?= e($item_class); ?>">

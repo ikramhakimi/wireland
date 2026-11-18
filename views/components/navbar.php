@@ -24,9 +24,9 @@ $cart_href = $cart_href ?? '';
       <span class="font-semibold">HairClinic</span>
     </a>
 
-    <nav class="hidden text-small items-center gap-6 lg:flex" aria-label="Main navigation">
+    <nav class="hidden text-sm items-center gap-6 lg:flex" aria-label="Main navigation">
       <details class="group relative">
-        <summary class="text-small flex cursor-pointer list-none items-center gap-0.5 font-medium   color-strong">
+        <summary class="text-sm flex cursor-pointer list-none items-center gap-0.5 font-medium   color-strong">
           Products
           <?php svg('arrow-down-s-line', 'size-4 opacity-50 transition-transform group-open:rotate-180'); ?>
         </summary>
@@ -39,7 +39,7 @@ $cart_href = $cart_href ?? '';
       </details>
       
       <details class="group relative">
-        <summary class="text-small flex cursor-pointer list-none items-center gap-0.5 font-medium   color-strong">
+        <summary class="text-sm flex cursor-pointer list-none items-center gap-0.5 font-medium   color-strong">
           Hair Loss
           <?php svg('arrow-down-s-line', 'size-4 opacity-50 transition-transform group-open:rotate-180'); ?>
         </summary>
@@ -54,7 +54,7 @@ $cart_href = $cart_href ?? '';
       </details>
 
       <details class="group relative">
-        <summary class="text-small flex cursor-pointer list-none items-center gap-0.5 font-medium   color-strong">
+        <summary class="text-sm flex cursor-pointer list-none items-center gap-0.5 font-medium   color-strong">
           Treatments
           <?php svg('arrow-down-s-line', 'size-4 opacity-50 transition-transform group-open:rotate-180'); ?>
         </summary>
@@ -70,8 +70,8 @@ $cart_href = $cart_href ?? '';
 
       
 
-      <a href="<?= asset_url('shop/'); ?>" class="text-small font-medium color-strong">Shop</a>
-      <a href="#" class="text-small font-medium color-strong">Our Doctors</a>
+      <a href="<?= asset_url('shop/'); ?>" class="text-sm font-medium color-strong">Shop</a>
+      <a href="#" class="text-sm font-medium color-strong">Our Doctors</a>
 
     </nav>
 
@@ -167,7 +167,7 @@ $cart_href = $cart_href ?? '';
           [&::-webkit-details-marker]:hidden">
           <span class="min-w-0">
             <span class="block">Hair Loss</span>
-            <span class="mt-1 block text-small font-normal leading-relaxed color-default">
+            <span class="mt-1 block text-sm font-normal leading-relaxed color-default">
               Explore common causes and patterns of hair loss.
             </span>
           </span>
@@ -217,7 +217,7 @@ $cart_href = $cart_href ?? '';
           [&::-webkit-details-marker]:hidden">
           <span class="min-w-0">
             <span class="block">Treatments</span>
-            <span class="mt-1 block text-small font-normal leading-relaxed color-default">
+            <span class="mt-1 block text-sm font-normal leading-relaxed color-default">
               Find out about our hair and scalp treatment options.
             </span>
           </span>
@@ -267,7 +267,7 @@ $cart_href = $cart_href ?? '';
           [&::-webkit-details-marker]:hidden">
           <span class="min-w-0">
             <span class="block">Products</span>
-            <span class="mt-1 block text-small font-normal leading-relaxed color-default">
+            <span class="mt-1 block text-sm font-normal leading-relaxed color-default">
               Browse products for hair growth and scalp care.
             </span>
           </span>

@@ -17,6 +17,6 @@ if (!headers_sent()) {
 }
 ?>
 <meta http-equiv="refresh" content="0; url=<?= e($account_href); ?>">
-<p class="redirect-note px-4 py-10 text-center text-small color-muted">
+<p class="redirect-note px-4 py-10 text-center text-sm color-muted">
   This page has moved. <a href="<?= e($account_href); ?>" class="font-medium color-strong underline">Go to my account</a>
 </p>

@@ -119,10 +119,10 @@ $detail_facts = static function (array $fields) use ($product, $detail_value, $n
           || (($product['follow_up'] ?? '') !== 'Product-specific Interval'
           && in_array($key, ['interval', 'reminder'], true)) ? 'hidden' : ''; ?>
         class="product-fact flex min-w-0 items-baseline justify-between gap-4">
-        <dt class="product-label text-caption color-muted"><?= e($key === 'base_price'
+        <dt class="product-label text-xs color-muted"><?= e($key === 'base_price'
           && ($product['product_type'] ?? 'single') === 'combo' ? 'Combined Price' : $label); ?></dt>
         <dd data-field="<?= e($key); ?>"
-          class="product-value max-w-3/5 text-right text-small font-medium color-strong wrap-anywhere
+          class="product-value max-w-3/5 text-right text-sm font-medium color-strong wrap-anywhere
             <?= $key === 'stock_status' && $needs_restock ? 'color-negative' : ''; ?>
             js-component-products-value">
           <?php $detail_value($key); ?>
@@ -152,8 +152,8 @@ if ($product !== null) {
           <?= empty($product['updated_by_avatar']) ? 'hidden' : ''; ?> alt="" width="36" height="36"
           class="product-avatar shrink-0 size-9 rounded-full object-cover">
         <div class="product-author-info min-w-0">
-          <p class="product-label text-caption color-muted">Updated By</p>
-          <p data-field="updated_by" class="product-author-name mt-1 text-small font-medium color-strong js-component-products-value">
+          <p class="product-label text-xs color-muted">Updated By</p>
+          <p data-field="updated_by" class="product-author-name mt-1 text-sm font-medium color-strong js-component-products-value">
             <?php $detail_value('updated_by'); ?>
           </p>
         </div>
@@ -207,7 +207,7 @@ $page_header = [
               disabled:cursor-default focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
               js-component-modal-open">
             <span role="img" aria-label="Image <?= $index + 1; ?>: No image"
-              class="product-placeholder absolute inset-0 flex flex-col items-center justify-center gap-2 text-caption color-muted">
+              class="product-placeholder absolute inset-0 flex flex-col items-center justify-center gap-2 text-xs color-muted">
               <?php svg('image-line', 'product-placeholder-icon size-6'); ?>
               <span class="product-placeholder-label">No Image</span>
             </span>
@@ -224,7 +224,7 @@ $page_header = [
         <div class="product-content min-w-0
           xl:col-span-2">
           <div class="product-record min-w-0 pb-7">
-            <dl class="product-prescription text-small">
+            <dl class="product-prescription text-sm">
               <div class="product-fact flex min-w-0 items-baseline gap-1.5">
                 <dt class="product-label shrink-0 color-muted">Prescription :</dt>
                 <dd data-field="requirement" class="product-value color-strong wrap-anywhere
@@ -233,7 +233,7 @@ $page_header = [
             </dl>
             <p data-field="short_description" class="product-introduction mt-4 text-title-sm
                 js-component-products-value"><?php $detail_value('short_description'); ?></p>
-            <dl class="product-metadata flex flex-wrap gap-x-6 gap-y-3 mt-4 text-small">
+            <dl class="product-metadata flex flex-wrap gap-x-6 gap-y-3 mt-4 text-sm">
               <div class="product-fact flex min-w-0 items-baseline gap-1.5">
                 <dt class="product-label shrink-0 color-muted">SKU :</dt>
                 <dd data-field="sku" class="product-value color-strong wrap-anywhere
@@ -256,13 +256,13 @@ $page_header = [
               <?php foreach ($detail_combo_fields as $key => $label): ?>
                 <div data-product-field="<?= e($key); ?>" <?= ($product['product_type'] ?? 'single') !== 'combo' ? 'hidden' : ''; ?>
                   class="product-fact min-w-0 mt-6">
-                  <dt class="product-label text-caption color-muted"><?= e($label); ?></dt>
-                  <dd data-field="<?= e($key); ?>" class="product-value mt-1 text-small color-strong whitespace-pre-line wrap-anywhere
+                  <dt class="product-label text-xs color-muted"><?= e($label); ?></dt>
+                  <dd data-field="<?= e($key); ?>" class="product-value mt-1 text-sm color-strong whitespace-pre-line wrap-anywhere
                       js-component-products-value"><?php $detail_value($key); ?></dd>
                 </div>
               <?php endforeach; ?>
             </dl>
-            <div data-field="description" class="product-description mt-6 pt-6 text-small leading-relaxed border-t border-dashed border-zinc-200 wrap-anywhere
+            <div data-field="description" class="product-description mt-6 pt-6 text-sm leading-relaxed border-t border-dashed border-zinc-200 wrap-anywhere
                 js-component-products-value">
               <?php $detail_value('description'); ?>
             </div>
@@ -280,7 +280,7 @@ $page_header = [
                   ]); ?>
                 </div>
                 <div id="product-content-<?= e($key); ?>" class="product-disclosure-content px-4 pt-3 pb-6">
-                  <div data-field="<?= e($key); ?>" class="product-value text-small leading-relaxed wrap-anywhere
+                  <div data-field="<?= e($key); ?>" class="product-value text-sm leading-relaxed wrap-anywhere
                       js-component-products-value">
                     <?php $detail_value($key); ?>
                   </div>
