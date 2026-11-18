@@ -57,7 +57,7 @@ $hero_products = [
       <p class="hero-eyebrow mb-5 text-xs font-medium leading-normal tracking-wide text-zinc-500">
         Less searching. A clearer starting point.
       </p>
-      <h1 id="hero-discovery-title" class="hero-title text-4xl font-medium leading-tight tracking-tighter! text-balance
+      <h1 id="hero-discovery-title" class="hero-title text-4xl font-medium leading-tight tracking-tighter! text-pretty
         sm:text-5xl
         lg:text-6xl">Meet your next <span class="hero-title-accent text-zinc-500">hair routine.</span></h1>
       <p class="hero-description max-w-xl mt-5 text-sm leading-relaxed text-pretty text-zinc-600
@@ -103,7 +103,7 @@ $hero_products = [
               <p class="hero-eyebrow mb-4 text-xs font-medium leading-normal tracking-wide text-zinc-500">
                 <?= e($product['tag']); ?>
               </p>
-              <h2 class="discovery-title max-w-sm text-3xl font-medium leading-tight tracking-tight! text-balance">
+              <h2 class="discovery-title max-w-sm text-3xl font-medium leading-tight tracking-tight! text-pretty">
                 <?= e($product['title']); ?>
               </h2>
               <p class="hero-description max-w-sm mt-4 text-sm leading-relaxed text-pretty text-zinc-600

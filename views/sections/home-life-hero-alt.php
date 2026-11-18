@@ -29,7 +29,7 @@ $hero_marquee = [
   <div class="hero-container container">
     <div class="hero-grid grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-2">
       <div class="hero-header col-span-2 sm:pr-20">
-        <h1 class="hero-title font-semibold sm:font-medium color-strong text-title-lg text-balance sm:max-w-2xl">
+        <h1 class="hero-title font-semibold sm:font-medium color-strong text-title-lg text-pretty sm:max-w-2xl">
           Hair loss treatment made for you
         </h1>
         <div class="reviews mt-5 text-left">

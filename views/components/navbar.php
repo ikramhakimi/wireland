@@ -70,6 +70,7 @@ $cart_href = $cart_href ?? '';
 
       
 
+      <a href="<?= asset_url('shop/'); ?>" class="text-small font-medium color-strong">Shop</a>
       <a href="#" class="text-small font-medium color-strong">Our Doctors</a>
 
     </nav>
@@ -299,6 +300,11 @@ $cart_href = $cart_href ?? '';
         </div>
       </details>
 
+      <a href="<?= asset_url('shop/'); ?>" class="flex min-h-14 items-center border-b border-zinc-200 px-2 font-medium color-strong
+          transition-colors hover:bg-zinc-100 focus-visible:outline-2
+          focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
+        Shop
+      </a>
       <a href="#" class="flex min-h-14 items-center border-b border-zinc-200 px-2 font-medium color-strong
           transition-colors hover:bg-zinc-100 focus-visible:outline-2
           focus-visible:outline-offset-2 focus-visible:outline-zinc-950">

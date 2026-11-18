@@ -1,9 +1,10 @@
 <?php
+// Optional: $headline_alignment ('left' | 'center', default 'center').
 $headline = [
   'topic'     => 'FAQ',
   'title'     => 'A little clarity before you begin.',
   'subtitle'  => 'Answers to common questions about taking the next step.',
-  'alignment' => 'center',
+  'alignment' => $headline_alignment ?? 'center',
 ];
 $faqs = [
   [

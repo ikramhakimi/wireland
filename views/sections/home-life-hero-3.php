@@ -22,7 +22,7 @@ $evidence_toggle = [
         <p class="hero-eyebrow mb-7 text-xs font-medium leading-normal tracking-wide text-zinc-500">
           Good hair starts with a better plan
         </p>
-        <h1 id="hero-proof-title" class="hero-title text-4xl text-zinc-800 font-medium leading-tight tracking-tighter! text-balance
+        <h1 id="hero-proof-title" class="hero-title text-4xl text-zinc-800 font-medium leading-tight tracking-tighter! text-pretty
           sm:text-5xl
           xl:text-6xl">Less guesswork.<br><span class="hero-title-accent text-zinc-500">More good hair.</span></h1>
         <p class="hero-description max-w-sm mt-6 text-sm leading-relaxed text-pretty text-zinc-600

@@ -59,7 +59,7 @@ $treatment_items = [
             
           </div>
           <div class="step-content flex-1 mt-4">
-            <h3 class="step-title text-title-sm font-semibold text-balance color-strong">
+            <h3 class="step-title text-title-sm font-semibold text-pretty color-strong">
               <?= e($step['title']); ?>
             </h3>
             <p class="step-description mt-1 text-small leading-relaxed text-pretty color-muted">
@@ -262,7 +262,7 @@ $treatment_items = [
     </ol>
 
     <div class="flow-cta flex flex-col items-center mt-10 text-center">
-      <p class="cta-title text-title-sm font-medium text-balance color-strong">Your next chapter starts here.</p>
+      <p class="cta-title text-title-sm font-medium text-pretty color-strong">Your next chapter starts here.</p>
       <p class="cta-description mt-2 text-pretty color-muted">
         Take the first step towards understanding your hair.
       </p>

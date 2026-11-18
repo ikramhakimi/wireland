@@ -19,7 +19,7 @@
           <span class="hero-eyebrow-mark size-1.5 rounded-full bg-zinc-400" aria-hidden="true"></span>
           Hair care, on your terms
         </p>
-        <h1 id="hero-lifestyle-title" class="hero-title text-4xl font-medium leading-tight tracking-tighter! text-balance
+        <h1 id="hero-lifestyle-title" class="hero-title text-4xl font-medium leading-tight tracking-tighter! text-pretty
           sm:text-5xl
           lg:text-6xl">Your hair.<br>Your <span class="hero-title-accent text-zinc-500">comeback.</span></h1>
         <p class="hero-description max-w-sm mt-6 text-sm leading-relaxed text-pretty text-zinc-600

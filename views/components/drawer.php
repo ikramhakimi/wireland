@@ -2,9 +2,10 @@
 
 /**
  * Component: Drawer
- * Purpose: Reusable right-side modal for previews and supporting details.
+ * Purpose: Reusable modal panel for previews and supporting details; right side by default.
  * Structure: Native dialog, fixed header, scrollable content and optional fixed footer.
- * Data: id (unique), title, optional description, content (callable), actions (callable or null).
+ * Data: id (unique), title, optional description, content (callable), actions (callable or null),
+ *       position (right/bottom; bottom is a full-width sheet for short mobile menus).
  *       Escape dynamic callback content with e(...). Load assets/js/drawer.js once in the layout.
  *       Triggers use .js-component-drawer-open and aria-controls matching the dialog id.
  *       Mobile navigation fallbacks belong to the calling page, not this component.
@@ -14,6 +15,10 @@ $title       = $title ?? '';
 $description = $description ?? '';
 $content     = $content ?? null;
 $actions     = $actions ?? null;
+$position    = ($position ?? 'right') === 'bottom' ? 'bottom' : 'right';
+$panel_class = $position === 'bottom'
+  ? 'drawer-bottom inset-x-0 top-auto bottom-0 w-full max-w-none h-auto max-h-[85dvh] rounded-t-2xl'
+  : 'inset-y-0 left-auto right-0 w-full max-w-lg h-dvh max-h-none';
 
 if ($id === '' || $title === '') {
   return;
@@ -22,13 +27,13 @@ if ($id === '' || $title === '') {
 ?>
 <dialog id="<?= e($id); ?>" aria-labelledby="<?= e($id); ?>-title"
   <?php if ($description !== ''): ?>aria-describedby="<?= e($id); ?>-description"<?php endif; ?>
-  class="drawer fixed inset-y-0 left-auto right-0 w-full max-w-lg h-dvh max-h-none m-0 p-0 border-0 bg-white text-zinc-600 overflow-hidden
+  class="drawer <?= $panel_class; ?> fixed m-0 p-0 border-0 bg-white text-zinc-600 overflow-hidden
     backdrop:bg-zinc-800/30
     js-component-drawer">
   <div class="drawer-panel flex flex-col h-full">
     <header class="drawer-header flex shrink-0 items-start justify-between gap-4 p-5 border-b border-zinc-200">
       <div class="drawer-heading flex-1 min-w-0">
-        <h2 id="<?= e($id); ?>-title" class="drawer-title text-lg font-medium text-balance text-zinc-800 wrap-anywhere"><?= e($title); ?></h2>
+        <h2 id="<?= e($id); ?>-title" class="drawer-title text-lg font-medium text-pretty text-zinc-800 wrap-anywhere"><?= e($title); ?></h2>
         <?php if ($description !== ''): ?>
           <p id="<?= e($id); ?>-description" class="drawer-description mt-2 text-sm leading-relaxed text-pretty text-zinc-500 wrap-anywhere">
             <?= e($description); ?>

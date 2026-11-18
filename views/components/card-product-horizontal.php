@@ -30,10 +30,13 @@ $money       = static fn (float $amount): string => 'RM ' . number_format($amoun
     <?php endif; ?>
   </div>
   <div class="product-brief flex-1 min-w-0 py-2 pr-3">
-    <h3 class="product-title text-pretty font-semibold color-strong">
+    <h3 class="product-title text-base text-pretty font-medium color-strong">
       <a href="<?= e($href); ?>" class="product-link underline-offset-4
         hover:underline focus-visible:outline-none"><?= e($name); ?></a>
     </h3>
+    <?php if ($description !== ''): ?>
+      <p class="product-desc mt-1 mb-2 text-small text-pretty color-muted line-clamp-2"><?= e($description); ?></p>
+    <?php endif; ?>
     <p class="product-price mt-0.5 text-small">
       <span class="product-price-current"><?= e($money($price)); ?></span>
       <?php if ($base_price > $price): ?>
@@ -43,8 +46,5 @@ $money       = static fn (float $amount): string => 'RM ' . number_format($amoun
         </span>
       <?php endif; ?>
     </p>
-    <?php if ($description !== ''): ?>
-      <p class="product-desc mt-1 text-caption text-pretty color-muted line-clamp-2"><?= e($description); ?></p>
-    <?php endif; ?>
   </div>
 </article>

@@ -1,10 +1,11 @@
 <?php
+// Optional: $headline_alignment ('left' | 'center', default 'center').
 $headline_center_no_button = [
   'topic'      => 'Results',
   'emoji'      => '🎉',
   'title'      => 'Results you can actually see. Nothing retouched.',
   'subtitle'   => 'Before and after photos from patients at their treatment reviews.',
-  'alignment'  => 'center',
+  'alignment'  => $headline_alignment ?? 'center',
 ];
 $results_comparison = [
   'class'  => '[&.media-comparison]:aspect-4/5 sm:[&.media-comparison]:aspect-5/3 '
@@ -24,6 +25,12 @@ $results_comparison = [
 $results_comparison_portrait = array_merge($results_comparison, [
   'class' => '[&.media-comparison]:aspect-4/5 [&_.layer-before]:aspect-4/5 [&_.layer-after]:aspect-4/5',
 ]);
+$result_card = [
+  'title'      => 'Frontal Hairline Restoration',
+  'treatment'  => 'FUE Hair Transplant',
+  'timeframe'  => 'Results at 12 months',
+  'comparison' => $results_comparison_portrait,
+];
 
 $testimonials_marquee = [
   'label'           => 'Sample testimonials',
@@ -68,23 +75,11 @@ $testimonials_marquee = [
   <div class="container">
     <?php component('headline', $headline_center_no_button); ?>
     <div class="results-list grid grid-cols-1 sm:grid-cols-6 gap-3 mt-5 sm:mt-10">
-      <?php for($c=0; $c<3; $c++) { ?>
-        <div class="sm:col-span-2">
-          <div class="results-item bg-zinc-100 rounded-xl">
-            <div class="p-1">
-              <?php component('media-comparison', $results_comparison_portrait); ?>
-            </div>
-            <div class="text-center py-4 px-5">
-              <h3 class="font-semibold text-pretty color-strong">Frontal Hairline Restoration</h3>
-              <div class="mt-0.5 text-small color-muted">
-                <span>FUE Hair Transplant</span>
-                <span class="w-px h-4 bg-zinc-200"></span>
-                <span>Results at 12 months</span>
-              </div>
-            </div>
-          </div>
+      <?php for ($c = 0; $c < 3; $c++): ?>
+        <div class="results-cell sm:col-span-2">
+          <?php component('card-compare', $result_card); ?>
         </div>
-      <?php } ?>
+      <?php endfor; ?>
     </div>
     
   </div>

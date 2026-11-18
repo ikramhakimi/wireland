@@ -28,7 +28,7 @@ if ($id === '' || $title === '') {
   <div class="modal-panel flex flex-col max-h-[calc(100dvh-2rem)]">
     <header class="modal-header flex shrink-0 items-start justify-between gap-4 p-5">
       <div class="modal-heading flex-1 min-w-0">
-        <h2 id="<?= e($id); ?>-title" class="modal-title text-base font-medium text-balance color-strong wrap-anywhere"><?= e($title); ?></h2>
+        <h2 id="<?= e($id); ?>-title" class="modal-title text-base font-medium text-pretty color-strong wrap-anywhere"><?= e($title); ?></h2>
         <?php if ($description !== ''): ?>
           <p id="<?= e($id); ?>-description" class="modal-description mt-1 text-small leading-relaxed text-pretty color-muted wrap-anywhere">
             <?= e($description); ?>

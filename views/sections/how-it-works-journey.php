@@ -62,7 +62,7 @@ $treatment_items = [
               Step 0<?= e($step['number']); ?> · <?= e($step['eyebrow']); ?>
             </span>
             <h3 class="step-title text-[clamp(26px,3vw,38px)] font-medium leading-[1.22] tracking-[-1.2px]
-              text-balance text-zinc-800">
+              text-pretty text-zinc-800">
               <?= e($step['title']); ?>
             </h3>
             <p class="step-description mt-5 text-sm leading-[1.85] text-zinc-500">
@@ -243,7 +243,7 @@ $treatment_items = [
     </ol>
 
     <div class="flow-cta flex flex-col items-center mt-10 text-center">
-      <p class="cta-title text-xl font-medium text-balance text-zinc-800">
+      <p class="cta-title text-xl font-medium text-pretty text-zinc-800">
         Your next chapter starts here.
       </p>
       <p class="cta-description mt-2 text-pretty text-zinc-500">

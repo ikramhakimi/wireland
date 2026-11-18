@@ -67,7 +67,6 @@ $related_carousel = [
         'href'        => $item_href,
         'pill'        => $item['category'],
         'formula'     => $item['format'] . ' · ' . $item['size'],
-        'description' => $item['short_description'] ?? $item['description'],
         'price'       => $item['price'],
         'base_price'  => $item['base_price'] ?? 0,
         'button'      => [

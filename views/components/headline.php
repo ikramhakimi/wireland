@@ -26,15 +26,14 @@ $alignment_class = $alignment_classes[$alignment] ?? '';
 ?>
 <div class="headline <?= e(trim($alignment_class . ' ' . $class)); ?>">
   <?php if ($topic !== ''): ?>
-    <div class="headline-topic inline-flex items-center justify-start font-medium text-small text-zinc-600 mb-5 tracking-[1%]">
-      <div class="font-semibold text-small text-zinc-600 size-7 leading-7 flex-center border border-zinc-400 mr-1.5">RR</div>
-      <div class="leading-6 color-strong"><?= e($topic); ?></div>
+    <div class="headline-topic inline-flex items-center justify-start text-caption color-muted mb-5 uppercase">
+      <div class="leading-6"><?= e($topic); ?></div>
     </div>
   <?php endif; ?>
   <?php if ($is_page_title): ?>
-    <h1 class="headline-title font-medium color-strong <?= e($title_class); ?> text-pretty sm:max-w-2xl"><?= e($title); ?></h1>
+    <h1 class="headline-title font-semibold color-strong <?= e($title_class); ?> text-pretty sm:max-w-2xl"><?= e($title); ?></h1>
   <?php else: ?>
-    <h2 class="headline-title font-medium color-strong <?= e($title_class); ?> text-pretty sm:max-w-2xl"><?= e($title); ?></h2>
+    <h2 class="headline-title font-semibold color-strong <?= e($title_class); ?> text-pretty sm:max-w-2xl"><?= e($title); ?></h2>
   <?php endif; ?>
   <?php if ($subtitle !== ''): ?>
     <div class="headline-subtitle text-pretty mt-4 sm:max-w-3xl"><?= e($subtitle); ?></div>

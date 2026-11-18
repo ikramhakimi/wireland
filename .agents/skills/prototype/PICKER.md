@@ -45,7 +45,7 @@ In a framework, keep the class names and structure; only the rendering syntax ch
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 13px;
   line-height: 1;
-  
+  -webkit-font-smoothing: antialiased;
   user-select: none;
   -webkit-user-select: none;
 }

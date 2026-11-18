@@ -1,9 +1,10 @@
 <?php
+// Optional: $headline_alignment ('left' | 'center', default 'center').
 $headline           = [
   'topic'     => 'Our Products',
   'title'     => 'Everyday hair care and prescription treatments for your hair needs',
   'subtitle'  => 'Explore daily essentials for your routine and prescription options guided by a clinician.',
-  'alignment' => 'center',
+  'alignment' => $headline_alignment ?? 'center',
 ];
 $carousels = [
   'basic-7' => [

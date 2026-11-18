@@ -796,7 +796,7 @@ $input_group_text_examples = [
   <div class="design-container">
     <header class="design-header max-w-3xl">
       <p class="design-eyebrow text-sm font-medium text-zinc-500">Wireland / Design reference</p>
-      <h1 class="design-title mt-4 text-4xl font-semibold leading-tight text-balance text-zinc-800 sm:text-5xl">
+      <h1 class="design-title mt-4 text-4xl font-semibold leading-tight text-pretty text-zinc-800 sm:text-5xl">
         One visual language.<br>Every experience.
       </h1>
       <p class="design-description mt-5 text-base leading-7 text-pretty">

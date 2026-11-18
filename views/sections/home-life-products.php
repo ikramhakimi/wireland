@@ -128,7 +128,7 @@ $headline2 = [
         <?php endfor; ?>
       </div>
       <div class="mt-10 max-w-xl mx-auto">
-        <h3 class="headline-title font-semibold text-center text-zinc-800 text-2xl sm:text-4xl text-balance">Get complete support in our product</h3>
+        <h3 class="headline-title font-semibold text-center text-zinc-800 text-2xl sm:text-4xl text-pretty">Get complete support in our product</h3>
         <div class="text-center mt-5">Along with medication, if eligible, you get:</div>
         <div class="space-y-2 mt-5">
           <?php foreach ($membership_benefits as $benefit): ?>

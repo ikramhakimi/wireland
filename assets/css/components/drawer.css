@@ -59,6 +59,15 @@
       transform: translateX(0);
     }
 
+    /* Bottom sheet variant slides up instead of in from the right. */
+    .drawer.drawer-bottom {
+      transform: translateY(100%);
+    }
+
+    .drawer.drawer-bottom[open] {
+      transform: translateY(0);
+    }
+
     .drawer::backdrop {
       transition-duration: 200ms;
     }
@@ -74,6 +83,10 @@
     @starting-style {
       .drawer[open] {
         transform: translateX(100%);
+      }
+
+      .drawer.drawer-bottom[open] {
+        transform: translateY(100%);
       }
     }
   }
