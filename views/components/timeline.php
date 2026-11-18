@@ -34,10 +34,10 @@ if ($items === []) {
         not-last:after:absolute not-last:after:top-12 not-last:after:-bottom-8 not-last:after:left-6
         not-last:after:w-px not-last:after:bg-zinc-200 not-last:after:content-['']
         lg:not-last:after:top-6 lg:not-last:after:bottom-auto lg:not-last:after:w-auto lg:not-last:after:h-px">
-        <span class="timeline-dot relative z-1 flex-center size-12 text-xl font-medium rounded-lg
+        <span class="timeline-dot relative z-1 flex-center size-12 text-lg font-medium rounded-lg
           border border-zinc-500 bg-white color-strong" aria-hidden="true"><?= $index + 1; ?></span>
         <div class="timeline-body pt-3 lg:pt-0">
-          <h3 class="timeline-title text-lg font-semibold color-strong lg:mt-6">
+          <h3 class="timeline-title text-xl font-semibold color-strong lg:mt-6">
             <span class="sr-only"><?= e($label); ?> <?= $index + 1; ?>: </span><?= e($item['title'] ?? ''); ?>
           </h3>
           <p class="timeline-text max-w-64 mt-2 text-small text-pretty color-muted<?= $alignment === 'center' ? ' lg:mx-auto' : ''; ?>">

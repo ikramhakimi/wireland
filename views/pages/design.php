@@ -956,17 +956,17 @@ $input_group_text_examples = [
       <header class="section-header">
         <h2 id="design-font-size-title" class="section-title text-title-md font-semibold color-strong">Font Size</h2>
         <p class="section-description mt-3 text-small leading-relaxed">
-          Choose a size that matches the role of the text. Title sizes adapt from mobile to desktop, while body
-          and supporting text keep a consistent size.
+          Choose a size that matches the role of the text. Use a responsive title when a heading should grow on
+          desktop; use a fixed size when the text sits inside a component with a fixed layout.
         </p>
-        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>assets/css/app.css</code></p>
+        <p class="section-source mt-3 text-small leading-relaxed">Source: <code>assets/css/foundations.css</code></p>
       </header>
       <div class="section-content grid gap-10 mt-6 text-small leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
-          <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Type Scale</h3>
+          <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Responsive Titles</h3>
           <p class="foundation-note max-w-3xl mt-3 text-small">
-            Each size utility includes its line-height. Keep font weight separate and avoid leading-* overrides
-            unless a control needs specific alignment. Body text uses text-base or inherits 16px; there is no text-body token.
+            Title tokens switch size at md, so one class covers mobile and desktop. Use them for page, section, and
+            content headings. Each size utility includes its line-height; keep font weight separate.
           </p>
           <div class="type-specimens mt-5 divide-y divide-zinc-200">
             <div class="type-specimen grid gap-4 py-6
@@ -1001,12 +1001,50 @@ $input_group_text_examples = [
                 <p class="type-label text-small font-medium color-strong">Title / Small</p>
                 <p class="type-metrics mt-2 text-caption color-muted">20px / 24px · Line-height 1.3</p>
                 <p class="type-usage mt-2 text-small">
-                  Subheadings, testimonial quotes, assessment titles, and step headings.
+                  Subheadings, testimonial quotes, and assessment titles. For headings inside fixed-size
+                  components, use text-xl.
                 </p>
                 <code class="type-code block mt-3 text-caption color-default break-words">text-title-sm font-medium</code>
               </div>
               <p class="type-sample text-title-sm font-medium color-strong
                 md:col-span-2">Your next chapter starts here.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
+          <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Fixed Sizes</h3>
+          <p class="foundation-note max-w-3xl mt-3 text-small">
+            Fixed sizes stay the same at every breakpoint. Use Tailwind's text-xl and text-lg for component headings
+            and emphasised labels. Body text uses text-base or inherits 16px; there is no text-body token. Avoid
+            leading-* overrides unless a control needs specific alignment.
+          </p>
+          <div class="type-specimens mt-5 divide-y divide-zinc-200">
+            <div class="type-specimen grid gap-4 py-6
+              md:grid-cols-3">
+              <div class="type-details min-w-0">
+                <p class="type-label text-small font-medium color-strong">X-Large</p>
+                <p class="type-metrics mt-2 text-caption color-muted">20px · Line-height 1.4</p>
+                <p class="type-usage mt-2 text-small">
+                  Headings inside fixed-size components: timeline steps, drawers, modals, and report cards.
+                </p>
+                <code class="type-code block mt-3 text-caption color-default break-words">text-xl font-semibold</code>
+              </div>
+              <p class="type-sample text-xl font-semibold color-strong
+                md:col-span-2">Book your consultation.</p>
+            </div>
+            <div class="type-specimen grid gap-4 py-6
+              md:grid-cols-3">
+              <div class="type-details min-w-0">
+                <p class="type-label text-small font-medium color-strong">Large</p>
+                <p class="type-metrics mt-2 text-caption color-muted">18px · Line-height 1.55</p>
+                <p class="type-usage mt-2 text-small">
+                  Emphasised labels, step numbers, brand marks, and lead text in fixed containers.
+                </p>
+                <code class="type-code block mt-3 text-caption color-default break-words">text-lg font-medium</code>
+              </div>
+              <p class="type-sample text-lg font-medium color-strong
+                md:col-span-2">Step 1</p>
             </div>
             <div class="type-specimen grid gap-4 py-6
               md:grid-cols-3">
