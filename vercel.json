@@ -4,5 +4,12 @@
   "installCommand": "",
   "buildCommand": "",
   "outputDirectory": "dist",
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "query", "key": "state", "value": "(?<state>[a-z0-9_-]+)" }],
+      "destination": "/__preview/state-:state/:path*"
+    }
+  ]
 }

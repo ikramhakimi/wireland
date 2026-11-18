@@ -100,8 +100,29 @@ $workflow_sections = [
     ],
   ],
   [
+    'id'          => 'patient-cycle',
+    'title'       => '07 · Patient Follow-up Cycle',
+    'description' => 'Proposed patient-facing states after the first care plan. Treatment repeats as a check-in cycle.',
+    'columns'     => ['Patient State', 'Patient Sees and Does', 'Doctor Side'],
+    'rows'        => [
+      ['Ordered', 'Order status and delivery date. Action: track order.', 'No task. The order links to the care plan (section 05).'],
+      ['On treatment', 'Day of supply (for example Day 18 of 30) and the next check-in date. No action needed.', 'No task until the reminder date (section 06).'],
+      ['Check-in due', 'Which check-in is due and how long it takes. Action: start check-in (photos and short questions).', 'Follow-up becomes Due; Prepare Follow-up appears at the reminder date.'],
+      ['Check-in review', 'Same as the first pending review. The doctor may ask a question.', 'Review Progress: compare baseline and check-in photos and answers.'],
+      ['Plan continued or adjusted', 'Updated plan with the next check-in date.', 'Continue Plan / Adjust Plan / Ask a Question / Book a Video Call; create the next follow-up.'],
+      ['Refill due', 'Days of supply left and whether a review is needed first. Action: order refill.', 'Refill rules depend on prescription validity and D09.'],
+    ],
+    'notes'       => [
+      'Hair treatment usually takes 3 to 6 months to show results, so follow-up repeats: check-in → review → continue or adjust → next check-in.',
+      'Each check-in reuses the first review pattern (review, question, decision), so patients and doctors see familiar steps.',
+      'After the first plan, the patient tracker changes from first-plan steps to a treatment timeline of check-in points.',
+      'Proposed doctor tools: a check-in queue sorted by flags (side effects, no change), side-by-side photo comparison and alerts for missed check-ins or refills.',
+      'Patient view: /account with the On treatment and Check-in due preview states. Check-in timing still follows D03.',
+    ],
+  ],
+  [
     'id'          => 'records',
-    'title'       => '07 · Developer Reference',
+    'title'       => '08 · Developer Reference',
     'description' => 'Proposed record boundaries and implementation requirements.',
     'columns'     => ['Record', 'Minimum Information'],
     'rows'        => [
@@ -120,7 +141,7 @@ $workflow_sections = [
   ],
   [
     'id'          => 'decisions',
-    'title'       => '08 · Decisions to Confirm',
+    'title'       => '09 · Decisions to Confirm',
     'description' => 'Resolve these together before implementing automated behaviour.',
     'columns'     => ['Reference', 'Decision', 'Owner'],
     'rows'        => [
@@ -132,6 +153,7 @@ $workflow_sections = [
       ['D06', 'Should repeat, mixed and partial orders create separate follow-ups or update an existing schedule?', 'Product + Doctors'],
       ['D07', 'What happens after no purchase, an unanswered follow-up, cancellation or refund?', 'Product + Doctors + Operations'],
       ['D08', 'Who can issue prescriptions, change dates, reassign tasks and close cases? Which clinic timezone applies?', 'Product + Doctors + Developer'],
+      ['D09', 'What does a patient check-in contain, and is a check-in required before a refill?', 'Doctors + Product'],
     ],
   ],
 ];
@@ -145,6 +167,7 @@ $decision_targets = [
   'D06' => 'purchase-paths',
   'D07' => 'purchase-paths',
   'D08' => 'records',
+  'D09' => 'patient-cycle',
 ];
 
 $owner_roles = [
@@ -236,6 +259,9 @@ $important_phrases = [
   'repeat, mixed and partial orders',
   'no purchase, an unanswered follow-up, cancellation or refund',
   'issue prescriptions, change dates, reassign tasks and close cases',
+  'follow-up repeats',
+  'treatment timeline',
+  'What does a patient check-in contain',
 ];
 $emphasis_pattern = '/(' . implode('|', array_map(static function (string $phrase): string {
   return preg_quote($phrase, '/');

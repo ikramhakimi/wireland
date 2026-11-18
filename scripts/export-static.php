@@ -88,9 +88,11 @@ function copy_path(string $source, string $destination): void
   }
 }
 
-function render_route(string $project_root, string $request_path): string
+function render_route(string $project_root, string $request_path, array $query = []): string
 {
   $server_state = $_SERVER;
+  $get_state    = $_GET;
+  $_GET         = $query;
 
   $_SERVER['REQUEST_URI'] = $request_path;
   $_SERVER['SCRIPT_NAME'] = '/index.php';
@@ -100,6 +102,7 @@ function render_route(string $project_root, string $request_path): string
   $html = ob_get_clean();
 
   $_SERVER = $server_state;
+  $_GET    = $get_state;
 
   if (!is_string($html) || $html === '') {
     fail_export('Static route rendered no HTML: ' . $request_path);
@@ -135,6 +138,35 @@ foreach ($page_files as $page_file) {
 
 $pages['/404'] = $dist_root . '/404.html';
 
+// Prototype: pages in a preview group (includes/preview-states.php) also render every non-default ?state=
+// to dist/__preview/state-<key>/. vercel.json rewrites any ?state=<key> request to these files.
+$preview_groups = require $project_root . '/includes/preview-states.php';
+$preview_pages  = [];
+
+foreach (array_keys($pages) as $request_path) {
+  foreach ($preview_groups as $preview_group) {
+    $in_group = array_filter(
+      $preview_group['routes'],
+      static fn (string $route): bool => $request_path === $route || strpos($request_path, $route . '/') === 0,
+    );
+    if ($in_group === []) {
+      continue;
+    }
+
+    foreach (array_keys($preview_group['states']) as $preview_state) {
+      if ($preview_state === $preview_group['default']) {
+        continue;
+      }
+
+      $preview_pages[] = [
+        'request_path' => $request_path,
+        'query'        => ['state' => $preview_state],
+        'output_path'  => $dist_root . '/__preview/state-' . $preview_state . $request_path . '.html',
+      ];
+    }
+  }
+}
+
 foreach ($pages as $request_path => $output_path) {
   $html = render_route($project_root, $request_path);
 
@@ -142,6 +174,16 @@ foreach ($pages as $request_path => $output_path) {
 
   if (file_put_contents($output_path, $html) === false) {
     fail_export('Unable to write static page: ' . $output_path);
+  }
+}
+
+foreach ($preview_pages as $preview_page) {
+  $html = render_route($project_root, $preview_page['request_path'], $preview_page['query']);
+
+  ensure_directory(dirname($preview_page['output_path']));
+
+  if (file_put_contents($preview_page['output_path'], $html) === false) {
+    fail_export('Unable to write static page: ' . $preview_page['output_path']);
   }
 }
 

@@ -1,15 +1,15 @@
 /**
  * Assessment quiz
- * Purpose: Runs the three-page assessment flow (quiz → register → summary) from one localStorage record.
+ * Purpose: Runs the assessment flow (quiz → register → account) from one localStorage record.
  *   quiz:     one question per screen, progress, back navigation; the last answer opens the register page.
  *   register: UI-only sign-up; a valid form or the Google button marks the record registered.
- *   summary:  fills saved answers and suggested products; redirects to register until signed up.
+ *   account:  fills saved answers and suggested products; no redirect (the account page has its own data).
  *   all:      Exit Assessment and Start Again clear the record before following their link.
  * Required DOM hooks: .js-component-quiz (data-quiz-page, data-quiz-config JSON).
  *   quiz:     .js-quiz-step (data-question, data-required), .js-quiz-input (data-exclusive), .js-quiz-next,
  *             .js-quiz-back, .js-quiz-step-label, .js-quiz-percent, .js-quiz-ring
  *   register: .js-quiz-gate-form, .js-quiz-provider
- *   summary:  .js-quiz-answer (data-question, data-labels JSON), .js-quiz-product (data-product-id)
+ *   account:  .js-quiz-answer (data-question, data-labels JSON), .js-quiz-product (data-product-id)
  *   shared:   .js-quiz-exit, .js-quiz-restart
  */
 (() => {
@@ -132,7 +132,7 @@
 
       state.completed = true;
       saveState();
-      window.location.href = state.registered ? routes.summary : routes.register;
+      window.location.href = state.registered ? routes.account : routes.register;
     };
 
     const applyExclusive = (input) => {
@@ -195,7 +195,7 @@
     const unlock = () => {
       state.registered = true;
       saveState();
-      window.location.href = routes.summary;
+      window.location.href = routes.account;
     };
 
     // UI only: no account is created.
@@ -218,13 +218,8 @@
     return [...new Set([...scored, ...(config.defaults || [])])].slice(0, config.limit || 3);
   };
 
-  const initSummary = () => {
-    // Results stay behind sign-up; unanswered questions show "Not sure" and default products.
-    if (!state.registered) {
-      window.location.replace(routes.register);
-      return;
-    }
-
+  // Unanswered questions show "Not sure"; products fall back to the defaults.
+  const fillResults = () => {
     root.querySelectorAll('.js-quiz-answer').forEach((item) => {
       const labels = JSON.parse(item.dataset.labels || '{}');
       const values = state.answers[item.dataset.question] || [];
@@ -241,5 +236,5 @@
 
   if (page === 'quiz') initQuiz();
   if (page === 'register') initRegister();
-  if (page === 'summary') initSummary();
+  if (page === 'account') fillResults();
 })();

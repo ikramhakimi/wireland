@@ -9,6 +9,18 @@ $details      = $_SESSION['store_details'] ?? [];
 $order        = $_SESSION['store_order'] ?? null;
 $complete     = ($_GET['complete'] ?? '') === '1' && is_array($order);
 $fingerprint  = hash('sha256', serialize($store_lines));
+
+// Prototype: ?state=form|complete|empty previews sample data on GET without touching the session.
+$checkout_state = $store_post ? 'live' : preview_state('checkout');
+if ($checkout_state !== 'live') {
+  $store_lines = $checkout_state === 'empty' ? [] : store_sample_lines($store_products);
+  $store_total = array_sum(array_column($store_lines, 'amount'));
+  $store_count = array_sum(array_column($store_lines, 'quantity'));
+  $complete    = $checkout_state === 'complete';
+  $order       = $complete
+    ? ['reference' => 'DEMO-PREVIEW', 'lines' => $store_lines, 'total' => $store_total, 'payment' => 'Credit or Debit Card']
+    : $order;
+}
 $payment_methods = [
   'card'    => 'Credit or Debit Card',
   'fpx'     => 'Online Banking (FPX)',
@@ -223,3 +235,4 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
   </div>
 </section>
 <?php section('footer', ['show_banner' => false, 'show_products' => false, 'show_menu' => false]); ?>
+<?php component('preview-switcher', ['group' => 'checkout']); ?>

@@ -93,6 +93,44 @@ change requests. Dashboard copy follows `docs/copywriting-dashboard.md`.
 **[Confirm]** Check-in cadence (e.g. week 2, month 1, month 3), prescription validity period, and
 whether refills auto-renew or require a review.
 
+### Follow-up cycle (proposed)
+
+Hair treatment takes 3–6 months to show results, so follow-up is a repeating cycle, not a final step.
+Each check-in is a small review that reuses the first review's pattern (review → question → decision).
+
+```
+Assessment → Doctor review → Plan → Treatment ──→ Check-in (e.g. week 4, 12, 24)
+                  ↑                                     │
+                  └──────── adjust plan / refill ←──────┘
+```
+
+**Patient states** (account overview, after the first plan):
+
+| State           | Patient sees                                          | Main action                         |
+|-----------------|-------------------------------------------------------|-------------------------------------|
+| Ordered         | Order status and delivery date.                       | Track order                         |
+| On treatment    | Day of supply (e.g. "Day 18 of 30"), next check-in.   | None                                |
+| Check-in due    | Which check-in is due and how long it takes.          | Start check-in (photos + short questions) |
+| Check-in review | Same as the first pending review.                     | None (doctor may ask a question)    |
+| Refill due      | Days of supply left; whether a review is needed first. | Order refill                       |
+
+Once treatment starts, the account tracker switches from the first-plan steps to a treatment timeline
+(check-in points), so the patient sees long-term progress, not a finished process.
+
+**Doctor side** (doctor tool / dashboard):
+
+- **Check-in queue:** submitted check-ins, sorted by priority (flags such as side effects or no change).
+- **Side-by-side comparison:** baseline vs check-in photos and answers.
+- **Quick decisions:** Continue / Adjust plan / Ask a question / Book a video call; each sets the
+  patient's next state.
+- **Alerts:** missed check-ins, refills not ordered, reported side effects.
+
+Account overview: `/account?state=on_treatment` and `?state=checkin_due` (status tracker). Workflow detail:
+`/dashboard/assessment-workflow` (section 07).
+
+**[Confirm]** What a check-in contains (photos, questions), and whether a check-in is required before a
+refill.
+
 ---
 
 ## 5. Open questions and risks

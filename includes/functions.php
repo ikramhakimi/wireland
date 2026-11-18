@@ -122,3 +122,46 @@ if (!function_exists('icon')) {
     component('icon', $data);
   }
 }
+
+if (!function_exists('preview_groups')) {
+  /**
+   * Mockup preview states from includes/preview-states.php, loaded once.
+   */
+  function preview_groups(): array
+  {
+    static $groups = null;
+    $groups ??= require __DIR__ . '/preview-states.php';
+
+    return $groups;
+  }
+}
+
+if (!function_exists('preview_state')) {
+  /**
+   * Current ?state= for a preview group, or the group's default when missing or unknown.
+   */
+  function preview_state(string $group): string
+  {
+    $config = preview_groups()[$group] ?? null;
+    if ($config === null) {
+      return '';
+    }
+
+    $requested = is_string($_GET['state'] ?? null) ? $_GET['state'] : '';
+
+    return isset($config['states'][$requested]) ? $requested : $config['default'];
+  }
+}
+
+if (!function_exists('preview_query')) {
+  /**
+   * Query string that keeps a group's current state on internal links ('' for the default state).
+   */
+  function preview_query(string $group, ?string $state = null): string
+  {
+    $state ??= preview_state($group);
+    $default = preview_groups()[$group]['default'] ?? '';
+
+    return $state === '' || $state === $default ? '' : '?state=' . rawurlencode($state);
+  }
+}

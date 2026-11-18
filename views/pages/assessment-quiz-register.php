@@ -2,14 +2,14 @@
 
 /**
  * Page: Assessment quiz — register gate
- * Purpose: Shown after the last question. Encourages account creation before revealing results.
+ * Purpose: Shown after the last question. Creates the account that sends the answers for doctor review.
  * Structure: Quiz focus header (100%), heading, Google sign-up, email form, log-in link.
  * Data: includes/assessment-quiz-data.php. UI only; no account is created. A valid form or the Google
- *       button marks the assessment as registered in localStorage and opens the summary.
+ *       button marks the assessment as registered in localStorage and opens the account page.
  */
 
 $page_title       = 'Create Your Account | RR HairClinic';
-$page_description = 'Create a free account to see your hair assessment results.';
+$page_description = 'Create a free account to send your hair assessment to our doctor.';
 $page_current     = 'assessment-quiz-register';
 
 require __DIR__ . '/../../includes/assessment-quiz-data.php';
@@ -55,9 +55,19 @@ $gate_fields = [
     'autocomplete' => 'email',
     'required'     => true,
   ],
+  [
+    'id'           => 'quiz-gate-password',
+    'label'        => 'Password',
+    'type'         => 'password',
+    'name'         => 'password',
+    'autocomplete' => 'new-password',
+    'minlength'    => 8,
+    'helper'       => 'Use at least 8 characters.',
+    'required'     => true,
+  ],
 ];
 $gate_submit_button = [
-  'label'   => 'See My Results',
+  'label'   => 'Send to Doctor',
   'element' => 'button',
   'type'    => 'submit',
   'size'    => 'large',
@@ -77,10 +87,10 @@ $gate_privacy_note = 'Your answers stay private, are seen only by our clinical t
     <section class="quiz-gate w-full max-w-sm mx-auto" aria-labelledby="quiz-gate-title">
       <div class="quiz-gate-header text-center">
         <h1 id="quiz-gate-title" class="quiz-gate-title text-title-md font-semibold text-pretty color-strong">
-          Your results are ready
+          Send your answers to our doctor
         </h1>
         <p class="quiz-gate-description mt-2 text-small text-pretty color-default">
-          Create a free account to see your results.
+          Create a free account. A doctor will review your answers and reply within 24 hours.
         </p>
       </div>
 
@@ -92,7 +102,7 @@ $gate_privacy_note = 'Your answers stay private, are seen only by our clinical t
         <span class="quiz-gate-divider-label">or sign up with email</span>
         <span class="quiz-gate-divider-line flex-1 h-px bg-zinc-200" aria-hidden="true"></span>
       </div>
-      <form action="<?= e($quiz_routes['summary']); ?>" method="get" class="quiz-gate-form grid gap-5 js-quiz-gate-form">
+      <form action="<?= e($quiz_routes['account']); ?>" method="get" class="quiz-gate-form grid gap-5 js-quiz-gate-form">
         <?php foreach ($gate_fields as $gate_field): ?>
           <?php component('forms/field', $gate_field); ?>
         <?php endforeach; ?>

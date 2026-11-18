@@ -2,6 +2,14 @@
 
 require_once __DIR__ . '/../../includes/store.php';
 
+// Prototype: ?state=filled|empty previews sample data on GET without touching the session.
+$cart_state = $store_post ? 'live' : preview_state('cart');
+if ($cart_state !== 'live') {
+  $store_lines = $cart_state === 'filled' ? store_sample_lines($store_products) : [];
+  $store_total = array_sum(array_column($store_lines, 'amount'));
+  $store_count = array_sum(array_column($store_lines, 'quantity'));
+}
+
 $page_title   = 'Your Cart | RR HairClinic';
 $page_current = 'cart';
 $cart_heading = [
@@ -256,3 +264,4 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
   </section>
 <?php endif; ?>
 <?php section('footer', ['show_banner' => false, 'show_products' => false, 'show_menu' => false]); ?>
+<?php component('preview-switcher', ['group' => 'cart']); ?>

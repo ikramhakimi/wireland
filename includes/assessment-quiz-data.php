@@ -174,6 +174,7 @@ $quiz_routes        = [
   'quiz'     => asset_url('assessment-quiz'),
   'register' => asset_url('assessment-quiz-register'),
   'summary'  => asset_url('assessment-quiz-summary'),
+  'account'  => asset_url('account'),
   'exit'     => asset_url(''),
 ];
 $quiz_config = [

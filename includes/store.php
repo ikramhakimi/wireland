@@ -41,6 +41,25 @@ function store_can_buy(array $product): bool {
     && (int) ($product['stock'] ?? 0) > 0;
 }
 
+// Prototype: sample cart lines for preview states (includes/preview-states.php). Never touches the session.
+function store_sample_lines(array $products): array {
+  $lines = [];
+  foreach (['PRD-001' => 1, 'PRD-004' => 2] as $product_id => $quantity) {
+    $item = $products[$product_id] ?? null;
+    if ($item === null || !store_can_buy($item)) {
+      continue;
+    }
+    $quantity = min($quantity, (int) $item['stock']);
+    $lines[]  = [
+      'product'  => $item,
+      'quantity' => $quantity,
+      'amount'   => (int) round((float) $item['price'] * 100) * $quantity,
+    ];
+  }
+
+  return $lines;
+}
+
 function store_redirect(string $path): void {
   header('Location: ' . asset_url($path), true, 303);
   exit;

@@ -31,6 +31,10 @@
   color: var(--color-red-700);
 }
 
+@utility color-warning {
+  color: var(--color-amber-700);
+}
+
 @utility color-strong {
   color: var(--color-zinc-800);
 }

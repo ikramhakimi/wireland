@@ -3,7 +3,7 @@
 /**
  * Page: Assessment quiz
  * Purpose: Distraction-free hair assessment, one question per screen. After the last question the user
- *          continues to assessment-quiz-register, then assessment-quiz-summary.
+ *          continues to assessment-quiz-register, then account.
  * Structure: Quiz focus header, question steps (single choice advances; multiple choice uses Continue).
  * Data: includes/assessment-quiz-data.php. Answers stay in localStorage.
  */
