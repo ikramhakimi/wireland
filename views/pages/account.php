@@ -1,681 +1,649 @@
 <?php
 
 /**
- * Page: Account overview
- * Purpose: Where patients land after sign-up. Leads with the one thing to do next, based on the
- *          current assessment.
- * Structure: Account layout; greeting; status section (account/status-tracker, the mode's content and main
- *            action, key facts); further sections under filled heading bars (cart/checkout style). Modes:
- *   new        no assessment yet → how it works + start assessment; popular products.
- *   pending    doctor reviewing → next steps; products while waiting; answers.
- *   needs_info doctor asked a question → thread + chat composer (reply saved by account-reply.js); answers.
- *   plan_ready plan ready → doctor notes + plan products + order; answers.
- *   ordered    plan on its way → delivery progress + track; answers.
- *   received   plan delivered → what's next + pick a start date (mockup: submits to on_treatment); answers.
- *   on_treatment plan ordered → supply progress + check-in dates; answers.
- *   checkin_due  check-in due → check-in steps + start check-in (account/checkin); answers.
- *   checkin_review check-in sent → what happens next; answers.
- *   plan_updated   check-in reviewed → doctor's note + changes + next check-ins + refill; answers.
- * Data: includes/account-data.php (sample patient; ?state= previews a mode),
- *       includes/assessment-quiz-data.php (questions, products). assets/js/assessment-quiz.js fills
- *       answers and picks products from localStorage.
+ * Page: Account overview (simplified)
+ * Purpose: Where patients land. Assessment first, then one card per product order: delivery, the WhatsApp
+ *          follow-up, a once-only self check-in, the doctor's summary and the next refill.
+ * Structure: Assessment states (new, pending, needs_info, plan_ready) render the full version's page
+ *            (views/pages/account/full.php) unchanged. From the first order on: account layout; greeting; flash;
+ *            active cards (latest order per product: 4-stage tracker, status, delivery timeline or supply,
+ *            doctor summary, facts, actions); past orders (older orders and stopped products) as muted cards below, always shown.
+ * Data: includes/follow-ups-state.php (session demo follow-ups shared with /dashboard/follow-ups),
+ *       includes/account-data.php (patient, nav; mapped to its on_treatment data). Sample patient PT-2001.
+ * Preview: the 'overview' group in includes/preview-states.php. 'live' (default) reads the session; the
+ *          other follow-up states show a fixed sample with two archived past orders. care_* states show a patient
+ *          without an assessment: care product cards, the assessment offer on top, and on the card after a
+ *          check-in with little progress or a doctor handover.
+ * Combined: care_shipped_pending, care_shipped_needs_info, care_done_plan_ready show the assessment status
+ *           (account/assessment-status) above a "Your orders" heading and the cards.
+ * Full version: /account/full (internal reference, not in the nav).
  */
 
+$preview = preview_state('overview');
+
+if (in_array($preview, ['new', 'pending', 'needs_info', 'plan_ready'], true)) {
+  $account_preview_state  = $preview;
+  $overview_preview_group = 'overview';
+  require __DIR__ . '/account/full.php';
+  return;
+}
+
 $page_title       = 'My Account | RR HairClinic';
-$page_description = 'Track your hair assessment and treatment plan.';
+$page_description = 'Track your hair treatment, follow-ups and refills.';
 $page_current     = 'account';
 
+// Care buyer who then sends an assessment: assessment status on top (account/assessment-status, data from the
+// full version in embed mode), their orders below. preview state => [assessment state, card sample].
+$combined_states = [
+  'care_shipped_pending'    => ['pending', 'care_shipped'],
+  'care_shipped_needs_info' => ['needs_info', 'care_shipped'],
+  'care_done_plan_ready'    => ['plan_ready', 'care_done'],
+];
+$status_view = null;
+$mode_title  = '';
+
+if (isset($combined_states[$preview])) {
+  [$account_preview_state, $card_state] = $combined_states[$preview];
+  $account_embed = true;
+  require __DIR__ . '/account/full.php';
+  $mode_title = $mode_titles[$mode];
+  $preview    = $card_state;
+  unset($account_embed);
+}
+
+// Care-product states: a patient who bought care products without an assessment (account data maps to 'new').
+$is_care_preview = strpos($preview, 'care_') === 0;
+$account_preview_state ??= $is_care_preview ? 'new' : 'on_treatment';
 require __DIR__ . '/../../includes/assessment-quiz-data.php';
+$account    = require __DIR__ . '/../../includes/account-data.php';
+$follow_ups = require __DIR__ . '/../../includes/follow-ups-state.php';
+$patient_id = 'PT-2001';
+$today      = $follow_ups['today'];
+$rules      = $follow_ups['config']['rules'];
 
-$account       = require __DIR__ . '/../../includes/account-data.php';
-$quiz_products = array_column(require __DIR__ . '/../../includes/dashboard-products-data.php', null, 'id');
-$review_time   = $account['assessment']['review_time'];
-$current       = $account['assessments'][0] ?? null;
-$treatment     = $account['treatment'];
-$plan_order    = $account['plan_order'];
-$mode          = $current === null ? 'new' : ($treatment['status'] ?? $plan_order['status'] ?? $current['status']);
-$first_name    = $account['patient']['first_name'];
+// Preview states: one fixed sample product per state; 'live' reads the session chains.
+$sample      = static fn (array $changes): array => array_merge([
+  'id'            => 'FU-PREVIEW',
+  'patient_id'    => $patient_id,
+  'order_id'      => 'RR-10531',
+  'product_id'    => 'PRD-006',
+  'journey_start' => follow_up_date($today, -83),
+  'delivered'     => follow_up_date($today, -23),
+  'cycle'         => 3,
+  'attempt'       => 1,
+  'team'          => 'ops',
+  'due'           => $today,
+  'outcome'       => '',
+  'refill'        => '',
+  'summary'       => '',
+  'done_on'       => '',
+  'source'        => '',
+  'delivery'      => null,
+], $changes);
+// Order on its way: no delivery date or follow-up yet. status: packed | shipped.
+$in_transit  = static fn (string $status): array => [
+  'delivered' => '',
+  'due'       => '',
+  'delivery'  => [
+    'status'   => $status,
+    'placed'   => follow_up_date($today, -1),
+    'shipped'  => $status === 'shipped' ? $today : '',
+    'arriving' => follow_up_date($today, 2),
+    'courier'  => 'J&T Express',
+    'tracking' => $status === 'shipped' ? 'JT6012349876' : '',
+  ],
+];
+$doctor_note = 'Shedding in month 3 is expected. Keep applying twice a day, and tell us if the itch comes back.';
+// Older orders of the sample product, shown under Past orders.
+$past_samples = [
+  $sample([
+    'order_id'  => 'RR-09980',
+    'delivered' => follow_up_date($today, -83),
+    'cycle'     => 1,
+    'outcome'   => 'ok',
+    'refill'    => 'yes',
+    'done_on'   => follow_up_date($today, -60),
+  ]),
+  $sample([
+    'order_id'  => 'RR-10240',
+    'delivered' => follow_up_date($today, -53),
+    'cycle'     => 2,
+    'outcome'   => 'ok',
+    'refill'    => 'yes',
+    'done_on'   => follow_up_date($today, -30),
+    'summary'   => 'Your scalp looks healthy. Keep applying twice a day.',
+  ]),
+];
+$samples     = [
+  'packed'     => [$sample($in_transit('packed'))],
+  'shipped'    => [$sample($in_transit('shipped'))],
+  'upcoming'   => [$sample(['delivered' => follow_up_date($today, -16), 'due' => follow_up_date($today, 7)])],
+  'contacting' => [$sample([])],
+  'retrying'   => [$sample(['attempt' => 2, 'due' => follow_up_date($today, 1)])],
+  'doctor'     => [$sample(['team' => 'doctor', 'due' => follow_up_date($today, 13), 'summary' => $doctor_note])],
+  'done'       => [$sample(['outcome' => 'ok', 'refill' => 'yes', 'done_on' => $today, 'summary' => $doctor_note])],
+  'done_care'  => [$sample([
+    'product_id'    => 'PRD-002',
+    'journey_start' => follow_up_date($today, -25),
+    'delivered'     => follow_up_date($today, -25),
+    'cycle'         => 1,
+    'outcome'       => 'ok',
+    'refill'        => 'later',
+    'done_on'       => follow_up_date($today, -2),
+  ])],
+  'closed'     => [$sample(['attempt' => 3, 'outcome' => 'no_response', 'done_on' => $today])],
+  'stopped'    => [$sample(['outcome' => 'ok', 'refill' => 'stop', 'done_on' => $today])],
+];
+// No assessment: the same loop with a care product (first order, no prescription).
+$care          = static fn (array $changes): array => $sample(array_merge([
+  'order_id'      => 'RR-10560',
+  'product_id'    => 'PRD-002',
+  'journey_start' => follow_up_date($today, -23),
+  'delivered'     => follow_up_date($today, -23),
+  'cycle'         => 1,
+], $changes));
+$care_transit  = static fn (string $status): array => array_merge($in_transit($status), [
+  'journey_start' => follow_up_date($today, 2),
+]);
+$samples      += [
+  'care_shipped'    => [$care($care_transit('shipped'))],
+  'care_upcoming'   => [$care(['delivered' => follow_up_date($today, -16), 'due' => follow_up_date($today, 7)])],
+  'care_contacting' => [$care([])],
+  'care_doctor'     => [$care(['team' => 'doctor', 'source' => '', 'parent_id' => ''])],
+  'care_done'       => [$care(['outcome' => 'ok', 'refill' => 'later', 'done_on' => $today, 'source' => 'self',
+    'suggest' => true])],
+];
+$chains = isset($samples[$preview])
+  ? array_merge($samples[$preview], $preview === 'done_care' || $is_care_preview ? [] : $past_samples)
+  : ($follow_ups['chains'][$patient_id] ?? []);
 
-$whatsapp_href = static fn (string $text): string => 'https://wa.me/601116741858?text=' . rawurlencode($text);
+// Assessment offer: always shown below the cards while the patient has no assessment (not dismissible).
+// Same parts as the full version's 'new' state under a section heading: How it works steps, start button,
+// inline facts.
+$has_assessment   = $account['assessments'] !== [];
+$review_time      = $account['assessment']['review_time'];
+$assessment_offer = $has_assessment ? [] : [
+  'steps'   => [
+    ['title' => 'Answer a few questions', 'text' => 'About your hair, scalp and health. It takes about 3 minutes.'],
+    ['title' => 'A doctor reviews them', 'text' => 'Usually within ' . $review_time . '. No clinic visit needed.'],
+    ['title' => 'Get your plan', 'text' => 'Treatment that suits you, delivered to your door.'],
+  ],
+  'button'  => [
+    'label' => 'Start Your Assessment',
+    'href'  => $quiz_routes['start'],
+    'size'  => 'large',
+    'color' => 'primary',
+    'class' => 'account-start w-full sm:w-auto',
+  ],
+  'facts'   => [
+    ['label' => 'Takes', 'value' => 'About 3 minutes'],
+    ['label' => 'Doctor review', 'value' => 'Within ' . $review_time],
+    ['label' => 'Cost', 'value' => 'Free to start'],
+  ],
+];
 
-$mode_titles = [
-  'new'            => 'Hi ' . $first_name . ', let’s start with your hair',
-  'pending'        => 'Hi ' . $first_name . ', your assessment is with our doctor',
-  'needs_info'     => 'Hi ' . $first_name . ', our doctor has a question for you',
-  'plan_ready'     => 'Hi ' . $first_name . ', your plan is ready',
-  'ordered'        => 'Hi ' . $first_name . ', your plan is on its way',
-  'received'       => 'Hi ' . $first_name . ', your plan has arrived',
-  'replied'        => 'Hi ' . $first_name . ', thanks for your reply',
-  'on_treatment'   => 'Hi ' . $first_name . ', your treatment is underway',
-  'checkin_due'    => 'Hi ' . $first_name . ', it’s time for your check-in',
-  'checkin_review' => 'Hi ' . $first_name . ', thanks for your check-in',
-  'plan_updated'   => 'Hi ' . $first_name . ', your doctor has replied',
-];
-$start_steps = [
-  [
-    'title' => 'Answer a few questions',
-    'text'  => 'About your hair, scalp and health. It takes about 3 minutes.',
+// Popular everyday care under the offer (same section as the full version's 'new' state), server-rendered from
+// the quiz defaults and leaving out products the patient already has.
+$bought_ids    = array_column($chains, 'product_id');
+$popular_cards = $has_assessment ? [] : array_values(array_map(
+  static fn (array $item): array => [
+    'name'       => $item['name'],
+    'href'       => asset_url('product/?id=' . rawurlencode($item['id'])),
+    'pill'       => $item['category'] ?? '',
+    'price'      => $item['price'],
+    'base_price' => $item['base_price'] ?? 0,
   ],
-  [
-    'title' => 'A doctor reviews them',
-    'text'  => 'Usually within ' . $review_time . '. No clinic visit needed.',
-  ],
-  [
-    'title' => 'Get your plan',
-    'text'  => 'Treatment that suits you, delivered to your door.',
-  ],
-];
-$review_steps = [
-  [
-    'title' => 'A doctor reviews your answers',
-    'text'  => 'Usually within ' . $review_time . '. They may message you if they need more detail.',
-  ],
-  [
-    'title' => 'You get your plan',
-    'text'  => 'We’ll send it by WhatsApp and email. A short video call is booked only if needed.',
-  ],
-  [
-    'title' => 'Order your treatment',
-    'text'  => 'Your plan appears here, ready to order and delivered to your door.',
-  ],
-];
-$products_headings = [
-  'new'        => [
-    'title' => 'Popular everyday care',
-    'text'  => 'No assessment needed for these.',
-  ],
-  'pending'    => [
-    'title' => 'While you wait',
-    'text'  => 'Everyday care based on your answers. Your doctor will confirm what suits you.',
-  ],
-  'needs_info' => [
-    'title' => 'While you wait',
-    'text'  => 'Everyday care based on your answers. Your doctor will confirm what suits you.',
-  ],
-];
-// Received: what to expect in the first weeks.
-$received_steps = [
-  [
-    'title' => 'Use it as directed',
-    'text'  => 'Follow the directions in your prescription. A daily reminder helps you keep it steady.',
-  ],
-  [
-    'title' => 'Expect some shedding early',
-    'text'  => 'Extra shedding in the first weeks is common and usually settles. Keep going.',
-  ],
-  [
-    'title' => 'Check in after 4 weeks',
-    'text'  => 'We count from your start date and remind you when it’s time.',
-  ],
-];
-$plan_items = array_values(array_filter(array_map(
-  static fn (string $id): ?array => $quiz_products[$id] ?? null,
-  $current['plan']['product_ids'] ?? [],
-)));
+  array_filter(array_map(
+    static fn (string $id): ?array => in_array($id, $bought_ids, true) ? null : ($follow_ups['products'][$id] ?? null),
+    $quiz_default_products,
+  )),
+));
 
-$start_button = [
-  'label' => 'Start Your Assessment',
-  'href'  => $quiz_routes['start'],
-  'size'  => 'large',
-  'color' => 'primary',
-  'class' => 'account-start w-full sm:w-auto',
-];
-$order_button = [
-  'label' => 'Order Your Plan',
-  'href'  => asset_url('account/prescriptions') . preview_query('patient'),
-  'size'  => 'large',
-  'color' => 'primary',
-  'class' => 'account-order w-full sm:w-auto',
-];
-$track_button = [
-  'label' => 'Track Delivery',
-  'href'  => asset_url('account/orders') . preview_query('patient'),
-  'size'  => 'large',
-  'color' => 'primary',
-  'class' => 'account-track w-full sm:w-auto',
-];
-// Received: submits the start-date form. Mockup: the form moves the preview to on_treatment.
-$start_treatment_button = [
-  'label'   => 'Start My Treatment',
-  'element' => 'button',
-  'type'    => 'submit',
-  'form'    => 'account-start-form',
-  'size'    => 'large',
-  'color'   => 'primary',
-  'class'   => 'account-start-treatment w-full sm:w-auto',
-];
-$refill_button = [
-  'label' => 'Order Your Refill',
-  'href'  => asset_url('account/prescriptions') . preview_query('patient'),
-  'size'  => 'large',
-  'color' => 'primary',
-  'class' => 'account-refill w-full sm:w-auto',
-];
-$order_whatsapp_button = [
-  'label'         => $mode === 'received' ? 'Report a Problem with My Order' : 'Ask About My Order',
-  'href'          => $whatsapp_href('Hi RR HairClinic, I have a question about my order ' . ($plan_order['id'] ?? '') . '.'),
-  'size'          => 'large',
-  'color'         => 'secondary',
-  'icon'          => 'whatsapp-line',
-  'icon_position' => 'start',
-  'class'         => 'account-order-chat w-full sm:w-auto',
-];
-$whatsapp_button = [
-  'label'         => 'Ask Our Team on WhatsApp',
-  'href'          => $whatsapp_href('Hi RR HairClinic, I have a question about my hair assessment.'),
-  'size'          => 'large',
-  'color'         => 'secondary',
-  'icon'          => 'whatsapp-line',
-  'icon_position' => 'start',
-  'class'         => 'account-chat w-full sm:w-auto',
-];
-// Aside facts per mode: label => value.
-$next_checkin = $treatment['checkins'][$treatment['checkin_index'] ?? 0] ?? null;
-$supply_left  = ($treatment['supply_total'] ?? 0) - ($treatment['supply_day'] ?? 0);
-$aside_facts  = $plan_order !== null
-  ? array_filter([
-    'Order'     => $plan_order['id'],
-    'Courier'   => $plan_order['courier'],
-    'Tracking'  => $plan_order['tracking'],
-    'Arriving'  => $mode === 'ordered' ? $plan_order['arriving_on'] : '',
-    'Delivered' => $mode === 'received' ? $plan_order['arriving_on'] : '',
-  ])
-  : ($treatment !== null
-  ? array_filter([
-    'Started'       => $treatment['started_on'],
-    'Supply'        => $supply_left . ($supply_left === 1 ? ' day left' : ' days left'),
-    'Next check-in' => $treatment['checkin_sent'] !== '' ? '' : $next_checkin['date'],
-    'Check-in sent' => $treatment['checkin_sent'],
-    'Doctor'        => $current['doctor'],
-  ])
-  : ($current === null
-  ? [
-    'Takes'         => 'About 3 minutes',
-    'Doctor review' => 'Within ' . $review_time,
-    'Cost'          => 'Free to start',
-  ]
-  : array_filter([
-    'Assessment'     => $current['id'],
-    'Sent'           => $current['submitted_on'],
-    'Reply expected' => $mode === 'pending' ? 'Within ' . $review_time : '',
-    'Doctor'         => in_array($mode, ['needs_info', 'plan_ready'], true) ? $current['doctor'] : '',
-    'Question sent'  => $mode === 'needs_info' ? $current['asked_at'] : '',
-  ])));
-$short_date     = static fn (string $date): string => preg_replace('/\s\d{4}$/', '', $date);
-$plan_issued_on = ($current['status'] ?? '') === 'plan_ready' ? $short_date($account['prescriptions'][0]['issued_on'] ?? '') : '';
-// Status tracker: one stage per step of the first care plan; notes date done stages and describe the active one.
-$tracker = [
-  'stages'     => [
-    [
-      'label' => 'Assessment',
-      'note'  => $current === null ? 'About 3 minutes' : 'Sent ' . $short_date($current['submitted_on']),
-    ],
-    [
-      'label' => 'Doctor review',
-      'note'  => [
-        'new'            => 'Within ' . $review_time,
-        'pending'        => 'Within ' . $review_time,
-        'needs_info'     => 'Action needed',
-        'plan_ready'     => 'Done ' . $plan_issued_on,
-        'ordered'        => 'Done ' . $plan_issued_on,
-        'received'       => 'Done ' . $plan_issued_on,
-        'on_treatment'   => 'Done ' . $plan_issued_on,
-        'checkin_due'    => 'Done ' . $plan_issued_on,
-        'checkin_review' => 'Done ' . $plan_issued_on,
-        'plan_updated'   => 'Done ' . $plan_issued_on,
-      ][$mode],
-    ],
-    [
-      'label' => 'Your plan',
-      'note'  => [
-        'plan_ready' => 'Ready ' . $plan_issued_on,
-        'ordered'    => 'Ordered ' . $short_date($plan_order['placed_on'] ?? ''),
-        'received'   => 'Delivered ' . $short_date($plan_order['arriving_on'] ?? ''),
-      ][$mode] ?? ($treatment !== null ? 'Ordered ' . $short_date($treatment['ordered_on']) : ''),
-    ],
-    [
-      'label' => 'Treatment',
-      'note'  => [
-        'on_treatment'   => 'Day ' . ($treatment['supply_day'] ?? 0) . ' of ' . ($treatment['supply_total'] ?? 0),
-        'checkin_due'    => 'Check-in due',
-        'checkin_review' => 'Check-in sent',
-        'plan_updated'   => ($treatment['review']['title'] ?? '') . ' reviewed',
-      ][$mode] ?? '',
-    ],
-  ],
-  'active'     => [
-    'new'            => 0,
-    'pending'        => 1,
-    'needs_info'     => 1,
-    'plan_ready'     => 2,
-    'ordered'        => 2,
-    'received'       => 2,
-    'on_treatment'   => 3,
-    'checkin_due'    => 3,
-    'checkin_review' => 3,
-    'plan_updated'   => 3,
-  ][$mode],
-  'icon'       => [
-    'ordered'        => 'box-3-line',
-    'received'       => 'checkbox-circle-line',
-    'on_treatment'   => 'progress-4-line',
-    'checkin_due'    => 'calendar-line',
-    'checkin_review' => 'time-line',
-    'plan_updated'   => 'progress-4-line',
-  ][$mode] ?? $account['statuses'][$mode]['icon'] ?? 'progress-2-line',
-  'attention'  => in_array($mode, ['needs_info', 'checkin_due'], true),
-  'reply_for'  => $mode === 'needs_info' ? $current['id'] : '',
-  'reply_note' => 'Reply sent',
-];
-// Status section per mode: heading + summary ('sent' replaces 'text' once the reply to the doctor is sent).
-$status_sections = [
-  'new'            => [
-    'title' => 'How it works',
-    'text'  => 'Tell us about your hair and a doctor will recommend what suits you.',
-  ],
-  'pending'        => [
-    'title' => 'What happens next',
-    'text'  => 'You don’t need to do anything right now. We’ll message you within ' . $review_time
-      . ' with your plan.',
-  ],
-  'needs_info'     => [
-    'title' => 'Your doctor’s question',
-    'text'  => 'Reply below. Your plan is on hold until the doctor hears back.',
-    'sent'  => ($current['doctor'] ?? '') . ' has your reply and usually responds within ' . $review_time . '.',
-  ],
-  'plan_ready'     => [
-    'title' => 'Your plan',
-    'text'  => $current['plan']['note'] ?? '',
-  ],
-  'ordered'        => [
-    'title' => 'Your delivery',
-    'text'  => 'Arriving ' . ($plan_order['arriving_on'] ?? '') . ' by ' . ($plan_order['courier'] ?? '')
-      . '. Once it arrives, you’ll pick the day you start.',
-  ],
-  'received'       => [
-    'title' => 'Before you start',
-    'text'  => 'Tell us when you start. We use this date to time your check-ins and refills.',
-  ],
-  'on_treatment'   => [
-    'title' => 'Your treatment',
-    'text'  => 'Keep using your plan as directed. Results usually take 3 to 6 months, so steady use matters '
-      . 'more than quick changes.',
-  ],
-  'checkin_due'    => [
-    'title' => 'Your ' . strtolower($next_checkin['title'] ?? '') . ' check-in',
-    'text'  => 'Tell ' . ($current['doctor'] ?? '') . ' how your hair and scalp are doing. It takes about 2 minutes.',
-  ],
-  'checkin_review' => [
-    'title' => 'Your ' . strtolower($next_checkin['title'] ?? '') . ' check-in is with your doctor',
-    'text'  => 'You don’t need to do anything right now. Keep using your plan as usual while '
-      . ($current['doctor'] ?? '') . ' reviews it.',
-  ],
-  'plan_updated'   => [
-    'title' => 'Your ' . strtolower($treatment['review']['title'] ?? '') . ' check-in result',
-    'text'  => $treatment['review']['note'] ?? '',
-  ],
-];
-$checkin_steps = [
-  ['title' => 'Add 2 photos', 'text' => 'Top and front of your scalp, in good light.'],
-  ['title' => 'Answer 4 questions', 'text' => 'How you use your plan, any changes and any side effects.'],
-  [
-    'title' => 'Your doctor reviews it',
-    'text'  => 'Usually within ' . $review_time . '. They’ll continue or adjust your plan.',
-  ],
-];
-$checkin_next_steps = [
-  [
-    'title' => 'Your doctor reviews your check-in',
-    'text'  => 'Usually within ' . $review_time . '. They may message you if they need more detail.',
-  ],
-  [
-    'title' => 'Your plan continues or changes',
-    'text'  => 'Any change appears here, and we’ll let you know by WhatsApp and email.',
-  ],
-  [
-    'title' => 'Your next check-in',
-    'text'  => ($treatment['checkins'][1]['title'] ?? '') . ', around ' . ($treatment['checkins'][1]['date'] ?? '') . '.',
-  ],
-];
-// Check-ins before checkin_index are reviewed, so they show as done.
-$checkin_dates = array_map(
-  static fn (array $checkin, int $index): array => [
-    'title' => $checkin['title'],
-    'text'  => $checkin['date'],
-    'done'  => $index < ($treatment['checkin_index'] ?? 0),
-  ],
-  $treatment['checkins'] ?? [],
-  array_keys($treatment['checkins'] ?? []),
+// Active: the latest order of each product, unless stopped. Archived: older orders and stopped products.
+$latest_cycle = [];
+foreach ($chains as $chain) {
+  $latest_cycle[$chain['product_id']] = max($latest_cycle[$chain['product_id']] ?? 0, $chain['cycle']);
+}
+$is_archived = static fn (array $chain): bool => $chain['cycle'] < $latest_cycle[$chain['product_id']]
+  || ($chain['outcome'] === 'ok' && $chain['refill'] === 'stop');
+$active      = array_values(array_filter($chains, static fn (array $chain): bool => !$is_archived($chain)));
+$archived    = array_values(array_filter($chains, $is_archived));
+usort(
+  $archived,
+  static fn (array $a, array $b): int => [$a['product_id'], $b['cycle']] <=> [$b['product_id'], $a['cycle']],
 );
-// Ordered: delivery progress as a compact timeline; steps with a date are done.
-$delivery_steps = array_map(
-  static fn (array $step): array => [
-    'title' => $step['title'],
-    'text'  => $step['date'] !== '' ? $step['date'] : 'Expected ' . ($plan_order['arriving_on'] ?? ''),
-    'done'  => $step['date'] !== '',
-  ],
-  $plan_order['steps'] ?? [],
-);
-$status_facts = array_map(
-  static fn (string $label, string $value): array => ['label' => $label, 'value' => $value],
-  array_keys($aside_facts),
-  array_values($aside_facts),
-);
-// Supply: warn once a week or less is left. Plan updated carries its own refill note and button.
-$supply_low   = $treatment !== null && $supply_left <= 7;
-$supply_alert = $supply_low && $mode !== 'plan_updated'
-  ? [
-    'tone'   => 'attention',
-    'title'  => 'Your supply runs out in ' . $supply_left . ($supply_left === 1 ? ' day' : ' days'),
-    'text'   => 'Order your refill now so you don’t miss a day.',
-    'action' => [
-      'label' => 'Order Your Refill',
-      'href'  => asset_url('account/prescriptions') . preview_query('patient'),
-      'size'  => 'small',
+
+$clinic_whatsapp = 'https://wa.me/601116741858?text=';
+$statuses        = [
+  'packed'      => ['label' => 'Preparing your order', 'icon' => 'box-3-line', 'tone' => 'neutral'],
+  'shipped'     => ['label' => 'On the way', 'icon' => 'box-3-line', 'tone' => 'info'],
+  'upcoming'    => ['label' => 'Follow-up soon', 'icon' => 'calendar-line', 'tone' => 'neutral'],
+  'contacting'  => ['label' => 'Follow-up today', 'icon' => 'whatsapp-line', 'tone' => 'info'],
+  'retrying'    => ['label' => 'Waiting for your reply', 'icon' => 'whatsapp-line', 'tone' => 'attention'],
+  'doctor'      => ['label' => 'With your doctor', 'icon' => 'shield-check-line', 'tone' => 'info'],
+  'done'        => ['label' => 'Follow-up done', 'icon' => 'checkbox-circle-line', 'tone' => 'positive'],
+  'unreachable' => ['label' => 'Follow-up closed', 'icon' => 'time-line', 'tone' => 'neutral'],
+  'stopped'     => ['label' => 'Stopped', 'icon' => 'time-line', 'tone' => 'neutral'],
+];
+
+// Patient-facing status of a product, from the latest record of its follow-up chain.
+$status_key = static function (array $record) use ($today, $rules): string {
+  if (($record['delivery'] ?? null) !== null) {
+    return $record['delivery']['status'];
+  }
+  if ($record['outcome'] === '') {
+    if ($record['team'] === 'doctor') {
+      return 'doctor';
+    }
+    if ($record['attempt'] > 1) {
+      return 'retrying';
+    }
+
+    return $record['due'] > $today ? 'upcoming' : 'contacting';
+  }
+  if ($record['outcome'] === 'no_response') {
+    return 'unreachable';
+  }
+
+  return $record['refill'] === 'stop' ? 'stopped' : 'done';
+};
+$status_text = static function (string $status, array $record): string {
+  $delivery = $record['delivery'] ?? [];
+  $texts    = [
+    'packed'      => 'We’re packing your order. You’ll get tracking details once it ships.',
+    'shipped'     => 'Arriving ' . follow_up_label_date($delivery['arriving'] ?? $record['due']) . ' by '
+      . ($delivery['courier'] ?? '') . '. After it arrives, we’ll message you on WhatsApp about a week before '
+      . 'the supply runs out.',
+    'upcoming'    => 'We’ll message you on WhatsApp around ' . follow_up_label_date($record['due'])
+      . ' to ask how it’s going, about a week before this supply runs out.',
+    'contacting'  => 'We’ll message you on WhatsApp today to ask how it’s going.',
+    'retrying'    => 'We tried to reach you on WhatsApp. Reply when it suits you, so we can check how it’s going.',
+    'doctor'      => 'Your doctor will message you on WhatsApp about how your treatment is going.',
+    'done'        => 'Thanks for telling us how it’s going.',
+    'unreachable' => 'We couldn’t reach you on WhatsApp. Message us any time if you have questions.',
+    'stopped'     => 'You told us you’re stopping this product. Message us if you’d like to start again.',
+  ];
+
+  return $texts[$status];
+};
+
+// Card view data, so the markup only formats.
+$cards = array_map(static function (array $record) use (
+  $has_assessment,
+  $quiz_routes,
+  $follow_ups,
+  $rules,
+  $today,
+  $statuses,
+  $status_key,
+  $status_text,
+  $clinic_whatsapp
+): array {
+  $product         = $follow_ups['products'][$record['product_id']];
+  $status          = $status_key($record);
+  $is_prescription = ($product['requirement'] ?? '') === 'Prescription Required';
+  $chain           = $record['id'] === 'FU-PREVIEW' ? [$record] : ($follow_ups['history'])($record);
+  $summaries       = array_filter(array_column($chain, 'summary'));
+  $can_check_in    = follow_up_can_check_in($record, $chain, $product, $today);
+  $has_check_in    = in_array('self', array_column($chain, 'source'), true);
+  $parent          = array_column($chain, null, 'id')[$record['parent_id'] ?? ''] ?? [];
+  $days_used       = min($rules['supply_days'], max(0, follow_up_days_between($record['delivered'], $today)));
+  $can_refill      = in_array($status, ['done', 'unreachable'], true);
+  $delivery        = $record['delivery'] ?? null;
+  // Offer an assessment on a care product when the check-in showed little progress or the doctor is involved.
+  $offer_text      = !$has_assessment && !$is_prescription
+    && (in_array(true, array_column($chain, 'suggest'), true) || $status === 'doctor')
+    ? 'Care products may not be enough on their own. A doctor can recommend treatment that suits you.'
+    : '';
+  $short           = static fn (string $date): string => (new DateTimeImmutable($date))->format('j M');
+  $placed          = $delivery['placed'] ?? follow_up_date($record['delivered'], -2);
+
+  // Same four-stage tracker as the Overview: Ordered, Delivery, Follow-up, Refill.
+  $follow_up_notes = [
+    'upcoming'    => 'On ' . ($record['due'] !== '' ? $short($record['due']) : ''),
+    'contacting'  => 'Today',
+    'retrying'    => 'Reply on WhatsApp',
+    'doctor'      => 'With your doctor',
+    'done'        => 'Done ' . ($record['done_on'] !== '' ? $short($record['done_on']) : ''),
+    'unreachable' => 'Closed',
+    'stopped'     => 'Done ' . ($record['done_on'] !== '' ? $short($record['done_on']) : ''),
+  ];
+  $tracker = [
+    'stages'    => [
+      ['label' => 'Ordered', 'note' => 'Placed ' . $short($placed)],
+      ['label' => 'Delivery', 'note' => [
+        'packed'  => 'Packing',
+        'shipped' => 'Arriving ' . ($delivery !== null ? $short($delivery['arriving']) : ''),
+      ][$status] ?? 'Delivered ' . ($record['delivered'] !== '' ? $short($record['delivered']) : '')],
+      ['label' => 'Follow-up', 'note' => $follow_up_notes[$status] ?? ''],
+      ['label' => 'Refill', 'note' => [
+        'done'        => $is_prescription ? 'Check-in first' : 'Ready to order',
+        'unreachable' => $is_prescription ? 'Check-in first' : 'Ready to order',
+        'stopped'     => 'Stopped',
+      ][$status] ?? ''],
+    ],
+    'active'    => in_array($status, ['packed', 'shipped'], true) ? 1
+      : (in_array($status, ['done', 'unreachable', 'stopped'], true) ? 3 : 2),
+    'icon'      => $statuses[$status]['icon'],
+    'attention' => $status === 'retrying',
+    'class'     => 'treatment-tracker mt-6',
+  ];
+  $delivery_steps = $delivery === null ? [] : [
+    ['title' => 'Order placed', 'text' => $short($delivery['placed']), 'done' => true],
+    ['title' => 'Packed', 'text' => $delivery['status'] === 'shipped' ? $short($delivery['placed']) : 'Today',
+      'done' => $delivery['status'] === 'shipped'],
+    ['title' => 'On the way', 'text' => $delivery['shipped'] !== '' ? $short($delivery['shipped']) : 'Next',
+      'done' => $delivery['shipped'] !== ''],
+    ['title' => 'Delivered', 'text' => 'Expected ' . $short($delivery['arriving']), 'done' => false],
+  ];
+
+  return [
+    'id'          => 'treatment-' . $record['order_id'] . '-' . $record['product_id'],
+    'product'     => $product,
+    'status'      => $statuses[$status],
+    'text'        => $status === 'doctor' && ($parent['source'] ?? '') === 'self'
+      ? 'Your doctor is reviewing your check-in and will message you on WhatsApp.'
+      : $status_text($status, $record),
+    'journey'     => ($delivery !== null && $record['cycle'] === 1 ? 'Starting your treatment'
+      : 'Month ' . (intdiv(max(0, follow_up_days_between($record['journey_start'], $today)), 30) + 1)
+        . ' of your treatment') . ' · Order ' . $record['cycle'],
+    'summary'     => $summaries === [] ? '' : end($summaries),
+    'tracker'     => $tracker,
+    'delivery'    => $delivery_steps,
+    'refill_text' => $can_check_in && $can_refill && $is_prescription
+      ? 'For your next supply, complete a short check-in. Your doctor approves the refill after reviewing it.'
+      : '',
+    'supply'      => $delivery !== null ? null : [
+      'label'      => 'Supply',
+      'value'      => $days_used,
+      'max'        => $rules['supply_days'],
+      'value_text' => ($rules['supply_days'] - $days_used) . ' days left',
+      'tone'       => $rules['supply_days'] - $days_used <= 7 ? 'attention' : 'default',
+      'class'      => 'treatment-supply mt-6',
+    ],
+    'facts'       => $delivery !== null ? [
+      ['label' => 'Order', 'value' => $record['order_id']],
+      ['label' => 'Courier', 'value' => $delivery['courier']],
+      ['label' => 'Tracking', 'value' => $delivery['tracking']],
+    ] : [
+      ['label' => 'Delivered', 'value' => follow_up_label_date($record['delivered'])],
+      $record['outcome'] === ''
+        ? ['label' => 'Next Follow-up', 'value' => follow_up_label_date($record['due'])]
+        : ['label' => 'Followed Up', 'value' => follow_up_label_date($record['done_on'])],
+      ['label' => 'Order', 'value' => $record['order_id']],
+    ],
+    // Check-in first when it's open (once per order); a prescription refill is orderable after the doctor
+    // reviewed a check-in; care products can be reordered any time after the follow-up.
+    'refill'      => $can_check_in ? [
+      'label' => $can_refill ? 'Start Check-in' : 'Share How It’s Going',
+      'href'  => asset_url('account/treatment/checkin') . '?id=' . rawurlencode($record['id']),
+      'color' => 'primary',
+      'class' => 'treatment-checkin w-full sm:w-auto',
+    ] : ($can_refill && (!$is_prescription || $has_check_in) ? [
+      'label' => 'Order Refill',
+      'href'  => asset_url('product/?id=' . rawurlencode($product['id'])),
+      'color' => 'primary',
+      'class' => 'treatment-refill w-full sm:w-auto',
+    ] : null),
+    'offer_text'  => $offer_text,
+    'offer'       => $offer_text === '' ? null : [
+      'label' => 'Start Assessment',
+      'href'  => $quiz_routes['start'],
       'color' => 'secondary',
+      'class' => 'treatment-offer w-full sm:w-auto',
     ],
-    'class'  => 'account-supply-alert',
-  ]
-  : [];
-$supply_progress = $treatment !== null
-  ? [
-    'label'      => 'Day ' . $treatment['supply_day'] . ' of ' . $treatment['supply_total'],
-    'value'      => $treatment['supply_day'],
-    'max'        => $treatment['supply_total'],
-    'value_text' => $supply_left . ($supply_left === 1 ? ' day' : ' days') . ' of supply left',
-    'tone'       => $supply_low ? 'attention' : 'default',
-    'class'      => 'account-supply',
-  ]
-  : [];
-$plan_changes_alert = [
-  'tone'  => 'neutral',
-  'icon'  => 'shield-check-line',
-  'title' => $treatment['review']['changes'] ?? '',
-  'text'  => 'Your supply is nearly finished, so order your refill to keep going.',
-  'class' => 'account-plan-changes',
-];
-$start_field = [
-  'id'      => 'account-start-date',
-  'label'   => 'When do you start?',
-  'type'    => 'select',
-  'name'    => 'started_on',
-  'helper'  => 'Already started? Pick the day you began.',
-  'options' => $plan_order['start_options'] ?? [],
-];
-$checkin_button = [
-  'label' => 'Start Check-in',
-  'href'  => asset_url('account/checkin'),
-  'size'  => 'large',
-  'color' => 'primary',
-  'class' => 'account-checkin w-full sm:w-auto',
-];
-$plan_total = array_sum(array_column($plan_items, 'price'));
-$product_card = static fn (array $item): array => [
-  'name'       => $item['name'],
-  'href'       => asset_url('product/?id=' . rawurlencode($item['id'])),
-  'pill'       => $item['category'] ?? '',
-  'price'      => $item['price'],
-  'base_price' => $item['base_price'] ?? 0,
-];
-$plan_card = static fn (array $item): array => [
-  'name'       => $item['name'],
-  'href'       => asset_url('product/?id=' . rawurlencode($item['id'])),
-  'price'      => $item['price'],
-  'base_price' => $item['base_price'] ?? 0,
+    'message'     => [
+      'label'         => 'Message Us',
+      'href'          => $clinic_whatsapp . rawurlencode('Hi RR HairClinic, I have a question about my '
+        . $product['name'] . '.'),
+      'color'         => 'secondary',
+      'icon'          => 'whatsapp-line',
+      'icon_position' => 'start',
+      'class'         => 'treatment-message w-full sm:w-auto',
+    ],
+  ];
+}, $active);
+
+// Past order rows: muted, one line each, details on open.
+$date_label = static fn (string $date): string => $date !== '' ? follow_up_label_date($date) : '';
+$past_rows  = array_map(static function (array $record) use ($follow_ups, $statuses, $status_key, $date_label): array {
+  $chain     = $record['id'] === 'FU-PREVIEW' ? [$record] : ($follow_ups['history'])($record);
+  $summaries = array_filter(array_column($chain, 'summary'));
+  $status    = $status_key($record);
+
+  return [
+    'id'      => 'past-' . $record['order_id'] . '-' . $record['product_id'],
+    'title'   => $follow_ups['products'][$record['product_id']]['name'] . ' · Order ' . $record['cycle'],
+    'status'  => $statuses[$status]['label']
+      . ($record['done_on'] !== '' ? ' · ' . follow_up_label_date($record['done_on']) : ''),
+    'facts'   => [
+      ['label' => 'Order', 'value' => $record['order_id']],
+      ['label' => 'Delivered', 'value' => $date_label($record['delivered'])],
+      ['label' => 'Followed Up', 'value' => $date_label($record['done_on'])],
+      ['label' => 'Refill', 'value' => $follow_ups['config']['refills'][$record['refill']] ?? ''],
+    ],
+    'summary' => $summaries === [] ? '' : end($summaries),
+  ];
+}, $archived);
+
+$empty_state = [
+  'id'      => 'account-empty-title',
+  'title'   => 'Nothing active right now',
+  'text'    => 'When you order again, your delivery, follow-ups and refills show here.',
+  'icon'    => 'progress-4-line',
+  'actions' => [[
+    'label' => 'Shop Products',
+    'href'  => asset_url('shop'),
+    'size'  => 'large',
+    'color' => 'secondary',
+    'class' => 'account-treatment-shop w-full sm:w-auto',
+  ]],
+  'class'   => 'account-empty mt-8',
 ];
 
 $account_layout = [
   'nav'           => $account['nav'],
   'current'       => 'overview',
-  'preview_group' => 'patient',
+  'preview_group' => 'overview',
   'content'       => static function () use (
+    $cards,
+    $past_rows,
+    $empty_state,
+    $follow_ups,
     $account,
-    $current,
-    $mode,
-    $mode_titles,
-    $review_time,
-    $start_steps,
-    $review_steps,
-    $products_headings,
-    $plan_items,
-    $start_button,
-    $order_button,
-    $received_steps,
-    $track_button,
-    $start_treatment_button,
-    $refill_button,
-    $order_whatsapp_button,
-    $delivery_steps,
-    $status_facts,
-    $supply_alert,
-    $supply_progress,
-    $plan_changes_alert,
-    $start_field,
-    $tracker,
-    $status_sections,
-    $plan_total,
-    $next_checkin,
-    $checkin_steps,
-    $checkin_next_steps,
-    $checkin_dates,
-    $checkin_button,
-    $whatsapp_button,
-    $product_card,
-    $plan_card,
-    $quiz_products,
-    $quiz_recommendations,
-    $quiz_questions,
-    $quiz_config,
-    $quiz_routes
+    $assessment_offer,
+    $popular_cards,
+    $status_view,
+    $mode_title
   ): void {
-    $section  = $status_sections[$mode];
-    $reply_id = $current['id'] ?? '';
+    $flash = $follow_ups['treatment_flash'];
     ?>
-    <div class="account-overview js-component-quiz" data-quiz-page="account"
-      data-quiz-config="<?= e(json_encode($quiz_config)); ?>">
+    <div class="account-treatment">
       <header class="account-header">
         <p class="account-topic text-sm font-medium color-muted">My account</p>
         <h1 class="account-title mt-2 text-title-md font-semibold text-pretty color-strong">
-          <?php if ($mode === 'needs_info'): ?>
-            <span data-reply-for="<?= e($reply_id); ?>" data-reply-show="open"><?= e($mode_titles[$mode]); ?></span>
-            <span data-reply-for="<?= e($reply_id); ?>" data-reply-show="sent" hidden>
-              <?= e($mode_titles['replied']); ?>
-            </span>
+          <?php if ($mode_title !== ''): ?>
+            <?= e($mode_title); ?>
           <?php else: ?>
-            <?= e($mode_titles[$mode]); ?>
+            Hi <?= e($account['patient']['first_name']); ?>, here’s how your treatment is going
           <?php endif; ?>
         </h1>
+        <p class="account-description mt-2 max-w-lg text-sm text-pretty color-muted">
+          Hair growth takes months. We check in on WhatsApp before each supply runs out, so you can keep going
+          without a gap.
+        </p>
       </header>
 
-      <div class="account-layout grid gap-10 mt-10">
-        <section class="account-status grid gap-6" aria-labelledby="account-status-title">
-          <?php component('account/status-tracker', $tracker); ?>
+      <?php if ($flash !== null): ?>
+        <?php component('alert', [
+          'tone'  => $flash['tone'],
+          'title' => $flash['title'],
+          'role'  => $flash['tone'] === 'negative' ? 'alert' : 'status',
+          'class' => 'account-notice mt-8',
+        ]); ?>
+      <?php endif; ?>
+
+      <?php if ($status_view !== null): ?>
+        <div class="account-layout grid gap-10 mt-10">
+          <?php component('account/assessment-status', $status_view); ?>
+          <?php component('account/section-heading', ['id' => 'account-orders-title', 'title' => 'Your orders']); ?>
+        </div>
+      <?php endif; ?>
+
+      <?php if ($cards === []): ?>
+        <?php component('empty-state', $empty_state); ?>
+      <?php else: ?>
+        <ul class="account-treatment-list grid gap-4 mt-8" role="list">
+          <?php foreach ($cards as $card): ?>
+            <li class="account-treatment-item">
+              <article class="treatment rounded-xl border border-zinc-200 bg-white p-5 sm:p-6"
+                aria-labelledby="<?= e($card['id']); ?>">
+                <div class="treatment-header flex flex-wrap items-start justify-between gap-3">
+                  <div class="treatment-heading">
+                    <h2 id="<?= e($card['id']); ?>" class="treatment-title text-title-sm font-semibold color-strong">
+                      <?= e($card['product']['name']); ?>
+                    </h2>
+                    <p class="treatment-journey mt-1 text-sm color-muted"><?= e($card['journey']); ?></p>
+                  </div>
+                  <?php component('account/status-pill', $card['status']); ?>
+                </div>
+
+                <?php component('account/status-tracker', $card['tracker']); ?>
+
+                <p class="treatment-text mt-6 text-sm text-pretty color-default"><?= e($card['text']); ?></p>
+
+                <?php if ($card['summary'] !== ''): ?>
+                  <figure class="treatment-summary mt-4 p-4 rounded-lg bg-zinc-50">
+                    <figcaption class="treatment-summary-author text-xs color-muted">
+                      From <?= e($follow_ups['doctor']); ?>
+                    </figcaption>
+                    <blockquote class="treatment-summary-text mt-1 text-sm text-pretty color-strong">
+                      <?= e($card['summary']); ?>
+                    </blockquote>
+                  </figure>
+                <?php endif; ?>
+
+                <?php if ($card['delivery'] !== []): ?>
+                  <?php component('timeline', [
+                    'items' => $card['delivery'],
+                    'size'  => 'compact',
+                    'class' => 'treatment-delivery mt-6',
+                  ]); ?>
+                <?php endif; ?>
+
+                <?php if ($card['supply'] !== null): ?>
+                  <?php component('progress', $card['supply']); ?>
+                <?php endif; ?>
+
+                <?php component('facts', [
+                  'items'   => $card['facts'],
+                  'columns' => 3,
+                  'class'   => 'treatment-meta mt-6 pt-5 border-t border-zinc-100',
+                ]); ?>
+
+                <?php if ($card['offer'] !== null): ?>
+                  <div class="treatment-offer-box flex flex-col gap-3 mt-6 p-4 rounded-lg bg-zinc-50
+                    sm:flex-row sm:items-center sm:justify-between">
+                    <p class="treatment-offer-text text-sm text-pretty color-strong"><?= e($card['offer_text']); ?></p>
+                    <?php component('button', $card['offer']); ?>
+                  </div>
+                <?php endif; ?>
+
+                <div class="treatment-actions flex flex-col gap-3 mt-6 sm:flex-row sm:items-center">
+                  <?php if ($card['refill'] !== null): ?>
+                    <?php component('button', $card['refill']); ?>
+                  <?php endif; ?>
+                  <?php component('button', $card['message']); ?>
+                  <?php if ($card['refill_text'] !== ''): ?>
+                    <p class="treatment-hint text-sm text-pretty color-muted"><?= e($card['refill_text']); ?></p>
+                  <?php endif; ?>
+                </div>
+              </article>
+            </li>
+          <?php endforeach; ?>
+        </ul>
+      <?php endif; ?>
+
+      <?php if ($assessment_offer !== []): ?>
+        <section class="account-section account-status account-offer grid gap-6 mt-10"
+          aria-labelledby="account-offer-title">
+          <?php component('account/section-heading', [
+            'id'    => 'account-offer-title',
+            'title' => 'Doctor-reviewed treatment',
+          ]); ?>
 
           <div class="account-status-body grid gap-10">
             <div class="account-status-header">
-              <?php if ($mode === 'checkin_due'): ?>
-                <p class="account-status-alert mb-3">
-                  <?php component('badge', [
-                    'label' => 'Due ' . $next_checkin['date'],
-                    'tone'  => 'attention',
-                    'icon'  => 'error-warning-line',
-                  ]); ?>
-                </p>
-              <?php endif; ?>
-              <?php if ($mode === 'needs_info'): ?>
-                <p class="account-status-alert mb-3" data-reply-for="<?= e($reply_id); ?>" data-reply-show="open">
-                  <?php component('badge', [
-                    'label' => 'Your reply is needed',
-                    'tone'  => 'attention',
-                    'icon'  => 'error-warning-line',
-                  ]); ?>
-                </p>
-              <?php endif; ?>
-              <h2 id="account-status-title" class="account-status-title text-title-sm font-semibold text-pretty
-                color-strong"><?= e($section['title']); ?></h2>
-              <?php if (isset($section['sent'])): ?>
-                <p class="account-status-text mt-2 max-w-lg text-sm text-pretty color-default"
-                  data-reply-for="<?= e($reply_id); ?>" data-reply-show="open"><?= e($section['text']); ?></p>
-                <p class="account-status-text mt-2 max-w-lg text-sm text-pretty color-default"
-                  data-reply-for="<?= e($reply_id); ?>" data-reply-show="sent" hidden><?= e($section['sent']); ?></p>
-              <?php else: ?>
-                <p class="account-status-text mt-2 max-w-lg text-sm text-pretty color-default">
-                  <?= e($section['text']); ?>
-                </p>
-              <?php endif; ?>
-              <?php if (in_array($mode, ['plan_ready', 'plan_updated'], true)): ?>
-                <p class="account-status-author mt-1 text-sm color-muted">— <?= e($current['doctor']); ?></p>
-              <?php endif; ?>
+              <h3 class="account-status-title text-title-sm font-semibold text-pretty color-strong">
+                Want a doctor to look at your hair?
+              </h3>
+              <p class="account-status-text mt-2 max-w-lg text-sm text-pretty color-default">
+                Tell us about your hair and a doctor will recommend what suits you.
+              </p>
             </div>
-
-            <?php if ($supply_alert !== []): ?>
-              <?php component('alert', $supply_alert); ?>
-            <?php endif; ?>
-
-            <?php if ($mode === 'new'): ?>
-              <?php component('timeline', ['items' => $start_steps, 'size' => 'compact', 'class' => 'account-steps']); ?>
-            <?php elseif ($mode === 'pending'): ?>
-              <?php component('timeline', ['items' => $review_steps, 'size' => 'compact', 'class' => 'account-steps']); ?>
-            <?php elseif ($mode === 'needs_info'): ?>
-              <?php component('account/doctor-thread', [
-                'assessment_id' => $reply_id,
-                'doctor'        => $current['doctor'],
-                'asked_at'      => $current['asked_at'],
-                'message'       => $current['message'],
-                'review_time'   => $review_time,
-              ]); ?>
-            <?php elseif ($mode === 'on_treatment'): ?>
-              <?php component('progress', $supply_progress); ?>
-              <div class="account-checkins">
-                <h3 class="account-checkins-title text-sm font-semibold color-strong">Your check-ins</h3>
-                <p class="account-checkins-text mt-1 text-sm text-pretty color-muted">
-                  Your doctor checks your progress and adjusts your plan if needed.
-                </p>
-                <?php component('timeline', [
-                  'items' => $checkin_dates,
-                  'size'  => 'compact',
-                  'label' => 'Check-in',
-                  'class' => 'account-checkins-list mt-5',
-                ]); ?>
-              </div>
-            <?php elseif ($mode === 'checkin_due'): ?>
-              <?php component('timeline', ['items' => $checkin_steps, 'size' => 'compact', 'class' => 'account-steps']); ?>
-            <?php elseif ($mode === 'checkin_review'): ?>
-              <?php component('timeline', [
-                'items' => $checkin_next_steps,
-                'size'  => 'compact',
-                'class' => 'account-steps',
-              ]); ?>
-            <?php elseif ($mode === 'ordered'): ?>
-              <?php component('timeline', [
-                'items' => $delivery_steps,
-                'size'  => 'compact',
-                'label' => 'Delivery step',
-                'class' => 'account-delivery',
-              ]); ?>
-            <?php elseif ($mode === 'received'): ?>
-              <?php component('timeline', ['items' => $received_steps, 'size' => 'compact', 'class' => 'account-steps']); ?>
-              <form id="account-start-form" class="account-start-form max-w-sm" method="get"
-                action="<?= e(asset_url('account')); ?>">
-                <input type="hidden" name="state" value="on_treatment">
-                <?php component('forms/field', $start_field); ?>
-              </form>
-            <?php elseif ($mode === 'plan_updated'): ?>
-              <?php component('alert', $plan_changes_alert); ?>
-              <div class="account-checkins">
-                <h3 class="account-checkins-title text-sm font-semibold color-strong">Your check-ins</h3>
-                <p class="account-checkins-text mt-1 text-sm text-pretty color-muted">
-                  Your doctor checks your progress and adjusts your plan if needed.
-                </p>
-                <?php component('timeline', [
-                  'items' => $checkin_dates,
-                  'size'  => 'compact',
-                  'label' => 'Check-in',
-                  'class' => 'account-checkins-list mt-5',
-                ]); ?>
-              </div>
-            <?php elseif ($mode === 'plan_ready'): ?>
-              <ul class="account-plan-list grid divide-y divide-dashed divide-zinc-200" role="list">
-                <?php foreach ($plan_items as $plan_item): ?>
-                  <li class="account-plan-item py-4 first:pt-0">
-                    <?php component('card-product-horizontal', $plan_card($plan_item)); ?>
-                  </li>
-                <?php endforeach; ?>
-              </ul>
-              <div class="account-plan-summary flex flex-col gap-4 p-4 rounded-lg bg-zinc-100 sm:flex-row sm:items-center
-                sm:justify-between">
-                <p class="account-plan-total text-sm">
-                  <span class="block color-muted"><?= count($plan_items); ?> products</span>
-                  <span class="block mt-0.5 text-base font-semibold color-strong">
-                    RM <?= e(number_format($plan_total, 2)); ?>
-                  </span>
-                </p>
-                <?php component('button', $order_button); ?>
-              </div>
-            <?php endif; ?>
-
+            <?php component('timeline', [
+              'items' => $assessment_offer['steps'],
+              'size'  => 'compact',
+              'class' => 'account-steps',
+            ]); ?>
             <div class="account-status-actions flex flex-col gap-2 sm:flex-row">
-              <?php if ($mode === 'new'): ?>
-                <?php component('button', $start_button); ?>
-              <?php elseif ($mode === 'checkin_due'): ?>
-                <?php component('button', $checkin_button); ?>
-                <?php component('button', $whatsapp_button); ?>
-              <?php elseif ($mode === 'ordered'): ?>
-                <?php component('button', $track_button); ?>
-                <?php component('button', $order_whatsapp_button); ?>
-              <?php elseif ($mode === 'received'): ?>
-                <?php component('button', $start_treatment_button); ?>
-                <?php component('button', $order_whatsapp_button); ?>
-              <?php elseif ($mode === 'plan_updated'): ?>
-                <?php component('button', $refill_button); ?>
-                <?php component('button', $whatsapp_button); ?>
-              <?php else: ?>
-                <?php component('button', $whatsapp_button); ?>
-              <?php endif; ?>
+              <?php component('button', $assessment_offer['button']); ?>
             </div>
           </div>
 
           <?php component('facts', [
-            'items'  => $status_facts,
+            'items'  => $assessment_offer['facts'],
             'layout' => 'inline',
             'class'  => 'account-status-facts pt-4 border-t border-dashed border-zinc-300',
           ]); ?>
         </section>
+      <?php endif; ?>
 
-          <?php if (isset($products_headings[$mode])): ?>
-            <section class="account-section account-products" aria-labelledby="account-products-title">
-              <?php component('account/section-heading', [
-                'id'    => 'account-products-title',
-                'title' => $products_headings[$mode]['title'],
-              ]); ?>
-              <p class="account-section-text mt-4 text-sm text-pretty color-muted">
-                <?= e($products_headings[$mode]['text']); ?>
-              </p>
-              <ul class="account-products-list grid grid-cols-2 gap-x-4 gap-y-2 mt-5 sm:grid-cols-3" role="list">
-                <?php foreach (array_keys($quiz_recommendations) as $product_id): ?>
-                  <?php if (!isset($quiz_products[$product_id])) { continue; } ?>
-                  <li class="account-products-item grid js-quiz-product" data-product-id="<?= e($product_id); ?>" hidden>
-                    <?php component('card-product', $product_card($quiz_products[$product_id])); ?>
-                  </li>
-                <?php endforeach; ?>
-              </ul>
-            </section>
-          <?php endif; ?>
+      <?php if ($popular_cards !== []): ?>
+        <section class="account-section account-products mt-10" aria-labelledby="account-products-title">
+          <?php component('account/section-heading', [
+            'id'    => 'account-products-title',
+            'title' => 'Popular everyday care',
+          ]); ?>
+          <p class="account-section-text mt-4 text-sm text-pretty color-muted">No assessment needed for these.</p>
+          <ul class="account-products-list grid grid-cols-2 gap-x-4 gap-y-2 mt-5 sm:grid-cols-3" role="list">
+            <?php foreach ($popular_cards as $popular_card): ?>
+              <li class="account-products-item grid">
+                <?php component('card-product', $popular_card); ?>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+        </section>
+      <?php endif; ?>
 
-          <?php if ($mode !== 'new'): ?>
-            <?php component('account/assessment-answers', [
-              'questions'     => $quiz_questions,
-              'answers'       => $current['answers'] ?? [],
-              'reviewed'      => in_array($current['status'], ['needs_info', 'plan_ready'], true),
-              'flags'         => $current['flags'] ?? [],
-              'follow_ups'    => $current['follow_ups'] ?? [],
-              'assessment_id' => $reply_id,
-              'reply_href'    => '#reply-' . strtolower($reply_id) . '-text',
-              'restart_href'  => $mode === 'pending' ? $quiz_routes['quiz'] : '',
-              'variant'       => 'plain',
-            ]); ?>
-          <?php endif; ?>
-      </div>
+      <?php if ($past_rows !== []): ?>
+        <ul class="treatment-past-list grid gap-4 mt-4" role="list" aria-label="Past orders">
+          <?php foreach ($past_rows as $row): ?>
+            <li class="treatment-past-item">
+              <article class="treatment treatment-past rounded-xl border border-zinc-200 bg-zinc-50 p-5 sm:p-6"
+                aria-labelledby="<?= e($row['id']); ?>">
+                <div class="treatment-header flex flex-wrap items-start justify-between gap-3">
+                  <h2 id="<?= e($row['id']); ?>" class="treatment-title text-sm font-semibold color-muted">
+                    <?= e($row['title']); ?>
+                  </h2>
+                  <?php component('account/status-pill', ['label' => 'Past order', 'icon' => 'time-line']); ?>
+                </div>
+                <p class="treatment-past-status mt-2 text-sm color-muted"><?= e($row['status']); ?></p>
+                <?php if ($row['summary'] !== ''): ?>
+                  <p class="treatment-past-summary-text mt-2 text-sm text-pretty color-muted">
+                    <?= e($follow_ups['doctor']); ?>: <?= e($row['summary']); ?>
+                  </p>
+                <?php endif; ?>
+                <?php component('facts', [
+                  'items'   => $row['facts'],
+                  'layout'  => 'inline',
+                  'class'   => 'treatment-meta mt-4 pt-4 border-t border-zinc-200',
+                ]); ?>
+              </article>
+            </li>
+          <?php endforeach; ?>
+        </ul>
+      <?php endif; ?>
     </div>
     <?php
   },
@@ -684,7 +652,9 @@ $account_layout = [
 component('account/layout', $account_layout);
 ?>
 <script src="<?= asset_url('assets/js/drawer.js'); ?>?v=<?= filemtime(__DIR__ . '/../../assets/js/drawer.js'); ?>" defer></script>
-<script src="<?= asset_url('assets/js/chat-composer.js'); ?>?v=<?= filemtime(__DIR__ . '/../../assets/js/chat-composer.js'); ?>" defer></script>
-<script src="<?= asset_url('assets/js/account-reply.js'); ?>?v=<?= filemtime(__DIR__ . '/../../assets/js/account-reply.js'); ?>" defer></script>
-<script src="<?= asset_url('assets/js/assessment-quiz.js'); ?>?v=<?= filemtime(__DIR__ . '/../../assets/js/assessment-quiz.js'); ?>"
-  defer></script>
+<?php if ($status_view !== null): ?>
+  <script src="<?= asset_url('assets/js/chat-composer.js'); ?>?v=<?= filemtime(__DIR__ . '/../../assets/js/chat-composer.js'); ?>"
+    defer></script>
+  <script src="<?= asset_url('assets/js/account-reply.js'); ?>?v=<?= filemtime(__DIR__ . '/../../assets/js/account-reply.js'); ?>"
+    defer></script>
+<?php endif; ?>

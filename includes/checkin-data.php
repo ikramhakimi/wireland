@@ -2,7 +2,8 @@
 
 /**
  * Data: Treatment check-in (prototype)
- * Purpose: Photo angles and follow-up questions for the patient's check-in at /account/checkin.
+ * Purpose: Photo angles and follow-up questions for the patient's check-in at /account/checkin (full version,
+ *          returns to /account/full) and the follow-up check-in at /account/treatment/checkin.
  * Structure: photos (slot key => label, hint), photo minimum, questions (same shape as the assessment quiz:
  *            id, type single/multiple, title, helper, required, options, optional exclusive values), routes.
  * Used by: views/pages/account/checkin.php with assets/js/assessment-quiz.js (separate storage key, so it never
@@ -81,9 +82,9 @@ $checkin_questions = [
 
 $checkin_total  = count($checkin_questions) + 1;
 $checkin_routes = [
-  'account'  => asset_url('account'),
-  'complete' => asset_url('account') . '?state=checkin_review',
-  'exit'     => asset_url('account') . preview_query('patient'),
+  'account'  => asset_url('account/full'),
+  'complete' => asset_url('account/full') . '?state=checkin_review',
+  'exit'     => asset_url('account/full') . preview_query('patient'),
 ];
 $checkin_config = [
   'storageKey' => $checkin_storage_key,

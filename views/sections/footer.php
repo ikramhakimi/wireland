@@ -17,7 +17,7 @@ $popular_products = $show_products ? array_slice(array_values(array_filter(
 )), 0, $popular_limit) : [];
 $show_products = $popular_products !== [];
 $consultation_button = [
-  'label' => 'Start Free Hair Assessment',
+  'label' => t('site.footer.banner.cta'),
   'href'  => asset_url('assessment'),
   'size'  => 'large',
   'icon'  => 'arrow-right-line',
@@ -38,15 +38,15 @@ $consultation_button = [
             <div class="consultation-content flex justify-between">
               <div class="consultation-brief max-w-80">
                 <h3 class="consultation-title text-title-md font-medium text-pretty color-strong">
-                  Your hair concerns deserve a closer look.
+                  <?= e(t('site.footer.banner.title')); ?>
                 </h3>
                 <p class="consultation-description mt-4">
-                  Start an assessment so a clinician can review your concerns and recommend suitable treatment options.
+                  <?= e(t('site.footer.banner.description')); ?>
                 </p>
               </div>
               <div class="consultation-actions">
                 <?php component('button', $consultation_button); ?>
-                <div class="consultation-note mt-2 text-center text-xs">Free, Confidential & Secure.</div>
+                <div class="consultation-note mt-2 text-center text-xs"><?= e(t('site.footer.banner.note')); ?></div>
               </div>
             </div>
           </div>
@@ -58,7 +58,7 @@ $consultation_button = [
       <div class="footer-split grid gap-12 md:grid-cols-2 md:gap-10">
         <?php if ($show_products): ?>
           <div class="footer-products">
-            <h3 class="footer-topic mb-3 text-xs uppercase color-muted">Popular Products</h3>
+            <h3 class="footer-topic mb-3 text-xs uppercase color-muted"><?= e(t('site.footer.popular_products')); ?></h3>
             <div class="footer-products-list space-y-3">
               <?php foreach ($popular_products as $product): ?>
                 <?php component('card-product-horizontal', [
@@ -77,76 +77,76 @@ $consultation_button = [
           <div class="footer-menu grid gap-8 md:grid-cols-2 md:gap-20 <?= $show_products ? '' : 'md:col-span-2'; ?>">
             <div class="footer-links space-y-8">
               <div class="footer-group footer-address">
-                <h3 class="footer-topic mb-3 text-xs uppercase color-muted">Our Address</h3>
+                <h3 class="footer-topic mb-3 text-xs uppercase color-muted"><?= e(t('site.footer.address.title')); ?></h3>
                 <div class="footer-address-details">
-                  <div class="footer-clinic-name">RR Hair Clinic,</div>
+                  <div class="footer-clinic-name"><?= e(t('site.footer.address.clinic')); ?></div>
                   <div class="footer-address-location mb-3">
-                    C-03-03 Blok C, Tamarind Square,<br>
-                    63000 Cyberjaya, Selangor.
+                    <?= e(t('site.footer.address.line_1')); ?><br>
+                    <?= e(t('site.footer.address.line_2')); ?>
                   </div>
                 </div>
-                <div class="footer-phone">+6011-1674-1858</div>
-                <div class="footer-email">support@rrhairclinic.com</div>
+                <div class="footer-phone"><?= e(t('site.footer.address.phone')); ?></div>
+                <div class="footer-email"><?= e(t('site.footer.address.email')); ?></div>
               </div>
 
               <div class="footer-group">
-                <h3 class="footer-topic mb-3 text-xs uppercase color-muted">Working Hours</h3>
+                <h3 class="footer-topic mb-3 text-xs uppercase color-muted"><?= e(t('site.footer.hours.title')); ?></h3>
                 <ul class="footer-list space-y-1">
-                  <li>Mon–Fri: 9:00 AM–6:00 PM</li>
-                  <li>Sat: 9:00 AM–1:00 PM</li>
-                  <li>Sun: Closed</li>
+                  <li><?= e(t('site.footer.hours.weekdays')); ?></li>
+                  <li><?= e(t('site.footer.hours.saturday')); ?></li>
+                  <li><?= e(t('site.footer.hours.sunday')); ?></li>
                 </ul>
               </div>
 
               <div class="footer-group">
-                <h3 class="footer-topic mb-3 text-xs uppercase color-muted">Hair Loss</h3>
+                <h3 class="footer-topic mb-3 text-xs uppercase color-muted"><?= e(t('site.menu.hair_loss.label')); ?></h3>
                 <ul class="footer-list space-y-1">
-                  <li><a href="#">Male Pattern Baldness</a></li>
-                  <li><a href="#">Female Hair Loss</a></li>
-                  <li><a href="#">Receding Hairline</a></li>
-                  <li><a href="#">Thinning Hair</a></li>
-                  <li><a href="#">Crown Hair Loss</a></li>
-                  <li><a href="#">Hair Shedding</a></li>
+                  <li><a href="#"><?= e(t('site.menu.hair_loss.male_pattern_baldness')); ?></a></li>
+                  <li><a href="#"><?= e(t('site.menu.hair_loss.female_hair_loss')); ?></a></li>
+                  <li><a href="#"><?= e(t('site.menu.hair_loss.receding_hairline')); ?></a></li>
+                  <li><a href="#"><?= e(t('site.menu.hair_loss.thinning_hair')); ?></a></li>
+                  <li><a href="#"><?= e(t('site.menu.hair_loss.crown_hair_loss')); ?></a></li>
+                  <li><a href="#"><?= e(t('site.menu.hair_loss.hair_shedding')); ?></a></li>
                 </ul>
               </div>
 
               <div class="footer-group">
-                <h3 class="footer-topic mb-3 text-xs uppercase color-muted">Treatments</h3>
+                <h3 class="footer-topic mb-3 text-xs uppercase color-muted"><?= e(t('site.menu.treatments.label')); ?></h3>
                 <ul class="footer-list space-y-1">
-                  <li><a href="#">Hair Transplant</a></li>
-                  <li><a href="#">Sapphire FUE</a></li>
-                  <li><a href="#">PRP Hair Treatment</a></li>
-                  <li><a href="#">Hair Loss Medication</a></li>
-                  <li><a href="#">Scalp Treatment</a></li>
-                  <li><a href="#">Hair Regrowth Treatment</a></li>
+                  <li><a href="#"><?= e(t('site.menu.treatments.hair_transplant')); ?></a></li>
+                  <li><a href="#"><?= e(t('site.menu.treatments.sapphire_fue')); ?></a></li>
+                  <li><a href="#"><?= e(t('site.menu.treatments.prp_hair_treatment')); ?></a></li>
+                  <li><a href="#"><?= e(t('site.menu.treatments.hair_loss_medication')); ?></a></li>
+                  <li><a href="#"><?= e(t('site.menu.treatments.scalp_treatment')); ?></a></li>
+                  <li><a href="#"><?= e(t('site.menu.treatments.hair_regrowth_treatment')); ?></a></li>
                 </ul>
               </div>
             </div>
 
             <div class="footer-links space-y-8">
               <div class="footer-group">
-                <h3 class="footer-topic mb-3 text-xs uppercase color-muted">Products</h3>
+                <h3 class="footer-topic mb-3 text-xs uppercase color-muted"><?= e(t('site.menu.products.label')); ?></h3>
                 <ul class="footer-list space-y-1">
-                  <li><a href="#">All Products</a></li>
-                  <li><a href="#">Hair Growth</a></li>
-                  <li><a href="#">Hair Loss Shampoo</a></li>
-                  <li><a href="#">Scalp Care</a></li>
+                  <li><a href="#"><?= e(t('site.menu.products.all')); ?></a></li>
+                  <li><a href="#"><?= e(t('site.menu.products.hair_growth')); ?></a></li>
+                  <li><a href="#"><?= e(t('site.menu.products.hair_loss_shampoo')); ?></a></li>
+                  <li><a href="#"><?= e(t('site.menu.products.scalp_care')); ?></a></li>
                 </ul>
               </div>
 
               <div class="footer-group">
-                <h3 class="footer-topic mb-3 text-xs uppercase color-muted">Clinic</h3>
+                <h3 class="footer-topic mb-3 text-xs uppercase color-muted"><?= e(t('site.footer.clinic.title')); ?></h3>
                 <ul class="footer-list space-y-1">
-                  <li><a href="#">Our Doctors</a></li>
-                  <li><a href="#">Results & Case Studies</a></li>
-                  <li><a href="#">Frequently Asked Questions</a></li>
-                  <li><a href="#">Book Consultation</a></li>
-                  <li><a href="#">Contact Us</a></li>
+                  <li><a href="#"><?= e(t('site.menu.doctors')); ?></a></li>
+                  <li><a href="#"><?= e(t('site.footer.clinic.results')); ?></a></li>
+                  <li><a href="#"><?= e(t('site.footer.clinic.faq')); ?></a></li>
+                  <li><a href="#"><?= e(t('site.footer.clinic.book_consultation')); ?></a></li>
+                  <li><a href="#"><?= e(t('site.footer.clinic.contact')); ?></a></li>
                   <li class="footer-divider w-5 my-3 border-t border-zinc-300"></li>
-                  <li><a href="#">Privacy Policy</a></li>
-                  <li><a href="#">Shipping Policy</a></li>
-                  <li><a href="#">Cancellation & Refund</a></li>
-                  <li><a href="#">Terms & Conditions</a></li>
+                  <li><a href="#"><?= e(t('site.footer.clinic.privacy_policy')); ?></a></li>
+                  <li><a href="#"><?= e(t('site.footer.clinic.shipping_policy')); ?></a></li>
+                  <li><a href="#"><?= e(t('site.footer.clinic.cancellation_refund')); ?></a></li>
+                  <li><a href="#"><?= e(t('site.footer.clinic.terms_conditions')); ?></a></li>
                 </ul>
               </div>
             </div>
@@ -157,8 +157,8 @@ $consultation_button = [
 
     <div class="footer-bottom pt-5 text-xs border-t border-zinc-100 color-muted
       md:flex md:items-center md:justify-between">
-      <div class="footer-copyright">RR Hair Clinic &copy; 2026 - All Rights Reserved.</div>
-      <div class="footer-company mt-2 md:mt-0">RR Medical Group Sdn Bhd 202401006850 (1552710-H)</div>
+      <div class="footer-copyright"><?= e(t('site.footer.copyright', ['year' => '2026'])); ?></div>
+      <div class="footer-company mt-2 md:mt-0"><?= e(t('site.brand.company')); ?></div>
     </div>
   </div>
 </section>

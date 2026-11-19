@@ -11,12 +11,13 @@
  */
 
 $doctors        = require __DIR__ . '/doctors-data.php';
-$preview_state  = preview_state('patient');
+// /account (simplified) sets $account_preview_state to map its own preview state onto this data.
+$preview_state  = $account_preview_state ?? preview_state('patient');
 $is_new_patient = $preview_state === 'new';
 $is_treating    = in_array($preview_state, ['on_treatment', 'checkin_due', 'checkin_review', 'plan_updated'], true);
 $is_ordered     = in_array($preview_state, ['ordered', 'received'], true);
 $is_plan_ready  = $preview_state === 'plan_ready' || $is_ordered || $is_treating;
-$state_query    = preview_query('patient');
+$state_query    = preview_query('patient', $preview_state);
 $current_doctor = $doctors['rujhan']['name'];
 $past_doctor    = $doctors['safwan']['name'];
 $current_notes  = [
@@ -266,7 +267,7 @@ return [
     'plan_ready' => ['label' => 'Plan ready', 'icon' => 'checkbox-circle-line', 'tone' => 'positive'],
   ],
   'nav'        => [
-    ['key' => 'overview', 'label' => 'Overview', 'href' => asset_url('account') . $state_query],
+    ['key' => 'overview', 'label' => 'Overview', 'href' => asset_url('account')],
     ['key' => 'assessments', 'label' => 'Assessments', 'href' => asset_url('account/assessments') . $state_query],
     ['key' => 'prescriptions', 'label' => 'Prescriptions', 'href' => asset_url('account/prescriptions') . $state_query],
     ['key' => 'orders', 'label' => 'Orders', 'href' => asset_url('account/orders') . $state_query],

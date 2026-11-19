@@ -2,7 +2,8 @@
  * Assessment quiz
  * Purpose: Runs the assessment flow (quiz → register → account) from one localStorage record.
  *   quiz:     one question per screen, progress, back navigation; the last answer opens the register page,
- *             or routes.complete when set (treatment check-in). Photo steps (data-type="photos", data-min) take
+ *             or routes.complete when set (treatment check-in), or posts the form when config.submit is true
+ *             (follow-up check-in at /account/treatment/checkin). Photo steps (data-type="photos", data-min) take
  *             file inputs: each shows a local preview (.js-quiz-photo-preview); nothing is uploaded.
  *   register: UI-only sign-up; a valid form or the Google button marks the record registered.
  *   account:  fills saved answers and suggested products; no redirect (the account page has its own data).
@@ -135,6 +136,13 @@
       const next = steps.indexOf(step) + 1;
       if (next < total) {
         goTo(next);
+        return;
+      }
+
+      // config.submit (follow-up check-in): post the form, photos included, so the server records it.
+      if (config.submit) {
+        clearState();
+        root.querySelector('.js-quiz-form').submit();
         return;
       }
 

@@ -1,6 +1,9 @@
-# Patient Journey
+# Patient Journey (Full Version)
 
-Tracks every patient state on `/account`, how patients move between them, and what is still missing,
+Internal reference. This version now lives at `/account/full` (`views/pages/account/full.php`) and is not in the
+account nav. Clients see the simplified journey on `/account`: see `docs/patient-journey-simple.md`.
+
+Tracks every patient state on `/account/full`, how patients move between them, and what is still missing,
 from first assessment to the end of a treatment cycle.
 
 - Built states live in `includes/preview-states.php` (`patient` group) and `includes/account-data.php`.
@@ -94,6 +97,25 @@ return to the account. `ordered`, `received` and `plan_updated` are mockup state
 
 ---
 
+## Product follow-ups (`/account`, `/dashboard/follow-ups`)
+
+Simpler loop beside the Overview states, per product per order. Full reference: `docs/patient-journey-simple.md`. Data and rules: `includes/follow-ups-data.php`,
+`includes/follow-ups-state.php` (session demo; both pages share it).
+
+| Step | Rule | Status |
+|---|---|---|
+| First follow-up | Delivered + product interval (default 23 days, a week before a 30-day supply ends) | ✅ |
+| Contact | WhatsApp prefilled text only; staff record the outcome by hand | ✅ |
+| Going Well | Closes the chain; refill choice: Wants Refill / Not Yet / Stopping | ✅ |
+| Needs Doctor (operations) | Opens a doctor follow-up due today, with the operations note | ✅ |
+| Review Again (doctor) | Opens another doctor follow-up in 7, 14 or 30 days | ✅ |
+| No Reply | Retry after 3 days, same team; closes after 3 attempts | ✅ |
+| Doctor summary | Shown to the patient; internal note stays staff-only | ✅ |
+| Prescription refill | Patient goes to check-in; doctor approves the refill | ⚠️ Check-in exists; approval step not linked |
+| Refill order → next cycle | New order opens the next follow-up | ❌ Seed data only |
+
+---
+
 ## End of cycle
 
 | Item | Status | Notes |
@@ -118,5 +140,7 @@ return to the account. `ordered`, `received` and `plan_updated` are mockup state
 
 ## Changelog
 
+- 2026-11-19: Moved to `/account/full`; `/account` shows the simplified journey.
+- 2026-11-19: Product follow-ups added (`/account/treatment`, `/dashboard/follow-ups`).
 - 2026-11-19: Mockup states `ordered`, `received`, `plan_updated` added to `/account`.
 - 2026-11-19: First version. 7 states built; gaps listed from review.

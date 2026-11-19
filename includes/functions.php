@@ -8,6 +8,7 @@ if (!function_exists('e')) {
 }
 
 require_once __DIR__ . '/svg.php';
+require_once __DIR__ . '/lang.php';
 
 if (!function_exists('include_view_file')) {
   function include_view_file(string $root, string $file, string $suffix = '.php'): ?string

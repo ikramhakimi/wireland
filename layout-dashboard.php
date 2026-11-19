@@ -39,6 +39,8 @@
   <?php endif; ?>
   <?php if (($page_current ?? '') === 'patients'): ?>
     <script src="<?= asset_url('assets/js/patients.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/patients.js'); ?>" defer></script>
+  <?php endif; ?>
+  <?php if (in_array($page_current ?? '', ['patients', 'follow-ups'], true)): ?>
     <script src="<?= asset_url('assets/js/drawer.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/drawer.js'); ?>" defer></script>
   <?php endif; ?>
   <script src="<?= asset_url('assets/js/list-field.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/list-field.js'); ?>" defer></script>
