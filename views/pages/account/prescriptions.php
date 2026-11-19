@@ -23,9 +23,14 @@ $review_status = $account['assessments'][0]['status'] ?? '';
 $state_query   = preview_query('patient');
 
 $review_notices = [
-  'pending'    => 'Your new assessment is with our doctor. Your prescription appears here once it’s ready, '
-    . 'usually within 24 hours.',
-  'needs_info' => 'Our doctor needs a reply from you before writing your prescription.',
+  'pending'    => [
+    'title' => 'Your new assessment is with our doctor',
+    'text'  => 'Your prescription appears here once it’s ready, usually within 24 hours.',
+  ],
+  'needs_info' => [
+    'title' => 'Our doctor needs a reply from you',
+    'text'  => 'They’ll write your prescription once they hear back.',
+  ],
 ];
 $item_card = static fn (array $product, array $item): array => [
   'name'        => $product['name'],
@@ -61,6 +66,30 @@ $empty_start_button = [
   'color' => 'primary',
   'class' => 'account-prescriptions-start w-full sm:w-auto',
 ];
+$review_alert = isset($review_notices[$review_status])
+  ? [
+    'tone'   => $review_status === 'needs_info' ? 'attention' : 'info',
+    'title'  => $review_notices[$review_status]['title'],
+    'text'   => $review_notices[$review_status]['text'],
+    'action' => $notice_button,
+    'role'   => 'status',
+    'class'  => 'account-notice mt-8',
+  ]
+  : [];
+$empty_state = [
+  'id'      => 'account-empty-title',
+  'title'   => 'No prescriptions yet',
+  'text'    => 'Prescriptions come from a doctor review. Start with a short hair assessment and a doctor will '
+    . 'recommend what suits you.',
+  'icon'    => 'dossier-line',
+  'actions' => [$empty_start_button],
+  'class'   => 'account-empty mt-8',
+];
+// Validity and source assessment per prescription.
+$prescription_facts = static fn (array $prescription, bool $is_valid): array => [
+  ['label' => $is_valid ? 'Valid until' : 'Expired on', 'value' => $prescription['valid_until']],
+  ['label' => 'From assessment', 'value' => $prescription['assessment_id']],
+];
 
 $account_layout = [
   'nav'           => $account['nav'],
@@ -70,13 +99,12 @@ $account_layout = [
     $products,
     $prescriptions,
     $statuses,
-    $review_status,
-    $review_notices,
+    $review_alert,
     $item_card,
     $order_button,
     $renew_button,
-    $notice_button,
-    $empty_start_button,
+    $empty_state,
+    $prescription_facts,
     $quiz_config
   ): void {
     ?>
@@ -90,31 +118,12 @@ $account_layout = [
         </p>
       </header>
 
-      <?php if (isset($review_notices[$review_status])): ?>
-        <div class="account-notice flex flex-col gap-3 mt-8 p-4 rounded-xl bg-zinc-100 sm:flex-row sm:items-center
-          sm:justify-between" role="status">
-          <p class="account-notice-text flex gap-2 text-sm text-pretty color-strong">
-            <?php svg('information-line', 'size-5 shrink-0'); ?>
-            <?= e($review_notices[$review_status]); ?>
-          </p>
-          <?php component('button', $notice_button); ?>
-        </div>
+      <?php if ($review_alert !== []): ?>
+        <?php component('alert', $review_alert); ?>
       <?php endif; ?>
 
       <?php if ($prescriptions === []): ?>
-        <section class="account-empty mt-8 rounded-xl border border-zinc-200 bg-white px-5 py-10 text-center
-          sm:px-10" aria-labelledby="account-empty-title">
-          <h2 id="account-empty-title" class="account-empty-title text-title-sm font-semibold color-strong">
-            No prescriptions yet
-          </h2>
-          <p class="account-empty-description max-w-md mx-auto mt-2 text-sm text-pretty color-default">
-            Prescriptions come from a doctor review. Start with a short hair assessment and a doctor will
-            recommend what suits you.
-          </p>
-          <div class="account-empty-action mt-6">
-            <?php component('button', $empty_start_button); ?>
-          </div>
-        </section>
+        <?php component('empty-state', $empty_state); ?>
       <?php else: ?>
         <ul class="account-prescriptions-list grid gap-4 mt-8" role="list">
           <?php foreach ($prescriptions as $prescription): ?>
@@ -148,16 +157,10 @@ $account_layout = [
                   <?php endforeach; ?>
                 </ul>
 
-                <dl class="account-prescription-meta grid gap-4 mt-6 pt-5 border-t border-zinc-100 sm:grid-cols-2">
-                  <div class="account-prescription-meta-item">
-                    <dt class="text-sm color-muted"><?= $is_valid ? 'Valid until' : 'Expired on'; ?></dt>
-                    <dd class="mt-1 text-sm font-medium color-strong"><?= e($prescription['valid_until']); ?></dd>
-                  </div>
-                  <div class="account-prescription-meta-item">
-                    <dt class="text-sm color-muted">From assessment</dt>
-                    <dd class="mt-1 text-sm font-medium color-strong"><?= e($prescription['assessment_id']); ?></dd>
-                  </div>
-                </dl>
+                <?php component('facts', [
+                  'items' => $prescription_facts($prescription, $is_valid),
+                  'class' => 'account-prescription-meta mt-6 pt-5 border-t border-zinc-100',
+                ]); ?>
 
                 <div class="account-prescription-actions flex flex-col gap-3 mt-6 sm:flex-row sm:items-center">
                   <?php if ($is_valid): ?>

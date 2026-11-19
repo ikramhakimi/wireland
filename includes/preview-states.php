@@ -22,9 +22,12 @@ return [
       'pending'        => ['label' => 'Pending', 'text' => 'Doctor is reviewing'],
       'needs_info'     => ['label' => 'Needs info', 'text' => 'Doctor asked a question'],
       'plan_ready'     => ['label' => 'Plan ready', 'text' => 'Prescription ready to order'],
+      'ordered'        => ['label' => 'Ordered', 'text' => 'Plan ordered, on its way'],
+      'received'       => ['label' => 'Received', 'text' => 'Plan delivered, picking a start date'],
       'on_treatment'   => ['label' => 'On treatment', 'text' => 'Plan ordered, using it now'],
       'checkin_due'    => ['label' => 'Check-in due', 'text' => 'Week 4 check-in with the doctor'],
       'checkin_review' => ['label' => 'Check-in sent', 'text' => 'Doctor is reviewing the check-in'],
+      'plan_updated'   => ['label' => 'Check-in reviewed', 'text' => 'Doctor replied, refill and next check-in'],
     ],
   ],
   // 'live' keeps the real session behaviour; the others swap in sample data on GET only.

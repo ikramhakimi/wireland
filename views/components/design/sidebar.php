@@ -41,6 +41,8 @@ $navigation_groups = [
   'Content' => [
     ['label' => 'Cards', 'target' => 'design-cards'],
     ['label' => 'Badges', 'target' => 'design-badges'],
+    ['label' => 'Description List', 'target' => 'design-facts'],
+    ['label' => 'Timeline', 'target' => 'design-timeline'],
     ['label' => 'Toggle Collapse', 'target' => 'design-toggle-collapse'],
   ],
   'Navigation' => [
@@ -54,7 +56,8 @@ $navigation_groups = [
     ['label' => 'Alerts', 'target' => 'design-alerts'],
     ['label' => 'Toasts', 'target' => null],
     ['label' => 'Loading', 'target' => 'design-loading'],
-    ['label' => 'Empty States', 'target' => null],
+    ['label' => 'Progress', 'target' => 'design-progress'],
+    ['label' => 'Empty States', 'target' => 'design-empty-states'],
   ],
   'Overlays' => [
     ['label' => 'Modal', 'target' => 'design-modal'],

@@ -791,6 +791,264 @@ $input_group_text_examples = [
   ['id' => 'group-text-combined', 'label' => 'Combined', 'before' => 'RM', 'after' => 'RM 150.00', 'placeholder' => '0.00', 'inputmode' => 'decimal'],
 ];
 
+// Badge, Description List, Timeline, Alert, Progress and Empty State demos. Examples mix contexts (website,
+// patient, doctor, operations, admin) because these components are shared across all of them.
+$design_badge_examples = [
+  [
+    'title' => 'Outline Tones',
+    'note'  => 'Neutral for drafts, waiting or inactive. Info for in progress. Attention when someone needs to act. '
+      . 'Positive for done, approved or active. Negative for failed, expired or cancelled.',
+    'items' => [
+      ['label' => 'Draft', 'tone' => 'neutral'],
+      ['label' => 'In progress', 'tone' => 'info'],
+      ['label' => 'Due soon', 'tone' => 'attention'],
+      ['label' => 'Approved', 'tone' => 'positive'],
+      ['label' => 'Cancelled', 'tone' => 'negative'],
+    ],
+  ],
+  [
+    'title' => 'Solid Tones',
+    'note'  => 'Use solid badges sparingly, for counts and labels that must stand out in dense lists and tables.',
+    'items' => [
+      ['label' => 'New', 'tone' => 'neutral', 'variant' => 'solid'],
+      ['label' => 'Live', 'tone' => 'info', 'variant' => 'solid'],
+      ['label' => '3 overdue', 'tone' => 'attention', 'variant' => 'solid'],
+      ['label' => 'Paid', 'tone' => 'positive', 'variant' => 'solid'],
+      ['label' => 'Failed', 'tone' => 'negative', 'variant' => 'solid'],
+    ],
+  ],
+  [
+    'title' => 'Status With Icon',
+    'note'  => 'The same tone means the same thing on every screen: review queue, dispatch, stock and patient account.',
+    'items' => [
+      ['label' => 'Awaiting review', 'tone' => 'neutral', 'icon' => 'time-line'],
+      ['label' => 'Packing', 'tone' => 'info', 'icon' => 'box-3-line'],
+      ['label' => 'Low stock', 'tone' => 'attention', 'icon' => 'error-warning-line'],
+      ['label' => 'Prescription sent', 'tone' => 'positive', 'icon' => 'checkbox-circle-line'],
+      ['label' => 'Expired', 'tone' => 'negative', 'icon' => 'close-line'],
+    ],
+  ],
+];
+
+$design_facts_examples = [
+  [
+    'title' => 'Inline',
+    'note'  => 'Compact row under a heading or status block, such as a patient summary in the review queue.',
+    'data'  => [
+      'layout' => 'inline',
+      'items'  => [
+        ['label' => 'Patient ID', 'value' => 'P-20431'],
+        ['label' => 'Age', 'value' => '32'],
+        ['label' => 'Last review', 'value' => '20 Nov 2026'],
+      ],
+    ],
+  ],
+  [
+    'title' => 'Grid (3 Columns)',
+    'note'  => 'Card metadata, such as an order. One column on mobile, 2 or 3 columns from sm.',
+    'data'  => [
+      'layout'  => 'grid',
+      'columns' => 3,
+      'items'   => [
+        ['label' => 'Order', 'value' => 'RR-10531'],
+        ['label' => 'Courier', 'value' => 'J&T Express'],
+        ['label' => 'Tracking', 'value' => 'JT6012349876'],
+      ],
+    ],
+  ],
+  [
+    'title' => 'Rows',
+    'note'  => 'Asides and summaries, such as a product record. Label and value side by side.',
+    'data'  => [
+      'layout' => 'rows',
+      'class'  => 'max-w-sm',
+      'items'  => [
+        ['label' => 'SKU', 'value' => 'HC-TON-100'],
+        ['label' => 'Stock', 'value' => '42 units'],
+        ['label' => 'Category', 'value' => 'Scalp Care'],
+      ],
+    ],
+  ],
+];
+
+$design_timeline_examples = [
+  [
+    'title' => 'Default',
+    'note'  => 'Website sections. Vertical on mobile, one column per step from lg.',
+    'data'  => [
+      'items' => [
+        ['title' => 'Answer a few questions', 'text' => 'About your hair, scalp and health. It takes about 3 minutes.'],
+        ['title' => 'A doctor reviews them', 'text' => 'Usually within 24 hours. No clinic visit needed.'],
+        ['title' => 'Get your plan', 'text' => 'Treatment that suits you, delivered to your door.'],
+      ],
+    ],
+  ],
+  [
+    'title' => 'Default With Done Steps',
+    'note'  => 'Done steps show a filled check and are announced as done. Example: order fulfilment.',
+    'data'  => [
+      'items' => [
+        ['title' => 'Order placed', 'text' => '21 Nov, 9:12 am', 'done' => true],
+        ['title' => 'Packed', 'text' => '21 Nov, 2:40 pm', 'done' => true],
+        ['title' => 'Shipped', 'text' => 'Expected 22 Nov'],
+        ['title' => 'Delivered', 'text' => 'Expected 23 Nov'],
+      ],
+    ],
+  ],
+  [
+    'title' => 'Compact',
+    'note'  => 'Steps inside cards, panels and pages. Vertical at every width; titles stay smaller than the section '
+      . 'heading. Example: doctor review steps.',
+    'data'  => [
+      'size'  => 'compact',
+      'items' => [
+        ['title' => 'Read the answers', 'text' => 'Check history, photos and flagged answers.'],
+        ['title' => 'Write the plan', 'text' => 'Add products, dosage and notes for the patient.'],
+        ['title' => 'Send to patient', 'text' => 'The patient gets it by WhatsApp and email.'],
+      ],
+    ],
+  ],
+  [
+    'title' => 'Compact With Done Steps',
+    'note'  => 'Example: a patient’s check-in schedule.',
+    'data'  => [
+      'size'  => 'compact',
+      'label' => 'Check-in',
+      'items' => [
+        ['title' => 'Week 4', 'text' => '20 Dec 2026 · Reviewed', 'done' => true],
+        ['title' => 'Week 12', 'text' => '14 Feb 2027'],
+        ['title' => 'Week 24', 'text' => '8 May 2027'],
+      ],
+    ],
+  ],
+  [
+    'title' => 'Compact With Start',
+    'note'  => 'Use start to keep numbering when a list only shows the remaining steps. Example: store setup.',
+    'data'  => [
+      'size'  => 'compact',
+      'start' => 3,
+      'items' => [
+        ['title' => 'Add products', 'text' => 'At least one product with a price and stock.'],
+        ['title' => 'Publish the store', 'text' => 'Products become visible on the website.'],
+      ],
+    ],
+  ],
+];
+
+$design_alert_examples = [
+  [
+    'title' => 'Single Line',
+    'note'  => 'Title only. Use for short confirmations and notices that need no explanation.',
+    'items' => [
+      ['tone' => 'neutral', 'title' => 'No changes since the last review.'],
+      ['tone' => 'info', 'title' => 'Results update every 5 minutes.'],
+      ['tone' => 'attention', 'title' => '3 orders are waiting for dispatch.'],
+      ['tone' => 'positive', 'title' => 'Changes saved.'],
+      ['tone' => 'negative', 'title' => 'Payment failed. Ask the patient to try another card.'],
+    ],
+  ],
+  [
+    'title' => 'With Description',
+    'note'  => 'Add a description when the title needs a reason or a next step.',
+    'items' => [
+      [
+        'tone'  => 'info',
+        'title' => 'Scheduled maintenance tonight',
+        'text'  => 'The dashboard is read-only from 11:00 pm to 12:00 am.',
+      ],
+      [
+        'tone'  => 'negative',
+        'title' => 'Changes not saved',
+        'text'  => 'Check your connection and try saving again.',
+      ],
+    ],
+  ],
+  [
+    'title' => 'With Action',
+    'note'  => 'Add one action only when there is one clear next step.',
+    'items' => [
+      [
+        'tone'   => 'attention',
+        'title'  => '12 products are low on stock',
+        'text'   => 'Restock them before they sell out.',
+        'action' => ['label' => 'Review Stock', 'href' => '#design-alerts', 'size' => 'small', 'color' => 'secondary'],
+      ],
+      [
+        'tone'   => 'attention',
+        'title'  => 'Your supply runs out in 2 days',
+        'text'   => 'Order your refill now so you don’t miss a day.',
+        'action' => ['label' => 'Order Refill', 'href' => '#design-alerts', 'size' => 'small', 'color' => 'primary'],
+      ],
+    ],
+  ],
+];
+
+$design_progress_examples = [
+  [
+    'title' => 'Default',
+    'note'  => 'Example: a doctor’s review queue for the day.',
+    'data'  => ['label' => 'Reviews today', 'value' => 18, 'max' => 30, 'value_text' => '18 of 30 done'],
+  ],
+  [
+    'title' => 'Attention',
+    'note'  => 'Switch to Attention when someone needs to act soon. Example: stock running low.',
+    'data'  => [
+      'label'      => 'Hair Density Tonic stock',
+      'value'      => 4,
+      'max'        => 50,
+      'value_text' => '4 units left',
+      'tone'       => 'attention',
+    ],
+  ],
+  [
+    'title' => 'Patient Treatment',
+    'note'  => 'Example: days into a treatment supply on the patient account.',
+    'data'  => ['label' => 'Day 18 of 30', 'value' => 18, 'max' => 30, 'value_text' => '12 days of supply left'],
+  ],
+];
+
+$design_empty_states = [
+  [
+    'title' => 'No Results',
+    'note'  => 'Dashboard lists and searches. Say what is missing and how to widen the search.',
+    'data'  => [
+      'id'      => 'design-empty-results-title',
+      'title'   => 'No patients found',
+      'text'    => 'Try another name, ID or phone number.',
+      'icon'    => 'search-line',
+      'actions' => [
+        ['label' => 'Clear Filters', 'href' => '#design-empty-states', 'color' => 'secondary'],
+      ],
+    ],
+  ],
+  [
+    'title' => 'Nothing Yet, No Action',
+    'note'  => 'When the list fills by itself, explain when items appear.',
+    'data'  => [
+      'id'    => 'design-empty-queue-title',
+      'title' => 'No orders to dispatch',
+      'text'  => 'Paid orders appear here once payment clears.',
+      'icon'  => 'box-3-line',
+    ],
+  ],
+  [
+    'title' => 'First Use With Two Actions',
+    'note'  => 'Patient account. Offer two actions only when there are two real paths.',
+    'data'  => [
+      'id'      => 'design-empty-orders-title',
+      'title'   => 'No orders yet',
+      'text'    => 'Shop everyday hair and scalp care, or start an assessment to get a doctor-reviewed plan.',
+      'icon'    => 'shopping-bag-4-line',
+      'actions' => [
+        ['label' => 'Shop Products', 'href' => '#design-empty-states', 'size' => 'large', 'color' => 'primary',
+          'class' => 'w-full sm:w-auto'],
+        ['label' => 'Start Your Assessment', 'href' => '#design-empty-states', 'size' => 'large',
+          'color' => 'secondary', 'class' => 'w-full sm:w-auto'],
+      ],
+    ],
+  ],
+];
+
 ?>
 <div class="design-page font-sans text-zinc-600">
   <div class="design-container">
@@ -1973,20 +2231,70 @@ $input_group_text_examples = [
         <h2 id="design-badges-title" class="section-title text-title-md font-semibold color-strong">Badges</h2>
         <p class="section-description mt-3 text-sm leading-relaxed">
           Use badges for short category or status labels. Keep the wording brief and make the meaning clear
-          without relying on color.
+          without relying on color: the label always names the status, and an icon can support it. Outline is the
+          default; Solid is for counts and labels that must stand out.
         </p>
-        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/pages/design.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/badge.php</code></p>
       </header>
       <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
-        <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
-          <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Neutral Badge</h3>
-          <span class="badge inline-flex px-3 py-1 text-xs font-medium rounded-full border border-zinc-300 text-zinc-700">
-            Example
-          </span>
-          <p class="section-demo-note mt-6 text-sm color-default">
-            Only the neutral badge style is defined. Status badge styles are still to be defined.
-          </p>
-        </div>
+        <?php foreach ($design_badge_examples as $design_example): ?>
+          <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
+            <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">
+              <?= e($design_example['title']); ?>
+            </h3>
+            <div class="section-demo-row flex flex-wrap gap-3">
+              <?php foreach ($design_example['items'] as $design_badge): ?>
+                <?php component('badge', $design_badge); ?>
+              <?php endforeach; ?>
+            </div>
+            <p class="section-demo-note mt-6 text-sm color-default"><?= e($design_example['note']); ?></p>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </section>
+
+    <section id="design-facts" aria-labelledby="design-facts-title" class="section border-t border-zinc-200">
+      <header class="section-header">
+        <h2 id="design-facts-title" class="section-title text-title-md font-semibold color-strong">Description List</h2>
+        <p class="section-description mt-3 text-sm leading-relaxed">
+          Use a description list for label–value pairs such as order numbers, dates and names. Pick one layout per
+          context and keep labels short. Empty values are skipped.
+        </p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/facts.php</code></p>
+      </header>
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
+        <?php foreach ($design_facts_examples as $design_example): ?>
+          <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
+            <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">
+              <?= e($design_example['title']); ?>
+            </h3>
+            <?php component('facts', $design_example['data']); ?>
+            <p class="section-demo-note mt-6 text-sm color-default"><?= e($design_example['note']); ?></p>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </section>
+
+    <section id="design-timeline" aria-labelledby="design-timeline-title" class="section border-t border-zinc-200">
+      <header class="section-header">
+        <h2 id="design-timeline-title" class="section-title text-title-md font-semibold color-strong">Timeline</h2>
+        <p class="section-description mt-3 text-sm leading-relaxed">
+          Use a timeline for numbered steps in order, such as how a service works, order fulfilment, review steps
+          or a schedule. Default suits website sections and wide layouts; Compact suits cards, panels and dashboard
+          pages, where titles must stay smaller than the section heading. Steps are joined by a dashed line.
+        </p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/timeline.php</code></p>
+      </header>
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
+        <?php foreach ($design_timeline_examples as $design_example): ?>
+          <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
+            <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">
+              <?= e($design_example['title']); ?>
+            </h3>
+            <?php component('timeline', $design_example['data']); ?>
+            <p class="section-demo-note mt-6 text-sm color-default"><?= e($design_example['note']); ?></p>
+          </div>
+        <?php endforeach; ?>
       </div>
     </section>
 
@@ -2124,41 +2432,25 @@ $input_group_text_examples = [
         <h2 id="design-alerts-title" class="section-title text-title-md font-semibold color-strong">Alerts</h2>
         <p class="section-description mt-3 text-sm leading-relaxed">
           Use alerts for important information, confirmations, and errors. Pair a clear heading with a short
-          message and explain the next step when something fails.
+          message and explain the next step when something fails. Use a single line when the title says it all.
+          Use role="status" or role="alert" only for alerts that appear after a user action.
         </p>
-        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/pages/design.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/alert.php</code></p>
       </header>
       <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
-        <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
-          <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Information</h3>
-          <div class="alert flex items-start gap-3 p-5 rounded-md border border-zinc-200 bg-white">
-            <?php svg('notification-3-line', 'alert-icon size-5 shrink-0 color-primary'); ?>
-            <div class="alert-content min-w-0">
-              <h4 class="alert-title text-sm font-medium color-primary">Before You Continue</h4>
-              <p class="alert-description mt-2 text-sm leading-relaxed color-default">Review the details before saving your changes.</p>
+        <?php foreach ($design_alert_examples as $design_example): ?>
+          <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
+            <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">
+              <?= e($design_example['title']); ?>
+            </h3>
+            <div class="section-demo-stack grid gap-3">
+              <?php foreach ($design_example['items'] as $design_alert): ?>
+                <?php component('alert', $design_alert); ?>
+              <?php endforeach; ?>
             </div>
+            <p class="section-demo-note mt-6 text-sm color-default"><?= e($design_example['note']); ?></p>
           </div>
-        </div>
-        <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
-          <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Success</h3>
-          <div class="alert flex items-start gap-3 p-5 rounded-md border border-zinc-200 bg-white">
-            <?php svg('check-line', 'alert-icon size-5 shrink-0 color-positive'); ?>
-            <div class="alert-content min-w-0">
-              <h4 class="alert-title text-sm font-medium color-positive">Changes Saved</h4>
-              <p class="alert-description mt-2 text-sm leading-relaxed color-default">Your updated details are ready to use.</p>
-            </div>
-          </div>
-        </div>
-        <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
-          <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Error</h3>
-          <div class="alert flex items-start gap-3 p-5 rounded-md border border-zinc-200 bg-white">
-            <?php svg('close-line', 'alert-icon size-5 shrink-0 color-negative'); ?>
-            <div class="alert-content min-w-0">
-              <h4 class="alert-title text-sm font-medium color-negative">Changes Not Saved</h4>
-              <p class="alert-description mt-2 text-sm leading-relaxed color-default">Check your connection and try saving again.</p>
-            </div>
-          </div>
-        </div>
+        <?php endforeach; ?>
       </div>
     </section>
 
@@ -2195,6 +2487,50 @@ $input_group_text_examples = [
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Loading Button</h3>
           <?php component('button', $design_loading_button); ?>
         </div>
+      </div>
+    </section>
+
+    <section id="design-progress" aria-labelledby="design-progress-title" class="section border-t border-zinc-200">
+      <header class="section-header">
+        <h2 id="design-progress-title" class="section-title text-title-md font-semibold color-strong">Progress</h2>
+        <p class="section-description mt-3 text-sm leading-relaxed">
+          Use a progress bar to show how far along something is, such as a review queue, stock level, setup or
+          treatment days. Keep the value in text beside the bar. Switch to Attention when someone needs to act soon.
+        </p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/progress.php</code></p>
+      </header>
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
+        <?php foreach ($design_progress_examples as $design_example): ?>
+          <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
+            <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">
+              <?= e($design_example['title']); ?>
+            </h3>
+            <?php component('progress', $design_example['data']); ?>
+            <p class="section-demo-note mt-6 text-sm color-default"><?= e($design_example['note']); ?></p>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </section>
+
+    <section id="design-empty-states" aria-labelledby="design-empty-states-title" class="section border-t border-zinc-200">
+      <header class="section-header">
+        <h2 id="design-empty-states-title" class="section-title text-title-md font-semibold color-strong">Empty States</h2>
+        <p class="section-description mt-3 text-sm leading-relaxed">
+          Use an empty state when a list or page has nothing to show yet. Say why it is empty and offer one clear
+          next step, or two when there are two real paths.
+        </p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/empty-state.php</code></p>
+      </header>
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
+        <?php foreach ($design_empty_states as $design_example): ?>
+          <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
+            <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">
+              <?= e($design_example['title']); ?>
+            </h3>
+            <?php component('empty-state', $design_example['data']); ?>
+            <p class="section-demo-note mt-6 text-sm color-default"><?= e($design_example['note']); ?></p>
+          </div>
+        <?php endforeach; ?>
       </div>
     </section>
 

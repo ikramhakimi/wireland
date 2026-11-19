@@ -36,6 +36,15 @@ $empty_start_button = [
   'color' => 'primary',
   'class' => 'account-assessments-start w-full sm:w-auto',
 ];
+$empty_state = [
+  'id'      => 'account-empty-title',
+  'title'   => 'You haven’t done an assessment yet',
+  'text'    => 'Answer a few questions about your hair. A doctor reviews them and recommends a plan, usually '
+    . 'within 24 hours.',
+  'icon'    => 'question-line',
+  'actions' => [$empty_start_button],
+  'class'   => 'account-empty mt-8',
+];
 $plan_button = [
   'label' => 'View Plan',
   'href'  => asset_url('account/prescriptions') . preview_query('patient'),
@@ -54,7 +63,7 @@ $account_layout = [
     $assessments,
     $statuses,
     $new_assessment_button,
-    $empty_start_button,
+    $empty_state,
     $plan_button,
     $reply_href,
     $quiz_questions,
@@ -76,19 +85,7 @@ $account_layout = [
       </header>
 
       <?php if ($assessments === []): ?>
-        <section class="account-empty mt-8 rounded-xl border border-zinc-200 bg-white px-5 py-10 text-center
-          sm:px-10" aria-labelledby="account-empty-title">
-          <h2 id="account-empty-title" class="account-empty-title text-title-sm font-semibold color-strong">
-            You haven’t done an assessment yet
-          </h2>
-          <p class="account-empty-description max-w-md mx-auto mt-2 text-sm text-pretty color-default">
-            Answer a few questions about your hair. A doctor reviews them and recommends a plan, usually
-            within 24 hours.
-          </p>
-          <div class="account-empty-action mt-6">
-            <?php component('button', $empty_start_button); ?>
-          </div>
-        </section>
+        <?php component('empty-state', $empty_state); ?>
       <?php else: ?>
         <ul class="account-assessments-list grid gap-4 mt-8" role="list">
           <?php foreach ($assessments as $assessment): ?>

@@ -10,9 +10,12 @@
  *   pending    doctor reviewing → next steps; products while waiting; answers.
  *   needs_info doctor asked a question → thread + chat composer (reply saved by account-reply.js); answers.
  *   plan_ready plan ready → doctor notes + plan products + order; answers.
+ *   ordered    plan on its way → delivery progress + track; answers.
+ *   received   plan delivered → what's next + pick a start date (mockup: submits to on_treatment); answers.
  *   on_treatment plan ordered → supply progress + check-in dates; answers.
  *   checkin_due  check-in due → check-in steps + start check-in (account/checkin); answers.
  *   checkin_review check-in sent → what happens next; answers.
+ *   plan_updated   check-in reviewed → doctor's note + changes + next check-ins + refill; answers.
  * Data: includes/account-data.php (sample patient; ?state= previews a mode),
  *       includes/assessment-quiz-data.php (questions, products). assets/js/assessment-quiz.js fills
  *       answers and picks products from localStorage.
@@ -29,7 +32,8 @@ $quiz_products = array_column(require __DIR__ . '/../../includes/dashboard-produ
 $review_time   = $account['assessment']['review_time'];
 $current       = $account['assessments'][0] ?? null;
 $treatment     = $account['treatment'];
-$mode          = $current === null ? 'new' : ($treatment['status'] ?? $current['status']);
+$plan_order    = $account['plan_order'];
+$mode          = $current === null ? 'new' : ($treatment['status'] ?? $plan_order['status'] ?? $current['status']);
 $first_name    = $account['patient']['first_name'];
 
 $whatsapp_href = static fn (string $text): string => 'https://wa.me/601116741858?text=' . rawurlencode($text);
@@ -39,10 +43,13 @@ $mode_titles = [
   'pending'        => 'Hi ' . $first_name . ', your assessment is with our doctor',
   'needs_info'     => 'Hi ' . $first_name . ', our doctor has a question for you',
   'plan_ready'     => 'Hi ' . $first_name . ', your plan is ready',
+  'ordered'        => 'Hi ' . $first_name . ', your plan is on its way',
+  'received'       => 'Hi ' . $first_name . ', your plan has arrived',
   'replied'        => 'Hi ' . $first_name . ', thanks for your reply',
   'on_treatment'   => 'Hi ' . $first_name . ', your treatment is underway',
   'checkin_due'    => 'Hi ' . $first_name . ', it’s time for your check-in',
   'checkin_review' => 'Hi ' . $first_name . ', thanks for your check-in',
+  'plan_updated'   => 'Hi ' . $first_name . ', your doctor has replied',
 ];
 $start_steps = [
   [
@@ -86,6 +93,21 @@ $products_headings = [
     'text'  => 'Everyday care based on your answers. Your doctor will confirm what suits you.',
   ],
 ];
+// Received: what to expect in the first weeks.
+$received_steps = [
+  [
+    'title' => 'Use it as directed',
+    'text'  => 'Follow the directions in your prescription. A daily reminder helps you keep it steady.',
+  ],
+  [
+    'title' => 'Expect some shedding early',
+    'text'  => 'Extra shedding in the first weeks is common and usually settles. Keep going.',
+  ],
+  [
+    'title' => 'Check in after 4 weeks',
+    'text'  => 'We count from your start date and remind you when it’s time.',
+  ],
+];
 $plan_items = array_values(array_filter(array_map(
   static fn (string $id): ?array => $quiz_products[$id] ?? null,
   $current['plan']['product_ids'] ?? [],
@@ -105,6 +127,39 @@ $order_button = [
   'color' => 'primary',
   'class' => 'account-order w-full sm:w-auto',
 ];
+$track_button = [
+  'label' => 'Track Delivery',
+  'href'  => asset_url('account/orders') . preview_query('patient'),
+  'size'  => 'large',
+  'color' => 'primary',
+  'class' => 'account-track w-full sm:w-auto',
+];
+// Received: submits the start-date form. Mockup: the form moves the preview to on_treatment.
+$start_treatment_button = [
+  'label'   => 'Start My Treatment',
+  'element' => 'button',
+  'type'    => 'submit',
+  'form'    => 'account-start-form',
+  'size'    => 'large',
+  'color'   => 'primary',
+  'class'   => 'account-start-treatment w-full sm:w-auto',
+];
+$refill_button = [
+  'label' => 'Order Your Refill',
+  'href'  => asset_url('account/prescriptions') . preview_query('patient'),
+  'size'  => 'large',
+  'color' => 'primary',
+  'class' => 'account-refill w-full sm:w-auto',
+];
+$order_whatsapp_button = [
+  'label'         => $mode === 'received' ? 'Report a Problem with My Order' : 'Ask About My Order',
+  'href'          => $whatsapp_href('Hi RR HairClinic, I have a question about my order ' . ($plan_order['id'] ?? '') . '.'),
+  'size'          => 'large',
+  'color'         => 'secondary',
+  'icon'          => 'whatsapp-line',
+  'icon_position' => 'start',
+  'class'         => 'account-order-chat w-full sm:w-auto',
+];
 $whatsapp_button = [
   'label'         => 'Ask Our Team on WhatsApp',
   'href'          => $whatsapp_href('Hi RR HairClinic, I have a question about my hair assessment.'),
@@ -115,11 +170,20 @@ $whatsapp_button = [
   'class'         => 'account-chat w-full sm:w-auto',
 ];
 // Aside facts per mode: label => value.
-$next_checkin = $treatment['checkins'][0] ?? null;
-$aside_facts  = $treatment !== null
+$next_checkin = $treatment['checkins'][$treatment['checkin_index'] ?? 0] ?? null;
+$supply_left  = ($treatment['supply_total'] ?? 0) - ($treatment['supply_day'] ?? 0);
+$aside_facts  = $plan_order !== null
+  ? array_filter([
+    'Order'     => $plan_order['id'],
+    'Courier'   => $plan_order['courier'],
+    'Tracking'  => $plan_order['tracking'],
+    'Arriving'  => $mode === 'ordered' ? $plan_order['arriving_on'] : '',
+    'Delivered' => $mode === 'received' ? $plan_order['arriving_on'] : '',
+  ])
+  : ($treatment !== null
   ? array_filter([
     'Started'       => $treatment['started_on'],
-    'Supply'        => ($treatment['supply_total'] - $treatment['supply_day']) . ' days left',
+    'Supply'        => $supply_left . ($supply_left === 1 ? ' day left' : ' days left'),
     'Next check-in' => $treatment['checkin_sent'] !== '' ? '' : $next_checkin['date'],
     'Check-in sent' => $treatment['checkin_sent'],
     'Doctor'        => $current['doctor'],
@@ -136,7 +200,7 @@ $aside_facts  = $treatment !== null
     'Reply expected' => $mode === 'pending' ? 'Within ' . $review_time : '',
     'Doctor'         => in_array($mode, ['needs_info', 'plan_ready'], true) ? $current['doctor'] : '',
     'Question sent'  => $mode === 'needs_info' ? $current['asked_at'] : '',
-  ]));
+  ])));
 $short_date     = static fn (string $date): string => preg_replace('/\s\d{4}$/', '', $date);
 $plan_issued_on = ($current['status'] ?? '') === 'plan_ready' ? $short_date($account['prescriptions'][0]['issued_on'] ?? '') : '';
 // Status tracker: one stage per step of the first care plan; notes date done stages and describe the active one.
@@ -153,16 +217,21 @@ $tracker = [
         'pending'        => 'Within ' . $review_time,
         'needs_info'     => 'Action needed',
         'plan_ready'     => 'Done ' . $plan_issued_on,
+        'ordered'        => 'Done ' . $plan_issued_on,
+        'received'       => 'Done ' . $plan_issued_on,
         'on_treatment'   => 'Done ' . $plan_issued_on,
         'checkin_due'    => 'Done ' . $plan_issued_on,
         'checkin_review' => 'Done ' . $plan_issued_on,
+        'plan_updated'   => 'Done ' . $plan_issued_on,
       ][$mode],
     ],
     [
       'label' => 'Your plan',
-      'note'  => $treatment !== null
-        ? 'Ordered ' . $short_date($treatment['ordered_on'])
-        : ($mode === 'plan_ready' ? 'Ready ' . $plan_issued_on : ''),
+      'note'  => [
+        'plan_ready' => 'Ready ' . $plan_issued_on,
+        'ordered'    => 'Ordered ' . $short_date($plan_order['placed_on'] ?? ''),
+        'received'   => 'Delivered ' . $short_date($plan_order['arriving_on'] ?? ''),
+      ][$mode] ?? ($treatment !== null ? 'Ordered ' . $short_date($treatment['ordered_on']) : ''),
     ],
     [
       'label' => 'Treatment',
@@ -170,6 +239,7 @@ $tracker = [
         'on_treatment'   => 'Day ' . ($treatment['supply_day'] ?? 0) . ' of ' . ($treatment['supply_total'] ?? 0),
         'checkin_due'    => 'Check-in due',
         'checkin_review' => 'Check-in sent',
+        'plan_updated'   => ($treatment['review']['title'] ?? '') . ' reviewed',
       ][$mode] ?? '',
     ],
   ],
@@ -178,14 +248,20 @@ $tracker = [
     'pending'        => 1,
     'needs_info'     => 1,
     'plan_ready'     => 2,
+    'ordered'        => 2,
+    'received'       => 2,
     'on_treatment'   => 3,
     'checkin_due'    => 3,
     'checkin_review' => 3,
+    'plan_updated'   => 3,
   ][$mode],
   'icon'       => [
+    'ordered'        => 'box-3-line',
+    'received'       => 'checkbox-circle-line',
     'on_treatment'   => 'progress-4-line',
     'checkin_due'    => 'calendar-line',
     'checkin_review' => 'time-line',
+    'plan_updated'   => 'progress-4-line',
   ][$mode] ?? $account['statuses'][$mode]['icon'] ?? 'progress-2-line',
   'attention'  => in_array($mode, ['needs_info', 'checkin_due'], true),
   'reply_for'  => $mode === 'needs_info' ? $current['id'] : '',
@@ -211,6 +287,15 @@ $status_sections = [
     'title' => 'Your plan',
     'text'  => $current['plan']['note'] ?? '',
   ],
+  'ordered'        => [
+    'title' => 'Your delivery',
+    'text'  => 'Arriving ' . ($plan_order['arriving_on'] ?? '') . ' by ' . ($plan_order['courier'] ?? '')
+      . '. Once it arrives, you’ll pick the day you start.',
+  ],
+  'received'       => [
+    'title' => 'Before you start',
+    'text'  => 'Tell us when you start. We use this date to time your check-ins and refills.',
+  ],
   'on_treatment'   => [
     'title' => 'Your treatment',
     'text'  => 'Keep using your plan as directed. Results usually take 3 to 6 months, so steady use matters '
@@ -224,6 +309,10 @@ $status_sections = [
     'title' => 'Your ' . strtolower($next_checkin['title'] ?? '') . ' check-in is with your doctor',
     'text'  => 'You don’t need to do anything right now. Keep using your plan as usual while '
       . ($current['doctor'] ?? '') . ' reviews it.',
+  ],
+  'plan_updated'   => [
+    'title' => 'Your ' . strtolower($treatment['review']['title'] ?? '') . ' check-in result',
+    'text'  => $treatment['review']['note'] ?? '',
   ],
 ];
 $checkin_steps = [
@@ -248,10 +337,71 @@ $checkin_next_steps = [
     'text'  => ($treatment['checkins'][1]['title'] ?? '') . ', around ' . ($treatment['checkins'][1]['date'] ?? '') . '.',
   ],
 ];
+// Check-ins before checkin_index are reviewed, so they show as done.
 $checkin_dates = array_map(
-  static fn (array $checkin): array => ['title' => $checkin['title'], 'text' => $checkin['date']],
+  static fn (array $checkin, int $index): array => [
+    'title' => $checkin['title'],
+    'text'  => $checkin['date'],
+    'done'  => $index < ($treatment['checkin_index'] ?? 0),
+  ],
   $treatment['checkins'] ?? [],
+  array_keys($treatment['checkins'] ?? []),
 );
+// Ordered: delivery progress as a compact timeline; steps with a date are done.
+$delivery_steps = array_map(
+  static fn (array $step): array => [
+    'title' => $step['title'],
+    'text'  => $step['date'] !== '' ? $step['date'] : 'Expected ' . ($plan_order['arriving_on'] ?? ''),
+    'done'  => $step['date'] !== '',
+  ],
+  $plan_order['steps'] ?? [],
+);
+$status_facts = array_map(
+  static fn (string $label, string $value): array => ['label' => $label, 'value' => $value],
+  array_keys($aside_facts),
+  array_values($aside_facts),
+);
+// Supply: warn once a week or less is left. Plan updated carries its own refill note and button.
+$supply_low   = $treatment !== null && $supply_left <= 7;
+$supply_alert = $supply_low && $mode !== 'plan_updated'
+  ? [
+    'tone'   => 'attention',
+    'title'  => 'Your supply runs out in ' . $supply_left . ($supply_left === 1 ? ' day' : ' days'),
+    'text'   => 'Order your refill now so you don’t miss a day.',
+    'action' => [
+      'label' => 'Order Your Refill',
+      'href'  => asset_url('account/prescriptions') . preview_query('patient'),
+      'size'  => 'small',
+      'color' => 'secondary',
+    ],
+    'class'  => 'account-supply-alert',
+  ]
+  : [];
+$supply_progress = $treatment !== null
+  ? [
+    'label'      => 'Day ' . $treatment['supply_day'] . ' of ' . $treatment['supply_total'],
+    'value'      => $treatment['supply_day'],
+    'max'        => $treatment['supply_total'],
+    'value_text' => $supply_left . ($supply_left === 1 ? ' day' : ' days') . ' of supply left',
+    'tone'       => $supply_low ? 'attention' : 'default',
+    'class'      => 'account-supply',
+  ]
+  : [];
+$plan_changes_alert = [
+  'tone'  => 'neutral',
+  'icon'  => 'shield-check-line',
+  'title' => $treatment['review']['changes'] ?? '',
+  'text'  => 'Your supply is nearly finished, so order your refill to keep going.',
+  'class' => 'account-plan-changes',
+];
+$start_field = [
+  'id'      => 'account-start-date',
+  'label'   => 'When do you start?',
+  'type'    => 'select',
+  'name'    => 'started_on',
+  'helper'  => 'Already started? Pick the day you began.',
+  'options' => $plan_order['start_options'] ?? [],
+];
 $checkin_button = [
   'label' => 'Start Check-in',
   'href'  => asset_url('account/checkin'),
@@ -290,11 +440,20 @@ $account_layout = [
     $plan_items,
     $start_button,
     $order_button,
-    $aside_facts,
+    $received_steps,
+    $track_button,
+    $start_treatment_button,
+    $refill_button,
+    $order_whatsapp_button,
+    $delivery_steps,
+    $status_facts,
+    $supply_alert,
+    $supply_progress,
+    $plan_changes_alert,
+    $start_field,
     $tracker,
     $status_sections,
     $plan_total,
-    $treatment,
     $next_checkin,
     $checkin_steps,
     $checkin_next_steps,
@@ -328,25 +487,28 @@ $account_layout = [
         </h1>
       </header>
 
-      <div class="account-layout grid gap-10 mt-8">
+      <div class="account-layout grid gap-10 mt-10">
         <section class="account-status grid gap-6" aria-labelledby="account-status-title">
           <?php component('account/status-tracker', $tracker); ?>
 
-          <div class="account-status-body grid gap-5">
+          <div class="account-status-body grid gap-10">
             <div class="account-status-header">
               <?php if ($mode === 'checkin_due'): ?>
-                <p class="account-status-alert inline-flex items-center gap-1.5 mb-3 px-2 py-0.5 rounded-md bg-amber-50
-                  text-xs font-medium text-amber-800 ring-1 ring-amber-200">
-                  <?php svg('error-warning-line', 'size-3.5 shrink-0'); ?>
-                  Due <?= e($next_checkin['date']); ?>
+                <p class="account-status-alert mb-3">
+                  <?php component('badge', [
+                    'label' => 'Due ' . $next_checkin['date'],
+                    'tone'  => 'attention',
+                    'icon'  => 'error-warning-line',
+                  ]); ?>
                 </p>
               <?php endif; ?>
               <?php if ($mode === 'needs_info'): ?>
-                <p class="account-status-alert inline-flex items-center gap-1.5 mb-3 px-2 py-0.5 rounded-md bg-amber-50
-                  text-xs font-medium text-amber-800 ring-1 ring-amber-200"
-                  data-reply-for="<?= e($reply_id); ?>" data-reply-show="open">
-                  <?php svg('error-warning-line', 'size-3.5 shrink-0'); ?>
-                  Your reply is needed
+                <p class="account-status-alert mb-3" data-reply-for="<?= e($reply_id); ?>" data-reply-show="open">
+                  <?php component('badge', [
+                    'label' => 'Your reply is needed',
+                    'tone'  => 'attention',
+                    'icon'  => 'error-warning-line',
+                  ]); ?>
                 </p>
               <?php endif; ?>
               <h2 id="account-status-title" class="account-status-title text-title-sm font-semibold text-pretty
@@ -361,15 +523,19 @@ $account_layout = [
                   <?= e($section['text']); ?>
                 </p>
               <?php endif; ?>
-              <?php if ($mode === 'plan_ready'): ?>
+              <?php if (in_array($mode, ['plan_ready', 'plan_updated'], true)): ?>
                 <p class="account-status-author mt-1 text-sm color-muted">— <?= e($current['doctor']); ?></p>
               <?php endif; ?>
             </div>
 
+            <?php if ($supply_alert !== []): ?>
+              <?php component('alert', $supply_alert); ?>
+            <?php endif; ?>
+
             <?php if ($mode === 'new'): ?>
-              <?php component('timeline', ['items' => $start_steps, 'class' => 'account-steps']); ?>
+              <?php component('timeline', ['items' => $start_steps, 'size' => 'compact', 'class' => 'account-steps']); ?>
             <?php elseif ($mode === 'pending'): ?>
-              <?php component('timeline', ['items' => $review_steps, 'class' => 'account-steps']); ?>
+              <?php component('timeline', ['items' => $review_steps, 'size' => 'compact', 'class' => 'account-steps']); ?>
             <?php elseif ($mode === 'needs_info'): ?>
               <?php component('account/doctor-thread', [
                 'assessment_id' => $reply_id,
@@ -379,23 +545,7 @@ $account_layout = [
                 'review_time'   => $review_time,
               ]); ?>
             <?php elseif ($mode === 'on_treatment'): ?>
-              <?php $supply_percent = (int) round($treatment['supply_day'] / $treatment['supply_total'] * 100); ?>
-              <div class="account-supply">
-                <p class="account-supply-label flex justify-between gap-4 text-sm">
-                  <span class="font-medium color-strong">
-                    Day <?= e($treatment['supply_day']); ?> of <?= e($treatment['supply_total']); ?>
-                  </span>
-                  <span class="color-muted">
-                    <?= e($treatment['supply_total'] - $treatment['supply_day']); ?> days of supply left
-                  </span>
-                </p>
-                <span class="account-supply-bar relative block h-1.5 mt-2 rounded-full overflow-hidden bg-zinc-200"
-                  role="progressbar" aria-label="Treatment progress" aria-valuemin="0"
-                  aria-valuemax="<?= e($treatment['supply_total']); ?>" aria-valuenow="<?= e($treatment['supply_day']); ?>">
-                  <span class="absolute inset-y-0 left-0 rounded-full bg-zinc-900"
-                    style="width: <?= $supply_percent; ?>%"></span>
-                </span>
-              </div>
+              <?php component('progress', $supply_progress); ?>
               <div class="account-checkins">
                 <h3 class="account-checkins-title text-sm font-semibold color-strong">Your check-ins</h3>
                 <p class="account-checkins-text mt-1 text-sm text-pretty color-muted">
@@ -403,14 +553,47 @@ $account_layout = [
                 </p>
                 <?php component('timeline', [
                   'items' => $checkin_dates,
+                  'size'  => 'compact',
                   'label' => 'Check-in',
                   'class' => 'account-checkins-list mt-5',
                 ]); ?>
               </div>
             <?php elseif ($mode === 'checkin_due'): ?>
-              <?php component('timeline', ['items' => $checkin_steps, 'class' => 'account-steps']); ?>
+              <?php component('timeline', ['items' => $checkin_steps, 'size' => 'compact', 'class' => 'account-steps']); ?>
             <?php elseif ($mode === 'checkin_review'): ?>
-              <?php component('timeline', ['items' => $checkin_next_steps, 'class' => 'account-steps']); ?>
+              <?php component('timeline', [
+                'items' => $checkin_next_steps,
+                'size'  => 'compact',
+                'class' => 'account-steps',
+              ]); ?>
+            <?php elseif ($mode === 'ordered'): ?>
+              <?php component('timeline', [
+                'items' => $delivery_steps,
+                'size'  => 'compact',
+                'label' => 'Delivery step',
+                'class' => 'account-delivery',
+              ]); ?>
+            <?php elseif ($mode === 'received'): ?>
+              <?php component('timeline', ['items' => $received_steps, 'size' => 'compact', 'class' => 'account-steps']); ?>
+              <form id="account-start-form" class="account-start-form max-w-sm" method="get"
+                action="<?= e(asset_url('account')); ?>">
+                <input type="hidden" name="state" value="on_treatment">
+                <?php component('forms/field', $start_field); ?>
+              </form>
+            <?php elseif ($mode === 'plan_updated'): ?>
+              <?php component('alert', $plan_changes_alert); ?>
+              <div class="account-checkins">
+                <h3 class="account-checkins-title text-sm font-semibold color-strong">Your check-ins</h3>
+                <p class="account-checkins-text mt-1 text-sm text-pretty color-muted">
+                  Your doctor checks your progress and adjusts your plan if needed.
+                </p>
+                <?php component('timeline', [
+                  'items' => $checkin_dates,
+                  'size'  => 'compact',
+                  'label' => 'Check-in',
+                  'class' => 'account-checkins-list mt-5',
+                ]); ?>
+              </div>
             <?php elseif ($mode === 'plan_ready'): ?>
               <ul class="account-plan-list grid divide-y divide-dashed divide-zinc-200" role="list">
                 <?php foreach ($plan_items as $plan_item): ?>
@@ -437,21 +620,26 @@ $account_layout = [
               <?php elseif ($mode === 'checkin_due'): ?>
                 <?php component('button', $checkin_button); ?>
                 <?php component('button', $whatsapp_button); ?>
+              <?php elseif ($mode === 'ordered'): ?>
+                <?php component('button', $track_button); ?>
+                <?php component('button', $order_whatsapp_button); ?>
+              <?php elseif ($mode === 'received'): ?>
+                <?php component('button', $start_treatment_button); ?>
+                <?php component('button', $order_whatsapp_button); ?>
+              <?php elseif ($mode === 'plan_updated'): ?>
+                <?php component('button', $refill_button); ?>
+                <?php component('button', $whatsapp_button); ?>
               <?php else: ?>
                 <?php component('button', $whatsapp_button); ?>
               <?php endif; ?>
             </div>
           </div>
 
-          <dl class="account-status-facts flex flex-wrap gap-x-6 gap-y-1 pt-4 border-t border-dashed border-zinc-300
-            text-xs">
-            <?php foreach ($aside_facts as $fact_label => $fact_value): ?>
-              <div class="account-status-fact flex gap-1">
-                <dt class="color-muted"><?= e($fact_label); ?>:</dt>
-                <dd class="font-medium color-strong"><?= e($fact_value); ?></dd>
-              </div>
-            <?php endforeach; ?>
-          </dl>
+          <?php component('facts', [
+            'items'  => $status_facts,
+            'layout' => 'inline',
+            'class'  => 'account-status-facts pt-4 border-t border-dashed border-zinc-300',
+          ]); ?>
         </section>
 
           <?php if (isset($products_headings[$mode])): ?>

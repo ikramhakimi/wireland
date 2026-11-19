@@ -4,16 +4,18 @@
  * Data: Patient account (prototype)
  * Purpose: Sample signed-in patient, assessments, prescriptions, orders and account navigation for /account pages.
  * Preview: the 'patient' group in includes/preview-states.php
- *          (?state=new|pending|needs_info|plan_ready|on_treatment|checkin_due|checkin_review) switches the current
- *          assessment and what follows from it. The last three follow an ordered plan: the assessment stays
- *          plan_ready and 'treatment' holds the follow-up (supply and check-ins).
+ *          (?state=new|pending|needs_info|plan_ready|ordered|received|on_treatment|checkin_due|checkin_review|
+ *          plan_updated) switches the current assessment and what follows from it. From 'ordered' on the
+ *          assessment stays plan_ready: 'plan_order' holds the delivery (ordered, received) and 'treatment'
+ *          holds the follow-up (supply and check-ins).
  */
 
 $doctors        = require __DIR__ . '/doctors-data.php';
 $preview_state  = preview_state('patient');
 $is_new_patient = $preview_state === 'new';
-$is_treating    = in_array($preview_state, ['on_treatment', 'checkin_due', 'checkin_review'], true);
-$is_plan_ready  = $preview_state === 'plan_ready' || $is_treating;
+$is_treating    = in_array($preview_state, ['on_treatment', 'checkin_due', 'checkin_review', 'plan_updated'], true);
+$is_ordered     = in_array($preview_state, ['ordered', 'received'], true);
+$is_plan_ready  = $preview_state === 'plan_ready' || $is_ordered || $is_treating;
 $state_query    = preview_query('patient');
 $current_doctor = $doctors['rujhan']['name'];
 $past_doctor    = $doctors['safwan']['name'];
@@ -29,12 +31,12 @@ $current_prescription = [
   'issued_on'     => '20 Nov 2026',
   'valid_until'   => '20 May 2027',
   // Active once the plan has been ordered (one refill used).
-  'status'        => $is_treating ? 'active' : 'ready',
+  'status'        => $is_ordered || $is_treating ? 'active' : 'ready',
   'items'         => [
     [
       'product_id' => 'PRD-006',
       'dosage'     => '1 ml on a dry scalp, twice a day.',
-      'supply'     => '30 days per bottle · ' . ($is_treating ? '4' : '5') . ' refills left',
+      'supply'     => '30 days per bottle · ' . ($is_ordered || $is_treating ? '4' : '5') . ' refills left',
     ],
   ],
 ];
@@ -152,30 +154,64 @@ return [
     $is_plan_ready ? $current_prescription : null,
     $past_prescription,
   ])),
-  // Follow-up after the plan is ordered (null until then). status: on_treatment | checkin_due | checkin_review.
+  // Plan order on its way or delivered, before treatment starts (null otherwise). status: ordered | received.
+  // 'steps' is the delivery progress; done steps carry a date.
+  'plan_order' => $is_ordered ? [
+    'status'      => $preview_state,
+    'id'          => 'RR-10531',
+    'placed_on'   => '21 Nov 2026',
+    'courier'     => 'J&T Express',
+    'tracking'    => 'JT6012349876',
+    'arriving_on' => '22 Nov 2026',
+    'steps'       => [
+      ['title' => 'Order placed', 'date' => '21 Nov'],
+      ['title' => 'Packed', 'date' => '21 Nov'],
+      ['title' => 'On the way', 'date' => '21 Nov'],
+      ['title' => 'Delivered', 'date' => $preview_state === 'received' ? '22 Nov' : ''],
+    ],
+    // Start date choices once delivered (value, label). Today first; then back to the delivery day.
+    'start_options' => [
+      ['value' => '2026-11-24', 'label' => 'Today, 24 Nov'],
+      ['value' => '2026-11-23', 'label' => 'Yesterday, 23 Nov'],
+      ['value' => '2026-11-22', 'label' => '22 Nov, the day it arrived'],
+    ],
+  ] : null,
+  // Follow-up after the plan is ordered (null until then).
+  // status: on_treatment | checkin_due | checkin_review | plan_updated.
+  // checkin_index points at the next check-in; 'review' is the doctor's outcome of the last one.
   'treatment' => $is_treating ? [
-    'status'       => $preview_state,
-    'order_id'     => 'RR-10531',
-    'ordered_on'   => '21 Nov 2026',
-    'started_on'   => '22 Nov 2026',
-    'supply_day'   => $preview_state === 'on_treatment' ? 18 : 28,
-    'checkin_sent' => $preview_state === 'checkin_review' ? '20 Dec 2026' : '',
-    'supply_total' => 30,
-    // First check-in is the next one; dates follow the doctor's plan note (check in after 4 weeks).
-    'checkins'     => [
+    'status'        => $preview_state,
+    'order_id'      => 'RR-10531',
+    'ordered_on'    => '21 Nov 2026',
+    'started_on'    => '22 Nov 2026',
+    'supply_day'    => ['on_treatment' => 18, 'plan_updated' => 29][$preview_state] ?? 28,
+    'checkin_sent'  => $preview_state === 'checkin_review' ? '20 Dec 2026' : '',
+    'checkin_index' => $preview_state === 'plan_updated' ? 1 : 0,
+    'supply_total'  => 30,
+    'review'        => $preview_state === 'plan_updated' ? [
+      'title'       => 'Week 4',
+      'reviewed_on' => '21 Dec 2026',
+      'note'        => 'Your scalp looks calm and the shedding is what we expect in the first month. '
+        . 'Keep using your plan as you are.',
+      'changes'     => 'No changes to your plan.',
+    ] : null,
+    // Dates follow the doctor's plan note (check in after 4 weeks).
+    'checkins'      => [
       ['title' => 'Week 4', 'date' => '20 Dec 2026'],
       ['title' => 'Week 12', 'date' => '14 Feb 2027'],
       ['title' => 'Week 24', 'date' => '8 May 2027'],
     ],
   ] : null,
   // Newest first. A new patient has none; everyone else bought care products while waiting and has a past order.
-  // Once on treatment, the plan order comes first.
+  // Once the plan is ordered, the plan order comes first.
   'orders' => $is_new_patient ? [] : array_values(array_filter([
-    $is_treating ? [
+    $is_ordered || $is_treating ? [
       'id'           => 'RR-10531',
       'placed_on'    => '21 Nov 2026',
-      'status'       => 'delivered',
-      'status_note'  => 'Delivered 22 Nov 2026',
+      'status'       => $preview_state === 'ordered' ? 'shipped' : 'delivered',
+      'status_note'  => [
+        'ordered' => 'Arriving 22 Nov 2026',
+      ][$preview_state] ?? 'Delivered 22 Nov 2026',
       'courier'      => 'J&T Express',
       'tracking'     => 'JT6012349876',
       'address'      => 'Taman Tun Dr Ismail, Kuala Lumpur',
@@ -215,19 +251,19 @@ return [
     ],
   ])),
   'order_statuses' => [
-    'processing' => ['label' => 'Processing', 'icon' => 'time-line'],
-    'shipped'    => ['label' => 'On the way', 'icon' => 'box-3-line'],
-    'delivered'  => ['label' => 'Delivered', 'icon' => 'checkbox-circle-line'],
+    'processing' => ['label' => 'Processing', 'icon' => 'time-line', 'tone' => 'neutral'],
+    'shipped'    => ['label' => 'On the way', 'icon' => 'box-3-line', 'tone' => 'info'],
+    'delivered'  => ['label' => 'Delivered', 'icon' => 'checkbox-circle-line', 'tone' => 'positive'],
   ],
   'prescription_statuses' => [
-    'ready'   => ['label' => 'Ready to order', 'icon' => 'checkbox-circle-line'],
-    'active'  => ['label' => 'Active', 'icon' => 'shield-check-line'],
-    'expired' => ['label' => 'Expired', 'icon' => 'time-line'],
+    'ready'   => ['label' => 'Ready to order', 'icon' => 'checkbox-circle-line', 'tone' => 'positive'],
+    'active'  => ['label' => 'Active', 'icon' => 'shield-check-line', 'tone' => 'info'],
+    'expired' => ['label' => 'Expired', 'icon' => 'time-line', 'tone' => 'negative'],
   ],
   'statuses'    => [
-    'pending'    => ['label' => 'Pending doctor review', 'icon' => 'time-line'],
-    'needs_info' => ['label' => 'Doctor needs more info', 'icon' => 'question-line'],
-    'plan_ready' => ['label' => 'Plan ready', 'icon' => 'checkbox-circle-line'],
+    'pending'    => ['label' => 'Pending doctor review', 'icon' => 'time-line', 'tone' => 'neutral'],
+    'needs_info' => ['label' => 'Doctor needs more info', 'icon' => 'question-line', 'tone' => 'attention'],
+    'plan_ready' => ['label' => 'Plan ready', 'icon' => 'checkbox-circle-line', 'tone' => 'positive'],
   ],
   'nav'        => [
     ['key' => 'overview', 'label' => 'Overview', 'href' => asset_url('account') . $state_query],

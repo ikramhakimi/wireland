@@ -235,8 +235,11 @@ $logout_button = [
   'class' => 'account-logout w-full',
 ];
 $aside_facts  = [
-  'Phone'       => $patient['phone'],
-  'Delivers to' => $patient['address']['city'] . ', ' . ($malaysia_states[$patient['address']['state']] ?? ''),
+  ['label' => 'Phone', 'value' => $patient['phone']],
+  [
+    'label' => 'Delivers to',
+    'value' => $patient['address']['city'] . ', ' . ($malaysia_states[$patient['address']['state']] ?? ''),
+  ],
 ];
 $profile_sections = [
   [
@@ -353,14 +356,11 @@ $account_layout = [
             </h2>
             <p class="account-aside-email mt-1 text-sm color-muted wrap-anywhere"><?= e($patient['email']); ?></p>
           </div>
-          <dl class="account-aside-facts grid text-sm divide-y divide-dashed divide-zinc-300">
-            <?php foreach ($aside_facts as $fact_label => $fact_value): ?>
-              <div class="account-aside-fact grid grid-cols-2 items-baseline gap-4 py-1.5">
-                <dt class="color-muted"><?= e($fact_label); ?></dt>
-                <dd class="text-pretty color-strong"><?= e($fact_value); ?></dd>
-              </div>
-            <?php endforeach; ?>
-          </dl>
+          <?php component('facts', [
+            'items'  => $aside_facts,
+            'layout' => 'rows',
+            'class'  => 'account-aside-facts',
+          ]); ?>
 
           <section class="account-privacy grid gap-3 pt-4 border-t border-zinc-200" aria-labelledby="profile-privacy-title">
             <h3 id="profile-privacy-title" class="account-privacy-title text-sm font-semibold color-strong">Your data</h3>

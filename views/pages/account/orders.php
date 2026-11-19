@@ -68,6 +68,20 @@ $empty_start_button = [
   'color' => 'secondary',
   'class' => 'account-orders-start w-full sm:w-auto',
 ];
+$empty_state = [
+  'id'      => 'account-empty-title',
+  'title'   => 'No orders yet',
+  'text'    => 'Shop everyday hair and scalp care, or start an assessment to get a doctor-reviewed plan.',
+  'icon'    => 'shopping-bag-4-line',
+  'actions' => [$empty_shop_button, $empty_start_button],
+  'class'   => 'account-empty mt-8',
+];
+// Total, delivery address and tracking per order.
+$order_facts = static fn (array $order): array => [
+  ['label' => 'Total', 'value' => $money($order['total'])],
+  ['label' => 'Delivery to', 'value' => $order['address']],
+  ['label' => 'Tracking', 'value' => $order['courier'] . ' · ' . $order['tracking']],
+];
 
 $account_layout = [
   'nav'           => $account['nav'],
@@ -76,11 +90,10 @@ $account_layout = [
   'content'       => static function () use (
     $orders,
     $statuses,
-    $money,
     $item_card,
     $buy_again_button,
-    $empty_shop_button,
-    $empty_start_button
+    $empty_state,
+    $order_facts
   ): void {
     ?>
     <div class="account-orders">
@@ -92,19 +105,7 @@ $account_layout = [
       </header>
 
       <?php if ($orders === []): ?>
-        <section class="account-empty mt-8 rounded-xl border border-zinc-200 bg-white px-5 py-10 text-center
-          sm:px-10" aria-labelledby="account-empty-title">
-          <h2 id="account-empty-title" class="account-empty-title text-title-sm font-semibold color-strong">
-            No orders yet
-          </h2>
-          <p class="account-empty-description max-w-md mx-auto mt-2 text-sm text-pretty color-default">
-            Shop everyday hair and scalp care, or start an assessment to get a doctor-reviewed plan.
-          </p>
-          <div class="account-empty-action flex flex-col justify-center gap-3 mt-6 sm:flex-row">
-            <?php component('button', $empty_shop_button); ?>
-            <?php component('button', $empty_start_button); ?>
-          </div>
-        </section>
+        <?php component('empty-state', $empty_state); ?>
       <?php else: ?>
         <ul class="account-orders-list grid gap-4 mt-8" role="list">
           <?php foreach ($orders as $order): ?>
@@ -137,22 +138,11 @@ $account_layout = [
                   <?php endforeach; ?>
                 </ul>
 
-                <dl class="account-order-meta grid gap-4 mt-6 pt-5 border-t border-zinc-100 sm:grid-cols-3">
-                  <div class="account-order-meta-item">
-                    <dt class="text-sm color-muted">Total</dt>
-                    <dd class="mt-1 text-sm font-medium color-strong"><?= e($money($order['total'])); ?></dd>
-                  </div>
-                  <div class="account-order-meta-item">
-                    <dt class="text-sm color-muted">Delivery to</dt>
-                    <dd class="mt-1 text-sm font-medium text-pretty color-strong"><?= e($order['address']); ?></dd>
-                  </div>
-                  <div class="account-order-meta-item">
-                    <dt class="text-sm color-muted">Tracking</dt>
-                    <dd class="mt-1 text-sm font-medium color-strong">
-                      <?= e($order['courier']); ?> · <span class="tabular-nums"><?= e($order['tracking']); ?></span>
-                    </dd>
-                  </div>
-                </dl>
+                <?php component('facts', [
+                  'items'   => $order_facts($order),
+                  'columns' => 3,
+                  'class'   => 'account-order-meta mt-6 pt-5 border-t border-zinc-100',
+                ]); ?>
 
                 <?php if ($order['buy_again'] !== '' || $order['has_prescription']): ?>
                   <div class="account-order-actions flex flex-col gap-3 mt-6 sm:flex-row sm:items-center">
