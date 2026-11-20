@@ -1,9 +1,12 @@
 <?php
 // Section: Treatments available
-// Purpose: Lists the clinic's treatments with who each may suit and a link to learn more.
-// Data: $treatments (title, summary, suits, href), $browse_button. Optional: $headline_alignment ('left' | 'center').
+// Purpose: Lists the clinic's treatments, each with its type and a link to learn more.
+// Data: $treatments (title, pill, summary, href), $browse_button. Optional: $headline_alignment ('left' | 'center').
 //       Optional: $content_alignment ('left' | 'center', default 'left') for the treatment card text.
-$content_center      = ($content_alignment ?? 'left') === 'center';
+//       Optional: $headline_copy (array). Overrides headline keys (title, subtitle; '' drops the subtitle).
+//       Optional: $show_more (bool, default false). Adds a 2-column list of more treatments
+//                 (thumbnail, title, short summary) below the cards, like the home-shop product list.
+$show_more           = $show_more ?? false;
 $treatments_headline = [
   'topic'     => 'Treatments',
   'emoji'     => '🌱',
@@ -14,20 +17,52 @@ $treatments_headline = [
 $treatments = [
   [
     'title'   => 'Hair Regrowth Treatment',
-    'summary' => 'Prescribed topical or oral medication that helps manage hair loss over time.',
-    'suits'   => 'Early thinning or a receding hairline',
+    'pill'    => 'Medication',
+    'summary' => 'Prescribed medication to manage hair loss.',
     'href'    => '',
   ],
   [
     'title'   => 'PRP Hair Treatment',
-    'summary' => 'Platelets from your own blood, injected into the scalp to help support hair growth.',
-    'suits'   => 'Thinning areas that still have active follicles',
+    'pill'    => 'In-clinic procedure',
+    'summary' => 'Your own platelets to support hair growth.',
     'href'    => '',
   ],
   [
     'title'   => 'Sapphire FUE Hair Transplant',
-    'summary' => 'Individual follicles moved to thinning areas through tiny sites made with sapphire blades.',
-    'suits'   => 'Stable, advanced hair loss',
+    'pill'    => 'Surgical procedure',
+    'summary' => 'Follicles moved to thinning areas.',
+    'href'    => '',
+  ],
+];
+$more_treatments = [
+  [
+    'title'   => 'Low-Level Laser Therapy',
+    'summary' => 'Light therapy to support thinning hair.',
+    'href'    => '',
+  ],
+  [
+    'title'   => 'Hair Mesotherapy',
+    'summary' => 'Vitamins and nutrients delivered to the scalp.',
+    'href'    => '',
+  ],
+  [
+    'title'   => 'Exosome Hair Therapy',
+    'summary' => 'Growth factors applied to the scalp.',
+    'href'    => '',
+  ],
+  [
+    'title'   => 'Scalp Micropigmentation',
+    'summary' => 'Pigment that adds the look of density.',
+    'href'    => '',
+  ],
+  [
+    'title'   => 'Scalp Care Treatment',
+    'summary' => 'Deep cleanse for an oily or flaky scalp.',
+    'href'    => '',
+  ],
+  [
+    'title'   => 'Beard & Eyebrow Transplant',
+    'summary' => 'Follicles moved to fill sparse areas.',
     'href'    => '',
   ],
 ];
@@ -41,34 +76,41 @@ $browse_button = [
 
 <section class="section">
   <div class="container">
-    <?php component('headline', $treatments_headline); ?>
+    <?php component('headline', array_merge($treatments_headline, $headline_copy ?? [])); ?>
     <ul class="treatments grid grid-cols-1 gap-3 mt-5 sm:grid-cols-3 sm:mt-10">
       <?php foreach ($treatments as $treatment): ?>
         <li class="treatment flex flex-col">
-          <div class="treatment-image aspect-square rounded-lg bg-zinc-200 flex-center">
-            <?php svg('image-line', 'product-image-placeholder size-6'); ?>
-          </div>
-          <div class="treatment-content flex flex-col flex-1 justify-between py-4<?= $content_center ? ' text-center' : ''; ?>">
-            <div>
-              <h3 class="treatment-title font-semibold text-lg text-zinc-800"><?= e($treatment['title']); ?></h3>
-              <p class="treatment-summary mt-2 text-pretty text-sm"><?= e($treatment['summary']); ?></p>
-              <p class="treatment-suits mt-3 text-sm">
-                <span class="font-medium text-zinc-800">May suit:</span>
-                <?= e($treatment['suits']); ?>
-              </p>
-            </div>
-            <div class="treatment-action mt-5 pt-5 border-t border-zinc-200 text-sm">
-              <a href="<?= e($treatment['href']); ?>" class="flex items-center gap-2 font-medium text-zinc-800<?= $content_center ? ' justify-center' : ''; ?>">
-                <span>Learn more<span class="sr-only"> about <?= e($treatment['title']); ?></span></span>
-                <span class="flex-center size-5 rounded-sm bg-zinc-300">
-                  <?php svg('arrow-right-up-line', 'size-4 stroke-2'); ?>
-                </span>
-              </a>
-            </div>
-          </div>
+          <?php component('card-treatment', array_merge($treatment, ['align' => $content_alignment ?? 'left'])); ?>
         </li>
       <?php endforeach; ?>
     </ul>
+    <?php if ($show_more): ?>
+      <div class="treatments-more mt-10 md:px-30">
+        <h3 class="treatments-more-title flex items-baseline justify-between pb-3 font-semibold border-b
+          border-zinc-300 color-strong">
+          More treatments
+          <span class="treatments-more-count text-sm font-normal color-muted"><?= count($more_treatments); ?></span>
+        </h3>
+        <ul class="treatments-more-list grid gap-x-5 sm:grid-cols-2">
+          <?php foreach ($more_treatments as $treatment): ?>
+            <li>
+              <a href="<?= e($treatment['href']); ?>" class="treatment-row group flex items-center gap-3 py-4
+                border-b border-dashed border-zinc-200">
+                <span class="treatment-thumb flex-center shrink-0 size-16 rounded-lg bg-zinc-300 color-muted"
+                  aria-hidden="true">
+                  <?php svg('image-line', 'product-image-placeholder size-5'); ?>
+                </span>
+                <span class="treatment-info flex flex-1 flex-col gap-0.5 min-w-0">
+                  <span class="treatment-name text-sm font-semibold color-strong underline-offset-4
+                    group-hover:underline"><?= e($treatment['title']); ?></span>
+                  <span class="treatment-summary text-sm text-pretty"><?= e($treatment['summary']); ?></span>
+                </span>
+              </a>
+            </li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
+    <?php endif; ?>
     <div class="treatments-action flex justify-center mt-8">
       <?php component('button', $browse_button); ?>
     </div>

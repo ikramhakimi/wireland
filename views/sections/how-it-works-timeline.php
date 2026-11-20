@@ -6,6 +6,7 @@
  * Structure: Headline, timeline component (vertical rail on mobile, 4 columns on desktop),
  *            prescription note, assessment button.
  * Data: static steps and button config below. Optional: $alignment ('left' | 'center', default 'left').
+ *       Optional: $headline_copy (array). Overrides headline keys, e.g. ['subtitle' => ''] to drop the subtitle.
  */
 $alignment  = ($alignment ?? 'left') === 'center' ? 'center' : 'left';
 $is_center  = $alignment === 'center';
@@ -18,11 +19,11 @@ $headline   = [
 $steps      = [
   [
     'title'       => 'Assessment',
-    'text'        => 'Tell us about your hair concerns, health history and goals.',
+    'text'        => 'Answer a few questions about your hair concerns, health history and goals.',
   ],
   [
     'title'       => 'Doctor review',
-    'text'        => 'A doctor reads your answers and may ask follow-up questions.',
+    'text'        => 'A doctor reviews your answers and may message you with follow-up questions.',
   ],
   [
     'title'       => 'Your plan',
@@ -30,7 +31,7 @@ $steps      = [
   ],
   [
     'title'       => 'Check-ins',
-    'text'        => 'Follow-ups on how it is going, and a reminder when a refill is due.',
+    'text'        => 'Regular follow-ups on how it is going, plus a reminder whenever a refill is due.',
   ],
 ];
 $cta_button = [
@@ -41,7 +42,7 @@ $cta_button = [
 ?>
 <section class="section how-it-works-timeline bg-white" aria-label="How it works">
   <div class="section-header container">
-    <?php component('headline', $headline); ?>
+    <?php component('headline', array_merge($headline, $headline_copy ?? [])); ?>
   </div>
 
   <?php component('timeline', [
@@ -49,13 +50,4 @@ $cta_button = [
     'alignment' => $alignment,
     'class'     => 'container mt-14',
   ]); ?>
-
-  <div class="timeline-footer container mt-10<?= $is_center ? ' flex flex-col items-center text-center' : ''; ?>">
-    <p class="timeline-note text-sm color-muted">
-      Prescription treatments are only offered if a doctor confirms they suit you.
-    </p>
-    <div class="timeline-action mt-6">
-      <?php component('button', $cta_button); ?>
-    </div>
-  </div>
 </section>

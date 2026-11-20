@@ -74,5 +74,7 @@
     <?php component('components/dashboard/sidebar', ['page_current' => $page_current ?? '']); ?>
     </div>
   </dialog>
+  <?php component('components/demo-nav', ['uri' => $uri ?? '']); ?>
+  <script src="<?= asset_url('assets/js/demo-nav.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/demo-nav.js'); ?>" defer></script>
 </body>
 </html>

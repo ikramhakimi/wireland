@@ -9,28 +9,54 @@ $page_title       = 'Lander';
 $page_description = '';
 $page_current     = 'home';
 
+// Home 5 headline copy: one line per section; only the hair cycle keeps a (shortened) subtitle.
+$how_it_works_copy = ['subtitle' => ''];
+$shop_copy         = [
+  'title'    => 'Everyday hair care and prescription treatments for your hair needs',
+  'subtitle' => '',
+];
+$hair_cycle_copy   = [
+  'subtitle' => 'Here’s what a few cycles look like for real patients.',
+];
+$treatments_copy   = [
+  'title'    => 'Treatments your doctor may suggest after your assessment.',
+  'subtitle' => '',
+];
+$faq_copy          = ['subtitle' => ''];
+
 component('navbar', ['cart_href' => asset_url('cart/')]);
 section('home-hero-quiz-2', [
   'store_products' => $store_products,
   'store_token'    => $store_token,
 ]);
-section('how-it-works-timeline', ['alignment' => 'center']);
-section('home-life-results', ['headline_alignment' => 'center']);
+section('how-it-works-timeline', [
+  'alignment'     => 'center',
+  'headline_copy' => $how_it_works_copy,
+]);
 section('home-shop', [
   'store_products'     => $store_products,
+  'store_token'        => $store_token,
   'headline_alignment' => 'center',
+  'headline_copy'      => $shop_copy,
   'variant'            => 'simple',
+  'featured_count'     => 8,
 ]);
-section('home-hair-cycle', ['headline_alignment' => 'center']);
+
+section('home-hair-cycle', [
+  'headline_alignment' => 'center',
+  'headline_copy'      => $hair_cycle_copy,
+]);
 section('home-treatments', [
-  'headline_alignment' => 'center',
+  // 'headline_alignment' => 'center',
+  'headline_copy'      => $treatments_copy,
   'content_alignment'  => 'center',
+  'show_more'          => true,
 ]);
-section('home-life-team', [
+section('home-doctors-trust', ['headline_alignment' => 'center']);
+section('home-faq', [
   'headline_alignment' => 'center',
-  'content_alignment'  => 'center',
+  'headline_copy'      => $faq_copy,
 ]);
-section('home-faq', ['headline_alignment' => 'center']);
 section('footer', ['show_banner' => true]);
 
 component('button-whatsapp');

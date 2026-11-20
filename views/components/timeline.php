@@ -7,10 +7,12 @@
  *            desktop (lg) one column per step, horizontal line between dots. Compact size: vertical rail at
  *            every width, smaller dots and body-size titles, for steps inside content (cards, panels, pages).
  * Data: items (title, text, done (optional bool: filled dot with a check),
- *       icon (optional svg name shown in the dot instead of the number)); size ('default' | 'compact');
+ *       icon (optional svg name shown in the dot instead of the number),
+ *       meta (optional short text above the title, e.g. a timeframe; replaces the visible step label)); size ('default' | 'compact');
  *       start (first step number, default 1; continues numbering in a shortened list);
  *       alignment ('left' | 'center', default size on desktop only; default 'left');
- *       label (screen-reader prefix, default 'Step'); show_label (bool: show "<label> <number>" above the title); class (extra classes on the wrapper).
+ *       label (screen-reader prefix, default 'Step'); show_label (bool: show "<label> <number>" above the title);
+ *       class (extra classes on the wrapper).
  */
 $items       = $items ?? [];
 $size        = ($size ?? 'default') === 'compact' ? 'compact' : 'default';
@@ -62,6 +64,7 @@ if ($items === []) {
       $number  = $start + $index;
       $is_done = !empty($item['done']);
       $icon    = $item['icon'] ?? '';
+      $meta    = $item['meta'] ?? '';
       ?>
       <li class="timeline-step relative grid <?= $style['step']; ?>
         not-last:after:absolute not-last:after:border-l not-last:after:border-dashed not-last:after:border-zinc-300
@@ -79,7 +82,12 @@ if ($items === []) {
         </span>
         <div class="timeline-body <?= $style['body']; ?>">
           <h3 class="timeline-title <?= $style['title']; ?> color-strong">
-            <?php if ($show_label): ?>
+            <?php if ($meta !== ''): ?>
+              <span class="sr-only"><?= e($label); ?> <?= $number; ?>: </span>
+              <span class="timeline-label block mb-1 text-xs font-medium color-muted">
+                <?= e($meta); ?><span class="sr-only">, </span>
+              </span>
+            <?php elseif ($show_label): ?>
               <span class="timeline-label block mb-1 text-xs font-medium color-muted">
                 <?= e($label); ?> <?= $number; ?><span class="sr-only">: </span>
               </span>

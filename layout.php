@@ -28,5 +28,7 @@
     <?= $content ?? ''; ?>
   </main>
   <?php // component('modal-assesment-promo'); ?>
+  <?php component('components/demo-nav', ['uri' => $uri ?? '']); ?>
+  <script src="<?= asset_url('assets/js/demo-nav.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/demo-nav.js'); ?>" defer></script>
 </body>
 </html>

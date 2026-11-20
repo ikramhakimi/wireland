@@ -1,5 +1,6 @@
 <?php
 // Optional: $headline_alignment ('left' | 'center', default 'center').
+// Optional: $headline_copy (array). Overrides headline keys (title, subtitle; '' drops the subtitle).
 $headline = [
   'topic'     => 'FAQ',
   'title'     => 'A little clarity before you begin.',
@@ -40,7 +41,7 @@ $faqs = [
 
 <section id="faq" class="py-10 sm:py-15">
   <div class="mx-auto max-w-6xl px-5 sm:px-0">
-    <?php component('headline', $headline); ?>
+    <?php component('headline', array_merge($headline, $headline_copy ?? [])); ?>
     <div class="faq-groups grid gap-5 max-w-3xl mx-auto mt-10">
       <?php foreach ($faqs as $index => $faq): ?>
         <div class="faq-group">

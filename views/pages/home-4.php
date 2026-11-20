@@ -18,7 +18,10 @@ section('how-it-works-timeline');
 section('home-life-results', ['headline_alignment' => 'left']);
 section('home-shop', ['store_products' => $store_products]);
 section('home-hair-cycle', ['headline_alignment' => 'left']);
-section('home-treatments', ['headline_alignment' => 'left']);
+section('home-treatments', [
+  'headline_alignment' => 'left',
+  'show_more'          => true,
+]);
 section('home-life-team', ['headline_alignment' => 'left']);
 section('home-faq', ['headline_alignment' => 'left']);
 section('footer', ['show_banner' => true]);

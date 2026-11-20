@@ -464,6 +464,23 @@ $design_card = [
   },
 ];
 
+$design_card_treatments = [
+  [
+    'title'   => 'PRP Hair Treatment',
+    'pill'    => 'In-clinic procedure',
+    'summary' => 'Your own platelets to support hair growth.',
+    'href'    => '#design-cards',
+    'align'   => 'left',
+  ],
+  [
+    'title'   => 'Sapphire FUE Hair Transplant',
+    'pill'    => 'Surgical procedure',
+    'summary' => 'Follicles moved to thinning areas.',
+    'href'    => '#design-cards',
+    'align'   => 'center',
+  ],
+];
+
 $design_icon_groups = [
   'Navigation' => [
     'menu-line',
@@ -2242,12 +2259,28 @@ $design_empty_states = [
           Use cards to group related information. Give each card a clear heading and keep its supporting content
           together. The shared component supports a header, content, and optional actions.
         </p>
-        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/card.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">
+          Source: <code>views/components/card.php</code>, <code>views/components/card-treatment.php</code>
+        </p>
       </header>
       <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Content Card</h3>
           <?php component('card', $design_card); ?>
+        </div>
+        <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
+          <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Treatment Card</h3>
+          <p class="section-demo-note -mt-6 mb-8 text-sm leading-relaxed">
+            Left aligned (default) and <code>align: 'center'</code>. Hover or focus reveals the Learn more button
+            (always visible on touch); the title link covers the whole card.
+          </p>
+          <ul class="treatments grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <?php foreach ($design_card_treatments as $design_treatment): ?>
+              <li class="treatment flex flex-col">
+                <?php component('card-treatment', $design_treatment); ?>
+              </li>
+            <?php endforeach; ?>
+          </ul>
         </div>
       </div>
     </section>
