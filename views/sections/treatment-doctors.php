@@ -2,7 +2,8 @@
 /**
  * Section: Treatment doctors (optional module)
  * Purpose: Shows who plans and performs the treatment, with verifiable credentials.
- * Data: title, doctors (name, role, registration, qualifications, note), facts (icon, text).
+ * Data: title, doctors (name, role, registration, qualifications, optional image/image_alt and note),
+ *       facts (icon, text). Pages build doctors with doctor_profiles() from includes/doctors.php.
  */
 if (empty($doctors)) {
   return;
@@ -19,12 +20,17 @@ $headline = [
     <div class="doctors-grid grid grid-cols-1 gap-3 mt-10 md:grid-cols-2">
       <?php foreach ($doctors as $doctor): ?>
         <article class="card card-doctor flex flex-col p-2 rounded-lg bg-zinc-100">
-          <div class="doctor-image flex-center aspect-3/2 rounded-md bg-zinc-300">
-            <?php svg('image-line', 'product-image-placeholder size-6'); ?>
+          <div class="doctor-image flex-center aspect-3/2 rounded-md bg-zinc-300 overflow-hidden">
+            <?php if (!empty($doctor['image'])): ?>
+              <img src="<?= e($doctor['image']); ?>" alt="<?= e($doctor['image_alt'] ?? ''); ?>" loading="lazy"
+                class="doctor-photo size-full object-cover">
+            <?php else: ?>
+              <?php svg('image-line', 'product-image-placeholder size-6'); ?>
+            <?php endif; ?>
           </div>
           <div class="doctor-details p-3 sm:p-5">
             <h3 class="doctor-name text-lg font-semibold color-strong"><?= e($doctor['name']); ?></h3>
-            <p class="doctor-role text-sm"><?= e($doctor['role']); ?> &ndash; <?= e($doctor['registration']); ?></p>
+            <p class="doctor-role text-sm"><?= e($doctor['role']); ?><?php if (!empty($doctor['registration'])): ?> &ndash; <?= e($doctor['registration']); ?><?php endif; ?></p>
             <p class="doctor-qualifications mt-1 text-xs color-muted">
               <?= e(implode(' · ', $doctor['qualifications'] ?? [])); ?>
             </p>

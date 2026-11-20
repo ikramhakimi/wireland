@@ -21,6 +21,7 @@ return [
       'prescriptions' => 'Prescriptions',
       'patients'      => 'Patients',
       'follow_ups'    => 'Follow-ups',
+      'doctors'       => 'Doctors',
     ],
     'commerce'   => [
       'title'      => 'Commerce',

@@ -5,6 +5,8 @@
  * Purpose: Switch related content panels without navigating away from the page.
  * Structure: Horizontally scrolling tablist, text-only triggers, and linked panels.
  * Data: id (unique per instance), label (accessible group name), items (keyed label/title/description arrays),
+ *       items may set content (callable) to render their own panel markup instead of title/description,
+ *       e.g. form fields; tabs.js opens the panel holding the first invalid control on submit.
  *       variant (underline default, segmented), size (default 44px/14px, small 36px/12px), active.
  *       mode (panels default, controls), js_hook (controls only); controls emit data-value and aria-pressed.
  *       Controls mode renders no panels and leaves behavior to the caller.
@@ -50,8 +52,12 @@ if ($id === '' || $items === []) {
     <div id="<?= e($id . '-panel-' . $item_key); ?>" role="tabpanel"
       aria-labelledby="<?= e($id . '-tab-' . $item_key); ?>" tabindex="0"
       <?= $item_key !== $active ? 'hidden' : ''; ?> class="tabs-panel">
-      <h4 class="tabs-title text-sm font-medium color-strong"><?= e($item['title']); ?></h4>
-      <p class="tabs-description mt-2 text-sm leading-relaxed color-default"><?= e($item['description']); ?></p>
+      <?php if (is_callable($item['content'] ?? null)): ?>
+        <?php $item['content'](); ?>
+      <?php else: ?>
+        <h4 class="tabs-title text-sm font-medium color-strong"><?= e($item['title']); ?></h4>
+        <p class="tabs-description mt-2 text-sm leading-relaxed color-default"><?= e($item['description']); ?></p>
+      <?php endif; ?>
     </div>
   <?php endforeach; ?>
 </div>

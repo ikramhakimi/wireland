@@ -1,12 +1,16 @@
 // Single image field: local preview, file name, size and dimensions. No network requests.
 // Hooks inside .js-component-image-field: -input, -thumb, -placeholder, -name, -meta, -choose, -clear,
 // optional -remove-flag; the error element (.js-component-image-field-error) sits in the parent .field.
+// Fields inserted later (e.g. repeater rows) initialize when an image-field:init event carries their container.
 (() => {
+  const initialized = new WeakSet();
   const formatSize = (bytes) => (bytes < 1048576
     ? `${Math.max(1, Math.round(bytes / 1024))} KB`
     : `${(bytes / 1048576).toFixed(1)} MB`);
 
   const init = (root) => {
+    if (initialized.has(root)) return;
+    initialized.add(root);
     const part = (name) => root.querySelector(`.js-component-image-field-${name}`);
     const input = part('input');
     const thumb = part('thumb');
@@ -106,4 +110,7 @@
   };
 
   document.querySelectorAll('.js-component-image-field').forEach(init);
+  document.addEventListener('image-field:init', (event) => {
+    if (event.detail instanceof Element) event.detail.querySelectorAll('.js-component-image-field').forEach(init);
+  });
 })();

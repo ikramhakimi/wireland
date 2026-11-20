@@ -8,7 +8,16 @@
  *            render only when their data is set.
  * Data: Static placeholder content. Claims marked [confirm] need clinic sign-off before launch.
  *       [confirm] Price range, instalment plans and side-effect list.
+ *       Doctor profiles come from includes/doctors-data.php; this page only adds each doctor's role note.
  */
+
+require_once __DIR__ . '/../../includes/doctors.php';
+
+$doctors      = require __DIR__ . '/../../includes/doctors-data.php';
+$doctor_notes = [
+  'rujhan' => 'Designs your hairline and creates the recipient channels.',
+  'safwan' => 'Leads your consultation and follow-up reviews.',
+];
 
 $page_title       = 'Sapphire FUE Hair Transplant';
 $page_description = 'A doctor-led Sapphire FUE hair transplant, planned around your donor hair and your face.';
@@ -102,22 +111,10 @@ $treatment = [
   ],
   'doctors'      => [
     'title'   => 'Your procedure is planned and led by a doctor.',
-    'doctors' => [
-      [
-        'name'           => 'Dr Rujhan Raqibi',
-        'role'           => 'Lead Hair Specialist',
-        'registration'   => 'MMC No. 00000',
-        'qualifications' => ['MBBS (UM)', 'Dip. Trichology'],
-        'note'           => 'Designs your hairline and creates the recipient channels.',
-      ],
-      [
-        'name'           => 'Dr Safwan Jamael',
-        'role'           => 'Hair and Scalp Doctor',
-        'registration'   => 'MMC No. 00000',
-        'qualifications' => ['MD (UKM)'],
-        'note'           => 'Leads your consultation and follow-up reviews.',
-      ],
-    ],
+    'doctors' => array_map(
+      static fn (array $doctor): array => $doctor + ['note' => $doctor_notes[$doctor['id']] ?? ''],
+      doctor_profiles($doctors, array_keys($doctor_notes)),
+    ),
     'facts'   => [
       ['icon' => 'shield-check-line', 'text' => 'Registered with the Malaysian Medical Council'],
       ['icon' => 'user-line',         'text' => 'Same doctor from consultation to follow-up'],

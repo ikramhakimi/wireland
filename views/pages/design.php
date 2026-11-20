@@ -761,6 +761,88 @@ $design_tab_controls = [
   ],
 ];
 
+$design_repeaters = [
+  'facts' => [
+    'title'  => 'Two Fields',
+    'config' => [
+      'id'         => 'design-repeater-facts',
+      'name'       => 'facts',
+      'legend'     => 'Key Facts',
+      'helper'     => 'Shown in the summary beside the page.',
+      'item_label' => 'Fact',
+      'max'        => 6,
+      'fields'     => [
+        ['key' => 'label', 'label' => 'Label', 'placeholder' => 'Procedure'],
+        ['key' => 'value', 'label' => 'Value', 'placeholder' => '6–8 hours'],
+      ],
+      'items'      => [
+        ['label' => 'Procedure', 'value' => '6–8 hours'],
+        ['label' => 'Anaesthesia', 'value' => 'Local'],
+      ],
+    ],
+  ],
+  'cases' => [
+    'title'  => 'Image Fields',
+    'config' => [
+      'id'         => 'design-repeater-cases',
+      'name'       => 'cases',
+      'legend'     => 'Cases',
+      'helper'     => 'Photos: JPEG, PNG or WebP · 1 MB each.',
+      'item_label' => 'Case',
+      'fields'     => [
+        ['key' => 'title', 'label' => 'Area Treated', 'placeholder' => 'Frontal Hairline', 'wide' => true],
+        ['key' => 'before', 'label' => 'Before Photo', 'type' => 'image', 'max_size' => 1048576, 'wide' => true],
+        ['key' => 'after', 'label' => 'After Photo', 'type' => 'image', 'max_size' => 1048576, 'wide' => true],
+      ],
+      'items'      => [
+        ['title' => 'Crown'],
+      ],
+    ],
+  ],
+  'faqs'  => [
+    'title'  => 'Wide Field and Empty State',
+    'config' => [
+      'id'         => 'design-repeater-faqs',
+      'name'       => 'faqs',
+      'legend'     => 'FAQs',
+      'item_label' => 'FAQ',
+      'fields'     => [
+        ['key' => 'question', 'label' => 'Question', 'wide' => true],
+        ['key' => 'answer', 'label' => 'Answer', 'type' => 'textarea', 'rows' => 3, 'wide' => true],
+      ],
+    ],
+  ],
+];
+
+$design_tabs_form = [
+  'id'    => 'design-tabs-form',
+  'label' => 'Treatment sections',
+  'items' => [
+    'overview' => [
+      'label'   => 'Overview',
+      'content' => static function (): void {
+        component('forms/field', [
+          'id'       => 'design-tabs-form-name',
+          'name'     => 'name',
+          'label'    => 'Treatment Name',
+          'required' => true,
+        ]);
+      },
+    ],
+    'faqs'     => [
+      'label'   => 'FAQs',
+      'content' => static function (): void {
+        component('forms/field', [
+          'id'       => 'design-tabs-form-question',
+          'name'     => 'question',
+          'label'    => 'Question',
+          'required' => true,
+        ]);
+      },
+    ],
+  ],
+];
+
 
 $highlight_widths = ['w-48', 'w-80', 'w-56', 'w-96', 'w-64', 'w-72'];
 
@@ -1990,6 +2072,32 @@ $design_empty_states = [
       </div>
     </section>
 
+    <section id="design-repeater" aria-labelledby="design-repeater-title" class="section border-t border-zinc-200">
+      <header class="section-header">
+        <h2 id="design-repeater-title" class="section-title text-title-md font-semibold color-strong">Repeater</h2>
+        <p class="section-description mt-3 text-sm leading-relaxed">
+          Use a repeater for an ordered list of items that share two or more fields, such as facts, steps or FAQs.
+          Rows can be added, moved up or down and removed. Names, IDs and labels renumber to match the order.
+          For a list of single lines, use a textarea with a square bullet list instead.
+          Image fields work in new rows too and keep their selected photo when the row moves; give them the full
+          width so the preview and buttons fit.
+        </p>
+        <p class="section-source mt-3 text-sm leading-relaxed">
+          Source: <code>views/components/forms/repeater.php</code>, <code>assets/js/repeater.js</code>
+        </p>
+      </header>
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
+        <?php foreach ($design_repeaters as $repeater_example): ?>
+          <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
+            <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">
+              <?= e($repeater_example['title']); ?>
+            </h3>
+            <?php component('forms/repeater', $repeater_example['config']); ?>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </section>
+
     <section id="design-select" aria-labelledby="design-select-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-select-title" class="section-title text-title-md font-semibold color-strong">Select</h2>
@@ -2556,6 +2664,22 @@ $design_empty_states = [
             </div>
           </div>
         <?php endforeach; ?>
+        <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
+          <h3 class="section-demo-title -ml-5 -mt-5 mb-4 text-title-sm font-semibold color-strong">Form Panels</h3>
+          <p class="section-demo-description mb-6 text-sm color-muted">
+            Pass content to render fields in a panel. All panels submit with one form. On submit, the panel with
+            the first missing required field opens.
+          </p>
+          <form method="dialog" class="tabs-demo-form">
+            <?php component('tabs', $design_tabs_form); ?>
+            <?php component('button', [
+              'label'   => 'Save Changes',
+              'element' => 'button',
+              'type'    => 'submit',
+              'color'   => 'primary',
+            ]); ?>
+          </form>
+        </div>
       </div>
     </section>
 

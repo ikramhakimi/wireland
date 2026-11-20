@@ -142,7 +142,7 @@ $block_class = 'body-block py-10 border-t border-zinc-300 first:pt-0 first:borde
                 </span>
                 <span class="doctor-profile min-w-0">
                   <span class="doctor-name block font-semibold color-strong"><?= e($doctor['name']); ?></span>
-                  <span class="doctor-role block mt-1 text-sm"><?= e($doctor['role']); ?> &ndash; <?= e($doctor['registration']); ?></span>
+                  <span class="doctor-role block mt-1 text-sm"><?= e($doctor['role']); ?><?php if (!empty($doctor['registration'])): ?> &ndash; <?= e($doctor['registration']); ?><?php endif; ?></span>
                   <span class="doctor-qualifications block text-sm color-muted"><?= e(implode(' · ', $doctor['qualifications'] ?? [])); ?></span>
                 </span>
               </li>

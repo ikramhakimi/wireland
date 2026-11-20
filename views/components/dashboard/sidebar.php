@@ -17,6 +17,7 @@ $nav_groups   = [
       ['label' => t('dashboard.nav.clinical.patients'), 'href' => asset_url('dashboard/patients/'), 'current' => ['patients']],
       ['label' => t('dashboard.nav.clinical.prescriptions'), 'href' => '#', 'current' => []],
       ['label' => t('dashboard.nav.clinical.follow_ups'), 'href' => asset_url('dashboard/follow-ups/'), 'current' => ['follow-ups']],
+      ['label' => t('dashboard.nav.clinical.doctors'), 'href' => asset_url('dashboard/doctors/'), 'current' => ['doctors']],
     ],
   ],
   [

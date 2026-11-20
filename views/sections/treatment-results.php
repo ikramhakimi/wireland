@@ -29,7 +29,10 @@ $comparison = [
             'title'      => $case['title'],
             'treatment'  => $case['treatment'],
             'timeframe'  => $case['timeframe'],
-            'comparison' => $comparison,
+            'comparison' => array_replace_recursive($comparison, [
+              'before' => ['src' => $case['before'] ?? '', 'alt' => $case['title'] . ', before treatment'],
+              'after'  => ['src' => $case['after'] ?? '', 'alt' => $case['title'] . ', after treatment'],
+            ]),
           ]); ?>
         </div>
       <?php endforeach; ?>
