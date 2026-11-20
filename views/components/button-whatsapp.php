@@ -4,15 +4,16 @@
  * Component: WhatsApp button
  * Purpose: Keeps WhatsApp accessible and hides it on downward scroll after the hero.
  * Structure: Fixed circular link; scroll, corner hover and keyboard focus control visibility.
- * Data: None; uses the clinic contact number displayed in the footer.
+ * Data: hide_mobile (bool, default false): hides the button below md, for pages whose mobile sticky bar
+ *       already carries a WhatsApp action. Uses the clinic contact number displayed in the footer.
  */
-
+$display_class = !empty($hide_mobile) ? 'hidden md:flex' : 'flex';
 ?>
 <a
   href="https://wa.me/601116741858"
   target="_blank"
   rel="noopener noreferrer"
-  class="whatsapp-button fixed bottom-6 right-5 z-40 flex size-16 items-center justify-center rounded-full
+  class="whatsapp-button fixed bottom-6 right-5 z-40 <?= $display_class; ?> size-16 items-center justify-center rounded-full
     bg-linear-to-br from-zinc-400 via-zinc-600 to-zinc-500
     ring-1 ring-inset ring-zinc-900/50
     shadow-xl shadow-zinc-900/40

@@ -261,4 +261,4 @@ section('treatment-cta',          $treatment['cta']);
 section('footer',                 ['show_banner' => false]);
 section('treatment-sticky-cta',   ['action' => $assessment_cta]);
 
-component('button-whatsapp');
+component('button-whatsapp', ['hide_mobile' => true]);

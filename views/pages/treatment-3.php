@@ -4,7 +4,7 @@
  * Page: Treatment 3 (template, static demo: Sapphire FUE)
  * Purpose: Reusable treatment page in a hero / sticky sidebar + content / more treatments layout. Every treatment
  *          fills the same $treatment shape; content blocks render only when their data is set.
- * Structure: Navbar, intro, body (sticky summary sidebar | content blocks), more treatments, footer.
+ * Structure: Navbar, intro, body (sticky summary sidebar | content blocks), results, more treatments, footer.
  * Data: Static placeholder content. [confirm] Price, graft range and side-effect list need clinic sign-off.
  * Sections: views/sections/treatment-lab-intro.php, treatment-lab-body.php, treatment-lab-more.php.
  */
@@ -14,9 +14,24 @@ $page_description = 'A doctor-led Sapphire FUE hair transplant, planned around y
 $page_current     = 'treatment';
 
 $assessment_cta = [
-  'label' => 'Start Your Assessment',
+  'label' => 'Start Free Assessment',
   'href'  => '#',
   'class' => 'bg-zinc-700 text-zinc-100',
+];
+
+$doctors = [
+  [
+    'name'           => 'Dr Rujhan Raqibi',
+    'role'           => 'Lead Hair Specialist',
+    'registration'   => 'MMC No. 00000',
+    'qualifications' => ['MBBS (UM)', 'Dip. Trichology'],
+  ],
+  [
+    'name'           => 'Dr Safwan Jamael',
+    'role'           => 'Hair and Scalp Doctor',
+    'registration'   => 'MMC No. 00000',
+    'qualifications' => ['MD (UKM)'],
+  ],
 ];
 
 $treatment = [
@@ -29,7 +44,7 @@ $treatment = [
   'summary' => [
     'price'   => 'From RM 9,000',
     'facts'   => [
-      ['label' => 'Grafts',            'value' => 'Up to 3,000'],
+      ['label' => 'Grafts per Session', 'value' => 'Up to 3,000'],
       ['label' => 'Procedure',         'value' => '6–8 hours'],
       ['label' => 'Anaesthesia',       'value' => 'Local'],
       ['label' => 'Back to Desk Work', 'value' => '3–5 days'],
@@ -43,7 +58,7 @@ $treatment = [
   ],
   'blocks'  => [
     'suitability' => [
-      'title' => 'Who it’s for',
+      'title' => 'Suitability',
       'body'  => 'A transplant moves your own hair to thinning areas. It works best when there is enough donor hair to move.',
       'suits' => [
         'Your hairline is receding or the crown is thinning',
@@ -56,8 +71,19 @@ $treatment = [
         'The cause of your hair loss has not been identified yet',
       ],
     ],
+    'benefits'    => [
+      'title' => 'Benefits',
+      'body'  => 'These are the main reasons people choose Sapphire FUE. How much you gain depends on your donor hair.',
+      'items' => [
+        ['title' => 'Your Own Hair',    'text' => 'Grows and feels like the rest of your hair.'],
+        ['title' => 'Natural Hairline', 'text' => 'Each graft follows your natural growth angle.'],
+        ['title' => 'No Long Scar',     'text' => 'Small dot marks instead of a strip scar.'],
+        ['title' => 'Quick Recovery',   'text' => 'Most people return to desk work in 3–5 days.'],
+        ['title' => 'Lasting Growth',   'text' => 'Transplanted hair usually keeps growing.'],
+      ],
+    ],
     'steps'       => [
-      'title' => 'The procedure, step by step',
+      'title' => 'How it works',
       'items' => [
         ['title' => 'Hairline Design',  'text' => 'Your doctor draws the hairline with you. You see it before anything starts.'],
         ['title' => 'Extraction',       'text' => 'Follicles are taken one by one from the back and sides, under local anaesthesia.'],
@@ -66,21 +92,13 @@ $treatment = [
       ],
     ],
     'timeline'    => [
-      'title' => 'Recovery timeline',
+      'title' => 'Recovery & progress',
       'items' => [
         ['meta' => 'Days 1–7',     'title' => 'Healing',        'text' => 'Redness, mild swelling and small crusts.'],
         ['meta' => 'Week 2',       'title' => 'Crusts Clear',   'text' => 'Most people return to normal routines.'],
         ['meta' => 'Months 1–3',   'title' => 'Shedding',       'text' => 'Transplanted hairs often shed. This is expected.'],
         ['meta' => 'Months 3–6',   'title' => 'Early Growth',   'text' => 'New growth starts to appear.'],
         ['meta' => 'Months 6–12+', 'title' => 'Density Builds', 'text' => 'Hair thickens and continues to mature.'],
-      ],
-    ],
-    'results'     => [
-      'title' => 'Results',
-      'note'  => 'Real patients at their 12-month review. Results vary between people.',
-      'cases' => [
-        ['title' => 'Frontal Hairline', 'treatment' => 'Around 2,500 grafts', 'timeframe' => '12 months'],
-        ['title' => 'Crown',            'treatment' => 'Around 2,200 grafts', 'timeframe' => '12 months'],
       ],
     ],
     'risks'       => [
@@ -97,14 +115,35 @@ $treatment = [
         'Fewer grafts growing than expected',
       ],
     ],
+    'doctors'     => [
+      'title' => 'Your doctors',
+      'body'  => 'Your procedure is planned and led by our doctors.',
+      'items' => $doctors,
+    ],
     'pricing'     => [
       'title'    => 'Pricing',
-      'body'     => 'Your price depends on the number of grafts you need. Most people pay RM 9,000–RM 18,000 for '
-        . '1,500–3,000 grafts. You get a written quote before you decide.',
-      'included' => ['Doctor consultation', 'Hairline design', 'The procedure', 'Aftercare kit', 'Follow-up reviews'],
+      'body'     => 'Your price depends on the number of grafts you need.',
+      'tiers'    => [
+        ['label' => 'Up to 1,500 grafts',   'price' => 'RM 9,000'],
+        ['label' => '1,501–2,500 grafts',   'price' => 'RM 12,000–15,000'],
+        ['label' => '2,501–3,000 grafts',   'price' => 'RM 15,000–18,000'],
+        ['label' => 'Over 3,000 grafts',    'price' => 'Quoted after assessment'],
+      ],
+      'included' => [
+        ['title' => 'Doctor Consultation', 'text' => 'Scalp assessment and a treatment plan with your doctor.'],
+        ['title' => 'Hairline Design',     'text' => 'Drawn and agreed with you before the procedure starts.'],
+        ['title' => 'The Procedure',       'text' => 'Extraction and placement under local anaesthesia.'],
+        ['title' => 'Aftercare Kit',       'text' => 'Shampoo, saline spray and home care instructions.'],
+        ['title' => 'Follow-up Review',    'text' => 'A check-in at 12 months to review your growth and density.'],
+      ],
+      'note'     => 'Your doctor confirms the final price in a written quote before you decide.',
+      'actions'  => [
+        ['label' => 'Start Free Assessment', 'href' => '#'],
+        ['label' => 'Chat With Us',          'href' => 'https://wa.me/601116741858', 'color' => 'secondary'],
+      ],
     ],
     'faqs'        => [
-      'title' => 'Questions people often ask',
+      'title' => 'Common concerns',
       'items' => [
         ['question' => 'Does a hair transplant hurt?', 'answer' => 'The area is numbed with local anaesthesia. Most people feel pressure rather than pain.'],
         ['question' => 'How long until I see results?', 'answer' => 'Early growth usually shows from 3–6 months. Most people see the full result at 12 months or later.'],
@@ -113,9 +152,19 @@ $treatment = [
       ],
     ],
   ],
+  'results' => [
+    'title'    => 'Real results, unretouched.',
+    'subtitle' => 'Before and after photos from our patients at their 12-month review. Results vary between people.',
+    'cases'    => [
+      ['title' => 'Frontal Hairline', 'treatment' => 'Around 2,500 grafts', 'timeframe' => '12 months'],
+      ['title' => 'Temples',          'treatment' => 'Around 1,800 grafts', 'timeframe' => '12 months'],
+      ['title' => 'Crown',            'treatment' => 'Around 2,200 grafts', 'timeframe' => '12 months'],
+    ],
+  ],
   'more'    => [
-    'title' => 'Other treatments',
-    'items' => [
+    'title'    => 'Other Treatments',
+    'subtitle' => 'Each treatment works differently. Explore other options that may suit your hair concern.',
+    'items'    => [
       ['title' => 'PRP Hair Treatment',     'pill' => 'In clinic',  'summary' => 'Your own plasma to support hair growth.', 'href' => '#'],
       ['title' => 'Hair Regrowth Treatment', 'pill' => 'Medication', 'summary' => 'Prescribed medication to slow hair loss.', 'href' => '#'],
       ['title' => 'Beard & Eyebrow Transplant', 'pill' => 'Surgical', 'summary' => 'Follicles moved to fill sparse areas.', 'href' => '#'],
@@ -126,8 +175,9 @@ $treatment = [
 component('navbar');
 section('treatment-lab-intro', $treatment['intro']);
 section('treatment-lab-body',  ['summary' => $treatment['summary'], 'blocks' => $treatment['blocks']]);
+section('treatment-results',  $treatment['results']);
 section('treatment-lab-more',  $treatment['more']);
-section('footer',              ['show_banner' => true]);
+section('footer',              ['show_banner' => false]);
 section('treatment-sticky-cta', ['action' => $assessment_cta]);
 
-component('button-whatsapp');
+component('button-whatsapp', ['hide_mobile' => true]);
