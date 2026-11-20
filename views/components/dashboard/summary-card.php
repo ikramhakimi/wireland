@@ -17,7 +17,7 @@ $card_config = [
     <div class="card-metrics grid items-stretch gap-8
       @sm:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
       <div class="card-primary flex flex-col gap-3 min-w-0">
-        <p class="card-value text-2xl font-medium leading-tight tabular-nums text-zinc-800 break-words
+        <p class="card-value text-2xl font-medium leading-tight tabular-nums color-strong break-words
           sm:text-3xl">
           <?= e($card['value']); ?>
         </p>
@@ -35,7 +35,7 @@ $card_config = [
         <?php foreach ($card['details'] as $detail): ?>
           <div class="card-detail min-w-0 pt-4 first:pt-0">
             <dt class="card-detail-label text-xs text-zinc-500"><?= e($detail['label']); ?></dt>
-            <dd class="card-detail-value mt-1 text-sm font-medium tabular-nums text-zinc-800"><?= e($detail['value']); ?></dd>
+            <dd class="card-detail-value mt-1 text-sm font-medium tabular-nums color-strong"><?= e($detail['value']); ?></dd>
           </div>
         <?php endforeach; ?>
       </dl>
@@ -46,7 +46,7 @@ $card_config = [
   'actions'       => function () use ($card): void {
     ?>
     <a href="<?= e($card['href']); ?>" aria-label="<?= e($card['action'] . ': ' . $card['label']); ?>"
-      class="card-action inline-flex items-center justify-between gap-3 w-full min-h-9 px-5 py-3 text-sm font-medium rounded-b-lg text-zinc-800 transition-colors duration-150
+      class="card-action inline-flex items-center justify-between gap-3 w-full min-h-9 px-5 py-3 text-sm font-medium rounded-b-lg color-strong transition-colors duration-150
         hover:bg-zinc-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
         motion-reduce:transition-none">
       <span class="card-action-label capitalize"><?= e($card['action']); ?></span>

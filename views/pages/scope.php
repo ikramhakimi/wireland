@@ -9,18 +9,18 @@ $page_current     = 'home';
   <div class="container">
     <div>
       <div class="bg-zinc-400 rounded-md size-20 mb-10"></div>
-      <h1 class="font-display text-4xl leading-12 text-pretty text-zinc-800" style="font-weight: 700 !important;">
+      <h1 class="font-display text-4xl leading-12 text-pretty color-strong" style="font-weight: 700 !important;">
         Project Scope
       </h1>
 
       <div class="mt-6 pt-6 border-t border-zinc-200">
-        <h2 class="text-2xl font-semibold text-zinc-800">Scope of Work</h2>
+        <h2 class="text-2xl font-semibold color-strong">Scope of Work</h2>
         <div class="mt-8 overflow-x-auto">
           <table class="w-full border-collapse text-left text-sm leading-6 text-zinc-600">
-            <caption class="pb-4 text-left text-lg font-semibold text-zinc-800">
+            <caption class="pb-4 text-left text-lg font-semibold color-strong">
               A. Storefront &amp; Patient Assessment
             </caption>
-            <thead class="bg-zinc-100 text-zinc-800">
+            <thead class="bg-zinc-100 color-strong">
               <tr>
                 <th scope="col" class="w-1/4 min-w-48 border border-zinc-200 px-4 py-3 font-semibold">Page</th>
                 <th scope="col" class="border border-zinc-200 px-4 py-3 font-semibold">Description</th>
@@ -29,7 +29,7 @@ $page_current     = 'home';
             </thead>
             <tbody>
               <tr>
-                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium text-zinc-800">
+                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium color-strong">
                   Homepage
                 </th>
                 <td class="border border-zinc-200 px-4 py-4 align-top">
@@ -40,7 +40,7 @@ $page_current     = 'home';
                 </td>
               </tr>
               <tr>
-                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium text-zinc-800">
+                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium color-strong">
                   Treatments
                 </th>
                 <td class="border border-zinc-200 px-4 py-4 align-top">
@@ -52,7 +52,7 @@ $page_current     = 'home';
                 </td>
               </tr>
               <tr>
-                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium text-zinc-800">
+                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium color-strong">
                   Hair Loss Issues
                 </th>
                 <td class="border border-zinc-200 px-4 py-4 align-top">
@@ -64,7 +64,7 @@ $page_current     = 'home';
                 </td>
               </tr>
               <tr>
-                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium text-zinc-800">
+                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium color-strong">
                   Products
                 </th>
                 <td class="border border-zinc-200 px-4 py-4 align-top">
@@ -77,7 +77,7 @@ $page_current     = 'home';
                 </td>
               </tr>
               <tr>
-                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium text-zinc-800">
+                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium color-strong">
                   Case Studies &amp; Testimonials
                 </th>
                 <td class="border border-zinc-200 px-4 py-4 align-top">
@@ -89,7 +89,7 @@ $page_current     = 'home';
                 </td>
               </tr>
               <tr>
-                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium text-zinc-800">
+                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium color-strong">
                   Assessment
                 </th>
                 <td class="border border-zinc-200 px-4 py-4 align-top">
@@ -104,7 +104,7 @@ $page_current     = 'home';
                 </td>
               </tr>
               <tr>
-                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium text-zinc-800">
+                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium color-strong">
                   Patient Account
                 </th>
                 <td class="border border-zinc-200 px-4 py-4 align-top">
@@ -126,7 +126,7 @@ $page_current     = 'home';
                 </td>
               </tr>
               <tr>
-                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium text-zinc-800">
+                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium color-strong">
                   Cart &amp; Checkout
                 </th>
                 <td class="border border-zinc-200 px-4 py-4 align-top">
@@ -140,7 +140,7 @@ $page_current     = 'home';
                 </td>
               </tr>
               <tr>
-                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium text-zinc-800">
+                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium color-strong">
                   Policy Pages
                 </th>
                 <td class="border border-zinc-200 px-4 py-4 align-top">
@@ -158,10 +158,10 @@ $page_current     = 'home';
         </div>
         <div class="mt-8 overflow-x-auto">
           <table class="w-full border-collapse text-left text-sm leading-6 text-zinc-600">
-            <caption class="pb-4 text-left text-lg font-semibold text-zinc-800">
+            <caption class="pb-4 text-left text-lg font-semibold color-strong">
               B. Doctor &amp; Admin Dashboard
             </caption>
-            <thead class="bg-zinc-100 text-zinc-800">
+            <thead class="bg-zinc-100 color-strong">
               <tr>
                 <th scope="col" class="w-1/4 min-w-48 border border-zinc-200 px-4 py-3 font-semibold">Page</th>
                 <th scope="col" class="border border-zinc-200 px-4 py-3 font-semibold">Description</th>
@@ -170,7 +170,7 @@ $page_current     = 'home';
             </thead>
             <tbody>
               <tr>
-                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium text-zinc-800">
+                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium color-strong">
                   Doctor Summary
                 </th>
                 <td class="border border-zinc-200 px-4 py-4 align-top">
@@ -181,7 +181,7 @@ $page_current     = 'home';
                 </td>
               </tr>
               <tr>
-                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium text-zinc-800">
+                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium color-strong">
                   Assessment Review
                 </th>
                 <td class="border border-zinc-200 px-4 py-4 align-top">
@@ -194,7 +194,7 @@ $page_current     = 'home';
                 </td>
               </tr>
               <tr>
-                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium text-zinc-800">
+                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium color-strong">
                   Prescription Management
                 </th>
                 <td class="border border-zinc-200 px-4 py-4 align-top">
@@ -208,7 +208,7 @@ $page_current     = 'home';
                 </td>
               </tr>
               <tr>
-                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium text-zinc-800">
+                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium color-strong">
                   Products &amp; Orders
                 </th>
                 <td class="border border-zinc-200 px-4 py-4 align-top">
@@ -224,7 +224,7 @@ $page_current     = 'home';
                 </td>
               </tr>
               <tr>
-                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium text-zinc-800">
+                <th scope="row" class="border border-zinc-200 px-4 py-4 align-top font-medium color-strong">
                   Patients &amp; Access
                 </th>
                 <td class="border border-zinc-200 px-4 py-4 align-top">
@@ -245,11 +245,11 @@ $page_current     = 'home';
       </div>
 
       <!-- <section class="mt-12" aria-labelledby="expertise-title">
-        <h2 id="expertise-title" class="text-2xl font-semibold text-zinc-800">Expertise</h2>
+        <h2 id="expertise-title" class="text-2xl font-semibold color-strong">Expertise</h2>
 
         <div class="mt-6 grid gap-8 sm:grid-cols-2">
           <div>
-            <h3 class="text-lg font-semibold text-zinc-800">Product Design</h3>
+            <h3 class="text-lg font-semibold color-strong">Product Design</h3>
             <p class="mt-2 text-sm text-pretty text-zinc-600">
               Bringing ideas into focus. From wireframes to interactive prototypes, shaping how a product feels and flows.
             </p>
@@ -257,7 +257,7 @@ $page_current     = 'home';
           </div>
 
           <div>
-            <h3 class="text-lg font-semibold text-zinc-800">Design Systems</h3>
+            <h3 class="text-lg font-semibold color-strong">Design Systems</h3>
             <p class="mt-2 text-pretty text-zinc-600">
               Creating a shared design language. Thoughtful, reusable components that keep every experience consistent.
             </p>
@@ -265,7 +265,7 @@ $page_current     = 'home';
           </div>
 
           <div>
-            <h3 class="text-lg font-semibold text-zinc-800">Frontend Development</h3>
+            <h3 class="text-lg font-semibold color-strong">Frontend Development</h3>
             <p class="mt-2 text-pretty text-zinc-600">
               Bringing design to the browser. Building responsive interfaces with care for structure, style, and interaction.
             </p>
@@ -273,7 +273,7 @@ $page_current     = 'home';
           </div>
 
           <div>
-            <h3 class="text-lg font-semibold text-zinc-800">Version Control</h3>
+            <h3 class="text-lg font-semibold color-strong">Version Control</h3>
             <p class="mt-2 text-pretty text-zinc-600">
               Keeping progress clear. Tracking changes and collaborating through each iteration.
             </p>

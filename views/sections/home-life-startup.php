@@ -20,7 +20,7 @@ $treatment_headline = [
         <span class="inline-flex-center size-12 rounded-full bg-zinc-300 text-lg font-semibold text-zinc-700">
           <span class="sr-only">Step </span>1
         </span>
-        <h3 class="mt-10 text-lg font-semibold text-zinc-800">Take your free assessment</h3>
+        <h3 class="mt-10 text-lg font-semibold color-strong">Take your free assessment</h3>
         <p class="mt-3 text-sm text-pretty text-zinc-500">
           Tell us about your hair concerns, medical history and what you would like to achieve.
         </p>
@@ -29,7 +29,7 @@ $treatment_headline = [
         <span class="inline-flex-center size-12 rounded-full bg-zinc-300 text-lg font-semibold text-zinc-700">
           <span class="sr-only">Step </span>2
         </span>
-        <h3 class="mt-10 text-lg font-semibold text-zinc-800">Find your treatment plan</h3>
+        <h3 class="mt-10 text-lg font-semibold color-strong">Find your treatment plan</h3>
         <p class="mt-3 text-sm text-pretty text-zinc-500">
           Explore suitable options with our team and choose a plan that fits your routine.
         </p>
@@ -38,7 +38,7 @@ $treatment_headline = [
         <span class="inline-flex-center size-12 rounded-full bg-zinc-300 text-lg font-semibold text-zinc-700">
           <span class="sr-only">Step </span>3
         </span>
-        <h3 class="mt-10 text-lg font-semibold text-zinc-800">Start your daily routine</h3>
+        <h3 class="mt-10 text-lg font-semibold color-strong">Start your daily routine</h3>
         <p class="mt-3 text-sm text-pretty text-zinc-500">
           Begin your agreed treatment with clear guidance on how to make it part of your day.
         </p>
@@ -47,7 +47,7 @@ $treatment_headline = [
         <span class="inline-flex-center size-12 rounded-full bg-zinc-300 text-lg font-semibold text-zinc-700">
           <span class="sr-only">Step </span>4
         </span>
-        <h3 class="mt-10 text-lg font-semibold text-zinc-800">Keep track of your progress</h3>
+        <h3 class="mt-10 text-lg font-semibold color-strong">Keep track of your progress</h3>
         <p class="mt-3 text-sm text-pretty text-zinc-500">
           Stay consistent and check in with our team for support throughout your hair journey.
         </p>
@@ -73,7 +73,7 @@ $treatment_headline = [
           >
         </div>
         <div class="p-5 sm:p-7">
-          <h3 class="text-xl font-semibold text-zinc-800">Thinning and receding</h3>
+          <h3 class="text-xl font-semibold color-strong">Thinning and receding</h3>
           <p class="mt-3 text-sm text-pretty text-zinc-500">
             Explore a personalised plan for changes in both your hairline and overall coverage.
           </p>
@@ -91,7 +91,7 @@ $treatment_headline = [
           >
         </div>
         <div class="p-5 sm:p-7">
-          <h3 class="text-xl font-semibold text-zinc-800">Thinning of the crown</h3>
+          <h3 class="text-xl font-semibold color-strong">Thinning of the crown</h3>
           <p class="mt-3 text-sm text-pretty text-zinc-500">
             Find care options tailored to reduced density and visible thinning at the top of your head.
           </p>
@@ -109,7 +109,7 @@ $treatment_headline = [
           >
         </div>
         <div class="p-5 sm:p-7">
-          <h3 class="text-xl font-semibold text-zinc-800">Receding hairlines</h3>
+          <h3 class="text-xl font-semibold color-strong">Receding hairlines</h3>
           <p class="mt-3 text-sm text-pretty text-zinc-500">
             Understand your options for a changing hairline and thinning around the temples.
           </p>

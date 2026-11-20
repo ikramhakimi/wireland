@@ -28,7 +28,7 @@ $class          = $class ?? '';
   <?php if ($title !== ''): ?>
     <header class="card-header flex <?= ($header_number !== '' || $header_icon !== '') ? 'items-center gap-3' : 'flex-col gap-1'; ?> px-5 pt-5">
       <?php if ($header_number !== '' || $header_icon !== ''): ?>
-        <span class="<?= $header_icon !== '' ? 'card-icon' : 'card-number'; ?> flex shrink-0 items-center justify-center size-12 font-medium bg-zinc-200 text-zinc-800 rounded-md">
+        <span class="<?= $header_icon !== '' ? 'card-icon' : 'card-number'; ?> flex shrink-0 items-center justify-center size-12 font-medium bg-zinc-200 color-strong rounded-md">
           <?php if ($header_icon !== ''): ?>
             <?php svg($header_icon, 'card-glyph size-6 text-zinc-500'); ?>
           <?php else: ?>
@@ -37,7 +37,7 @@ $class          = $class ?? '';
         </span>
         <div class="card-heading flex flex-col min-w-0">
       <?php endif; ?>
-      <h3 class="card-title text-base font-medium text-zinc-800"><?= e($title); ?></h3>
+      <h3 class="card-title text-xl font-semibold color-strong"><?= e($title); ?></h3>
       <?php if ($description !== ''): ?>
         <p class="card-description text-sm leading-relaxed text-pretty text-zinc-500"><?= e($description); ?></p>
       <?php endif; ?>

@@ -12,14 +12,14 @@ $register_button = [
   'color' => 'primary',
 ];
 
+$page_breadcrumb = [
+  ['label' => 'Dashboard', 'href' => asset_url('dashboard/')],
+  ['label' => 'Patients'],
+];
 $page_header = [
   'title'       => $page_title,
   'title_id'    => 'patients-title',
   'description' => 'Find patient records and keep track of follow-ups.',
-  'breadcrumb'  => [
-    ['label' => 'Dashboard', 'href' => asset_url('dashboard/')],
-    ['label' => 'Patients'],
-  ],
   'actions'     => [$register_button],
 ];
 

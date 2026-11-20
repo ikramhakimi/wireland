@@ -91,7 +91,7 @@ $review_toggle = [
       <p role="status" class="review-status text-sm text-zinc-500 js-component-workflow-status"></p>
       <section hidden aria-label="Demo response preview"
         class="review-preview min-w-0 js-component-workflow-preview">
-        <h4 class="review-title text-base font-medium text-zinc-800">Demo Response Preview</h4>
+        <h4 class="review-title text-base font-medium color-strong">Demo Response Preview</h4>
         <p class="review-meta mt-2 text-xs text-zinc-500 js-component-workflow-meta"></p>
         <p class="review-response mt-3 text-sm leading-relaxed whitespace-pre-wrap wrap-anywhere js-component-workflow-response"></p>
         <p hidden class="review-value mt-3 text-sm whitespace-pre-wrap wrap-anywhere js-component-workflow-value"></p>

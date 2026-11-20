@@ -181,7 +181,7 @@ $render_reference = static function (string $reference) use ($decision_targets):
   ?>
   <a href="#<?= e($decision_targets[$reference]); ?>"
     class="reference-link font-medium underline underline-offset-4
-      hover:text-zinc-800 focus-visible:outline-2 focus-visible:outline-blue-800"><?= e($reference); ?></a>
+      hover:color-strong focus-visible:outline-2 focus-visible:outline-blue-800"><?= e($reference); ?></a>
   <?php
 };
 
@@ -270,7 +270,7 @@ $emphasis_pattern = '/(' . implode('|', array_map(static function (string $phras
 $render_content = static function (string $text) use ($emphasis_pattern): void {
   foreach (preg_split($emphasis_pattern, $text, -1, PREG_SPLIT_DELIM_CAPTURE) as $index => $part) {
     if ($index % 2 === 1) {
-      ?><strong class="reference-emphasis px-1 font-medium rounded bg-amber-50 text-zinc-800"><?= e($part); ?></strong><?php
+      ?><strong class="reference-emphasis px-1 font-medium rounded bg-amber-50 color-strong"><?= e($part); ?></strong><?php
     } else {
       echo e($part);
     }
@@ -298,7 +298,7 @@ foreach ($workflow_sections as $workflow_section) {
         <div class="reference-records grid min-w-0 gap-6 md:hidden">
           <?php foreach ($workflow_section['rows'] as $row): ?>
             <article class="reference-record grid min-w-0 gap-3 wrap-anywhere">
-              <h4 class="reference-title text-sm font-medium text-zinc-800">
+              <h4 class="reference-title text-sm font-medium color-strong">
                 <?php if ($workflow_section['id'] === 'decisions'): ?>
                   <?php $render_reference($row[0]); ?>
                 <?php else: ?>
@@ -330,7 +330,7 @@ foreach ($workflow_sections as $workflow_section) {
             <thead class="reference-head border-b border-zinc-200">
               <tr class="reference-row">
                 <?php foreach ($workflow_section['columns'] as $column): ?>
-                  <th scope="col" class="reference-heading px-3 py-3 text-left align-top font-medium text-pretty text-zinc-800
+                  <th scope="col" class="reference-heading px-3 py-3 text-left align-top font-medium text-pretty color-strong
                     first:ps-0 last:pe-0"><?= e($column); ?></th>
                 <?php endforeach; ?>
               </tr>
@@ -338,7 +338,7 @@ foreach ($workflow_sections as $workflow_section) {
             <tbody class="reference-body divide-y divide-zinc-100">
               <?php foreach ($workflow_section['rows'] as $row): ?>
                 <tr class="reference-row">
-                  <th scope="row" class="reference-label py-3 pe-3 text-left align-top font-medium text-pretty text-zinc-800">
+                  <th scope="row" class="reference-label py-3 pe-3 text-left align-top font-medium text-pretty color-strong">
                     <?php if ($workflow_section['id'] === 'decisions'): ?>
                       <?php $render_reference($row[0]); ?>
                     <?php else: ?>
@@ -377,7 +377,7 @@ foreach ($workflow_sections as $workflow_section) {
 <section class="section min-w-0 py-0!" aria-labelledby="workflow-title">
   <header class="section-header">
     <p class="section-label mb-2 text-xs font-medium text-zinc-500">Working Draft · Version 0.1</p>
-    <h1 id="workflow-title" class="section-title text-3xl font-medium text-zinc-800">Assessment Workflow</h1>
+    <h1 id="workflow-title" class="section-title text-3xl font-medium color-strong">Assessment Workflow</h1>
     <p class="section-description mt-2 text-sm leading-relaxed text-zinc-500">
       Shared reference for product owners, developers and doctors. Proposed rules remain open until agreed.
     </p>
@@ -388,7 +388,7 @@ foreach ($workflow_sections as $workflow_section) {
         <li class="reference-item min-w-0">
           <a href="#<?= e($workflow_section['id']); ?>"
             class="reference-link inline-block text-sm text-zinc-600 underline underline-offset-4 wrap-anywhere
-              hover:text-zinc-800 focus-visible:outline-2 focus-visible:outline-blue-800"><?= e($workflow_section['title']); ?></a>
+              hover:color-strong focus-visible:outline-2 focus-visible:outline-blue-800"><?= e($workflow_section['title']); ?></a>
         </li>
       <?php endforeach; ?>
     </ul>

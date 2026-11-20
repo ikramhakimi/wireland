@@ -46,7 +46,7 @@ $card_config = [
     <?php if ($summary !== null): ?>
       <div class="card-metrics grid gap-8 mb-5 py-1">
         <div class="card-primary flex flex-col gap-3 min-w-0">
-          <p class="card-value text-4xl font-medium leading-tight tabular-nums text-zinc-800 break-words"><?= e($summary['value']); ?></p>
+          <p class="card-value text-4xl font-medium leading-tight tabular-nums color-strong break-words"><?= e($summary['value']); ?></p>
           <div class="card-comparison mt-auto [&_.comparison]:flex-col [&_.comparison]:items-start">
             <?php component('components/dashboard/comparison', [
               'value'   => $summary['comparison'],
@@ -62,7 +62,7 @@ $card_config = [
         <div class="sales-readout flex items-center justify-between gap-4 mb-5">
           <div class="sales-reading min-w-0" aria-live="polite" aria-atomic="true">
             <p class="sales-date text-xs text-zinc-500 js-component-sales-date"><?= e($latest_day['label']); ?></p>
-            <p class="sales-value mt-1 text-2xl font-medium leading-tight tabular-nums text-zinc-800 js-component-sales-value">
+            <p class="sales-value mt-1 text-2xl font-medium leading-tight tabular-nums color-strong js-component-sales-value">
               RM <?= number_format($latest_day['value'], 2); ?>
             </p>
             <p class="sales-change min-h-4 mt-2 text-xs text-zinc-500 js-component-sales-change">
@@ -147,7 +147,7 @@ $card_config = [
           backdrop:bg-zinc-800/30 js-component-sales-dialog">
         <header class="report-header flex items-start justify-between gap-4">
           <div class="report-heading">
-            <h2 id="sales-report-title" class="report-title text-xl font-medium text-zinc-800">Daily sales report</h2>
+            <h2 id="sales-report-title" class="report-title text-xl font-medium color-strong">Daily sales report</h2>
             <p class="report-period mt-1 text-xs text-zinc-500">
               <?= e($report_start->format('j M')); ?>–<?= e($report_end->format('j M Y')); ?>
             </p>
@@ -176,7 +176,7 @@ $card_config = [
               </tr>
             <?php endforeach; ?>
           </tbody>
-          <tfoot class="table-footer border-t border-zinc-200 text-zinc-800">
+          <tfoot class="table-footer border-t border-zinc-200 color-strong">
             <tr class="table-row">
               <th scope="row" class="table-heading py-3 font-medium">Total</th>
               <td class="table-cell py-3 text-right font-medium tabular-nums">RM <?= number_format($sales_total, 2); ?></td>

@@ -7,7 +7,7 @@
  * Data: Static content.
  */
 ?>
-<section class="section hero hero-lifestyle bg-zinc-50 text-zinc-800 js-component-home-hero"
+<section class="section hero hero-lifestyle bg-zinc-50 color-strong js-component-home-hero"
   aria-labelledby="hero-lifestyle-title">
   <div class="hero-container mx-auto w-full max-w-7xl px-5
     lg:px-8">
@@ -46,7 +46,7 @@
             <?php svg('shining-line', 'size-5'); ?>
           </span>
           <p class="hero-footnote-text text-xs leading-relaxed text-zinc-500">Everyday essentials.<br>
-            <strong class="hero-footnote-emphasis font-medium text-zinc-800">Expert-guided treatment options.</strong>
+            <strong class="hero-footnote-emphasis font-medium color-strong">Expert-guided treatment options.</strong>
           </p>
         </div>
       </div>

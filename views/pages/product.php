@@ -170,28 +170,36 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
           <ul class="product-photos flex gap-2 overflow-x-auto snap-x snap-mandatory scroll-px-5 -mx-5 px-5
             lg:grid lg:grid-cols-2 lg:overflow-visible lg:mx-0 lg:px-0" aria-label="Product photos">
             <?php foreach ($product_photos as $index => $photo): ?>
-              <li class="product-photo flex-center shrink-0 w-70 aspect-square snap-start rounded-lg bg-zinc-300 color-muted
+              <li class="product-photo relative flex-center shrink-0 w-70 aspect-square snap-start rounded-lg bg-zinc-300 color-muted
                 lg:w-auto <?= $index === 0 ? 'lg:col-span-2' : ''; ?>">
                 <?php svg('image-line', 'product-photo-placeholder size-6'); ?>
                 <span class="sr-only">Photo <?= $photo; ?> placeholder</span>
+                <?php if ($index === 0 && $format_pills !== []): ?>
+                  <ul class="product-format product-format-overlay absolute bottom-3 left-3 flex flex-wrap gap-1
+                    md:top-3 md:right-3 md:bottom-auto md:left-auto" aria-label="Product format">
+                    <?php foreach ($format_pills as $pill): ?>
+                      <li class="badge inline-flex px-2.5 py-0.5 text-xs font-medium rounded-full border border-zinc-300 bg-white text-zinc-700">
+                        <?= e($pill); ?>
+                      </li>
+                    <?php endforeach; ?>
+                  </ul>
+                <?php endif; ?>
               </li>
             <?php endforeach; ?>
           </ul>
         </div>
         <div class="product-content min-w-0
           lg:col-span-5">
-          <p class="product-category mb-3 text-sm color-muted"><?= e($product['category']); ?></p>
-          <h1 id="product-title" class="product-title text-title-md font-medium color-strong text-pretty">
+          <p class="product-category hidden mb-3 text-sm color-muted lg:block"><?= e($product['category']); ?></p>
+          <h1 id="product-title" class="product-title text-2xl sm:text-3xl font-semibold color-strong text-pretty">
             <?= e($product['name']); ?>
           </h1>
-          <ul class="product-format flex flex-wrap gap-1 mt-5" aria-label="Product format">
-            <?php foreach ($format_pills as $pill): ?>
-              <li class="badge inline-flex px-2.5 py-0.5 text-xs font-medium rounded-full border border-zinc-300 text-zinc-700">
-                <?= e($pill); ?>
-              </li>
-            <?php endforeach; ?>
-          </ul>
-          <p class="product-introduction mt-5 leading-relaxed"><?= e($page_description); ?></p>
+          <p class="product-introduction mt-3 text-sm md:text-base leading-relaxed">
+            <span class="product-introduction-category lg:hidden">
+              <?= e($product['category']); ?> &mdash;
+            </span>
+            <?= e($page_description); ?>
+          </p>
           <?php if ($product_ingredients !== []): ?>
             <p class="product-ingredients mt-2 text-xs color-muted">
               <span class="product-ingredients-label font-medium">Ingredients:</span>

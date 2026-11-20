@@ -72,13 +72,13 @@ $treatment_items = [
               <div class="assessment-preview flex items-center justify-center w-full pointer-events-none">
                 <div class="assessment-card flex flex-col w-full max-w-80 min-h-84 p-4 rounded-lg bg-white shadow-sm">
                   <div class="assessment-header flex items-center justify-between gap-2 text-[10px] font-medium">
-                    <span class="assessment-label text-zinc-800">Hair assessment</span>
+                    <span class="assessment-label color-strong">Hair assessment</span>
                     <span class="assessment-count text-zinc-400">Question 2 of 6</span>
                   </div>
                   <div class="assessment-progress h-1 mt-2 rounded-full bg-zinc-100" aria-hidden="true">
                     <div class="assessment-progress-fill w-1/3 h-full rounded-full bg-orange-500"></div>
                   </div>
-                  <p class="assessment-question mt-4 text-sm font-medium leading-snug text-zinc-800">
+                  <p class="assessment-question mt-4 text-sm font-medium leading-snug color-strong">
                     When did you first notice hair loss?
                   </p>
                   <ul class="assessment-options flex flex-col gap-1.5 mt-3 text-xs">
@@ -89,7 +89,7 @@ $treatment_items = [
                         aria-hidden="true"></span>
                     </li>
                     <li class="assessment-option flex items-center justify-between gap-2 px-3 py-2
-                      rounded-md border border-orange-500 bg-orange-50 text-zinc-800">
+                      rounded-md border border-orange-500 bg-orange-50 color-strong">
                       <span class="assessment-option-label">1–6 months ago<span class="sr-only"> (selected)</span></span>
                       <span class="assessment-option-check flex items-center justify-center size-3 shrink-0
                         rounded-full bg-orange-500 text-white" aria-hidden="true">
@@ -119,7 +119,7 @@ $treatment_items = [
                       <p class="plan-eyebrow text-[10px] font-medium tracking-wide uppercase text-zinc-400">
                         Made for you
                       </p>
-                      <p class="plan-title mt-1 text-sm font-medium leading-snug text-zinc-800">
+                      <p class="plan-title mt-1 text-sm font-medium leading-snug color-strong">
                         Your personalised plan
                       </p>
                     </div>
@@ -136,7 +136,7 @@ $treatment_items = [
                             class="treatment-image size-full object-contain" width="40" height="40" loading="lazy">
                         </div>
                         <div class="treatment-content min-w-0">
-                          <p class="treatment-name text-xs font-medium leading-snug text-zinc-800">
+                          <p class="treatment-name text-xs font-medium leading-snug color-strong">
                             <?= e($item['name']); ?>
                           </p>
                           <p class="treatment-brief mt-0.5 text-[10px] text-zinc-500"><?= e($item['brief']); ?></p>
@@ -149,7 +149,7 @@ $treatment_items = [
                       class="plan-doctor-avatar size-7 shrink-0 rounded-full object-cover"
                       width="28" height="28" loading="lazy">
                     <p class="plan-doctor-label text-[10px] leading-snug text-zinc-500">
-                      Reviewed by <span class="plan-doctor-name font-medium text-zinc-800">Dr Rujhan</span>
+                      Reviewed by <span class="plan-doctor-name font-medium color-strong">Dr Rujhan</span>
                     </p>
                   </div>
                 </div>
@@ -174,13 +174,13 @@ $treatment_items = [
                         width="36" height="36" loading="lazy" draggable="false">
                     </div>
                     <div class="delivery-package-content">
-                      <p class="delivery-package-title text-xs font-medium text-zinc-800">Your treatment package</p>
+                      <p class="delivery-package-title text-xs font-medium color-strong">Your treatment package</p>
                       <p class="delivery-package-label mt-0.5 text-[10px] text-zinc-500">Prepared for your routine</p>
                     </div>
                   </div>
                   <div class="delivery-estimate mt-3 p-3 rounded-md bg-zinc-50">
                     <p class="delivery-estimate-label text-[10px] text-zinc-500">Estimated arrival</p>
-                    <p class="delivery-estimate-time mt-1 text-sm font-medium text-zinc-800">Today, by 4:30 pm</p>
+                    <p class="delivery-estimate-time mt-1 text-sm font-medium color-strong">Today, by 4:30 pm</p>
                   </div>
                   <ol class="delivery-timeline grid grid-cols-4 gap-1 mt-4 mb-3 text-center text-[10px]"
                     aria-label="Example order progress">
@@ -228,7 +228,7 @@ $treatment_items = [
                       class="chat-doctor-avatar size-8 shrink-0 rounded-full object-cover"
                       width="32" height="32" loading="lazy">
                     <div class="chat-doctor-content">
-                      <p class="chat-doctor-name text-xs font-medium text-zinc-800">Dr Rujhan</p>
+                      <p class="chat-doctor-name text-xs font-medium color-strong">Dr Rujhan</p>
                       <p class="chat-doctor-label mt-0.5 text-[10px] text-zinc-500">Your care team</p>
                     </div>
                     <span class="chat-status ml-auto px-2 py-1 text-[10px] font-medium rounded-full
@@ -241,7 +241,7 @@ $treatment_items = [
                       <span class="chat-speaker sr-only">Dr Rujhan: </span>
                       Hi! How’s your treatment routine going?
                     </li>
-                    <li class="chat-message max-w-[90%] self-end px-3 py-2 rounded-lg bg-orange-50 text-zinc-800">
+                    <li class="chat-message max-w-[90%] self-end px-3 py-2 rounded-lg bg-orange-50 color-strong">
                       <span class="chat-speaker sr-only">Patient: </span>
                       Going well. I’ve been keeping to my plan.
                     </li>

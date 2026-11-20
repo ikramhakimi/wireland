@@ -118,7 +118,7 @@ $headline_center_no_button = [
       </figure>
     </div>
     
-    <div class="evidence-faq mt-10 text-zinc-800 hidden">
+    <div class="evidence-faq mt-10 color-strong hidden">
       <div class="text-xs">FAQ</div>
       <h3 class="mt-3 text-4xl text-pretty">Science-backed answers for peace of mind</h3>
       <div class="evidence-faq-groups grid gap-5 mt-5">

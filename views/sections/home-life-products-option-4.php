@@ -42,7 +42,7 @@ $carousels = [
           </div>
           <div class="product-brief flex-1 flex flex-col px-5 pb-4">
             <div class="product-pill inline-flex self-start mb-4 px-2.5 py-1.5 text-xs leading-3 rounded-md bg-zinc-100">Daily</div>
-            <h3 class="product-title font-display text-base font-medium text-zinc-800">Root Activator Deluxe Kit</h3>
+            <h3 class="product-title font-display text-base font-medium color-strong">Root Activator Deluxe Kit</h3>
             <div class="product-formula text-xs text-green-800">Finasteride 0.1% + minoxidil 5% foam</div>
             <div class="product-desc mt-2 text-xs text-zinc-500">
               A daily tablet, plus a tonic for thinning spots twice a day.
@@ -74,7 +74,7 @@ $carousels = [
             sm:p-10">
             <div class="consultation-content flex justify-between">
               <div class="consultation-brief max-w-80">
-                <h3 class="consultation-title text-4xl font-medium text-pretty text-zinc-800">Your hair concerns deserve a closer look.</h3>
+                <h3 class="consultation-title text-4xl font-medium text-pretty color-strong">Your hair concerns deserve a closer look.</h3>
                 <p class="consultation-description mt-4">Start an assessment so a clinician can review your concerns and recommend suitable treatment options.</p>
               </div>
               <div class="consultation-actions">
@@ -94,7 +94,7 @@ $carousels = [
 
   <div class="section-subheader container mt-15">
     <div class="section-subheader-content items-center justify-between pb-5 border-b border-zinc-200 sm:flex">
-      <h2 class="section-subheader-title text-lg font-medium text-zinc-800">Prescription Treatments</h2>
+      <h2 class="section-subheader-title text-lg font-medium color-strong">Prescription Treatments</h2>
       <div class="section-subheader-description text-sm">Subject to a clinician’s assessment of what’s suitable for you.</div>
     </div>
   </div>
@@ -108,7 +108,7 @@ $carousels = [
           </div>
           <div class="product-brief flex-1 flex flex-col px-5 pb-4">
             <div class="product-pill inline-flex self-start mb-4 px-2.5 py-1.5 text-xs leading-3 rounded-md bg-zinc-100">Rx Required</div>
-            <h3 class="product-title font-display text-base font-medium text-zinc-800">Root Activator Deluxe Kit</h3>
+            <h3 class="product-title font-display text-base font-medium color-strong">Root Activator Deluxe Kit</h3>
             <div class="product-formula text-xs text-green-800">Finasteride 0.1% + minoxidil 5% foam</div>
             <div class="product-desc mt-2 text-xs text-zinc-500">
               A daily tablet, plus a tonic for thinning spots twice a day.
@@ -116,7 +116,7 @@ $carousels = [
             <div class="product-actions flex-split mt-auto pt-5">
               <div class="product-price">
                 <div class="product-price-label text-xs text-zinc-500">From</div>
-                <span class="product-price-current font-medium text-zinc-800">RM 350</span>
+                <span class="product-price-current font-medium color-strong">RM 350</span>
                 <span class="product-price-original text-xs font-normal line-through decoration-zinc-400 text-zinc-500">RM 450</span>
               </div>
               <a href="#" class="product-action inline-flex px-6 py-4 text-sm leading-3 rounded-lg bg-zinc-800 text-white">Get Started</a>

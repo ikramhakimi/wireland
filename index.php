@@ -33,6 +33,13 @@ if ($is_valid_route && $pages_root !== false) {
   }
 }
 
+// Dynamic route: /shop/<slug>/ renders a public category page.
+$route_params = [];
+if ($route === '' && preg_match('/^shop\/([a-z0-9]+(?:-[a-z0-9]+)*)$/', $uri, $route_match) === 1) {
+  $route                = $pages_root . '/shop-category.php';
+  $route_params['slug'] = $route_match[1];
+}
+
 ob_start();
 if ($route !== '') {
   include $route;

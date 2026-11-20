@@ -174,6 +174,10 @@ $detail_image_modal = [
   },
 ];
 
+$page_breadcrumb = [
+  ['label' => 'Products', 'href' => asset_url('dashboard/products/')],
+  ['label' => $product['id'] ?? 'Unavailable'],
+];
 $page_header = [
   'title'       => $product['name'] ?? 'Product Not Found',
   'title_id'    => 'product-title',
@@ -181,10 +185,6 @@ $page_header = [
   'description' => $product === null
     ? 'Return to Products and select another product.'
     : $page_description,
-  'breadcrumb'  => [
-    ['label' => 'Products', 'href' => asset_url('dashboard/products/')],
-    ['label' => $product['id'] ?? 'Unavailable'],
-  ],
   'actions'     => $product === null ? [] : [
     [
       'label' => 'Edit Product',

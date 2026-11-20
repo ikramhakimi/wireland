@@ -15,7 +15,7 @@
   const catalogue = new Map(config.products.map((product) => [product.id, product]));
   Object.entries(changes).forEach(([id, product]) => catalogue.set(id, product));
   // Category IDs and previous names preserve assignments across category renames.
-  // Hooks: .js-component-categories-{list,count,editor,title,feedback}.
+  // Hooks: .js-component-categories-{list,count,editor,title,feedback,slug,total,search-*,visible,hidden}.
   const categoryStorageKey = 'wireland-product-categories-v1';
   let categoryChanges = {};
   try {
@@ -50,9 +50,16 @@
     categoryList.replaceChildren();
     categories.forEach((category) => {
       const row = template.cloneNode(true);
+      const cell = (key) => row.querySelector(`.js-component-categories-${key}`);
+      const searchReady = Boolean(category.slug && (category.meta_description || category.description));
       row.querySelector('th').textContent = category.name;
-      row.querySelector('td').textContent = [...catalogue.values()]
+      cell('slug').textContent = category.slug || '';
+      cell('total').textContent = [...catalogue.values()]
         .filter((product) => product.category_id === category.id).length;
+      cell('search-ready').hidden = !searchReady;
+      cell('search-missing').hidden = searchReady;
+      cell('visible').hidden = Boolean(category.noindex);
+      cell('hidden').hidden = !category.noindex;
       const link = row.querySelector('a');
       link.href = `${config.category_edit_url}?id=${encodeURIComponent(category.id)}`;
       link.setAttribute('aria-label', `Edit Category: ${category.name}`);
@@ -71,23 +78,87 @@
       document.querySelector('.js-component-categories-title').textContent = 'Category Not Found';
       return;
     }
+    // SEO fields: slug follows the name until edited; preview and counters mirror the form.
+    // Hooks: .js-component-categories-preview-{slug,title,description,status}.
+    const fields = Object.fromEntries(['slug', 'description', 'image_alt', 'meta_title', 'meta_description', 'noindex']
+      .map((key) => [key, categoryEditor.elements.namedItem(key)]));
+    const preview = (key) => categoryEditor.querySelector(`.js-component-categories-preview-${key}`);
+    const slugify = (value) => value.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
     name.value = originalCategory?.name || '';
+    fields.slug.value = originalCategory?.slug || slugify(name.value);
+    fields.description.value = originalCategory?.description || '';
+    fields.meta_title.value = originalCategory?.meta_title || '';
+    fields.meta_description.value = originalCategory?.meta_description || '';
+    fields.noindex.checked = Boolean(originalCategory?.noindex);
+    fields.image_alt.value = originalCategory?.image_alt || '';
+    // Category photo: single image from forms/file-upload; stored as its URL or data URL.
+    const photoRoot = categoryEditor.querySelector('.js-component-file-upload-root');
+    const photo = window.FileUpload.init(photoRoot);
+    photo.setValues(originalCategory?.image ? [originalCategory.image] : []);
+    photoRoot.addEventListener('file-upload:change', () => {
+      fields.image_alt.setCustomValidity('');
+      feedback.textContent = '';
+    });
+    let slugEdited = Boolean(originalCategory?.slug);
+    const updateCounter = (input) => {
+      const help = document.getElementById(`${input.id}-help`);
+      if (help) help.textContent = `${input.value.length} of ${input.maxLength} characters`;
+    };
+    const updatePreview = () => {
+      preview('slug').textContent = fields.slug.value || 'category-slug';
+      preview('title').textContent = fields.meta_title.value.trim() || name.value.trim() || 'Category name';
+      preview('description').textContent = fields.meta_description.value.trim() ||
+        fields.description.value.trim() || 'Add a description to show it in search results.';
+      preview('status').textContent = fields.noindex.checked ? 'Hidden from search engines.' : '';
+      updateCounter(fields.meta_title);
+      updateCounter(fields.meta_description);
+    };
+    updatePreview();
     const save = categoryEditor.querySelector('button[type="submit"]');
     save.disabled = false;
     save.classList.remove('button-disabled');
-    name.addEventListener('input', () => {
-      name.setCustomValidity('');
+    categoryEditor.addEventListener('input', (event) => {
+      event.target.setCustomValidity?.('');
       feedback.textContent = '';
+      if (event.target === fields.slug) slugEdited = fields.slug.value !== '';
+      if (event.target === name && !slugEdited) fields.slug.value = slugify(name.value);
+      updatePreview();
+    });
+    fields.slug.addEventListener('blur', () => {
+      fields.slug.value = slugify(fields.slug.value);
+      updatePreview();
     });
     categoryEditor.addEventListener('submit', (event) => {
       event.preventDefault();
       const value = name.value.trim();
-      const duplicate = [...categories.values()].some((category) => category.id !== id &&
-        [category.name, ...(category.previous_names || [])]
-          .some((existing) => existing.toLowerCase() === value.toLowerCase()));
+      const slug = fields.slug.value.trim();
+      const others = [...categories.values()].filter((category) => category.id !== id);
+      const duplicate = others.some((category) => [category.name, ...(category.previous_names || [])]
+        .some((existing) => existing.toLowerCase() === value.toLowerCase()));
       if (!value || duplicate) {
         name.setCustomValidity(!value ? 'Category name is missing. Enter a name.' : 'This category name is already in use. Enter a different name.');
         name.reportValidity();
+        return;
+      }
+      const slugTaken = others.some((category) => category.slug === slug);
+      if (!slugPattern.test(slug) || slugTaken) {
+        fields.slug.setCustomValidity(slugTaken
+          ? 'This URL slug is already in use. Enter a different slug.'
+          : 'URL slug can only use lowercase letters, numbers and single hyphens.');
+        fields.slug.reportValidity();
+        return;
+      }
+      if (photo.isBusy()) {
+        feedback.textContent = 'The photo is still loading. Try again in a moment.';
+        return;
+      }
+      const image = photo.getValues()[0] || '';
+      const imageAlt = fields.image_alt.value.trim();
+      if (image && !imageAlt) {
+        fields.image_alt.setCustomValidity('Photo description is missing. Describe what the photo shows.');
+        fields.image_alt.reportValidity();
         return;
       }
       const categoryId = id || `CAT-NEW-${crypto.randomUUID()}`;
@@ -95,7 +166,18 @@
       if (originalCategory && originalCategory.name !== value) previousNames.add(originalCategory.name);
       const updated = {
         ...categoryChanges,
-        [categoryId]: { id: categoryId, name: value, previous_names: [...previousNames] },
+        [categoryId]: {
+          id: categoryId,
+          name: value,
+          slug,
+          description: fields.description.value.trim(),
+          image,
+          image_alt: image ? imageAlt : '',
+          meta_title: fields.meta_title.value.trim(),
+          meta_description: fields.meta_description.value.trim(),
+          noindex: fields.noindex.checked,
+          previous_names: [...previousNames],
+        },
       };
       try {
         sessionStorage.setItem(categoryStorageKey, JSON.stringify(updated));

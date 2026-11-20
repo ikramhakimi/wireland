@@ -17,7 +17,7 @@ $hair_loss_options = [
 ?>
 <dialog aria-labelledby="assessment-promo-title" aria-describedby="assessment-promo-description"
   class="modal-assesment-promo fixed inset-0 m-auto max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)]
-    max-w-[500px] overflow-y-auto rounded-3xl border-0 bg-zinc-100 p-0 text-zinc-800
+    max-w-[500px] overflow-y-auto rounded-3xl border-0 bg-zinc-100 p-0 color-strong
     backdrop:bg-zinc-950/40 backdrop:backdrop-blur-sm js-component-modal-assesment-promo">
   <div class="relative px-5 pb-4 pt-8 sm:px-11">
     <button type="button" aria-label="Close promotion"

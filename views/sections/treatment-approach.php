@@ -38,7 +38,7 @@ $steps = [
           <span class="font-display inline-flex-center size-12 rounded-md bg-zinc-500 text-xl leading-12 text-zinc-100">
             <?php svg($step['icon'], 'size-6'); ?>
           </span>
-          <h3 class="mt-10 font-semibold text-zinc-800"><?= e($step['title']); ?></h3>
+          <h3 class="mt-10 font-semibold color-strong"><?= e($step['title']); ?></h3>
           <p class="mt-2 text-sm text-pretty"><?= e($step['description']); ?></p>
         </li>
       <?php endforeach; ?>

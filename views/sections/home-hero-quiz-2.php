@@ -215,7 +215,7 @@ foreach ($hq_concerns as $key => $concern) {
                       <span class="hc-product-name font-semibold color-strong group-hover/product:underline group-hover/product:underline-offset-4">
                         <?= e($product['name']); ?>
                       </span>
-                      <span class="hc-product-meta text-sm"><?= e($product['category']); ?></span>
+                      <span class="hc-product-meta text-sm color-muted"><?= e($product['category']); ?></span>
                     </span>
                     <span class="hc-product-price text-sm font-medium whitespace-nowrap color-strong">
                       <?= e($hq_money((float) $product['price'])); ?>

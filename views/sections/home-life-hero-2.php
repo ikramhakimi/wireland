@@ -48,7 +48,7 @@ $hero_products = [
   ],
 ];
 ?>
-<section id="hero-routines" class="section hero hero-discovery bg-zinc-50 text-zinc-800 js-component-home-hero"
+<section id="hero-routines" class="section hero hero-discovery bg-zinc-50 color-strong js-component-home-hero"
   aria-labelledby="hero-discovery-title">
   <div class="hero-container mx-auto w-full max-w-7xl px-5
     lg:px-8">
@@ -86,7 +86,7 @@ $hero_products = [
                 <label for="hero-routine-<?= e($option['id']); ?>"
                   class="product-option inline-flex items-center justify-center min-h-11 px-4 py-2 text-sm font-medium rounded-full border cursor-pointer
                     <?= $option['id'] === $product['id']
-                      ? 'border-zinc-200 bg-zinc-50 text-zinc-900 shadow-sm'
+                      ? 'border-zinc-200 bg-zinc-50 color-strong shadow-sm'
                       : 'border-transparent text-zinc-500 hover:bg-zinc-50'; ?>">
                   <?= e($option['label']); ?>
                 </label>

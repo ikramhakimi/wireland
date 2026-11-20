@@ -34,7 +34,7 @@ $summary_items = [
   <?php foreach ($summary_items as $item): ?>
     <div class="patient-detail min-w-0">
       <dt class="patient-label text-xs text-zinc-500"><?= e($item['label']); ?></dt>
-      <dd class="patient-value mt-1 text-sm leading-relaxed text-zinc-800 wrap-anywhere">
+      <dd class="patient-value mt-1 text-sm leading-relaxed color-strong wrap-anywhere">
         <?= e($item['value']); ?>
       </dd>
     </div>

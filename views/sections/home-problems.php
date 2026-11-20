@@ -17,14 +17,14 @@ $headline_center_no_button = [
         <div class="py-4 flex sm:block items-start gap-3">
           <div class="size-12 bg-zinc-300 rounded-lg sm:ml-auto shrink-0"></div>
           <div>
-            <h3 class="font-semibold   text-zinc-800 sm:mt-5">Genetics</h3>
+            <h3 class="font-semibold   color-strong sm:mt-5">Genetics</h3>
             <div class="mt-1 sm:mt-1 text-sm  text-pretty sm:max-w-65 sm:ml-auto">Hair loss can run in the family, causing gradual thinning and changes to your hairline over time.</div>
           </div>
         </div>
         <div class="py-4 flex sm:block items-start gap-3">
           <div class="size-12 bg-zinc-300 rounded-lg sm:ml-auto shrink-0"></div>
           <div>
-            <h3 class="font-semibold   text-zinc-800 sm:mt-5">Stress</h3>
+            <h3 class="font-semibold   color-strong sm:mt-5">Stress</h3>
             <div class="mt-1 sm:mt-1 text-sm  text-pretty sm:max-w-65 sm:ml-auto">Physical or emotional stress can disrupt the hair growth cycle, leading to more shedding than usual.</div>
           </div>
         </div>
@@ -32,7 +32,7 @@ $headline_center_no_button = [
 
       <div class="bg-white rounded-lg flex flex-col justify-between order-3 sm:order-none">
         <div class="p-5">
-          <h3 class="font-semibold   text-zinc-800 text-lg">Hair Loss</h3>
+          <h3 class="font-semibold   color-strong text-lg">Hair Loss</h3>
           <div class="text-sm text-pretty  mt-2">Changes in hair density, growth or shedding.</div>
         </div>
         <div class="aspect-5/4 bg-zinc-300 rounded-md m-2 mt-0"></div>
@@ -42,14 +42,14 @@ $headline_center_no_button = [
         <div class="py-4 flex sm:block items-start gap-3">
           <div class="size-12 bg-zinc-300 rounded-lg shrink-0"></div>
           <div>
-            <h3 class="font-semibold   text-zinc-800 sm:mt-5">Nutrition</h3>
+            <h3 class="font-semibold   color-strong sm:mt-5">Nutrition</h3>
             <div class="mt-1 sm:mt-1 text-sm  text-pretty sm:max-w-65">A lack of protein, iron or zinc can affect healthy hair growth and contribute to increased hair shedding.</div>
           </div>
         </div>
         <div class="py-4 flex sm:block items-start gap-3">
           <div class="size-12 bg-zinc-300 rounded-lg shrink-0"></div>
           <div>
-            <h3 class="font-semibold   text-zinc-800 sm:mt-5">Scalp Health</h3>
+            <h3 class="font-semibold   color-strong sm:mt-5">Scalp Health</h3>
             <div class="mt-1 sm:mt-1 text-sm  text-pretty sm:max-w-65">Scalp inflammation from conditions like psoriasis or fungal infections can contribute to hair loss over time.</div>
           </div>
         </div>
@@ -68,7 +68,7 @@ $headline_center_no_button = [
           <?php for($c=0; $c<4; $c++) { ?>
             <div>
               <div class="size-12 bg-zinc-300 rounded-lg"></div>
-              <div class="font-semibold   text-zinc-800 mt-5">Enhanced Protection</div>
+              <div class="font-semibold   color-strong mt-5">Enhanced Protection</div>
               <div class="mt-3">Enjoy the confidence that comes with understanding your information is fully safeguarded.</div>
             </div>
           <?php } ?>
@@ -76,7 +76,7 @@ $headline_center_no_button = [
       </div>
       <div class="col-span-1 flex flex-col justify-between gap-2">
         <div class="bg-zinc-200 p-6 rounded-lg shrink-0">
-          <div class="font-semibold text-lg   text-zinc-800">Expert Design</div>
+          <div class="font-semibold text-lg   color-strong">Expert Design</div>
           <div class="mt-2">Collaborating with leading business leaders.</div>
           <div class="mt-6 text-sm">Explore Design</div>
         </div>

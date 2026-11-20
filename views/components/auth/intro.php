@@ -33,7 +33,7 @@ $slides     = [
 
 ?>
 <aside aria-label="About RR HairClinic"
-  class="auth-intro relative hidden flex-col min-w-0 px-12 py-10 bg-zinc-300 text-zinc-800 overflow-hidden m-2 rounded-xl
+  class="auth-intro relative hidden flex-col min-w-0 px-12 py-10 bg-zinc-300 color-strong overflow-hidden m-2 rounded-xl
     md:flex
     js-component-auth-intro">
   <?php foreach ($slides as $index => $slide): ?>
@@ -67,7 +67,7 @@ $slides     = [
           aria-label="Show slide <?= $index + 1; ?>" aria-controls="auth-slide-<?= $index; ?>"
           <?= $index === 0 ? 'aria-current="true"' : ''; ?>
           class="auth-dot flex items-center justify-center w-7 h-11 text-zinc-500 cursor-pointer
-            aria-current:text-zinc-800 focus-visible:outline-2 focus-visible:outline-offset-2
+            aria-current:color-strong focus-visible:outline-2 focus-visible:outline-offset-2
             focus-visible:outline-zinc-800">
           <span aria-hidden="true" class="auth-dot-mark w-4 h-1 rounded bg-current"></span>
         </button>

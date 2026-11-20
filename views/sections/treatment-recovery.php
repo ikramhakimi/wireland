@@ -52,7 +52,7 @@ $steps = [
       <?php foreach ($steps as $step): ?>
         <li class="rounded-lg bg-white p-5 sm:p-8 flex flex-col justify-between gap-8">
           <div>
-            <h3 class="font-semibold text-zinc-800"><?= e($step['title']); ?></h3>
+            <h3 class="font-semibold color-strong"><?= e($step['title']); ?></h3>
             <p class="mt-2 text-sm text-pretty"><?= e($step['description']); ?></p>
           </div>
           <div>

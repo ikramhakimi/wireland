@@ -12,7 +12,7 @@ $flow_settings = [
   'active_bg'       => 'bg-zinc-300',
   'inactive_bg'     => 'bg-zinc-200',
   'progress_bg'     => 'bg-zinc-400',
-  'active_text'     => 'text-zinc-800',
+  'active_text'     => 'color-strong',
   'inactive_text'   => 'text-zinc-500',
 ];
 $treatment_items = [
@@ -79,7 +79,7 @@ $steps = [
                 <div class="present-1-option block bg-zinc-300 hover:bg-zinc-100 text-center rounded-lg w-80 max-w-full mx-auto leading-14 data-[hovered=true]:bg-zinc-100 data-[selected=true]:bg-zinc-100 transition-[background-color] duration-150 ease-out motion-reduce:transition-none js-component-home-how-it-works-option">I’m not sure</div>
               </div>
               <div class="present-1-cursor absolute top-0 left-0 pointer-events-none opacity-0 js-component-home-how-it-works-cursor" aria-hidden="true">
-                <?php svg('cursor-fill', 'present-1-cursor-icon size-8 text-zinc-800'); ?>
+                <?php svg('cursor-fill', 'present-1-cursor-icon size-8 color-strong'); ?>
               </div>
             </div>
           </div>
@@ -96,7 +96,7 @@ $steps = [
                         class="present-2-item-image size-full object-contain">
                     </div>
                     <div class="present-2-item-content flex min-w-0 flex-1 flex-col">
-                      <h4 class="present-2-item-title min-w-0 text-base font-medium text-zinc-800">
+                      <h4 class="present-2-item-title min-w-0 text-base font-medium color-strong">
                         <?= e($item['name']); ?>
                       </h4>
                       <p class="present-2-item-brief mt-1 text-xs text-zinc-500"><?= e($item['brief']); ?></p>
@@ -129,7 +129,7 @@ $steps = [
                     </div>
                   </div>
                   <div class="present-3-delivery-detail px-3 pt-3 pb-2">
-                    <p class="present-3-delivery-time font-medium text-lg text-zinc-800">Today, by 4:30 pm</p>
+                    <p class="present-3-delivery-time font-medium text-lg color-strong">Today, by 4:30 pm</p>
                     <p class="present-3-delivery-label text-sm text-zinc-400 leading-tight">Estimated arrival</p>
                   </div>
                 </div>
@@ -144,19 +144,19 @@ $steps = [
                 <h3 class="present-4-headline text-xl font-medium text-zinc-700">Chat with Dr Rujhan</h3>
               </div>
               <ol class="present-4-messages mt-6 flex w-90 max-w-full flex-col gap-3" aria-label="Doctor and patient follow-up conversation">
-                <li class="present-4-bubble present-4-bubble-doctor max-w-[85%] self-start rounded-xl bg-zinc-300 px-4 py-2 sm:px-6 sm:py-4 text-sm text-zinc-800 js-component-home-how-it-works-chat-chunk">
+                <li class="present-4-bubble present-4-bubble-doctor max-w-[85%] self-start rounded-xl bg-zinc-300 px-4 py-2 sm:px-6 sm:py-4 text-sm color-strong js-component-home-how-it-works-chat-chunk">
                   <span class="present-4-speaker sr-only">Dr Rujhan: </span>Hi Ikram, just checking in.
                 </li>
-                <li class="present-4-bubble present-4-bubble-doctor max-w-[85%] self-start rounded-xl bg-zinc-300 px-4 py-2 sm:px-6 sm:py-4 text-sm text-zinc-800 js-component-home-how-it-works-chat-chunk">
+                <li class="present-4-bubble present-4-bubble-doctor max-w-[85%] self-start rounded-xl bg-zinc-300 px-4 py-2 sm:px-6 sm:py-4 text-sm color-strong js-component-home-how-it-works-chat-chunk">
                   <span class="present-4-speaker sr-only">Dr Rujhan: </span>How’s your treatment going?
                 </li>
-                <li class="present-4-bubble present-4-bubble-patient max-w-[85%] self-end rounded-xl bg-white px-4 py-2 sm:px-6 sm:py-4 text-sm text-zinc-800 js-component-home-how-it-works-chat-chunk">
+                <li class="present-4-bubble present-4-bubble-patient max-w-[85%] self-end rounded-xl bg-white px-4 py-2 sm:px-6 sm:py-4 text-sm color-strong js-component-home-how-it-works-chat-chunk">
                   <span class="present-4-speaker sr-only">Patient: </span>It’s going well, thanks for checking in!
                 </li>
-                <li class="present-4-bubble present-4-bubble-doctor max-w-[85%] self-start rounded-xl bg-zinc-300 px-4 py-2 sm:px-6 sm:py-4 text-sm text-zinc-800 js-component-home-how-it-works-chat-chunk">
+                <li class="present-4-bubble present-4-bubble-doctor max-w-[85%] self-start rounded-xl bg-zinc-300 px-4 py-2 sm:px-6 sm:py-4 text-sm color-strong js-component-home-how-it-works-chat-chunk">
                   <span class="present-4-speaker sr-only">Dr Rujhan: </span>Any side effects or concerns?
                 </li>
-                <li class="present-4-bubble present-4-bubble-patient max-w-[85%] self-end rounded-xl bg-white px-4 py-2 sm:px-6 sm:py-4 text-sm text-zinc-800 js-component-home-how-it-works-chat-chunk">
+                <li class="present-4-bubble present-4-bubble-patient max-w-[85%] self-end rounded-xl bg-white px-4 py-2 sm:px-6 sm:py-4 text-sm color-strong js-component-home-how-it-works-chat-chunk">
                   <span class="present-4-speaker sr-only">Patient: </span>None so far, thank you!
                 </li>
               </ol>

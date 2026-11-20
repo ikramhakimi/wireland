@@ -110,6 +110,23 @@ if (!function_exists('asset_url')) {
   }
 }
 
+if (!function_exists('absolute_url')) {
+  /**
+   * Builds a full URL (scheme + host + base path) for canonical and social tags.
+   */
+  function absolute_url(string $path): string
+  {
+    if (preg_match('/^https?:\/\//i', $path) === 1) {
+      return $path;
+    }
+
+    $is_https = ($_SERVER['HTTPS'] ?? '') !== '' && ($_SERVER['HTTPS'] ?? '') !== 'off';
+    $host     = $_SERVER['HTTP_HOST'] ?? 'localhost';
+
+    return ($is_https ? 'https' : 'http') . '://' . $host . asset_url($path);
+  }
+}
+
 if (!function_exists('icon')) {
   function icon(string $icon_name, array $data = []): void
   {

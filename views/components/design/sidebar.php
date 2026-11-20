@@ -42,6 +42,8 @@ $navigation_groups = [
     ['label' => 'Cards', 'target' => 'design-cards'],
     ['label' => 'Badges', 'target' => 'design-badges'],
     ['label' => 'Description List', 'target' => 'design-facts'],
+    ['label' => 'List Icon', 'target' => 'design-list-icon'],
+    ['label' => 'List Thumb', 'target' => 'design-list-thumb'],
     ['label' => 'Timeline', 'target' => 'design-timeline'],
     ['label' => 'Toggle Collapse', 'target' => 'design-toggle-collapse'],
   ],
@@ -75,7 +77,7 @@ $navigation_groups = [
 ?>
 <div class="sidebar-content flex flex-col gap-8 px-2 py-5">
   <header class="sidebar-header px-3">
-    <a href="<?= asset_url('design'); ?>" class="sidebar-brand inline-flex items-center min-h-11 text-lg font-medium text-zinc-800
+    <a href="<?= asset_url('design'); ?>" class="sidebar-brand inline-flex items-center min-h-11 text-lg font-medium color-strong
       focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">Design Reference</a>
     <p class="sidebar-description mt-2 text-xs text-zinc-500">Strikethrough items are not documented yet.</p>
   </header>
@@ -88,7 +90,7 @@ $navigation_groups = [
             <li class="sidebar-item">
               <?php if ($item['target'] !== null): ?>
                 <a href="#<?= e($item['target']); ?>" class="sidebar-link flex items-center px-3 py-1 rounded-md text-zinc-600
-                  hover:bg-zinc-200 hover:text-zinc-800
+                  hover:bg-zinc-200 hover:color-strong
                   focus-visible:outline-2 focus-visible:outline-blue-800"><?= e($item['label']); ?></a>
               <?php else: ?>
                 <span class="sidebar-unavailable flex items-center px-3 py-1 text-zinc-400 line-through">

@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="<?= asset_url('assets/build/app.css'); ?>?v=<?= filemtime(__DIR__ . '/assets/build/app.css'); ?>">
   <script src="<?= asset_url('assets/js/toggle-collapse.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/toggle-collapse.js'); ?>" defer></script>
   <script src="<?= asset_url('assets/js/file-upload.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/file-upload.js'); ?>" defer></script>
+  <script src="<?= asset_url('assets/js/image-field.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/image-field.js'); ?>" defer></script>
   <script src="<?= asset_url('assets/js/dashboard.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/dashboard.js'); ?>" defer></script>
   <script src="<?= asset_url('assets/js/drawer.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/drawer.js'); ?>" defer></script>
   <script src="<?= asset_url('assets/js/modal.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/modal.js'); ?>" defer></script>
@@ -25,7 +26,7 @@
 </head>
 <body class="dashboard-body min-h-screen font-sans text-sm bg-zinc-100 text-zinc-600 tracking-tight">
   <a href="#dashboard-content" class="dashboard-skip sr-only
-    focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:w-auto focus:h-auto focus:p-3 focus:bg-white focus:text-zinc-800 focus:not-sr-only">Skip to content</a>
+    focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:w-auto focus:h-auto focus:p-3 focus:bg-white focus:color-strong focus:not-sr-only">Skip to content</a>
   <div class="dashboard-shell min-h-screen">
     <aside class="dashboard-sidebar hidden lg:fixed lg:inset-y-0 lg:left-0 lg:w-64 lg:block lg:overflow-y-auto">
       <?php component('components/design/sidebar', ['page_current' => $page_current ?? '']); ?>
@@ -41,7 +42,7 @@
     <div class="drawer-content flex flex-col min-h-full">
     <div class="drawer-controls flex justify-end px-3 pt-3">
       <button type="button" aria-label="Close navigation"
-        class="drawer-close flex items-center justify-center size-11 rounded-lg text-zinc-800
+        class="drawer-close flex items-center justify-center size-11 rounded-lg color-strong
           hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-blue-800 js-component-dashboard-close">
         <?php svg('close-line', 'drawer-icon size-5'); ?>
       </button>

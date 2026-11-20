@@ -33,7 +33,7 @@ $hero_headline = [
               <?php svg('star-s-fill', 'size-5 fill-zinc-500'); ?>
             </div>
             <div class="text-sm">From 500+ verified Google Reviews</div>
-            <!-- <div class="font-light text-5xl text-zinc-800 mt-4">97.5%</div> -->
+            <!-- <div class="font-light text-5xl color-strong mt-4">97.5%</div> -->
             <div class="avatars flex-center mt-5">
               <div class="bg-zinc-500 aspect-square w-9 rounded-full border-2 border-white"></div>
               <div class="bg-zinc-500 aspect-square w-9 rounded-full border-2 border-white -ml-2"></div>
@@ -47,12 +47,12 @@ $hero_headline = [
       <div class="col-span-3">
         <div class="bg-zinc-300 p-8 pb-5 rounded-lg h-full text-center flex flex-col justify-between overflow-hidden">
           <header>
-            <h3 class="font-semibold text-lg text-zinc-800">Our Products</h3>
+            <h3 class="font-semibold text-lg color-strong">Our Products</h3>
             <div class="text-sm mt-2">Personalize hair loss treatments. Every detail considered.</div>
           </header>
           
           <footer class="mt-15">
-            <a href="" class="bg-zinc-200 rounded-full py-3 px-6 font-medium text-sm text-zinc-800 inline-flex-center gap-4">
+            <a href="" class="bg-zinc-200 rounded-full py-3 px-6 font-medium text-sm color-strong inline-flex-center gap-4">
               <span>Browse Products</span>
             </a>
           </footer>
@@ -61,12 +61,12 @@ $hero_headline = [
       <div class="col-span-3">
         <div class="bg-zinc-300 p-8 pb-5 rounded-lg h-full text-center flex flex-col justify-between overflow-hidden">
           <header>
-            <h3 class="font-semibold text-lg text-zinc-800">Our Treatments</h3>
+            <h3 class="font-semibold text-lg color-strong">Our Treatments</h3>
             <div class="text-sm mt-2">Personalize hair loss treatments. Every detail considered.</div>
           </header>
           
           <footer class="mt-15">
-            <a href="" class="bg-zinc-200 rounded-full py-3 px-6 font-medium text-sm text-zinc-800 inline-flex-center gap-4">
+            <a href="" class="bg-zinc-200 rounded-full py-3 px-6 font-medium text-sm color-strong inline-flex-center gap-4">
               <span>Explore Treatment</span>
             </a>
           </footer>

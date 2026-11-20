@@ -36,7 +36,7 @@ $record_card = $selected_patient !== null ? [
     <?php component('button', $back_button); ?>
   </div>
   <header class="section-header">
-    <h1 id="patient-title" class="section-title text-3xl font-medium text-zinc-800">
+    <h1 id="patient-title" class="section-title text-3xl font-medium color-strong">
       <?= e($selected_patient['name'] ?? 'Patient Not Found'); ?>
     </h1>
     <p class="section-description mt-2 text-sm text-zinc-500">

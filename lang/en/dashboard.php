@@ -22,20 +22,12 @@ return [
       'patients'      => 'Patients',
       'follow_ups'    => 'Follow-ups',
     ],
-    'operations' => [
-      'title'          => 'Operations',
-      'products'       => 'Products',
-      'product_list'   => 'Product List',
-      'categories'     => 'Categories',
-      'product_detail' => 'Product Detail',
-      'product_edit'   => 'Product Edit',
-      'orders'         => 'Orders',
+    'commerce'   => [
+      'title'    => 'Commerce',
+      'orders'   => 'Orders',
+      'products' => 'Products',
     ],
-    'management' => [
-      'title'              => 'Management',
-      'workflow_reference' => 'Workflow Reference',
-      'team_access'        => 'Team & access',
-    ],
+    'settings'   => 'Settings',
   ],
 
   'account' => [

@@ -33,7 +33,7 @@ if ($id === '' || $title === '') {
   <div class="drawer-panel flex flex-col h-full">
     <header class="drawer-header flex shrink-0 items-start justify-between gap-4 p-5 border-b border-zinc-200">
       <div class="drawer-heading flex-1 min-w-0">
-        <h2 id="<?= e($id); ?>-title" class="drawer-title text-lg font-medium text-pretty text-zinc-800 wrap-anywhere"><?= e($title); ?></h2>
+        <h2 id="<?= e($id); ?>-title" class="drawer-title text-lg font-medium text-pretty color-strong wrap-anywhere"><?= e($title); ?></h2>
         <?php if ($description !== ''): ?>
           <p id="<?= e($id); ?>-description" class="drawer-description mt-2 text-sm leading-relaxed text-pretty text-zinc-500 wrap-anywhere">
             <?= e($description); ?>
@@ -41,7 +41,7 @@ if ($id === '' || $title === '') {
         <?php endif; ?>
       </div>
       <button type="button" aria-label="Close drawer" autofocus
-        class="drawer-close flex shrink-0 items-center justify-center size-11 rounded-lg text-zinc-800
+        class="drawer-close flex shrink-0 items-center justify-center size-11 rounded-lg color-strong
           hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
           js-component-drawer-close">
         <?php svg('close-line', 'drawer-icon size-5'); ?>

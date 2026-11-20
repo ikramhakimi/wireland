@@ -5,7 +5,7 @@
 //       Optional: $content_alignment ('left' | 'center', default 'left') for the treatment card text.
 //       Optional: $headline_copy (array). Overrides headline keys (title, subtitle; '' drops the subtitle).
 //       Optional: $show_more (bool, default false). Adds a 2-column list of more treatments
-//                 (thumbnail, title, short summary) below the cards, like the home-shop product list.
+//                 (list-thumb component) below the cards.
 $show_more           = $show_more ?? false;
 $treatments_headline = [
   'topic'     => 'Treatments',
@@ -36,34 +36,34 @@ $treatments = [
 ];
 $more_treatments = [
   [
-    'title'   => 'Low-Level Laser Therapy',
-    'summary' => 'Light therapy to support thinning hair.',
-    'href'    => '',
+    'title' => 'Low-Level Laser Therapy',
+    'text'  => 'Light therapy to support thinning hair.',
+    'href'  => '',
   ],
   [
-    'title'   => 'Hair Mesotherapy',
-    'summary' => 'Vitamins and nutrients delivered to the scalp.',
-    'href'    => '',
+    'title' => 'Hair Mesotherapy',
+    'text'  => 'Vitamins and nutrients delivered to the scalp.',
+    'href'  => '',
   ],
   [
-    'title'   => 'Exosome Hair Therapy',
-    'summary' => 'Growth factors applied to the scalp.',
-    'href'    => '',
+    'title' => 'Exosome Hair Therapy',
+    'text'  => 'Growth factors applied to the scalp.',
+    'href'  => '',
   ],
   [
-    'title'   => 'Scalp Micropigmentation',
-    'summary' => 'Pigment that adds the look of density.',
-    'href'    => '',
+    'title' => 'Scalp Micropigmentation',
+    'text'  => 'Pigment that adds the look of density.',
+    'href'  => '',
   ],
   [
-    'title'   => 'Scalp Care Treatment',
-    'summary' => 'Deep cleanse for an oily or flaky scalp.',
-    'href'    => '',
+    'title' => 'Scalp Care Treatment',
+    'text'  => 'Deep cleanse for an oily or flaky scalp.',
+    'href'  => '',
   ],
   [
-    'title'   => 'Beard & Eyebrow Transplant',
-    'summary' => 'Follicles moved to fill sparse areas.',
-    'href'    => '',
+    'title' => 'Beard & Eyebrow Transplant',
+    'text'  => 'Follicles moved to fill sparse areas.',
+    'href'  => '',
   ],
 ];
 $browse_button = [
@@ -71,6 +71,12 @@ $browse_button = [
   'href'    => '',
   'variant' => 'pill',
   'color'   => 'secondary',
+];
+$more_treatments_list = [
+  'title'   => 'More Treatments',
+  'action'  => ['label' => 'Browse More', 'href' => $browse_button['href']],
+  'columns' => 2,
+  'items'   => $more_treatments,
 ];
 ?>
 
@@ -85,34 +91,9 @@ $browse_button = [
       <?php endforeach; ?>
     </ul>
     <?php if ($show_more): ?>
-      <div class="treatments-more mt-10 md:px-30">
-        <h3 class="treatments-more-title flex items-baseline justify-between pb-3 font-semibold border-b
-          border-zinc-300 color-strong">
-          More treatments
-          <span class="treatments-more-count text-sm font-normal color-muted"><?= count($more_treatments); ?></span>
-        </h3>
-        <ul class="treatments-more-list grid gap-x-5 sm:grid-cols-2">
-          <?php foreach ($more_treatments as $treatment): ?>
-            <li>
-              <a href="<?= e($treatment['href']); ?>" class="treatment-row group flex items-center gap-3 py-4
-                border-b border-dashed border-zinc-200">
-                <span class="treatment-thumb flex-center shrink-0 size-16 rounded-lg bg-zinc-300 color-muted"
-                  aria-hidden="true">
-                  <?php svg('image-line', 'product-image-placeholder size-5'); ?>
-                </span>
-                <span class="treatment-info flex flex-1 flex-col gap-0.5 min-w-0">
-                  <span class="treatment-name text-sm font-semibold color-strong underline-offset-4
-                    group-hover:underline"><?= e($treatment['title']); ?></span>
-                  <span class="treatment-summary text-sm text-pretty"><?= e($treatment['summary']); ?></span>
-                </span>
-              </a>
-            </li>
-          <?php endforeach; ?>
-        </ul>
+      <div class="treatments-more mt-10 lg:px-30">
+        <?php component('list-thumb', $more_treatments_list); ?>
       </div>
     <?php endif; ?>
-    <div class="treatments-action flex justify-center mt-8">
-      <?php component('button', $browse_button); ?>
-    </div>
   </div>
 </section>

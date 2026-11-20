@@ -17,13 +17,13 @@ $config     = $follow_ups['config'];
 $products   = $follow_ups['products'];
 $today      = $follow_ups['today'];
 
+$page_breadcrumb = [
+  ['label' => 'Dashboard', 'href' => asset_url('dashboard/')],
+  ['label' => 'Follow-ups'],
+];
 $page_header = [
-  'title'      => $page_title,
-  'title_id'   => 'follow-ups-title',
-  'breadcrumb' => [
-    ['label' => 'Dashboard', 'href' => asset_url('dashboard/')],
-    ['label' => 'Follow-ups'],
-  ],
+  'title'    => $page_title,
+  'title_id' => 'follow-ups-title',
 ];
 $team_field = [
   'id'      => 'follow-ups-team',

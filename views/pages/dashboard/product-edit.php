@@ -314,17 +314,17 @@ $image_card = [
 ];
 $cancel_url = $is_new ? asset_url('dashboard/products/') : asset_url('dashboard/product/') . '?id=' . rawurlencode($product_id);
 
+$page_breadcrumb = array_merge(
+  [['label' => 'Products', 'href' => asset_url('dashboard/products/')]],
+  !$is_new && $product !== null ? [['label' => $product['name'], 'href' => $cancel_url]] : [],
+  [['label' => $product !== null ? $page_title : 'Product Not Found']],
+);
 $page_header = [
   'title'       => $product !== null ? $page_title : 'Product Not Found',
   'title_id'    => 'edit-title',
   'description' => $product === null
     ? 'Return to Products and select another product.'
     : ($is_new ? 'Add product information, pricing and care requirements.' : $page_description),
-  'breadcrumb'  => array_merge(
-    [['label' => 'Products', 'href' => asset_url('dashboard/products/')]],
-    !$is_new && $product !== null ? [['label' => $product['name'], 'href' => $cancel_url]] : [],
-    [['label' => $product !== null ? $page_title : 'Product Not Found']],
-  ),
 ];
 
 ?>

@@ -107,14 +107,14 @@ $list_card = [
   },
 ];
 
+$page_breadcrumb = [
+  ['label' => 'Dashboard', 'href' => asset_url('dashboard/')],
+  ['label' => 'Products'],
+];
 $page_header = [
   'title'       => $page_title,
   'title_id'    => 'products-title',
   'description' => 'Manage products and keep track of stock that needs restocking.',
-  'breadcrumb'  => [
-    ['label' => 'Dashboard', 'href' => asset_url('dashboard/')],
-    ['label' => 'Products'],
-  ],
   'actions'     => [
     ['label' => 'Categories', 'href' => asset_url('dashboard/product-categories/'), 'color' => 'secondary'],
     ['label' => 'Create Product', 'href' => asset_url('dashboard/product-edit/'), 'color' => 'primary'],

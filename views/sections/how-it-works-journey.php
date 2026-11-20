@@ -62,7 +62,7 @@ $treatment_items = [
               Step 0<?= e($step['number']); ?> · <?= e($step['eyebrow']); ?>
             </span>
             <h3 class="step-title text-[clamp(26px,3vw,38px)] font-medium leading-[1.22] tracking-[-1.2px]
-              text-pretty text-zinc-800">
+              text-pretty color-strong">
               <?= e($step['title']); ?>
             </h3>
             <p class="step-description mt-5 text-sm leading-[1.85] text-zinc-500">
@@ -145,7 +145,7 @@ $treatment_items = [
                   <p class="doctor-label text-[10px] leading-relaxed text-zinc-500">
                     Reviewed by
                     <br>
-                    <strong class="doctor-name font-medium text-zinc-800">
+                    <strong class="doctor-name font-medium color-strong">
                       Dr Rujhan
                     </strong>
                   </p>
@@ -195,7 +195,7 @@ $treatment_items = [
                   <img src="<?= asset_url('assets/images/avatar-dr-rujhan.webp'); ?>" alt=""
                     class="doctor-avatar size-9 rounded-full object-cover">
                   <p class="doctor-label text-[10px] leading-relaxed text-zinc-500">
-                    <strong class="doctor-name font-medium text-zinc-800">
+                    <strong class="doctor-name font-medium color-strong">
                       Dr Rujhan
                     </strong>
                     <br>
@@ -243,7 +243,7 @@ $treatment_items = [
     </ol>
 
     <div class="flow-cta flex flex-col items-center mt-10 text-center">
-      <p class="cta-title text-xl font-medium text-pretty text-zinc-800">
+      <p class="cta-title text-xl font-medium text-pretty color-strong">
         Your next chapter starts here.
       </p>
       <p class="cta-description mt-2 text-pretty text-zinc-500">

@@ -83,7 +83,7 @@ $submit_button = [
       <p class="auth-consent text-[11px] leading-loose text-zinc-500">
         By creating an account, you agree to our
         <button type="button" data-auth-notice="privacy"
-          class="auth-privacy-link font-medium text-zinc-800 underline underline-offset-2 cursor-pointer
+          class="auth-privacy-link font-medium color-strong underline underline-offset-2 cursor-pointer
             focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-800">Privacy Policy</button>.
       </p>
     <?php endif; ?>
@@ -97,7 +97,7 @@ $submit_button = [
   <p class="auth-switch mt-6 text-center text-xs text-zinc-500">
     <?= $is_register ? 'Already have an account?' : 'New to RR HairClinic?'; ?>
     <a href="<?= asset_url($is_register ? 'login' : 'register'); ?>"
-      class="auth-switch-link inline-flex items-center min-h-11 ml-1 font-medium text-zinc-800
+      class="auth-switch-link inline-flex items-center min-h-11 ml-1 font-medium color-strong
         hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-800">
       <?= $is_register ? 'Log In' : 'Register'; ?>
     </a>

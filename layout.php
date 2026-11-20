@@ -7,6 +7,26 @@
   <?php if (!empty($page_description)): ?>
     <meta name="description" content="<?= e($page_description); ?>">
   <?php endif; ?>
+  <?php // Optional SEO tags: pages opt in with $page_canonical, $page_robots, $page_image, $page_schema. ?>
+  <?php if (!empty($page_robots)): ?>
+    <meta name="robots" content="<?= e($page_robots); ?>">
+  <?php endif; ?>
+  <?php if (!empty($page_canonical)): ?>
+    <link rel="canonical" href="<?= e($page_canonical); ?>">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<?= e($page_canonical); ?>">
+    <meta property="og:title" content="<?= e($page_title ?? ''); ?>">
+    <?php if (!empty($page_description)): ?>
+      <meta property="og:description" content="<?= e($page_description); ?>">
+    <?php endif; ?>
+  <?php endif; ?>
+  <?php if (!empty($page_image)): ?>
+    <meta property="og:image" content="<?= e($page_image); ?>">
+    <meta name="twitter:card" content="summary_large_image">
+  <?php endif; ?>
+  <?php if (!empty($page_schema)): ?>
+    <script type="application/ld+json"><?= json_encode($page_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG); ?></script>
+  <?php endif; ?>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,700&display=swap" rel="stylesheet">

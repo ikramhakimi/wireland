@@ -8,10 +8,6 @@ $design_dashboard_header = [
   'title'       => 'Products',
   'title_id'    => 'design-dashboard-header-example',
   'description' => 'Manage products and keep track of stock that needs restocking.',
-  'breadcrumb'  => [
-    ['label' => 'Dashboard', 'href' => asset_url('dashboard/')],
-    ['label' => 'Products'],
-  ],
   'actions'     => [
     ['label' => 'Categories', 'href' => asset_url('dashboard/product-categories/'), 'color' => 'secondary'],
     ['label' => 'Create Product', 'href' => asset_url('dashboard/product-edit/'), 'color' => 'primary'],
@@ -44,6 +40,21 @@ $design_upload_images = [
 $design_upload_documents = [
   'id' => 'design-upload-documents', 'name' => 'documents[]', 'label' => 'Documents',
   'accept' => '.pdf,.txt', 'max_files' => 2, 'max_size' => 5242880,
+];
+$design_image_field_empty = [
+  'id'     => 'design-image-field-empty',
+  'type'   => 'image',
+  'name'   => 'demo_image',
+  'label'  => 'Photo',
+  'helper' => 'JPEG, PNG or WebP · 1 MB.',
+];
+$design_image_field_existing = [
+  'id'     => 'design-image-field-existing',
+  'type'   => 'image',
+  'name'   => 'demo_image_existing',
+  'label'  => 'Photo',
+  'value'  => asset_url('assets/images/mockup-bottle-01.webp'),
+  'helper' => 'JPEG, PNG or WebP · 1 MB.',
 ];
 
 $input_group_query = is_string($_GET['input_group_query'] ?? null) ? trim($_GET['input_group_query']) : '';
@@ -508,6 +519,10 @@ $design_icon_groups = [
     'file-copy-line',
     'download-line',
     'cursor-fill',
+    'draggable',
+    'loop-right-line',
+    'send-plane-2-line',
+    'share-line',
   ],
   'Status & Feedback' => [
     'check-line',
@@ -516,6 +531,11 @@ $design_icon_groups = [
     'information-line',
     'notification-3-line',
     'loading-spinner',
+    'question-line',
+    'progress-2-line',
+    'progress-4-line',
+    'progress-5-line',
+    'progress-8-line',
   ],
   'Account & Security' => [
     'user-line',
@@ -532,6 +552,7 @@ $design_icon_groups = [
   ],
   'Shopping' => [
     'shopping-bag-4-line',
+    'box-3-line',
   ],
   'Highlights & Tools' => [
     'double-quotes-l',
@@ -540,12 +561,20 @@ $design_icon_groups = [
     'flashlight-line',
     'compasses-2-line',
     'focus-3-line',
+    'blaze-line',
+    'dossier-line',
+  ],
+  'Media' => [
+    'image-line',
+    'image-add-line',
+    'play-fill',
   ],
   'Brands' => [
     'whatsapp-line',
     'linkedin-box-fill',
     'google-fill',
     'apple-fill',
+    'atome',
   ],
 ];
 
@@ -648,18 +677,18 @@ $design_drawer = [
   'content'     => static function (): void {
     ?>
     <section class="section py-0!" aria-labelledby="drawer-summary-title">
-      <h3 id="drawer-summary-title" class="section-title text-base font-medium text-zinc-800">Record Summary</h3>
+      <h3 id="drawer-summary-title" class="section-title text-base font-medium color-strong">Record Summary</h3>
       <p class="section-description mt-3 text-sm leading-relaxed">
         Show the information someone needs to decide their next step. Keep the full history on the details page.
       </p>
       <dl class="record-details grid gap-5 mt-6">
         <div class="record-detail">
           <dt class="record-label text-xs text-zinc-500">Status</dt>
-          <dd class="record-value mt-1 text-sm text-zinc-800">Awaiting review</dd>
+          <dd class="record-value mt-1 text-sm color-strong">Awaiting review</dd>
         </div>
         <div class="record-detail">
           <dt class="record-label text-xs text-zinc-500">Next Step</dt>
-          <dd class="record-value mt-1 text-sm text-zinc-800">Review the record and schedule a follow-up.</dd>
+          <dd class="record-value mt-1 text-sm color-strong">Review the record and schedule a follow-up.</dd>
         </div>
       </dl>
     </section>
@@ -847,6 +876,49 @@ $design_badge_examples = [
   ],
 ];
 
+$design_list_icon_examples = [
+  [
+    'title' => 'Default',
+    'note'  => 'Keep it to 3 short points. Stacks centred on mobile, one row from sm.',
+    'data'  => [
+      'items' => [
+        ['icon' => 'time-line',     'text' => 'Free delivery in 1–2 working days'],
+        ['icon' => 'box-3-line',    'text' => 'Discreet, unmarked packaging'],
+        ['icon' => 'whatsapp-line', 'text' => 'Follow-up on WhatsApp'],
+      ],
+    ],
+  ],
+];
+
+$design_list_thumb_examples = [
+  [
+    'title' => 'With Action, 2 Columns',
+    'note'  => 'Short list after a main grid, such as more treatments. The action links to the full listing.',
+    'data'  => [
+      'title'   => 'More Treatments',
+      'action'  => ['label' => 'Browse More', 'href' => ''],
+      'columns' => 2,
+      'items'   => [
+        ['title' => 'Low-Level Laser Therapy', 'text' => 'Light therapy to support thinning hair.', 'href' => ''],
+        ['title' => 'Hair Mesotherapy', 'text' => 'Vitamins and nutrients delivered to the scalp.', 'href' => ''],
+        ['title' => 'Exosome Hair Therapy', 'text' => 'Growth factors applied to the scalp.', 'href' => ''],
+        ['title' => 'Scalp Care Treatment', 'text' => 'Deep cleanse for an oily or flaky scalp.', 'href' => ''],
+      ],
+    ],
+  ],
+  [
+    'title' => 'With Count, 1 Column',
+    'note'  => 'Grouped catalogue lists, such as shop categories. The count shows how many items are in the group.',
+    'data'  => [
+      'title' => 'Shampoo',
+      'count' => 2,
+      'items' => [
+        ['title' => 'Anti-Hair Fall Shampoo', 'text' => 'RM 45.00', 'href' => ''],
+        ['title' => 'Scalp Balance Shampoo', 'text' => 'RM 39.00', 'href' => ''],
+      ],
+    ],
+  ],
+];
 $design_facts_examples = [
   [
     'title' => 'Inline',
@@ -1097,7 +1169,7 @@ $design_empty_states = [
   <div class="design-container">
     <header class="design-header max-w-3xl">
       <p class="design-eyebrow text-sm font-medium text-zinc-500">Wireland / Design reference</p>
-      <h1 class="design-title mt-4 text-4xl font-semibold leading-tight text-pretty text-zinc-800 sm:text-5xl">
+      <h1 class="design-title mt-4 text-4xl font-semibold leading-tight text-pretty color-strong sm:text-5xl">
         One visual language.<br>Every experience.
       </h1>
       <p class="design-description mt-5 text-base leading-7 text-pretty">
@@ -2176,8 +2248,16 @@ $design_empty_states = [
           <p class="upload-description mb-4 text-sm color-muted">Up to 2 documents · PDF or TXT · 5 MB each.</p>
           <?php component('forms/file-upload', $design_upload_documents); ?>
         </div>
+        <div class="upload-example rounded-lg bg-white p-5">
+          <p class="upload-description mb-4 text-sm color-muted">Single image · empty and existing photo.</p>
+          <div class="upload-image-fields grid gap-6">
+            <?php component('forms/field', $design_image_field_empty); ?>
+            <?php component('forms/field', $design_image_field_existing); ?>
+          </div>
+        </div>
         <div class="upload-documentation text-sm color-default">
           <p class="upload-usage">Use <code>component('forms/file-upload', $config)</code> with a unique <code>id</code>, <code>name</code>, <code>label</code>, <code>accept</code>, <code>max_files</code> and <code>max_size</code> in bytes.</p>
+          <p class="upload-single mt-2">For one image, use <code>component('forms/field', $config)</code> with <code>type</code> <code>image</code>, plus <code>accept</code>, <code>max_size</code> in bytes and <code>value</code> for an existing image URL. Removing an existing image sets <code>&lt;name&gt;_remove</code> to <code>1</code>. Load <code>assets/js/image-field.js</code> once.</p>
           <p class="upload-api mt-2">Load <code>assets/js/file-upload.js</code> once. Use <code>FileUpload.init(root)</code> to access <code>getFiles()</code> for FormData, <code>getItems()</code> for ordered files and existing URLs, <code>setValues(urls)</code> for existing images, and <code>isBusy()</code>. Listen for <code>file-upload:change</code>.</p>
         </div>
       </div>
@@ -2334,6 +2414,50 @@ $design_empty_states = [
       </div>
     </section>
 
+    <section id="design-list-icon" aria-labelledby="design-list-icon-title" class="section border-t border-zinc-200">
+      <header class="section-header">
+        <h2 id="design-list-icon-title" class="section-title text-title-md font-semibold color-strong">List Icon</h2>
+        <p class="section-description mt-3 text-sm leading-relaxed">
+          Use an icon list for a short row of reassurance points below a section, such as delivery, privacy or
+          follow-ups. Each point is an icon and one line of text. For label–value data, use a description list.
+        </p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/list-icon.php</code></p>
+      </header>
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
+        <?php foreach ($design_list_icon_examples as $design_example): ?>
+          <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
+            <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">
+              <?= e($design_example['title']); ?>
+            </h3>
+            <?php component('list-icon', $design_example['data']); ?>
+            <p class="section-demo-note mt-6 text-sm color-default"><?= e($design_example['note']); ?></p>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </section>
+
+    <section id="design-list-thumb" aria-labelledby="design-list-thumb-title" class="section border-t border-zinc-200">
+      <header class="section-header">
+        <h2 id="design-list-thumb-title" class="section-title text-title-md font-semibold color-strong">List Thumb</h2>
+        <p class="section-description mt-3 text-sm leading-relaxed">
+          Use a thumb list for a compact, menu-style list of links, each with a thumbnail, a title and one line of text.
+          The title can show a count or a link to the full listing, not both. Use 2 columns only in wide layouts.
+        </p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/list-thumb.php</code></p>
+      </header>
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
+        <?php foreach ($design_list_thumb_examples as $design_example): ?>
+          <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
+            <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">
+              <?= e($design_example['title']); ?>
+            </h3>
+            <?php component('list-thumb', $design_example['data']); ?>
+            <p class="section-demo-note mt-6 text-sm color-default"><?= e($design_example['note']); ?></p>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </section>
+
     <section id="design-timeline" aria-labelledby="design-timeline-title" class="section border-t border-zinc-200">
       <header class="section-header">
         <h2 id="design-timeline-title" class="section-title text-title-md font-semibold color-strong">Timeline</h2>
@@ -2410,8 +2534,8 @@ $design_empty_states = [
       <header class="section-header">
         <h2 id="design-dashboard-header-title" class="section-title text-title-md font-semibold color-strong">Dashboard Header</h2>
         <p class="section-description mt-3 text-sm leading-relaxed">
-          Use one page title with optional description, breadcrumb items and button actions.
-          Link parent breadcrumb items and omit href on the current page.
+          Use one page title with optional description and button actions.
+          Breadcrumbs live in the dashboard topbar; set <code>$page_breadcrumb</code> on the page.
         </p>
         <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/dashboard/header.php</code></p>
       </header>

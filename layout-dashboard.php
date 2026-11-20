@@ -1,3 +1,13 @@
+<?php
+
+$page_breadcrumb = $page_breadcrumb ?? (($page_current ?? '') === 'dashboard'
+  ? [['label' => 'Dashboard']]
+  : [
+    ['label' => 'Dashboard', 'href' => asset_url('dashboard/')],
+    ['label' => $page_title ?? ''],
+  ]);
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,6 +23,7 @@
   <link rel="stylesheet" href="<?= asset_url('assets/build/app.css'); ?>?v=<?= filemtime(__DIR__ . '/assets/build/app.css'); ?>">
   <script src="<?= asset_url('assets/js/toggle-collapse.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/toggle-collapse.js'); ?>" defer></script>
   <script src="<?= asset_url('assets/js/file-upload.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/file-upload.js'); ?>" defer></script>
+  <script src="<?= asset_url('assets/js/image-field.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/image-field.js'); ?>" defer></script>
   <?php if (($page_current ?? '') === 'assessment-workflow'): ?>
     <script src="<?= asset_url('assets/js/workflow-review.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/workflow-review.js'); ?>" defer></script>
   <?php endif; ?>
@@ -50,14 +61,19 @@
 </head>
 <body class="dashboard-body min-h-screen font-sans text-sm bg-zinc-100 text-zinc-600 tracking-tight">
   <a href="#dashboard-content" class="dashboard-skip sr-only
-    focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:w-auto focus:h-auto focus:p-3 focus:bg-white focus:text-zinc-800 focus:not-sr-only">Skip to content</a>
+    focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:w-auto focus:h-auto focus:p-3 focus:bg-white focus:color-strong focus:not-sr-only">Skip to content</a>
   <div class="dashboard-shell min-h-screen">
-    <aside class="dashboard-sidebar hidden lg:fixed lg:inset-y-0 lg:left-0 lg:w-64 lg:block lg:overflow-y-auto">
+    <aside class="dashboard-sidebar hidden lg:fixed lg:inset-y-0 lg:left-0 lg:w-64 lg:block lg:overflow-y-auto sm:border-r border-zinc-200">
       <?php component('components/dashboard/sidebar', ['page_current' => $page_current ?? '']); ?>
     </aside>
-    <main id="dashboard-content" tabindex="-1" class="dashboard-content min-w-0 max-w-5xl p-5 lg:ml-64">
-      <?php component('components/dashboard/menu-toggle'); ?>
-      <?= $content ?? ''; ?>
+    <main id="dashboard-content" tabindex="-1" class="dashboard-main min-w-0 lg:ml-64">
+      <div class="dashboard-topbar flex items-center gap-3 min-h-16 px-5 py-2 border-b border-zinc-200">
+        <?php component('components/dashboard/menu-toggle'); ?>
+        <?php component('breadcrumbs', ['items' => $page_breadcrumb]); ?>
+      </div>
+      <div class="dashboard-page w-full max-w-5xl mx-auto p-5">
+        <?= $content ?? ''; ?>
+      </div>
     </main>
   </div>
   <dialog id="dashboard-navigation" aria-label="Dashboard navigation"
@@ -66,7 +82,7 @@
     <div class="drawer-content flex flex-col min-h-full">
     <div class="drawer-controls flex justify-end px-3 pt-3">
       <button type="button" aria-label="Close navigation"
-        class="drawer-close flex items-center justify-center size-11 rounded-lg text-zinc-800
+        class="drawer-close flex items-center justify-center size-11 rounded-lg color-strong
           hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-blue-800 js-component-dashboard-close">
         <?php svg('close-line', 'drawer-icon size-5'); ?>
       </button>

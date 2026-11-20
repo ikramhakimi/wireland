@@ -58,13 +58,13 @@ $service_benefits = [
             </div>
             <div class="sm:col-span-3 flex flex-col items-stretch justify-between m-4 sm:m-5">
               <div>
-                <h3 class="font-semibold text-lg  text-zinc-800"><?= e($service['title']); ?></h3>
+                <h3 class="font-semibold text-lg  color-strong"><?= e($service['title']); ?></h3>
                 <div class="text-pretty text-sm  mt-2"><?= e($service['description']); ?></div>
               </div>
               <div>
                 
                 <div class="mt-5 pt-5 border-t border-zinc-200 text-sm">
-                  <a href="" class="font-medium text-zinc-800 flex items-center justify-start gap-2">
+                  <a href="" class="font-medium color-strong flex items-center justify-start gap-2">
                     <span>Explore More</span>
                     <span class="size-5 rounded-sm bg-zinc-300 flex-center"><?php svg('arrow-right-up-line', 'size-4 stroke-2'); ?></span>
                   </a>
@@ -86,7 +86,7 @@ $service_benefits = [
       <?php foreach ($service_benefits as $service_benefit): ?>
         <div class="py-5 sm:py-0 sm:px-10">
           <div class="size-12 bg-zinc-300 rounded-lg float-right mb-5 ml-2"></div>
-          <div class="font-semibold text-zinc-800"><?= e($service_benefit['title']); ?></div>
+          <div class="font-semibold color-strong"><?= e($service_benefit['title']); ?></div>
           <div class="text-sm mt-1"><?= e($service_benefit['description']); ?></div>
         </div>
       <?php endforeach; ?>

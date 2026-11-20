@@ -20,6 +20,12 @@ foreach ($store_products as $item) {
   }
 }
 
+$shop_category_slugs = array_column(
+  require __DIR__ . '/../../includes/dashboard-product-categories-data.php',
+  'slug',
+  'name',
+);
+
 $shop_count   = array_sum(array_map('count', $shop_groups));
 $shop_heading = [
   'title'         => 'Shop',
@@ -67,7 +73,15 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
           <h2 id="<?= e($shop_group_id($index)); ?>-title" class="shop-group-title font-medium color-strong text-title-sm">
             <?= e($category); ?>
           </h2>
-          <p class="shop-group-count text-sm color-muted"><?= count($items); ?> products</p>
+          <div class="shop-group-meta flex items-baseline gap-4">
+            <p class="shop-group-count text-sm color-muted"><?= count($items); ?> products</p>
+            <?php if (isset($shop_category_slugs[$category])): ?>
+              <a href="<?= e(asset_url('shop/' . $shop_category_slugs[$category] . '/')); ?>"
+                class="shop-group-link text-sm underline underline-offset-4">
+                View All<span class="sr-only"> <?= e($category); ?></span>
+              </a>
+            <?php endif; ?>
+          </div>
         </div>
         <ul class="shop-grid grid grid-cols-2 gap-x-3 gap-y-6 mt-6 md:grid-cols-3 lg:grid-cols-4">
           <?php foreach ($items as $item): ?>

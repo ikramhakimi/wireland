@@ -11,7 +11,7 @@ $solutions_headline = [
 
     <div class="mt-10 grid grid-cols-1 gap-2 sm:grid-cols-4 text-center">
       <article class="rounded-lg bg-white p-5 sm:p-7">
-        <h3 class="text-xl font-semibold text-zinc-800">
+        <h3 class="text-xl font-semibold color-strong">
           <span class="block">Improves</span>
           Scalp Circulation
         </h3>
@@ -20,7 +20,7 @@ $solutions_headline = [
         </p>
       </article>
       <article class="rounded-lg bg-white p-5 sm:p-7">
-        <h3 class="text-xl font-semibold text-zinc-800">
+        <h3 class="text-xl font-semibold color-strong">
           <span class="block">Extends</span>
           the Growth Phase
         </h3>
@@ -29,7 +29,7 @@ $solutions_headline = [
         </p>
       </article>
       <article class="rounded-lg bg-white p-5 sm:p-7">
-        <h3 class="text-xl font-semibold text-zinc-800">
+        <h3 class="text-xl font-semibold color-strong">
           <span class="block">Reduces</span>
           Hair Shedding
         </h3>
@@ -38,7 +38,7 @@ $solutions_headline = [
         </p>
       </article>
       <article class="rounded-lg bg-white p-5 sm:p-7">
-        <h3 class="text-xl font-semibold text-zinc-800">
+        <h3 class="text-xl font-semibold color-strong">
           <span class="block">Builds</span>
           Strong Strands
         </h3>

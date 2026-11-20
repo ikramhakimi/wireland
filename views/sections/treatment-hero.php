@@ -17,7 +17,7 @@ $hero_headline = [
 <section class="section">
   <div class="container">
     <div class="headline sm:text-center sm:flex sm:flex-col sm:items-center">
-        <h1 class="headline-title font-semibold   text-zinc-800 text-3xl sm:text-5xl text-pretty sm:max-w-2xl">
+        <h1 class="headline-title font-semibold   color-strong text-3xl sm:text-5xl text-pretty sm:max-w-2xl">
           <span class="text-sm uppercase block text-zinc-500 mb-5">Hair Transplant Malaysia</span>
           Sapphire FUE Hair Restoration
         </h1>
@@ -44,30 +44,30 @@ $hero_headline = [
         <div class="text-sm divide-y divide-zinc-200">
           <div class="flex-split py-2.5">
             <div>Treatment</div>
-            <div class="font-medium text-zinc-800">Hair restoration</div>
+            <div class="font-medium color-strong">Hair restoration</div>
           </div>
           <div class="flex-split py-2.5">
             <div>Suitability</div>
-            <div class="font-medium text-zinc-800">Doctor assessment</div>
+            <div class="font-medium color-strong">Doctor assessment</div>
           </div>
           <div class="flex-split py-2.5">
             <div>Technique</div>
-            <div class="font-medium text-zinc-800">Discussed at consultation</div>
+            <div class="font-medium color-strong">Discussed at consultation</div>
           </div>
           <div class="flex-split py-2.5">
             <div>Treatment Plan</div>
-            <div class="font-medium text-zinc-800">Personalised</div>
+            <div class="font-medium color-strong">Personalised</div>
           </div>
           <div class="flex-split py-2.5">
             <div>Price</div>
-            <div class="font-medium text-zinc-800">Quoted after assessment</div>
+            <div class="font-medium color-strong">Quoted after assessment</div>
           </div>
         </div>
       </div>
       <div class="col-span-2 bg-zinc-300 rounded-lg min-h-80 grid grid-cols-3 gap-3">
         <div class="bg-white p-5 rounded-lg">
           <div>01</div>
-          <h3 class="font-semibold text-zinc-800">Consultation & Hair Assessment</h3>
+          <h3 class="font-semibold color-strong">Consultation & Hair Assessment</h3>
           <div>Review your hair-loss pattern, donor area and goals with the doctor.</div>
         </div>
       </div>

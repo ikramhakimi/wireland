@@ -13,7 +13,7 @@ $intro_config = ['intro_mode' => $intro_mode];
 $form_config  = ['auth_mode' => $auth_mode];
 
 ?>
-<div class="auth-layout grid min-h-svh bg-white text-zinc-800
+<div class="auth-layout grid min-h-svh bg-white color-strong
   md:grid-cols-2">
   <?php component('auth/intro', $intro_config); ?>
   <div class="auth-main flex flex-col min-w-0 min-h-svh px-6 pt-10 pb-6
@@ -23,7 +23,7 @@ $form_config  = ['auth_mode' => $auth_mode];
     <footer class="auth-footer flex items-center <?= $is_register ? 'justify-center' : 'justify-between'; ?> gap-3 text-[10px] text-zinc-500">
       <button type="button" data-auth-notice="privacy"
         class="auth-footer-link min-h-11 cursor-pointer
-          hover:text-zinc-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-800">
+          hover:color-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-800">
         Privacy Policy
       </button>
       <?php if ($is_register): ?>
@@ -34,7 +34,7 @@ $form_config  = ['auth_mode' => $auth_mode];
   </div>
 </div>
 <dialog aria-labelledby="auth-notice-title"
-  class="auth-notice fixed inset-0 w-[min(26rem,calc(100%-2rem))] m-auto p-7 rounded-2xl border border-zinc-200 bg-white text-zinc-800
+  class="auth-notice fixed inset-0 w-[min(26rem,calc(100%-2rem))] m-auto p-7 rounded-2xl border border-zinc-200 bg-white color-strong
     backdrop:bg-zinc-950/50
     js-component-auth-notice">
   <h2 id="auth-notice-title" class="auth-notice-title text-xl font-semibold">Account access</h2>

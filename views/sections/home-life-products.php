@@ -41,7 +41,7 @@ $headline2 = [
                 <div class="size-8 bg-zinc-700 rounded-md flex-center absolute top-2 right-2 text-white"><?php svg('arrow-right-up-line', 'size-5 stroke-2'); ?></div>
               </div>
               <div class="p-5 pt-2">
-                <h3 class="font-display font-bold text-xl text-zinc-800">Root Activator Deluxe Kit</h3>
+                <h3 class="font-display font-bold text-xl color-strong">Root Activator Deluxe Kit</h3>
                 <p class="text-sm">RM 350</p>
                 <p class="text-xs sm:text-sm mt-2 leading-relaxed flex items-center gap-1">
                   The combination of Finox+ Grey and our RR Volumizing Shampoo & RR Root Activator Solution.
@@ -109,7 +109,7 @@ $headline2 = [
         <div class="absolute inset-0 border-overlay sm:p-10 bg-linear-to-r from-zinc-300 via-transparent to-zinc-400">
           <div class="flex justify-between">
             <div class="max-w-80">
-              <h3 class="font-semibold text-4xl text-pretty text-zinc-800">Get a treatment made for you</h3>
+              <h3 class="font-semibold text-4xl text-pretty color-strong">Get a treatment made for you</h3>
               <p class="mt-4">Based on your results, with the right medication, supplements, and everyday changes to help you reach your goals.</p>
             </div>
             <div>
@@ -128,7 +128,7 @@ $headline2 = [
         <?php endfor; ?>
       </div>
       <div class="mt-10 max-w-xl mx-auto">
-        <h3 class="headline-title font-semibold text-center text-zinc-800 text-2xl sm:text-4xl text-pretty">Get complete support in our product</h3>
+        <h3 class="headline-title font-semibold text-center color-strong text-2xl sm:text-4xl text-pretty">Get complete support in our product</h3>
         <div class="text-center mt-5">Along with medication, if eligible, you get:</div>
         <div class="space-y-2 mt-5">
           <?php foreach ($membership_benefits as $benefit): ?>

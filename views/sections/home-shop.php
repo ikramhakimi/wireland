@@ -154,7 +154,7 @@ $headline        = [
 
   <?php if ($variant === 'simple'): ?>
     <div class="shop-highlights container mt-10">
-      <div class="shop-highlights-grid grid gap-3 md:grid-cols-2 md:px-30">
+      <div class="shop-highlights-grid grid gap-3 md:grid-cols-2 lg:px-30">
         <div class="shop-testimonials flex flex-col min-w-0 bg-zinc-100 rounded-md">
           <div class="p-5 sm:pl-6 pb-4">
             <h3 class="card-title font-semibold color-strong">From Our Customers</h3>
@@ -185,15 +185,7 @@ $headline        = [
     </div>
 
     <div class="shop-facts container mt-10">
-      <ul class="shop-facts-list flex flex-col items-center gap-4 sm:flex-row
-        sm:flex-wrap sm:justify-center sm:gap-x-10">
-        <?php foreach ($shop_facts as $fact): ?>
-          <li class="shop-fact flex items-center gap-2 text-xs">
-            <span class="size-8 flex-center bg-zinc-100 rounded-full color-muted"><?php svg($fact['icon'], 'size-5 shrink-0'); ?></span>
-            <span><?= e($fact['text']); ?></span>
-          </li>
-        <?php endforeach; ?>
-      </ul>
+      <?php component('list-icon', ['items' => $shop_facts]); ?>
     </div>
   <?php else: ?>
   <div class="shop-list container mt-15">
@@ -201,34 +193,22 @@ $headline        = [
       <?php $group_index = 0; ?>
       <?php foreach ($shop_categories as $category => $items): ?>
         <div class="shop-group <?= $group_index++ === 0 ? 'lg:row-span-2' : ''; ?>">
-          <h3 class="shop-category flex items-baseline justify-between pb-3 font-semibold border-b border-zinc-950
-            color-strong">
-            <?= e($category); ?>
-            <span class="shop-count text-sm font-normal color-muted"><?= count($items); ?></span>
-          </h3>
-          <ul class="shop-items">
-            <?php foreach ($items as $item): ?>
-              <li>
-                <a href="<?= e($product_url($item['id'])); ?>" class="shop-row group flex items-center gap-3 py-2.5
-                  border-b border-zinc-200">
-                  <span class="shop-thumb flex-center shrink-0 size-16 rounded-lg bg-zinc-300 color-muted"
-                    aria-hidden="true">
-                    <?php svg('image-line', 'product-image-placeholder size-5'); ?>
-                  </span>
-                  <span class="shop-info flex flex-1 flex-col gap-0.5">
-                    <span class="shop-name text-sm font-semibold color-strong underline-offset-4
-                      group-hover:underline"><?= e($item['name']); ?></span>
-                    <span class="shop-price text-sm"><?= e($money((float) $item['price'])); ?></span>
-                  </span>
-                </a>
-              </li>
-            <?php endforeach; ?>
-          </ul>
+          <?php
+          component('list-thumb', [
+            'title' => $category,
+            'count' => count($items),
+            'items' => array_map(static fn (array $item): array => [
+              'title' => $item['name'],
+              'text'  => $money((float) $item['price']),
+              'href'  => $product_url($item['id']),
+            ], $items),
+          ]);
+          ?>
         </div>
       <?php endforeach; ?>
       <?php foreach ($shop_notes as $note): ?>
         <article class="card card-shop-note flex flex-col p-6 rounded-xl bg-zinc-100">
-          <span class="card-icon text-zinc-950" aria-hidden="true">
+          <span class="card-icon color-strong" aria-hidden="true">
             <?php svg($note['icon'], 'size-6'); ?>
           </span>
           <h3 class="card-title mt-auto pt-6 font-semibold color-strong"><?= e($note['title']); ?></h3>

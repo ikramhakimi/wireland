@@ -70,7 +70,7 @@
   }
 
   .field .field-help {
-    @apply mt-2 text-xs font-normal leading-6 color-muted;
+    @apply mt-2 text-xs font-normal leading-5 color-muted;
   }
 
   .field .field-error {

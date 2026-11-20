@@ -66,14 +66,14 @@ $demo_next = $demo_index !== false && $demo_index < count($demo_pages) - 1 ? $de
     <div class="demo-nav-footer flex items-center justify-between gap-2 px-5 py-3 border-t border-zinc-200
       text-xs color-muted">
       <?php if ($demo_prev): ?>
-        <a href="<?= e($demo_href($demo_prev)); ?>" class="demo-nav-prev flex items-center gap-1 hover:text-zinc-900">
+        <a href="<?= e($demo_href($demo_prev)); ?>" class="demo-nav-prev flex items-center gap-1 hover:color-strong">
           <?php svg('arrow-left-s-line', 'size-4'); ?><?= e($demo_prev['label']); ?>
         </a>
       <?php else: ?>
         <span></span>
       <?php endif; ?>
       <?php if ($demo_next): ?>
-        <a href="<?= e($demo_href($demo_next)); ?>" class="demo-nav-next flex items-center gap-1 hover:text-zinc-900">
+        <a href="<?= e($demo_href($demo_next)); ?>" class="demo-nav-next flex items-center gap-1 hover:color-strong">
           <?= e($demo_next['label']); ?><?php svg('arrow-right-s-line', 'size-4'); ?>
         </a>
       <?php endif; ?>

@@ -14,13 +14,13 @@ $store_error = '';
 $store_delivery_facts = [
   ['label' => 'Delivery fee',      'value' => 'Free'],
   ['label' => 'Estimated arrival', 'value' => '1–2 working days'],
-  ['label' => 'Packaging',         'value' => 'Discreet, unmarked'],
+  // ['label' => 'Packaging',         'value' => 'Discreet, unmarked'],
 ];
 // Atome pay-later split shown under product and cart prices.
 $store_installment_count = 3;
 $store_purchase_assurances = [
   ['icon' => 'lock-line',         'text' => 'Secure checkout'],
-  // ['icon' => 'shield-check-line', 'text' => '14-day returns on unopened products'],
+  ['icon' => 'box-3-line',        'text' => 'Discreet packaging'],
 ];
 $store_post  = ($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST';
 $store_valid = !$store_post || (is_string($_POST['token'] ?? null)

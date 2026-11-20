@@ -84,8 +84,8 @@ if (!is_callable($render_items)) {
       </div>
     </div>
   <?php endif; ?>
-  <div class="carousel-viewport <?= $layout === 'simple' ? 'container max-md:px-0' : 'md:px-12 lg:px-16'; ?>">
-    <div class="carousel-container <?= $layout === 'simple' ? 'md:overflow-hidden' : 'max-w-6xl mx-auto'; ?>">
+  <div class="carousel-viewport <?= $layout === 'simple' ? 'container' : 'md:px-12 lg:px-16'; ?>">
+    <div class="carousel-container <?= $layout === 'simple' ? 'max-md:-mx-5 md:overflow-hidden' : 'max-w-6xl mx-auto'; ?>">
       <div id="<?= e($track_id); ?>"
         class="carousel-track grid grid-flow-col px-5 py-2 overflow-x-auto overscroll-x-contain snap-x snap-mandatory scroll-px-5
           motion-reduce:transition-none
