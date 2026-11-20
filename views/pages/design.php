@@ -896,6 +896,32 @@ $design_timeline_examples = [
     ],
   ],
   [
+    'title' => 'Default With Icons',
+    'note'  => 'Set icon on each item to show it in the dot instead of the number; show_label puts the step '
+      . 'number above the title. Example: hair cycle phases.',
+    'data'  => [
+      'label'      => 'Phase',
+      'show_label' => true,
+      'items'      => [
+        [
+          'title' => 'Growth',
+          'text'  => 'A hair grows from its follicle, often for several years.',
+          'icon'  => 'blaze-line',
+        ],
+        [
+          'title' => 'Shedding',
+          'text'  => 'It stops, rests, then falls out. Daily shedding is normal.',
+          'icon'  => 'progress-5-line',
+        ],
+        [
+          'title' => 'Regrowth',
+          'text'  => 'A new hair grows in its place, often finer with hair loss.',
+          'icon'  => 'loop-right-line',
+        ],
+      ],
+    ],
+  ],
+  [
     'title' => 'Compact',
     'note'  => 'Steps inside cards, panels and pages. Vertical at every width; titles stay smaller than the section '
       . 'heading. Example: doctor review steps.',
@@ -2279,7 +2305,7 @@ $design_empty_states = [
       <header class="section-header">
         <h2 id="design-timeline-title" class="section-title text-title-md font-semibold color-strong">Timeline</h2>
         <p class="section-description mt-3 text-sm leading-relaxed">
-          Use a timeline for numbered steps in order, such as how a service works, order fulfilment, review steps
+          Use a timeline for numbered or icon steps in order, such as how a service works, order fulfilment, review steps
           or a schedule. Default suits website sections and wide layouts; Compact suits cards, panels and dashboard
           pages, where titles must stay smaller than the section heading. Steps are joined by a dashed line.
         </p>

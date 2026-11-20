@@ -2,20 +2,22 @@
 
 /**
  * Component: Timeline
- * Purpose: Numbered steps joined by a dashed connector line.
+ * Purpose: Numbered (or icon) steps joined by a dashed connector line.
  * Structure: <ol> of steps. Default size: mobile vertical rail (dot left, text right, vertical line between dots);
  *            desktop (lg) one column per step, horizontal line between dots. Compact size: vertical rail at
  *            every width, smaller dots and body-size titles, for steps inside content (cards, panels, pages).
- * Data: items (title, text, done (optional bool: filled dot with a check)); size ('default' | 'compact');
+ * Data: items (title, text, done (optional bool: filled dot with a check),
+ *       icon (optional svg name shown in the dot instead of the number)); size ('default' | 'compact');
  *       start (first step number, default 1; continues numbering in a shortened list);
  *       alignment ('left' | 'center', default size on desktop only; default 'left');
- *       label (screen-reader prefix, default 'Step'); class (extra classes on the wrapper).
+ *       label (screen-reader prefix, default 'Step'); show_label (bool: show "<label> <number>" above the title); class (extra classes on the wrapper).
  */
 $items       = $items ?? [];
 $size        = ($size ?? 'default') === 'compact' ? 'compact' : 'default';
 $start       = max(1, (int) ($start ?? 1));
 $alignment   = ($alignment ?? 'left') === 'center' ? 'center' : 'left';
 $label       = $label ?? 'Step';
+$show_label  = !empty($show_label);
 $class       = $class ?? '';
 $columns     = [
   2 => 'lg:grid-cols-2',
@@ -59,6 +61,7 @@ if ($items === []) {
       <?php
       $number  = $start + $index;
       $is_done = !empty($item['done']);
+      $icon    = $item['icon'] ?? '';
       ?>
       <li class="timeline-step relative grid <?= $style['step']; ?>
         not-last:after:absolute not-last:after:border-l not-last:after:border-dashed not-last:after:border-zinc-300
@@ -68,13 +71,22 @@ if ($items === []) {
           aria-hidden="true">
           <?php if ($is_done): ?>
             <?php svg('check-line', $size === 'compact' ? 'size-4' : 'size-5'); ?>
+          <?php elseif ($icon !== ''): ?>
+            <?php svg($icon, $size === 'compact' ? 'size-4' : 'size-5'); ?>
           <?php else: ?>
             <?= $number; ?>
           <?php endif; ?>
         </span>
         <div class="timeline-body <?= $style['body']; ?>">
           <h3 class="timeline-title <?= $style['title']; ?> color-strong">
-            <span class="sr-only"><?= e($label); ?> <?= $number; ?>: </span><?= e($item['title'] ?? ''); ?>
+            <?php if ($show_label): ?>
+              <span class="timeline-label block mb-1 text-xs font-medium color-muted">
+                <?= e($label); ?> <?= $number; ?><span class="sr-only">: </span>
+              </span>
+            <?php else: ?>
+              <span class="sr-only"><?= e($label); ?> <?= $number; ?>: </span>
+            <?php endif; ?>
+            <?= e($item['title'] ?? ''); ?>
             <?php if ($is_done): ?>
               <span class="sr-only"> (done)</span>
             <?php endif; ?>
