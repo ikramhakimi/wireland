@@ -24,6 +24,7 @@ $nav_groups   = [
     'links' => [
       ['label' => t('dashboard.nav.commerce.orders'), 'href' => '#', 'current' => []],
       ['label' => t('dashboard.nav.commerce.products'), 'href' => asset_url('dashboard/products/'), 'current' => ['products']],
+      ['label' => t('dashboard.nav.commerce.treatments'), 'href' => asset_url('dashboard/treatments/'), 'current' => ['treatments']],
     ],
   ],
 ];

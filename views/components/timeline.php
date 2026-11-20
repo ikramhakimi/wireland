@@ -12,6 +12,8 @@
  *       start (first step number, default 1; continues numbering in a shortened list);
  *       alignment ('left' | 'center', default size on desktop only; default 'left');
  *       label (screen-reader prefix, default 'Step'); show_label (bool: show "<label> <number>" above the title);
+ *       dot ('outline' default | 'muted': soft filled dot, regular-weight label);
+ *       inset (bool, default size only: extra side padding on the steps from lg);
  *       class (extra classes on the wrapper).
  */
 $items       = $items ?? [];
@@ -21,6 +23,10 @@ $alignment   = ($alignment ?? 'left') === 'center' ? 'center' : 'left';
 $label       = $label ?? 'Step';
 $show_label  = !empty($show_label);
 $class       = $class ?? '';
+$is_muted    = ($dot ?? 'outline') === 'muted';
+$dot_idle    = $is_muted ? 'border-zinc-100 bg-zinc-100 color-strong' : 'border-zinc-500 bg-white color-strong';
+$label_class = $is_muted ? 'font-normal' : 'font-medium';
+$inset_class = !empty($inset) && $size === 'default' ? ' lg:px-20' : '';
 $columns     = [
   2 => 'lg:grid-cols-2',
   3 => 'lg:grid-cols-3',
@@ -58,7 +64,7 @@ if ($items === []) {
 }
 ?>
 <div class="timeline timeline-<?= $size; ?><?= $class !== '' ? ' ' . e($class) : ''; ?>">
-  <ol class="timeline-steps grid <?= $style['list']; ?>">
+  <ol class="timeline-steps grid <?= $style['list'] . $inset_class; ?>">
     <?php foreach ($items as $index => $item): ?>
       <?php
       $number  = $start + $index;
@@ -70,7 +76,7 @@ if ($items === []) {
         not-last:after:absolute not-last:after:border-l not-last:after:border-dashed not-last:after:border-zinc-300
         not-last:after:content-['']">
         <span class="timeline-dot relative z-1 flex-center font-medium border <?= $style['dot']; ?>
-          <?= $is_done ? 'border-zinc-900 bg-zinc-900 text-white' : 'border-zinc-500 bg-white color-strong'; ?>"
+          <?= $is_done ? 'border-zinc-900 bg-zinc-900 text-white' : $dot_idle; ?>"
           aria-hidden="true">
           <?php if ($is_done): ?>
             <?php svg('check-line', $size === 'compact' ? 'size-4' : 'size-5'); ?>
@@ -84,11 +90,11 @@ if ($items === []) {
           <h3 class="timeline-title <?= $style['title']; ?> color-strong">
             <?php if ($meta !== ''): ?>
               <span class="sr-only"><?= e($label); ?> <?= $number; ?>: </span>
-              <span class="timeline-label block mb-1 text-xs font-medium color-muted">
+              <span class="timeline-label block mb-1 text-xs <?= $label_class; ?> color-muted">
                 <?= e($meta); ?><span class="sr-only">, </span>
               </span>
             <?php elseif ($show_label): ?>
-              <span class="timeline-label block mb-1 text-xs font-medium color-muted">
+              <span class="timeline-label block mb-1 text-xs <?= $label_class; ?> color-muted">
                 <?= e($label); ?> <?= $number; ?><span class="sr-only">: </span>
               </span>
             <?php else: ?>

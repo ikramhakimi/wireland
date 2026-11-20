@@ -82,11 +82,9 @@ $testimonial_carousel = [
   'id'              => 'shop-testimonials',
   'label'           => 'Customer testimonials',
   'fade_class'      => 'hidden',
-  // One card per view on tablet/desktop: clip the track to the viewport so the next card never peeks in,
-  // and stretch the track so the card fills the panel height beside the category cards. Mobile keeps native scroll.
-  'class'           => 'carousel-contained flex-1 pb-5
-    md:[&_.carousel-viewport]:h-full md:[&_.carousel-container]:h-full md:[&_.carousel-container]:overflow-hidden
-    md:[&_.carousel-track]:h-full lg:[&_.carousel-viewport]:px-12',
+  // One card per view on tablet/desktop, filling the panel height beside the category cards.
+  'contained'       => true,
+  'class'           => 'carousel-contained flex-1 pb-5',
   'desktop_columns' => 1,
   'tablet_columns'  => 1,
   'gap'             => 2,

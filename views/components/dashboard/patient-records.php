@@ -60,6 +60,8 @@ $rows_field = [
   'name'    => 'per_page',
   'label'   => 'Rows',
   'type'    => 'select',
+  'layout'  => 'inline',
+  'width'   => 'xs',
   'value'   => $directory['per_page'],
   'options' => [
     ['value' => '5', 'label' => '5'],
@@ -87,12 +89,12 @@ $group_switch = [
     <input type="hidden" name="per_page" value="<?= e($directory['per_page']); ?>">
     <div class="filter-controls flex flex-col gap-3
       @3xl:flex-row @3xl:items-end @3xl:gap-3">
-      <div class="filter-fields flex flex-col gap-3 min-w-0 [&_.field-label]:sr-only
+      <div class="filter-fields flex flex-col gap-3 min-w-0
         @3xl:flex-1 @3xl:flex-row @3xl:gap-1">
         <?php foreach ($filter_fields as $field): ?>
           <div class="filter-field flex-1 min-w-0
             @3xl:has-[select]:flex-none @3xl:has-[select]:w-48">
-            <?php component('forms/field', $field); ?>
+            <?php component('forms/field', $field + ['label_hidden' => true]); ?>
           </div>
         <?php endforeach; ?>
       </div>
@@ -167,9 +169,7 @@ $group_switch = [
       <?= e($directory['first']); ?>–<?= e($directory['last']); ?> of <?= e($directory['total']); ?> patients
     </p>
     <form action="<?= asset_url('dashboard/patients/'); ?>" method="get"
-      class="pagination-size [&_.field]:flex [&_.field]:items-center [&_.field]:gap-2
-        [&_.field-select-wrapper]:w-24 [&_.field-select-wrapper]:mt-0
-        js-component-patients-size">
+      class="pagination-size js-component-patients-size">
       <input type="hidden" name="q" value="<?= e($directory['query']); ?>">
       <input type="hidden" name="assessment" value="<?= e($directory['assessment']); ?>">
       <input type="hidden" name="follow_up" value="<?= e($directory['follow_up']); ?>">

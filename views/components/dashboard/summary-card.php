@@ -15,8 +15,8 @@ $card_config = [
   'content'       => function () use ($card): void {
     ?>
     <div class="card-metrics grid items-stretch gap-8
-      @sm:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-      <div class="card-primary flex flex-col gap-3 min-w-0">
+      @sm:grid-cols-12">
+      <div class="card-primary flex flex-col gap-3 min-w-0 @sm:col-span-7">
         <p class="card-value text-2xl font-medium leading-tight tabular-nums color-strong break-words
           sm:text-3xl">
           <?= e($card['value']); ?>
@@ -31,7 +31,7 @@ $card_config = [
           ?>
         </div>
       </div>
-      <dl class="card-details grid gap-4 divide-y divide-zinc-100">
+      <dl class="card-details grid gap-4 min-w-0 divide-y divide-zinc-100 @sm:col-span-5">
         <?php foreach ($card['details'] as $detail): ?>
           <div class="card-detail min-w-0 pt-4 first:pt-0">
             <dt class="card-detail-label text-xs text-zinc-500"><?= e($detail['label']); ?></dt>

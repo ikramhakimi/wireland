@@ -31,12 +31,12 @@ $list_card = [
     <form role="search" class="filter mb-10 js-component-products-filters">
       <div class="filter-controls flex flex-col gap-3
         @3xl:flex-row @3xl:items-end @3xl:gap-3">
-        <div class="filter-fields flex flex-col gap-3 min-w-0 [&_.field-label]:sr-only
+        <div class="filter-fields flex flex-col gap-3 min-w-0
           @3xl:flex-1 @3xl:flex-row @3xl:gap-1">
           <div class="filter-field flex-1 min-w-0">
             <?php component('forms/field', [
               'id' => 'product-search', 'name' => 'query', 'label' => 'Search Products',
-              'placeholder' => 'Product name or SKU',
+              'placeholder' => 'Product name or SKU', 'label_hidden' => true,
             ]); ?>
           </div>
           <div class="filter-field min-w-0 js-component-products-category-filter">

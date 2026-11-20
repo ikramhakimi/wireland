@@ -104,8 +104,8 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
       </div>
     <?php else: ?>
       <div class="cart-layout grid items-start gap-8 mt-10
-        md:grid-cols-[minmax(0,1fr)_400px]">
-        <div class="cart-content min-w-0">
+        md:grid-cols-12">
+        <div class="cart-content min-w-0 md:col-span-6 lg:col-span-8">
           <ul class="cart-items divide-y divide-dashed divide-zinc-200" aria-label="Cart items">
             <?php foreach ($store_lines as $line): ?>
               <?php
@@ -222,7 +222,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
           </ul>
           <div class="cart-continue mt-6"><?php component('button', $continue_button); ?></div>
         </div>
-        <aside class="cart-summary min-w-0" aria-label="Order summary">
+        <aside class="cart-summary min-w-0 md:col-span-6 lg:col-span-4" aria-label="Order summary">
           <?php component('store/summary', $cart_summary); ?>
           <?php component('button', $checkout_button); ?>
           <ul class="cart-assurances flex flex-wrap justify-center gap-x-5 gap-y-1 mt-3 text-xs color-muted"

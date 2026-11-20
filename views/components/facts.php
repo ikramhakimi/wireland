@@ -9,6 +9,7 @@
  *   rows    label and value side by side, dashed dividers (asides and summaries).
  * Data: items (list of label, value), layout ('inline' | 'grid' | 'rows'; default 'grid'),
  *       columns (2 | 3, grid only; default 2), class (extra classes). Items with an empty value are skipped.
+ *       Rows only: size ('default' | 'comfortable'; comfortable adds row padding), value_align ('left' | 'right').
  */
 $items   = array_values(array_filter(
   $items ?? [],
@@ -17,6 +18,8 @@ $items   = array_values(array_filter(
 $layout  = in_array($layout ?? '', ['inline', 'grid', 'rows'], true) ? $layout : 'grid';
 $columns = ($columns ?? 2) === 3 ? 'sm:grid-cols-3' : 'sm:grid-cols-2';
 $class   = $class ?? '';
+$row_pad     = ($size ?? 'default') === 'comfortable' ? 'py-2' : 'py-1.5';
+$value_align = ($value_align ?? 'left') === 'right' ? ' text-right' : '';
 $styles  = [
   'inline' => [
     'list'  => 'flex flex-wrap gap-x-6 gap-y-1 text-xs',
@@ -32,9 +35,9 @@ $styles  = [
   ],
   'rows'   => [
     'list'  => 'grid text-sm divide-y divide-dashed divide-zinc-300',
-    'item'  => 'grid grid-cols-2 items-baseline gap-4 py-1.5',
+    'item'  => 'grid grid-cols-2 items-baseline gap-4 ' . $row_pad,
     'label' => 'color-muted',
-    'value' => 'text-pretty color-strong',
+    'value' => 'text-pretty color-strong' . $value_align,
   ],
 ];
 $style = $styles[$layout];

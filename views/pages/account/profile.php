@@ -283,8 +283,8 @@ $account_layout = [
         </p>
       </header>
 
-      <div class="account-layout grid items-start gap-8 mt-8 xl:grid-cols-[minmax(0,1fr)_320px]">
-        <div class="account-main grid gap-10 min-w-0">
+      <div class="account-layout grid items-start gap-8 mt-8 xl:grid-cols-12">
+        <div class="account-main grid gap-10 min-w-0 xl:col-span-8">
           <?php foreach ($profile_sections as $section): ?>
             <section class="account-section" aria-labelledby="<?= e($section['id']); ?>-title">
               <?php component('account/section-heading', [
@@ -348,7 +348,7 @@ $account_layout = [
           </section>
         </div>
 
-        <aside class="account-aside grid gap-4 p-5 rounded-lg bg-zinc-100 xl:sticky xl:top-6"
+        <aside class="account-aside grid gap-4 p-5 rounded-lg bg-zinc-100 xl:sticky xl:top-6 xl:col-span-4"
           aria-labelledby="account-aside-title">
           <div class="account-aside-header">
             <h2 id="account-aside-title" class="account-aside-title text-base font-semibold color-strong">

@@ -7,6 +7,8 @@
  * Data: id, label; type (text/email/password/number/textarea/select), name, value, placeholder,
  *       helper, error, required, disabled, readonly, autocomplete, minlength, maxlength, rows; min, max, step (number inputs only);
  *       options (ordered value/label pairs) for selects. Readonly applies to inputs/textarea.
+ *       label_hidden (bool): label stays for screen readers only, e.g. filter bars with placeholders.
+ *       layout ('stacked' default | 'inline': label beside the control); width ('full' default | 'xs': 6rem control).
  *       IDs must be unique per page.
  *       Textareas autogrow using native field sizing; rows sets the minimum visible line count.
  *       numbered_list enhances optional editable textareas into square-bullet lists; storage remains plain text.
@@ -38,11 +40,15 @@ $step          = $step ?? null;
 $options       = $options ?? [];
 $accept        = $accept ?? 'image/jpeg,image/png,image/webp';
 $max_size      = max(1, (int) ($max_size ?? 1048576));
+$is_inline     = ($layout ?? 'stacked') === 'inline';
+$field_class   = $is_inline ? 'field field-inline flex items-center gap-2' : 'field';
+$label_class   = 'field-label' . (!empty($label_hidden) ? ' sr-only' : '') . ($is_inline ? ' mb-0' : '');
+$width_class   = ($width ?? 'full') === 'xs' ? ' w-24' : '';
 $described_by  = trim(($helper !== '' ? $id . '-help' : '') . ' ' . ($error !== '' ? $id . '-error' : ''));
 
 ?>
-<div class="field">
-  <label id="<?= e($id); ?>-label" for="<?= e($id); ?>" class="field-label">
+<div class="<?= $field_class; ?>">
+  <label id="<?= e($id); ?>-label" for="<?= e($id); ?>" class="<?= $label_class; ?>">
     <?= e($label); ?>
     <?php if ($required): ?>
       <span class="field-required">Required</span>
@@ -68,7 +74,7 @@ $described_by  = trim(($helper !== '' ? $id . '-help' : '') . ' ' . ($error !== 
         class="field-control field-textarea break-words js-component-list-field-editor"></div>
     <?php endif; ?>
   <?php elseif ($type === 'select'): ?>
-    <div class="field-select-wrapper">
+    <div class="field-select-wrapper<?= $width_class; ?>">
       <select id="<?= e($id); ?>"
         <?php if ($name !== ''): ?>name="<?= e($name); ?>"<?php endif; ?>
         <?php if ($required): ?>required<?php endif; ?>
@@ -156,7 +162,7 @@ $described_by  = trim(($helper !== '' ? $id . '-help' : '') . ' ' . ($error !== 
       <?php if ($readonly): ?>readonly<?php endif; ?>
       <?php if ($described_by !== ''): ?>aria-describedby="<?= e($described_by); ?>"<?php endif; ?>
       <?php if ($error !== ''): ?>aria-invalid="true"<?php endif; ?>
-      class="field-control field-input">
+      class="field-control field-input<?= $width_class; ?>">
   <?php endif; ?>
   <?php if ($helper !== ''): ?>
     <p id="<?= e($id); ?>-help" class="field-help">

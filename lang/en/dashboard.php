@@ -23,9 +23,10 @@ return [
       'follow_ups'    => 'Follow-ups',
     ],
     'commerce'   => [
-      'title'    => 'Commerce',
-      'orders'   => 'Orders',
-      'products' => 'Products',
+      'title'      => 'Commerce',
+      'orders'     => 'Orders',
+      'products'   => 'Products',
+      'treatments' => 'Treatments',
     ],
     'settings'   => 'Settings',
   ],

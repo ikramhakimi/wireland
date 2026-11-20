@@ -15,11 +15,11 @@ $preview_group = $preview_group ?? '';
 component('navbar', ['cart_href' => asset_url('cart/')]);
 ?>
 <div class="account page pt-6 pb-15 sm:pt-10 sm:pb-20">
-  <div class="account-container container grid gap-6 lg:grid-cols-[12rem_1fr] lg:gap-12">
-    <aside class="account-aside lg:sticky lg:top-6 lg:self-start">
+  <div class="account-container container flex flex-col gap-6 lg:flex-row lg:gap-12">
+    <aside class="account-aside lg:sticky lg:top-6 lg:self-start lg:w-48 lg:shrink-0">
       <?php component('account/nav', ['items' => $nav, 'current' => $current]); ?>
     </aside>
-    <div class="account-main min-w-0">
+    <div class="account-main min-w-0 lg:flex-1">
       <?php if (is_callable($content)) { $content(); } ?>
     </div>
   </div>

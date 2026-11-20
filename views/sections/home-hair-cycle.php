@@ -41,7 +41,7 @@ $hair_cycle_button = [
   'icon'    => 'arrow-right-line',
 ];
 $hair_cycle_comparison = [
-  'class'  => '[&.media-comparison]:aspect-4/5 [&_.layer-before]:aspect-4/5 [&_.layer-after]:aspect-4/5',
+  'aspect' => '4/5',
   'before' => [
     'src'   => '',
     'alt'   => 'Before treatment',
@@ -87,8 +87,9 @@ $hair_cycle_results = [
     'items'     => $hair_cycle_phases,
     'alignment' => $alignment,
     'label'     => 'Phase',
-    'class'     => 'container mt-10 lg:[&_.timeline-steps]:px-20 '
-      . '[&_.timeline-dot]:border-zinc-100 [&_.timeline-dot]:bg-zinc-100 [&_.timeline-label]:font-normal',
+    'dot'       => 'muted',
+    'inset'     => true,
+    'class'     => 'container mt-10',
   ]); ?>
 
   <div class="compare-results container mt-14">

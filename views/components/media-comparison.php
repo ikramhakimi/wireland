@@ -4,18 +4,25 @@
  * Component: Media comparison
  * Purpose: Accessible before/after image slider with placeholder layers when sources are omitted.
  * Structure: Two overlapping layers, clipped labels, native range input, and decorative drag handle.
- * Data: before, after (src, alt, label); position (0–100, default 50); optional class.
+ * Data: before, after (src, alt, label); position (0–100, default 50); optional class;
+ *       aspect ('5/3' default | '4/5' | 'portrait-landscape': 4/5 on mobile, 5/3 from sm).
  */
 $before   = $before ?? [];
 $after    = $after ?? [];
 $position = isset($position) && is_numeric($position) ? max(0, min(100, (float) $position)) : 50;
 $class    = $class ?? '';
+$aspects  = [
+  '5/3'                => 'aspect-5/3',
+  '4/5'                => 'aspect-4/5',
+  'portrait-landscape' => 'aspect-4/5 sm:aspect-5/3',
+];
+$aspect   = $aspects[$aspect ?? '5/3'] ?? $aspects['5/3'];
 $before   = array_merge(['src' => '', 'alt' => '', 'label' => 'Before'], $before);
 $after    = array_merge(['src' => '', 'alt' => '', 'label' => 'After'], $after);
 ?>
-<div class="media-comparison relative isolate aspect-5/3 overflow-hidden rounded-lg select-none uppercase
+<div class="media-comparison relative isolate <?= $aspect; ?> overflow-hidden rounded-lg select-none uppercase
   <?= e($class); ?> js-component-media-comparison" style="--position: <?= e($position); ?>%;">
-  <div class="layer-after absolute inset-0 aspect-5/3 bg-zinc-200 rounded-lg">
+  <div class="layer-after absolute inset-0 bg-zinc-200 rounded-lg">
     <?php if ($after['src'] !== ''): ?>
       <img src="<?= e($after['src']); ?>" alt="<?= e($after['alt']); ?>"
         class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" draggable="false">
@@ -24,7 +31,7 @@ $after    = array_merge(['src' => '', 'alt' => '', 'label' => 'After'], $after);
       <?= e($after['label']); ?>
     </span>
   </div>
-  <div class="layer-before absolute inset-0 aspect-5/3 bg-zinc-300 rounded-lg
+  <div class="layer-before absolute inset-0 bg-zinc-300 rounded-lg
     [clip-path:inset(0_calc(100%_-_var(--position))_0_0)]">
     <?php if ($before['src'] !== ''): ?>
       <img src="<?= e($before['src']); ?>" alt="<?= e($before['alt']); ?>"

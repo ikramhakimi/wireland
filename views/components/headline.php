@@ -8,6 +8,7 @@
  *       optional topic, subtitle, actions.
  *       Omit alignment to control it through class.
  *       actions: arrays containing label, href, and optional button color class.
+ *       title_breaks (bool): keep line breaks written in the title from sm.
  */
 $title         = $title ?? '';
 $title_size    = $title_size ?? 'small';
@@ -17,7 +18,8 @@ $alignment     = $alignment ?? '';
 $topic         = $topic ?? '';
 $subtitle      = $subtitle ?? '';
 $actions       = $actions ?? [];
-$title_class   = $title_size === 'large' ? 'text-title-lg' : 'text-title-md';
+$title_class   = ($title_size === 'large' ? 'text-title-lg' : 'text-title-md')
+  . (!empty($title_breaks) ? ' sm:whitespace-pre-line' : '');
 $alignment_classes = [
   'left'   => 'text-left flex flex-col items-start',
   'center' => 'sm:text-center sm:flex sm:flex-col sm:items-center',

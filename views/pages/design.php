@@ -958,6 +958,21 @@ $design_facts_examples = [
       ],
     ],
   ],
+  [
+    'title' => 'Rows (Comfortable, Values Right)',
+    'note'  => 'Summary sidebars, such as treatment key facts. More row padding and right-aligned values.',
+    'data'  => [
+      'layout'      => 'rows',
+      'size'        => 'comfortable',
+      'value_align' => 'right',
+      'class'       => 'max-w-sm',
+      'items'       => [
+        ['label' => 'Procedure', 'value' => '6–8 hours'],
+        ['label' => 'Anaesthesia', 'value' => 'Local'],
+        ['label' => 'Back to Desk Work', 'value' => '3–5 days'],
+      ],
+    ],
+  ],
 ];
 
 $design_timeline_examples = [
@@ -1007,6 +1022,21 @@ $design_timeline_examples = [
           'text'  => 'A new hair grows in its place, often finer with hair loss.',
           'icon'  => 'loop-right-line',
         ],
+      ],
+    ],
+  ],
+  [
+    'title' => 'Default With Muted Dots',
+    'note'  => 'Set dot to muted for soft filled dots and regular-weight labels; inset adds side padding from lg. '
+      . 'Example: hair cycle on the home page.',
+    'data'  => [
+      'dot'   => 'muted',
+      'inset' => true,
+      'label' => 'Phase',
+      'items' => [
+        ['title' => 'Reset', 'text' => 'Some shedding can happen as follicles reset.', 'meta' => 'Month 1 – 3', 'icon' => 'loop-right-line'],
+        ['title' => 'Regrowth', 'text' => 'Fine new hairs may start to show.', 'meta' => 'Month 4 – 8', 'icon' => 'blaze-line'],
+        ['title' => 'Results', 'text' => 'Hair often looks fuller.', 'meta' => 'Month 9 – 12', 'icon' => 'progress-8-line'],
       ],
     ],
   ],

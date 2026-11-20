@@ -158,8 +158,8 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
         <span class="checkout-step" aria-current="step">2. Checkout</span>
       </nav>
       <div class="checkout-layout grid items-start gap-8 mt-10
-        md:grid-cols-[minmax(0,1fr)_400px]">
-        <div class="checkout-content min-w-0">
+        md:grid-cols-12">
+        <div class="checkout-content min-w-0 md:col-span-6 lg:col-span-8">
           <form id="checkout-form" method="post" action="<?= asset_url('checkout/'); ?>" class="checkout-form grid gap-10">
             <input type="hidden" name="token" value="<?= e($store_token); ?>">
             <input type="hidden" name="cart_fingerprint" value="<?= e($fingerprint); ?>">
@@ -209,7 +209,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
           </form>
           <div class="checkout-back mt-6"><?php component('button', $back_button); ?></div>
         </div>
-        <aside class="checkout-summary min-w-0" aria-label="Order summary">
+        <aside class="checkout-summary min-w-0 md:col-span-6 lg:col-span-4" aria-label="Order summary">
           <?php component('store/summary', $checkout_summary); ?>
           <?php component('button', $confirm_button); ?>
           <ul class="checkout-assurances flex flex-wrap justify-center gap-x-5 gap-y-1 mt-3 text-xs color-muted"

@@ -1,12 +1,12 @@
 <?php
 $headline_center_no_button = [
-  'topic'      => 'Treatments',
-  'emoji'      => '🌱',
-  'title'      => 'Personalize hair loss treatments.
+  'topic'        => 'Treatments',
+  'emoji'        => '🌱',
+  'title'        => 'Personalize hair loss treatments.
 Every detail considered.',
-  'subtitle'   => 'Explore your options. Find care tailored to your hair and your needs.',
-  'alignment'  => 'center',
-  'class'      => 'sm:[&_.headline-title]:whitespace-pre-line',
+  'subtitle'     => 'Explore your options. Find care tailored to your hair and your needs.',
+  'alignment'    => 'center',
+  'title_breaks' => true,
 ];
 $services = [
   [

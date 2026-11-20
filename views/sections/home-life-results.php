@@ -8,9 +8,7 @@ $headline_center_no_button = [
   'alignment'  => $headline_alignment ?? 'center',
 ];
 $results_comparison = [
-  'class'  => '[&.media-comparison]:aspect-4/5 sm:[&.media-comparison]:aspect-5/3 '
-    . '[&_.layer-before]:aspect-4/5 sm:[&_.layer-before]:aspect-5/3 '
-    . '[&_.layer-after]:aspect-4/5 sm:[&_.layer-after]:aspect-5/3',
+  'aspect' => 'portrait-landscape',
   'before' => [
     'src'   => '',
     'alt'   => 'Before treatment',
@@ -23,7 +21,7 @@ $results_comparison = [
   ],
 ];
 $results_comparison_portrait = array_merge($results_comparison, [
-  'class' => '[&.media-comparison]:aspect-4/5 [&_.layer-before]:aspect-4/5 [&_.layer-after]:aspect-4/5',
+  'aspect' => '4/5',
 ]);
 $result_card = [
   'title'      => 'Frontal Hairline Restoration',

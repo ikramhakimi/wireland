@@ -10,9 +10,12 @@
  *       tablet_gap and desktop_gap (each defaults to gap). Gap accepts non-negative numbers.
  *       layout ('default' with edge controls and fades, or 'simple' with a title row and header controls),
  *       title (heading text for the simple layout, rendered as h2).
+ *       contained (bool, default layout): from md the track fills the carousel's height and is clipped to the
+ *       viewport, so the next item never peeks in; edge padding stays at md:px-12. For one item per view in a panel.
  *       Use a unique id per instance; an omitted id is generated automatically.
  */
 $layout                   = ($layout ?? 'default') === 'simple' ? 'simple' : 'default';
+$contained                = $layout === 'default' && !empty($contained);
 $title                    = $title ?? '';
 $id                       = $id ?? uniqid('carousel-');
 $label                    = $label ?? 'Items';
@@ -84,12 +87,12 @@ if (!is_callable($render_items)) {
       </div>
     </div>
   <?php endif; ?>
-  <div class="carousel-viewport <?= $layout === 'simple' ? 'container' : 'md:px-12 lg:px-16'; ?>">
-    <div class="carousel-container <?= $layout === 'simple' ? 'max-md:-mx-5 md:overflow-hidden' : 'max-w-6xl mx-auto'; ?>">
+  <div class="carousel-viewport <?= $layout === 'simple' ? 'container' : ($contained ? 'md:h-full md:px-12' : 'md:px-12 lg:px-16'); ?>">
+    <div class="carousel-container <?= $layout === 'simple' ? 'max-md:-mx-5 md:overflow-hidden' : 'max-w-6xl mx-auto'; ?><?= $contained ? ' md:h-full md:overflow-hidden' : ''; ?>">
       <div id="<?= e($track_id); ?>"
         class="carousel-track grid grid-flow-col px-5 py-2 overflow-x-auto overscroll-x-contain snap-x snap-mandatory scroll-px-5
           motion-reduce:transition-none
-          md:px-0 md:overflow-visible md:transition-transform md:duration-300 md:ease-out
+          md:px-0 md:overflow-visible md:transition-transform md:duration-300 md:ease-out<?= $contained ? ' md:h-full' : ''; ?>
           js-component-carousel-track"
         role="group" aria-label="<?= e($label); ?>" tabindex="0">
         <?php $render_items(); ?>
