@@ -170,9 +170,9 @@ $headline        = [
                   <?php svg('image-line', 'product-image-placeholder size-6'); ?>
                 </span>
                 <span class="card-body absolute bottom-5 left-5 sm:left-6 right-6 flex flex-col gap-0.5">
-                  <span class="card-title font-semibold color-strong underline-offset-4 group-hover:underline">
+                  <span class="card-title text-lg font-semibold color-strong underline-offset-4 group-hover:underline">
                     <?= e($card['title']); ?></span>
-                  <span class="card-text text-sm/snug text-pretty mt-1"><?= e($card['text']); ?></span>
+                  <span class="card-text text-sm/snug text-pretty"><?= e($card['text']); ?></span>
                   <span class="card-count mt-2 text-xs color-muted"><?= e($item_count($card['count'])); ?></span>
                 </span>
               </a>

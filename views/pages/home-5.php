@@ -53,7 +53,7 @@ section('home-treatments', [
   'show_more'          => true,
 ]);
 section('home-doctors-trust', ['headline_alignment' => 'center']);
-section('home-faq', [
+section('home-faq-featured', [
   'headline_alignment' => 'center',
   'headline_copy'      => $faq_copy,
 ]);
@@ -62,6 +62,10 @@ section('footer', ['show_banner' => true]);
 component('button-whatsapp');
 component('button-getstart');
 ?>
+<script
+  src="<?= asset_url('assets/js/tabs.js'); ?>?v=<?= filemtime(__DIR__ . '/../../assets/js/tabs.js'); ?>"
+  defer
+></script>
 <script>
   // Hero two-question flow (from prototype D2), growing downward: question 1 stays (selected tile marked),
   // question 2 appears below it, then the result with a doctor's reply, then the concern's kit. Hair-loss concerns lead with the doctor (primary

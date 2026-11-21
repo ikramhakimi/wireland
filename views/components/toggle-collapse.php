@@ -5,11 +5,19 @@
  * Purpose: Shared disclosure button controlling a separate content element.
  * Structure: Label, optional count and decorative icon; the caller provides the heading and panel.
  * Data: label, controls (unique panel ID), expanded (bool, default true), count_label (optional),
- *       variant ('plain' by default, or 'filled'), icon ('chevron' by default, 'chevron-circle', or 'plus' for plus/minus),
+ *       variant ('plain' by default, or 'filled'),
+ *       icon ('chevron' by default, 'chevron-circle', 'chevron-box', or 'plus' for plus/minus);
+ *       'chevron-box' puts the chevron in a zinc-200 box that rotates as a whole (no count_label),
  *       size ('default' with py-3, or 'large' with py-5),
+ *       label_size ('small', 'medium', or 'large'; inherits the button's font size by default),
  *       toggle_hook and count_hook (optional existing integration hooks).
  *       Match the panel's initial hidden attribute to expanded. Load assets/js/toggle-collapse.js once.
  */
+$label_sizes = [
+  'small'  => 'text-sm',
+  'medium' => 'text-base',
+  'large'  => 'text-lg',
+];
 $label       = $label ?? '';
 $controls    = $controls ?? '';
 $expanded    = $expanded ?? true;
@@ -17,9 +25,11 @@ $count_label = $count_label ?? '';
 $toggle_hook = $toggle_hook ?? '';
 $count_hook  = $count_hook ?? '';
 $variant     = ($variant ?? 'plain') === 'filled' ? 'filled' : 'plain';
-$icon        = in_array($icon ?? 'chevron', ['plus', 'chevron-circle'], true) ? $icon : 'chevron';
+$icon        = in_array($icon ?? 'chevron', ['plus', 'chevron-circle', 'chevron-box'], true) ? $icon : 'chevron';
 $size        = ($size ?? 'default') === 'large' ? 'large' : 'default';
 $padding_y   = $size === 'large' ? 'py-5' : 'py-3';
+$label_class = $label_sizes[is_string($label_size ?? null) ? $label_size : ''] ?? '';
+$label_class = trim($label_class . ($icon === 'chevron-box' ? ' flex-1 min-w-0' : ''));
 $appearance  = $variant === 'filled'
   ? 'px-4 ' . $padding_y . ' rounded-lg bg-zinc-200'
   : $padding_y;
@@ -30,20 +40,31 @@ $appearance  = $variant === 'filled'
     <?= $variant === 'filled' ? 'aria-[expanded=false]:bg-zinc-800 aria-[expanded=false]:color-invert-strong' : ''; ?>
     focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
     <?= e($toggle_hook); ?> js-component-toggle-collapse">
-  <span class="toggle-collapse-label text-sm font-medium"><?= e($label); ?></span>
-  <span class="toggle-collapse-details flex items-center gap-2">
-    <?php if ($count_label !== ''): ?>
-      <span class="toggle-collapse-count text-xs font-medium tabular-nums <?= e($count_hook); ?>"><?= e($count_label); ?></span>
-    <?php endif; ?>
-    <?php if ($icon === 'plus'): ?>
-      <?php svg('add-line', 'toggle-collapse-icon size-4 group-aria-[expanded=true]:hidden'); ?>
-      <?php svg('subtract-line', 'toggle-collapse-icon size-4 group-aria-[expanded=false]:hidden'); ?>
-    <?php elseif ($icon === 'chevron-circle'): ?>
-      <span class="toggle-collapse-icon-circle flex-center size-7 rounded-md bg-zinc-200">
-        <?php svg('arrow-right-s-line', 'toggle-collapse-icon size-4 group-aria-[expanded=true]:rotate-90'); ?>
-      </span>
-    <?php else: ?>
-      <?php svg('arrow-down-s-line', 'toggle-collapse-icon size-4 group-aria-[expanded=false]:-rotate-90'); ?>
-    <?php endif; ?>
+  <span class="toggle-collapse-label<?= $label_class !== '' ? ' ' . $label_class : ''; ?> font-medium">
+    <?= e($label); ?>
   </span>
+  <?php if ($icon === 'chevron-box'): ?>
+    <span
+      class="toggle-collapse-details flex-center shrink-0 size-7 rounded-sm bg-zinc-200
+        group-aria-[expanded=false]:-rotate-90"
+    >
+      <?php svg('arrow-down-s-line', 'toggle-collapse-icon size-4'); ?>
+    </span>
+  <?php else: ?>
+    <span class="toggle-collapse-details flex items-center gap-2">
+      <?php if ($count_label !== ''): ?>
+        <span class="toggle-collapse-count text-xs font-medium tabular-nums <?= e($count_hook); ?>"><?= e($count_label); ?></span>
+      <?php endif; ?>
+      <?php if ($icon === 'plus'): ?>
+        <?php svg('add-line', 'toggle-collapse-icon size-4 group-aria-[expanded=true]:hidden'); ?>
+        <?php svg('subtract-line', 'toggle-collapse-icon size-4 group-aria-[expanded=false]:hidden'); ?>
+      <?php elseif ($icon === 'chevron-circle'): ?>
+        <span class="toggle-collapse-icon-circle flex-center size-7 rounded-md bg-zinc-200">
+          <?php svg('arrow-right-s-line', 'toggle-collapse-icon size-4 group-aria-[expanded=true]:rotate-90'); ?>
+        </span>
+      <?php else: ?>
+        <?php svg('arrow-down-s-line', 'toggle-collapse-icon size-4 group-aria-[expanded=false]:-rotate-90'); ?>
+      <?php endif; ?>
+    </span>
+  <?php endif; ?>
 </button>

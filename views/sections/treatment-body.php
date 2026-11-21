@@ -1,16 +1,16 @@
 <?php
 /**
- * Section: Treatment lab body (template)
+ * Section: Treatment body (template)
  * Purpose: Sticky summary sidebar (price, key facts, actions) beside the treatment's content blocks.
  * Structure: lg two columns: aside (sticky) | content. Below lg the summary stacks above the content. Each block renders only when its data is set:
  *            suitability, benefits, steps, timeline, results, risks, doctors, pricing, faqs.
- * Data: summary (price, facts, actions, note); blocks (keyed as above; see views/pages/treatment-3.php).
+ * Data: summary (price, facts, actions, note); blocks (keyed as above; see views/pages/treatment-1.php).
  */
 $summary = $summary ?? [];
 $blocks  = $blocks ?? [];
 $block_class = 'body-block py-10 border-t border-zinc-300 first:pt-0 first:border-t-0';
 ?>
-<section class="treatment-lab-body pt-10">
+<section class="treatment-body pt-10">
   <div class="container grid gap-5 lg:grid-cols-12">
     
 
@@ -110,7 +110,7 @@ $block_class = 'body-block py-10 border-t border-zinc-300 first:pt-0 first:borde
 
       <?php if (!empty($blocks['risks'])): $block = $blocks['risks']; ?>
         <div id="risks" class="<?= $block_class; ?>">
-          <h2 class="block-title text-2xl capitalize font-semibold color-strong"><?= e($block['title']); ?></h2>
+          <h2 class="block-title text-2xl font-semibold color-strong"><?= e($block['title']); ?></h2>
           <p class="block-body mt-3 text-pretty lg:pr-30"><?= e($block['body'] ?? ''); ?></p>
           <div class="risks-groups grid gap-8 mt-6">
             <?php foreach ([
@@ -204,7 +204,7 @@ $block_class = 'body-block py-10 border-t border-zinc-300 first:pt-0 first:borde
                   'expanded' => false,
                 ]); ?>
                 <div id="treatment-lab-faq-<?= $index; ?>" hidden class="collapse-content pb-4">
-                  <p class="faq-answer text-sm leading-relaxed color-muted"><?= e($faq['answer']); ?></p>
+                  <p class="faq-answer text-sm leading-relaxed"><?= e($faq['answer']); ?></p>
                 </div>
               </div>
             <?php endforeach; ?>
@@ -215,18 +215,30 @@ $block_class = 'body-block py-10 border-t border-zinc-300 first:pt-0 first:borde
 
     <aside class="body-summary order-first lg:order-none lg:col-span-4">
       <div class="summary-card p-6 rounded-xl bg-zinc-100 lg:sticky lg:top-6">
-        <?php if (!empty($summary['price'])): ?>
-          <p class="summary-price text-title-sm font-semibold color-strong"><?= e($summary['price']); ?></p>
+        <?php if (!empty($summary['price'])):
+          $summary_price = $summary['price'];
+          $price_prefix  = 'From ';
+          $has_prefix    = strpos($summary_price, $price_prefix) === 0;
+          $price_amount  = $has_prefix ? substr($summary_price, strlen($price_prefix)) : $summary_price;
+        ?>
+          <p class="summary-price">
+            <?php if ($has_prefix): ?>
+              <span class="summary-price-label block text-sm color-muted"><?= e(trim($price_prefix)); ?></span>
+            <?php endif; ?>
+            <span class="summary-price-amount block text-3xl font-semibold color-strong"><?= e($price_amount); ?></span>
+          </p>
         <?php endif; ?>
         <?php component('facts', [
           'items'       => $summary['facts'] ?? [],
           'layout'      => 'rows',
-          'size'        => 'comfortable',
+          'size'        => 'spacious',
           'value_align' => 'right',
           'class'       => 'mt-4',
         ]); ?>
         <div class="summary-actions grid gap-2 mt-6">
-          <?php foreach ($summary['actions'] ?? [] as $action): ?><?php component('button', $action); ?><?php endforeach; ?>
+          <?php foreach ($summary['actions'] ?? [] as $action): ?>
+            <?php component('button', $action); ?>
+          <?php endforeach; ?>
         </div>
         <?php if (!empty($summary['note'])): ?>
           <p class="summary-note mt-4 text-xs text-pretty color-muted"><?= e($summary['note']); ?></p>

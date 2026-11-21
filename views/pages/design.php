@@ -28,9 +28,16 @@ $design_collapse_expanded = [
   'count_label' => '3 items',
 ];
 $design_collapse_closed = [
-  'label'    => 'Filled',
-  'controls' => 'design-collapse-closed',
-  'variant'  => 'filled',
+  'label'      => 'Filled',
+  'controls'   => 'design-collapse-closed',
+  'variant'    => 'filled',
+  'expanded'   => false,
+  'label_size' => 'large',
+];
+$design_collapse_box = [
+  'label'    => 'Chevron box (FAQ)',
+  'controls' => 'design-collapse-box',
+  'icon'     => 'chevron-box',
   'expanded' => false,
 ];
 
@@ -85,6 +92,10 @@ $design_steppers = [
   [
     'title' => 'Disabled',
     'data'  => ['id' => 'design-stepper-disabled', 'label' => 'Quantity', 'value' => 2, 'disabled' => true],
+  ],
+  [
+    'title' => 'Large (48px)',
+    'data'  => ['id' => 'design-stepper-large', 'label' => 'Quantity', 'size' => 'large'],
   ],
 ];
 
@@ -2015,14 +2026,15 @@ $design_empty_states = [
         <h2 id="design-stepper-title" class="section-title text-title-md font-semibold color-strong">Stepper</h2>
         <p class="section-description mt-3 text-sm leading-relaxed">
           Change a small whole number, such as quantity, with minus and plus buttons. The value can also be typed.
-          Minimum defaults to 1; buttons disable at the limits. One size: 40px.
+          Minimum defaults to 1; buttons disable at the limits. Two sizes matching button heights: medium 40px
+          (default) and large 48px (<code>'size' => 'large'</code>), for use beside a large button.
         </p>
         <p class="section-source mt-3 text-sm">Source: <code>views/components/forms/stepper.php</code></p>
       </header>
       <div class="section-content mt-6">
         <div class="section-demo p-5 rounded-md border border-zinc-200 bg-zinc-100
           sm:p-10">
-          <div class="form-examples grid gap-6 md:grid-cols-3">
+          <div class="form-examples grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             <?php foreach ($design_steppers as $stepper): ?>
               <div class="form-example">
                 <h4 class="form-example-title mb-3 text-sm font-medium color-default"><?= e($stepper['title']); ?></h4>
@@ -2455,11 +2467,22 @@ $design_empty_states = [
             <p class="collapse-description">This group starts collapsed and has no count.</p>
           </div>
         </div>
+        <div class="collapse-example">
+          <div class="collapse-heading">
+            <?php component('toggle-collapse', $design_collapse_box); ?>
+          </div>
+          <div id="design-collapse-box" hidden class="collapse-content pt-3">
+            <p class="collapse-description">The chevron sits in a zinc-200 box that rotates as a whole.
+              Used by the home FAQ.</p>
+          </div>
+        </div>
         <div class="collapse-documentation text-sm color-default">
           <p class="collapse-usage">Use <code>component('toggle-collapse', $config)</code> with <code>label</code> and
             <code>controls</code> matching a unique panel ID. Optional: <code>count_label</code> and
             <code>expanded</code> (default <code>true</code>). Use <code>variant: plain</code> (default)
             or <code>variant: filled</code> for a background and horizontal padding.</p>
+          <p class="collapse-label-size mt-2">Set <code>label_size</code> to <code>small</code>, <code>medium</code>,
+            or <code>large</code>. By default, the label inherits the button’s font size.</p>
           <p class="collapse-spacing mt-2">Default spacing between collapse groups: <code>grid gap-5</code> on
             the parent. Keep headings free of margins. Put <code>mt-3</code> or <code>pt-3</code> on the
             controlled panel so its spacing disappears when hidden. Keep any other content spacing inside that panel.</p>

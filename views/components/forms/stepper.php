@@ -2,10 +2,11 @@
 
 /**
  * Component: Stepper
- * Purpose: Numeric input with decrease and increase buttons in one 40px field outline.
+ * Purpose: Numeric input with decrease and increase buttons in one field outline.
  * Structure: Label, outline with minus button, number input, plus button, helper, error.
  * Data: id, label, name, value, min (default 1), max, step (default 1), helper, error,
- *       disabled, required, label_hidden. Behaviour: assets/js/stepper.js (.js-component-stepper).
+ *       disabled, required, label_hidden, size ('medium' 40px default | 'large' 48px, matching button heights).
+ *       Behaviour: assets/js/stepper.js (.js-component-stepper).
  */
 $id           = $id ?? '';
 $label        = $label ?? '';
@@ -21,7 +22,13 @@ $disabled     = $disabled ?? false;
 $required     = $required ?? false;
 $label_hidden = $label_hidden ?? false;
 $described_by = trim(($helper !== '' ? $id . '-help ' : '') . ($error !== '' ? $id . '-error' : ''));
-$button_class = 'stepper-button flex items-center justify-center shrink-0 size-9 color-default rounded-md cursor-pointer
+$size         = ($size ?? 'medium') === 'large' ? 'large' : 'medium';
+$size_classes = [
+  'medium' => ['outline' => 'h-10', 'button' => 'size-9',  'control' => 'w-12 h-9'],
+  'large'  => ['outline' => 'h-12', 'button' => 'size-11', 'control' => 'w-14 h-11 text-base'],
+][$size];
+$button_class = 'stepper-button flex items-center justify-center shrink-0 ' . $size_classes['button']
+  . ' color-default rounded-md cursor-pointer
   hover:bg-zinc-100 hover:color-strong
   focus-visible:outline-2 focus-visible:outline-blue-800
   disabled:color-muted disabled:bg-transparent disabled:cursor-not-allowed';
@@ -38,7 +45,7 @@ if ($id === '' || $label === '') {
   </label>
   <div data-disabled="<?= $disabled ? 'true' : 'false'; ?>"
     <?php if ($error !== ''): ?>aria-invalid="true"<?php endif; ?>
-    class="stepper-outline field-control inline-flex items-center w-auto h-10 p-px
+    class="stepper-outline field-control inline-flex items-center w-auto <?= $size_classes['outline']; ?> p-px
       focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-600/40
       data-[disabled=true]:border-zinc-200 data-[disabled=true]:bg-zinc-100
       js-component-stepper">
@@ -55,7 +62,7 @@ if ($id === '' || $label === '') {
       <?php if ($required): ?>required<?php endif; ?>
       <?php if ($described_by !== ''): ?>aria-describedby="<?= e($described_by); ?>"<?php endif; ?>
       <?php if ($error !== ''): ?>aria-invalid="true"<?php endif; ?>
-      class="stepper-control w-12 h-9 text-center font-normal tabular-nums border-0 bg-transparent color-strong appearance-none
+      class="stepper-control <?= $size_classes['control']; ?> text-center font-normal tabular-nums border-0 bg-transparent color-strong appearance-none
         [-moz-appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none
         focus:outline-none disabled:color-muted disabled:cursor-not-allowed
         js-component-stepper-input">

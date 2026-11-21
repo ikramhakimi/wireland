@@ -3,7 +3,7 @@
 // Treatments listed on the public site. type matches the pill shown on treatment cards.
 // Status: 'published' shows the treatment on the site; 'draft' hides it.
 // SEO fields: empty meta_title/meta_description fall back to name/summary on public pages.
-// page (optional): treatment page content, same shape as views/pages/treatment-3.php. Empty sections are hidden.
+// page (optional): treatment page content, same shape as views/pages/treatment-1.php. Empty sections are hidden.
 //   One-line lists are arrays of strings; doctors.ids use keys from includes/doctors-data.php;
 //   related lists treatment IDs shown under Other Treatments. Section headings stay in the page template.
 //   results.cases may set before/after photo URLs; empty photos show the comparison placeholder.

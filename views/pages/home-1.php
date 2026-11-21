@@ -13,7 +13,7 @@ section('how-it-works-alt');
 section('home-life-testimonial');
 section('home-life-team');
 section('home-faq');
-section('home-life-startup');
+// section('home-life-startup');
 section('footer', ['show_banner' => false]);
 
 component('button-whatsapp');

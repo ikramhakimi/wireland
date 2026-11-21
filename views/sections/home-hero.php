@@ -9,7 +9,6 @@ $hero_headline = [
     [
       'label' => 'Start Free Hair Check',
       'href'  => '#',
-      'class' => 'bg-zinc-700 text-zinc-100',
     ],
   ],
 ];

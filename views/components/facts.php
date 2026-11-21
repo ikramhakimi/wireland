@@ -9,7 +9,8 @@
  *   rows    label and value side by side, dashed dividers (asides and summaries).
  * Data: items (list of label, value), layout ('inline' | 'grid' | 'rows'; default 'grid'),
  *       columns (2 | 3, grid only; default 2), class (extra classes). Items with an empty value are skipped.
- *       Rows only: size ('default' | 'comfortable'; comfortable adds row padding), value_align ('left' | 'right').
+ *       Grid only: value_size ('default' | 'large').
+ *       Rows only: size ('default' | 'comfortable' | 'spacious'), value_align ('left' | 'right').
  */
 $items   = array_values(array_filter(
   $items ?? [],
@@ -18,8 +19,10 @@ $items   = array_values(array_filter(
 $layout  = in_array($layout ?? '', ['inline', 'grid', 'rows'], true) ? $layout : 'grid';
 $columns = ($columns ?? 2) === 3 ? 'sm:grid-cols-3' : 'sm:grid-cols-2';
 $class   = $class ?? '';
-$row_pad     = ($size ?? 'default') === 'comfortable' ? 'py-2' : 'py-1.5';
+$row_padding = ['default' => 'py-1.5', 'comfortable' => 'py-2', 'spacious' => 'py-3'];
+$row_pad     = $row_padding[$size ?? 'default'] ?? $row_padding['default'];
 $value_align = ($value_align ?? 'left') === 'right' ? ' text-right' : '';
+$grid_value_size = ($value_size ?? 'default') === 'large' ? 'text-lg' : 'text-sm';
 $styles  = [
   'inline' => [
     'list'  => 'flex flex-wrap gap-x-6 gap-y-1 text-xs',
@@ -31,7 +34,7 @@ $styles  = [
     'list'  => 'grid gap-4 ' . $columns,
     'item'  => 'min-w-0',
     'label' => 'text-sm color-muted',
-    'value' => 'mt-1 text-sm font-medium text-pretty color-strong',
+    'value' => 'mt-1 ' . $grid_value_size . ' font-medium text-pretty color-strong',
   ],
   'rows'   => [
     'list'  => 'grid text-sm divide-y divide-dashed divide-zinc-300',
