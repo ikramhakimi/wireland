@@ -86,16 +86,26 @@ if ($total === 0) {
         js-component-testimonial-count">01 / <?= str_pad((string) $total, 2, '0', STR_PAD_LEFT); ?></span>
     </div>
     <div class="testimonial-controls flex items-center gap-1.5">
-      <button type="button" class="testimonial-control grid place-items-center size-11 rounded-full border border-zinc-200 cursor-pointer transition-transform duration-150
-        hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-offset-2 active:scale-95 motion-reduce:transform-none motion-reduce:transition-none
-        js-component-testimonial-prev" aria-label="Previous testimonial">
-        <?php svg('arrow-left-line', 'size-5'); ?>
-      </button>
-      <button type="button" class="testimonial-control grid place-items-center size-11 rounded-full border border-zinc-200 cursor-pointer transition-transform duration-150
-        hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-offset-2 active:scale-95 motion-reduce:transform-none motion-reduce:transition-none
-        js-component-testimonial-next" aria-label="Next testimonial">
-        <?php svg('arrow-right-line', 'size-5'); ?>
-      </button>
+      <?php component('button', [
+        'element' => 'button',
+        'size'    => 'medium',
+        'color'   => 'secondary',
+        'variant' => 'icon-only',
+        'icon'    => 'arrow-left-line',
+        'label'   => 'Previous testimonial',
+        'class'   => 'testimonial-control',
+        'js_hook' => 'js-component-testimonial-prev',
+      ]); ?>
+      <?php component('button', [
+        'element' => 'button',
+        'size'    => 'medium',
+        'color'   => 'secondary',
+        'variant' => 'icon-only',
+        'icon'    => 'arrow-right-line',
+        'label'   => 'Next testimonial',
+        'class'   => 'testimonial-control',
+        'js_hook' => 'js-component-testimonial-next',
+      ]); ?>
     </div>
   </footer>
 </article>
