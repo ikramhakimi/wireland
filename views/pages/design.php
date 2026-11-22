@@ -486,6 +486,31 @@ $design_card = [
   },
 ];
 
+$design_testimonials = [
+  [
+    'quote'  => 'Clear advice, a straightforward plan, and space to ask questions.',
+    'name'   => 'Aina Rahman',
+    'detail' => 'Petaling Jaya, Selangor',
+    'rating' => 5,
+  ],
+  [
+    'quote'  => 'Ordered on Monday, arrived on Wednesday in plain packaging. Simple, no fuss.',
+    'name'   => 'Daniel Lim',
+    'detail' => 'Cheras, Kuala Lumpur',
+    'rating' => 4,
+  ],
+];
+$design_card_testimonials = [
+  ['eyebrow' => 'With rating', 'label' => 'Sample testimonials with rating', 'testimonials' => $design_testimonials],
+  [
+    'eyebrow'      => 'Without rating',
+    'label'        => 'Sample testimonials without rating',
+    'testimonials' => array_map(
+      static fn (array $item): array => array_diff_key($item, ['rating' => true]),
+      $design_testimonials,
+    ),
+  ],
+];
 $design_card_treatments = [
   [
     'title'   => 'PRP Hair Treatment',
@@ -2501,7 +2526,8 @@ $design_empty_states = [
           together. The shared component supports a header, content, and optional actions.
         </p>
         <p class="section-source mt-3 text-sm leading-relaxed">
-          Source: <code>views/components/card.php</code>, <code>views/components/card-treatment.php</code>
+          Source: <code>views/components/card.php</code>, <code>views/components/card-treatment.php</code>,
+          <code>views/components/card-testimonial.php</code>
         </p>
       </header>
       <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
@@ -2522,6 +2548,18 @@ $design_empty_states = [
               </li>
             <?php endforeach; ?>
           </ul>
+        </div>
+        <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
+          <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Testimonial Card</h3>
+          <p class="section-demo-note -mt-6 mb-8 text-sm leading-relaxed">
+            One testimonial at a time with dots, count and prev/next. <code>rating</code> is optional; initials
+            come from <code>name</code> unless <code>initials</code> is set.
+          </p>
+          <div class="testimonials grid grid-cols-1 gap-3 md:grid-cols-2">
+            <?php foreach ($design_card_testimonials as $design_testimonial): ?>
+              <?php component('card-testimonial', $design_testimonial); ?>
+            <?php endforeach; ?>
+          </div>
         </div>
       </div>
     </section>
