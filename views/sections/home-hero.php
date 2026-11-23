@@ -16,7 +16,7 @@ $hero_headline = [
 <section class="section js-component-home-hero">
   <div class="container">
     <?php component('headline', $hero_headline); ?>
-    <div class="text-zinc-500 text-xs mt-5 sm:text-center text-pretty">
+    <div class="color-muted text-xs mt-5 sm:text-center text-pretty">
       Answer a few questions and share photos for an initial review.<br>
       No obligation · Your photos stay private
     </div>
@@ -24,22 +24,7 @@ $hero_headline = [
       <div class="col-span-6">
         <div class="bg-zinc-300 rounded-lg min-h-100 pt-8 flex flex-col justify-between text-center overflow-hidden">
           <header>
-            <div class="text-zinc-500 flex justify-center mb-2">
-              <?php svg('star-s-fill', 'size-5 fill-zinc-500'); ?>
-              <?php svg('star-s-fill', 'size-5 fill-zinc-500'); ?>
-              <?php svg('star-s-fill', 'size-5 fill-zinc-500'); ?>
-              <?php svg('star-s-fill', 'size-5 fill-zinc-500'); ?>
-              <?php svg('star-s-fill', 'size-5 fill-zinc-500'); ?>
-            </div>
-            <div class="text-sm">From 500+ verified Google Reviews</div>
-            <!-- <div class="font-light text-5xl color-strong mt-4">97.5%</div> -->
-            <div class="avatars flex-center mt-5">
-              <div class="bg-zinc-500 aspect-square w-9 rounded-full border-2 border-white"></div>
-              <div class="bg-zinc-500 aspect-square w-9 rounded-full border-2 border-white -ml-2"></div>
-              <div class="bg-zinc-500 aspect-square w-9 rounded-full border-2 border-white -ml-2"></div>
-              <div class="bg-zinc-500 aspect-square w-9 rounded-full border-2 border-white -ml-2"></div>
-              <div class="bg-zinc-500 aspect-square w-9 rounded-full border-2 border-white -ml-2"></div>
-            </div>
+            <?php component('google-review', ['variant' => 'seal']); ?>
           </header>
         </div>
       </div>

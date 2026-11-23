@@ -18,7 +18,7 @@ $hair_loss_options = [
 <dialog aria-labelledby="assessment-promo-title" aria-describedby="assessment-promo-description"
   class="modal-assesment-promo fixed inset-0 m-auto max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)]
     max-w-[500px] overflow-y-auto rounded-3xl border-0 bg-zinc-100 p-0 color-strong
-    backdrop:bg-zinc-950/40 backdrop:backdrop-blur-sm js-component-modal-assesment-promo">
+    backdrop:bg-zinc-950/50 backdrop:backdrop-blur-xs js-component-modal-assesment-promo">
   <div class="relative px-5 pb-4 pt-8 sm:px-11">
     <button type="button" aria-label="Close promotion"
       class="absolute right-5 top-5 flex size-10 items-center justify-center rounded-full bg-white
@@ -52,7 +52,7 @@ $hair_loss_options = [
     </fieldset>
     <p aria-live="polite" aria-atomic="true"
       class="mt-4 flex min-h-14 items-center rounded-xl border border-zinc-200 bg-zinc-50 px-4 text-sm
-        text-zinc-400 js-component-modal-assesment-promo-summary">
+        color-muted js-component-modal-assesment-promo-summary">
       Please select an option above first
     </p>
     <a href="#" aria-disabled="true" tabindex="-1"
@@ -70,7 +70,7 @@ $hair_loss_options = [
     </button>
     <p class="-mx-2 mt-4 text-center text-xs leading-[18px]">
       Your details help us recommend the right treatment for you — based on how your body works.
-      By entering I agree to the <a href="#" class="underline underline-offset-2">Terms and Conditions</a>
+      By entering I agree to the <a href="#" class="link font-medium">Terms and Conditions</a>
     </p>
   </div>
 </dialog>

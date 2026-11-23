@@ -14,7 +14,7 @@ $display_class = !empty($hide_mobile) ? 'hidden md:flex' : 'flex';
   target="_blank"
   rel="noopener noreferrer"
   class="whatsapp-button fixed bottom-6 right-5 z-40 <?= $display_class; ?> size-16 items-center justify-center rounded-full
-    bg-linear-to-br from-zinc-400 via-zinc-600 to-zinc-500
+    bg-zinc-800 bg-linear-to-br--from-zinc-400--via-zinc-600--to-zinc-500
     ring-1 ring-inset ring-zinc-900/50
     shadow-xl shadow-zinc-900/40
     color-invert-strong transition-all duration-300 ease-out motion-reduce:transition-none

@@ -20,10 +20,6 @@ $composer      = $composer ?? true;
 $reply_href    = $reply_href ?? '';
 $class         = $class ?? '';
 
-$doctor_initials = implode('', array_map(
-  static fn (string $part): string => strtoupper($part[0]),
-  array_slice(preg_split('/\s+/', preg_replace('/^Dr\.?\s+/i', '', $doctor)), 0, 2),
-));
 $composer_config = [
   'id'          => 'reply-' . strtolower($assessment_id),
   'label'       => 'Your reply to ' . $doctor,
@@ -45,8 +41,7 @@ if ($assessment_id === '' || $message === '') {
   data-assessment-id="<?= e($assessment_id); ?>">
   <ol class="account-thread-list grid gap-4" role="list">
     <li class="account-thread-message flex gap-3">
-      <span class="account-thread-avatar flex-center shrink-0 size-9 rounded-full bg-zinc-200 text-xs
-        font-semibold color-strong" aria-hidden="true"><?= e($doctor_initials); ?></span>
+      <?php component('thumbnail', ['type' => 'avatar', 'size' => 'xs', 'class' => 'account-thread-avatar shrink-0']); ?>
       <div class="account-thread-content min-w-0 max-w-lg">
         <p class="account-thread-meta text-xs color-muted">
           <span class="font-medium color-strong"><?= e($doctor); ?></span> · <?= e($asked_at); ?>
@@ -79,6 +74,6 @@ if ($assessment_id === '' || $message === '') {
     data-reply-show="sent" role="status" hidden>
     Reply sent and saved to your assessment. <?= e($doctor); ?> usually replies within <?= e($review_time); ?>.
     <button type="button" class="account-thread-reset font-medium color-strong underline cursor-pointer
-      js-account-reply-reset">Reset demo reply</button>
+      js-account-reply-reset">Clear Reply</button>
   </p>
 </div>

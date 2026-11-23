@@ -8,6 +8,7 @@
 @import "tailwindcss" source(none);
 @import "./foundations.css";
 @import "./components/button.css";
+@import "./components/link.css";
 @import "./components/forms.css";
 @import "./components/tabs.css";
 @import "./components/media-comparison.css";

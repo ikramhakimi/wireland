@@ -347,7 +347,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
                   <ul class="product-format product-format-overlay absolute bottom-3 left-3 flex flex-wrap gap-1
                     md:top-3 md:right-3 md:bottom-auto md:left-auto" aria-label="Product format">
                     <?php foreach ($format_pills as $pill): ?>
-                      <li class="badge inline-flex px-2.5 py-0.5 text-xs font-medium rounded-full border border-zinc-300 bg-white text-zinc-700">
+                      <li class="badge inline-flex px-2.5 py-0.5 text-xs font-medium rounded-full border border-zinc-300 bg-white color-default">
                         <?= e($pill); ?>
                       </li>
                     <?php endforeach; ?>
@@ -490,20 +490,18 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
                   <p class="product-suitability-note mt-4 color-muted bg-zinc-100 py-3 px-5 rounded-md">
                     Not sure what suits your scalp?
                     <a href="<?= e(asset_url('assessment/')); ?>"
-                      class="product-suitability-link font-medium color-strong underline underline-offset-4 decoration-zinc-300">Start Free Assessment</a>
+                      class="product-suitability-link link font-medium">Start Free Assessment</a>
                   </p>
                 </div>
               </div>
               <figcaption class="product-doctor-note-author flex items-center gap-4 mt-6">
-                <span class="product-doctor-note-photo relative flex-center shrink-0 size-16 overflow-hidden rounded-md
-                  bg-zinc-200 color-muted">
-                  <?php if ($note_doctor['image'] !== ''): ?>
-                    <img src="<?= e($note_doctor['image']); ?>" alt="<?= e($note_doctor['image_alt']); ?>" loading="lazy"
-                      class="absolute inset-0 size-full object-cover">
-                  <?php else: ?>
-                    <?php svg('user-line', 'size-5'); ?>
-                  <?php endif; ?>
-                </span>
+                <?php component('thumbnail', [
+                  'type'  => 'avatar',
+                  'size'  => 'md',
+                  'src'   => $note_doctor['image'],
+                  'label' => $note_doctor['image'] !== '' ? $note_doctor['image_alt'] : '',
+                  'class' => 'product-doctor-note-photo shrink-0',
+                ]); ?>
                 <span class="product-doctor-note-details min-w-0 text-sm">
                   <span class="product-doctor-note-name block text-base font-semibold color-strong"><?= e($note_doctor['name']); ?></span>
                   <span class="product-doctor-note-role block color-muted">
@@ -646,7 +644,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
       <p class="product-faq-more mt-6 text-sm color-muted">
         Still have a question?
         <a href="<?= e($whatsapp_href); ?>" target="_blank" rel="noopener noreferrer"
-          class="product-faq-link font-medium color-strong underline underline-offset-4">Message us on WhatsApp<span
+          class="product-faq-link link font-medium">Message us on WhatsApp<span
             class="sr-only"> (opens in a new tab)</span></a>
       </p>
     </div>
@@ -673,7 +671,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
     </div>
   </div>
 <?php endif; ?>
-<?php section('footer', ['show_banner' => false]); ?>
+<?php section('footer'); ?>
 <?php if ($product !== null): ?>
   <div class="product-sticky-spacer h-20" aria-hidden="true"></div>
   <script>

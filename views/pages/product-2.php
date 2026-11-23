@@ -274,7 +274,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
                 <?php if ($index === 0 && $format_pills !== []): ?>
                   <ul class="product-format absolute top-3 right-3 flex flex-wrap gap-1" aria-label="Product format">
                     <?php foreach ($format_pills as $pill): ?>
-                      <li class="badge inline-flex px-2.5 py-0.5 text-xs font-medium rounded-full border border-zinc-300 bg-white text-zinc-700">
+                      <li class="badge inline-flex px-2.5 py-0.5 text-xs font-medium rounded-full border border-zinc-300 bg-white color-default">
                         <?= e($pill); ?>
                       </li>
                     <?php endforeach; ?>
@@ -404,7 +404,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
     </div>
   </div>
 <?php endif; ?>
-<?php section('footer', ['show_banner' => false]); ?>
+<?php section('footer'); ?>
 <?php if ($product !== null): ?>
   <div class="product-sticky-spacer h-20" aria-hidden="true"></div>
 <?php endif; ?>

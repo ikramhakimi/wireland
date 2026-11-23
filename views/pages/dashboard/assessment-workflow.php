@@ -180,8 +180,7 @@ $owner_roles = [
 $render_reference = static function (string $reference) use ($decision_targets): void {
   ?>
   <a href="#<?= e($decision_targets[$reference]); ?>"
-    class="reference-link font-medium underline underline-offset-4
-      hover:color-strong focus-visible:outline-2 focus-visible:outline-blue-800"><?= e($reference); ?></a>
+    class="reference-link link font-medium"><?= e($reference); ?></a>
   <?php
 };
 
@@ -308,7 +307,7 @@ foreach ($workflow_sections as $workflow_section) {
               <dl class="reference-details grid gap-3">
                 <?php foreach (array_slice($row, 1, null, true) as $column_index => $cell): ?>
                   <div class="reference-field grid gap-1">
-                    <dt class="reference-label text-xs font-medium text-zinc-500">
+                    <dt class="reference-label text-xs font-medium color-muted">
                       <?= e($workflow_section['columns'][$column_index]); ?>
                     </dt>
                     <dd class="reference-value text-sm leading-relaxed">
@@ -376,9 +375,9 @@ foreach ($workflow_sections as $workflow_section) {
 ?>
 <section class="section min-w-0 py-0!" aria-labelledby="workflow-title">
   <header class="section-header">
-    <p class="section-label mb-2 text-xs font-medium text-zinc-500">Working Draft · Version 0.1</p>
+    <p class="section-label mb-2 text-xs font-medium color-muted">Working Draft · Version 0.1</p>
     <h1 id="workflow-title" class="section-title text-3xl font-medium color-strong">Assessment Workflow</h1>
-    <p class="section-description mt-2 text-sm leading-relaxed text-zinc-500">
+    <p class="section-description mt-2 text-sm leading-relaxed color-muted">
       Shared reference for product owners, developers and doctors. Proposed rules remain open until agreed.
     </p>
   </header>
@@ -387,8 +386,7 @@ foreach ($workflow_sections as $workflow_section) {
       <?php foreach ($workflow_sections as $workflow_section): ?>
         <li class="reference-item min-w-0">
           <a href="#<?= e($workflow_section['id']); ?>"
-            class="reference-link inline-block text-sm text-zinc-600 underline underline-offset-4 wrap-anywhere
-              hover:color-strong focus-visible:outline-2 focus-visible:outline-blue-800"><?= e($workflow_section['title']); ?></a>
+            class="reference-link link inline-block text-sm wrap-anywhere"><?= e($workflow_section['title']); ?></a>
         </li>
       <?php endforeach; ?>
     </ul>

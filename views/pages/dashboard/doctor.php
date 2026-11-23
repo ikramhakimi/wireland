@@ -64,15 +64,13 @@ $profile_card = [
   'content' => static function () use ($doctor, $is_published): void {
     ?>
     <div class="doctor-profile flex flex-col gap-5 sm:flex-row sm:items-start">
-      <div class="doctor-photo flex shrink-0 items-center justify-center size-24 rounded-lg bg-zinc-100 color-muted
-        overflow-hidden">
-        <?php if (($doctor['image'] ?? '') !== ''): ?>
-          <img src="<?= e($doctor['image']); ?>" alt="<?= e($doctor['image_alt']); ?>" class="size-full object-cover">
-        <?php else: ?>
-          <?php svg('image-line', 'doctor-photo-icon size-6'); ?>
-          <span class="sr-only">No photo added</span>
-        <?php endif; ?>
-      </div>
+      <?php component('thumbnail', [
+        'type'  => 'avatar',
+        'size'  => 'lg',
+        'src'   => $doctor['image'] ?? '',
+        'label' => ($doctor['image'] ?? '') !== '' ? ($doctor['image_alt'] ?? '') : 'No photo added',
+        'class' => 'doctor-photo shrink-0',
+      ]); ?>
       <?php component('facts', [
         'layout' => 'rows',
         'class'  => 'flex-1 min-w-0',

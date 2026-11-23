@@ -48,12 +48,12 @@ $slides     = [
           class="auth-image relative w-full max-w-102.5 h-77.5 object-contain grayscale">
       </div>
       <div class="auth-copy w-full max-w-105 mx-auto mt-3 mb-5">
-        <p class="auth-eyebrow mb-4 text-[10px] tracking-[2px] text-zinc-600">CARE, AT YOUR PACE</p>
+        <p class="auth-eyebrow mb-4 text-[10px] tracking-[2px] color-default">CARE, AT YOUR PACE</p>
         <h2 class="auth-intro-title text-3xl font-medium leading-tight tracking-tight
           lg:text-[40px]">
           <?= e($slide['title']); ?><br><?= e($slide['subtitle']); ?>
         </h2>
-        <p class="auth-description mt-5 mb-6 text-[13px] leading-loose text-zinc-600">
+        <p class="auth-description mt-5 mb-6 text-[13px] leading-loose color-default">
           <?= e($slide['description']); ?>
         </p>
       </div>
@@ -66,13 +66,13 @@ $slides     = [
         <button type="button" data-auth-slide-target="<?= $index; ?>"
           aria-label="Show slide <?= $index + 1; ?>" aria-controls="auth-slide-<?= $index; ?>"
           <?= $index === 0 ? 'aria-current="true"' : ''; ?>
-          class="auth-dot flex items-center justify-center w-7 h-11 text-zinc-500 cursor-pointer
+          class="auth-dot flex items-center justify-center w-7 h-11 color-muted cursor-pointer
             aria-current:color-strong focus-visible:outline-2 focus-visible:outline-offset-2
             focus-visible:outline-zinc-800">
           <span aria-hidden="true" class="auth-dot-mark w-4 h-1 rounded bg-current"></span>
         </button>
       <?php endforeach; ?>
-      <span class="auth-counter ml-auto text-[11px] tracking-[2px] text-zinc-600
+      <span class="auth-counter ml-auto text-[11px] tracking-[2px] color-default
         js-component-auth-intro-counter">01 / 03</span>
     </nav>
   <?php endif; ?>

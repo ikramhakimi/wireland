@@ -6,7 +6,8 @@
  * Data: render_items (trusted callable emitting item markup); optional id, label, class, fade_class;
  *       fade_color, control_background, control_color, control_border_color, control_hover_background
  *       (CSS colors, mirrored to root data attributes; defaults match the existing white/zinc palette);
- *       desktop_columns (default 4), tablet_columns (default 3), gap (default 2, Tailwind spacing units),
+ *       desktop_columns (default 4), tablet_columns (default 3); fractions such as 1.5 show a partial next item
+ *       (1.5 = each item spans 2 of 3 columns), gap (default 2, Tailwind spacing units),
  *       tablet_gap and desktop_gap (each defaults to gap). Gap accepts non-negative numbers.
  *       layout ('default' with edge controls and fades, or 'simple' with a title row and header controls),
  *       title (heading text for the simple layout, rendered as h2).
@@ -21,22 +22,18 @@ $id                       = $id ?? uniqid('carousel-');
 $label                    = $label ?? 'Items';
 $class                    = $class ?? '';
 $fade_class               = $fade_class ?? 'lg:w-16';
-$fade_color               = $fade_color ?? 'var(--color-zinc-100, #f4f4f5)';
+$fade_color               = $fade_color ?? 'var(--color-white, #ffffff)';
 $control_background       = $control_background ?? '#fff';
 $control_color            = $control_color ?? 'var(--color-zinc-800, #27272a)';
 $control_border_color     = $control_border_color ?? 'var(--color-zinc-300, #d4d4d8)';
-$control_hover_background = $control_hover_background ?? 'var(--color-zinc-100, #f4f4f5)';
+$control_hover_background = $control_hover_background ?? 'var(--color-white, #ffffff)';
 $render_items             = $render_items ?? null;
-$desktop_columns          = filter_var(
-  $desktop_columns ?? 4,
-  FILTER_VALIDATE_INT,
-  ['options' => ['min_range' => 1]],
-) ?: 4;
-$tablet_columns           = filter_var(
-  $tablet_columns ?? 3,
-  FILTER_VALIDATE_INT,
-  ['options' => ['min_range' => 1]],
-) ?: 3;
+$desktop_columns          = is_numeric($desktop_columns ?? null) && $desktop_columns > 0
+  ? (float) $desktop_columns
+  : 4;
+$tablet_columns           = is_numeric($tablet_columns ?? null) && $tablet_columns > 0
+  ? (float) $tablet_columns
+  : 3;
 $gap                      = is_numeric($gap ?? null) && is_finite((float) $gap) && $gap >= 0
   ? (float) $gap
   : 2;

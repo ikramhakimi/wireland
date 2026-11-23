@@ -114,4 +114,4 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
     </section>
   </div>
 </section>
-<?php section('footer', ['show_banner' => false]); ?>
+<?php section('footer'); ?>

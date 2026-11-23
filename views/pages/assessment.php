@@ -61,4 +61,4 @@ component('navbar');
   </div>
 </section>
 <?php
-section('footer', ['show_banner' => false]);
+section('footer');

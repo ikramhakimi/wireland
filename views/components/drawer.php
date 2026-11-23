@@ -27,15 +27,15 @@ if ($id === '' || $title === '') {
 ?>
 <dialog id="<?= e($id); ?>" aria-labelledby="<?= e($id); ?>-title"
   <?php if ($description !== ''): ?>aria-describedby="<?= e($id); ?>-description"<?php endif; ?>
-  class="drawer <?= $panel_class; ?> fixed m-0 p-0 border-0 bg-white text-zinc-600 overflow-hidden
-    backdrop:bg-zinc-800/30
+  class="drawer <?= $panel_class; ?> fixed m-0 p-0 border-0 bg-white color-default overflow-hidden
+    backdrop:bg-zinc-950/50 backdrop:backdrop-blur-xs
     js-component-drawer">
   <div class="drawer-panel flex flex-col h-full">
     <header class="drawer-header flex shrink-0 items-start justify-between gap-4 p-5 border-b border-zinc-200">
       <div class="drawer-heading flex-1 min-w-0">
         <h2 id="<?= e($id); ?>-title" class="drawer-title text-lg font-medium text-pretty color-strong wrap-anywhere"><?= e($title); ?></h2>
         <?php if ($description !== ''): ?>
-          <p id="<?= e($id); ?>-description" class="drawer-description mt-2 text-sm leading-relaxed text-pretty text-zinc-500 wrap-anywhere">
+          <p id="<?= e($id); ?>-description" class="drawer-description mt-2 text-sm leading-relaxed text-pretty color-muted wrap-anywhere">
             <?= e($description); ?>
           </p>
         <?php endif; ?>

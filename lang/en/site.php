@@ -60,12 +60,6 @@ return [
   ],
 
   'footer' => [
-    'banner'           => [
-      'title'       => 'Your hair concerns deserve a closer look.',
-      'description' => 'Start an assessment so a clinician can review your concerns and recommend suitable treatment options.',
-      'cta'         => 'Start Free Hair Assessment',
-      'note'        => 'Free, Confidential & Secure.',
-    ],
     'popular_products' => 'Popular Products',
     'address'          => [
       'title'  => 'Our Address',

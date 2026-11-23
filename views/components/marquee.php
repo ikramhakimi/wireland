@@ -6,7 +6,8 @@
  * Structure: Region, focusable viewport, one original item group, controls, and live status.
  * Data: render_items (trusted callable); optional id, label, class, speed (pixels/second, default 18),
  *       gap (Tailwind spacing units, default 2), autoplay (true), autoplay_mobile (false),
- *       controls (true), fades (false), fade_color (CSS color). Load assets/js/marquee.js once.
+ *       controls (true), pause_control (true; only used with autoplay), fades (false),
+ *       fade_color (CSS color). Load assets/js/marquee.js once.
  *       Render direct item children with fixed widths; IDs must be unique per instance.
  */
 $id              = $id ?? uniqid('marquee-');
@@ -18,8 +19,9 @@ $gap             = is_numeric($gap ?? null) && is_finite((float) $gap) && $gap >
 $autoplay        = $autoplay ?? true;
 $autoplay_mobile = $autoplay_mobile ?? false;
 $controls        = $controls ?? true;
+$pause_control   = ($pause_control ?? true) && $autoplay;
 $fades           = $fades ?? false;
-$fade_color      = $fade_color ?? 'var(--color-zinc-100, #f4f4f5)';
+$fade_color      = $fade_color ?? 'var(--color-white, #ffffff)';
 $viewport_id     = $id . '-viewport';
 
 if (!is_callable($render_items)) {
@@ -43,7 +45,7 @@ if (!is_callable($render_items)) {
     <div class="marquee-fade marquee-fade-left" aria-hidden="true"></div>
     <div class="marquee-fade marquee-fade-right" aria-hidden="true"></div>
   <?php endif; ?>
-  <?php if ($controls || $autoplay): ?>
+  <?php if ($controls || $pause_control): ?>
     <div class="marquee-controls">
       <?php if ($controls): ?>
         <button type="button" aria-label="Previous Item" aria-controls="<?= e($viewport_id); ?>"
@@ -55,7 +57,7 @@ if (!is_callable($render_items)) {
           <?php svg('arrow-right-line', 'marquee-icon size-5'); ?>
         </button>
       <?php endif; ?>
-      <?php if ($autoplay): ?>
+      <?php if ($pause_control): ?>
         <button type="button" aria-controls="<?= e($viewport_id); ?>" hidden
           class="marquee-control js-component-marquee-toggle">Pause</button>
       <?php endif; ?>

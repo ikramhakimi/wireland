@@ -17,17 +17,17 @@ $variant = ($variant ?? 'outline') === 'solid' ? 'solid' : 'outline';
 // Solid tones use shades that keep white text at 4.5:1 or more.
 $tones   = [
   'outline' => [
-    'neutral'   => 'border-zinc-300 bg-white text-zinc-700',
-    'info'      => 'border-blue-200 bg-blue-50 text-blue-800',
-    'attention' => 'border-amber-200 bg-amber-50 text-amber-800',
-    'positive'  => 'border-green-200 bg-green-50 text-green-800',
-    'negative'  => 'border-red-200 bg-red-50 text-red-800',
+    'neutral'   => 'border-zinc-200 bg-zinc-50 color-default',
+    'info'      => 'border-blue-200 bg-blue-50 text-blue-600',
+    'attention' => 'border-amber-200 bg-amber-50 text-amber-600',
+    'positive'  => 'border-green-200 bg-green-50 text-green-600',
+    'negative'  => 'border-red-200 bg-red-50 text-red-600',
   ],
   'solid'   => [
-    'neutral'   => 'border-transparent bg-zinc-800 text-white',
+    'neutral'   => 'border-transparent bg-zinc-600 text-white',
     'info'      => 'border-transparent bg-blue-600 text-white',
-    'attention' => 'border-transparent bg-amber-700 text-white',
-    'positive'  => 'border-transparent bg-green-700 text-white',
+    'attention' => 'border-transparent bg-amber-600 text-white',
+    'positive'  => 'border-transparent bg-green-600 text-white',
     'negative'  => 'border-transparent bg-red-600 text-white',
   ],
 ];

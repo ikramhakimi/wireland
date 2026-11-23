@@ -14,7 +14,7 @@ $value_text = $value_text ?? '';
 $tone       = ($tone ?? 'default') === 'attention' ? 'attention' : 'default';
 $class      = $class ?? '';
 $percent    = (int) round($value / $max * 100);
-$bar_class  = $tone === 'attention' ? 'bg-amber-500' : 'bg-zinc-900';
+$bar_class  = $tone === 'attention' ? 'bg-amber-600' : 'bg-zinc-900';
 
 if ($label === '') {
   return;

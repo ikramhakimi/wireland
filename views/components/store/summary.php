@@ -35,7 +35,7 @@ $installments = (int) ($installments ?? 0);
       </div>
     <?php endif; ?>
     <div class="order-delivery flex justify-between  py-2">
-      <dt class="order-label">Delivery (demo)</dt>
+      <dt class="order-label">Delivery</dt>
       <dd class="order-value">RM 0.00</dd>
     </div>
     <div class="order-total flex justify-between  pt-3 text-base font-semibold color-strong">

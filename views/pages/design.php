@@ -511,6 +511,19 @@ $design_card_testimonials = [
     ),
   ],
 ];
+$design_card_cycle = [
+  'id'      => 'design-card-cycle',
+  'aspect'  => '4/5',
+  'patient' => [
+    'name' => 'Thinning at the Crown',
+    'meta' => 'Minoxidil 5% Solution',
+  ],
+  'months'  => [
+    'month-3'  => ['label' => 'Month 3', 'src' => '', 'alt' => ''],
+    'month-6'  => ['label' => 'Month 6', 'src' => '', 'alt' => ''],
+    'month-12' => ['label' => 'Month 12', 'src' => '', 'alt' => ''],
+  ],
+];
 $design_card_treatments = [
   [
     'title'   => 'PRP Hair Treatment',
@@ -719,11 +732,11 @@ $design_drawer = [
       </p>
       <dl class="record-details grid gap-5 mt-6">
         <div class="record-detail">
-          <dt class="record-label text-xs text-zinc-500">Status</dt>
+          <dt class="record-label text-xs color-muted">Status</dt>
           <dd class="record-value mt-1 text-sm color-strong">Awaiting review</dd>
         </div>
         <div class="record-detail">
-          <dt class="record-label text-xs text-zinc-500">Next Step</dt>
+          <dt class="record-label text-xs color-muted">Next Step</dt>
           <dd class="record-value mt-1 text-sm color-strong">Review the record and schedule a follow-up.</dd>
         </div>
       </dl>
@@ -772,6 +785,7 @@ $design_tabs = [
 $design_tab_examples = [
   ['variant' => 'underline', 'title' => 'Underline (Default)'],
   ['variant' => 'segmented', 'title' => 'Segmented'],
+  ['variant' => 'pill', 'title' => 'Pill'],
 ];
 
 $design_tab_controls = [
@@ -953,6 +967,27 @@ $input_group_text_examples = [
   ['id' => 'group-text-before', 'label' => 'Before', 'before' => 'RM', 'placeholder' => '0.00', 'inputmode' => 'decimal'],
   ['id' => 'group-text-after', 'label' => 'After', 'after' => 'kg', 'placeholder' => '0', 'inputmode' => 'decimal'],
   ['id' => 'group-text-combined', 'label' => 'Combined', 'before' => 'RM', 'after' => 'RM 150.00', 'placeholder' => '0.00', 'inputmode' => 'decimal'],
+];
+
+// Thumbnail demo: every size per type, in the same order as the component's size scale.
+$design_thumbnail_sizes    = ['xs', 'sm', 'md', 'lg'];
+$design_thumbnail_examples = [
+  [
+    'title' => 'Avatar',
+    'type'  => 'avatar',
+    'note'  => 'Use for doctors, patients and customers. xs for chat and table rows, sm for lists, md for cards, '
+      . 'lg for profile headers.',
+  ],
+  [
+    'title' => 'Product',
+    'type'  => 'product',
+    'note'  => 'Use for product photos in lists, cart and kits. Use full inside grid cards, where the width '
+      . 'follows the column.',
+  ],
+];
+$design_thumbnail_hover_items = [
+  ['type' => 'product', 'name' => 'Minoxidil 5% Solution'],
+  ['type' => 'avatar', 'name' => 'Dr. Aisyah Rahman'],
 ];
 
 // Badge, Description List, Timeline, Alert, Progress and Empty State demos. Examples mix contexts (website,
@@ -1312,11 +1347,146 @@ $design_empty_states = [
   ],
 ];
 
+// Swatch classes stay literal so Tailwind can find them.
+$design_neutral_colors = [
+  ['name' => 'White', 'class' => 'border border-zinc-200 bg-white', 'code' => 'bg-white',
+    'role' => 'Cards, inputs, and raised surfaces'],
+  ['name' => 'Zinc 50', 'class' => 'border border-zinc-200 bg-zinc-50', 'code' => 'bg-zinc-50',
+    'role' => 'Read-only fields and upload areas'],
+  ['name' => 'Zinc 100', 'class' => 'bg-zinc-100', 'code' => 'bg-zinc-100', 'role' => 'Page background and hover'],
+  ['name' => 'Zinc 200', 'class' => 'bg-zinc-200', 'code' => 'border-zinc-200', 'role' => 'Dividers and card borders'],
+  ['name' => 'Zinc 300', 'class' => 'bg-zinc-300', 'code' => 'border-zinc-300', 'role' => 'Input and control borders'],
+  ['name' => 'Zinc 400', 'class' => 'bg-zinc-400', 'code' => 'color-invert-muted', 'role' => 'Disabled details'],
+  ['name' => 'Zinc 500', 'class' => 'bg-zinc-500', 'code' => 'color-muted', 'role' => 'Supporting text'],
+  ['name' => 'Zinc 600', 'class' => 'bg-zinc-600', 'code' => 'color-default', 'role' => 'Body text'],
+  ['name' => 'Zinc 700', 'class' => 'bg-zinc-700', 'code' => 'color-default', 'role' => 'Neutral badge text'],
+  ['name' => 'Zinc 800', 'class' => 'bg-zinc-800', 'code' => 'color-strong', 'role' => 'Headings and dark surfaces'],
+  ['name' => 'Zinc 900', 'class' => 'bg-zinc-900', 'code' => 'border-zinc-900',
+    'role' => 'Selected states and progress'],
+  ['name' => 'Zinc 950', 'class' => 'bg-zinc-950', 'code' => 'outline-zinc-950', 'role' => 'Focus rings and overlays'],
+];
+
+$design_action_colors = [
+  ['name' => 'Blue 600', 'class' => 'bg-blue-600', 'code' => 'bg-blue-600',
+    'role' => 'Primary buttons and form focus'],
+  ['name' => 'Blue 700', 'class' => 'bg-blue-700', 'code' => 'color-primary', 'role' => 'Button hover and text links'],
+  ['name' => 'Blue 800', 'class' => 'bg-blue-800', 'code' => 'bg-blue-800', 'role' => 'Button pressed and link hover'],
+];
+
+$design_surfaces = [
+  ['label' => 'Zinc 100', 'class' => 'border border-zinc-200 bg-zinc-100', 'code' => 'bg-zinc-100',
+    'note' => 'Dashboard page background. Consumer cards and sections.', 'invert' => false],
+  ['label' => 'White', 'class' => 'border border-zinc-200 bg-white', 'code' => 'bg-white border-zinc-200',
+    'note' => 'Consumer page background. Dashboard cards, forms, and tables.', 'invert' => false],
+  ['label' => 'Subtle', 'class' => 'border border-zinc-200 bg-zinc-50', 'code' => 'bg-zinc-50',
+    'note' => 'Read-only fields and upload areas inside a panel.', 'invert' => false],
+  ['label' => 'Dark', 'class' => 'bg-zinc-800', 'code' => 'bg-zinc-800',
+    'note' => 'Dark sections. Pair with color-invert-* text.', 'invert' => true],
+  ['label' => 'Media', 'class' => 'bg-zinc-950', 'code' => 'bg-zinc-950',
+    'note' => 'Video and image frames before media loads.', 'invert' => true],
+];
+
+// Layers are listed outside in; each one renders inside the previous layer.
+$design_layering = [
+  [
+    'title'  => 'Consumer Pages',
+    'note'   => 'Website and patient-facing pages. The page is white; cards and sections step down to zinc 100.',
+    'layers' => [
+      ['label' => 'Page', 'class' => 'border border-zinc-200 bg-white', 'code' => 'bg-white'],
+      ['label' => 'Card or section', 'class' => 'bg-zinc-100', 'code' => 'bg-zinc-100'],
+    ],
+  ],
+  [
+    'title'  => 'Dashboard Pages',
+    'note'   => 'Patient, Doctor, and Admin dashboards. The page is zinc 100; panels sit on top in white.',
+    'layers' => [
+      ['label' => 'Page', 'class' => 'border border-zinc-200 bg-zinc-100', 'code' => 'bg-zinc-100'],
+      ['label' => 'Panel', 'class' => 'border border-zinc-200 bg-white', 'code' => 'bg-white'],
+      ['label' => 'Subtle', 'class' => 'border border-zinc-200 bg-zinc-50', 'code' => 'bg-zinc-50'],
+    ],
+  ],
+];
+
+$design_status_surfaces = [
+  ['label' => 'Info', 'class' => 'border border-blue-100 bg-blue-50', 'title' => 'color-primary',
+    'code' => 'bg-blue-50 border-blue-100'],
+  ['label' => 'Positive', 'class' => 'border border-green-100 bg-green-50', 'title' => 'color-positive',
+    'code' => 'bg-green-50 border-green-100'],
+  ['label' => 'Attention', 'class' => 'border border-amber-100 bg-amber-50', 'title' => 'color-warning',
+    'code' => 'bg-amber-50 border-amber-100'],
+  ['label' => 'Negative', 'class' => 'border border-red-100 bg-red-50', 'title' => 'color-negative',
+    'code' => 'bg-red-50 border-red-100'],
+];
+
+$design_status_tones = [
+  [
+    'title'  => 'Info',
+    'note'   => 'Neutral updates and guidance.',
+    'colors' => [
+      ['name' => 'Blue 50', 'class' => 'border border-zinc-200 bg-blue-50', 'code' => 'bg-blue-50',
+        'role' => 'Badge and alert background'],
+      ['name' => 'Blue 100', 'class' => 'border border-zinc-200 bg-blue-100', 'code' => 'border-blue-100',
+        'role' => 'Alert border'],
+      ['name' => 'Blue 200', 'class' => 'bg-blue-200', 'code' => 'border-blue-200', 'role' => 'Badge border'],
+      ['name' => 'Blue 600', 'class' => 'bg-blue-600', 'code' => 'text-blue-600',
+        'role' => 'Badge text and solid badge'],
+      ['name' => 'Blue 700', 'class' => 'bg-blue-700', 'code' => 'color-primary',
+        'role' => 'Alert title and status text'],
+    ],
+  ],
+  [
+    'title'  => 'Positive',
+    'note'   => 'Success, approvals, and positive changes.',
+    'colors' => [
+      ['name' => 'Green 50', 'class' => 'border border-zinc-200 bg-green-50', 'code' => 'bg-green-50',
+        'role' => 'Badge and alert background'],
+      ['name' => 'Green 100', 'class' => 'border border-zinc-200 bg-green-100', 'code' => 'border-green-100',
+        'role' => 'Alert border'],
+      ['name' => 'Green 200', 'class' => 'bg-green-200', 'code' => 'border-green-200',
+        'role' => 'Badge border and comparison marks'],
+      ['name' => 'Green 600', 'class' => 'bg-green-600', 'code' => 'text-green-600',
+        'role' => 'Badge text and solid badge'],
+      ['name' => 'Green 700', 'class' => 'bg-green-700', 'code' => 'color-positive',
+        'role' => 'Alert title and status text'],
+    ],
+  ],
+  [
+    'title'  => 'Attention',
+    'note'   => 'Items that need a look or an action soon.',
+    'colors' => [
+      ['name' => 'Amber 50', 'class' => 'border border-zinc-200 bg-amber-50', 'code' => 'bg-amber-50',
+        'role' => 'Badge and alert background'],
+      ['name' => 'Amber 100', 'class' => 'border border-zinc-200 bg-amber-100', 'code' => 'border-amber-100',
+        'role' => 'Alert border'],
+      ['name' => 'Amber 200', 'class' => 'bg-amber-200', 'code' => 'border-amber-200', 'role' => 'Badge border'],
+      ['name' => 'Amber 600', 'class' => 'bg-amber-600', 'code' => 'text-amber-600',
+        'role' => 'Badge text, solid badge, and progress bars'],
+      ['name' => 'Amber 700', 'class' => 'bg-amber-700', 'code' => 'color-warning',
+        'role' => 'Alert title and status text'],
+    ],
+  ],
+  [
+    'title'  => 'Negative',
+    'note'   => 'Errors, rejections, and negative changes.',
+    'colors' => [
+      ['name' => 'Red 50', 'class' => 'border border-zinc-200 bg-red-50', 'code' => 'bg-red-50',
+        'role' => 'Badge and alert background'],
+      ['name' => 'Red 100', 'class' => 'border border-zinc-200 bg-red-100', 'code' => 'border-red-100',
+        'role' => 'Alert border'],
+      ['name' => 'Red 200', 'class' => 'bg-red-200', 'code' => 'border-red-200',
+        'role' => 'Badge border and comparison marks'],
+      ['name' => 'Red 600', 'class' => 'bg-red-600', 'code' => 'text-red-600', 'role' => 'Badge text and solid badge'],
+      ['name' => 'Red 700', 'class' => 'bg-red-700', 'code' => 'color-negative',
+        'role' => 'Alert title and status text'],
+    ],
+  ],
+];
+
 ?>
-<div class="design-page font-sans text-zinc-600">
+<div class="design-page font-sans color-default">
   <div class="design-container">
     <header class="design-header max-w-3xl">
-      <p class="design-eyebrow text-sm font-medium text-zinc-500">Wireland / Design reference</p>
+      <p class="design-eyebrow text-sm font-medium color-muted">Wireland / Design reference</p>
       <h1 class="design-title mt-4 text-4xl font-semibold leading-tight text-pretty color-strong sm:text-5xl">
         One visual language.<br>Every experience.
       </h1>
@@ -1333,88 +1503,64 @@ $design_empty_states = [
           Choose colors by purpose: backgrounds, text, actions, and messages. Pair status colors with clear text
           so meaning does not depend on color alone.
         </p>
-        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>assets/css/app.css</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">
+          Source: <code>assets/css/foundations.css</code>, <code>views/components/badge.php</code>,
+          <code>views/components/alert.php</code>
+        </p>
       </header>
       <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Neutral Palette</h3>
-          <p class="foundation-description mt-2 text-sm">Use the shade labels as Tailwind references.</p>
+          <p class="foundation-description mt-2 text-sm">
+            Surfaces, borders, and text. Use the code label as the Tailwind or semantic class reference.
+          </p>
           <div class="color-swatches grid grid-cols-2 gap-3 mt-5 sm:grid-cols-3 lg:grid-cols-6">
-            <div class="swatch">
-              <div class="swatch-color h-20 rounded-xl border border-zinc-200 bg-white"></div>
-              <p class="swatch-name mt-3 text-sm font-medium color-strong">White</p>
-              <p class="swatch-role mt-1 text-xs">Surface</p>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color h-20 rounded-xl bg-zinc-100"></div>
-              <p class="swatch-name mt-3 text-sm font-medium color-strong">Zinc 100</p>
-              <p class="swatch-role mt-1 text-xs">Page background</p>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color h-20 rounded-xl bg-zinc-200"></div>
-              <p class="swatch-name mt-3 text-sm font-medium color-strong">Zinc 200</p>
-              <p class="swatch-role mt-1 text-xs">Dividers</p>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color h-20 rounded-xl bg-zinc-400"></div>
-              <p class="swatch-name mt-3 text-sm font-medium color-strong">Zinc 400</p>
-              <p class="swatch-role mt-1 text-xs">Disabled details</p>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color h-20 rounded-xl bg-zinc-600"></div>
-              <p class="swatch-name mt-3 text-sm font-medium color-strong">Zinc 600</p>
-              <p class="swatch-role mt-1 text-xs">Body text</p>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color h-20 rounded-xl bg-zinc-800"></div>
-              <p class="swatch-name mt-3 text-sm font-medium color-strong">Zinc 800</p>
-              <p class="swatch-role mt-1 text-xs">Headings</p>
-            </div>
+            <?php foreach ($design_neutral_colors as $color) : ?>
+              <div class="swatch">
+                <div class="swatch-color h-20 rounded-xl <?= e($color['class']); ?>"></div>
+                <p class="swatch-name mt-3 text-sm font-medium color-strong"><?= e($color['name']); ?></p>
+                <p class="swatch-role mt-1 text-xs"><?= e($color['role']); ?></p>
+                <code class="swatch-code block mt-1 text-xs color-muted"><?= e($color['code']); ?></code>
+              </div>
+            <?php endforeach; ?>
           </div>
         </div>
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Action Palette</h3>
-          <div class="color-swatches grid grid-cols-2 gap-3
-            sm:grid-cols-3">
-            <div class="swatch">
-              <div class="swatch-color h-20 rounded-xl bg-blue-600"></div>
-              <p class="swatch-name mt-3 text-sm font-medium color-strong">Blue 600</p>
-              <p class="swatch-role mt-1 text-xs">Primary buttons and form focus</p>
-              <code class="swatch-code block mt-1 text-xs color-muted">bg-blue-600</code>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color h-20 rounded-xl bg-blue-700"></div>
-              <p class="swatch-name mt-3 text-sm font-medium color-strong">Blue 700</p>
-              <p class="swatch-role mt-1 text-xs">Button hover and text links</p>
-              <code class="swatch-code block mt-1 text-xs color-muted">bg-blue-700</code>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color h-20 rounded-xl bg-blue-800"></div>
-              <p class="swatch-name mt-3 text-sm font-medium color-strong">Blue 800</p>
-              <p class="swatch-role mt-1 text-xs">Button pressed and link hover</p>
-              <code class="swatch-code block mt-1 text-xs color-muted">bg-blue-800</code>
-            </div>
+          <div class="color-swatches grid grid-cols-2 gap-3 sm:grid-cols-3">
+            <?php foreach ($design_action_colors as $color) : ?>
+              <div class="swatch">
+                <div class="swatch-color h-20 rounded-xl <?= e($color['class']); ?>"></div>
+                <p class="swatch-name mt-3 text-sm font-medium color-strong"><?= e($color['name']); ?></p>
+                <p class="swatch-role mt-1 text-xs"><?= e($color['role']); ?></p>
+                <code class="swatch-code block mt-1 text-xs color-muted"><?= e($color['code']); ?></code>
+              </div>
+            <?php endforeach; ?>
           </div>
         </div>
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Status Palette</h3>
-          <div class="color-swatches grid grid-cols-2 gap-3">
-            <div class="swatch">
-              <div class="swatch-color h-20 rounded-xl bg-green-700"></div>
-              <p class="swatch-name mt-3 text-sm font-medium color-strong">Green 700</p>
-              <p class="swatch-role mt-1 text-xs">Positive messages and changes</p>
-              <code class="swatch-code block mt-1 text-xs color-muted">bg-green-700</code>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color h-20 rounded-xl bg-red-700"></div>
-              <p class="swatch-name mt-3 text-sm font-medium color-strong">Red 700</p>
-              <p class="swatch-role mt-1 text-xs">Errors and negative changes</p>
-              <code class="swatch-code block mt-1 text-xs color-muted">bg-red-700</code>
-            </div>
+          <div class="status-tones grid gap-8">
+            <?php foreach ($design_status_tones as $tone) : ?>
+              <div class="status-tone">
+                <h4 class="status-tone-title text-sm font-semibold color-strong"><?= e($tone['title']); ?></h4>
+                <p class="status-tone-note mt-1 text-xs"><?= e($tone['note']); ?></p>
+                <div class="color-swatches grid grid-cols-2 gap-3 mt-4 sm:grid-cols-3 lg:grid-cols-5">
+                  <?php foreach ($tone['colors'] as $color) : ?>
+                    <div class="swatch">
+                      <div class="swatch-color h-20 rounded-xl <?= e($color['class']); ?>"></div>
+                      <p class="swatch-name mt-3 text-sm font-medium color-strong"><?= e($color['name']); ?></p>
+                      <p class="swatch-role mt-1 text-xs"><?= e($color['role']); ?></p>
+                      <code class="swatch-code block mt-1 text-xs color-muted"><?= e($color['code']); ?></code>
+                    </div>
+                  <?php endforeach; ?>
+                </div>
+              </div>
+            <?php endforeach; ?>
           </div>
           <p class="section-demo-note mt-6 text-sm color-default">
-            These swatches show the palette. Use color-positive and color-negative for status text on light surfaces.
-            Warning message styles are not defined yet. Informational alerts use the primary text color.
+            Use the badge and alert components instead of combining these shades by hand. For status text on light
+            surfaces, use color-primary, color-positive, color-warning, or color-negative.
           </p>
         </div>
       </div>
@@ -1425,27 +1571,93 @@ $design_empty_states = [
         <h2 id="design-surfaces-title" class="section-title text-title-md font-semibold color-strong">Surfaces</h2>
         <p class="section-description mt-3 text-sm leading-relaxed">
           Use surfaces to separate the page background from controls and panels. Keep related content on the same
-          surface.
+          surface, and step up one layer at a time: page, then panel, then subtle.
         </p>
-        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>assets/css/app.css</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">
+          Source: Tailwind utilities, <code>views/components/alert.php</code>, <code>views/components/navbar.php</code>
+        </p>
       </header>
       <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Surface Backgrounds</h3>
-          <div class="surface-examples grid gap-6
-            md:grid-cols-3">
-            <div class="surface-sample p-5 rounded-md border border-zinc-200 bg-zinc-100">
-              <p class="surface-label font-medium color-strong">Page</p>
-              <code class="surface-code block mt-2 text-xs color-muted">bg-zinc-100</code>
+          <div class="surface-examples grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <?php foreach ($design_surfaces as $surface) : ?>
+              <div class="surface-sample p-5 rounded-md <?= e($surface['class']); ?>">
+                <p class="surface-label font-medium <?= $surface['invert'] ? 'color-invert-strong' : 'color-strong'; ?>">
+                  <?= e($surface['label']); ?>
+                </p>
+                <p class="surface-note mt-1 text-sm <?= $surface['invert'] ? 'color-invert-default' : 'color-default'; ?>">
+                  <?= e($surface['note']); ?>
+                </p>
+                <code class="surface-code block mt-2 text-xs <?= $surface['invert'] ? 'color-invert-muted' : 'color-muted'; ?>">
+                  <?= e($surface['code']); ?>
+                </code>
+              </div>
+            <?php endforeach; ?>
+          </div>
+        </div>
+        <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
+          <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Layering</h3>
+          <p class="foundation-description text-sm">
+            Consumer and dashboard pages start from opposite backgrounds. Each layer sits inside the one before it,
+            and the same text colors work on every layer.
+          </p>
+          <div class="surface-layering grid gap-6 mt-5 lg:grid-cols-2">
+            <?php foreach ($design_layering as $context) : ?>
+              <div class="surface-context">
+                <h4 class="surface-context-title text-sm font-semibold color-strong"><?= e($context['title']); ?></h4>
+                <p class="surface-context-note mt-1 text-xs"><?= e($context['note']); ?></p>
+                <div class="surface-context-demo mt-4">
+                  <?php foreach ($context['layers'] as $layer) : ?>
+                    <div class="surface-layer mt-3 p-5 rounded-md first:mt-0 <?= e($layer['class']); ?>">
+                      <p class="surface-layer-label text-xs font-medium color-muted">
+                        <?= e($layer['label']); ?> · <code><?= e($layer['code']); ?></code>
+                      </p>
+                      <p class="surface-layer-text mt-3 text-base font-semibold color-strong">Your treatment plan</p>
+                      <p class="surface-layer-text mt-1 text-sm color-default">
+                        Follow your routine daily for best results.
+                      </p>
+                      <p class="surface-layer-text mt-1 text-xs color-muted">Updated 2 days ago</p>
+                      <a href="#design-links" class="link inline-block mt-1 text-sm">See full plan</a>
+                  <?php endforeach; ?>
+                  <?php foreach ($context['layers'] as $layer) : ?>
+                    </div>
+                  <?php endforeach; ?>
+                </div>
+              </div>
+            <?php endforeach; ?>
+          </div>
+          <p class="section-demo-note mt-6 text-sm color-default">
+            On bg-zinc-100, color-muted is about 4.4:1, just under the 4.5:1 minimum for small text. Use it there
+            for non-essential labels only; use color-default for anything the user must read.
+          </p>
+        </div>
+        <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
+          <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Overlay</h3>
+          <p class="foundation-description text-sm">
+            Dims and lightly blurs the page behind drawers, menus, and modals. Use the same overlay everywhere. On a
+            <code>&lt;dialog&gt;</code>, add the <code>backdrop:</code> prefix to both classes.
+          </p>
+          <div class="surface-overlay-demo relative mt-5 p-5 rounded-md border border-zinc-200 bg-white overflow-hidden">
+            <p class="surface-label font-medium color-strong">Page content</p>
+            <p class="surface-note mt-1 text-sm color-default">Content behind the overlay stays visible but inactive.</p>
+            <div class="surface-overlay absolute inset-0 flex items-end p-5 bg-zinc-950/50 backdrop-blur-xs">
+              <code class="surface-code text-xs color-invert-strong">bg-zinc-950/50 backdrop-blur-xs</code>
             </div>
-            <div class="surface-sample p-5 rounded-md border border-zinc-200 bg-white">
-              <p class="surface-label font-medium color-strong">Panel</p>
-              <code class="surface-code block mt-2 text-xs color-muted">bg-white</code>
-            </div>
-            <div class="surface-sample p-5 rounded-md bg-zinc-800">
-              <p class="surface-label font-medium color-invert-strong">Dark</p>
-              <code class="surface-code block mt-2 text-xs color-invert-muted">bg-zinc-800</code>
-            </div>
+          </div>
+        </div>
+        <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
+          <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Status Surfaces</h3>
+          <p class="foundation-description text-sm">
+            Tinted surfaces for messages. Use the alert or badge component rather than these classes directly.
+          </p>
+          <div class="surface-examples grid gap-6 mt-5 sm:grid-cols-2">
+            <?php foreach ($design_status_surfaces as $surface) : ?>
+              <div class="surface-sample p-5 rounded-md <?= e($surface['class']); ?>">
+                <p class="surface-label font-medium <?= e($surface['title']); ?>"><?= e($surface['label']); ?></p>
+                <code class="surface-code block mt-2 text-xs color-muted"><?= e($surface['code']); ?></code>
+              </div>
+            <?php endforeach; ?>
           </div>
         </div>
       </div>
@@ -1903,19 +2115,32 @@ $design_empty_states = [
       <header class="section-header">
         <h2 id="design-links-title" class="section-title text-title-md font-semibold color-strong">Links</h2>
         <p class="section-description mt-3 text-sm leading-relaxed">
-          Use links to navigate to another page or section. Name the destination clearly and underline links
-          within paragraphs.
+          Use links to navigate to another page or section. Name the destination clearly. Links are blue and
+          show an underline on hover, whether they stand alone or sit inside a sentence.
         </p>
-        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/pages/design.php</code></p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>assets/css/components/link.css</code></p>
       </header>
       <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
-          <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Text Link</h3>
-          <a href="#design-buttons" class="link inline-block color-primary underline underline-offset-4
-            hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-700">
+          <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Standalone Link</h3>
+          <p class="foundation-description text-sm">
+            A link on its own, such as Browse All or View All. Underline appears on hover only.
+          </p>
+          <a href="#design-buttons" class="link inline-block mt-5">
             Explore Buttons
           </a>
-          <code class="color-code block mt-1 text-xs color-muted">color-primary / blue-700</code>
+          <code class="color-code block mt-1 text-xs color-muted">link</code>
+        </div>
+        <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
+          <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Link in a Sentence</h3>
+          <p class="foundation-description text-sm">
+            Same style inside text. Add font-medium so the link stands apart from the sentence around it.
+          </p>
+          <p class="link-sample mt-5 text-sm color-muted">
+            Still have a question?
+            <a href="#design-buttons" class="link font-medium">Ask on WhatsApp</a>
+          </p>
+          <code class="color-code block mt-1 text-xs color-muted">link font-medium</code>
         </div>
       </div>
     </section>
@@ -2527,7 +2752,7 @@ $design_empty_states = [
         </p>
         <p class="section-source mt-3 text-sm leading-relaxed">
           Source: <code>views/components/card.php</code>, <code>views/components/card-treatment.php</code>,
-          <code>views/components/card-testimonial.php</code>
+          <code>views/components/card-testimonial.php</code>, <code>views/components/card-cycle.php</code>
         </p>
       </header>
       <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
@@ -2552,13 +2777,23 @@ $design_empty_states = [
         <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
           <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Testimonial Card</h3>
           <p class="section-demo-note -mt-6 mb-8 text-sm leading-relaxed">
-            One testimonial at a time with dots, count and prev/next. <code>rating</code> is optional; initials
-            come from <code>name</code> unless <code>initials</code> is set.
+            One testimonial at a time with dots, count and prev/next. <code>rating</code> is optional; the author
+            avatar is the standard avatar thumbnail.
           </p>
           <div class="testimonials grid grid-cols-1 gap-3 md:grid-cols-2">
             <?php foreach ($design_card_testimonials as $design_testimonial): ?>
               <?php component('card-testimonial', $design_testimonial); ?>
             <?php endforeach; ?>
+          </div>
+        </div>
+        <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
+          <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Cycle Card</h3>
+          <p class="section-demo-note -mt-6 mb-8 text-sm leading-relaxed">
+            Before/after comparison with month pills that swap the after photo and label. Set <code>aspect</code>
+            for a fixed ratio, or omit it to fill the parent height. Load <code>assets/js/card-cycle.js</code>.
+          </p>
+          <div class="cycle-demo max-w-md">
+            <?php component('card-cycle', $design_card_cycle); ?>
           </div>
         </div>
       </div>
@@ -2588,6 +2823,86 @@ $design_empty_states = [
             <p class="section-demo-note mt-6 text-sm color-default"><?= e($design_example['note']); ?></p>
           </div>
         <?php endforeach; ?>
+      </div>
+    </section>
+
+    <section id="design-google-review" aria-labelledby="design-google-review-title"
+      class="section border-t border-zinc-200">
+      <header class="section-header">
+        <h2 id="design-google-review-title" class="section-title text-title-md font-semibold color-strong">
+          Google Review
+        </h2>
+        <p class="section-description mt-3 text-sm leading-relaxed">
+          Social-proof summary of Google Reviews. Mockup with placeholder data; layouts under exploration.
+        </p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/google-review.php</code></p>
+      </header>
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
+        <?php foreach (['stacked' => 'Stacked', 'inline' => 'Inline', 'badge' => 'Badge', 'seal' => 'Seal'] as $design_variant => $design_title): ?>
+          <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
+            <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">
+              <?= e($design_title); ?>
+            </h3>
+            <?php component('google-review', ['variant' => $design_variant]); ?>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </section>
+
+    <section id="design-thumbnails" aria-labelledby="design-thumbnails-title" class="section border-t border-zinc-200">
+      <header class="section-header">
+        <h2 id="design-thumbnails-title" class="section-title text-title-md font-semibold color-strong">Thumbnails</h2>
+        <p class="section-description mt-3 text-sm leading-relaxed">
+          Use thumbnails for avatar and product placeholders. Every thumbnail is a square with the same radius,
+          background and icon tone, so pick a size instead of styling one by hand.
+        </p>
+        <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/thumbnail.php</code></p>
+      </header>
+      <div class="section-content grid gap-10 mt-6 text-sm leading-relaxed">
+        <?php foreach ($design_thumbnail_examples as $design_example): ?>
+          <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
+            <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">
+              <?= e($design_example['title']); ?>
+            </h3>
+            <div class="section-demo-row flex flex-wrap items-end gap-6">
+              <?php foreach ($design_thumbnail_sizes as $design_size): ?>
+                <div class="flex flex-col items-center gap-2">
+                  <?php component('thumbnail', ['type' => $design_example['type'], 'size' => $design_size]); ?>
+                  <span class="text-xs color-muted"><?= e($design_size); ?></span>
+                </div>
+              <?php endforeach; ?>
+              <?php if ($design_example['type'] === 'product'): ?>
+                <div class="flex flex-col items-center gap-2 w-40">
+                  <?php component('thumbnail', ['type' => 'product', 'size' => 'full']); ?>
+                  <span class="text-xs color-muted">full</span>
+                </div>
+              <?php endif; ?>
+            </div>
+            <p class="section-demo-note mt-6 text-sm color-default"><?= e($design_example['note']); ?></p>
+          </div>
+        <?php endforeach; ?>
+        <div class="section-demo p-10 text-base rounded-md border border-zinc-200 bg-zinc-100">
+          <h3 class="section-demo-title -ml-5 -mt-5 mb-10 text-title-sm font-semibold color-strong">Hover</h3>
+          <div class="section-demo-row grid gap-3 max-w-sm">
+            <?php foreach ($design_thumbnail_hover_items as $design_item): ?>
+              <a href="#design-thumbnails" class="group flex items-center gap-4 p-2 rounded-lg bg-white color-strong">
+                <?php component('thumbnail', [
+                  'type'  => $design_item['type'],
+                  'size'  => 'md',
+                  'hover' => true,
+                  'class' => 'shrink-0',
+                ]); ?>
+                <span class="text-sm font-semibold group-hover:underline group-hover:underline-offset-4">
+                  <?= e($design_item['name']); ?>
+                </span>
+              </a>
+            <?php endforeach; ?>
+          </div>
+          <p class="section-demo-note mt-6 text-sm color-default">
+            Set hover to true when the thumbnail sits inside a link or card. The parent needs the group class, so the
+            thumbnail darkens when anywhere on the row is hovered.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -2684,8 +2999,8 @@ $design_empty_states = [
       <header class="section-header">
         <h2 id="design-tabs-title" class="section-title text-title-md font-semibold color-strong">Tabs</h2>
         <p class="section-description mt-3 text-sm leading-relaxed">
-          Use tabs to switch between related panels. Underline is the default; Segmented is an optional
-          variant. Choose default (14px, 40px tall) or small (12px, 32px tall). Tabs stay on one horizontally scrolling
+          Use tabs to switch between related panels. Underline is the default; Segmented and Pill
+          (fully rounded) are optional variants. Choose default (14px, 40px tall) or small (12px, 32px tall). Tabs stay on one horizontally scrolling
           row. Use arrow keys, Home, and End to move between tabs.
         </p>
         <p class="section-source mt-3 text-sm leading-relaxed">Source: <code>views/components/tabs.php</code></p>

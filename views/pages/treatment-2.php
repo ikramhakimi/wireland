@@ -5,7 +5,8 @@
  * Purpose: Reusable treatment page in a hero / sticky sidebar + content / more treatments layout. Content comes from
  *          the dashboard treatment data; this template owns section headings and actions.
  * Structure: Navbar, intro, body (sticky summary sidebar | content blocks), results, more treatments, footer.
- * Data: includes/dashboard-treatments-data.php (TRT-003 `page`), mapped by includes/treatment-page.php.
+ * Data: includes/dashboard-treatments-data.php (`page` of the published treatment in ?id=, default TRT-003),
+ *       mapped by includes/treatment-page.php. Unknown or draft IDs render the 404 page.
  *       [confirm] Price, graft range, side-effect list and doctor profiles need clinic sign-off.
  * Sections: Snapshot hero, views/sections/treatment-body.php and treatment-more.php.
  */
@@ -14,7 +15,15 @@ require_once __DIR__ . '/../../includes/treatment-page.php';
 
 $treatments    = require __DIR__ . '/../../includes/dashboard-treatments-data.php';
 $doctors       = require __DIR__ . '/../../includes/doctors-data.php';
-$treatment_row = array_column($treatments, null, 'id')['TRT-003'];
+$treatment_id  = (is_string($_GET['id'] ?? null) ? $_GET['id'] : '') ?: 'TRT-003';
+$treatment_row = array_column($treatments, null, 'id')[$treatment_id] ?? null;
+
+// Drafts and unknown IDs stay off the website.
+if (($treatment_row['status'] ?? '') !== 'published') {
+  http_response_code(404);
+  include __DIR__ . '/404.php';
+  return;
+}
 
 $page_title       = $treatment_row['meta_title'] ?: $treatment_row['name'];
 $page_description = $treatment_row['meta_description'] ?: $treatment_row['summary'];
@@ -22,7 +31,7 @@ $page_current     = 'treatment';
 
 $assessment_cta = [
   'label' => 'Start Free Assessment',
-  'href'  => '#',
+  'href'  => asset_url('assessment/'),
 ];
 
 $treatment_copy = [
@@ -42,7 +51,7 @@ $treatment_copy = [
     'pricing'     => [
       'title'   => 'Pricing',
       'actions' => [
-        ['label' => 'Start Free Assessment', 'href' => '#'],
+        ['label' => 'Start Free Assessment', 'href' => $assessment_cta['href']],
         ['label' => 'Chat With Us',          'href' => 'https://wa.me/601116741858', 'color' => 'secondary'],
       ],
     ],
@@ -155,7 +164,7 @@ component('navbar');
 section('treatment-body',       ['summary' => $summary, 'blocks' => $treatment['blocks']]);
 section('treatment-results',  $treatment['results']);
 section('treatment-more',       $treatment['more']);
-section('footer',              ['show_banner' => false]);
+section('footer');
 section('treatment-sticky-cta', ['action' => $assessment_cta]);
 
 component('button-whatsapp', ['hide_mobile' => true]);

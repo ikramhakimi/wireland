@@ -39,8 +39,8 @@ $checkout_button = [
 <div id="site-cart" class="drawer-cart pointer-events-none fixed inset-0 z-50" aria-hidden="true" inert>
   <button
     type="button"
-    class="cart-backdrop absolute inset-0 cursor-pointer bg-zinc-950/50 opacity-0 transition-opacity duration-200 ease-out
-      motion-reduce:transition-none js-component-navbar-drawer-backdrop"
+    class="cart-backdrop absolute inset-0 cursor-pointer bg-zinc-950/50 backdrop-blur-xs opacity-0
+      transition-opacity duration-200 ease-out motion-reduce:transition-none js-component-navbar-drawer-backdrop"
     aria-label="Close cart"
     tabindex="-1"
     data-drawer-close
@@ -74,9 +74,12 @@ $checkout_button = [
         <?php foreach ($cart_items as $item): ?>
           <li class="cart-item flex items-start gap-4 py-5 js-component-cart-item"
             data-unit-price="<?= e(str_replace(['RM ', ','], '', $item['price'])); ?>">
-            <div class="cart-item-thumbnail size-20 sm:size-30 shrink-0 rounded-lg bg-zinc-200">
-              <img src="<?= asset_url('assets/images/mockup-bottle-02.webp'); ?>" alt=""
-                class="cart-item-image size-full object-contain">
+            <div class="cart-item-thumbnail w-20 shrink-0 sm:w-30">
+              <?php component('thumbnail', [
+                'type' => 'product',
+                'size' => 'full',
+                'src'  => 'assets/images/mockup-bottle-02.webp',
+              ]); ?>
             </div>
             <div class="cart-item-content flex min-w-0 flex-1 flex-col self-stretch">
               <div class="cart-item-header flex items-start justify-between gap-3">
@@ -167,10 +170,12 @@ $checkout_button = [
           role="group" aria-roledescription="carousel" aria-label="Recommended products" tabindex="0">
           <?php foreach ($paired_products as $product): ?>
             <article class="cart-product flex min-w-0 snap-start flex-col rounded-lg bg-zinc-200 p-3 text-center first:scroll-ml-5">
-              <div class="cart-product-thumbnail mb-3 aspect-square">
-                <img src="<?= asset_url('assets/images/mockup-bottle-02.webp'); ?>" alt=""
-                  class="cart-product-image size-full object-contain" loading="lazy">
-              </div>
+              <?php component('thumbnail', [
+                'type'  => 'product',
+                'size'  => 'full',
+                'src'   => 'assets/images/mockup-bottle-02.webp',
+                'class' => 'cart-product-thumbnail mb-3',
+              ]); ?>
               <h4 class="cart-product-title mt-auto text-sm md:mt-0 font-medium color-strong"><?= e($product['name']); ?></h4>
               <p class="cart-product-price mt-1 mb-3 text-sm color-default"><?= e($product['price']); ?></p>
               <?php component('button', [

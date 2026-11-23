@@ -61,11 +61,11 @@ $card_config = [
       <?php if ($latest_day !== null): ?>
         <div class="sales-readout flex items-center justify-between gap-4 mb-5">
           <div class="sales-reading min-w-0" aria-live="polite" aria-atomic="true">
-            <p class="sales-date text-xs text-zinc-500 js-component-sales-date"><?= e($latest_day['label']); ?></p>
+            <p class="sales-date text-xs color-muted js-component-sales-date"><?= e($latest_day['label']); ?></p>
             <p class="sales-value mt-1 text-2xl font-medium leading-tight tabular-nums color-strong js-component-sales-value">
               RM <?= number_format($latest_day['value'], 2); ?>
             </p>
-            <p class="sales-change min-h-4 mt-2 text-xs text-zinc-500 js-component-sales-change">
+            <p class="sales-change min-h-4 mt-2 text-xs color-muted js-component-sales-change">
               <?php if ($latest_change === null): ?>
                 First day of this reporting period
               <?php elseif ($latest_change === 0): ?>
@@ -78,22 +78,22 @@ $card_config = [
           </div>
           <div class="sales-navigation flex gap-2 shrink-0" aria-label="Explore days">
             <button type="button" aria-label="Previous day"
-              class="sales-nav flex items-center justify-center size-11 rounded-lg border border-zinc-200 bg-white text-zinc-600 cursor-pointer
+              class="sales-nav flex items-center justify-center size-11 rounded-lg border border-zinc-200 bg-white color-default cursor-pointer
                 hover:bg-zinc-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
-                disabled:bg-zinc-50 disabled:text-zinc-400 disabled:cursor-not-allowed
+                disabled:bg-zinc-50 disabled:color-muted disabled:cursor-not-allowed
                 js-component-sales-previous">
               <?php svg('arrow-left-line', 'sales-nav-icon size-4'); ?>
             </button>
             <button type="button" aria-label="Next day" disabled
-              class="sales-nav flex items-center justify-center size-11 rounded-lg border border-zinc-200 bg-white text-zinc-600 cursor-pointer
+              class="sales-nav flex items-center justify-center size-11 rounded-lg border border-zinc-200 bg-white color-default cursor-pointer
                 hover:bg-zinc-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800
-                disabled:bg-zinc-50 disabled:text-zinc-400 disabled:cursor-not-allowed
+                disabled:bg-zinc-50 disabled:color-muted disabled:cursor-not-allowed
                 js-component-sales-next">
               <?php svg('arrow-right-line', 'sales-nav-icon size-4'); ?>
             </button>
           </div>
         </div>
-        <div class="sales-meta flex items-center justify-between gap-3 mb-3 text-xs text-zinc-500">
+        <div class="sales-meta flex items-center justify-between gap-3 mb-3 text-xs color-muted">
           <span class="sales-unit">Sales in RM</span>
           <span class="sales-period">
             <?= e($report_start->format('j M')); ?>–<?= e($report_end->format('j M Y')); ?>
@@ -122,7 +122,7 @@ $card_config = [
                 </button>
               <?php endforeach; ?>
             </div>
-            <div aria-hidden="true" class="sales-labels relative h-5 mt-2 text-[10px] tabular-nums text-zinc-500">
+            <div aria-hidden="true" class="sales-labels relative h-5 mt-2 text-[10px] tabular-nums color-muted">
               <?php foreach ($chart_days as $index => $day): ?>
                 <?php
                 if ($index !== $chart_count - 1 && ($index % $label_interval !== 0 ||
@@ -139,16 +139,16 @@ $card_config = [
           </div>
         </div>
       <?php else: ?>
-        <p class="sales-empty py-10 text-sm text-center text-zinc-500">No sales data for this period.</p>
+        <p class="sales-empty py-10 text-sm text-center color-muted">No sales data for this period.</p>
       <?php endif; ?>
       <script type="application/json" class="sales-data js-component-sales-data"><?= json_encode($chart_days, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?></script>
       <dialog id="sales-report" aria-labelledby="sales-report-title"
-        class="report-dialog w-[min(34rem,calc(100vw-2rem))] max-h-[calc(100dvh-3rem)] m-auto p-6 rounded-lg border border-zinc-200 bg-white text-zinc-600 overflow-y-auto
-          backdrop:bg-zinc-800/30 js-component-sales-dialog">
+        class="report-dialog w-[min(34rem,calc(100vw-2rem))] max-h-[calc(100dvh-3rem)] m-auto p-6 rounded-lg border border-zinc-200 bg-white color-default overflow-y-auto
+          backdrop:bg-zinc-950/50 backdrop:backdrop-blur-xs js-component-sales-dialog">
         <header class="report-header flex items-start justify-between gap-4">
           <div class="report-heading">
             <h2 id="sales-report-title" class="report-title text-xl font-medium color-strong">Daily sales report</h2>
-            <p class="report-period mt-1 text-xs text-zinc-500">
+            <p class="report-period mt-1 text-xs color-muted">
               <?= e($report_start->format('j M')); ?>–<?= e($report_end->format('j M Y')); ?>
             </p>
           </div>

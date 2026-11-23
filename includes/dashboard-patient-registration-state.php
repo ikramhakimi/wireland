@@ -36,7 +36,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
   }
 
   if ($errors === []) {
-    $patient_id = 'PT-DEMO-' . strtoupper(bin2hex(random_bytes(4)));
+    $patient_id = 'PT-' . strtoupper(bin2hex(random_bytes(4)));
     $_SESSION['dashboard_patients'][$patient_id] = [
       'id'                 => $patient_id,
       'name'               => $values['name'],

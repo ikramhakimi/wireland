@@ -7,16 +7,16 @@ $page_description = '';
 $page_current     = 'home';
 
 component('navbar');
-section('home-hero');
-section('home-problems');
-section('home-services-2');
+section('home-hero-3');
 section('how-it-works');
-section('home-life-results');
-section('home-life-testimonial');
-section('home-life-team');
-section('home-life-evidence');
 section('home-shop', ['store_products' => $store_products]);
-section('home-faq');
+section('home-life-results');
+section('home-hair-cycle', [
+  'headline_alignment' => 'center',
+]);
+section('home-doctors');
+
+section('home-faq-featured');
 section('footer');
 
 component('button-whatsapp');

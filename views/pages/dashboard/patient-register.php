@@ -43,7 +43,7 @@ $cancel_button = [
   <header class="section-header">
     <h1 id="register-patient-title" class="section-title text-3xl font-medium color-strong">Register Patient</h1>
     <p class="section-description mt-2 text-sm color-muted">
-      Demo only. Use fictional details. Records are kept for this browser session.
+      Add the patient’s details to create their record.
     </p>
   </header>
   <form action="<?= e(asset_url('dashboard/patient-register/')); ?>" method="post"

@@ -24,13 +24,13 @@ $current_label = $config['states'][$current]['label'] ?? '';
     hover:bg-zinc-800">
     <span class="preview-switcher-dot size-2 rounded-full bg-emerald-400" aria-hidden="true"></span>
     <span class="preview-switcher-label">
-      <span class="text-zinc-400">Preview:</span> <?= e($current_label); ?>
+      <span class="color-muted">Preview:</span> <?= e($current_label); ?>
     </span>
-    <?php svg('arrow-down-s-line', 'size-4 text-zinc-400 rotate-180 transition-transform group-open:rotate-0'); ?>
+    <?php svg('arrow-down-s-line', 'size-4 color-muted rotate-180 transition-transform group-open:rotate-0'); ?>
   </summary>
   <div class="preview-switcher-panel absolute bottom-full left-0 w-64 max-w-[calc(100vw-2rem)] mb-2 p-1.5
     rounded-2xl bg-zinc-900 shadow-xl ring-1 ring-white/10">
-    <p class="preview-switcher-title px-2.5 pt-1.5 pb-2 text-xs text-zinc-400">
+    <p class="preview-switcher-title px-2.5 pt-1.5 pb-2 text-xs color-muted">
       Prototype · <?= e($config['title'] ?? 'Page state'); ?>
     </p>
     <ul class="preview-switcher-list grid gap-0.5" role="list">
@@ -44,7 +44,7 @@ $current_label = $config['states'][$current]['label'] ?? '';
             <span class="preview-switcher-text">
               <span class="block text-sm font-medium color-invert-strong"><?= e($state['label']); ?></span>
               <?php if (($state['text'] ?? '') !== ''): ?>
-                <span class="block text-xs text-zinc-400"><?= e($state['text']); ?></span>
+                <span class="block text-xs color-muted"><?= e($state['text']); ?></span>
               <?php endif; ?>
             </span>
             <?php if ($is_current): ?>

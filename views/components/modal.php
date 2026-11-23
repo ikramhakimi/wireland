@@ -22,8 +22,8 @@ if ($id === '' || $title === '') {
 ?>
 <dialog id="<?= e($id); ?>" aria-labelledby="<?= e($id); ?>-title"
   <?php if ($description !== ''): ?>aria-describedby="<?= e($id); ?>-description"<?php endif; ?>
-  class="modal fixed inset-0 w-[calc(100%-2rem)] max-w-lg max-h-[calc(100dvh-2rem)] m-auto p-0 rounded-lg border-0 bg-white text-zinc-600 overflow-hidden
-    backdrop:bg-zinc-800/30
+  class="modal fixed inset-0 w-[calc(100%-2rem)] max-w-lg max-h-[calc(100dvh-2rem)] m-auto p-0 rounded-lg border-0 bg-white color-default overflow-hidden
+    backdrop:bg-zinc-950/50 backdrop:backdrop-blur-xs
     js-component-modal">
   <div class="modal-panel flex flex-col max-h-[calc(100dvh-2rem)]">
     <header class="modal-header flex shrink-0 items-start justify-between gap-4 p-5">

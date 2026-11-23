@@ -3,7 +3,7 @@
 /**
  * Section: Home FAQ (featured)
  * Purpose: Answers the biggest doubt before the assessment, then the rest of the questions by topic.
- * Structure: Headline, featured question card (answer, list-icon facts, Start Assessment), segmented tabs
+ * Structure: Headline, featured question card (answer, list-icon facts, Start Assessment), pill tabs
  *            of collapsible questions split by dashed dividers, then a WhatsApp link.
  * Data: Static FAQ items below; each item's group matches a tab key, $faq_featured_key picks the card.
  *       Optional: $headline_alignment ('left' | 'center', default 'center').
@@ -51,6 +51,18 @@ $faq_items = [
     'question' => 'How soon will I hear back?',
     'answer'   => 'Your doctor replies within 24 hours. They may message you first if they need more detail.',
   ],
+  'questions' => [
+    'group'    => 'assessment',
+    'question' => 'What will the assessment ask about?',
+    'answer'   => 'Where you are noticing changes, how long it has been happening, your health history and any '
+      . 'treatments you have tried. Answer as fully as you can so your doctor has a clear picture.',
+  ],
+  'privacy' => [
+    'group'    => 'assessment',
+    'question' => 'Who sees my answers?',
+    'answer'   => 'Your answers are reviewed by the doctor handling your assessment and used only to '
+      . 'recommend your care.',
+  ],
   'products' => [
     'group'    => 'products',
     'question' => 'Do I need an assessment to buy products?',
@@ -68,11 +80,41 @@ $faq_items = [
     'question' => 'How is my order delivered?',
     'answer'   => 'Free delivery in 1–2 working days, in discreet, unmarked packaging.',
   ],
+  'difference' => [
+    'group'    => 'products',
+    'question' => 'What is the difference between everyday care and prescription treatments?',
+    'answer'   => 'Everyday care, such as shampoos and scalp serums, supports a healthy scalp. Prescription '
+      . 'treatments target specific causes of hair loss and need a doctor’s review first.',
+  ],
+  'combine' => [
+    'group'    => 'products',
+    'question' => 'Can I use more than one product at a time?',
+    'answer'   => 'Often, yes. If you are using a prescription treatment, check with your doctor before adding '
+      . 'anything new to your routine.',
+  ],
   'results' => [
     'group'    => 'results',
     'question' => 'When might I notice results?',
     'answer'   => 'Hair grows in cycles, so most treatments take several months before changes show. '
       . 'Results vary from person to person.',
+  ],
+  'suitability' => [
+    'group'    => 'results',
+    'question' => 'Will treatment work for me?',
+    'answer'   => 'It depends on the cause of your hair loss, how long it has been happening and your health. '
+      . 'Your doctor will explain what to expect for you before you decide.',
+  ],
+  'shedding' => [
+    'group'    => 'results',
+    'question' => 'Is it normal to shed more when I start treatment?',
+    'answer'   => 'Some people notice extra shedding in the first few weeks of certain treatments. If you are '
+      . 'unsure about a change, message your doctor.',
+  ],
+  'stopping' => [
+    'group'    => 'results',
+    'question' => 'What happens if I stop treatment?',
+    'answer'   => 'With some treatments, results may fade over time after stopping. Talk to your doctor before '
+      . 'you stop or change anything.',
   ],
 ];
 
@@ -138,12 +180,12 @@ foreach ($faq_groups as $group_key => $group_label) {
         'id'      => 'home-faq-topics',
         'label'   => 'More questions by topic',
         'items'   => $faq_tabs,
-        'variant' => 'segmented',
+        'variant' => 'pill',
       ]); ?>
     </div>
     <p class="faq-ask mt-10 text-center text-sm color-muted">
       Still have a question?
-      <a class="faq-ask-link inline-block py-2.5 font-medium color-strong underline underline-offset-4"
+      <a class="faq-ask-link link inline-block py-2.5 font-medium"
         href="<?= e($faq_whatsapp_href); ?>">Ask on WhatsApp</a>
     </p>
   </div>

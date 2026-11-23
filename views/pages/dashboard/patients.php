@@ -26,7 +26,7 @@ $page_header = [
 ?>
   <?php component('dashboard/header', $page_header); ?>
   <?php if ($registered): ?>
-    <p role="status" class="section-status mt-4 text-sm color-strong">Patient registered for this demo session.</p>
+    <p role="status" class="section-status mt-4 text-sm color-strong">Patient registered.</p>
   <?php endif; ?>
 
   <div class="report-cards grid gap-3 mt-10">
@@ -37,7 +37,7 @@ $page_header = [
   <?php component('drawer', [
     'id'          => 'preview-' . $patient['id'],
     'title'       => $patient['name'],
-    'description' => $patient['id'] . ' · Demo patient preview',
+    'description' => $patient['id'],
     'content'     => static function () use ($patient): void {
       component('dashboard/patient-summary', ['patient' => $patient]);
     },

@@ -96,7 +96,7 @@ function treatment_page_related(array $ids, array $treatments): array
       'title'   => $rows[$id]['name'],
       'pill'    => $rows[$id]['type'],
       'summary' => $rows[$id]['summary'],
-      'href'    => '#',
+      'href'    => asset_url('treatment-2/?id=' . rawurlencode($id)),
     ];
   }
 

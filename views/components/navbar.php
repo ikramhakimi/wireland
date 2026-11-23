@@ -124,8 +124,8 @@ $cart_href = $cart_href ?? '';
 >
   <button
     type="button"
-    class="absolute inset-0 cursor-pointer bg-zinc-950/50 opacity-0 transition-opacity duration-200 ease-out
-      motion-reduce:transition-none js-component-navbar-drawer-backdrop"
+    class="absolute inset-0 cursor-pointer bg-zinc-950/50 backdrop-blur-xs opacity-0 transition-opacity
+      duration-200 ease-out motion-reduce:transition-none js-component-navbar-drawer-backdrop"
     aria-label="<?= e(t('site.navbar.close_menu')); ?>"
     tabindex="-1"
     data-drawer-close

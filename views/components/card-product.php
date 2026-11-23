@@ -5,7 +5,8 @@
  * Purpose: Product summary card for carousels and grids, matching the home-lifestyle product cards.
  * Structure: Image, optional category pill, title link, price. The title link stretches over the whole card,
  *            so the card has one link and one tab stop. Any future control inside the card needs `relative z-10`.
- * Data: name, href, image (asset path; omit to show the placeholder icon), pill, price (number), base_price (number,
+ * Data: name, href, image (asset path; omit to show the placeholder icon),
+ *       icon (svg() name shown in place of the placeholder when there is no image), pill, price (number), base_price (number,
  *       shown struck through when higher than price), price_label (e.g. 'From'),
  *       align ('left' | 'center', default 'left').
  *       Optional cart (['product_id' => string, 'token' => string]): adds an "Add to Cart" form over the image,
@@ -14,6 +15,7 @@
 $name        = $name ?? '';
 $href        = $href ?? '';
 $image       = $image ?? '';
+$icon        = $icon ?? '';
 $pill        = $pill ?? '';
 $price       = (float) ($price ?? 0);
 $base_price  = (float) ($base_price ?? 0);
@@ -53,7 +55,7 @@ $money       = static fn (float $amount): string => 'RM ' . number_format($amoun
           group-hover:scale-[1.03]
           motion-reduce:transition-none motion-reduce:group-hover:scale-100">
     <?php else: ?>
-      <?php svg('image-line', 'product-image-placeholder size-6'); ?>
+      <?php svg($icon !== '' ? $icon : 'image-line', 'product-image-placeholder size-6'); ?>
     <?php endif; ?>
     <?php if ($cart !== null): ?>
       <form method="post" class="product-cart absolute inset-x-3 bottom-3 z-10 flex justify-center
@@ -71,7 +73,7 @@ $money       = static fn (float $amount): string => 'RM ' . number_format($amoun
   </div>
   <div class="product-brief flex-1 flex flex-col py-4 <?= $brief_pad; ?>">
     <?php if ($pill !== ''): ?>
-      <p class="product-pill text-xs leading-4 mb-1">
+      <p class="product-pill text-xs color-muted leading-4 mb-1">
         <?= e($pill); ?>
       </p>
     <?php endif; ?>
@@ -89,7 +91,7 @@ $money       = static fn (float $amount): string => 'RM ' . number_format($amoun
         <?= e($money($price)); ?>
       </span>
       <?php if ($on_sale): ?>
-        <span class="product-price-original text-xs line-through decoration-zinc-400">
+        <span class="product-price-original color-muted text-xs line-through decoration-zinc-400">
           <span class="sr-only">Regular price</span>
           <?= e($money($base_price)); ?>
         </span>

@@ -63,7 +63,7 @@ $page_breadcrumb = $page_breadcrumb ?? (($page_current ?? '') === 'dashboard'
   <script src="<?= asset_url('assets/js/sales-chart.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/sales-chart.js'); ?>" defer></script>
   <script src="<?= asset_url('assets/js/product-spotlight.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/product-spotlight.js'); ?>" defer></script>
 </head>
-<body class="dashboard-body min-h-screen font-sans text-sm bg-zinc-100 text-zinc-600 tracking-tight">
+<body class="dashboard-body min-h-screen font-sans text-sm bg-zinc-100 color-default tracking-tight">
   <a href="#dashboard-content" class="dashboard-skip sr-only
     focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:w-auto focus:h-auto focus:p-3 focus:bg-white focus:color-strong focus:not-sr-only">Skip to content</a>
   <div class="dashboard-shell min-h-screen">

@@ -53,7 +53,7 @@ $preview_button = [
   'disabled' => true,
 ];
 $clear_button = [
-  'label'   => 'Clear Demo',
+  'label'   => 'Clear',
   'element' => 'button',
   'type'    => 'reset',
   'color'   => 'secondary',
@@ -72,11 +72,10 @@ $review_toggle = [
   </div>
   <div id="<?= e($reference); ?>-review-content" hidden class="review-content grid gap-5 pt-3 pb-5">
     <p class="review-question text-sm leading-relaxed text-pretty"><?= e($question); ?></p>
-    <p id="<?= e($reference); ?>-notice" class="review-notice text-xs leading-relaxed text-zinc-500">
-      Demo only. Responses appear on this page and disappear when you reload. Nothing is sent or saved.
-      Use sample details.
+    <p id="<?= e($reference); ?>-notice" class="review-notice text-xs leading-relaxed color-muted">
+      Preview your response here before it reaches the patient.
     </p>
-    <noscript class="review-notice text-sm">Enable JavaScript to preview a demo response.</noscript>
+    <noscript class="review-notice text-sm">Enable JavaScript to preview your response.</noscript>
     <form method="dialog" aria-label="Review <?= e($label); ?>" aria-describedby="<?= e($reference); ?>-notice"
       class="review-form grid gap-5 js-component-workflow-review">
       <div class="review-fields grid min-w-0 gap-5">
@@ -88,11 +87,11 @@ $review_toggle = [
         <?php component('button', $preview_button); ?>
         <?php component('button', $clear_button); ?>
       </div>
-      <p role="status" class="review-status text-sm text-zinc-500 js-component-workflow-status"></p>
-      <section hidden aria-label="Demo response preview"
+      <p role="status" class="review-status text-sm color-muted js-component-workflow-status"></p>
+      <section hidden aria-label="Response preview"
         class="review-preview min-w-0 js-component-workflow-preview">
-        <h4 class="review-title text-base font-medium color-strong">Demo Response Preview</h4>
-        <p class="review-meta mt-2 text-xs text-zinc-500 js-component-workflow-meta"></p>
+        <h4 class="review-title text-base font-medium color-strong">Response Preview</h4>
+        <p class="review-meta mt-2 text-xs color-muted js-component-workflow-meta"></p>
         <p class="review-response mt-3 text-sm leading-relaxed whitespace-pre-wrap wrap-anywhere js-component-workflow-response"></p>
         <p hidden class="review-value mt-3 text-sm whitespace-pre-wrap wrap-anywhere js-component-workflow-value"></p>
       </section>

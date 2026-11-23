@@ -33,7 +33,7 @@ $summary_items = [
 <dl class="patient-details grid gap-6">
   <?php foreach ($summary_items as $item): ?>
     <div class="patient-detail min-w-0">
-      <dt class="patient-label text-xs text-zinc-500"><?= e($item['label']); ?></dt>
+      <dt class="patient-label text-xs color-muted"><?= e($item['label']); ?></dt>
       <dd class="patient-value mt-1 text-sm leading-relaxed color-strong wrap-anywhere">
         <?= e($item['value']); ?>
       </dd>

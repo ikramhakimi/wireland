@@ -3,11 +3,9 @@
 /**
  * Component: Footer Alt
  * Purpose: Displays clinic details and navigation on the default body background.
- * Structure: Optional assessment banner; optional 50:50 split of popular products (left) and menu (right);
- *            copyright bar always shown.
- * Data: show_banner, show_products, show_menu (bool, default true). Popular products come from the catalogue.
+ * Structure: Optional 50:50 split of popular products (left) and menu (right); copyright bar always shown.
+ * Data: show_products, show_menu (bool, default true). Popular products come from the catalogue.
  */
-$show_banner   = $show_banner ?? true;
 $show_products = $show_products ?? true;
 $show_menu     = $show_menu ?? true;
 $popular_limit = 3;
@@ -16,44 +14,9 @@ $popular_products = $show_products ? array_slice(array_values(array_filter(
   static fn (array $product): bool => ($product['status'] ?? '') === 'Active',
 )), 0, $popular_limit) : [];
 $show_products = $popular_products !== [];
-$consultation_button = [
-  'label' => t('site.footer.banner.cta'),
-  'href'  => asset_url('assessment'),
-  'size'  => 'large',
-  'icon'  => 'arrow-right-line',
-];
 ?>
 <section class="section footer footer-alt py-10 text-sm">
   <div class="footer-container container grid gap-12 md:gap-20">
-    <?php if ($show_banner): ?>
-      <div class="footer-banner">
-        <div class="consultation consultation-banner relative rounded-xl bg-white overflow-hidden sm:h-100"
-          style="
-            background-image: url('assets/images/mockup-hand-hold-iphone-002-transparent.png');
-            background-size: cover;
-            background-position: top center;
-            background-repeat: no-repeat;">
-          <div class="consultation-overlay absolute inset-0 bg-linear-to-r from-zinc-200 via-transparent to-zinc-200
-            sm:p-10">
-            <div class="consultation-content flex justify-between">
-              <div class="consultation-brief max-w-80">
-                <h3 class="consultation-title text-title-md font-medium text-pretty color-strong">
-                  <?= e(t('site.footer.banner.title')); ?>
-                </h3>
-                <p class="consultation-description mt-4">
-                  <?= e(t('site.footer.banner.description')); ?>
-                </p>
-              </div>
-              <div class="consultation-actions">
-                <?php component('button', $consultation_button); ?>
-                <div class="consultation-note mt-2 text-center text-xs"><?= e(t('site.footer.banner.note')); ?></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <?php endif; ?>
-
     <?php if ($show_products || $show_menu): ?>
       <div class="footer-split grid gap-12 md:grid-cols-2 md:gap-10">
         <?php if ($show_products): ?>

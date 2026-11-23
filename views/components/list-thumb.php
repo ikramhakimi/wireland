@@ -38,15 +38,13 @@ $list_columns_class = $columns === 2 ? 'gap-x-5 sm:grid-cols-2' : '';
       <li>
         <a href="<?= e($item['href'] ?? ''); ?>" class="list-thumb-row group flex items-center gap-3 py-4
           border-b border-dashed border-zinc-200">
-          <span class="list-thumb-image relative flex-center shrink-0 size-16 overflow-hidden rounded-lg
-            bg-zinc-200 color-muted" aria-hidden="true">
-            <?php if (!empty($item['image'])): ?>
-              <img src="<?= e(asset_url($item['image'])); ?>" alt="" width="64" height="64" loading="lazy"
-                class="list-thumb-image-source absolute inset-0 size-full object-cover">
-            <?php else: ?>
-              <?php svg('image-line', 'product-image-placeholder size-5'); ?>
-            <?php endif; ?>
-          </span>
+          <?php component('thumbnail', [
+            'type'  => 'product',
+            'size'  => 'md',
+            'src'   => $item['image'] ?? '',
+            'hover' => true,
+            'class' => 'list-thumb-image shrink-0',
+          ]); ?>
           <span class="list-thumb-info flex flex-1 flex-col gap-0.5 min-w-0">
             <span class="list-thumb-name text-sm font-semibold color-strong underline-offset-4
               group-hover:underline"><?= e($item['title'] ?? ''); ?></span>

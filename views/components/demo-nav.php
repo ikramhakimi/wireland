@@ -24,7 +24,7 @@ $demo_next = $demo_index !== false && $demo_index < count($demo_pages) - 1 ? $de
 <div class="demo-nav js-component-demo-nav" data-prev="<?= e($demo_prev ? $demo_href($demo_prev) : ''); ?>"
   data-next="<?= e($demo_next ? $demo_href($demo_next) : ''); ?>">
   <button type="button" aria-haspopup="dialog" aria-label="Open demo pages (\\)"
-    class="demo-nav-toggle fixed bottom-4 left-4 z-[60] flex-center size-12 bg-zinc-900 text-white rounded-full
+    class="demo-nav-toggle fixed bottom-4 left-4 z-[60] flex-center size-12 bg-zinc-900 text-white rounded-lg
       shadow-lg hover:bg-zinc-700 focus-visible:outline-2 focus-visible:outline-offset-2
       focus-visible:outline-blue-800 js-component-demo-nav-open">
     <?php svg('menu-line', 'size-5'); ?>
@@ -32,9 +32,10 @@ $demo_next = $demo_index !== false && $demo_index < count($demo_pages) - 1 ? $de
 
   <dialog aria-labelledby="demo-nav-title"
     class="demo-nav-drawer fixed inset-y-0 left-0 flex-col w-80 max-w-[85vw] h-full max-h-none m-0 p-0 bg-white
-      text-sm text-zinc-600 shadow-xl open:flex backdrop:bg-zinc-900/30 js-component-demo-nav-drawer">
+      text-sm color-default shadow-xl open:flex backdrop:bg-zinc-950/50 backdrop:backdrop-blur-xs
+      js-component-demo-nav-drawer">
     <div class="demo-nav-header flex items-center justify-between gap-2 px-5 py-4 border-b border-zinc-200">
-      <p id="demo-nav-title" class="demo-nav-title font-medium color-strong">Demo pages</p>
+      <p id="demo-nav-title" class="demo-nav-title font-medium color-strong">UI Design</p>
       <button type="button" aria-label="Close demo pages"
         class="demo-nav-close flex-center size-9 rounded-full hover:bg-zinc-100 focus-visible:outline-2
           focus-visible:outline-blue-800 js-component-demo-nav-close">
@@ -47,12 +48,12 @@ $demo_next = $demo_index !== false && $demo_index < count($demo_pages) - 1 ? $de
         <p class="demo-nav-group px-2 mt-4 mb-1 first:mt-0 text-xs font-medium uppercase color-muted">
           <?= e($group['label']); ?>
         </p>
-        <ul class="demo-nav-list grid">
+        <ul class="demo-nav-list grid border-b border-zinc-200">
           <?php foreach ($group['pages'] as $page): ?>
             <?php $is_current = $page['path'] === $demo_current; ?>
             <li>
               <a href="<?= e($demo_href($page)); ?>" <?= $is_current ? 'aria-current="page"' : ''; ?>
-                class="demo-nav-link block px-2 py-1.5 rounded-md hover:bg-zinc-100 focus-visible:outline-2
+                class="demo-nav-link capitalize block px-3 py-1 rounded-md hover:bg-zinc-100 focus-visible:outline-2
                   focus-visible:outline-blue-800 aria-[current=page]:bg-zinc-900
                   aria-[current=page]:text-white">
                 <?= e($page['label']); ?>

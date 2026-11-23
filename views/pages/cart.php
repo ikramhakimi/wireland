@@ -186,7 +186,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
 
                   <ul class="cart-item-badges flex flex-wrap gap-1 mt-3" aria-label="Product details">
                     <?php foreach ([$item['format'], $item['size']] as $badge): ?>
-                      <li class="badge cart-item-badge inline-flex px-2 py-0.5 text-xs font-medium rounded-md border border-zinc-300 text-zinc-700">
+                      <li class="badge cart-item-badge inline-flex px-2 py-0.5 text-xs font-medium rounded-md border border-zinc-300 color-default">
                         <?= e($badge); ?>
                       </li>
                     <?php endforeach; ?>
@@ -263,5 +263,5 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
     <?php component('carousel', $related_carousel); ?>
   </section>
 <?php endif; ?>
-<?php section('footer', ['show_banner' => false, 'show_products' => false, 'show_menu' => false]); ?>
+<?php section('footer', ['show_products' => false, 'show_menu' => false]); ?>
 <?php component('preview-switcher', ['group' => 'cart']); ?>

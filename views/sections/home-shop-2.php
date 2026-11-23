@@ -1,5 +1,8 @@
 <?php
 // Optional: $headline_alignment ('left' | 'center', default 'center').
+// Optional: $store_token (string, from includes/store.php). When set, buyable product and bundle cards
+//           show a hover "Add to Cart" button.
+$store_token        = $store_token ?? '';
 $headline           = [
   'topic'     => 'Our Products',
   'title'     => 'Shop everyday hair care on its own or save more with a routine set',
@@ -28,25 +31,22 @@ $carousels = [
 ];
 $testimonials       = [
   [
-    'quote'    => 'For the first time, I understood my options. No guesswork, just a routine I could stick to.',
-    'name'     => 'Daniel L.',
-    'initials' => 'DL',
-    'rating'   => 5,
-    'detail'   => 'A simpler daily routine',
+    'quote'  => 'For the first time, I understood my options. No guesswork, just a routine I could stick to.',
+    'name'   => 'Daniel L.',
+    'rating' => 5,
+    'detail' => 'A simpler daily routine',
   ],
   [
-    'quote'    => 'I had questions I’d put off asking for years. Having someone listen made taking the first step easier.',
-    'name'     => 'Amir H.',
-    'initials' => 'AH',
-    'rating'   => 5,
-    'detail'   => 'Support from the first conversation',
+    'quote'  => 'I had questions I’d put off asking for years. Having someone listen made taking the first step easier.',
+    'name'   => 'Amir H.',
+    'rating' => 5,
+    'detail' => 'Support from the first conversation',
   ],
   [
-    'quote'    => 'Clear advice, a straightforward plan, and space to ask questions. That made all the difference for me.',
-    'name'     => 'Marcus T.',
-    'initials' => 'MT',
-    'rating'   => 5,
-    'detail'   => 'Clarity at every step',
+    'quote'  => 'Clear advice, a straightforward plan, and space to ask questions. That made all the difference for me.',
+    'name'   => 'Marcus T.',
+    'rating' => 5,
+    'detail' => 'Clarity at every step',
   ],
 ];
 $assessment_answers = [
@@ -55,11 +55,11 @@ $assessment_answers = [
     'reply' => 'Curious is a good place to start. Let’s help you understand your hair and your options.',
   ],
   [
-    'label' => 'In the last month',
+    'label' => 'Within the last month',
     'reply' => 'You’ve noticed a recent change. Tell us a little more so a clinician can guide your next step.',
   ],
   [
-    'label' => 'In the last 6–12 months',
+    'label' => '1–12 months ago',
     'reply' => 'Let’s take a closer look. A clinician can review what’s changed and discuss suitable options.',
   ],
   [
@@ -83,27 +83,25 @@ $basic_products = array_slice(array_values(array_filter(
   static fn (array $product): bool => ($product['requirement'] ?? '') === 'Basic'
     && ($product['product_type'] ?? 'single') !== 'combo',
 )), 0, 8);
-// Active combo products from the catalogue. Icons are presentation-only, keyed by product id.
-$bundle_icons = [
-  'PRD-019' => 'drop-line',
-  'PRD-021' => 'leaf-line',
-  'PRD-022' => 'seedling-line',
-  'PRD-023' => 'stack-line',
-];
+// Active combo products from the catalogue.
 $bundles = array_values(array_filter(
   $catalogue_products,
   static fn (array $product): bool => ($product['product_type'] ?? 'single') === 'combo',
 ));
 usort($bundles, static fn (array $a, array $b): int => count($a['combo_items']) <=> count($b['combo_items']));
+// Add to Cart config for a card, or null when there is no store token or the product cannot be bought.
+$cart_for = static fn (array $product): ?array => $store_token !== '' && store_can_buy($product)
+  ? ['product_id' => $product['id'], 'token' => $store_token]
+  : null;
 // Maps a combo product to card-product data; the pill carries the saving and the item count.
 $bundle_card = static fn (array $bundle): array => [
   'name'       => $bundle['name'],
   'href'       => asset_url('product/?id=' . rawurlencode($bundle['id'])),
-  'icon'       => $bundle_icons[$bundle['id']] ?? '',
   'pill'       => 'Save RM ' . number_format($bundle['base_price'] - $bundle['price']) . ' · '
     . count($bundle['combo_items']) . ' items',
   'price'      => $bundle['price'],
   'base_price' => $bundle['base_price'],
+  'cart'       => $cart_for($bundle),
 ];
 // Maps a catalogue product to card-product data.
 $product_card = static fn (array $product, string $pill): array => [
@@ -113,12 +111,33 @@ $product_card = static fn (array $product, string $pill): array => [
   'description' => $product['short_description'] ?? $product['description'] ?? '',
   'price'       => $product['price'],
   'base_price'  => $product['base_price'] ?? 0,
+  'cart'        => $cart_for($product),
+];
+// Support block. Cards are icon placeholders until imagery exists.
+$support_cards    = [
+  ['icon' => 'shield-check-line', 'label' => 'Licensed clinicians'],
+  ['icon' => 'dossier-line',      'label' => 'Personalised plan'],
+  ['icon' => 'whatsapp-line',     'label' => 'Messaging access'],
+  ['icon' => 'box-3-line',        'label' => 'Delivery'],
+];
+$support_benefits = [
+  'Prescribed by Malaysian-registered doctors',
+  'New growth often shows within 4–8 months',
+  'A personalised treatment plan',
+  'Message your doctor, with replies within 24 hours',
+  'Fast delivery across Malaysia',
 ];
 $assessment_button = [
   'label'   => 'Start Free Hair Assessment',
   'href'    => asset_url('assessment'),
   'color'   => 'secondary',
   'icon'    => 'arrow-right-line',
+];
+$assessment_avatar = [
+  'type'  => 'avatar',
+  'size'  => 'xs',
+  'src'   => 'assets/images/avatar-dr-rujhan.webp',
+  'class' => 'assessment-avatar shrink-0',
 ];
 ?>
 <section class="section">
@@ -160,8 +179,7 @@ $assessment_button = [
           <div class="assessment-panel assessment-question-panel col-start-1 row-start-1 min-w-0
             js-component-assessment-question">
             <div class="assessment-speaker flex items-center gap-2 mb-2 text-xs color-invert-muted">
-              <img src="assets/images/avatar-dr-rujhan.webp" alt="" width="32" height="32"
-                class="assessment-avatar shrink-0 size-8 rounded-full object-cover">
+              <?php component('thumbnail', $assessment_avatar); ?>
               <span class="assessment-speaker-name">Dr Rujhan</span>
             </div>
             <p class="assessment-question w-fit max-w-9/10 mb-3 px-4 py-3 text-sm color-invert-default rounded-tl-sm rounded-tr-xl rounded-b-xl border border-white/16 bg-zinc-700/30 shadow-sm backdrop-blur-xs backdrop-saturate-115 wrap-anywhere">
@@ -182,8 +200,7 @@ $assessment_button = [
           <div class="assessment-panel assessment-answer-panel col-start-1 row-start-1 flex flex-col min-w-0 invisible
             js-component-assessment-answer" inert aria-hidden="true">
             <div class="assessment-speaker flex items-center gap-2 mb-2 text-xs color-invert-muted">
-              <img src="assets/images/avatar-dr-rujhan.webp" alt="" width="32" height="32"
-                class="assessment-avatar shrink-0 size-8 rounded-full object-cover">
+              <?php component('thumbnail', $assessment_avatar); ?>
               <span class="assessment-speaker-name">Dr Rujhan</span>
             </div>
             <p class="assessment-question w-fit max-w-9/10 mb-3 px-4 py-3 text-sm color-invert-default rounded-tl-sm rounded-tr-xl rounded-b-xl border border-white/16 bg-zinc-700/30 shadow-sm backdrop-blur-xs backdrop-saturate-115 wrap-anywhere">
@@ -193,8 +210,7 @@ $assessment_button = [
               js-component-assessment-selection">In the last 6–12 months</p>
             <div class="assessment-reply-speaker mt-5">
               <div class="assessment-speaker flex items-center gap-2 mb-2 text-xs color-invert-muted">
-                <img src="assets/images/avatar-dr-rujhan.webp" alt="" width="32" height="32"
-                  class="assessment-avatar shrink-0 size-8 rounded-full object-cover">
+                <?php component('thumbnail', $assessment_avatar); ?>
                 <span class="assessment-speaker-name">Dr Rujhan</span>
               </div>
             </div>
@@ -237,4 +253,29 @@ $assessment_button = [
       }
     },
   ])); ?>
+
+  <div class="section-support container">
+    <ul class="support-cards grid grid-cols-4 gap-2 lg:px-40 mt-20">
+      <?php foreach ($support_cards as $card): ?>
+        <li class="support-card flex-center aspect-3/4 rounded-lg bg-zinc-200 color-muted">
+          <?php svg($card['icon'], 'support-card-icon size-6'); ?>
+          <span class="sr-only"><?= e($card['label']); ?></span>
+        </li>
+      <?php endforeach; ?>
+    </ul>
+    <div class="support-content max-w-xl mx-auto mt-10">
+      <h3 class="headline-title font-semibold text-center color-strong text-2xl sm:text-4xl text-pretty">
+        Everything that comes with your treatment
+      </h3>
+      <p class="support-intro mt-5 text-center">Along with medication, if eligible, you get:</p>
+      <ul class="support-benefits space-y-2 mt-5 text-sm">
+        <?php foreach ($support_benefits as $benefit): ?>
+          <li class="support-benefit flex-split px-6 py-4 rounded-xl bg-zinc-100">
+            <span><?= e($benefit); ?></span>
+            <?php svg('checkbox-circle-line', 'size-5 color-positive'); ?>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+    </div>
+  </div>
 </section>

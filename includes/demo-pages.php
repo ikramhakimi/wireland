@@ -8,29 +8,26 @@
 
 return [
   [
-    'label' => 'Public',
+    'label' => 'Consumer',
     'pages' => [
       ['path' => 'home',             'label' => 'Home'],
+      ['path' => 'home-1',           'label' => 'Home 1'],
+      ['path' => 'home-2',           'label' => 'Home 2'],
+      ['path' => 'home-3',           'label' => 'Home 3'],
+      ['path' => 'home-4',           'label' => 'Home 4'],
+      ['path' => 'home-sections',    'label' => 'Home sections'],
       ['path' => 'shop',             'label' => 'Shop'],
+      ['path' => 'shop/hair-care',   'label' => 'Shop category'],
       ['path' => 'shop-routine',     'label' => 'Shop Routine'],
       ['path' => 'product',          'label' => 'Product', 'query' => 'id=PRD-001'],
       ['path' => 'product-2',        'label' => 'Product 2', 'query' => 'id=PRD-001'],
       ['path' => 'product-3',        'label' => 'Product 3', 'query' => 'id=PRD-001'],
       ['path' => 'treatment-1',      'label' => 'Treatment'],
       ['path' => 'treatment-2',      'label' => 'Treatment 2'],
+      ['path' => 'treatments',       'label' => 'Treatments'],
       ['path' => 'cart',             'label' => 'Cart'],
       ['path' => 'checkout',         'label' => 'Checkout'],
-    ],
-  ],
-  [
-    'label' => 'Home variants',
-    'pages' => [
-      ['path' => 'home-1',   'label' => 'Home 1'],
-      ['path' => 'home-2',   'label' => 'Home 2'],
-      ['path' => 'home-3',   'label' => 'Home 3'],
-      ['path' => 'home-4',   'label' => 'Home 4'],
-      ['path' => 'home-5',   'label' => 'Home 5'],
-      ['path' => 'home-alt', 'label' => 'Home alt'],
+      ['path' => 'order-received',   'label' => 'Order received'],
     ],
   ],
   [
@@ -73,7 +70,7 @@ return [
     ],
   ],
   [
-    'label' => 'Clinic dashboard',
+    'label' => 'Operations',
     'pages' => [
       ['path' => 'dashboard',                       'label' => 'Overview'],
       ['path' => 'dashboard/patients',              'label' => 'Patients'],
@@ -91,6 +88,7 @@ return [
       ['path' => 'dashboard/product-category-edit', 'label' => 'Edit category', 'query' => 'id=CAT-001'],
       ['path' => 'dashboard/treatments',            'label' => 'Treatments'],
       ['path' => 'dashboard/treatment-edit',        'label' => 'Edit treatment', 'query' => 'id=TRT-003'],
+      ['path' => 'dashboard/settings',              'label' => 'Settings'],
     ],
   ],
 ];

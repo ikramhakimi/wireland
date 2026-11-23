@@ -43,7 +43,7 @@
   <script src="<?= asset_url('assets/js/modal.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/modal.js'); ?>" defer></script>
   <script src="<?= asset_url('assets/js/gallery.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/gallery.js'); ?>" defer></script>
 </head>
-<body class="text-base text-zinc-600 tracking-[-2%]">
+<body class="text-base color-default tracking-[-2%]">
   <main>
     <?= $content ?? ''; ?>
   </main>

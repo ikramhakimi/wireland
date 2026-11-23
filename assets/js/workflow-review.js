@@ -34,7 +34,7 @@
       value.textContent = suggestedValue ? `Suggested value: ${suggestedValue}` : '';
       value.hidden = !suggestedValue;
       preview.hidden = false;
-      status.textContent = 'Demo response preview updated. Nothing has been sent or saved.';
+      status.textContent = 'Response preview updated.';
     });
 
     form.addEventListener('reset', () => {
@@ -43,7 +43,7 @@
       response.textContent = '';
       value.textContent = '';
       value.hidden = true;
-      status.textContent = 'Demo cleared.';
+      status.textContent = 'Response cleared.';
     });
   });
 })();

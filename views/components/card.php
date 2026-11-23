@@ -30,7 +30,7 @@ $class          = $class ?? '';
       <?php if ($header_number !== '' || $header_icon !== ''): ?>
         <span class="<?= $header_icon !== '' ? 'card-icon' : 'card-number'; ?> flex shrink-0 items-center justify-center size-12 font-medium bg-zinc-200 color-strong rounded-md">
           <?php if ($header_icon !== ''): ?>
-            <?php svg($header_icon, 'card-glyph size-6 text-zinc-500'); ?>
+            <?php svg($header_icon, 'card-glyph size-6 color-muted'); ?>
           <?php else: ?>
             <?= e($header_number); ?>
           <?php endif; ?>
@@ -39,7 +39,7 @@ $class          = $class ?? '';
       <?php endif; ?>
       <h3 class="card-title text-xl font-semibold color-strong"><?= e($title); ?></h3>
       <?php if ($description !== ''): ?>
-        <p class="card-description text-sm leading-relaxed text-pretty text-zinc-500"><?= e($description); ?></p>
+        <p class="card-description text-sm leading-relaxed text-pretty color-muted"><?= e($description); ?></p>
       <?php endif; ?>
       <?php if ($header_number !== '' || $header_icon !== ''): ?>
         </div>

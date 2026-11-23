@@ -3,22 +3,18 @@
 /**
  * Component: Card testimonial
  * Purpose: Single card that cycles through testimonials one at a time.
- * Structure: Header (optional eyebrow, quote mark), stacked slides (optional star rating, quote, avatar initials,
+ * Structure: Header (optional eyebrow, quote mark), stacked slides (optional star rating, quote, avatar thumbnail,
  *            name, detail), footer with dots, "01 / 03" count and prev/next buttons.
  *            Behaviour comes from the `.js-component-testimonial` script in assets/js/app.js.
- * Data: testimonials (array of quote, name, detail, optional rating 1–5, optional initials — derived from the
- *       first two words of name when absent), eyebrow (optional), label (carousel aria-label,
- *       default 'Testimonials'), class (extra root classes, layout only).
+ * Data: testimonials (array of quote, name, detail, optional rating 1–5),
+ *       eyebrow (optional), label (carousel aria-label, default 'Testimonials'),
+ *       class (extra root classes, layout only).
  */
 $testimonials = array_values($testimonials ?? []);
 $eyebrow      = $eyebrow ?? '';
 $label        = $label ?? 'Testimonials';
 $class        = $class ?? '';
 $total        = count($testimonials);
-$initials_of  = static fn (string $name): string => implode('', array_map(
-  static fn (string $part): string => strtoupper($part[0]),
-  array_slice(preg_split('/\s+/', trim($name), -1, PREG_SPLIT_NO_EMPTY), 0, 2),
-));
 
 if ($total === 0) {
   return;
@@ -31,25 +27,24 @@ if ($total === 0) {
     <?php if ($eyebrow !== ''): ?>
       <p class="card-eyebrow text-xs font-medium"><?= e($eyebrow); ?></p>
     <?php endif; ?>
-    <span class="testimonial-mark block h-7.5 ml-auto text-zinc-400">
+    <span class="testimonial-mark block h-7.5 ml-auto color-muted">
       <?php svg('double-quotes-l', 'testimonial-icon w-10 h-7.5'); ?>
     </span>
   </header>
   <div class="testimonial-slides grid flex-1 mt-10" aria-live="polite" aria-atomic="true">
     <?php foreach ($testimonials as $index => $testimonial): ?>
       <?php
-      $rating   = isset($testimonial['rating']) ? max(0, min(5, (int) $testimonial['rating'])) : null;
-      $initials = $testimonial['initials'] ?? $initials_of($testimonial['name'] ?? '');
+      $rating = isset($testimonial['rating']) ? max(0, min(5, (int) $testimonial['rating'])) : null;
       ?>
       <figure class="testimonial-slide col-start-1 row-start-1 flex flex-col m-0 <?= $index !== 0 ? 'invisible' : ''; ?>
         js-component-testimonial-slide" role="group" aria-roledescription="slide"
         aria-label="<?= $index + 1; ?> of <?= $total; ?>"
         aria-hidden="<?= $index !== 0 ? 'true' : 'false'; ?>" <?= $index !== 0 ? 'inert' : ''; ?>>
         <?php if ($rating !== null): ?>
-          <span class="testimonial-rating flex gap-0.5 mb-4 text-zinc-500" role="img"
+          <span class="testimonial-rating flex gap-0.5 mb-4 color-muted" role="img"
             aria-label="<?= $rating; ?> out of 5 stars">
             <?php for ($star = 1; $star <= 5; $star++): ?>
-              <?php svg('star-s-fill', $star <= $rating ? 'size-5' : 'size-5 text-zinc-400'); ?>
+              <?php svg('star-s-fill', $star <= $rating ? 'size-5' : 'size-5 color-muted'); ?>
             <?php endfor; ?>
           </span>
         <?php endif; ?>
@@ -57,8 +52,7 @@ if ($total === 0) {
           <?= e($testimonial['quote'] ?? ''); ?>
         </blockquote>
         <figcaption class="testimonial-author flex items-center gap-3 mt-auto">
-          <span class="testimonial-avatar grid shrink-0 place-items-center size-12 text-sm font-medium rounded-full border border-zinc-200 bg-zinc-100 color-default"
-            aria-hidden="true"><?= e($initials); ?></span>
+          <?php component('thumbnail', ['type' => 'avatar', 'size' => 'sm', 'class' => 'testimonial-avatar shrink-0']); ?>
           <div class="testimonial-identity">
             <p class="testimonial-name text-sm font-medium"><?= e($testimonial['name'] ?? ''); ?></p>
             <?php if (($testimonial['detail'] ?? '') !== ''): ?>

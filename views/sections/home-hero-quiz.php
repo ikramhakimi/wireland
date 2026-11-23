@@ -1,17 +1,23 @@
 <?php
 
-// Hero: three-question mini assessment (left) beside a live "starting kit" (right). The kit shows popular products
-// before any answer, switches to the concern's products after question one, and adds the doctor review after
-// question three. Without JavaScript every answer is a link into the full assessment (see home-c2.js).
-// Styling: Tailwind utilities and the shared button classes; no section CSS.
-// Data: $store_products and $store_token from includes/store.php, passed in by the page.
-$hc_product_url = static fn (string $id): string => asset_url('product/?id=' . rawurlencode($id));
+/**
+ * Section: Home hero quiz (three questions)
+ * Purpose: Three-question mini assessment (left) beside a live starting kit (right). Before any answer the kit
+ *          explains what happens next; after question one it shows the concern's products; after question three
+ *          the result adds the doctor step matching the goal. Without JavaScript every answer is a link into
+ *          the full assessment.
+ * Structure: Header, then a 5-column grid: question stage (3) and kit (2). Tiles, kit and summary come from
+ *            views/components/hero-quiz/. JS: assets/js/home-hero-quiz.js (hooks prefixed js-component-hc-).
+ * Data: $store_products and $store_token from includes/store.php, passed in by the page.
+ */
+$store_products = $store_products ?? [];
+$store_token    = $store_token ?? '';
 $hc_assessment  = static fn (array $query = []): string => asset_url('assessment/')
   . ($query !== [] ? '?' . http_build_query($query) : '');
-$hc_money       = static fn (float $amount): string => 'RM ' . number_format($amount, 2);
 $hc_pick        = static fn (string $id): ?array => isset($store_products[$id]) && store_can_buy($store_products[$id])
   ? $store_products[$id]
   : null;
+$hc_kit         = static fn (array $ids): array => array_values(array_filter(array_map($hc_pick, $ids)));
 
 $hc_concerns = [
   'receding' => [
@@ -52,17 +58,16 @@ $hc_concerns = [
   ],
 ];
 $hc_noticed = [
-  'recent'        => 'Less than 6 months',
-  'six-to-twelve' => '6 to 12 months',
-  'long'          => 'More than a year',
-  'unsure'        => 'I am not sure',
+  'recent'        => ['label' => 'Less than 6 months', 'icon' => 'progress-2-line'],
+  'six-to-twelve' => ['label' => '6 to 12 months',     'icon' => 'progress-4-line'],
+  'long'          => ['label' => 'More than a year',   'icon' => 'progress-8-line'],
+  'unsure'        => ['label' => 'I am not sure',      'icon' => 'question-line'],
 ];
 $hc_goals = [
-  'shop'   => 'Start with everyday care',
-  'doctor' => 'Talk to a doctor about treatment',
-  'unsure' => 'Not sure yet',
+  'shop'   => ['label' => 'Start with everyday care',         'icon' => 'shopping-bag-4-line'],
+  'doctor' => ['label' => 'Talk to a doctor about treatment', 'icon' => 'user-line'],
+  'unsure' => ['label' => 'Not sure yet',                     'icon' => 'compasses-2-line'],
 ];
-$hc_browse_href  = asset_url('shop/');
 $hc_doctor_steps = [
   'doctor' => [
     'title' => 'Next: a full assessment',
@@ -80,30 +85,37 @@ $hc_doctor_steps = [
     'facts' => false,
   ],
 ];
-$hc_noticed_icons = [
-  'recent'        => 'progress-2-line',
-  'six-to-twelve' => 'progress-4-line',
-  'long'          => 'progress-8-line',
-  'unsure'        => 'question-line',
-];
-$hc_goal_icons   = ['shop' => 'shopping-bag-4-line', 'doctor' => 'user-line', 'unsure' => 'compasses-2-line'];
-
-$hc_popular = ['PRD-001', 'PRD-004', 'PRD-019'];
-$hc_kit     = static fn (array $ids): array => array_values(array_filter(array_map($hc_pick, $ids)));
-$hc_kit_sum = static fn (array $items): float => array_sum(array_map(
-  static fn (array $item): float => (float) $item['price'],
-  $items,
-));
 $hc_focus = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700';
-$hc_tile  = 'hc-tile flex items-center gap-3 p-2.5 border border-transparent rounded-lg bg-white color-strong
-  hover:border-zinc-800 ' . $hc_focus . '
-  lg:flex-col lg:items-start lg:justify-between lg:gap-3 lg:p-3';
-$hc_link  = 'hc-link shrink-0 text-sm font-medium color-strong underline underline-offset-4 ' . $hc_focus;
 
-$kits = ['popular' => $hc_kit($hc_popular)];
+$kits = [];
 foreach ($hc_concerns as $key => $concern) {
   $kits[$key] = $hc_kit($concern['products']);
 }
+
+// Shown in the kit before any answer, so the first thing beside the quiz is the process, not a cart total.
+$hc_kit_config = [
+  'hook'        => 'hc',
+  'title'       => 'What happens next',
+  'kits'        => $kits,
+  'intro'       => [
+    [
+      'title' => 'Answer three quick questions',
+      'text'  => 'What you have noticed, for how long, and what you would like to do.',
+    ],
+    [
+      'title' => 'See a starting point',
+      'text'  => 'Everyday care matched to your answers. Nothing is added to your cart.',
+    ],
+    [
+      'title' => 'Talk to a doctor if you want',
+      'text'  => 'Take the free full assessment and get a reply within 24 hours.',
+    ],
+  ],
+  'browse_href' => asset_url('shop/'),
+  'cart_href'   => asset_url('cart/'),
+  'token'       => $store_token,
+  'class'       => 'lg:col-span-2',
+];
 ?>
 <section
   class="section hc-quiz group pt-10 pb-20 color-default
@@ -158,20 +170,15 @@ foreach ($hc_concerns as $key => $concern) {
           </legend>
           <div class="hc-tiles grid grid-cols-2 gap-3 mt-5 lg:flex-1 lg:grid-cols-3 lg:auto-rows-fr">
             <?php foreach ($hc_concerns as $key => $concern): ?>
-              <a href="<?= e($hc_assessment(['concern' => $key])); ?>"
-                class="<?= $hc_tile; ?> min-h-18 lg:min-h-24 js-component-hc-answer"
-                data-name="concern" data-value="<?= e($key); ?>" data-label="<?= e($concern['label']); ?>"
-                data-short="<?= e($concern['short']); ?>">
-                <span class="hc-tile-icon flex shrink-0 items-center justify-center size-14 rounded-full bg-zinc-100" aria-hidden="true">
-                  <?php if ($concern['icon'] !== ''): ?>
-                    <img src="<?= e(asset_url($concern['icon'])); ?>" alt="" width="56" height="56" class="hc-tile-image size-14">
-                  <?php else: ?>
-                    <span class="hc-tile-pending size-9 border border-dashed border-zinc-400 rounded-full"
-                      title="Illustration to come"></span>
-                  <?php endif; ?>
-                </span>
-                <span class="hc-tile-label text-sm/snug font-semibold"><?= e($concern['label']); ?></span>
-              </a>
+              <?php component('hero-quiz/tile', [
+                'hook'  => 'hc',
+                'href'  => $hc_assessment(['concern' => $key]),
+                'name'  => 'concern',
+                'value' => $key,
+                'label' => $concern['label'],
+                'short' => $concern['short'],
+                'image' => $concern['icon'],
+              ]); ?>
             <?php endforeach; ?>
           </div>
         </fieldset>
@@ -182,15 +189,15 @@ foreach ($hc_concerns as $key => $concern) {
             How long have you noticed it?
           </legend>
           <div class="hc-tiles grid grid-cols-2 gap-3 mt-5 lg:flex-1 lg:auto-rows-fr">
-            <?php foreach ($hc_noticed as $key => $label): ?>
-              <a href="<?= e($hc_assessment(['noticed' => $key])); ?>"
-                class="<?= $hc_tile; ?> min-h-22 lg:min-h-24 js-component-hc-answer"
-                data-name="noticed" data-value="<?= e($key); ?>" data-label="<?= e($label); ?>">
-                <span class="hc-tile-icon flex shrink-0 items-center justify-center size-14 rounded-full bg-zinc-100" aria-hidden="true">
-                  <?php svg($hc_noticed_icons[$key], 'size-6 color-default'); ?>
-                </span>
-                <span class="hc-tile-label text-sm/snug font-semibold"><?= e($label); ?></span>
-              </a>
+            <?php foreach ($hc_noticed as $key => $noticed): ?>
+              <?php component('hero-quiz/tile', [
+                'hook'  => 'hc',
+                'href'  => $hc_assessment(['noticed' => $key]),
+                'name'  => 'noticed',
+                'value' => $key,
+                'label' => $noticed['label'],
+                'icon'  => $noticed['icon'],
+              ]); ?>
             <?php endforeach; ?>
           </div>
         </fieldset>
@@ -201,15 +208,15 @@ foreach ($hc_concerns as $key => $concern) {
             What would you like to do?
           </legend>
           <div class="hc-tiles grid grid-cols-2 gap-3 mt-5 lg:flex-1 lg:auto-rows-fr">
-            <?php foreach ($hc_goals as $key => $label): ?>
-              <a href="<?= e($hc_assessment(['goal' => $key])); ?>"
-                class="<?= $hc_tile; ?> min-h-22 lg:min-h-24 js-component-hc-answer"
-                data-name="goal" data-value="<?= e($key); ?>" data-label="<?= e($label); ?>">
-                <span class="hc-tile-icon flex shrink-0 items-center justify-center size-14 rounded-full bg-zinc-100" aria-hidden="true">
-                  <?php svg($hc_goal_icons[$key], 'size-6 color-default'); ?>
-                </span>
-                <span class="hc-tile-label text-sm/snug font-semibold"><?= e($label); ?></span>
-              </a>
+            <?php foreach ($hc_goals as $key => $goal): ?>
+              <?php component('hero-quiz/tile', [
+                'hook'  => 'hc',
+                'href'  => $hc_assessment(['goal' => $key]),
+                'name'  => 'goal',
+                'value' => $key,
+                'label' => $goal['label'],
+                'icon'  => $goal['icon'],
+              ]); ?>
             <?php endforeach; ?>
           </div>
         </fieldset>
@@ -222,15 +229,7 @@ foreach ($hc_concerns as $key => $concern) {
           >
             Here's where to start.
           </h2>
-          <ul class="hc-summary flex flex-wrap gap-1.5 mt-3 js-component-hc-summary" aria-label="Your answers"></ul>
-          <template class="js-component-hc-summary-item">
-            <li class="hc-summary-item inline-flex items-center gap-1.5 py-0.5 pr-3 pl-1 text-sm font-medium rounded-full bg-white color-strong">
-              <span class="hc-summary-icon flex shrink-0 items-center justify-center size-5 rounded-full bg-zinc-500 color-invert-strong" aria-hidden="true">
-                <?php svg('check-line', 'size-3.5'); ?>
-              </span>
-              <span class="js-component-hc-summary-label"></span>
-            </li>
-          </template>
+          <?php component('hero-quiz/summary', ['hook' => 'hc']); ?>
           <p class="hc-done-text mt-2 text-sm text-pretty color-default">
             These everyday care products are a good place to start.
           </p>
@@ -266,59 +265,7 @@ foreach ($hc_concerns as $key => $concern) {
         </div>
       </div>
 
-      <aside
-        class="hc-kit flex flex-col p-5 border border-zinc-200 rounded-lg bg-white md:p-8 lg:col-span-2 js-component-hc-kit"
-        data-goal="" data-cart="<?= e(asset_url('cart/')); ?>"
-        aria-labelledby="hc-kit-title" aria-live="polite"
-      >
-        <div class="hc-kit-header flex items-baseline justify-between gap-4">
-          <p id="hc-kit-title" class="hc-kit-kicker text-xs font-medium tracking-wider uppercase color-default js-component-hc-kit-title">
-            Popular to start with
-          </p>
-          <a href="<?= e($hc_browse_href); ?>" class="<?= $hc_link; ?>">Browse All</a>
-        </div>
-
-        <?php foreach ($kits as $key => $items): ?>
-          <div class="hc-kit-set js-component-hc-kit-set" data-concern="<?= e($key); ?>" <?= $key !== 'popular' ? 'hidden' : ''; ?>>
-            <ul class="hc-kit-list mt-5 divide-y divide-dashed divide-zinc-200">
-              <?php foreach ($items as $product): ?>
-                <li>
-                  <a href="<?= e($hc_product_url($product['id'])); ?>"
-                    class="hc-product group/product flex items-center gap-4 py-3 <?= $hc_focus; ?>">
-                    <span class="hc-product-thumb flex shrink-0 items-center justify-center size-16 rounded-lg bg-zinc-300" aria-hidden="true">
-                      <?php svg('image-line', 'product-image-placeholder size-6'); ?>
-                    </span>
-                    <span class="hc-product-text flex flex-1 flex-col min-w-0">
-                      <span class="hc-product-name text-sm font-semibold color-strong group-hover/product:underline group-hover/product:underline-offset-4">
-                        <?= e($product['name']); ?>
-                      </span>
-                      <span class="hc-product-meta text-sm color-muted"><?= e($product['category']); ?></span>
-                    </span>
-                    <span class="hc-product-price text-sm font-medium whitespace-nowrap color-strong">
-                      <?= e($hc_money((float) $product['price'])); ?>
-                    </span>
-                  </a>
-                </li>
-              <?php endforeach; ?>
-            </ul>
-            <div class="hc-kit-buy flex flex-wrap items-center justify-between gap-3 mt-5">
-              <p class="hc-kit-total flex flex-col text-sm">
-                <span class="hc-kit-total-label">All <?= count($items); ?></span>
-                <span class="hc-kit-total-value text-title-sm/tight font-semibold color-strong">
-                  <?= e($hc_money($hc_kit_sum($items))); ?>
-                </span>
-              </p>
-              <button type="button" class="button button-large button-default js-component-hc-add"
-                data-ids="<?= e(implode(',', array_column($items, 'id'))); ?>">
-                <span class="button-label">Add All <?= count($items); ?> to Cart</span>
-              </button>
-            </div>
-          </div>
-        <?php endforeach; ?>
-
-        <p class="hc-kit-status text-sm color-strong empty:hidden js-component-hc-add-status" role="status"></p>
-        <input type="hidden" class="js-component-hc-token" value="<?= e($store_token); ?>">
-      </aside>
+      <?php component('hero-quiz/kit', $hc_kit_config); ?>
     </div>
   </div>
 </section>

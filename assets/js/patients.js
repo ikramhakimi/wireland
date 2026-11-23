@@ -34,7 +34,7 @@ document.addEventListener('dropdown:select', (event) => {
   if (!row || !status) return;
 
   const name = row.querySelector('.patient-name')?.textContent.trim() ?? '';
-  status.textContent = `${event.detail.label}: ${name}. Demo only; no patient data changed.`;
+  status.textContent = `${event.detail.label}: ${name}.`;
   status.hidden = false;
 });
 

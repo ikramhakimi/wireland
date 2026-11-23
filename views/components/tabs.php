@@ -7,7 +7,7 @@
  * Data: id (unique per instance), label (accessible group name), items (keyed label/title/description arrays),
  *       items may set content (callable) to render their own panel markup instead of title/description,
  *       e.g. form fields; tabs.js opens the panel holding the first invalid control on submit.
- *       variant (underline default, segmented), size (default 44px/14px, small 36px/12px), active.
+ *       variant (underline default, segmented, pill), size (default 44px/14px, small 36px/12px), active.
  *       mode (panels default, controls), js_hook (controls only); controls emit data-value and aria-pressed.
  *       Controls mode renders no panels and leaves behavior to the caller.
  *       Load assets/js/tabs.js for automatic activation and arrow/Home/End keyboard navigation.
@@ -17,7 +17,7 @@ $js_hook = $js_hook ?? '';
 $id      = $id ?? '';
 $label   = $label ?? 'Content views';
 $items   = $items ?? [];
-$variant = in_array($variant ?? '', ['underline', 'segmented'], true) ? $variant : 'underline';
+$variant = in_array($variant ?? '', ['underline', 'segmented', 'pill'], true) ? $variant : 'underline';
 $size    = ($size ?? 'default') === 'small' ? 'small' : 'default';
 $active  = array_key_exists($active ?? '', $items) ? $active : array_key_first($items);
 

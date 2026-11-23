@@ -6,14 +6,16 @@
  * Structure: Headline, two doctor cards (portrait with name, role, registration and qualifications on it),
  *            then a short row of icon facts (list-icon).
  * Data: Published doctors from includes/doctors-data.php (managed in dashboard Doctors).
- *       Optional: $headline_alignment ('left' | 'center', default 'center').
+ *       Optional: $headline_alignment ('left' | 'center', default 'center'). Also aligns the icon facts.
+ *       Optional: $action (button component config) renders a CTA below the facts.
  */
 require_once __DIR__ . '/../../includes/doctors.php';
 
+$alignment    = ($headline_alignment ?? 'center') === 'left' ? 'left' : 'center';
 $headline     = [
   'topic'     => 'Our Doctors',
   'title'     => 'Every assessment is reviewed by a doctor who treats hair loss every day.',
-  'alignment' => $headline_alignment ?? 'center',
+  'alignment' => $alignment,
 ];
 $doctor_facts = [
   ['icon' => 'shield-check-line', 'text' => 'Registered with the Malaysian Medical Council'],
@@ -55,6 +57,16 @@ $doctors      = doctor_profiles(require __DIR__ . '/../../includes/doctors-data.
       <?php endforeach; ?>
     </div>
 
-    <?php component('list-icon', ['items' => $doctor_facts, 'class' => 'doctors-facts mt-10']); ?>
+    <?php component('list-icon', [
+      'items'     => $doctor_facts,
+      'alignment' => $alignment,
+      'class'     => 'doctors-facts mt-10',
+    ]); ?>
+
+    <?php if (!empty($action)): ?>
+      <div class="doctors-action flex mt-10 <?= $alignment === 'center' ? 'justify-center' : ''; ?>">
+        <?php component('button', $action); ?>
+      </div>
+    <?php endif; ?>
   </div>
 </section>

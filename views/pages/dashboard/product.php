@@ -148,9 +148,12 @@ if ($product !== null) {
     'content' => static function () use ($product, $detail_value, $detail_facts): void {
       ?>
       <div class="product-author flex items-center gap-3 mb-5">
-        <img <?= !empty($product['updated_by_avatar']) ? 'src="' . e(asset_url($product['updated_by_avatar'])) . '"' : ''; ?>
-          <?= empty($product['updated_by_avatar']) ? 'hidden' : ''; ?> alt="" width="36" height="36"
-          class="product-avatar shrink-0 size-9 rounded-full object-cover">
+        <?php component('thumbnail', [
+          'type'  => 'avatar',
+          'size'  => 'xs',
+          'src'   => $product['updated_by_avatar'] ?? '',
+          'class' => 'product-avatar shrink-0',
+        ]); ?>
         <div class="product-author-info min-w-0">
           <p class="product-label text-xs color-muted">Updated By</p>
           <p data-field="updated_by" class="product-author-name mt-1 text-sm font-medium color-strong js-component-products-value">

@@ -24,11 +24,7 @@ $follow_up_color = $patient['next_follow_up'] === null ? 'color-muted'
       sm:col-span-1 sm:p-4">
       <div class="patient-profile flex flex-row-reverse items-start gap-4 min-w-0
         sm:flex-row">
-        <span aria-hidden="true"
-          class="patient-avatar flex shrink-0 items-center justify-center size-12 text-xs font-medium rounded-lg border border-zinc-300 bg-zinc-200 color-strong"><?= e(implode('', array_map(
-            static fn (string $part): string => substr($part, 0, 1),
-            array_slice(explode(' ', $patient['name']), 0, 2)
-          ))); ?></span>
+        <?php component('thumbnail', ['type' => 'avatar', 'size' => 'sm', 'class' => 'patient-avatar shrink-0']); ?>
         <div class="patient-heading flex-1 min-w-0 sm:flex-none">
           <p class="patient-reference mb-1 text-xs color-muted">
             <?= e($patient['id']); ?> · <span class="sr-only">Assessment: </span><?= e($patient['assessment']); ?>

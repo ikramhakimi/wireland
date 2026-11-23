@@ -33,7 +33,6 @@ Prefer: “Noticing changes in your hair? We can help you understand your option
 - Keep medical claims specific and supported. Do not invent evidence or imply guaranteed results.
 - Describe doctor involvement and personalisation accurately.
 - Acknowledge that treatment suitability and results vary where relevant to a decision.
-- If a factual claim cannot be confirmed from project information, flag it for confirmation before publication.
 
 Avoid: “A proven formula that guarantees thicker hair.”
 

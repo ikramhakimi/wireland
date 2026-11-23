@@ -23,7 +23,7 @@ $headline_center_no_button = [
             
             <div class="mt-4 pt-4 border-t border-zinc-200 text-sm">
               <div class="font-semibold color-strong">Faizal Nordin</div>
-              <div class="text-zinc-500">Bangsar, Kuala Lumpur</div>
+              <div class="color-muted">Bangsar, Kuala Lumpur</div>
             </div>
           </div>
         </div>

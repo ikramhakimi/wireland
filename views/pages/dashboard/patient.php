@@ -1,7 +1,7 @@
 <?php
 
 $page_title       = 'Patient Details';
-$page_description = 'Read-only demo patient record.';
+$page_description = 'Read-only patient record.';
 $page_current     = 'patients';
 $directory        = require __DIR__ . '/../../../includes/dashboard-patients-state.php';
 $patient_id       = is_string($_GET['id'] ?? null) ? $_GET['id'] : '';
@@ -39,12 +39,12 @@ $record_card = $selected_patient !== null ? [
     <h1 id="patient-title" class="section-title text-3xl font-medium color-strong">
       <?= e($selected_patient['name'] ?? 'Patient Not Found'); ?>
     </h1>
-    <p class="section-description mt-2 text-sm text-zinc-500">
-      <?= e($selected_patient !== null ? $selected_patient['id'] . ' · Demo patient record' : 'This patient record is unavailable.'); ?>
+    <p class="section-description mt-2 text-sm color-muted">
+      <?= e($selected_patient !== null ? $selected_patient['id'] . ' · Patient record' : 'This patient record is unavailable.'); ?>
     </p>
   </header>
   <?php if ($selected_patient !== null): ?>
-    <p class="section-notice mt-4 text-sm leading-relaxed text-zinc-500">
+    <p class="section-notice mt-4 text-sm leading-relaxed color-muted">
       Read-only draft. Prescribing treatments, recording follow-ups and complete histories are not connected yet.
     </p>
     <div class="section-content mt-6">

@@ -27,7 +27,7 @@ $stage_count = count($stages);
 // Active-stage looks: attention (patient action) and calm. With reply_for both render, toggled by the reply JS.
 $active_looks = $attention
   ? array_filter([
-    'open' => ['bar' => 'bg-amber-500', 'note' => 'font-medium text-amber-700', 'icon' => 'text-amber-600',
+    'open' => ['bar' => 'bg-amber-600', 'note' => 'font-medium color-warning', 'icon' => 'text-amber-600',
       'text' => $stages[$active]['note'] ?? ''],
     'sent' => $reply_for !== ''
       ? ['bar' => 'bg-zinc-900', 'note' => 'color-muted', 'icon' => '', 'text' => $reply_note]

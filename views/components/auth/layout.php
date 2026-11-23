@@ -20,7 +20,7 @@ $form_config  = ['auth_mode' => $auth_mode];
     md:px-8
     lg:px-12">
     <?php component('auth/form', $form_config); ?>
-    <footer class="auth-footer flex items-center <?= $is_register ? 'justify-center' : 'justify-between'; ?> gap-3 text-[10px] text-zinc-500">
+    <footer class="auth-footer flex items-center <?= $is_register ? 'justify-center' : 'justify-between'; ?> gap-3 text-[10px] color-muted">
       <button type="button" data-auth-notice="privacy"
         class="auth-footer-link min-h-11 cursor-pointer
           hover:color-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-800">
@@ -35,7 +35,7 @@ $form_config  = ['auth_mode' => $auth_mode];
 </div>
 <dialog aria-labelledby="auth-notice-title"
   class="auth-notice fixed inset-0 w-[min(26rem,calc(100%-2rem))] m-auto p-7 rounded-2xl border border-zinc-200 bg-white color-strong
-    backdrop:bg-zinc-950/50
+    backdrop:bg-zinc-950/50 backdrop:backdrop-blur-xs
     js-component-auth-notice">
   <h2 id="auth-notice-title" class="auth-notice-title text-xl font-semibold">Account access</h2>
   <p class="auth-notice-description mt-3 mb-6 text-sm leading-7 js-component-auth-notice-description"></p>

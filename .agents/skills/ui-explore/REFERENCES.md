@@ -5,7 +5,7 @@ Use this when the brief includes links, screenshots, image paths, or a folder su
 
 ## 1. Capture
 
-Screenshots are not required. Use the cheapest input that answers the question, and look at images only
+Screenshots are not required, except that a shared URL gets a screenshot request (see rules). Use the cheapest input that answers the question, and look at images only
 when the question is visual (layout, density, above-the-fold order, visual hierarchy).
 
 | Cost | Input | Good for |
@@ -21,15 +21,17 @@ Rules:
   confirm it.
 - For a folder of images, list the filenames first and open only those that match the brief. Ask before
   opening more than 5, and suggest cropping to the relevant section.
-- For a URL, read the text first. Take a screenshot only if the question is visual and text cannot answer
-  it, and only of the relevant section.
+- For a URL the user shares, ask before anything else whether you may screenshot it to understand the
+  layout (one short question, mobile and desktop viewport). If they agree, take the screenshots and work
+  from them plus the page text. If they decline, work from text only and say the layout is not observed.
+- Never describe a variant as following a reference's layout unless you have seen that layout.
 - Browser work (screenshots, observing interaction) uses Chrome DevTools MCP only (`mcp__chrome-devtools__*`),
   never Playwright. If it is unavailable, ask the user for a screenshot instead.
 
 | Input | How to read it |
 | --- | --- |
 | Local image or folder | Open the matching images only (see rules above). List the files you looked at. |
-| Public URL | Fetch the page text (web-fetch agent). Screenshot the relevant section only when the question is visual. |
+| Public URL | Ask to screenshot it (see rules above), then screenshot on yes and fetch the page text (web-fetch agent). |
 | URL that fails, needs login, or blocks bots | Say so, and ask for a screenshot instead. Do not guess what the page shows. |
 | Live interaction (motion, steps, hover) | Describe what you observed in the browser; if you could not observe it, mark it "not observed". |
 

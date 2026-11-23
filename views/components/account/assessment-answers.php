@@ -120,7 +120,7 @@ if ($questions === []) {
                 <span class="min-w-0">
                   <span class="sr-only">Needs attention:</span>Waiting for your reply
                   <?php if ($reply_href !== ''): ?>
-                    <a href="<?= e($reply_href); ?>" class="block mt-1 text-xs color-strong underline">Reply now</a>
+                    <a href="<?= e($reply_href); ?>" class="link block mt-1 text-xs">Reply now</a>
                   <?php endif; ?>
                 </span>
               </span>
@@ -135,7 +135,7 @@ if ($questions === []) {
   <?php if ($restart_href !== ''): ?>
     <p class="account-answers-restart <?= $styles['restart']; ?> text-sm color-muted">
       Something wrong?
-      <a href="<?= e($restart_href); ?>" class="font-medium color-strong underline js-quiz-restart">
+      <a href="<?= e($restart_href); ?>" class="link font-medium js-quiz-restart">
         Start the assessment again</a>
     </p>
   <?php endif; ?>

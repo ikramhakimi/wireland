@@ -54,7 +54,7 @@ $submit_button = [
       <?php component('auth/brand'); ?>
     </div>
     <h1 class="auth-title mb-2.5 text-3xl font-semibold leading-tight tracking-tight"><?= e($form_title); ?></h1>
-    <p class="auth-description text-[13px] leading-loose text-zinc-500"><?= e($form_intro); ?></p>
+    <p class="auth-description text-[13px] leading-loose color-muted"><?= e($form_intro); ?></p>
   </header>
   <div class="auth-social flex flex-col gap-2.5 mt-6">
     <button type="button" data-auth-notice="google"
@@ -68,7 +68,7 @@ $submit_button = [
       <span class="button-label">Continue with Apple</span>
     </button>
   </div>
-  <div class="auth-divider flex items-center gap-3.5 my-6 text-[11px] text-zinc-500">
+  <div class="auth-divider flex items-center gap-3.5 my-6 text-[11px] color-muted">
     <span class="auth-divider-line flex-1 h-px bg-zinc-200" aria-hidden="true"></span>
     <span class="auth-divider-label">or continue with email</span>
     <span class="auth-divider-line flex-1 h-px bg-zinc-200" aria-hidden="true"></span>
@@ -80,7 +80,7 @@ $submit_button = [
       <?php component('forms/choice', $password_toggle); ?>
     </div>
     <?php if ($is_register): ?>
-      <p class="auth-consent text-[11px] leading-loose text-zinc-500">
+      <p class="auth-consent text-[11px] leading-loose color-muted">
         By creating an account, you agree to our
         <button type="button" data-auth-notice="privacy"
           class="auth-privacy-link font-medium color-strong underline underline-offset-2 cursor-pointer
@@ -94,7 +94,7 @@ $submit_button = [
       </p>
     <?php endif; ?>
   </form>
-  <p class="auth-switch mt-6 text-center text-xs text-zinc-500">
+  <p class="auth-switch mt-6 text-center text-xs color-muted">
     <?= $is_register ? 'Already have an account?' : 'New to RR HairClinic?'; ?>
     <a href="<?= asset_url($is_register ? 'login' : 'register'); ?>"
       class="auth-switch-link inline-flex items-center min-h-11 ml-1 font-medium color-strong

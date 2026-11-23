@@ -34,7 +34,7 @@ $card_config = [
       <dl class="card-details grid gap-4 min-w-0 divide-y divide-zinc-100 @sm:col-span-5">
         <?php foreach ($card['details'] as $detail): ?>
           <div class="card-detail min-w-0 pt-4 first:pt-0">
-            <dt class="card-detail-label text-xs text-zinc-500"><?= e($detail['label']); ?></dt>
+            <dt class="card-detail-label text-xs color-muted"><?= e($detail['label']); ?></dt>
             <dd class="card-detail-value mt-1 text-sm font-medium tabular-nums color-strong"><?= e($detail['value']); ?></dd>
           </div>
         <?php endforeach; ?>

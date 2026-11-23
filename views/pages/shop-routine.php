@@ -138,9 +138,11 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
                       name="<?= e($step['key']); ?><?= $step['type'] === 'checkbox' ? '[]' : ''; ?>"
                       value="<?= e($item['id']); ?>"
                     >
-                    <span class="routine-option-photo flex-center shrink-0 size-16 rounded-md bg-zinc-300 color-muted">
-                      <?php svg('image-line', 'size-4'); ?>
-                    </span>
+                    <?php component('thumbnail', [
+                      'type'  => 'product',
+                      'size'  => 'md',
+                      'class' => 'routine-option-photo shrink-0',
+                    ]); ?>
                     <span class="routine-option-body flex flex-col gap-0.5 min-w-0">
                       <span class="routine-option-name font-medium color-strong"><?= e($item['name']); ?></span>
                       <span class="routine-option-meta text-xs color-muted">
@@ -256,5 +258,5 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
     <?php endif; ?>
   </div>
 </section>
-<?php section('footer', ['show_banner' => false]); ?>
+<?php section('footer'); ?>
 <script src="<?= asset_url('assets/js/shop-routine.js'); ?>?v=<?= filemtime(__DIR__ . '/../../assets/js/shop-routine.js'); ?>" defer></script>

@@ -50,7 +50,7 @@ $send_button = [
       placeholder="<?= e($placeholder); ?>"
       <?= $hint !== '' ? 'aria-describedby="' . e($id) . '-hint"' : ''; ?>
       class="chat-composer-input block w-full max-h-60 min-h-16 px-4 pt-3 pb-1 text-base bg-transparent resize-none
-        field-sizing-content color-strong placeholder:text-zinc-400 focus:outline-none
+        field-sizing-content color-strong placeholder:color-muted focus:outline-none
         js-chat-composer-input"></textarea>
     <div class="chat-composer-toolbar flex items-center justify-between gap-2 p-2">
       <input id="<?= e($id); ?>-files" type="file" accept="image/jpeg,image/png,image/webp,image/heic" multiple

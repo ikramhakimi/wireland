@@ -24,8 +24,10 @@
   <script src="<?= asset_url('assets/js/stepper.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/stepper.js'); ?>" defer></script>
   <script src="<?= asset_url('assets/js/design.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/design.js'); ?>" defer></script>
   <script src="<?= asset_url('assets/js/marquee.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/marquee.js'); ?>" defer></script>
+  <script src="<?= asset_url('assets/js/app.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/app.js'); ?>" defer></script>
+  <script src="<?= asset_url('assets/js/card-cycle.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/card-cycle.js'); ?>" defer></script>
 </head>
-<body class="dashboard-body min-h-screen font-sans text-sm bg-zinc-100 text-zinc-600 tracking-tight">
+<body class="dashboard-body min-h-screen font-sans text-sm bg-zinc-100 color-default tracking-tight">
   <a href="#dashboard-content" class="dashboard-skip sr-only
     focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:w-auto focus:h-auto focus:p-3 focus:bg-white focus:color-strong focus:not-sr-only">Skip to content</a>
   <div class="dashboard-shell min-h-screen">

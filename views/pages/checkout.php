@@ -6,20 +6,14 @@ $page_title   = 'Checkout | RR HairClinic';
 $page_current = 'checkout';
 $errors       = [];
 $details      = $_SESSION['store_details'] ?? [];
-$order        = $_SESSION['store_order'] ?? null;
-$complete     = ($_GET['complete'] ?? '') === '1' && is_array($order);
 $fingerprint  = hash('sha256', serialize($store_lines));
 
-// Prototype: ?state=form|complete|empty previews sample data on GET without touching the session.
+// Prototype: ?state=form|empty previews sample data on GET without touching the session.
 $checkout_state = $store_post ? 'live' : preview_state('checkout');
 if ($checkout_state !== 'live') {
   $store_lines = $checkout_state === 'empty' ? [] : store_sample_lines($store_products);
   $store_total = array_sum(array_column($store_lines, 'amount'));
   $store_count = array_sum(array_column($store_lines, 'quantity'));
-  $complete    = $checkout_state === 'complete';
-  $order       = $complete
-    ? ['reference' => 'DEMO-PREVIEW', 'lines' => $store_lines, 'total' => $store_total, 'payment' => 'Credit or Debit Card']
-    : $order;
 }
 $payment_methods = [
   'card'    => 'Credit or Debit Card',
@@ -72,25 +66,24 @@ if ($store_post && $store_valid && $store_lines !== [] && ($_POST['checkout_acti
     $store_error = 'Your cart has changed. Check your order summary and place your order again.';
   } elseif ($errors === []) {
     $_SESSION['store_order'] = [
-      'reference' => 'DEMO-' . strtoupper(bin2hex(random_bytes(4))),
+      'reference' => 'RR-' . strtoupper(bin2hex(random_bytes(4))),
       'lines'     => $store_lines,
       'total'     => $store_total,
       'payment'   => $payment_methods[$payment_method],
     ];
     $_SESSION['store_cart'] = [];
     unset($_SESSION['store_details'], $_SESSION['store_payment']);
-    store_redirect('checkout/?complete=1');
+    store_redirect('order-received/');
   }
 }
 
 $checkout_heading = [
-  'title' => $complete ? 'Demo Order Complete' : 'Checkout',
+  'title' => 'Checkout',
   'is_page_title' => true,
-  'subtitle' => $complete ? 'Your demo is complete. No payment was taken and no order will be fulfilled.'
-    : 'Demo checkout. Use sample details to explore the purchase flow.',
+  'subtitle' => 'Add your contact and delivery details, then choose how you’d like to pay.',
 ];
 $confirm_button = [
-  'label' => 'Place Demo Order', 'element' => 'button', 'type' => 'submit', 'size' => 'large',
+  'label' => 'Place Order', 'element' => 'button', 'type' => 'submit', 'size' => 'large',
   'color' => 'primary', 'name' => 'checkout_action', 'value' => 'confirm', 'form' => 'checkout-form',
   'class' => 'checkout-submit w-full mt-4',
 ];
@@ -108,6 +101,17 @@ $breadcrumb_items = [
   ['label' => 'Home', 'href' => asset_url('')],
   ['label' => 'Cart', 'href' => asset_url('cart/')],
   ['label' => 'Checkout'],
+];
+// Status: 'done' (linked, check mark), 'current' (aria-current), 'upcoming' (muted).
+$checkout_steps = [
+  ['label' => 'Cart',         'status' => 'done', 'href' => asset_url('cart/')],
+  ['label' => 'Checkout',     'status' => 'current'],
+  ['label' => 'Confirmation', 'status' => 'upcoming'],
+];
+$step_marker_class = [
+  'done'     => 'bg-zinc-900 color-invert-strong',
+  'current'  => 'border-2 border-zinc-900 color-strong',
+  'upcoming' => 'border border-zinc-300 color-muted',
 ];
 $error_anchors = ['payment' => 'checkout-payment-card'];
 $back_button = [
@@ -137,25 +141,43 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
         </ul>
       </div>
     <?php endif; ?>
-    <?php if ($complete): ?>
-      <div class="checkout-confirmation grid gap-6 max-w-xl mt-10">
-        <p class="checkout-reference text-sm color-muted">Reference: <?= e($order['reference']); ?></p>
-        <?php if (($order['payment'] ?? '') !== ''): ?>
-          <p class="checkout-payment-summary text-sm color-muted">Payment method: <?= e($order['payment']); ?> (demo, not charged)</p>
-        <?php endif; ?>
-        <?php component('store/summary', ['lines' => $order['lines'], 'total' => $order['total']]); ?>
-        <p class="checkout-confirmation-note text-sm">No confirmation email will be sent. Your demo cart has been cleared.</p>
-        <?php component('button', ['label' => 'Continue Shopping', 'href' => asset_url('product/?id=PRD-001')]); ?>
-      </div>
-    <?php elseif ($store_lines === []): ?>
+    <?php if ($store_lines === []): ?>
       <div class="checkout-empty grid justify-items-start gap-5 mt-10">
         <p class="checkout-empty-message">Add a product to your cart before checking out.</p>
         <?php component('button', ['label' => 'View Product', 'href' => asset_url('product/?id=PRD-001')]); ?>
       </div>
     <?php else: ?>
-      <nav aria-label="Checkout progress" class="checkout-progress flex flex-wrap gap-3 mt-6 text-sm color-muted">
-        <a href="<?= asset_url('cart/'); ?>" class="checkout-step underline underline-offset-4">1. Cart</a>
-        <span class="checkout-step" aria-current="step">2. Checkout</span>
+      <nav aria-label="Checkout progress" class="checkout-progress mt-6">
+        <ol class="checkout-steps flex items-center gap-2 text-sm
+          sm:gap-3">
+          <?php foreach ($checkout_steps as $index => $step): ?>
+            <li class="checkout-step flex items-center gap-2
+              sm:gap-3" <?= $step['status'] === 'current' ? 'aria-current="step"' : ''; ?>>
+              <?php if ($index > 0): ?>
+                <span class="checkout-step-line h-px w-6 bg-zinc-300
+                  sm:w-12" aria-hidden="true"></span>
+              <?php endif; ?>
+              <span class="checkout-step-marker flex-center size-6 shrink-0 text-xs font-medium tabular-nums rounded-full
+                <?= $step_marker_class[$step['status']]; ?>" aria-hidden="true">
+                <?php if ($step['status'] === 'done'): ?>
+                  <?php svg('check-line', 'size-4'); ?>
+                <?php else: ?>
+                  <?= $index + 1; ?>
+                <?php endif; ?>
+              </span>
+              <?php if (isset($step['href'])): ?>
+                <a href="<?= e($step['href']); ?>" class="checkout-step-label color-default underline-offset-4
+                  hover:underline">
+                  <?= e($step['label']); ?><span class="sr-only"> (completed)</span>
+                </a>
+              <?php else: ?>
+                <span class="checkout-step-label <?= $step['status'] === 'current' ? 'font-medium color-strong' : 'color-muted'; ?>">
+                  <?= e($step['label']); ?>
+                </span>
+              <?php endif; ?>
+            </li>
+          <?php endforeach; ?>
+        </ol>
       </nav>
       <div class="checkout-layout grid items-start gap-8 mt-10
         md:grid-cols-12">
@@ -172,7 +194,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
                   <p class="checkout-login text-sm color-muted
                     sm:col-span-2">
                     Already have an account?
-                    <a href="<?= asset_url('login'); ?>" class="checkout-login-link font-medium color-strong underline underline-offset-4">Log in</a>
+                    <a href="<?= asset_url('login'); ?>" class="checkout-login-link link font-medium">Log in</a>
                     to check out faster, or continue as a guest.
                   </p>
                 <?php endif; ?>
@@ -192,7 +214,6 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
             <?php endforeach; ?>
             <fieldset class="checkout-payment grid gap-4">
               <legend class="checkout-legend block w-full text-base bg-zinc-100 px-5 leading-12 mb-5 rounded-lg font-medium color-strong">Payment</legend>
-              <p class="checkout-payment-note text-sm color-muted">Demo only. No payment is taken.</p>
               <div class="checkout-payment-options flex flex-col items-start gap-2">
                 <?php foreach ($payment_methods as $method => $method_label): ?>
                   <?php component('forms/choice', [
@@ -234,5 +255,5 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
     <?php endif; ?>
   </div>
 </section>
-<?php section('footer', ['show_banner' => false, 'show_products' => false, 'show_menu' => false]); ?>
+<?php section('footer', ['show_products' => false, 'show_menu' => false]); ?>
 <?php component('preview-switcher', ['group' => 'checkout']); ?>

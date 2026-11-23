@@ -77,7 +77,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
             <p class="shop-group-count text-sm color-muted"><?= count($items); ?> products</p>
             <?php if (isset($shop_category_slugs[$category])): ?>
               <a href="<?= e(asset_url('shop/' . $shop_category_slugs[$category] . '/')); ?>"
-                class="shop-group-link text-sm underline underline-offset-4">
+                class="shop-group-link link text-sm">
                 View All<span class="sr-only"> <?= e($category); ?></span>
               </a>
             <?php endif; ?>
@@ -92,4 +92,4 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
     <?php endforeach; ?>
   </div>
 </section>
-<?php section('footer', ['show_banner' => false]); ?>
+<?php section('footer'); ?>

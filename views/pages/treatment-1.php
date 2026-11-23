@@ -61,7 +61,7 @@ section('treatment-intro',      $treatment['intro']);
 section('treatment-body',       ['summary' => $treatment['summary'], 'blocks' => $treatment['blocks']]);
 section('treatment-results',  $treatment['results']);
 section('treatment-more',       $treatment['more']);
-section('footer',              ['show_banner' => false]);
+section('footer');
 section('treatment-sticky-cta', ['action' => $assessment_cta]);
 
 component('button-whatsapp', ['hide_mobile' => true]);

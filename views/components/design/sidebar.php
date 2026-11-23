@@ -42,6 +42,8 @@ $navigation_groups = [
   'Content' => [
     ['label' => 'Cards', 'target' => 'design-cards'],
     ['label' => 'Badges', 'target' => 'design-badges'],
+    ['label' => 'Google Review', 'target' => 'design-google-review'],
+    ['label' => 'Thumbnails', 'target' => 'design-thumbnails'],
     ['label' => 'Description List', 'target' => 'design-facts'],
     ['label' => 'List Icon', 'target' => 'design-list-icon'],
     ['label' => 'List Thumb', 'target' => 'design-list-thumb'],
@@ -80,7 +82,7 @@ $navigation_groups = [
   <header class="sidebar-header px-3">
     <a href="<?= asset_url('design'); ?>" class="sidebar-brand inline-flex items-center min-h-11 text-lg font-medium color-strong
       focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">Design Reference</a>
-    <p class="sidebar-description mt-2 text-xs text-zinc-500">Strikethrough items are not documented yet.</p>
+    <p class="sidebar-description mt-2 text-xs color-muted">Strikethrough items are not documented yet.</p>
   </header>
   <nav aria-label="Design sections" class="sidebar-navigation flex flex-col gap-5">
     <?php foreach ($navigation_groups as $group_label => $group_items): ?>
@@ -90,11 +92,11 @@ $navigation_groups = [
           <?php foreach ($group_items as $item): ?>
             <li class="sidebar-item">
               <?php if ($item['target'] !== null): ?>
-                <a href="#<?= e($item['target']); ?>" class="sidebar-link flex items-center px-3 py-1 rounded-md text-zinc-600
+                <a href="#<?= e($item['target']); ?>" class="sidebar-link flex items-center px-3 py-1 rounded-md color-default
                   hover:bg-zinc-200 hover:color-strong
                   focus-visible:outline-2 focus-visible:outline-blue-800"><?= e($item['label']); ?></a>
               <?php else: ?>
-                <span class="sidebar-unavailable flex items-center px-3 py-1 text-zinc-400 line-through">
+                <span class="sidebar-unavailable flex items-center px-3 py-1 color-muted line-through">
                   <?= e($item['label']); ?>
                   <span class="sidebar-status sr-only"> — not documented yet</span>
                 </span>

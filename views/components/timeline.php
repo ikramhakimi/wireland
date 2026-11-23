@@ -13,7 +13,8 @@
  *       alignment ('left' | 'center', default size on desktop only; default 'left');
  *       label (screen-reader prefix, default 'Step'); show_label (bool: show "<label> <number>" above the title);
  *       dot ('outline' default | 'muted': soft filled dot, regular-weight label);
- *       inset (bool, default size only: extra side padding on the steps from lg);
+ *       inset (bool, default size only: extra padding on the steps from lg; both sides when centred,
+ *       right side only when left-aligned);
  *       class (extra classes on the wrapper).
  */
 $items       = $items ?? [];
@@ -26,7 +27,7 @@ $class       = $class ?? '';
 $is_muted    = ($dot ?? 'outline') === 'muted';
 $dot_idle    = $is_muted ? 'border-zinc-100 bg-zinc-100 color-strong' : 'border-zinc-500 bg-white color-strong';
 $label_class = $is_muted ? 'font-normal' : 'font-medium';
-$inset_class = !empty($inset) && $size === 'default' ? ' lg:px-20' : '';
+$inset_class = !empty($inset) && $size === 'default' ? ($alignment === 'center' ? ' lg:px-20' : ' lg:pr-40') : '';
 $columns     = [
   2 => 'lg:grid-cols-2',
   3 => 'lg:grid-cols-3',

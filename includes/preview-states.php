@@ -79,10 +79,9 @@ return [
     'title'   => 'Checkout state',
     'default' => 'live',
     'states'  => [
-      'live'     => ['label' => 'Live', 'text' => 'Your real session checkout'],
-      'form'     => ['label' => 'Checkout form', 'text' => 'Sample products'],
-      'complete' => ['label' => 'Order complete', 'text' => 'Sample confirmation'],
-      'empty'    => ['label' => 'Empty cart', 'text' => 'Nothing to check out'],
+      'live'  => ['label' => 'Live', 'text' => 'Your real session checkout'],
+      'form'  => ['label' => 'Checkout form', 'text' => 'Sample products'],
+      'empty' => ['label' => 'Empty cart', 'text' => 'Nothing to check out'],
     ],
   ],
 ];

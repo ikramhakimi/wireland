@@ -588,7 +588,7 @@ $account_layout = [
                       <?php if ($card['offer'] !== null): ?>
                         <p class="treatment-offer mt-2 text-sm text-pretty color-default">
                           <?= e($card['offer_text']); ?>
-                          <a class="treatment-offer-link font-medium color-strong underline underline-offset-4"
+                          <a class="treatment-offer-link link font-medium"
                             href="<?= e($card['offer']['href']); ?>"><?= e($card['offer']['label']); ?></a>
                         </p>
                       <?php endif; ?>

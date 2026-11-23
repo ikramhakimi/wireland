@@ -1,4 +1,4 @@
-// Carousel: data-desktop-columns and data-tablet-columns set items per slide.
+// Carousel: data-desktop-columns and data-tablet-columns set items per slide; fractions (1.5) show a partial item.
 // Mobile uses native scrolling; optional data-gap/tablet-gap/desktop-gap use Tailwind spacing units.
 // Optional data-fade-color and data-control-* colors configure the component palette at initialization.
 // Required hooks: .js-component-carousel and its -track, -controls, -prev, -next, -status children.
@@ -18,12 +18,12 @@
     const tablet = window.matchMedia('(min-width: 48rem)');
     const desktop = window.matchMedia('(min-width: 64rem)');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const positiveInteger = (value, fallback) => {
+    const positiveNumber = (value, fallback) => {
       const number = Number(value);
-      return Number.isInteger(number) && number > 0 ? number : fallback;
+      return Number.isFinite(number) && number > 0 ? number : fallback;
     };
-    const desktopColumns = positiveInteger(carousel.dataset.desktopColumns, 4);
-    const tabletColumns = positiveInteger(carousel.dataset.tabletColumns, 3);
+    const desktopColumns = positiveNumber(carousel.dataset.desktopColumns, 4);
+    const tabletColumns = positiveNumber(carousel.dataset.tabletColumns, 3);
     const nonNegativeNumber = (value, fallback) => {
       const number = Number(value);
       return value !== undefined && value.trim() !== '' && Number.isFinite(number) && number >= 0
@@ -67,7 +67,8 @@
       next.disabled = position === maxPosition;
 
       cards.forEach((card, index) => {
-        const active = !tablet.matches || (index >= position && index < position + columns);
+        // Partially visible items stay reachable so a fractional column count never hides focusable content.
+        const active = !tablet.matches || (index + 1 > position && index < position + columns);
         card.inert = !active;
         card.setAttribute('aria-hidden', String(!active));
       });
@@ -88,7 +89,9 @@
       track.style.transform = `translateX(${-position * step}px)`;
       track.setAttribute('aria-roledescription', 'carousel');
       if (status) {
-        status.textContent = `Showing items ${position + 1} to ${Math.min(position + columns, cards.length)} of ${cards.length}`;
+        const first = Math.floor(position) + 1;
+        const last = Math.min(Math.ceil(position + columns), cards.length);
+        status.textContent = `Showing items ${first} to ${last} of ${cards.length}`;
       }
     };
 
@@ -97,7 +100,10 @@
         return;
       }
 
-      position = Math.max(0, Math.min(position + direction * columns, maxPosition));
+      // Whole-item steps; a fractional maxPosition lets the last item sit flush with the right edge.
+      const step = Math.max(1, Math.floor(columns));
+      const target = direction > 0 ? Math.floor(position) + step : Math.ceil(position) - step;
+      position = Math.max(0, Math.min(target, maxPosition));
       render(true);
     };
 

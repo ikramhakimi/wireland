@@ -137,9 +137,7 @@ $block_class = 'body-block py-10 border-t border-zinc-300 first:pt-0 first:borde
           <ul class="doctors-list grid mt-6 divide-y divide-dashed divide-zinc-200">
             <?php foreach ($block['items'] ?? [] as $doctor): ?>
               <li class="doctor-item flex gap-4 py-4">
-                <span class="doctor-avatar flex-center size-14 shrink-0 rounded-lg bg-zinc-200" aria-hidden="true">
-                  <?php svg('image-line', 'size-5 color-muted'); ?>
-                </span>
+                <?php component('thumbnail', ['type' => 'avatar', 'size' => 'md', 'class' => 'doctor-avatar shrink-0']); ?>
                 <span class="doctor-profile min-w-0">
                   <span class="doctor-name block font-semibold color-strong"><?= e($doctor['name']); ?></span>
                   <span class="doctor-role block mt-1 text-sm"><?= e($doctor['role']); ?><?php if (!empty($doctor['registration'])): ?> &ndash; <?= e($doctor['registration']); ?><?php endif; ?></span>

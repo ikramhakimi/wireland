@@ -110,7 +110,7 @@ $gate_privacy_note = 'Your answers stay private, are seen only by our clinical t
       </form>
       <p class="quiz-gate-login mt-5 text-center text-sm color-muted">
         Already have an account?
-        <a href="<?= asset_url('login'); ?>" class="font-medium color-strong underline underline-offset-4">Log In</a>
+        <a href="<?= asset_url('login'); ?>" class="link font-medium">Log In</a>
       </p>
       <p class="quiz-gate-privacy mt-6 pt-5 text-xs text-pretty border-t border-zinc-200 color-muted">
         <?= e($gate_privacy_note); ?>

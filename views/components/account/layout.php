@@ -24,5 +24,5 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
     </div>
   </div>
 </div>
-<?php section('footer', ['show_banner' => false]); ?>
+<?php section('footer'); ?>
 <?php if ($preview_group !== '') { component('preview-switcher', ['group' => $preview_group]); } ?>

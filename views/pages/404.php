@@ -11,7 +11,7 @@ $page_current = '404';
     <h1 class="mt-4 text-4xl font-semibold tracking-tight color-strong sm:text-6xl">
       Page not found.
     </h1>
-    <p class="mt-6 text-lg leading-8 text-zinc-600">
+    <p class="mt-6 text-lg leading-8 color-default">
       The page you requested does not exist.
     </p>
   </div>

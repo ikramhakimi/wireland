@@ -44,7 +44,7 @@ $filter_button = [
   'color'   => 'secondary',
 ];
 $reset_button = [
-  'label' => 'Reset Demo',
+  'label' => 'Reset',
   'href'  => asset_url('dashboard/follow-ups/') . '?reset=1',
   'color' => 'secondary',
 ];

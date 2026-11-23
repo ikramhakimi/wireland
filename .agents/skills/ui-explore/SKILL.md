@@ -131,8 +131,25 @@ For each direction write:
 - **Source**: the reference pattern it borrows (by reference name), `ref + fresh`, or `fresh`.
 - **Reuses**: the `/design` components it relies on; any missing pattern flagged (`New pattern`).
 - **Bold only**: `Breaks: <convention>`, and `Provocation` where it applies.
+- **Sketch**: an ASCII wireframe of the layout in a ```` ```text ```` block (rules below).
 
-**Completion criterion:** every direction has a distinct axis, and none differ only cosmetically.
+**Sketch rules.** A sketch shows structure, order, and the primary action, not styling.
+
+- Mobile first: 36 chars wide inside the frame. Add a second desktop sketch (max 72 chars) only when the
+  direction's Layout axis changes at desktop (split, grid, sticky rail).
+- Box-drawing frame (`┌ ─ ┐ │ └ ┘`), top to bottom in reading order. No emoji or circled digits
+  (`①`); they render double-width and break the frame. Mark the fold with `┄┄ fold ┄┄`
+  when content order around it matters.
+- Primary action as `[■ Label ]`, secondary as `[ Label ]`, links as `Label →`, inputs as `[________]`,
+  images as `[ img ]`, chips/tabs as `(Tab)` with the active one `(●Tab)`.
+- Real short copy from recon (names, prices, labels), not `xxx` or lorem.
+- Label each block with its `/design` component on the right edge when it is not obvious (`‹card›`,
+  `‹timeline›`); `‹new›` for a New pattern.
+- Interaction that a static sketch cannot show goes in one `↳` line under the block (e.g.
+  `↳ tap a step to expand; one open at a time`).
+
+**Completion criterion:** every direction has a distinct axis and a sketch, and none differ only
+cosmetically (if two sketches look alike, the directions are one option).
 
 **Brainstorm mode stops here.** Present the divergence map and wait:
 
@@ -150,6 +167,8 @@ Conventions: <3–5 shared conventions> (mixed/bold only)
 
 | # | Direction | Axis | Idea | Source | Breaks | Wins when | Costs |
 | - | --------- | ---- | ---- | ------ | ------ | --------- | ----- |
+
+Sketches: one `### <#> <Direction>` heading per direction, each followed by its ```text wireframe.
 
 Culled concepts (bold only): <the dropped one-liners, one line>
 

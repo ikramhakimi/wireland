@@ -31,7 +31,7 @@
     @apply outline-2 outline-blue-700 -outline-offset-2;
   }
 
-  /* Underline is the default; Segmented is an optional variant. */
+  /* Underline is the default; Segmented and Pill are optional variants. */
   .tabs-underline .tabs-list {
     @apply gap-3 border-b border-zinc-200;
   }
@@ -56,6 +56,18 @@
     @apply bg-white shadow-sm;
   }
 
+  .tabs-pill .tabs-list {
+    @apply gap-2 w-fit;
+  }
+
+  .tabs-pill .tabs-trigger {
+    @apply rounded-full bg-zinc-200;
+  }
+
+  .tabs-pill .tabs-trigger:is([aria-selected="true"], [aria-pressed="true"], [aria-current="page"]) {
+    @apply color-invert-strong bg-zinc-800;
+  }
+
   @media (hover: hover) {
     .tabs .tabs-trigger:hover {
       @apply color-strong;
@@ -65,6 +77,12 @@
     }
     .tabs-segmented .tabs-trigger:not(:is([aria-selected="true"], [aria-pressed="true"], [aria-current="page"])):hover {
       @apply bg-white/40;
+    }
+    .tabs-pill .tabs-trigger:not(:is([aria-selected="true"], [aria-pressed="true"], [aria-current="page"])):hover {
+      @apply bg-zinc-300;
+    }
+    .tabs-pill .tabs-trigger:is([aria-selected="true"], [aria-pressed="true"], [aria-current="page"]):hover {
+      @apply color-invert-strong;
     }
   }
 }

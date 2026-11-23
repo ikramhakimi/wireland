@@ -22,12 +22,12 @@ $after    = array_merge(['src' => '', 'alt' => '', 'label' => 'After'], $after);
 ?>
 <div class="media-comparison relative isolate <?= $aspect; ?> overflow-hidden rounded-lg select-none uppercase
   <?= e($class); ?> js-component-media-comparison" style="--position: <?= e($position); ?>%;">
-  <div class="layer-after absolute inset-0 bg-zinc-200 rounded-lg">
+  <div class="layer-after absolute inset-0 bg-zinc-200 rounded-lg js-component-media-comparison-after">
     <?php if ($after['src'] !== ''): ?>
       <img src="<?= e($after['src']); ?>" alt="<?= e($after['alt']); ?>"
         class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" draggable="false">
     <?php endif; ?>
-    <span class="pointer-events-none absolute right-4 top-4 bg-zinc-800/50 px-3 py-2 font-medium text-xs color-invert-strong rounded-full">
+    <span class="pointer-events-none absolute right-4 top-4 bg-zinc-800/50 px-3 py-2 font-medium text-xs color-invert-strong rounded-full js-component-media-comparison-after-label">
       <?= e($after['label']); ?>
     </span>
   </div>
