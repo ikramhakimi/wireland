@@ -14,6 +14,7 @@ $demo_sections = [
   'home-hero-2',
   'home-hero-quiz',
   'home-hero-quiz-2',
+  'home-hero-quiz-3',
   'home-shop',
   [
     'section' => 'home-shop',
@@ -98,5 +99,9 @@ component('button-getstart');
 ></script>
 <script
   src="<?= asset_url('assets/js/home-hero-quiz-2.js'); ?>?v=<?= filemtime(__DIR__ . '/../../assets/js/home-hero-quiz-2.js'); ?>"
+  defer
+></script>
+<script
+  src="<?= asset_url('assets/js/home-hero-quiz-3.js'); ?>?v=<?= filemtime(__DIR__ . '/../../assets/js/home-hero-quiz-3.js'); ?>"
   defer
 ></script>

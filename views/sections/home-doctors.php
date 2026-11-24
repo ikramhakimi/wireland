@@ -24,7 +24,7 @@ $doctor_facts = [
 ];
 $doctors      = doctor_profiles(require __DIR__ . '/../../includes/doctors-data.php');
 ?>
-<section class="section doctors-trust" aria-label="Our doctors">
+<section id="our-doctors" class="section doctors-trust scroll-mt-24" aria-label="Our doctors" tabindex="-1">
   <div class="section-content container">
     <?php component('headline', $headline); ?>
 

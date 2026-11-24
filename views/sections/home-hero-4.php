@@ -74,7 +74,7 @@ $hero_marquee = [
   },
 ];
 ?>
-<section class="hero pt-25 pb-5 js-component-home-hero">
+<section class="hero pt-10 md:pt-15 pb-5 js-component-home-hero">
   <div class="container">
     <div class="hero-split grid grid-cols-1 gap-8 lg:grid-cols-5 lg:items-end lg:gap-16">
       <header class="hero-headline lg:col-span-3">
@@ -94,7 +94,7 @@ $hero_marquee = [
             </li>
           <?php endforeach; ?>
         </ul>
-        <div class="hero-actions flex gap-2 mt-6">
+        <div class="hero-actions flex flex-wrap gap-2 mt-6">
           <?php component('button', $hero_action); ?>
           <?php component('button', $hero_action_shop); ?>
         </div>

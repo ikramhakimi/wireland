@@ -28,10 +28,10 @@ $assessment_steps = [
   ],
 ];
 $start_button = [
-  'label'   => 'Start Assessment',
-  'element' => 'button',
-  'size'    => 'large',
-  'icon'    => 'arrow-right-line',
+  'label' => 'Start Assessment',
+  'href'  => asset_url('assessment-quiz'),
+  'size'  => 'large',
+  'icon'  => 'arrow-right-line',
 ];
 
 component('navbar');

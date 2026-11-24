@@ -100,7 +100,7 @@ $show_products = $popular_products !== [];
               <div class="footer-group">
                 <h3 class="footer-topic mb-3 text-xs uppercase color-muted"><?= e(t('site.footer.clinic.title')); ?></h3>
                 <ul class="footer-list space-y-1">
-                  <li><a href="#"><?= e(t('site.menu.doctors')); ?></a></li>
+                  <li><a href="<?= asset_url('#our-doctors'); ?>"><?= e(t('site.menu.doctors')); ?></a></li>
                   <li><a href="#"><?= e(t('site.footer.clinic.results')); ?></a></li>
                   <li><a href="#"><?= e(t('site.footer.clinic.faq')); ?></a></li>
                   <li><a href="#"><?= e(t('site.footer.clinic.book_consultation')); ?></a></li>

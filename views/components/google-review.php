@@ -9,10 +9,12 @@
  *            Seal: one compact row (3 avatars, star, rating, count) for placing right below a CTA.
  *            With href it becomes a link to the reviews (opens in a new tab, 44px hit area).
  * Data: variant ('stacked' | 'inline' | 'badge' | 'seal'; default 'stacked'),
+ *       align ('center' | 'start'; default 'center'; stacked only),
  *       href (reviews URL, optional; seal only), class (extra classes).
  */
 $variants = ['stacked', 'inline', 'badge', 'seal'];
 $variant  = in_array($variant ?? '', $variants, true) ? $variant : 'stacked';
+$align    = ($align ?? '') === 'start' ? 'start' : 'center';
 $class    = $class ?? '';
 $href     = $href ?? '';
 $rating   = '4.9';
@@ -22,14 +24,16 @@ $label    = 'Rated ' . $rating . ' out of 5 stars';
 $classes  = 'google-review google-review-' . $variant . ($class !== '' ? ' ' . e($class) : '');
 ?>
 <?php if ($variant === 'stacked'): ?>
-  <div class="<?= $classes; ?> flex flex-col items-center text-center">
-    <div class="google-review-stars flex justify-center mb-2" role="img" aria-label="<?= e($label); ?>">
+  <div class="<?= $classes; ?> flex flex-col <?= $align === 'start' ? 'items-start text-left' : 'items-center text-center'; ?>">
+    <div class="google-review-stars flex mb-2 <?= $align === 'start' ? 'justify-start' : 'justify-center'; ?>"
+      role="img" aria-label="<?= e($label); ?>">
       <?php for ($i = 0; $i < 5; $i++): ?>
         <?php svg('star-s-fill', 'size-5 fill-zinc-500'); ?>
       <?php endfor; ?>
     </div>
     <div class="google-review-count text-sm">From <?= e($count); ?> verified Google Reviews</div>
-    <div class="google-review-avatars flex-center gap-1 mt-5" aria-hidden="true">
+    <div class="google-review-avatars <?= $align === 'start' ? 'flex items-center' : 'flex-center'; ?> gap-1 mt-5"
+      aria-hidden="true">
       <?php for ($i = 0; $i < $avatars; $i++): ?>
         <?php component('thumbnail', [
           'type'  => 'avatar',

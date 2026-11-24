@@ -128,7 +128,7 @@ $support_benefits = [
   'Fast delivery across Malaysia',
 ];
 $assessment_button = [
-  'label'   => 'Start Free Hair Assessment',
+  'label'   => 'Start Free Assessment',
   'href'    => asset_url('assessment'),
   'color'   => 'secondary',
   'icon'    => 'arrow-right-line',
@@ -224,7 +224,7 @@ $assessment_avatar = [
                 </p>
               <?php endforeach; ?>
             </div>
-            <div class="assessment-actions flex items-center justify-between gap-3 mt-auto pt-5">
+            <div class="assessment-actions flex flex-wrap items-center justify-between gap-3 mt-auto pt-5">
               <button type="button" class="assessment-reset min-h-11 px-5 py-3 text-sm color-invert-default rounded-lg border border-zinc-500 cursor-pointer
                 focus-visible:outline-2 focus-visible:outline-offset-4
                 js-component-assessment-reset">Start Again</button>

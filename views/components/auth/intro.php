@@ -35,6 +35,7 @@ $slides     = [
 <aside aria-label="About RR HairClinic"
   class="auth-intro relative hidden flex-col min-w-0 px-12 py-10 bg-zinc-300 color-strong overflow-hidden m-2 rounded-xl
     md:flex
+    lg:col-span-2
     js-component-auth-intro">
   <?php foreach ($slides as $index => $slide): ?>
     <div id="auth-slide-<?= $index; ?>" data-auth-slide="<?= $index; ?>"

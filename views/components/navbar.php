@@ -12,7 +12,8 @@ $login_button = [
   'href'    => asset_url('login'),
   'size'    => 'small',
 ];
-$cart_href = $cart_href ?? '';
+$cart_href    = $cart_href ?? '';
+$doctors_href = asset_url('#our-doctors');
 ?>
 <header
   class="fixed inset-x-0 top-0 z-40 bg-white transition-transform duration-300 ease-out
@@ -71,7 +72,9 @@ $cart_href = $cart_href ?? '';
       
 
       <a href="<?= asset_url('shop/'); ?>" class="text-sm font-medium color-strong"><?= e(t('site.menu.shop')); ?></a>
-      <a href="#" class="text-sm font-medium color-strong"><?= e(t('site.menu.doctors')); ?></a>
+      <a href="<?= e($doctors_href); ?>" class="text-sm font-medium color-strong">
+        <?= e(t('site.menu.doctors')); ?>
+      </a>
 
     </nav>
 
@@ -305,7 +308,8 @@ $cart_href = $cart_href ?? '';
           focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
         <?= e(t('site.menu.shop')); ?>
       </a>
-      <a href="#" class="flex min-h-14 items-center border-b border-zinc-200 px-2 font-medium color-strong
+      <a href="<?= e($doctors_href); ?>"
+        class="flex min-h-14 items-center border-b border-zinc-200 px-2 font-medium color-strong
           transition-colors hover:bg-zinc-100 focus-visible:outline-2
           focus-visible:outline-offset-2 focus-visible:outline-zinc-950">
         <?= e(t('site.menu.doctors')); ?>

@@ -14,11 +14,11 @@ $form_config  = ['auth_mode' => $auth_mode];
 
 ?>
 <div class="auth-layout grid min-h-svh bg-white color-strong
-  md:grid-cols-2">
+  lg:grid-cols-5">
   <?php component('auth/intro', $intro_config); ?>
   <div class="auth-main flex flex-col min-w-0 min-h-svh px-6 pt-10 pb-6
     md:px-8
-    lg:px-12">
+    lg:px-12 lg:col-span-3">
     <?php component('auth/form', $form_config); ?>
     <footer class="auth-footer flex items-center <?= $is_register ? 'justify-center' : 'justify-between'; ?> gap-3 text-[10px] color-muted">
       <button type="button" data-auth-notice="privacy"

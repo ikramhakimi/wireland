@@ -30,7 +30,7 @@ $kit_sum     = static fn (array $items): float => array_sum(array_map(
 ));
 ?>
 <aside
-  class="hc-kit flex flex-col p-5 border border-zinc-200 rounded-lg bg-white md:p-8<?=
+  class="hc-kit flex flex-col p-5 border border-zinc-200 rounded-lg bg-white <?=
     $class !== '' ? ' ' . e($class) : ''; ?>
     js-component-<?= e($hook); ?>-kit"
   <?= $hidden ? 'hidden' : ''; ?>
