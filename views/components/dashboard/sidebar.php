@@ -13,7 +13,7 @@ $nav_groups   = [
   [
     'title' => t('dashboard.nav.clinical.title'),
     'links' => [
-      ['label' => t('dashboard.nav.clinical.assessments'), 'href' => '#', 'current' => []],
+      ['label' => t('dashboard.nav.clinical.assessments'), 'href' => asset_url('dashboard/assessments/'), 'current' => ['assessments']],
       ['label' => t('dashboard.nav.clinical.patients'), 'href' => asset_url('dashboard/patients/'), 'current' => ['patients']],
       ['label' => t('dashboard.nav.clinical.prescriptions'), 'href' => '#', 'current' => []],
       ['label' => t('dashboard.nav.clinical.follow_ups'), 'href' => asset_url('dashboard/follow-ups/'), 'current' => ['follow-ups']],

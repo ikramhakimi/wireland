@@ -5,10 +5,10 @@ covers the staff side before follow-ups. Patient-side states: `docs/patient-jour
 order: `docs/patient-journey-simple.md`.
 
 - Queue: `/dashboard/assessments` (`views/pages/dashboard/assessments.php`)
-- Row component: `views/components/dashboard/assessment-row.php`
+- Review page: `/dashboard/assessment?id=<assessment id>` (`views/pages/dashboard/assessment.php`)
+- Components: `views/components/dashboard/assessment-row.php`, `assessment-decision.php`, `assessment-thread.php`
 - Statuses, decisions and seed data: `includes/assessments-data.php`
-- Session store, claim action and queue groups: `includes/assessments-state.php`
-- Review page: `/dashboard/assessment?id=<assessment id>` (planned)
+- Session store, actions and queue groups: `includes/assessments-state.php`
 - Quiz questions: `includes/assessment-quiz-data.php`
 - Patient summary field: `assessment` in `includes/dashboard-patients-data.php`
 - Workflow reference for doctors and product owners: `/dashboard/assessment-workflow`
@@ -64,7 +64,24 @@ flowchart TD
 | New, In Review | `pending` | Pending Review |
 | Awaiting Patient | `needs_info` | Pending Review |
 | Reviewed | `plan_ready` | Reviewed |
-| Not Suitable | `not_suitable` (❌ missing) | Reviewed |
+| Not Suitable | `not_suitable` (live only) | Reviewed |
+
+### Live link with `/account`
+
+The dashboard and `/account` share one session store (`includes/assessments-state.php`). The demo patient is
+`account_patient` (PT-2001, Aisyah) in `includes/assessments-data.php`; her assessment is AS-3004 (New).
+
+- `/account` (live, the default preview) shows her latest assessment above her orders, mapped as in the table
+  above. `views/pages/account.php` builds `$account_live_assessment`; `views/pages/account/full.php` merges it
+  over the sample.
+- Awaiting Patient: `/account` shows the latest question. The reply posts to `/account` (`action=patient_reply`,
+  `assets/js/account-reply.js`); the case returns to In Review with Patient Replied. Photos are counted only.
+- Reviewed: the doctor’s message is the plan note. Prescription and Basic Products Only show sample products
+  until prescription items are recorded; Consultation shows the note only.
+- Not Suitable: “Your doctor’s advice” with the message and WhatsApp.
+- Earlier rounds: answered questions show above the open question (Awaiting Patient), and under “Your messages
+  with <doctor>” in the other states (`thread_history`, `account/doctor-thread` `history`).
+- The session reseeds when the seed data changes, or with Reset Demo.
 
 ---
 
@@ -97,10 +114,26 @@ flowchart TD
 - Demo: Mine belongs to the `signed_in` doctor in `includes/assessments-data.php`. Reset Demo (`?reset=1`)
   reseeds the session.
 
-### Review page (`/dashboard/assessment?id=`) ❌ planned
+### Review page (`/dashboard/assessment?id=`) ✅
 
-- Main column: quiz answers grouped by question, photos, health flags, patient history.
-- Side panel: decision form (Ask Patient / Record Care Plan / Not Suitable), internal note, question thread.
+- Main column: Answers (health flags as badges, then every quiz answer), Photos (placeholders in the demo),
+  Patient History (contact, last purchase, clinic visits, treatment).
+- Check-ins: the patient’s self check-ins from `/account/treatment/checkin` (follow-ups session, `source = self`),
+  newest first: product, order, date, outcome, refill and the answers. Read only.
+- Sticky aside: Decision, Questions (thread), Internal Notes.
+- Decision card by state:
+
+| State | Decision card |
+|---|---|
+| New | Claim Assessment |
+| Claimed by another doctor | Read only: who owns it |
+| Awaiting Patient (mine) | Waiting for reply; Add Demo Reply (demo only) |
+| In Review (mine) | Form: Action, Question for Patient, Care Plan, Message for Patient, Internal Note → Save Decision |
+| Reviewed / Not Suitable | Outcome, care plan, date, doctor, message for patient |
+
+Form validation (server-side, `includes/assessments-state.php`): an action is required. Ask Patient needs a
+question. Record Care Plan needs a care plan type and a message. Not Suitable needs a message. Only the claiming
+doctor can decide, and only while the case is In Review. The internal note is optional and kept on every action.
 
 ---
 
@@ -109,12 +142,16 @@ flowchart TD
 | Item | Status | Notes |
 |---|---|---|
 | Queue page with self-claim | ✅ | Session demo, no database |
-| Review page | ❌ | Review and View on the queue link to it already |
-| Session demo state shared with `/account` | ❌ | Queue state is dashboard-only for now |
+| Review page with decision form | ✅ | Session demo |
+| Patient replies from `/account` | ✅ | AS-3004 only; Add Demo Reply for the other patients |
+| Real photos | ❌ | Placeholders by view (Top, Front, Crown) |
+| Prescription items on Record Care Plan | ❌ | Only the care plan type is saved |
+| Session demo state shared with `/account` | ✅ | Live preview only; other previews use sample data |
+| Plan products from the doctor | ❌ | Sample products per care plan type |
 | Staff sign-in | ❌ | Mine uses a fixed demo doctor (`signed_in`) |
 | Patient list `assessment` field and `doctor` | ⚠️ | Separate seed in `includes/dashboard-patients-data.php`; not read from assessments |
-| Multiple question rounds on `/account` | ⚠️ | Patient side supports one round only (`docs/patient-journey.md`) |
-| `not_suitable` patient state | ❌ | Not in `includes/preview-states.php` |
+| Multiple question rounds on `/account` | ✅ | Answered rounds show above the open question, then as “Your messages with <doctor>” |
+| `not_suitable` patient state | ⚠️ | Live only; no `?state=` preview yet |
 | Prescription flow | ❌ | Open question below |
 | Overview counts linked to the queue | ⚠️ | `includes/dashboard-overview-data.php` shows sample counts; "View assessments" has no target |
 
@@ -132,5 +169,9 @@ flowchart TD
 
 ## Changelog
 
+- 2026-11-25: Review page shows the patient’s self check-ins.
+- 2026-11-24: `/account` shows earlier question rounds.
+- 2026-11-24: Linked to `/account` (live): status mapping, patient replies, Not Suitable state.
+- 2026-11-24: Review page built: answers, photos, history, decision form, question thread, internal notes.
 - 2026-11-24: Queue page built: Unclaimed, Mine and Reviewed groups; self-claim.
 - 2026-11-24: First version. Self-claim, unlimited question rounds and Not Suitable agreed; prescription open.

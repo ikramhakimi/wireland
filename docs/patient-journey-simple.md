@@ -63,6 +63,9 @@ building the data, so `/account` can render the section without the full page.
 
 Preview: `care_shipped_pending`, `care_shipped_needs_info`, `care_done_plan_ready`.
 
+Live (default): the same layout shows the patient’s assessment from the dashboard session, including
+`not_suitable` (doctor’s advice + WhatsApp). Replies post to the dashboard. See `docs/flow-assessment.md`.
+
 ## Cards: one per product order
 
 - **Active**: the latest order of each product, unless stopped. Full card: 4-stage tracker

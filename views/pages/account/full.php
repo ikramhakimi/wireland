@@ -33,6 +33,12 @@ $account       = require __DIR__ . '/../../../includes/account-data.php';
 $quiz_products = array_column(require __DIR__ . '/../../../includes/dashboard-products-data.php', null, 'id');
 $review_time   = $account['assessment']['review_time'];
 $current       = $account['assessments'][0] ?? null;
+// /account (live) passes the dashboard's session assessment (views/pages/account.php); it replaces the sample.
+if (isset($account_live_assessment) && $current !== null) {
+  $current = array_merge($current, $account_live_assessment, [
+    'plan' => array_merge($current['plan'] ?? [], $account_live_assessment['plan'] ?? []),
+  ]);
+}
 $treatment     = $account['treatment'];
 $plan_order    = $account['plan_order'];
 $mode          = $current === null ? 'new' : ($treatment['status'] ?? $plan_order['status'] ?? $current['status']);
@@ -52,6 +58,7 @@ $mode_titles = [
   'checkin_due'    => 'Hi ' . $first_name . ', it’s time for your check-in',
   'checkin_review' => 'Hi ' . $first_name . ', thanks for your check-in',
   'plan_updated'   => 'Hi ' . $first_name . ', your doctor has replied',
+  'not_suitable'   => 'Hi ' . $first_name . ', your doctor recommends a clinic visit',
 ];
 $start_steps = [
   [
@@ -200,11 +207,12 @@ $aside_facts  = $plan_order !== null
     'Assessment'     => $current['id'],
     'Sent'           => $current['submitted_on'],
     'Reply expected' => $mode === 'pending' ? 'Within ' . $review_time : '',
-    'Doctor'         => in_array($mode, ['needs_info', 'plan_ready'], true) ? $current['doctor'] : '',
+    'Doctor'         => in_array($mode, ['needs_info', 'plan_ready', 'not_suitable'], true) ? $current['doctor'] : '',
     'Question sent'  => $mode === 'needs_info' ? $current['asked_at'] : '',
   ])));
 $short_date     = static fn (string $date): string => preg_replace('/\s\d{4}$/', '', $date);
-$plan_issued_on = ($current['status'] ?? '') === 'plan_ready' ? $short_date($account['prescriptions'][0]['issued_on'] ?? '') : '';
+$plan_issued_on = in_array($current['status'] ?? '', ['plan_ready', 'not_suitable'], true)
+  ? $short_date($current['decided_on'] ?? $account['prescriptions'][0]['issued_on'] ?? '') : '';
 // Status tracker: one stage per step of the first care plan; notes date done stages and describe the active one.
 $tracker = [
   'stages'     => [
@@ -225,6 +233,7 @@ $tracker = [
         'checkin_due'    => 'Done ' . $plan_issued_on,
         'checkin_review' => 'Done ' . $plan_issued_on,
         'plan_updated'   => 'Done ' . $plan_issued_on,
+        'not_suitable'   => 'Done ' . $plan_issued_on,
       ][$mode],
     ],
     [
@@ -256,6 +265,7 @@ $tracker = [
     'checkin_due'    => 3,
     'checkin_review' => 3,
     'plan_updated'   => 3,
+    'not_suitable'   => 1,
   ][$mode],
   'icon'       => [
     'ordered'        => 'box-3-line',
@@ -288,6 +298,10 @@ $status_sections = [
   'plan_ready'     => [
     'title' => 'Your plan',
     'text'  => $current['plan']['note'] ?? '',
+  ],
+  'not_suitable'   => [
+    'title' => 'Your doctor’s advice',
+    'text'  => $current['message'] ?? '',
   ],
   'ordered'        => [
     'title' => 'Your delivery',

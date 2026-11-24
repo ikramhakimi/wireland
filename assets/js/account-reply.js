@@ -8,6 +8,9 @@
  *   .js-account-reply-time, .js-account-reply-text, .js-account-reply-images, .js-account-reply-reset;
  *   optional .js-account-reply-answer (data-assessment-id) anywhere on the page;
  *   optional .js-component-chat-composer inside (fires chat-composer:send).
+ *   Live /account: a root with data-reply-url and data-reply-token posts the reply to the server
+ *   (includes/assessments-state.php, action patient_reply) instead of localStorage. Photos are counted, not sent.
+ *   If the post fails, the page reloads so it shows the saved state.
  */
 (() => {
   const storageKey = 'rr-account-replies';
@@ -85,9 +88,29 @@
     item.hidden   = false;
   };
 
+  const post = (root, id, reply) => {
+    const body = new URLSearchParams({
+      token:         root.dataset.replyToken,
+      action:        'patient_reply',
+      return:        'account',
+      assessment_id: id,
+      message:       reply.text,
+      photos:        String(reply.images.length),
+    });
+
+    fetch(root.dataset.replyUrl, { method: 'POST', body, credentials: 'same-origin' })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Reply not saved: ${response.status}`);
+        }
+      })
+      .catch(() => window.location.reload());
+  };
+
   document.querySelectorAll('.js-component-account-reply').forEach((root) => {
-    const id    = root.dataset.assessmentId;
-    const saved = readAll()[id];
+    const id     = root.dataset.assessmentId;
+    const isLive = Boolean(root.dataset.replyUrl);
+    const saved  = isLive ? null : readAll()[id];
 
     if (saved) {
       render(root, saved);
@@ -97,7 +120,12 @@
 
     root.querySelector('.js-component-chat-composer')?.addEventListener('chat-composer:send', (event) => {
       const reply = { ...event.detail, sentAt: new Date().toISOString() };
-      save(id, reply);
+
+      if (isLive) {
+        post(root, id, reply);
+      } else {
+        save(id, reply);
+      }
       render(root, reply);
       fillAnswers(id, reply);
       setMode(id, 'sent');

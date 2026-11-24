@@ -10,6 +10,11 @@
  *            inline facts.
  * Data: the $status_view array built in views/pages/account/full.php (mode, current, tracker, status_sections,
  *       steps, buttons, facts and the mode-specific data). Escape values with e(...).
+ *       current may carry reply_url and reply_token (live /account): the doctor thread then posts the reply.
+ *       current may carry thread_history (answered rounds): shown above the open question in needs_info, and as
+ *       "Your messages with <doctor>" in the other modes.
+ *       not_suitable shows the doctor's message and WhatsApp; plan_ready without plan items (Consultation)
+ *       shows the note only.
  */
 $section  = $status_sections[$mode];
 $reply_id = $current['id'] ?? '';
@@ -49,7 +54,7 @@ $reply_id = $current['id'] ?? '';
           <?= e($section['text']); ?>
         </p>
       <?php endif; ?>
-      <?php if (in_array($mode, ['plan_ready', 'plan_updated'], true)): ?>
+      <?php if (in_array($mode, ['plan_ready', 'plan_updated', 'not_suitable'], true)): ?>
         <p class="account-status-author mt-1 text-sm color-muted">— <?= e($current['doctor']); ?></p>
       <?php endif; ?>
     </div>
@@ -69,6 +74,9 @@ $reply_id = $current['id'] ?? '';
         'asked_at'      => $current['asked_at'],
         'message'       => $current['message'],
         'review_time'   => $review_time,
+        'reply_url'     => $current['reply_url'] ?? '',
+        'reply_token'   => $current['reply_token'] ?? '',
+        'history'       => $current['thread_history'] ?? [],
       ]); ?>
     <?php elseif ($mode === 'on_treatment'): ?>
       <?php component('progress', $supply_progress); ?>
@@ -120,7 +128,7 @@ $reply_id = $current['id'] ?? '';
           'class' => 'account-checkins-list mt-5',
         ]); ?>
       </div>
-    <?php elseif ($mode === 'plan_ready'): ?>
+    <?php elseif ($mode === 'plan_ready' && $plan_items !== []): ?>
       <ul class="account-plan-list grid divide-y divide-dashed divide-zinc-200" role="list">
         <?php foreach ($plan_items as $plan_item): ?>
           <li class="account-plan-item py-4 first:pt-0">
@@ -137,6 +145,20 @@ $reply_id = $current['id'] ?? '';
           </span>
         </p>
         <?php component('button', $order_button); ?>
+      </div>
+    <?php endif; ?>
+
+    <?php if ($mode !== 'needs_info' && ($current['thread_history'] ?? []) !== []): ?>
+      <div class="account-messages">
+        <h3 class="account-messages-title text-sm font-semibold color-strong">
+          Your messages with <?= e($current['doctor']); ?>
+        </h3>
+        <?php component('account/doctor-thread', [
+          'assessment_id' => $reply_id,
+          'doctor'        => $current['doctor'],
+          'history'       => $current['thread_history'],
+          'class'         => 'mt-5',
+        ]); ?>
       </div>
     <?php endif; ?>
 

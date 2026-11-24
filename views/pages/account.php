@@ -42,6 +42,75 @@ $combined_states = [
 $status_view = null;
 $mode_title  = '';
 
+// Live: the patient's latest assessment from the dashboard session shows above their orders, in the same
+// combined layout. Read in its own scope so the state file's variables stay out of this page.
+if ($preview === 'live') {
+  $account_live_assessment = (static function (): ?array {
+    $assessments = require __DIR__ . '/../../includes/assessments-state.php';
+    $config      = $assessments['config'];
+    $own         = array_filter(
+      $assessments['records'],
+      static fn (array $record): bool => $record['patient_id'] === $config['account_patient'],
+    );
+
+    if ($own === []) {
+      return null;
+    }
+
+    usort($own, static fn (array $a, array $b): int => strcmp($b['submitted'], $a['submitted']));
+    $record   = $own[0];
+    $question = end($record['thread']) ?: [];
+    // Care plan types without stored items: sample products until prescription items are recorded.
+    $products = [
+      'prescription' => ['PRD-006', 'PRD-002'],
+      'basic'        => $quiz_default_products ?? ['PRD-005', 'PRD-004'],
+      'consultation' => [],
+    ];
+
+    return [
+      'id'             => $record['id'],
+      'status'         => [
+        'new'          => 'pending',
+        'in_review'    => 'pending',
+        'awaiting'     => 'needs_info',
+        'reviewed'     => 'plan_ready',
+        'not_suitable' => 'not_suitable',
+      ][$record['status']],
+      'submitted_on'   => assessment_label_date($record['submitted']),
+      'decided_on'     => assessment_label_date($record['decided_on']),
+      'doctor'         => $assessments['doctors'][$record['doctor'] ?? '']['name'] ?? '',
+      'asked_at'       => assessment_label_date($question['asked_on'] ?? ''),
+      'message'        => $record['status'] === 'awaiting' ? ($question['question'] ?? '') : $record['message'],
+      'plan'           => [
+        'product_ids' => $products[$record['decision']] ?? [],
+        'note'        => $record['message'],
+      ],
+      'answers'        => array_map(static fn ($answer): array => (array) $answer, $record['answers']),
+      'flags'          => [],
+      'follow_ups'     => [],
+      // Answered rounds, oldest first. The open question (Awaiting Patient) is 'message' instead.
+      'thread_history' => array_values(array_map(static fn (array $round): array => [
+        'question'   => $round['question'],
+        'asked_at'   => assessment_label_date($round['asked_on']),
+        'reply'      => $round['reply'],
+        'replied_at' => assessment_label_date($round['replied_on']),
+        'photos'     => $round['reply_photos'] ?? 0,
+      ], array_filter(
+        $record['thread'],
+        static fn (array $round): bool => $round['reply'] !== '' || ($round['reply_photos'] ?? 0) > 0,
+      ))),
+      'reply_url'      => asset_url('account/'),
+      'reply_token'    => $assessments['token'],
+    ];
+  })();
+
+  if ($account_live_assessment !== null) {
+    // account-data.php has no not_suitable sample; build on pending and let the live status replace it.
+    $live_status = $account_live_assessment['status'];
+    $combined_states['live'] = [$live_status === 'not_suitable' ? 'pending' : $live_status, 'live'];
+  }
+}
+
 if (isset($combined_states[$preview])) {
   [$account_preview_state, $card_state] = $combined_states[$preview];
   $account_embed = true;
