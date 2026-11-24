@@ -5,7 +5,18 @@ if (!function_exists('svg')) {
   {
     $svg_icons = [
       'draggable' => '<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"{{ class }}><path d="M8.5 7C9.32843 7 10 6.32843 10 5.5C10 4.67157 9.32843 4 8.5 4C7.67157 4 7 4.67157 7 5.5C7 6.32843 7.67157 7 8.5 7ZM8.5 13.5C9.32843 13.5 10 12.8284 10 12C10 11.1716 9.32843 10.5 8.5 10.5C7.67157 10.5 7 11.1716 7 12C7 12.8284 7.67157 13.5 8.5 13.5ZM10 18.5C10 19.3284 9.32843 20 8.5 20C7.67157 20 7 19.3284 7 18.5C7 17.6716 7.67157 17 8.5 17C9.32843 17 10 17.6716 10 18.5ZM15.5 7C16.3284 7 17 6.32843 17 5.5C17 4.67157 16.3284 4 15.5 4C14.6716 4 14 4.67157 14 5.5C14 6.32843 14.6716 7 15.5 7ZM17 12C17 12.8284 16.3284 13.5 15.5 13.5C14.6716 13.5 14 12.8284 14 12C14 11.1716 14.6716 10.5 15.5 10.5C16.3284 10.5 17 11.1716 17 12ZM15.5 20C16.3284 20 17 19.3284 17 18.5C17 17.6716 16.3284 17 15.5 17C14.6716 17 14 17.6716 14 18.5C14 19.3284 14.6716 20 15.5 20Z"/></svg>',
-      'image-line' => '<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"{{ class }}><path d="M2.9918 21C2.44405 21 2 20.5551 2 20.0066V3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082C21.556 3 22 3.44495 22 3.9934V20.0066C22 20.5552 21.5447 21 21.0082 21H2.9918ZM20 15V5H4V19L14 9L20 15ZM20 17.8284L14 11.8284L6.82843 19H20V17.8284ZM8 11C6.89543 11 6 10.1046 6 9C6 7.89543 6.89543 7 8 7C9.10457 7 10 7.89543 10 9C10 10.1046 9.10457 11 8 11Z"/></svg>',
+      'image-line' => '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"'
+        . ' xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"'
+        . ' class="solar-gallery{{ class_suffix }}">'
+        . '<path d="M12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 '
+        . '3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 '
+        . '12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22Z" stroke-linecap="round" '
+        . 'stroke="currentColor"/>'
+        . '<circle cx="16" cy="8" r="2" stroke-linecap="round" stroke="currentColor"/>'
+        . '<path d="M2 12.5001L3.75159 10.9675C4.66286 10.1702 6.03628 10.2159 6.89249 11.0721L11.1822 '
+        . '15.3618C11.8694 16.0491 12.9512 16.1428 13.7464 15.5839L14.0446 15.3744C15.1888 14.5702 16.7369 '
+        . '14.6634 17.7765 15.599L21 18.5001" stroke-linecap="round" stroke="currentColor"/>'
+        . '</svg>',
       'dossier-line' => '<svg viewBox="0 0 24 24" fill="currentColor"'
         . ' xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"{{ class }}>'
         . '<path d="M17 2V4H20C20.5523 4 21 4.44772 21 5V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 '
@@ -57,12 +68,12 @@ if (!function_exists('svg')) {
         . '11.4477 11.5 12 11.5C12.8284 11.5 13.5 10.8284 13.5 10C13.5 9.17157 12.8284 8.5 12 8.5C11.2723 '
         . '8.5 10.6656 9.01823 10.5288 9.70577L8.56731 9.31346C8.88637 7.70919 10.302 6.5 12 6.5C13.933 6.5 '
         . '15.5 8.067 15.5 10C15.5 11.5855 14.4457 12.9248 13 13.3551Z"/></svg>',
-      'user-line' => '<svg viewBox="0 0 24 24" fill="currentColor"'
-        . ' xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"{{ class }}>'
-        . '<path d="M4 22C4 17.5817 7.58172 14 12 14C16.4183 14 20 17.5817 20 22H18C18 18.6863 15.3137 16 12 '
-        . '16C8.68629 16 6 18.6863 6 22H4ZM12 13C8.685 13 6 10.315 6 7C6 3.685 8.685 1 12 1C15.315 1 18 3.685 '
-        . '18 7C18 10.315 15.315 13 12 13ZM12 11C14.21 11 16 9.21 16 7C16 4.79 14.21 3 12 3C9.79 3 8 4.79 8 7C8'
-        . ' 9.21 9.79 11 12 11Z"/>'
+      'user-line' => '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"'
+        . ' xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"'
+        . ' class="solar-user{{ class_suffix }}">'
+        . '<circle cx="12" cy="6" r="4" stroke-linecap="round" stroke="currentColor"/>'
+        . '<path d="M20 17.5C20 19.9853 20 22 12 22C4 22 4 19.9853 4 17.5C4 15.0147 7.58172 13 12 13C16.4183 13 '
+        . '20 15.0147 20 17.5Z" stroke-linecap="round" stroke="currentColor"/>'
         . '</svg>',
       'notification-3-line' => '<svg viewBox="0 0 24 24" fill="currentColor"'
         . ' xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"{{ class }}>'
@@ -260,12 +271,17 @@ if (!function_exists('svg')) {
         . '1.56944 3.22386 1.34558 3.5 1.34558ZM5 4.38249V10.9999H10V12.9999H5V19.6174L18.8499 11.9999L5 '
         . '4.38249Z"/>'
         . '</svg>',
-      'image-add-line' => '<svg viewBox="0 0 24 24" fill="currentColor"'
-        . ' xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"{{ class }}>'
-        . '<path d="M21 15V18H24V20H21V23H19V20H16V18H19V15H21ZM21.0082 3C21.556 3 22 3.44495 22 3.9934V13H20V5H4V'
-        . '18.999L14 9L17 12V14.829L14 11.8284L6.827 19H14V21H2.9918C2.44405 21 2 20.5551 2 20.0066V3.9934C2 '
-        . '3.44476 2.45531 3 2.9918 3H21.0082ZM8 7C9.10457 7 10 7.89543 10 9C10 10.1046 9.10457 11 8 11C6.89543 '
-        . '11 6 10.1046 6 9C6 7.89543 6.89543 7 8 7Z"/>'
+      'image-add-line' => '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"'
+        . ' xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"'
+        . ' class="solar-gallery-add{{ class_suffix }}">'
+        . '<path d="M22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 '
+        . '3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2" '
+        . 'stroke-linecap="round" stroke="currentColor"/>'
+        . '<path d="M2 12.4999L3.75159 10.9673C4.66286 10.1699 6.03628 10.2156 6.89249 11.0719L11.1822 '
+        . '15.3616C11.8694 16.0488 12.9512 16.1425 13.7464 15.5837L14.0446 15.3741C15.1888 14.57 16.7369 14.6631 '
+        . '17.7765 15.5987L21 18.4999" stroke-linecap="round" stroke="currentColor"/>'
+        . '<path d="M15 5.5H18.5M18.5 5.5H22M18.5 5.5V9M18.5 5.5V2" stroke-linecap="round" '
+        . 'stroke="currentColor"/>'
         . '</svg>',
       'close-line' => '<svg viewBox="0 0 24 24" fill="currentColor"'
         . ' xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"{{ class }}>'
@@ -587,9 +603,13 @@ if (!function_exists('svg')) {
       return;
     }
 
-    $class_attribute = trim($class);
-    $class_markup    = $class_attribute !== '' ? ' class="' . e($class_attribute) . '"' : '';
+    $class_attribute = e(trim($class));
+    $class_markup    = $class_attribute !== '' ? ' class="' . $class_attribute . '"' : '';
+    $class_suffix    = $class_attribute !== '' ? ' ' . $class_attribute : '';
 
-    echo str_replace('{{ class }}', $class_markup, $svg_icons[$resolved_svg_name]);
+    echo strtr($svg_icons[$resolved_svg_name], [
+      '{{ class }}'        => $class_markup,
+      '{{ class_suffix }}' => $class_suffix,
+    ]);
   }
 }

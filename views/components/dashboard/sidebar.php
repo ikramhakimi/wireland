@@ -50,7 +50,7 @@ $render_link = static function (array $link) use ($page_current): void {
   <a href="<?= asset_url('dashboard/'); ?>" aria-label="<?= e(t('dashboard.brand.home_label')); ?>"
     class="sidebar-brand inline-flex items-center self-start min-h-11 mx-3 text-lg color-strong
       focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">
-    <span class="sidebar-brand-mark flex items-center justify-center w-9 aspect-square font-semibold border border-zinc-600"><?= e(t('dashboard.brand.mark')); ?></span>
+    <span class="sidebar-brand-mark flex-center w-10 aspect-square rounded-md font-semibold bg-zinc-400 text-white"><?= e(t('dashboard.brand.mark')); ?></span>
   </a>
   <nav aria-label="<?= e(t('dashboard.nav.label')); ?>" class="sidebar-navigation flex flex-col flex-1 gap-5">
     <?php $render_link($nav_overview); ?>
