@@ -1,7 +1,7 @@
 # Patient Journey (Simple)
 
 The client-facing journey. `/account` (Overview) shows it. The detailed version stays as an internal reference
-at `/account/full` (`docs/patient-journey.md`).
+at `/account/full` (`docs/patient-journey.md`). Doctor review before the first order: `docs/flow-assessment.md`.
 
 - Overview: `/account` (`views/pages/account.php`). Assessment states render `views/pages/account/full.php`
   unchanged; from the first order on, the page shows the product cards.

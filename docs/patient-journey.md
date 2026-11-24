@@ -2,6 +2,7 @@
 
 Internal reference. This version now lives at `/account/full` (`views/pages/account/full.php`) and is not in the
 account nav. Clients see the simplified journey on `/account`: see `docs/patient-journey-simple.md`.
+Staff side of the assessment (queue, review, decision): see `docs/flow-assessment.md`.
 
 Tracks every patient state on `/account/full`, how patients move between them, and what is still missing,
 from first assessment to the end of a treatment cycle.
