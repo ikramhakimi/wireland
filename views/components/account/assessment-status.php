@@ -77,6 +77,7 @@ $reply_id = $current['id'] ?? '';
         'reply_url'     => $current['reply_url'] ?? '',
         'reply_token'   => $current['reply_token'] ?? '',
         'history'       => $current['thread_history'] ?? [],
+        'items'         => $current['message_items'] ?? [],
       ]); ?>
     <?php elseif ($mode === 'on_treatment'): ?>
       <?php component('progress', $supply_progress); ?>

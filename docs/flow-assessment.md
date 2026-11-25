@@ -6,7 +6,8 @@ order: `docs/patient-journey-simple.md`.
 
 - Queue: `/dashboard/assessments` (`views/pages/dashboard/assessments.php`)
 - Review page: `/dashboard/assessment?id=<assessment id>` (`views/pages/dashboard/assessment.php`)
-- Components: `views/components/dashboard/assessment-row.php`, `assessment-decision.php`, `assessment-thread.php`
+- Components: `views/components/dashboard/assessment-row.php`, `assessment-answers.php`, `assessment-decision.php`,
+  `assessment-thread.php`, `assessment-checkins.php`
 - Statuses, decisions and seed data: `includes/assessments-data.php`
 - Session store, actions and queue groups: `includes/assessments-state.php`
 - Quiz questions: `includes/assessment-quiz-data.php`
@@ -81,6 +82,8 @@ The dashboard and `/account` share one session store (`includes/assessments-stat
 - Not Suitable: “Your doctor’s advice” with the message and WhatsApp.
 - Earlier rounds: answered questions show above the open question (Awaiting Patient), and under “Your messages
   with <doctor>” in the other states (`thread_history`, `account/doctor-thread` `history`).
+- Questions asked about one answer show “About your answer: …” above the doctor’s bubble (`message_about`,
+  history `about`).
 - The session reseeds when the seed data changes, or with Reset Demo.
 
 ---
@@ -116,15 +119,47 @@ The dashboard and `/account` share one session store (`includes/assessments-stat
 
 ### Review page (`/dashboard/assessment?id=`) ✅
 
-- Main column: Answers (health flags as badges, then every quiz answer), Photos (placeholders in the demo),
-  Patient History (contact, last purchase, clinic visits, treatment).
+One task per place, each with its own form:
+
+- Main column: Answers (health flags as badges, then every quiz answer), Questions, Photos (placeholders in the
+  demo), Patient History (contact, last purchase, clinic visits, treatment), Check-ins.
+- Questions (the conversation, not a decision): the thread, then **Ask the Patient** while In Review, or the wait
+  for a reply with Add Demo Reply (demo only) while Awaiting Patient.
+- Answers: grouped (Profile, Hair, Health and Goal) with short labels from `answer_labels` in
+  `includes/assessments-data.php`; the full quiz question is in a tooltip. A flag icon hangs left of the option
+  (text stays aligned) for options listed in `flags` in `includes/assessments-data.php` (`<question ID>:<option>`
+  => tooltip text; every health condition except “None of these” for now), and `Q<n>` markers (monospace) sit
+  before its checkbox, both with
+  tooltips. Each row ends with a 40px checkbox
+  (`forms/choice` `size: large`) while asking is possible. A multiple-choice answer keeps one label and stacks
+  its chosen options in the answer column, split by dashed dividers, so each option can be asked about on its own: `about[]` holds
+  `<question ID>:<option>`. A plain question ID (older rounds) means the whole answer and marks every row of it.
+- Ask the Patient is one question per round. Ticked answers become removable chips (`chip` component) above the
+  question; a chip’s × unticks its answer. With no chips it is a general question. **Request Photo** asks for a
+  photo; **Send Question** posts `question`, `about[]` and `photo`. The thread shows the referenced answers as
+  badges and “Photo requested”; on `/account` the patient sees “About your answers: …” and “Please add a photo
+  when you reply.” While New or Awaiting Patient, the Answers card says why asking is not available. Chips need
+  `assets/js/assessment-ask.js`; without it, chips from a rejected submit still post.
 - Check-ins: the patient’s self check-ins from `/account/treatment/checkin` (follow-ups session, `source = self`),
   newest first: product, order, date, outcome, refill and the answers. Read only.
-- Sticky aside: Decision, Questions (thread), Internal Notes.
-- Decision card by state:
+- Sticky aside: Decision (final decisions only) and Internal Notes (list + Add Note for the claiming doctor, any
+  status).
 
 | State | Decision card |
 |---|---|
+| New | Claim Assessment |
+| Claimed by another doctor | Read only: who owns it |
+| Awaiting Patient (mine) | Waiting for the reply in Questions |
+| In Review (mine) | Tabs: **Care Plan** (type + message → Save Care Plan), **Not Suitable** (message → Mark as Not Suitable) |
+| Reviewed / Not Suitable | Outcome, care plan, date, doctor, message for patient |
+
+Validation (server-side, `includes/assessments-state.php`): asking needs a question. A care plan needs a type and a
+message. Not Suitable needs a message. A note needs text. Only the claiming doctor can ask, decide or add notes;
+asking and deciding only while In Review. After a rejected submit the same form (and tab) opens with its input.
+`layout-dashboard.php` loads `assets/js/tabs.js`, `assets/js/assessment-ask.js` and `assets/js/overlays.js`
+(tooltips) for the Assessments pages.
+
+---|---|
 | New | Claim Assessment |
 | Claimed by another doctor | Read only: who owns it |
 | Awaiting Patient (mine) | Waiting for reply; Add Demo Reply (demo only) |
@@ -169,6 +204,17 @@ doctor can decide, and only while the case is In Review. The internal note is op
 
 ## Changelog
 
+- 2026-11-25: Flag rules moved to `flags` in `includes/assessments-data.php`.
+- 2026-11-25: Flag as an icon and asked rounds as Q<n>, both with tooltips.
+- 2026-11-25: Multiple-choice answers list each option under one label, each with its own checkbox.
+- 2026-11-25: Bundle layout from the prototype: grouped answers with short labels, one question with answer chips.
+- 2026-11-25: Request Photo per question.
+- 2026-11-25: Ask the Patient takes several questions in one round; answers are ticked to add a question about
+  them.
+- 2026-11-25: Review page split by task: Ask the Patient in Questions, Decision tabs (Care Plan / Not Suitable),
+  Add Note in Internal Notes.
+- 2026-11-25: `/account` shows which answer a question is about; Answers explains when Ask is unavailable.
+- 2026-11-25: Questions moved to the main column; Ask on each answer.
 - 2026-11-25: Review page shows the patient’s self check-ins.
 - 2026-11-24: `/account` shows earlier question rounds.
 - 2026-11-24: Linked to `/account` (live): status mapping, patient replies, Not Suitable state.

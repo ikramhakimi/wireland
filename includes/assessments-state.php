@@ -5,7 +5,7 @@
  * Purpose: Assessment records for the current browser session, the doctor actions and the queue groups for
  *          /dashboard/assessments and /dashboard/assessment.
  * Structure: helpers (dates, answer labels), session store seeded from includes/assessments-data.php,
- *            POST actions (PRG redirect): claim, decide (ask, plan, not_suitable), demo_reply, patient_reply
+ *            POST actions (PRG redirect): claim, decide (ask, plan, not_suitable), note, demo_reply, patient_reply
  *            (from /account; 422 on error, no flash);
  *            queue groups (unclaimed, mine, reviewed).
  * Data: returns config, records, queue, patients, doctors, questions (quiz questions by ID), signed_in, today,
@@ -101,6 +101,7 @@ if (!isset($_SESSION['assessments']) || isset($_GET['reset'])
 
     $record['thread'] = array_map(static fn (array $entry): array => [
       'question'     => $entry['question'],
+      'about'        => array_values(array_filter((array) ($entry['about'] ?? []))),
       'asked_on'     => assessment_date($today, $entry['asked_on']),
       'reply'        => $entry['reply'] ?? '',
       'reply_photos' => 0,
@@ -133,6 +134,22 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['assessment
     'decision' => $post('decision'),
     'message'  => mb_substr($post('message'), 0, $text_max),
     'note'     => mb_substr($post('note'), 0, $text_max),
+    // Ask the Patient: the answers the question is about ([] for a general question), as "<question ID>:<option>"
+    // for one chosen option or a plain question ID for the whole answer; then Request Photo.
+    'about'    => array_values(array_unique(array_filter(
+      (array) ($_POST['about'] ?? []),
+      static function ($id) use ($questions, $record): bool {
+        if (!is_string($id)) {
+          return false;
+        }
+
+        [$question_id, $option] = array_pad(explode(':', $id, 2), 2, null);
+
+        return isset($questions[$question_id])
+          && ($option === null || in_array($option, (array) ($record['answers'][$question_id] ?? []), true));
+      },
+    ))),
+    'photo'    => $post('photo') === '1',
   ];
   $is_mine  = $record !== null && $record['doctor'] === $signed_in;
   $error    = '';
@@ -166,6 +183,19 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['assessment
         'replied_on'   => $today,
       ]);
       $record = array_merge($record, ['status' => 'in_review', 'replied' => true]);
+    }
+  } elseif ($action === 'note') {
+    if (!$is_mine) {
+      $error = 'Only the doctor who claimed this assessment can add notes.';
+    } elseif ($input['note'] === '') {
+      $error = 'The note is empty. Write a note, then add it.';
+    } else {
+      $record['notes'][] = ['text' => $input['note'], 'on' => $today, 'by' => $signed_in];
+      $message           = 'Note added.';
+    }
+
+    if ($error !== '') {
+      $_SESSION['assessments_old'] = $input + ['action' => $action];
     }
   } elseif ($action === 'demo_reply') {
     $last = array_key_last($record['thread']);
@@ -201,8 +231,11 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['assessment
       }
 
       if ($input['outcome'] === 'ask') {
+        // One question per round, about any number of answers; items keeps the shape thread views read.
         $record['thread'][] = [
           'question'     => $input['question'],
+          'items'        => [['about' => $input['about'], 'text' => $input['question'], 'photo' => $input['photo']]],
+          'about'        => $input['about'],
           'asked_on'     => $today,
           'reply'        => '',
           'reply_photos' => 0,
@@ -221,7 +254,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['assessment
         $message = $input['outcome'] === 'plan' ? 'Care plan recorded.' : 'Marked as not suitable.';
       }
     } else {
-      $_SESSION['assessments_old'] = $input;
+      $_SESSION['assessments_old'] = $input + ['action' => $action];
     }
   } else {
     $error = 'This action isn’t available. Reload the page and try again.';

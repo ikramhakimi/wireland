@@ -42,6 +42,7 @@ $navigation_groups = [
   'Content' => [
     ['label' => 'Cards', 'target' => 'design-cards'],
     ['label' => 'Badges', 'target' => 'design-badges'],
+    ['label' => 'Chips', 'target' => 'design-chips'],
     ['label' => 'Google Review', 'target' => 'design-google-review'],
     ['label' => 'Thumbnails', 'target' => 'design-thumbnails'],
     ['label' => 'Description List', 'target' => 'design-facts'],

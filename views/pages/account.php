@@ -60,6 +60,25 @@ if ($preview === 'live') {
     usort($own, static fn (array $a, array $b): int => strcmp($b['submitted'], $a['submitted']));
     $record   = $own[0];
     $question = end($record['thread']) ?: [];
+    // The patient's own answer a doctor question is about (ticked in the dashboard); '' if general.
+    // "<question ID>:<option>" is one chosen option; a plain question ID is the whole answer.
+    $answer_of = static function (string $about) use ($assessments, $record): string {
+      [$question_id, $option] = array_pad(explode(':', $about, 2), 2, null);
+      $question               = $assessments['questions'][$question_id] ?? null;
+
+      if ($question === null) {
+        return '';
+      }
+
+      return implode(', ', assessment_answer_labels($question, $option ?? ($record['answers'][$question_id] ?? [])));
+    };
+    // Questions in one round, one bubble each. Rounds saved before items existed have one question;
+    // about: the patient's answers the question refers to (one ID or a list).
+    $items_of  = static fn (array $round): array => array_map(static fn (array $item): array => [
+      'about' => array_values(array_filter(array_map($answer_of, (array) ($item['about'] ?? [])))),
+      'text'  => $item['text'],
+      'photo' => !empty($item['photo']),
+    ], $round['items'] ?? [['about' => (array) ($round['about'] ?? []), 'text' => $round['question']]]);
     // Care plan types without stored items: sample products until prescription items are recorded.
     $products = [
       'prescription' => ['PRD-006', 'PRD-002'],
@@ -81,6 +100,7 @@ if ($preview === 'live') {
       'doctor'         => $assessments['doctors'][$record['doctor'] ?? '']['name'] ?? '',
       'asked_at'       => assessment_label_date($question['asked_on'] ?? ''),
       'message'        => $record['status'] === 'awaiting' ? ($question['question'] ?? '') : $record['message'],
+      'message_items'  => $record['status'] === 'awaiting' && $question !== [] ? $items_of($question) : [],
       'plan'           => [
         'product_ids' => $products[$record['decision']] ?? [],
         'note'        => $record['message'],
@@ -91,6 +111,7 @@ if ($preview === 'live') {
       // Answered rounds, oldest first. The open question (Awaiting Patient) is 'message' instead.
       'thread_history' => array_values(array_map(static fn (array $round): array => [
         'question'   => $round['question'],
+        'items'      => $items_of($round),
         'asked_at'   => assessment_label_date($round['asked_on']),
         'reply'      => $round['reply'],
         'replied_at' => assessment_label_date($round['replied_on']),

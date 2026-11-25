@@ -698,6 +698,9 @@
   .-ml-5 {
     margin-left: calc(var(--spacing) * -5);
   }
+  .-ml-7 {
+    margin-left: calc(var(--spacing) * -7);
+  }
   .ml-1 {
     margin-left: calc(var(--spacing) * 1);
   }
@@ -1366,6 +1369,9 @@
   .cursor-grab {
     cursor: grab;
   }
+  .cursor-help {
+    cursor: help;
+  }
   .cursor-pointer {
     cursor: pointer;
   }
@@ -1438,6 +1444,9 @@
   }
   .grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
   .grid-cols-\[1fr_auto\] {
     grid-template-columns: 1fr auto;
@@ -2272,6 +2281,9 @@
   .pr-0 {
     padding-right: calc(var(--spacing) * 0);
   }
+  .pr-1\.5 {
+    padding-right: calc(var(--spacing) * 1.5);
+  }
   .pr-2\.5 {
     padding-right: calc(var(--spacing) * 2.5);
   }
@@ -2364,6 +2376,9 @@
   }
   .align-top {
     vertical-align: top;
+  }
+  .font-mono {
+    font-family: var(--font-mono);
   }
   .font-sans {
     font-family: var(--font-sans);

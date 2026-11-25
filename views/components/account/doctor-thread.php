@@ -9,7 +9,12 @@
  * Data: assessment_id, doctor (name), asked_at (display time), message, review_time,
  *       composer (bool; true renders chat-composer, false renders a reply link), reply_href (when composer is
  *       false), class (extra classes).
- *       history (optional): earlier rounds, oldest first: question, asked_at, reply, replied_at, photos (count).
+ *       history (optional): earlier rounds, oldest first: question, about, items, asked_at, reply, replied_at,
+ *       photos (count).
+ *       about (optional): the patient's answer the current message is about; shown above the bubble.
+ *       items (optional, here and per history round): several questions in one round, each its own bubble:
+ *       list of about (the patient's answer or answers: a string or a list), text and photo (bool: the doctor
+ *       asked for a photo). They replace message/question and about.
  *       reply_url and reply_token (optional, live /account): the reply posts to the dashboard session
  *       (includes/assessments-state.php) instead of localStorage, and Clear Reply is hidden.
  *       assets/js/account-reply.js saves and restores the reply and toggles every element marked
@@ -25,6 +30,8 @@ $reply_href    = $reply_href ?? '';
 $reply_url     = $reply_url ?? '';
 $reply_token   = $reply_token ?? '';
 $history       = $history ?? [];
+$about         = $about ?? '';
+$items         = $items ?? [];
 $class         = $class ?? '';
 
 $composer_config = [
@@ -44,8 +51,31 @@ if ($assessment_id === '' || ($message === '' && $history === [])) {
   return;
 }
 
-// One round: the doctor's question, then the patient's reply when there is one.
-$render_round = static function (array $round) use ($doctor): void {
+// The doctor's questions in one round: one bubble each, with the answer it is about above it.
+$render_bubbles = static function (array $questions): void {
+  foreach ($questions as $question) {
+    $abouts = array_values(array_filter((array) ($question['about'] ?? [])));
+    if ($abouts !== []) {
+      ?>
+      <p class="account-thread-about mt-1 text-xs text-pretty color-muted">
+        <?= e((count($abouts) === 1 ? 'About your answer: ' : 'About your answers: ') . implode('; ', $abouts)); ?>
+      </p>
+      <?php
+    }
+    ?>
+    <p class="account-thread-bubble mt-1 px-4 py-3 rounded-2xl rounded-tl-sm bg-zinc-100 text-sm
+      text-pretty whitespace-pre-line color-strong"><?= e($question['text']); ?></p>
+    <?php
+    if (!empty($question['photo'])) {
+      ?>
+      <p class="account-thread-photo mt-1 text-xs text-pretty color-muted">Please add a photo when you reply.</p>
+      <?php
+    }
+  }
+};
+
+// One round: the doctor's questions, then the patient's reply when there is one.
+$render_round = static function (array $round) use ($doctor, $render_bubbles): void {
   $photos = (int) ($round['photos'] ?? 0);
   ?>
   <li class="account-thread-message flex gap-3">
@@ -54,8 +84,7 @@ $render_round = static function (array $round) use ($doctor): void {
       <p class="account-thread-meta text-xs color-muted">
         <span class="font-medium color-strong"><?= e($doctor); ?></span> · <?= e($round['asked_at']); ?>
       </p>
-      <p class="account-thread-bubble mt-1 px-4 py-3 rounded-2xl rounded-tl-sm bg-zinc-100 text-sm
-        text-pretty color-strong"><?= e($round['question']); ?></p>
+      <?php $render_bubbles($round['items'] ?? [['about' => $round['about'] ?? '', 'text' => $round['question']]]); ?>
     </div>
   </li>
   <?php if (($round['reply'] ?? '') !== '' || $photos > 0): ?>
@@ -101,8 +130,7 @@ $render_round = static function (array $round) use ($doctor): void {
         <p class="account-thread-meta text-xs color-muted">
           <span class="font-medium color-strong"><?= e($doctor); ?></span> · <?= e($asked_at); ?>
         </p>
-        <p class="account-thread-bubble mt-1 px-4 py-3 rounded-2xl rounded-tl-sm bg-zinc-100 text-sm
-          text-pretty color-strong"><?= e($message); ?></p>
+        <?php $render_bubbles($items !== [] ? $items : [['about' => $about, 'text' => $message]]); ?>
       </div>
     </li>
     <li class="account-thread-message account-thread-message-own flex justify-end js-account-reply-item" hidden>

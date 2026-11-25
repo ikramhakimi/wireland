@@ -45,7 +45,7 @@ $page_breadcrumb = $page_breadcrumb ?? (($page_current ?? '') === 'dashboard'
     <script src="<?= asset_url('assets/js/products.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/products.js'); ?>" defer></script>
     <script src="<?= asset_url('assets/js/modal.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/modal.js'); ?>" defer></script>
   <?php endif; ?>
-  <?php if (in_array($page_current ?? '', ['patients', 'products', 'treatments'], true)): ?>
+  <?php if (in_array($page_current ?? '', ['assessments', 'patients', 'products', 'treatments'], true)): ?>
     <script src="<?= asset_url('assets/js/overlays.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/overlays.js'); ?>" defer></script>
   <?php endif; ?>
   <?php if (($page_current ?? '') === 'patients'): ?>
@@ -53,6 +53,10 @@ $page_breadcrumb = $page_breadcrumb ?? (($page_current ?? '') === 'dashboard'
   <?php endif; ?>
   <?php if (in_array($page_current ?? '', ['patients', 'follow-ups'], true)): ?>
     <script src="<?= asset_url('assets/js/drawer.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/drawer.js'); ?>" defer></script>
+  <?php endif; ?>
+  <?php if (($page_current ?? '') === 'assessments'): ?>
+    <script src="<?= asset_url('assets/js/tabs.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/tabs.js'); ?>" defer></script>
+    <script src="<?= asset_url('assets/js/assessment-ask.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/assessment-ask.js'); ?>" defer></script>
   <?php endif; ?>
   <?php if (($page_current ?? '') === 'treatments'): ?>
     <script src="<?= asset_url('assets/js/tabs.js'); ?>?v=<?= filemtime(__DIR__ . '/assets/js/tabs.js'); ?>" defer></script>

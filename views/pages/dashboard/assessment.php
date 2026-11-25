@@ -3,10 +3,13 @@
 /**
  * Page: Dashboard assessment review
  * Purpose: One assessment: what the patient answered, their photos and history, and the doctor's decision.
- * Structure: Back link, header with status; main column (Answers, Photos, Patient History, Check-ins);
- *            sticky aside (Decision by state, Questions thread, Internal Notes).
- *            Decision states: unclaimed (Claim), claimed by another doctor (read only), awaiting patient
- *            (demo reply), in review by the signed-in doctor (decision form), decided (summary).
+ * Structure: Back link, header with status; main column (Answers with Ask links, Questions, Photos, Patient
+ *            History, Check-ins); sticky aside (Decision, Internal Notes). Each task has its own form:
+ *            Questions: thread, then Ask the Patient (In Review) or the wait for a reply with Add Demo Reply.
+ *            Ticking answers in Answers adds them as chips to one question (assets/js/assessment-ask.js).
+ *            Decision (final only): unclaimed (Claim), claimed by another doctor (read only), awaiting patient
+ *            (wait), in review by the signed-in doctor (Care Plan / Not Suitable tabs), decided (summary).
+ *            Internal Notes: list and Add Note for the claiming doctor.
  * Data: includes/assessments-state.php (session demo records, POST actions). ?id=<assessment id>.
  *       includes/follow-ups-state.php (self check-ins, read only).
  * Flow and rules: docs/flow-assessment.md.
@@ -31,7 +34,6 @@ $is_mine      = $record !== null && $record['doctor'] === $assessments['signed_i
 $is_done      = $record !== null && in_array($record['status'], ['reviewed', 'not_suitable'], true);
 $token        = $assessments['token'];
 $action_url   = $record !== null ? ($assessments['review_url'])($record['id']) : '';
-$form_id      = 'assessment-decision';
 
 $page_title       = $record !== null ? $patient_name . ' · Assessment' : 'Assessment Not Found';
 $page_description = 'Assessment review.';
@@ -67,12 +69,17 @@ $action_form = static function (string $action, array $button) use ($record, $to
   <?php
 };
 
-$answer_items  = [];
-$flags         = [];
-$history_items = [];
-$photo_views   = [];
-$decision_card = [];
-$checkins      = [];
+$answer_items   = [];
+$chip_labels    = [];
+$about_labels   = [];
+$history_items  = [];
+$photo_views    = [];
+$decision_card  = [];
+$checkins       = [];
+$ask_note       = '';
+$can_ask        = false;
+$questions_card = [];
+$notes_card     = [];
 
 // Self check-ins from the follow-ups session (/account/treatment/checkin), newest first. Read in its own scope
 // so the follow-ups state variables stay out of this page.
@@ -103,21 +110,59 @@ $load_checkins = static function (string $patient_id): array {
 };
 
 if ($record !== null) {
+  // Ask the Patient: claiming doctor, In Review only. Rows come back after a rejected submit.
+  $can_ask  = $is_mine && $record['status'] === 'in_review';
+  // Why Ask is missing, when the signed-in doctor could ask later.
+  $ask_note = [
+    'new'      => 'Claim this assessment to ask about an answer.',
+    'awaiting' => $is_mine ? 'Waiting for the patient’s reply. You can ask again once they reply.' : '',
+  ][$record['status']] ?? '';
+  $ticked   = $can_ask && ($assessments['old']['outcome'] ?? '') === 'ask'
+    ? (array) ($assessments['old']['about'] ?? []) : [];
+
+  // One row per chosen option, so each option of a multiple-choice answer can be asked about on its own.
+  // Row IDs are "<question ID>:<option value>". A question asked about as a whole (older rounds, plain question
+  // ID) marks every row of that question.
+  $about_labels = [];
+
   foreach ($questions as $question_id => $question) {
     if (!array_key_exists($question_id, $record['answers'])) {
       continue;
     }
 
-    $answer_items[] = [
-      'label' => $question['title'],
-      'value' => implode(', ', assessment_answer_labels($question, $record['answers'][$question_id])),
-    ];
+    $answer_values = (array) $record['answers'][$question_id];
+    $answer_meta   = $config['answer_labels'][$question_id] ?? ['short' => $question['title'], 'group' => 'health'];
+    $option_labels = assessment_answer_labels($question, $answer_values);
+
+    $about_labels[$question_id] = ['short' => $answer_meta['short'], 'value' => implode(', ', $option_labels)];
+
+    foreach ($answer_values as $position => $answer_value) {
+      $row_id = $question_id . ':' . $answer_value;
+      $asked  = array_keys(array_filter(
+        $record['thread'],
+        static fn (array $entry): bool => array_intersect(
+          [$row_id, $question_id],
+          (array) ($entry['about'] ?? []),
+        ) !== [],
+      ));
+
+      $about_labels[$row_id]  = ['short' => $answer_meta['short'], 'value' => $option_labels[$position]];
+      $answer_items[$row_id] = [
+        'id'       => $row_id,
+        'group'    => $answer_meta['group'],
+        'short'    => $answer_meta['short'],
+        'label'    => $question['title'],
+        'value'    => $option_labels[$position],
+        // Options to check first (flags in includes/assessments-data.php): tooltip text, or '' when not flagged.
+        'flag'     => $config['flags'][$row_id] ?? '',
+        'asked'    => array_map(static fn (int $index): int => $index + 1, $asked),
+        'selected' => in_array($row_id, $ticked, true),
+      ];
+    }
   }
 
-  $flags        = assessment_answer_labels(
-    $questions['health'],
-    array_diff((array) ($record['answers']['health'] ?? []), ['none']),
-  );
+  // Chip labels for Ask the Patient: "Short · option".
+  $chip_labels  = array_map(static fn (array $item): string => $item['short'] . ' · ' . $item['value'], $answer_items);
   $history_items = [
     ['label' => 'Phone', 'value' => $patient['phone'] ?? ''],
     ['label' => 'Email', 'value' => $patient['email'] ?? ''],
@@ -133,7 +178,7 @@ if ($record !== null) {
   $decision_card = [
     'title'   => 'Decision',
     'content' => static function () use ($record, $config, $assessments, $doctor_name, $is_mine, $is_done,
-      $action_form, $token, $action_url, $form_id): void {
+      $action_form, $token, $action_url): void {
       if ($is_done) {
         component('facts', [
           'layout' => 'rows',
@@ -179,37 +224,81 @@ if ($record !== null) {
       if ($record['status'] === 'awaiting') {
         ?>
         <p class="assessment-decision-text text-sm text-pretty color-default">
-          Waiting for the patient’s reply to question <?= e(count($record['thread'])); ?>.
-          You can decide once they reply.
+          Waiting for the patient’s reply in Questions. You can decide once they reply.
         </p>
-        <div class="assessment-decision-actions mt-4">
-          <?php $action_form('demo_reply', ['label' => 'Add Demo Reply', 'color' => 'secondary']); ?>
-          <p class="assessment-decision-helper mt-2 text-xs text-pretty color-muted">
-            Demo only. Patient replies from their account aren’t connected yet.
-          </p>
-        </div>
         <?php
         return;
       }
 
       component('dashboard/assessment-decision', [
-        'record'  => $record,
-        'config'  => $config,
-        'old'     => $assessments['old'],
-        'token'   => $token,
-        'action'  => $action_url,
-        'form_id' => $form_id,
+        'record' => $record,
+        'config' => $config,
+        'old'    => $assessments['old'],
+        'token'  => $token,
+        'action' => $action_url,
       ]);
     },
-    'actions' => $is_mine && $record['status'] === 'in_review' ? static function () use ($form_id): void {
-      component('button', [
-        'label'   => 'Save Decision',
-        'element' => 'button',
-        'type'    => 'submit',
-        'color'   => 'primary',
-        'form'    => $form_id,
+  ];
+  // Questions: the conversation. Thread, then the ask form (In Review) or the wait for a reply (Awaiting Patient).
+  $questions_card = [
+    'title'   => 'Questions',
+    'content' => static function () use ($record, $config, $assessments, $doctor_name, $is_mine, $can_ask, $chip_labels,
+      $about_labels, $action_form, $token, $action_url): void {
+      ?>
+      <div class="assessment-questions grid gap-6">
+        <?php if ($record['thread'] !== []): ?>
+          <?php component('dashboard/assessment-thread', [
+            'thread'      => $record['thread'],
+            'doctor_name' => $doctor_name,
+            'answers'     => $about_labels,
+          ]); ?>
+        <?php elseif (!$can_ask): ?>
+          <p class="assessment-questions-empty text-sm color-muted">No questions asked.</p>
+        <?php endif; ?>
+
+        <?php if ($can_ask): ?>
+          <div class="assessment-questions-ask
+            <?= $record['thread'] !== [] ? 'pt-6 border-t border-dashed border-zinc-300' : ''; ?>">
+            <?php component('dashboard/assessment-ask', [
+              'record'   => $record,
+              'token'    => $token,
+              'action'   => $action_url,
+              'old'      => $assessments['old'],
+              'text_max' => $config['rules']['text_max'],
+              'answers'  => $chip_labels,
+            ]); ?>
+          </div>
+        <?php elseif ($is_mine && $record['status'] === 'awaiting'): ?>
+          <div class="assessment-questions-waiting pt-6 border-t border-dashed border-zinc-300">
+            <p class="assessment-questions-text text-sm text-pretty color-default">
+              Waiting for the patient’s reply to question <?= e(count($record['thread'])); ?>.
+            </p>
+            <div class="assessment-questions-actions mt-4">
+              <?php $action_form('demo_reply', ['label' => 'Add Demo Reply', 'color' => 'secondary']); ?>
+              <p class="assessment-questions-helper mt-2 text-xs text-pretty color-muted">
+                Demo only. Stands in for the patient’s reply from their account.
+              </p>
+            </div>
+          </div>
+        <?php endif; ?>
+      </div>
+      <?php
+    },
+  ];
+  $notes_card = [
+    'title'   => 'Internal Notes',
+    'content' => static function () use ($record, $config, $assessments, $is_mine, $token, $action_url): void {
+      component('dashboard/assessment-notes', [
+        'notes'    => $record['notes'],
+        'doctors'  => $assessments['doctors'],
+        'can_add'  => $is_mine,
+        'record'   => $record,
+        'token'    => $token,
+        'action'   => $action_url,
+        'old'      => $assessments['old'],
+        'text_max' => $config['rules']['text_max'],
       ]);
-    } : null,
+    },
   ];
 }
 ?>
@@ -246,19 +335,23 @@ if ($record !== null) {
       <div class="assessment-main grid min-w-0 gap-4 xl:col-span-2">
         <?php component('card', [
           'title'   => 'Answers',
-          'content' => static function () use ($answer_items, $flags): void {
-            if ($flags !== []) {
+          'content' => static function () use ($answer_items, $ask_note, $can_ask, $config): void {
+            if ($ask_note !== '') {
               ?>
-              <div class="assessment-flags flex flex-wrap gap-1 mb-4">
-                <?php foreach ($flags as $flag): ?>
-                  <?php component('badge', ['label' => $flag, 'tone' => 'attention']); ?>
-                <?php endforeach; ?>
-              </div>
+              <p class="assessment-ask-note mb-4 text-xs text-pretty color-muted"><?= e($ask_note); ?></p>
               <?php
             }
-            component('facts', ['layout' => 'rows', 'items' => $answer_items]);
+            component('dashboard/assessment-answers', [
+              'groups'   => $config['answer_groups'],
+              'items'    => array_values($answer_items),
+              'ask_form' => $can_ask ? 'assessment-ask' : '',
+            ]);
           },
         ]); ?>
+
+        <?php if ($record['thread'] !== [] || $can_ask || $is_mine): ?>
+          <?php component('card', $questions_card); ?>
+        <?php endif; ?>
 
         <?php component('card', [
           'title'   => 'Photos',
@@ -296,38 +389,12 @@ if ($record !== null) {
         ]); ?>
       </div>
 
-      <aside aria-label="Decision and questions" class="assessment-aside grid min-w-0 gap-4
+      <aside aria-label="Decision and notes" class="assessment-aside grid min-w-0 gap-4
         xl:sticky xl:top-6">
         <?php component('card', $decision_card); ?>
 
-        <?php if ($record['thread'] !== []): ?>
-          <?php component('card', [
-            'title'   => 'Questions',
-            'content' => static function () use ($record, $doctor_name): void {
-              component('dashboard/assessment-thread', ['thread' => $record['thread'], 'doctor_name' => $doctor_name]);
-            },
-          ]); ?>
-        <?php endif; ?>
-
-        <?php if ($record['notes'] !== []): ?>
-          <?php component('card', [
-            'title'   => 'Internal Notes',
-            'content' => static function () use ($record, $assessments): void {
-              ?>
-              <ul class="assessment-notes grid gap-3" role="list">
-                <?php foreach ($record['notes'] as $note): ?>
-                  <li class="assessment-note p-3 rounded-lg bg-zinc-50">
-                    <p class="assessment-note-meta text-xs color-muted">
-                      <?= e(assessment_label_date($note['on'])); ?>
-                      · <?= e($assessments['doctors'][$note['by'] ?? '']['name'] ?? 'Staff'); ?>
-                    </p>
-                    <p class="assessment-note-text mt-1 text-sm text-pretty whitespace-pre-line color-default"><?= e($note['text']); ?></p>
-                  </li>
-                <?php endforeach; ?>
-              </ul>
-              <?php
-            },
-          ]); ?>
+        <?php if ($record['notes'] !== [] || $is_mine): ?>
+          <?php component('card', $notes_card); ?>
         <?php endif; ?>
       </aside>
     </div>

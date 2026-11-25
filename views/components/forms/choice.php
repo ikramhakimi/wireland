@@ -9,6 +9,10 @@
  *       preserve existing behavior hooks. IDs must be unique per page.
  *       Standard choices use a 24px minimum row; group layout and spacing belong to the parent.
  *       Vertical: flex flex-col items-start gap-2. Horizontal: flex flex-wrap gap-x-6 gap-y-3.
+ *       form (optional): ID of a form elsewhere on the page the control belongs to.
+ *       label_hidden (bool): label stays for screen readers only, e.g. a checkbox at the end of a table row.
+ *       size ('default' | 'large'): large keeps the same box but gives the control a 40px hit area, for a
+ *       lone control at the end of a row (usually with label_hidden). Standard choices only.
  */
 $id           = $id ?? '';
 $label        = $label ?? '';
@@ -22,6 +26,9 @@ $required     = $required ?? false;
 $controls     = $controls ?? '';
 $js_hook      = $js_hook ?? '';
 $image        = $image ?? '';
+$form         = $form ?? '';
+$label_hidden = $label_hidden ?? false;
+$size         = ($size ?? 'default') === 'large' ? 'large' : 'default';
 $control_type = $type === 'radio' ? 'radio' : 'checkbox';
 
 ?>
@@ -43,7 +50,8 @@ $control_type = $type === 'radio' ? 'radio' : 'checkbox';
   </span>
 </label>
 <?php else: ?>
-<label for="<?= e($id); ?>" class="choice-label">
+<label for="<?= e($id); ?>"
+  class="choice-label<?= $size === 'large' ? ' choice-large justify-center min-w-10 min-h-10' : ''; ?>">
   <span class="choice-wrapper">
     <input id="<?= e($id); ?>" type="<?= e($control_type); ?>" value="<?= e($value); ?>"
       <?php if ($name !== ''): ?>name="<?= e($name); ?>"<?php endif; ?>
@@ -52,6 +60,7 @@ $control_type = $type === 'radio' ? 'radio' : 'checkbox';
       <?php if ($disabled): ?>disabled<?php endif; ?>
       <?php if ($required): ?>required<?php endif; ?>
       <?php if ($controls !== ''): ?>aria-controls="<?= e($controls); ?>"<?php endif; ?>
+      <?php if ($form !== ''): ?>form="<?= e($form); ?>"<?php endif; ?>
       class="choice-control <?= e($js_hook); ?>">
     <?php if ($type === 'switch'): ?>
       <span aria-hidden="true" class="switch-track"></span>
@@ -63,7 +72,7 @@ $control_type = $type === 'radio' ? 'radio' : 'checkbox';
       </span>
     <?php endif; ?>
   </span>
-  <span class="choice-text">
+  <span class="choice-text<?= $label_hidden ? ' sr-only' : ''; ?>">
     <?= e($label); ?>
     <?php if ($required): ?>
       <span class="field-required">Required</span>

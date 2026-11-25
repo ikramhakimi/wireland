@@ -4,11 +4,14 @@
  * Data: Assessments (demo)
  * Purpose: Statuses, care plan decisions, rules and fictional seed assessments for the doctor review queue.
  * Structure: signed_in (demo doctor ID for Mine), account_patient, patients (extra patient records), rules,
- *            statuses, decisions, outcomes (review form actions),
+ *            statuses, decisions, outcomes (review form actions), answer_groups and answer_labels (review page:
+ *            short label and group per quiz question ID; the full question shows in a tooltip), flags
+ *            ("<question ID>:<option>" => tooltip text for options to check first),
  *            photo_views, demo_reply, records.
  *            Seed dates are day offsets from today, so the queue always shows recent work.
  *            answers use option values from includes/assessment-quiz-data.php (string or list of values).
- *            thread: doctor questions in order; reply '' means the patient has not answered yet.
+ *            thread: doctor questions in order; about lists the quiz question IDs asked about ([] if general);
+ *            reply '' means the patient has not answered yet.
  *            replied: the patient answered the last question; the case is back In Review.
  *            message: shown to the patient with the decision. notes: internal, staff only.
  * Flow and rules: docs/flow-assessment.md.
@@ -58,6 +61,32 @@ return [
     'not_suitable' => 'Not Suitable',
   ],
   'photo_views'     => ['Top', 'Front', 'Crown'],
+  'answer_groups'   => [
+    'profile' => 'Profile',
+    'hair'    => 'Hair',
+    'health'  => 'Health and Goal',
+  ],
+  // Answers the doctor should check first: "<question ID>:<option value>" => tooltip text. Shown as a flag icon
+  // on that option in Answers. Add or remove entries here; agree clinical flags with the doctors.
+  'flags'           => [
+    'health:pregnant'    => 'Pregnant, breastfeeding or planning a pregnancy. Check it before deciding.',
+    'health:thyroid'     => 'Health condition. Check it before deciding.',
+    'health:illness'     => 'Recent illness or surgery. Check it before deciding.',
+    'health:stress'      => 'Recent high stress. Check it before deciding.',
+    'health:weight-loss' => 'Rapid weight loss or strict dieting. Check it before deciding.',
+  ],
+  'answer_labels'   => [
+    'sex'      => ['short' => 'Sex', 'group' => 'profile'],
+    'age'      => ['short' => 'Age', 'group' => 'profile'],
+    'changes'  => ['short' => 'Changes', 'group' => 'hair'],
+    'duration' => ['short' => 'Onset', 'group' => 'hair'],
+    'progress' => ['short' => 'Progress', 'group' => 'hair'],
+    'family'   => ['short' => 'Family', 'group' => 'hair'],
+    'scalp'    => ['short' => 'Scalp', 'group' => 'hair'],
+    'tried'    => ['short' => 'Tried', 'group' => 'hair'],
+    'health'   => ['short' => 'Health', 'group' => 'health'],
+    'goal'     => ['short' => 'Goal', 'group' => 'health'],
+  ],
   // Demo only: stands in for the patient's answer until /account replies reach the dashboard.
   'demo_reply'      => 'Thanks, doctor. Here is the extra information you asked for.',
   'records'         => [
@@ -162,6 +191,7 @@ return [
       'photos'     => 3,
       'thread'     => [
         [
+          'about'      => ['health'],
           'question'   => 'What was the illness or surgery, and when did the shedding start compared with it?',
           'asked_on'   => -2,
           'reply'      => 'I had dengue in August and was in hospital for 5 days. The shedding started about '
@@ -217,12 +247,14 @@ return [
       'photos'     => 2,
       'thread'     => [
         [
+          'about'      => ['health'],
           'question'   => 'Are you pregnant, breastfeeding or planning a pregnancy at the moment?',
           'asked_on'   => -4,
           'reply'      => 'I am breastfeeding. My baby is 4 months old.',
           'replied_on' => -3,
         ],
         [
+          'about'      => ['changes'],
           'question'   => 'Is the scalp red, sore or scaly where the patches are? A close-up photo of one patch '
             . 'would help.',
           'asked_on'   => -2,
