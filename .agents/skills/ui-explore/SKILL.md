@@ -1,6 +1,6 @@
 ---
 name: ui-explore
-description: UI/UX exploration for this project. Brainstorms distinct UX directions for a screen or component, or builds them as working prototype variants behind a live picker. Works from link/screenshot references or from a fresh brief, and gives the chosen variant a full make-interfaces-feel-better polish pass.
+description: UI/UX exploration for this project. Brainstorms distinct UX directions for a screen or component, or builds them as working prototype variants behind a live picker. Works from link/screenshot references or from a fresh brief, and integrates the chosen variant using the project design system.
 disable-model-invocation: true
 ---
 
@@ -37,7 +37,12 @@ Pick the mode from the user's words: "brainstorm", "ideas", "explore options", "
 Brainstorm. "build", "prototype", "variants", "make versions" → Build. If unclear, default to Brainstorm and
 offer to build the chosen directions at the end. A Brainstorm can always roll into Build (`build 1,3`).
 
-Build mode adds [BUILD.md](BUILD.md) after Phase 4. Do not load it in Brainstorm mode.
+Read only the relevant part of [BUILD.md](BUILD.md): Rules and Phases 5–6 for build, Phase 6 for
+standalone `verify`, or Phase 7 for iteration and promotion. Skip it in Brainstorm mode.
+
+For `build 1,3` after brainstorm, reuse the chosen directions, brief, assumptions, and reference notes.
+Go straight to build after targeted recon for any component API, data, or state details still needed.
+Revisit a direction only if the brief changed or an implementation constraint affects it.
 
 ## Hard Rules
 
@@ -49,7 +54,8 @@ Build mode adds [BUILD.md](BUILD.md) after Phase 4. Do not load it in Brainstorm
 3. **Native to the product.** Directions use the `/design` components, theme tokens, and typography. No
    arbitrary font sizes, no overriding component typography, padding, radius, or colors (AGENTS.md strict).
    If a direction needs a missing pattern, name the smallest extension and keep it prototype-only.
-   Exception: bold directions may compose new patterns from existing components (EXPLORE.md, Range, rule 6).
+   Exception: bold directions may compose new patterns from existing components (see Range below).
+   `free` lifts this rule inside the prototype only, and only when the user's brief says `free`.
 4. **Realistic content.** Product-shaped copy, names, prices, and states from the project's data files
    (`includes/*-data.php`, `includes/store.php`). No lorem ipsum. Copy follows `docs/copywriting.md`
    (public) or `docs/copywriting-dashboard.md` (dashboard).
@@ -79,7 +85,11 @@ who uses it, what it must achieve (tie to `docs/directions.md` goals/KPIs when r
 
 ### Phase 2 — Recon
 
-Recon reads what the user sees, not how the page computes it. Do not read whole page templates.
+Use only the steps needed to resolve missing context. In Brainstorm mode, skip recon when the brief
+supplies the UI, user problem, and relevant constraints. In Build mode, confirm the component APIs,
+data, and states needed for implementation using context already gathered where possible.
+
+Read rendered content and targeted excerpts. Do not read whole page templates.
 
 1. **What the user sees**: `php prototypes/_kit/page-text.php <localhost url>` prints the rendered page's
    visible text without navbar, nav, and footer (~2–4k chars). It shows content, copy, the current state,
@@ -90,10 +100,11 @@ Recon reads what the user sees, not how the page computes it. Do not read whole 
 4. **States** (only if the piece changes by state and step 1 did not list them): grep the page for its
    state list (e.g. `statuses`, `preview_state`) and read those lines only, not the logic around them.
 5. **Sample data**: grep names, prices, and people from `includes/*-data.php`; do not read whole data files.
-6. **Product and copy**: `docs/directions.md` and the matching copywriting doc. List headings first
-   (`grep -n "^#"`) and read only the sections that bear on the piece.
+6. **Product and copy**: read the relevant section of `docs/directions.md` when the decision depends on a
+   product goal or KPI. When writing or changing copy, read the relevant section of the public or
+   dashboard copywriting guide. Find the section by its heading.
 
-`AGENTS.md` is already in context. Read `docs/conventions-classes.md` once per session, in Build mode only.
+`AGENTS.md` is already in context. Read `docs/conventions-classes.md` before writing markup, once per session.
 If the user's brief names the exact piece, skip Phase 1's search.
 
 ### Phase 3 — Gather inputs
@@ -110,97 +121,61 @@ patterns, and write a short pattern table before choosing directions.
 
 Then spread directions across the Axes table so each answers the job differently.
 
-**Assumptions block (always).** Whatever you inferred instead of being told (who the user is, their
+**Build assumptions.** Whatever you inferred instead of being told (who the user is, their
 situation, the one action, how far to push) goes in the `Assumptions` block at the top of the output, one
 line each, marked with its source (`docs/directions.md`, the current page, or `guess`). The user corrects
 them in one reply instead of discovering a wrong premise in the directions.
 
-**`ask`, `ask+`, and Range.** If the brief includes `ask` or `ask+`, or the range is `mixed` or `bold`
-(default `mixed`), load [EXPLORE.md](EXPLORE.md) right after Phase 2 recon, before writing anything for
-Phase 3: it holds the interview questions and the bold rules. Only a `safe` brief without `ask` skips it.
+**Range.** Default to `mixed`: use directions within the current layout and interaction model plus
+exactly one direction that changes at least two of the interaction model, the unit of content, the
+primary action, or the content strategy. Name the convention that direction breaks. It may compose
+existing components into a new prototype-only pattern. In `safe`, stay within the current layout and
+interaction model. In `free`, leave the design system and build one finished direction around the user's
+decision; never infer `free`. Load [EXPLORE.md](EXPLORE.md) after recon only for `ask`, `ask+`, or explicit
+`bold` or `free`. If an interview changes the range, use the answer.
 
 ### Phase 4 — Choose directions
 
 Default **3**; up to 5 on request (`x5`). Brainstorm mode may list up to 6 when the space is wide.
 
-For each direction write:
+Give each direction a distinct UX axis and a descriptive name. Identify the relevant `/design`
+components, credit reference patterns, and flag new patterns. For bold directions, name the convention
+broken and label any provocation. If two directions differ only cosmetically, combine them.
 
-- **Name**: describes the direction ("Guided", "Ledger", "Story-led"), never "Option A".
-- **Axis**: its position in a phrase ("progressive disclosure, compact").
-- **Idea**: 1–2 sentences on how it solves the job.
-- **Source**: the reference pattern it borrows (by reference name), `ref + fresh`, or `fresh`.
-- **Reuses**: the `/design` components it relies on; any missing pattern flagged (`New pattern`).
-- **Bold only**: `Breaks: <convention>`, and `Provocation` where it applies.
-- **Sketch**: an ASCII wireframe of the layout in a ```` ```text ```` block (rules below).
+Build mode continues with [BUILD.md](BUILD.md) (Rules and Phases 5–6).
 
-**Sketch rules.** A sketch shows structure, order, and the primary action, not styling.
+## Response
 
-- Mobile first: 36 chars wide inside the frame. Add a second desktop sketch (max 72 chars) only when the
-  direction's Layout axis changes at desktop (split, grid, sticky rail).
-- Box-drawing frame (`┌ ─ ┐ │ └ ┘`), top to bottom in reading order. No emoji or circled digits
-  (`①`); they render double-width and break the frame. Mark the fold with `┄┄ fold ┄┄`
-  when content order around it matters.
-- Primary action as `[■ Label ]`, secondary as `[ Label ]`, links as `Label →`, inputs as `[________]`,
-  images as `[ img ]`, chips/tabs as `(Tab)` with the active one `(●Tab)`.
-- Real short copy from recon (names, prices, labels), not `xxx` or lorem.
-- Label each block with its `/design` component on the right edge when it is not obvious (`‹card›`,
-  `‹timeline›`); `‹new›` for a New pattern.
-- Interaction that a static sketch cannot show goes in one `↳` line under the block (e.g.
-  `↳ tap a step to expand; one open at a time`).
+- **Brainstorm:** Use one numbered bullet per direction with the idea, when it fits, and the main
+  trade-off. Include assumptions that affect the choice. Add a wireframe when requested or when it
+  clarifies layout or hierarchy. Let the user choose which directions to build.
+- **Build:** Share the picker link and keys, one line per variant with its trade-off, the PHP render
+  result, and any open issues. Include browser results when requested.
+- **Keep:** State what was promoted, the design-system and production checks performed, and any
+  pending steps.
 
-**Completion criterion:** every direction has a distinct axis and a sketch, and none differ only
-cosmetically (if two sketches look alike, the directions are one option).
-
-**Brainstorm mode stops here.** Present the divergence map and wait:
-
-```
-Brief: <one sentence>
-Input: <references used | fresh>
-Assumptions: (correct any line and I'll rerun the directions)
-- User: <who, at what moment> (<source>)
-- Job and doubts: <one line> (<source>)
-- Action: <the one action> (<source>)
-- Barrier: <what stops them today> (<source>)
-- Range: <safe | mixed | bold> (<source>)
-- Evidence: <photos, reviews, data assumed available or missing> (<source>)
-Conventions: <3–5 shared conventions> (mixed/bold only)
-
-| # | Direction | Axis | Idea | Source | Breaks | Wins when | Costs |
-| - | --------- | ---- | ---- | ------ | ------ | --------- | ----- |
-
-Sketches: one `### <#> <Direction>` heading per direction, each followed by its ```text wireframe.
-
-Culled concepts (bold only): <the dropped one-liners, one line>
-
-Patterns worth stealing (reference mode): <3–5 bullets, each tied to a reference>
-Open questions: <only those that change the outcome>
-Next: `build 1,3`, `riff 2`, or adjust the brief.
-```
-
-**Build mode continues** with [BUILD.md](BUILD.md) (Phases 5–7).
-
-Suggest, don't decide: after a build, suggest `pin`/`drop`/`keep` with reasons (see BUILD.md Phase 6). In a
-brainstorm, do not pick a favorite unless asked; then give a reason tied to the product's goals and
-frequency of use, not taste alone. If two directions converge, cut one and say so.
+Expand on request.
 
 ## Invocation
 
 | Invocation | Behavior |
 | --- | --- |
 | `<brief>` | Detect mode and condition, run the workflow |
-| `brainstorm <brief>` | Ideas only, stop after Phase 4; inferred assumptions listed on top |
+| `brainstorm <brief>` | Ideas only, stop after Phase 4; only assumptions that could change the choice |
 | `<brief> ask` | Ask 4 questions (user, action, barrier, range) after recon, before choosing directions |
 | `<brief> ask+` | The 4 above plus feel, must-not-change, avoid |
 | `<brief> safe` / `mixed` / `bold` | Set the range directly (default `mixed`); `bold` applies the bold rules |
+| `<brief> free` | Off-styleguide prototype: own visual language, one finished direction (`xN` for more) |
 | `build <brief>` | Full workflow through the picker |
 | `<brief> refs: <links/paths>` | Reference mode with those inputs |
 | `<brief> x5` | That many directions (build caps at 5) |
 | `build 1,3` | Build the numbered directions from the last brainstorm |
+| `verify` / `verify <name>` | Run browser checks for all variants or one (BUILD.md Phase 6) |
 | `riff <name>` / `mix <a> + <b>` | New round around a variant / a combined variant |
 | `pin <name>` | Keep the variant in the picker for the next rounds (base or comparison) |
 | `drop <name>` | Remove the variant from the prototype |
 | `keep <name>` | Promote to production by replacing the original piece in place, then delete the prototype |
 | `keep <name> as new` | Promote as a new template beside the original (`<page>-2.php`) |
-| `usage` | Full token breakdown for this run (`scripts/usage.py --full`); builds end with a short one |
+| `usage` | Read Claude Code token usage on request (`python3 -I .agents/skills/ui-explore/scripts/usage.py --full`) |
 | `guide` | Show the prompt template, keywords, and examples (no recon) |
 | `guide <rough request>` | Rewrite the request into a complete prompt, flag missing fields, offer to run it |

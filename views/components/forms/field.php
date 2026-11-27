@@ -6,7 +6,8 @@
  * Structure: Label, native input/textarea/select, helper text, and error message.
  * Data: id, label; type (text/email/password/number/textarea/select), name, value, placeholder,
  *       helper, error, required, disabled, readonly, autocomplete, minlength, maxlength, rows; min, max, step (number inputs only);
- *       options (ordered value/label pairs) for selects. Readonly applies to inputs/textarea.
+ *       options (ordered value/label pairs) and size ('default' 40px or 'small' 32px) for selects.
+ *       Readonly applies to inputs/textarea.
  *       label_hidden (bool): label stays for screen readers only, e.g. filter bars with placeholders.
  *       layout ('stacked' default | 'inline': label beside the control); width ('full' default | 'xs': 6rem control).
  *       IDs must be unique per page.
@@ -38,6 +39,7 @@ $min           = $min ?? null;
 $max           = $max ?? null;
 $step          = $step ?? null;
 $options       = $options ?? [];
+$small_select  = $type === 'select' && ($size ?? '') === 'small';
 $accept        = $accept ?? 'image/jpeg,image/png,image/webp';
 $max_size      = max(1, (int) ($max_size ?? 1048576));
 $is_inline     = ($layout ?? 'stacked') === 'inline';
@@ -81,21 +83,20 @@ $described_by  = trim(($helper !== '' ? $id . '-help' : '') . ' ' . ($error !== 
         <?php if ($disabled): ?>disabled<?php endif; ?>
         <?php if ($described_by !== ''): ?>aria-describedby="<?= e($described_by); ?>"<?php endif; ?>
         <?php if ($error !== ''): ?>aria-invalid="true"<?php endif; ?>
-        class="field-control field-select">
+        class="field-control field-select<?= $small_select ? ' h-8 pl-3' : ''; ?>">
         <?php foreach ($options as $option): ?>
           <option value="<?= e($option['value']); ?>" <?= (string) $value === (string) $option['value'] ? 'selected' : ''; ?>>
             <?= e($option['label']); ?>
           </option>
         <?php endforeach; ?>
       </select>
-      <span aria-hidden="true" class="field-select-icon">
+      <span aria-hidden="true" class="field-select-icon<?= $small_select ? ' right-3' : ''; ?>">
         <?php svg('arrow-down-s-line', 'field-icon'); ?>
       </span>
     </div>
   <?php elseif ($type === 'image'): ?>
     <div data-max-size="<?= e((string) $max_size); ?>" <?php if ($value === ''): ?>data-empty<?php endif; ?>
-      class="field-image group grid grid-cols-[auto_minmax(0,1fr)] items-center gap-x-4 gap-y-3
-        sm:grid-cols-[auto_minmax(0,1fr)_auto] js-component-image-field">
+      class="field-image group flex flex-wrap items-center gap-x-4 gap-y-3 js-component-image-field">
       <input id="<?= e($id); ?>" type="file" accept="<?= e($accept); ?>"
         <?php if ($name !== ''): ?>name="<?= e($name); ?>"<?php endif; ?>
         <?php if ($required && $value === ''): ?>required<?php endif; ?>
@@ -115,7 +116,7 @@ $described_by  = trim(($helper !== '' ? $id . '-help' : '') . ' ' . ($error !== 
           <?php svg('image-line', 'field-icon size-5'); ?>
         </span>
       </div>
-      <div aria-live="polite" class="field-image-info min-w-0 max-sm:group-data-[empty]:hidden">
+      <div aria-live="polite" class="field-image-info flex-1 min-w-0 max-sm:group-data-[empty]:hidden">
         <p class="field-image-name text-sm break-all line-clamp-2 js-component-image-field-name">
           <?= $value !== '' ? e(basename(parse_url($value, PHP_URL_PATH) ?: $value)) : 'No photo selected'; ?>
         </p>
@@ -123,13 +124,13 @@ $described_by  = trim(($helper !== '' ? $id . '-help' : '') . ' ' . ($error !== 
           <?= $value !== '' ? 'Current photo' : ''; ?>
         </p>
       </div>
-      <div class="field-image-actions col-span-2 flex gap-2 sm:col-span-1">
+      <div class="field-image-actions flex gap-2 w-full sm:w-auto">
         <?php component('button', [
           'label'         => $value !== '' ? 'Replace' : 'Choose Photo',
           'element'       => 'button',
           'type'          => 'button',
           'size'          => 'small',
-          'color'         => 'secondary',
+          'color'         => 'default',
           'disabled'      => $disabled,
           'aria_controls' => $id,
           'js_hook'       => 'js-component-image-field-choose',
@@ -139,7 +140,7 @@ $described_by  = trim(($helper !== '' ? $id . '-help' : '') . ' ' . ($error !== 
           'element'  => 'button',
           'type'     => 'button',
           'size'     => 'small',
-          'color'    => 'secondary',
+          'color'    => 'default',
           'disabled' => $disabled || $value === '',
           'js_hook'  => 'js-component-image-field-clear',
         ]); ?>

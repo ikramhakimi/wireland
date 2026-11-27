@@ -39,7 +39,7 @@
           'variant'    => 'icon-only',
           'icon'       => 'edit-line',
           'size'       => 'small',
-          'color'      => 'secondary',
+          'color'      => 'default',
           'href'       => asset_url('dashboard/product-edit/') . '?id=' . $item['id'],
           'aria_label' => 'Edit Product: ' . $item['name'],
           'js_hook'    => 'js-component-products-edit',
@@ -67,7 +67,7 @@
       <?php component('button', [
         'label'      => 'Update Stock',
         'size'       => 'small',
-        'color'      => 'default',
+        'color'      => 'secondary',
         'class'      => 'w-full',
         'href'       => asset_url('dashboard/product-edit/') . '?id=' . $item['id'] . '#product-stock',
         'aria_label' => 'Update Stock: ' . $item['name'],
@@ -78,7 +78,7 @@
       sm:block sm:col-span-1 sm:p-4 sm:border-0">
       <div class="product-actions flex items-center gap-2 @3xl:justify-end">
         <?php component('button', [
-          'label' => 'Update Stock', 'size' => 'small', 'color' => 'default',
+          'label' => 'Update Stock', 'size' => 'small', 'color' => 'secondary',
           'class' => 'shrink-0 whitespace-nowrap',
           'href' => asset_url('dashboard/product-edit/') . '?id=' . $item['id'] . '#product-stock',
           'js_hook' => 'js-component-products-update-stock',
@@ -117,7 +117,7 @@
                   'variant'    => 'icon-only',
                   'icon'       => 'eye-line',
                   'size'       => 'small',
-                  'color'      => 'secondary',
+                  'color'      => 'default',
                   'href'       => asset_url('dashboard/product/') . '?id=' . $item['id'],
                   'aria_label' => 'View Product: ' . $item['name'],
                 ]);
@@ -133,7 +133,7 @@
                   'variant'    => 'icon-only',
                   'icon'       => 'edit-line',
                   'size'       => 'small',
-                  'color'      => 'secondary',
+                  'color'      => 'default',
                   'href'       => asset_url('dashboard/product-edit/') . '?id=' . $item['id'],
                   'aria_label' => 'Edit Product: ' . $item['name'],
                 ]);

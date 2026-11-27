@@ -29,7 +29,7 @@ $latest_change  = $chart_count > 1 ? $chart_days[$chart_count - 1]['value'] - $c
 $label_interval = $chart_count > 7 ? (int) ceil(($chart_count - 1) / 4) : 1;
 
 $card_config = [
-  'class'         => 'card-chart shadow-sm',
+  'class'         => 'card-chart ring-1 ring-zinc-200 shadow-sm shadow-zinc-800/5',
   'content'       => function () use (
     $summary,
     $report_start,

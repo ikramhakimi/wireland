@@ -70,7 +70,7 @@ $browse_button = [
   'label'   => 'Browse more treatments',
   'href'    => '',
   'variant' => 'pill',
-  'color'   => 'secondary',
+  'color'   => 'default',
 ];
 $more_treatments_list = [
   'title'   => 'More Treatments',

@@ -88,7 +88,7 @@ if ($items === []) {
                       <?php endif; ?>
                       <span class="assessment-answer-option-text min-w-0"><?= e($item['value']); ?></span>
                     </span>
-                    <span class="assessment-answer-actions flex shrink-0 items-center gap-2">
+                    <span class="assessment-answer-actions flex shrink-0 items-center gap-2 -mr-2.5">
                       <?php foreach ($item['asked'] as $round): ?>
                         <?php component('tooltip', [
                           'id'              => 'assessment-asked-tip-' . $dom_id($item['id']) . '-' . $round,

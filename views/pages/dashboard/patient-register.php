@@ -35,7 +35,7 @@ $submit_button = [
 $cancel_button = [
   'label' => 'Cancel',
   'href'  => asset_url('dashboard/patients/'),
-  'color' => 'secondary',
+  'color' => 'default',
 ];
 
 ?>

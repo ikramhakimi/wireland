@@ -171,7 +171,7 @@ foreach ($faq_groups as $group_key => $group_label) {
       <?php component('button', [
         'label' => 'Start Hair Assessment',
         'href'  => $faq_assessment_href,
-        'color' => 'default',
+        'color' => 'secondary',
         'size'  => 'large',
       ]); ?>
     </div>

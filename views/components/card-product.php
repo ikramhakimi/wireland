@@ -34,7 +34,7 @@ $cart_button = $cart === null ? [] : [
   'size'       => 'medium',
   'variant'    => 'pill',
   'icon'       => '',
-  'color'      => 'default',
+  'color'      => 'secondary',
   'aria_label' => 'Add ' . $name . ' to cart',
   'class'      => 'product-action',
 ];

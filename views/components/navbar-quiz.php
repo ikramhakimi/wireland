@@ -26,7 +26,7 @@ $menu_drawer = [
       'label'  => 'Contact Support',
       'href'   => $whatsapp_href,
       'size'   => 'large',
-      'color'  => 'secondary',
+      'color'  => 'default',
       'icon'   => 'whatsapp-line',
       'icon_position' => 'start',
       'class'  => 'quiz-menu-support w-full',
@@ -35,7 +35,7 @@ $menu_drawer = [
       'label'   => $exit_label,
       'href'    => $exit_href,
       'size'    => 'large',
-      'color'   => 'secondary',
+      'color'   => 'default',
       'class'   => 'quiz-menu-exit w-full',
       'js_hook' => 'js-quiz-exit',
     ];

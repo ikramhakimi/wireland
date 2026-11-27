@@ -260,6 +260,7 @@ return [
     'ready'   => ['label' => 'Ready to order', 'icon' => 'checkbox-circle-line', 'tone' => 'positive'],
     'active'  => ['label' => 'Active', 'icon' => 'shield-check-line', 'tone' => 'info'],
     'expired' => ['label' => 'Expired', 'icon' => 'time-line', 'tone' => 'negative'],
+    'stopped' => ['label' => 'Stopped', 'icon' => 'error-warning-line', 'tone' => 'negative'],
   ],
   'statuses'    => [
     'pending'    => ['label' => 'Pending doctor review', 'icon' => 'time-line', 'tone' => 'neutral'],

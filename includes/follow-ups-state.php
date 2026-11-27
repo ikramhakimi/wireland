@@ -11,9 +11,12 @@
  *        doctor it opens another doctor review after 7, 14 or 30 days. No Reply opens a retry with the same team
  *        after retry_days, up to max_attempts; the last one closes the chain.
  * Self check-in: the patient's answers close the due record (or follow Going Well on a prescription). Stopped,
- *        worse or side effects hand over to the doctor; a prescription refill also goes to the doctor to approve.
+ *        worse or side effects hand over to the doctor; a prescription refill also goes to the doctor to approve
+ *        (request 'refill'). Approve Refill needs the patient's prescription for the product with orders left;
+ *        it uses one order of the prescription (session store of includes/assessments-state.php).
  * Data: returns config, products, today, records (id => record), queue (team filter, groups, completed),
- *       token, flash, treatment_flash, chains (patient id => latest record per product, newest first).
+ *       token, flash, treatment_flash, chains (patient id => latest record per product, newest first),
+ *       prescription_of (callable: patient ID, product ID => prescription view data or null).
  */
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -114,10 +117,15 @@ if (!function_exists('follow_up_message')) {
 if (!function_exists('follow_up_refill_message')) {
   /**
    * Prefilled WhatsApp text with the refill link. Prescription products go through a check-in first,
-   * because the doctor approves every prescription refill.
+   * because the doctor approves every prescription refill; once approved, the link goes to the product.
    */
-  function follow_up_refill_message(string $first_name, array $product): string
+  function follow_up_refill_message(string $first_name, array $product, bool $approved = false): string
   {
+    if ($approved) {
+      return 'Hi ' . $first_name . ', your doctor approved your next ' . $product['name'] . '. Order it here: '
+        . follow_up_absolute_url(asset_url('product/?id=' . rawurlencode($product['id'])));
+    }
+
     if (($product['requirement'] ?? '') === 'Prescription Required') {
       return 'Hi ' . $first_name . ', before your next ' . $product['name'] . ', please complete a short check-in '
         . 'so your doctor can approve the refill: ' . follow_up_absolute_url(asset_url('account'));
@@ -161,6 +169,8 @@ if (!function_exists('follow_up_close')) {
         'attempt' => 1,
         'team'    => 'doctor',
         'due'     => $is_doctor ? follow_up_date($today, $input['review_days']) : $today,
+        // Review Again on a refill request keeps it a refill request.
+        'request' => $is_doctor ? ($record['request'] ?? '') : '',
       ]];
     }
 
@@ -233,7 +243,8 @@ if (!function_exists('follow_up_can_check_in')) {
 }
 
 // Fields a record has before it is recorded. source: '' (staff) or 'self' (patient check-in);
-// suggest: the check-in showed little progress on a care product.
+// suggest: the check-in showed little progress on a care product; request: 'refill' for a prescription refill
+// waiting for the doctor's approval.
 $follow_up_blank = [
   'outcome' => '',
   'refill'  => '',
@@ -242,11 +253,17 @@ $follow_up_blank = [
   'done_by' => '',
   'source'  => '',
   'suggest' => false,
+  'request' => '',
 ];
 
-// Seed once per session. Offsets in the seed become dates; first records get their due date from the rule.
-if (!isset($_SESSION['follow_ups']) || isset($_GET['reset'])) {
-  $_SESSION['follow_ups'] = [];
+// Seed once per session, and again when the seed data changes. Offsets in the seed become dates; first records
+// get their due date from the rule.
+$follow_up_seed = md5(serialize($follow_up_config['records']));
+
+if (!isset($_SESSION['follow_ups']) || isset($_GET['reset'])
+  || ($_SESSION['follow_ups_seed'] ?? '') !== $follow_up_seed) {
+  $_SESSION['follow_ups']      = [];
+  $_SESSION['follow_ups_seed'] = $follow_up_seed;
 
   foreach ($follow_up_config['records'] as $seed) {
     $record = array_merge($follow_up_blank, $seed);
@@ -283,17 +300,62 @@ $chain_of       = static fn (array $records, array $record): array => array_valu
     && $item['product_id'] === $record['product_id'],
 ));
 
+// The patient's prescription for a product, from the assessments session (seeded on first use): assessment ID,
+// prescription, status (ready, active, expired, stopped), status badge, review URL and whether a refill can be approved.
+$prescription_of = static function (string $patient_id, string $product_id): ?array {
+  static $assessments = null;
+  $assessments ??= (static fn (): array => require __DIR__ . '/assessments-state.php')();
+
+  $found = assessment_prescription_for($_SESSION['assessments'], $patient_id, $product_id);
+
+  if ($found === null) {
+    return null;
+  }
+
+  [$assessment_id, $prescription] = $found;
+  $status = assessment_prescription_status($prescription, $assessments['today']);
+
+  return [
+    'assessment_id' => $assessment_id,
+    'prescription'  => $prescription,
+    'status'        => $status,
+    'badge'         => $assessments['config']['prescription']['statuses'][$status],
+    'href'          => ($assessments['review_url'])($assessment_id),
+    'can_approve'   => in_array($status, ['ready', 'active'], true),
+    'products'      => $assessments['products'],
+  ];
+};
+
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['follow_up_id'])) {
   $post   = static fn (string $key): string => is_string($_POST[$key] ?? null) ? trim($_POST[$key]) : '';
   $record = $records[$post('follow_up_id')] ?? null;
   $input  = [
     'outcome'     => $post('outcome'),
-    'refill'      => $post('refill'),
+    // Approve Refill is Going Well with Wants Refill.
+    'refill'      => ($record['request'] ?? '') === 'refill' ? 'yes' : $post('refill'),
     'review_days' => (int) $post('review_days'),
     'note'        => substr($post('note'), 0, 500),
     'summary'     => substr($post('summary'), 0, 500),
   ];
   $error  = '';
+
+  // Approve Refill: the patient's prescription for the product must have orders left and be in date.
+  $refill_error = static function (array $record) use ($prescription_of, $follow_up_config, $products): string {
+    $found = $prescription_of($record['patient_id'], $record['product_id']);
+
+    if ($found === null) {
+      return 'No prescription covers ' . $products[$record['product_id']]['name']
+        . ' for this patient. Ask them to submit an assessment.';
+    }
+
+    if (!$found['can_approve']) {
+      return 'Prescription ' . $found['prescription']['id']
+        . ($found['status'] === 'stopped' ? ' was stopped' : ' has no orders left or has expired')
+        . '. The patient needs a renewal.';
+    }
+
+    return '';
+  };
 
   if (!hash_equals($_SESSION['follow_ups_token'], $post('token'))) {
     $error = 'This form has expired. Reload the page and try again.';
@@ -301,6 +363,11 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['follow_up_
     $error = 'This follow-up is already recorded. Check Completed for the result.';
   } elseif (!isset($follow_up_config['outcomes'][$input['outcome']])) {
     $error = 'The outcome is missing. Choose an outcome.';
+  } elseif ($record['request'] === 'refill' && !in_array($input['outcome'], ['ok', 'issue'], true)) {
+    $error = 'The decision is missing. Approve the refill or review again.';
+  } elseif ($record['request'] === 'refill' && $input['outcome'] === 'ok'
+    && ($rx_error = $refill_error($record)) !== '') {
+    $error = $rx_error;
   } elseif ($input['outcome'] === 'ok' && !isset($follow_up_config['refills'][$input['refill']])) {
     $error = 'The refill choice is missing. Choose one when the follow-up is going well.';
   } elseif ($input['outcome'] === 'issue' && $input['note'] === '') {
@@ -317,12 +384,24 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['follow_up_
 
     [$closed, $next] = follow_up_close($record, $input, $today, $follow_up_config['rules'], $next_id);
     $records[$closed['id']] = $closed;
+    $approved        = null;
+
+    // Approved refill: one more order of the prescription.
+    if ($record['request'] === 'refill' && $input['outcome'] === 'ok') {
+      $approved = $prescription_of($record['patient_id'], $record['product_id']);
+      $_SESSION['assessments'][$approved['assessment_id']]['prescription']['used']
+        = ($approved['prescription']['used'] ?? 0) + 1;
+    }
 
     if ($next !== null) {
       $records[$next['id']] = $next + $follow_up_blank + ['done_on' => ''];
     }
 
-    if ($next === null) {
+    if ($approved !== null) {
+      $message = 'Refill approved. ' . $approved['prescription']['id'] . ': '
+        . (($approved['prescription']['used'] ?? 0) + 1) . ' of ' . $approved['prescription']['refills']
+        . ' orders used.';
+    } elseif ($next === null) {
       $message = $input['outcome'] === 'no_response'
         ? 'No reply after ' . $record['attempt'] . ' attempts. Follow-up closed.'
         : 'Follow-up recorded.';
@@ -414,7 +493,10 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['checkin_id
 
     if ($needs_doctor) {
       $doctor_id = $next_record_id($records);
-      $records[$doctor_id] = $follow_up_blank + [
+      $records[$doctor_id] = [
+        // A prescription refill with no issue waits for the doctor's approval.
+        'request' => $outcome === 'ok' ? 'refill' : '',
+      ] + $follow_up_blank + [
         'id'            => $doctor_id,
         'parent_id'     => $self['id'],
         'patient_id'    => $self['patient_id'],
@@ -507,4 +589,5 @@ return [
   'flash'           => $flash,
   'treatment_flash' => $treatment_flash,
   'chains'          => $chains,
+  'prescription_of' => $prescription_of,
 ];

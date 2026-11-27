@@ -40,7 +40,7 @@ $list_card = [
                 <?php component('button', [
                   'label'      => 'Edit Treatment',
                   'size'       => 'small',
-                  'color'      => 'secondary',
+                  'color'      => 'default',
                   'href'       => asset_url('dashboard/treatment-edit/') . '?id=' . $treatment['id'],
                   'aria_label' => 'Edit Treatment: ' . $treatment['name'],
                 ]); ?>

@@ -1,6 +1,7 @@
 # Build mode
 
-Load this only in Build mode, after Phase 4 of [SKILL.md](SKILL.md) has a set of directions.
+Use Rules and Phases 5–6 once directions are chosen, Phase 6 for standalone verification, and Phase 7
+for iteration and promotion.
 
 ## Rules
 
@@ -10,8 +11,8 @@ Load this only in Build mode, after Phase 4 of [SKILL.md](SKILL.md) has a set of
 2. **Every variant fully works.** Real interactions, real states, realistic content. No dead buttons.
 3. **The kit is chrome, not a contestant.** Use `prototypes/_kit/` as is. Do not open, restyle, or rewrite
    its files, and do not read older prototypes for the harness pattern.
-4. **Design check on every variant, full polish on the winner.** Exploration decides direction, so every
-   variant gets the light checks below. The full `make-interfaces-feel-better` pass runs once, on `keep`.
+4. **Check every variant.** Use the light design checks below during exploration. On `keep`, check
+   the selected variant against the production design system.
 
 ## Phase 5 — Build
 
@@ -73,28 +74,24 @@ the user this command to run from the project root:
 npx @tailwindcss/cli -i prototypes/_kit/prototype.css -o prototypes/_kit/build.css --watch
 ```
 
-### Images: placeholder blocks only
+**`free` variants** do not depend on the Tailwind build. Put the styles in one `<style>` block at the top of
+the variant file, scoped under a root class named after the variant (`.desk`, `.desk-*`), with the palette
+as custom properties on that root. No `variant.css`, no `@import`, no inline `style=""` attributes. Light
+theme only unless asked; handle `prefers-reduced-motion`. Behavior goes in `prototype.js` in its own block,
+bound to the variant's `js-` hooks.
 
-Do not use image assets or generate images. Every image slot is a placeholder block with the real aspect
-ratio and a label naming the intended image, following the project pattern
-(`aspect-square rounded-lg bg-zinc-300` + label, see `views/pages/product-2.php`). If a variant depends on a
-specific image (e.g. before/after photos), flag it in the result table.
+### Prototype presentation
 
-While building:
-
-- **Change notice first** (AGENTS.md): before writing `variant.css`/`prototype.js` or inline code, tell
-  the user which files, what the code does, and why. Continue unless they asked to approve first.
-- Tailwind utilities first; `variant.css` only for what utilities cannot express. Scope its selectors to
-  the prototype's own classes.
-- Render one variant at a time, full size, inside realistic page context (navbar, neighbors, footer as
-  needed). Never judge at thumbnail size.
-- Variant swap is a plain reload to `?v=<n>`, no animation.
-- Keep `$variants` labels short (one word, about 10 characters): 4–5 long names overflow the picker at 390px.
-- Formatting follows AGENTS.md: 2 spaces, aligned `=`/`=>`, JS hooks last in `class`.
+- Use labeled image placeholders at the intended aspect ratio (`aspect-square rounded-lg bg-zinc-300`
+  for square slots). Flag variants that depend on a specific image in the handoff.
+- Use Tailwind utilities first. Scope any `variant.css` rules to the prototype. Follow AGENTS.md for
+  formatting and advance notice of CSS or JS changes.
+- Render one variant at a time at full size in realistic page context. Keep picker labels to about
+  10 characters so they fit at 390px.
 
 ### Design check (every variant)
 
-Do not load `make-interfaces-feel-better` here. Answer these for each variant and fix what fails:
+Answer these for each variant and fix what fails:
 
 1. Is the primary action clear within 3 seconds on mobile?
 2. Are the user's top doubts (from Phase 3) answered before that action?
@@ -102,79 +99,50 @@ Do not load `make-interfaces-feel-better` here. Answer these for each variant an
 4. Can one element be removed without weakening the variant? If yes, remove it.
 5. Is it still clearly different from the other variants at a glance?
 
-Bold variants (see EXPLORE.md, Range): replace questions 1 and 3 with "Can the user clearly complete the job
+Bold variants: replace questions 1 and 3 with "Can the user clearly complete the job
 and remove the Barrier?" The action may not be a button or above the fold if the variant explains why. Also
 re-run the distance test on the built result: if it reads as today's page restyled, say so in the table
 rather than calling it bold. In `protoCheck()` results, a bold variant's `aboveFold: false` is not a failure
 by itself.
+
+Free variants: use the bold questions, then add: Does the first screen answer the user's first question?
+Does at least one element show data today's page hides? Does every state work (empty, no match, after the
+main action, error, mobile)? Are there keyboard shortcuts the brief did not ask for? If so, remove them.
 
 Then the light craft checklist: concentric radii, shadows vs borders used for the right job,
 `text-wrap: balance`/`pretty`, tabular numbers on changing figures, 40px+ hit areas, visible focus states,
 icons colored via `currentColor`, any motion `ease-out`, sub-300ms, interruptible, with
 `prefers-reduced-motion` handled. Fix in Tailwind first, in the project's tokens.
 
-**Motion exception:** if a variant's axis is motion, load
-[animations.md](../make-interfaces-feel-better/animations.md) for that variant only, since motion is what it
-is testing.
-
 ## Phase 6 — Verify and hand off
 
 Open the harness (MAMP: `/prototypes/<slug>/`). If `_kit/build.css` is missing or stale, ask the user to run
 the watch command above first. Do not run lint unless asked.
 
-**Browser: Chrome DevTools MCP only** (`mcp__chrome-devtools__*`); never use Playwright tools in this skill.
-Open one tab with `new_page` and `isolatedContext: "ui-explore"` (keeps the user's session cart untouched),
-then reuse it: `emulate` with `viewport` `390x844x2,mobile,touch` or `1280x900x1`, `navigate_page`, and
-`evaluate_script` for every check below. If Chrome DevTools is unavailable, skip steps 2–3, say so in the
-hand-off, and do not fall back to another browser tool.
+By default, check the PHP render of each `?v=<n>` with `curl -s`. Check the HTTP response and look for
+`Fatal error|Warning:|Notice:|Deprecated:` in the body. Fix render failures before sharing the picker
+for manual review. Report the PHP render result.
 
-1. **PHP render**: `curl -s` each `?v=<n>` and grep for `Fatal error|Warning:|Notice:|Deprecated:` (exact
-   strings, so class names like `color-warning` don't match).
-2. **Scripted check**, no screenshots, all variants in one call per viewport: open `?v=1`, set the viewport
-   to 390×844 (mobile, touch), and run one evaluate with exactly `async () => protoCheckAll()`; then set
-   1280×900 (no reload needed) and run it again. Both are defined by `_kit/check.js`; never open that file.
-   Each variant loads in an off-screen iframe sized to the viewport and returns `protoCheck()`: `overflowX`,
-   runtime `errors`, the primary action and whether it is `aboveFold`, `picker` (wired and inside the
-   viewport), broken `toggles`, `h1` count, `duplicateIds`, and `imagesNoAlt`. Mark a variant's main action
-   with `data-proto-primary` if it is not a `button-primary`. Use `() => protoCheck()` on a single variant
-   only to re-check one fix.
-3. **Interaction check**: every variant with JS behavior (`prototype.js`) gets one evaluate on its own
-   `?v=<n>` that drives its main interaction (select, filter, swap, total) and returns the resulting state,
-   so wrong totals, dead controls, and broken focus are caught. Static checks never replace this. For
-   actions that navigate (e.g. add to cart), read `location.href` in a separate call afterwards.
-4. **Fix and re-run** any failure. A primary action below the fold on mobile fails the design check unless
-   the variant's axis explains it; say so in the table.
-5. **Screenshots only when required**: a failure that cannot be understood from the JSON, or the user asks
-   (`verify visual`). Then take one viewport screenshot at mobile width, never full-page.
+### Browser verification on request
 
-Present the result table, the URL, the picker keys, and a suggested next step. Then stop: the choice is the
-user's.
+Run these checks when the user asks to `verify` or explicitly requests browser checks. For a standalone
+verification request, open the existing prototype and run only the requested checks.
 
-```
-| # | Variant | Axis | Source | When it's the right choice | Its cost |
-| - | ------- | ---- | ------ | -------------------------- | -------- |
+**Browser: Chrome DevTools MCP only** (`mcp__chrome-devtools__*`). Open one tab with `new_page` and
+`isolatedContext: "ui-explore"` to keep the user's cart session separate. If Chrome DevTools is
+unavailable, report the browser checks as skipped.
 
-Design notes: <what the design check changed, per variant, one line each>
-Open: <URL>  ·  Keys: 1–N or ←/→ to switch
+1. At 390×844 (mobile, touch) and 1280×900, run `async () => protoCheckAll()` for all variants or
+   `() => protoCheck()` on the requested `?v=<n>` for a single variant. Check horizontal overflow,
+   runtime errors, primary action placement, picker, toggles, headings, duplicate IDs, and missing alt
+   attributes. Use `data-proto-primary` when the main action is not a `button-primary`.
+2. For each checked variant with JS behavior, drive its main interaction and read the resulting state.
+   If the action navigates, read `location.href` in a separate call. Fix failures and recheck the affected
+   variants. An axis that intentionally puts the primary action below the mobile fold should explain why.
+3. Take one mobile viewport screenshot when requested (`verify visual`) or when the JSON cannot explain
+   a failure.
 
-Suggested next:
-- pin <name>: <why it earns another round or stays as the comparison>
-- drop <name>: <why it no longer teaches anything>
-- keep <name>: only when one variant is clearly solid (passes every check, no open questions, no flagged
-  images); otherwise say what is still open
-```
-
-Suggestions are reasons tied to the brief, KPIs, and checks, never taste alone. Suggest at most one `keep`.
-
-End the hand-off (and the `keep` report) with the run's token usage, read from the session transcript, never
-estimated. Run from the project root and paste its output as is:
-
-```
-python3 -I .agents/skills/ui-explore/scripts/usage.py --turns 1
-```
-
-`--turns 1` counts from the user message that started this run; use `--since-text "<words from it>"` when
-the run spanned several messages. `usage` on its own runs it with `--full`.
+Hand off using [SKILL.md](SKILL.md#response) and let the user choose a variant.
 
 ## Phase 7 — Iterate or promote
 
@@ -200,21 +168,21 @@ Promote (production):
 
 For both: follow AGENTS.md strict rules (components, tokens, CSS file locations, change notice). Move any
 `variant.css` rules into the right production CSS file only with approval, and replace placeholder blocks
-with real assets or the user's chosen images. Run the full polish pass below, remind the user to run
-`npm run build:css` or `watch:css`, then delete `prototypes/<slug>/` and its `@import` line in
+with real assets or the user's chosen images. Complete the design-system check below, remind the user
+to run `npm run build:css` or `watch:css` if Tailwind classes, tokens, or CSS changed, then delete `prototypes/<slug>/` and its `@import` line in
 `_kit/prototype.css` unless asked to keep it. Never delete `_kit/`.
 
-### Full polish pass (winner only)
+Free variants: the off-styleguide exception ends at `keep`. Before editing production, map the variant's
+visual language to the design system, and list the new tokens, components, or patterns it would need. The
+user then chooses: translate it onto existing components, or approve the new pieces first (AGENTS.md
+approval for new CSS). Never move the variant's scoped `<style>` block into production as it is.
 
-Load [make-interfaces-feel-better](../make-interfaces-feel-better/SKILL.md) and run its checks on the
-integrated variant. Open only the sub-guides that match what it contains:
+### Design-system check on promotion
 
-| Variant contains | Read |
-| --- | --- |
-| Headings, body copy, prices, counters | [typography.md](../make-interfaces-feel-better/typography.md) |
-| Cards, nested radii, shadows, images, small hit targets | [surfaces.md](../make-interfaces-feel-better/surfaces.md) |
-| Enter/exit, hover, press, accordions, step changes | [animations.md](../make-interfaces-feel-better/animations.md) |
-| Icons, icon state changes | [icons.md](../make-interfaces-feel-better/icons.md) |
-| Any transition | [performance.md](../make-interfaces-feel-better/performance.md) |
-
-Walk every state (hover, focus, active, empty, loading, error where relevant) and report the fixes applied.
+1. Consult the relevant `/design` examples and their source components. Map the selected layout and
+   interactions to existing components, documented sizes and variants, and theme tokens.
+2. Replace prototype-only styling with existing utilities and tokens where possible. Remove component
+   overrides for typography, padding, radius, and colors. If a pattern is missing, propose the smallest
+   extension before implementing it and follow the approval rules for new CSS.
+3. Review the changed markup against the component APIs and check that production data and state
+   handling still fit those APIs. Report the components, variants, or tokens substituted during promotion.

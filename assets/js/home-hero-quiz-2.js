@@ -38,7 +38,7 @@
 
   const setLead = (button, primary) => {
     button.classList.toggle('button-primary', primary);
-    button.classList.toggle('button-default', !primary);
+    button.classList.toggle('button-secondary', !primary);
   };
 
   const showKit = (visible) => {

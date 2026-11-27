@@ -130,7 +130,7 @@ $support_benefits = [
 $assessment_button = [
   'label'   => 'Start Free Assessment',
   'href'    => asset_url('assessment'),
-  'color'   => 'secondary',
+  'color'   => 'default',
   'icon'    => 'arrow-right-line',
 ];
 $assessment_avatar = [

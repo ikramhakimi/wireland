@@ -128,7 +128,7 @@ $photo_card = [
         <?php component('button', [
           'label' => 'Cancel',
           'href'  => $cancel_href,
-          'color' => 'secondary',
+          'color' => 'default',
         ]); ?>
       </footer>
     </form>

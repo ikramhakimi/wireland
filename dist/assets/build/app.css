@@ -16,10 +16,10 @@
     --color-amber-100: oklch(96.2% 0.059 95.617);
     --color-amber-500: oklch(76.9% 0.188 70.08);
     --color-amber-800: oklch(47.3% 0.137 46.201);
-    --color-green-200: oklch(92.5% 0.084 155.995);
-    --color-green-500: oklch(72.3% 0.219 149.579);
-    --color-green-700: oklch(52.7% 0.154 150.069);
-    --color-green-800: oklch(44.8% 0.119 151.328);
+    --color-emerald-200: oklch(92.5% 0.084 155.995);
+    --color-emerald-500: oklch(72.3% 0.219 149.579);
+    --color-emerald-700: oklch(52.7% 0.154 150.069);
+    --color-emerald-800: oklch(44.8% 0.119 151.328);
     --color-teal-600: oklch(60% 0.118 184.704);
     --color-blue-500: oklch(62.3% 0.214 259.815);
     --color-blue-600: oklch(54.6% 0.245 262.881);
@@ -1876,14 +1876,14 @@
   .bg-gray-300 {
     background-color: var(--color-gray-300);
   }
-  .bg-green-200 {
-    background-color: var(--color-green-200);
+  .bg-emerald-200 {
+    background-color: var(--color-emerald-200);
   }
-  .bg-green-500 {
-    background-color: var(--color-green-500);
+  .bg-emerald-500 {
+    background-color: var(--color-emerald-500);
   }
-  .bg-green-700 {
-    background-color: var(--color-green-700);
+  .bg-emerald-700 {
+    background-color: var(--color-emerald-700);
   }
   .bg-orange-50 {
     background-color: var(--color-orange-50);
@@ -2723,7 +2723,7 @@
     color: var(--color-red-700);
   }
   .color-positive {
-    color: var(--color-green-700);
+    color: var(--color-emerald-700);
   }
   .color-primary {
     color: var(--color-blue-700);
@@ -2746,11 +2746,11 @@
   .text-gray-800 {
     color: var(--color-gray-800);
   }
-  .text-green-700 {
-    color: var(--color-green-700);
+  .text-emerald-700 {
+    color: var(--color-emerald-700);
   }
-  .text-green-800 {
-    color: var(--color-green-800);
+  .text-emerald-800 {
+    color: var(--color-emerald-800);
   }
   .text-orange-600 {
     color: var(--color-orange-600);
@@ -3477,9 +3477,9 @@
       outline-color: var(--color-blue-800);
     }
   }
-  .focus-visible\:outline-green-700 {
+  .focus-visible\:outline-emerald-700 {
     &:focus-visible {
-      outline-color: var(--color-green-700);
+      outline-color: var(--color-emerald-700);
     }
   }
   .focus-visible\:outline-orange-600 {

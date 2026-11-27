@@ -10,7 +10,7 @@
 $card_config = [
   'title'         => $card['label'],
   'description'   => $card['description'],
-  'class'         => 'card-summary shadow-sm',
+  'class'         => 'card-summary ring-1 ring-zinc-200 shadow-sm shadow-zinc-800/5',
   'content'       => function () use ($card): void {
     ?>
     <div class="card-metrics grid gap-8 py-1">

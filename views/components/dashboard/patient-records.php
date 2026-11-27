@@ -46,7 +46,7 @@ $filter_fields = [
 $clear_button = [
   'label' => 'Reset',
   'href'  => asset_url('dashboard/patients/'),
-  'color' => 'secondary',
+  'color' => 'default',
 ];
 $find_button = [
   'label'         => 'Search',
@@ -113,11 +113,11 @@ $group_switch = [
     class="directory-content min-w-0 js-component-patients-directory">
     <div aria-hidden="true" <?= $directory['group_by'] !== 'none' ? 'hidden' : ''; ?>
       class="directory-head hidden text-xs color-muted
-        @3xl:[&:not([hidden])]:grid @3xl:grid-cols-[50%_minmax(0,1fr)_11rem]
+        @3xl:[&:not([hidden])]:flex
         js-component-patients-head">
-      <span class="directory-label px-5 py-3">Patient</span>
-      <span class="directory-label px-5 py-3">Care</span>
-      <span class="directory-label px-5 py-3 text-right">Actions</span>
+      <span class="directory-label basis-1/2 shrink-0 px-5 py-3">Patient</span>
+      <span class="directory-label flex-1 min-w-0 px-5 py-3">Care</span>
+      <span class="directory-label w-44 shrink-0 px-5 py-3 text-right">Actions</span>
     </div>
     <ul role="list" aria-label="Patient records" <?= $directory['group_by'] !== 'none' ? 'hidden' : ''; ?>
       class="patients-list border-dashed border-zinc-200
@@ -180,7 +180,7 @@ $group_switch = [
     <nav aria-label="Patient pagination mockup" class="pagination flex flex-wrap items-center gap-2">
       <?php component('button', [
         'label'    => 'Previous',
-        'color'    => 'secondary',
+        'color'    => 'default',
         'element'  => 'button',
         'variant'  => 'icon-only',
         'icon'     => 'arrow-left-s-line',
@@ -198,7 +198,7 @@ $group_switch = [
           hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">3</button>
       <?php component('button', [
         'label'   => 'Next',
-        'color'   => 'secondary',
+        'color'   => 'default',
         'element' => 'button',
         'variant' => 'icon-only',
         'icon'    => 'arrow-right-s-line',

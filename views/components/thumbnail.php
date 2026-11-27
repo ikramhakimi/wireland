@@ -30,8 +30,8 @@ $icons = [
 ];
 $sizes = [
   'xs'   => ['box' => 'size-8',  'icon' => 'size-4', 'radius' => 'rounded-sm'],
-  'sm'   => ['box' => 'size-12', 'icon' => 'size-5', 'radius' => 'rounded-lg'],
-  'md'   => ['box' => 'size-16', 'icon' => 'size-5', 'radius' => 'rounded-lg'],
+  'sm'   => ['box' => 'size-12', 'icon' => 'size-5', 'radius' => 'rounded-md'],
+  'md'   => ['box' => 'size-16', 'icon' => 'size-5', 'radius' => 'rounded-md'],
   'lg'   => ['box' => 'size-24', 'icon' => 'size-5', 'radius' => 'rounded-lg'],
   'full' => ['box' => 'w-full',  'icon' => 'size-5', 'radius' => 'rounded-lg'],
 ];

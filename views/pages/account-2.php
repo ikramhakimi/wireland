@@ -395,14 +395,14 @@ $cards = array_map(static function (array $record) use (
     'offer'       => $offer_text === '' ? null : [
       'label' => 'Start Assessment',
       'href'  => $quiz_routes['start'],
-      'color' => 'secondary',
+      'color' => 'default',
       'class' => 'treatment-offer w-full sm:w-auto',
     ],
     'message'     => [
       'label'         => 'Message Us',
       'href'          => $clinic_whatsapp . rawurlencode('Hi RR HairClinic, I have a question about my '
         . $product['name'] . '.'),
-      'color'         => 'secondary',
+      'color'         => 'default',
       'icon'          => 'whatsapp-line',
       'icon_position' => 'start',
       'class'         => 'treatment-message w-full sm:w-auto',
@@ -423,7 +423,7 @@ $cards = array_map(static function (array $card) use ($clinic_whatsapp): array {
     'icon'          => 'whatsapp-line',
     'icon_position' => 'start',
   ];
-  $track     = ['label' => 'Track Order', 'href' => asset_url('account/orders'), 'color' => 'default'];
+  $track     = ['label' => 'Track Order', 'href' => asset_url('account/orders'), 'color' => 'secondary'];
   $action    = $status === 'retrying' ? $reply : ($card['refill'] ?? ($card['in_transit'] ? $track : null));
   $needs_you = in_array($status, ['contacting', 'retrying'], true)
     || ($can_order && !$card['in_transit'] && $card['days_left'] <= 7);
@@ -433,8 +433,8 @@ $cards = array_map(static function (array $card) use ($clinic_whatsapp): array {
     'short'     => $card['tracker']['stages'][$card['tracker']['active']]['note'],
     'action'    => $action === null ? null : array_replace($action, [
       'size'  => 'medium',
-      'color' => $needs_you ? $action['color'] : 'default',
-      'class' => 'treatment-action w-full',
+      'color' => $needs_you ? $action['color'] : 'secondary',
+      'class' => 'treatment-action w-full md:w-52 md:shrink-0',
     ]),
   ];
 }, $cards);
@@ -456,7 +456,7 @@ $panel_message = [
   'label'         => 'Message Us',
   'href'          => $clinic_whatsapp . rawurlencode('Hi RR HairClinic, I have a question about my treatment.'),
   'size'          => 'medium',
-  'color'         => 'secondary',
+  'color'         => 'default',
   'icon'          => 'whatsapp-line',
   'icon_position' => 'start',
   'class'         => 'treatments-message w-full sm:w-auto',
@@ -493,7 +493,7 @@ $empty_state = [
     'label' => 'Shop Products',
     'href'  => asset_url('shop'),
     'size'  => 'large',
-    'color' => 'secondary',
+    'color' => 'default',
     'class' => 'account-treatment-shop w-full sm:w-auto',
   ]],
   'class'   => 'account-empty mt-8',
@@ -566,8 +566,8 @@ $account_layout = [
                 <?php foreach ($group['items'] as $card): ?>
                   <li class="treatment grid gap-4 px-5 py-5
                     sm:px-6
-                    md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_13rem] md:items-center md:gap-6">
-                    <div class="treatment-heading min-w-0">
+                    md:flex md:items-center md:gap-6">
+                    <div class="treatment-heading min-w-0 md:flex-1">
                       <h3 class="treatment-title text-base font-semibold color-strong">
                         <?= e($card['product']['name']); ?>
                       </h3>
@@ -593,7 +593,7 @@ $account_layout = [
                         </p>
                       <?php endif; ?>
                     </div>
-                    <div class="treatment-state grid gap-2 min-w-0">
+                    <div class="treatment-state grid gap-2 min-w-0 md:flex-1">
                       <?php component('account/status-pill', $card['status'] + ['class' => 'justify-self-start']); ?>
                       <?php if ($card['supply'] !== null): ?>
                         <?php component('progress', array_replace($card['supply'], ['class' => 'treatment-supply'])); ?>
@@ -603,6 +603,8 @@ $account_layout = [
                     </div>
                     <?php if ($card['action'] !== null): ?>
                       <?php component('button', $card['action']); ?>
+                    <?php else: ?>
+                      <span aria-hidden="true" class="treatment-spacer hidden md:block md:w-52 md:shrink-0"></span>
                     <?php endif; ?>
                   </li>
                 <?php endforeach; ?>

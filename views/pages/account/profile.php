@@ -171,13 +171,13 @@ $save_button = static fn (string $label, string $form): array => [
 $download_button = [
   'label'   => 'Download My Data',
   'element' => 'button',
-  'color'   => 'secondary',
+  'color'   => 'default',
   'class'   => 'account-privacy-download w-full',
 ];
 $delete_button = [
   'label'         => 'Delete My Account',
   'element'       => 'button',
-  'color'         => 'secondary',
+  'color'         => 'default',
   'aria_controls' => 'profile-delete-modal',
   'class'         => 'account-privacy-delete w-full',
   'js_hook'       => 'js-component-modal-open',
@@ -216,7 +216,7 @@ $delete_modal = [
     component('button', [
       'label'   => 'Keep My Account',
       'element' => 'button',
-      'color'   => 'secondary',
+      'color'   => 'default',
       'js_hook' => 'js-component-modal-close',
     ]);
     component('button', [
@@ -231,7 +231,7 @@ $delete_modal = [
 $logout_button = [
   'label' => 'Log Out',
   'href'  => asset_url('login'),
-  'color' => 'secondary',
+  'color' => 'default',
   'class' => 'account-logout w-full',
 ];
 $aside_facts  = [

@@ -169,7 +169,7 @@ Page: `views/pages/account/treatment/checkin.php`. POST handled in `includes/fol
 | Steps | Photos (min 2, all products) → 4 check-in questions → "Would you like your next supply?" |
 | Submit | Last answer posts the form (`assessment-quiz.js`, `config.submit`); photos are counted, not stored |
 | Outcome | Stopped, worse, or any side effect → Needs Doctor (doctor record due today). Otherwise Going Well |
-| Prescription + wants refill | Doctor record due today to approve the refill. After the doctor's Going Well → Order Refill |
+| Prescription + wants refill | Doctor record due today with `request: 'refill'` (Needs Approval). After Approve Refill → Order Refill. See Refill approval below |
 | Care product | Going Well closes the chain → Order Refill |
 | Record | Closes the open record (or adds one after Going Well); `done_by` "Patient (self check-in)"; answers become the note |
 | Dashboard | Self Check-in badge; doctor rows show "Patient check-in:" with the answers |
@@ -178,16 +178,34 @@ Page: `views/pages/account/treatment/checkin.php`. POST handled in `includes/fol
 Going wrong does not issue a new prescription automatically: the doctor reviews and records Review Again or
 Going Well. Changing the plan or prescription is not built in this flow.
 
+## Refill approval (prescription)
+
+A prescription check-in with Wants Refill and no issue opens a doctor record with `request: 'refill'`. Any
+doctor handles it in Follow-ups; the first to save wins (a second save gets “already recorded”). There is no
+separate claim step: the decision is one short form.
+
+| Item | Detail |
+|---|---|
+| Row | Needs Approval badge; Refill Approved once approved |
+| Drawer | Prescription (ID, status, items with dosage, orders used, valid until, link to the assessment), the check-in in History, then **Approve Refill** or **Review Again** (next review in 7, 14 or 30 days, still a refill request). No refill radios |
+| Prescription | The patient’s latest prescription covering the product (`assessment_prescription_for()`, assessments session) |
+| Approve Refill | Allowed only with a prescription that has orders left, is in date and isn’t stopped; otherwise disabled with the reason. Saves Going Well + Wants Refill and adds one to the prescription’s `used` |
+| After approval | `/account` card shows Order Refill; Send Refill Link sends “your doctor approved your next …” with the product link |
+| No prescription | e.g. Aisyah (PT-2001): her prescription lives in sample data only, so Approve is disabled until she has one from an assessment |
+| Stopped | Stopped on the review page (Stop Prescription, with a reason). Approve Refill is disabled with “was stopped”; the patient renews from `/account` |
+
 ## Staff view (`/dashboard/follow-ups`)
 
 - Groups: Overdue, Due Today, Upcoming, Completed (last 14 days). Filter by team.
-- Row: patient, product, order number, delivery date, team, attempt, prescription badge, due date.
+- Row: patient, product, order number, delivery date, team, attempt, prescription badge, Needs Approval
+  (refill request), due date.
   Doctor rows show the operations note.
 - Actions: WhatsApp (prefilled), Record (drawer with history and form). Completed rows with Wants Refill or
   Not Yet get Send Refill Link.
 - WhatsApp text depends on team, attempt and cycle (cycle 1: early shedding can be normal; cycle 3+: most people see
   changes after 3 to 6 months).
-- "Reset Demo" (`?reset=1`) reseeds the session.
+- "Reset Demo" (`?reset=1`) reseeds the session; it also reseeds when the seed data changes. Seed FU-2960 →
+  FU-3011: Arjun’s check-in asking for a refill of RX-2990 (AS-2990).
 
 ## Card status (`/account`)
 
@@ -228,6 +246,8 @@ Status from the latest record of each chain:
 
 ## Changelog
 
+- 2026-11-25: Prescription refill approval: Needs Approval rows, prescription in the drawer, Approve Refill uses
+  one order of the prescription.
 - 2026-11-19: Combined states (care order + assessment); status section moved to `account/assessment-status`.
 - 2026-11-19: Patient without an assessment: care states and assessment offers.
 - 2026-11-19: Overview at `/account` is now this journey; full version moved to `/account/full`; Treatment tab

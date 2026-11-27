@@ -46,7 +46,7 @@ $breadcrumb_items = [
   ['label' => 'Cart'],
 ];
 $continue_button = [
-  'label' => 'Continue Shopping', 'href' => asset_url('product/?id=PRD-001'), 'color' => 'secondary',
+  'label' => 'Continue Shopping', 'href' => asset_url('product/?id=PRD-001'), 'color' => 'default',
 ];
 
 $cart_ids        = array_column(array_column($store_lines, 'product'), 'id');
@@ -129,7 +129,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
                     'element'       => 'button',
                     'type'          => 'submit',
                     'size'          => 'small',
-                    'color'         => 'secondary',
+                    'color'         => 'default',
                     'variant'       => 'icon-only',
                     'icon'          => 'close-line',
                     'name'          => 'cart_action',
@@ -150,7 +150,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
                   component('button', [
                     'label'   => 'Keep item',
                     'element' => 'button',
-                    'color'   => 'secondary',
+                    'color'   => 'default',
                     'js_hook' => 'js-component-modal-close',
                   ]);
                   component('button', [

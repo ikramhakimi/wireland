@@ -1,11 +1,14 @@
 // Shared tabs: automatic activation with one roving tab stop and horizontal overflow support.
 // Required hook: .js-component-tabs; descendants use tablist/tab/tabpanel roles and linked ARIA IDs.
 // Panels holding form controls open automatically when their first invalid control blocks a submit.
+// Nested tabs (tabs inside a panel) are separate instances: each root only handles its own tabs and panels.
 (() => {
   document.querySelectorAll('.js-component-tabs').forEach((root) => {
-    const tabs = Array.from(root.querySelectorAll('[role="tab"]'));
-    const panels = Array.from(root.querySelectorAll('[role="tabpanel"]'));
-    const list = root.querySelector('[role="tablist"]');
+    const own = (selector) => Array.from(root.querySelectorAll(selector))
+      .filter((element) => element.closest('.js-component-tabs') === root);
+    const tabs = own('[role="tab"]');
+    const panels = own('[role="tabpanel"]');
+    const list = own('[role="tablist"]')[0];
     if (!list || !tabs.length || tabs.length !== panels.length) return;
 
     const activate = (tab) => {
@@ -24,7 +27,7 @@
     let invalidHandled = false;
     root.addEventListener('invalid', (event) => {
       if (invalidHandled) return;
-      const panel = event.target.closest('[role="tabpanel"]');
+      const panel = panels.find((item) => item.contains(event.target));
       const tab = panel && tabs.find((item) => item.getAttribute('aria-controls') === panel.id);
       if (!tab) return;
       invalidHandled = true;

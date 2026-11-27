@@ -65,7 +65,7 @@ $list_card = [
               </td>
               <td class="category-actions px-3 py-4">
                 <?php component('button', [
-                  'label' => 'Edit Category', 'size' => 'small', 'color' => 'secondary',
+                  'label' => 'Edit Category', 'size' => 'small', 'color' => 'default',
                   'href' => asset_url('dashboard/product-category-edit/') . '?id=' . $category['id'],
                   'aria_label' => 'Edit Category: ' . $category['name'],
                 ]); ?>

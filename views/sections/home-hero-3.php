@@ -19,7 +19,7 @@ $hero_action_shop = [
   'label' => 'Shop Hair Care',
   'href'  => '#',
   'size'  => 'large',
-  'color' => 'secondary',
+  'color' => 'default',
 ];
 
 $hero_highlight_widths = ['w-48', 'w-80', 'w-56', 'w-96', 'w-64', 'w-72'];

@@ -109,8 +109,8 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
     <?php if ($routine_steps === []): ?>
       <p class="routine-empty mt-10">No products are available right now. Please check back soon.</p>
     <?php else: ?>
-      <div class="routine-layout grid gap-10 mt-10 lg:grid-cols-[1fr_20rem] lg:gap-15">
-        <form class="routine-steps flex flex-col gap-12" aria-label="Routine steps">
+      <div class="routine-layout grid gap-10 mt-10 lg:flex lg:gap-15">
+        <form class="routine-steps flex flex-col gap-12 lg:flex-1 lg:min-w-0" aria-label="Routine steps">
           <?php foreach ($routine_steps as $step_index => $step): ?>
             <fieldset class="routine-step js-shop-routine-step" data-step="<?= e($step['key']); ?>">
               <legend class="routine-step-header flex items-baseline gap-3">
@@ -196,7 +196,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
 
         <aside
           class="routine-summary fixed inset-x-0 bottom-0 z-30 p-4 border-t border-zinc-200 bg-white
-            lg:sticky lg:top-24 lg:self-start lg:p-6 lg:rounded-xl lg:border"
+            lg:sticky lg:top-24 lg:self-start lg:w-80 lg:shrink-0 lg:p-6 lg:rounded-xl lg:border"
           aria-labelledby="routine-summary-title"
         >
           <h2 id="routine-summary-title" class="routine-summary-title hidden font-medium color-strong lg:block">

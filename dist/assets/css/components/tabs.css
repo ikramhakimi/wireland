@@ -7,7 +7,7 @@
   }
 
   .tabs .tabs-trigger {
-    @apply shrink-0 min-h-10 px-5 py-0 text-small font-medium leading-normal color-muted cursor-pointer;
+    @apply shrink-0 min-h-10 px-4 py-0 text-small font-semibold leading-normal color-default cursor-pointer;
     white-space: nowrap;
   }
 

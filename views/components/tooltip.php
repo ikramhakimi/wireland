@@ -44,7 +44,7 @@ if ($id === '' || $label === '' || $text === '') {
   <?php component('button', [
     'label'         => $label,
     'element'       => 'button',
-    'color'         => 'secondary',
+    'color'         => 'default',
     'js_hook'       => 'js-component-tooltip-trigger',
   ]); ?>
   <?php endif; ?>

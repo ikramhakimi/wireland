@@ -22,7 +22,7 @@ $learn_button = [
   'href'       => $href,
   'size'       => 'medium',
   'variant'    => 'pill',
-  'color'      => 'default',
+  'color'      => 'secondary',
   'aria_label' => 'Learn more about ' . $title,
 ];
 

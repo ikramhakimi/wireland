@@ -52,7 +52,7 @@ $list_card = [
                 <?php component('button', [
                   'label'      => 'Edit Doctor',
                   'size'       => 'small',
-                  'color'      => 'secondary',
+                  'color'      => 'default',
                   'href'       => asset_url('dashboard/doctor-edit/') . '?id=' . $doctor_id,
                   'aria_label' => 'Edit Doctor: ' . $doctor['name'],
                 ]); ?>

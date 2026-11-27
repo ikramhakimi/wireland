@@ -24,7 +24,7 @@
 }
 
 @utility color-positive {
-  color: var(--color-green-700);
+  color: var(--color-emerald-700);
 }
 
 @utility color-negative {

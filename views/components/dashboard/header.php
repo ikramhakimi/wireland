@@ -14,7 +14,7 @@ $description = $description ?? '';
 $actions     = $actions ?? [];
 
 ?>
-<header class="dashboard-header min-w-0 mt-5">
+<header class="dashboard-header min-w-0 mb-6">
   <div class="dashboard-header-content flex flex-col items-start gap-4
     md:flex-row md:justify-between">
     <div class="dashboard-header-heading min-w-0">
@@ -22,7 +22,7 @@ $actions     = $actions ?? [];
         class="dashboard-header-title text-3xl font-semibold color-strong wrap-anywhere
           <?= e($title_hook); ?>"><?= e($title); ?></h1>
       <?php if ($description !== ''): ?>
-        <p class="dashboard-header-description mt-3 text-sm color-muted"><?= e($description); ?></p>
+        <p class="dashboard-header-description mt-2 text-sm color-muted"><?= e($description); ?></p>
       <?php endif; ?>
     </div>
     <?php if ($actions !== []): ?>

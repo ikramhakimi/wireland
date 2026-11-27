@@ -24,9 +24,9 @@ $actions_border = $actions_border ?? true;
 $class          = $class ?? '';
 
 ?>
-<article class="card <?= e($class); ?> flex flex-col min-w-0 rounded-lg bg-white">
+<article class="card <?= e($class); ?> flex flex-col min-w-0 ring-1 ring-zinc-200 shadow-sm shadow-zinc-800/5 rounded-lg bg-white">
   <?php if ($title !== ''): ?>
-    <header class="card-header flex <?= ($header_number !== '' || $header_icon !== '') ? 'items-center gap-3' : 'flex-col gap-1'; ?> px-5 pt-5">
+    <header class="card-header flex <?= ($header_number !== '' || $header_icon !== '') ? 'items-center gap-3' : 'flex-col gap-1'; ?> px-6 pt-6">
       <?php if ($header_number !== '' || $header_icon !== ''): ?>
         <span class="<?= $header_icon !== '' ? 'card-icon' : 'card-number'; ?> flex shrink-0 items-center justify-center size-12 font-medium bg-zinc-200 color-strong rounded-md">
           <?php if ($header_icon !== ''): ?>
@@ -37,7 +37,7 @@ $class          = $class ?? '';
         </span>
         <div class="card-heading flex flex-col min-w-0">
       <?php endif; ?>
-      <h3 class="card-title text-xl font-semibold color-strong"><?= e($title); ?></h3>
+      <h3 class="card-title text-base font-medium color-strong"><?= e($title); ?></h3>
       <?php if ($description !== ''): ?>
         <p class="card-description text-sm leading-relaxed text-pretty color-muted"><?= e($description); ?></p>
       <?php endif; ?>
@@ -46,13 +46,13 @@ $class          = $class ?? '';
       <?php endif; ?>
     </header>
   <?php endif; ?>
-  <div class="card-content flex-1 <?= $content_flush ? '' : 'p-5'; ?>">
+  <div class="card-content flex-1 <?= $content_flush ? '' : 'p-6'; ?>">
     <?php if (is_callable($content)): ?>
       <?php $content(); ?>
     <?php endif; ?>
   </div>
   <?php if (is_callable($actions)): ?>
-    <div class="card-actions <?= $actions_border ? 'border-t border-zinc-100' : ''; ?> <?= $actions_flush ? '' : 'flex flex-wrap items-center gap-2 p-5'; ?>">
+    <div class="card-actions <?= $actions_border ? 'border-t border-zinc-100' : ''; ?> <?= $actions_flush ? '' : 'flex flex-wrap items-center gap-2 p-6'; ?>">
       <?php $actions(); ?>
     </div>
   <?php endif; ?>

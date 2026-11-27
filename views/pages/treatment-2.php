@@ -52,7 +52,7 @@ $treatment_copy = [
       'title'   => 'Pricing',
       'actions' => [
         ['label' => 'Start Free Assessment', 'href' => $assessment_cta['href']],
-        ['label' => 'Chat With Us',          'href' => 'https://wa.me/601116741858', 'color' => 'secondary'],
+        ['label' => 'Chat With Us',          'href' => 'https://wa.me/601116741858', 'color' => 'default'],
       ],
     ],
     'faqs'        => ['title' => 'Common concerns'],
@@ -92,13 +92,13 @@ $hero_assessment = [
   'href'  => asset_url('assessment/'),
   'size'  => 'large',
   'icon'  => 'arrow-right-line',
-  'color' => 'default',
+  'color' => 'secondary',
 ];
 $hero_pricing = [
   'label' => 'See Pricing',
   'href'  => '#pricing',
   'size'  => 'large',
-  'color' => 'secondary',
+  'color' => 'default',
 ];
 
 component('navbar');

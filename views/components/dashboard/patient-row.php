@@ -19,9 +19,10 @@ $follow_up_color = $patient['next_follow_up'] === null ? 'color-muted'
   <div class="patient-content grid grid-cols-2 gap-4 min-w-0 p-4 rounded-lg bg-white
     hover:bg-white focus-within:bg-white
     sm:grid-cols-1 sm:gap-0 sm:p-0 sm:bg-transparent sm:hover:bg-white sm:focus-within:bg-white
-    @3xl:grid-cols-[50%_minmax(0,1fr)_11rem]">
+    @3xl:flex">
     <div class="patient-identity col-span-2 min-w-0 font-normal
-      sm:col-span-1 sm:p-4">
+      sm:col-span-1 sm:p-4
+      @3xl:basis-1/2 @3xl:shrink-0">
       <div class="patient-profile flex flex-row-reverse items-start gap-4 min-w-0
         sm:flex-row">
         <?php component('thumbnail', ['type' => 'avatar', 'size' => 'sm', 'class' => 'patient-avatar shrink-0']); ?>
@@ -38,7 +39,7 @@ $follow_up_color = $patient['next_follow_up'] === null ? 'color-muted'
         </div>
       </div>
     </div>
-    <div class="patient-care min-w-0 sm:p-4">
+    <div class="patient-care min-w-0 sm:p-4 @3xl:flex-1">
       <p class="patient-label text-xs color-muted">Next Follow-up</p>
       <p class="patient-schedule flex flex-wrap items-baseline gap-x-1 mt-1 text-sm leading-tight
         sm:leading-normal">
@@ -54,7 +55,7 @@ $follow_up_color = $patient['next_follow_up'] === null ? 'color-muted'
         <?php endif; ?>
       </p>
     </div>
-    <div class="patient-controls self-end min-w-0 sm:self-auto sm:p-4">
+    <div class="patient-controls self-end min-w-0 sm:self-auto sm:p-4 @3xl:w-44 @3xl:shrink-0">
       <div class="patient-actions flex flex-wrap items-center justify-end gap-2
         sm:justify-start
         @3xl:justify-end">
@@ -70,7 +71,7 @@ $follow_up_color = $patient['next_follow_up'] === null ? 'color-muted'
                 'variant'       => 'icon-only',
                 'icon'          => 'eye-line',
                 'href'          => asset_url('dashboard/patient/') . '?id=' . rawurlencode($patient['id']),
-                'color'         => 'secondary',
+                'color'         => 'default',
                 'aria_label'    => 'View Patient: ' . $patient['name'],
                 'aria_controls' => 'preview-' . $patient['id'],
                 'js_hook'       => 'js-component-patients-preview',
@@ -89,7 +90,7 @@ $follow_up_color = $patient['next_follow_up'] === null ? 'color-muted'
               'size'       => 'small',
               'variant'    => 'icon-only',
               'icon'       => 'edit-line',
-              'color'      => 'secondary',
+              'color'      => 'default',
               'aria_label' => 'Edit Patient: ' . $patient['name'],
             ]);
           },

@@ -62,17 +62,23 @@
   });
 })();
 
-// Tabs demos: move the same live component between page/card hosts and switch its density.
-// Required hooks: .js-component-design-tabs-demo, -page, -card; selects named placement and size.
+// Tabs demos: move the live component between page/card hosts and preview its size and count style.
+// Required hooks: .js-component-design-tabs-demo, -page, -card; selects named placement, size and badge.
 (() => {
   document.querySelectorAll('.js-component-design-tabs-demo').forEach((demo) => {
     const placement = demo.querySelector('select[name="placement"]');
     const size = demo.querySelector('select[name="size"]');
+    const badge = demo.querySelector('select[name="badge"]');
     const page = demo.querySelector('.js-component-design-tabs-page');
     const card = demo.querySelector('.js-component-design-tabs-card');
     const content = card?.querySelector('.card-content');
     const tabs = page?.querySelector('.js-component-tabs');
-    if (!placement || !size || !page || !card || !content || !tabs) return;
+    if (!placement || !size || !badge || !page || !card || !content || !tabs) return;
+
+    const countBadges = Array.from(tabs.querySelectorAll('.tabs-trigger-content > .badge'), (element) => ({
+      element,
+      pillClasses: element.className,
+    }));
 
     const update = () => {
       const insideCard = placement.value === 'card';
@@ -82,10 +88,17 @@
       card.hidden = !insideCard;
       tabs.classList.toggle('tabs-small', size.value === 'small');
       tabs.classList.toggle('tabs-default', size.value !== 'small');
+      countBadges.forEach(({ element, pillClasses }) => {
+        const plain = badge.value === 'plain';
+        element.className = plain ? 'tabs-count font-normal color-muted' : pillClasses;
+        element.parentElement.classList.toggle('gap-2', plain);
+        element.parentElement.classList.toggle('gap-1.5', !plain);
+      });
     };
 
     placement.addEventListener('change', update);
     size.addEventListener('change', update);
+    badge.addEventListener('change', update);
     update();
   });
 })();

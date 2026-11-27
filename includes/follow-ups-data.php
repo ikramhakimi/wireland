@@ -9,6 +9,8 @@
  *            points at the one before it with parent_id. Records with the same order_id + product_id are one
  *            follow-up chain; journey_start is the first delivery of that product, cycle the order number.
  *            The first record of a chain has no 'due': it is delivered + the product's follow-up interval.
+ *            request 'refill': a doctor record opened by a prescription check-in that asked for a refill; the
+ *            doctor approves it against the patient's prescription (includes/assessments-state.php).
  * Used by: includes/follow-ups-state.php.
  */
 
@@ -36,6 +38,12 @@ return [
   ],
   // Days until the doctor's next review when they record "Needs Doctor".
   'reviews'  => [7, 14, 30],
+  // Prescription refill requests: the doctor approves (outcome ok, refill yes) or reviews again.
+  'approval' => [
+    'pending'  => ['label' => 'Needs Approval', 'tone' => 'attention'],
+    'approved' => ['label' => 'Refill Approved', 'tone' => 'positive'],
+    'approve'  => 'Approve Refill',
+  ],
   'patients' => [
     'PT-2001' => ['name' => 'Aisyah Rahman', 'phone' => '012-345 6789'],
     'PT-1003' => ['name' => 'Daniel Tan Jun Wei', 'phone' => '012-8800-0102'],
@@ -184,6 +192,42 @@ return [
       'attempt'       => 1,
       'team'          => 'doctor',
       'due'           => 0,
+    ],
+    // Arjun: first order of his prescription (RX-2990), then a self check-in that asks for a refill. The doctor
+    // approves it.
+    [
+      'id'            => 'FU-2960',
+      'parent_id'     => '',
+      'patient_id'    => 'PT-1005',
+      'order_id'      => 'RR-10388',
+      'product_id'    => 'PRD-006',
+      'journey_start' => -28,
+      'delivered'     => -28,
+      'cycle'         => 1,
+      'attempt'       => 1,
+      'team'          => 'ops',
+      'outcome'       => 'ok',
+      'refill'        => 'yes',
+      'note'          => "Photos: 3\nHow often have you used your plan? Every day, as directed\n"
+        . "How does your hair look since you started? About the same\nHow is your hair shedding? Less than before\n"
+        . 'Have you noticed any of these? None of these',
+      'done_by'       => 'Patient (self check-in)',
+      'done_on'       => -1,
+      'source'        => 'self',
+    ],
+    [
+      'id'            => 'FU-3011',
+      'parent_id'     => 'FU-2960',
+      'patient_id'    => 'PT-1005',
+      'order_id'      => 'RR-10388',
+      'product_id'    => 'PRD-006',
+      'journey_start' => -28,
+      'delivered'     => -28,
+      'cycle'         => 1,
+      'attempt'       => 1,
+      'team'          => 'doctor',
+      'due'           => 0,
+      'request'       => 'refill',
     ],
     // Arjun: first follow-up in a few days.
     [

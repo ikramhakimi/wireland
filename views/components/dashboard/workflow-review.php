@@ -56,7 +56,7 @@ $clear_button = [
   'label'   => 'Clear',
   'element' => 'button',
   'type'    => 'reset',
-  'color'   => 'secondary',
+  'color'   => 'default',
 ];
 
 $review_toggle = [

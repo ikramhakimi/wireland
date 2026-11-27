@@ -115,7 +115,7 @@ $step_marker_class = [
 ];
 $error_anchors = ['payment' => 'checkout-payment-card'];
 $back_button = [
-  'label' => 'Back to Cart', 'href' => asset_url('cart/'), 'color' => 'secondary',
+  'label' => 'Back to Cart', 'href' => asset_url('cart/'), 'color' => 'default',
 ];
 
 component('navbar', ['cart_href' => asset_url('cart/')]);

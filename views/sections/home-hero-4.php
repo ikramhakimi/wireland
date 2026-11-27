@@ -19,7 +19,7 @@ $hero_action_shop = [
   'label' => 'Shop Hair Care',
   'href'  => asset_url('shop/'),
   'size'  => 'large',
-  'color' => 'secondary',
+  'color' => 'default',
 ];
 
 $hero_facts = [

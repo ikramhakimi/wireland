@@ -68,7 +68,7 @@ $link      = 'hc-link link shrink-0 -my-3 py-3 text-sm font-medium cursor-pointe
       </ul>
 
       <div class="hc-strip-actions flex flex-wrap items-center gap-x-4 gap-y-2 mt-4">
-        <button type="button" class="button button-medium button-secondary js-component-<?= e($hook); ?>-add"
+        <button type="button" class="button button-medium button-default js-component-<?= e($hook); ?>-add"
           data-ids="<?= e(implode(',', array_column($items, 'id'))); ?>">
           Add All <?= count($items); ?> to Cart
         </button>

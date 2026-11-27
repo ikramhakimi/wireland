@@ -6,7 +6,8 @@
  * Structure: Static anchor or button, label and optional leading/trailing decorative icon.
  * Data: label, href, class, element (a/button), type (button/submit/reset), static;
  *       size (small/medium/large), variant (optional pill/icon-only; icon-only requires icon and label), icon (name or empty),
- *       icon_position (start/end), color (default/primary/secondary), disabled and loading (native buttons only).
+ *       icon_position (start/end), color (default/primary/secondary, or their gradient-* counterparts),
+ *       disabled and loading (native buttons only). Color falls back to secondary.
  *       optional aria_label, aria_controls and js_hook for accessible context and behavior hooks.
  *       Optional name and value identify native submit actions; form links a native button to a form by ID.
  *       Rounded corners are the default; medium is 40px. Loading keeps the label and width.
@@ -30,8 +31,9 @@ $icon          = $icon ?? ($variant === 'pill' ? 'arrow-right-up-line' : '');
 $icon_position = ($icon_position ?? 'end') === 'start' ? 'start' : 'end';
 $loading       = $element === 'button' && ($loading ?? false);
 $disabled      = $element === 'button' && (($disabled ?? false) || $loading);
-$color         = $color ?? 'default';
-$color         = in_array($color, ['default', 'primary', 'secondary'], true) ? $color : 'default';
+$color         = $color ?? 'secondary';
+$button_colors = ['default', 'primary', 'secondary', 'gradient-default', 'gradient-primary', 'gradient-secondary'];
+$color         = in_array($color, $button_colors, true) ? $color : 'secondary';
 $button_class  = 'button button-' . $size . ' button-' . $color;
 
 if ($variant !== '') {

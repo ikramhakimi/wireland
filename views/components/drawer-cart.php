@@ -25,7 +25,7 @@ $promo_field = [
 $apply_button = [
   'label'   => 'Apply',
   'element' => 'button',
-  'color'   => 'secondary',
+  'color'   => 'default',
 ];
 $checkout_button = [
   'label'   => 'Continue to Checkout',

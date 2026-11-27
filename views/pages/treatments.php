@@ -67,7 +67,7 @@ $cta = [
   'note'    => 'Your photos stay private and are reviewed by a doctor.',
   'actions' => [
     array_merge($assessment_cta, ['color' => 'primary']),
-    ['label' => 'Chat With Us', 'href' => 'https://wa.me/601116741858', 'color' => 'secondary'],
+    ['label' => 'Chat With Us', 'href' => 'https://wa.me/601116741858', 'color' => 'default'],
   ],
 ];
 
@@ -134,7 +134,7 @@ component('navbar');
           'label' => $group['title'],
           'href'  => '#' . $group['id'],
           'size'  => 'small',
-          'color' => 'secondary',
+          'color' => 'default',
         ]); ?>
       <?php endforeach; ?>
     </nav>
@@ -176,7 +176,7 @@ component('navbar');
                 'label'         => 'View Treatment',
                 'href'          => asset_url('treatment-2/?id=' . rawurlencode($treatment['id'])),
                 'size'          => 'large',
-                'color'         => 'default',
+                'color'         => 'secondary',
                 'icon'          => 'arrow-right-line',
                 'icon_position' => 'end',
                 'aria_label'    => 'View Treatment: ' . $treatment['name'],

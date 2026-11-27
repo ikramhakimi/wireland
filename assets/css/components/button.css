@@ -2,7 +2,7 @@
    Component-layer rules let existing utility overrides keep their precedence. */
 @layer components {
   .button {
-    @apply relative inline-flex shrink-0 items-center justify-center py-0 font-medium rounded-lg cursor-pointer;
+    @apply relative inline-flex shrink-0 items-center justify-center py-0 font-medium rounded-md cursor-pointer;
     padding-inline: var(--button-padding);
     gap: var(--button-gap);
   }
@@ -58,7 +58,7 @@
     padding-inline-start: 20px;
   }
 
-  .button-default {
+  .button-secondary {
     @apply bg-zinc-800 color-invert-strong;
   }
 
@@ -66,31 +66,53 @@
     @apply bg-blue-600 color-invert-strong;
   }
 
-  .button-secondary {
+  .button-default {
     @apply border border-zinc-300 bg-white color-strong;
+  }
+
+  .button-gradient-default {
+    @apply border border-zinc-300 inset-ring-1 inset-ring-white/20 bg-white bg-linear-to-br from-zinc-50 via-zinc-50 to-zinc-200 color-strong;
+  }
+
+  .button-gradient-primary {
+    @apply border border-blue-700 inset-ring-1 inset-ring-white/5 bg-blue-700 bg-linear-to-br from-blue-500 via-blue-600 to-blue-700 text-white;
+  }
+
+  .button-gradient-secondary {
+    @apply border border-zinc-800 inset-ring-1 inset-ring-white/5
+      bg-zinc-800 bg-linear-to-br from-zinc-600 via-zinc-700 to-zinc-800 color-invert-strong;
   }
 
   .button:focus-visible {
     @apply outline-2 outline-offset-2 outline-zinc-800;
   }
 
-  .button-primary:focus-visible {
-    @apply outline-blue-600;
+  :is(.button-primary, .button-gradient-primary):focus-visible {
+    @apply outline-blue-700;
   }
 
   @media (hover: hover) {
-    .button-default:not(:disabled):hover {
+    .button-secondary:not(:disabled):hover {
       @apply bg-zinc-700;
     }
     .button-primary:not(:disabled):hover {
       @apply bg-blue-700;
     }
-    .button-secondary:not(:disabled):hover {
+    .button-default:not(:disabled):hover {
       @apply bg-zinc-100;
+    }
+    .button-gradient-default:not(:disabled):hover {
+      @apply from-white via-white to-zinc-200;
+    }
+    .button-gradient-primary:not(:disabled):hover {
+      @apply from-blue-500 via-blue-500 to-blue-700;
+    }
+    .button-gradient-secondary:not(:disabled):hover {
+      @apply from-zinc-700 via-zinc-700;
     }
   }
 
-  .button-default:not(:disabled):active {
+  .button-secondary:not(:disabled):active {
     @apply bg-zinc-900;
   }
 
@@ -98,8 +120,20 @@
     @apply bg-blue-800;
   }
 
-  .button-secondary:not(:disabled):active {
+  .button-default:not(:disabled):active {
     @apply bg-zinc-200;
+  }
+
+  .button-gradient-default:not(:disabled):active {
+    @apply from-zinc-100 to-zinc-200;
+  }
+
+  .button-gradient-primary:not(:disabled):active {
+    @apply from-blue-700 to-blue-900;
+  }
+
+  .button-gradient-secondary:not(:disabled):active {
+    @apply from-zinc-800 via-zinc-900 to-zinc-950;
   }
 
   .button-disabled {
@@ -141,15 +175,15 @@
     margin-inline-end: var(--button-circle-offset);
   }
 
-  .button-pill.button-default .button-icon {
+  .button-pill:is(.button-secondary, .button-gradient-secondary) .button-icon {
     @apply bg-white/15 color-invert-strong;
   }
 
-  .button-pill.button-primary .button-icon {
+  .button-pill:is(.button-primary, .button-gradient-primary) .button-icon {
     @apply bg-black/15 color-invert-strong;
   }
 
-  .button-pill.button-secondary .button-icon {
+  .button-pill:is(.button-default, .button-gradient-default) .button-icon {
     @apply bg-zinc-100 color-strong;
   }
 

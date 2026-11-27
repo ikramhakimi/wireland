@@ -59,9 +59,9 @@ Write this before choosing directions (and save it as `prototypes/<slug>/referen
 | hims | Single-question entry card above the fold | Lowers the start cost | High: matches assessment KPI | Guided |
 ```
 
-`Fit for us` checks the pattern against `docs/directions.md` (product sales first, assessments, trust for
-prescription products) and our design system. Drop patterns that only work because of the reference's brand,
-budget, or imagery.
+`Fit for us` checks the pattern against the design system and relevant product goals. Use goals already
+established in the brief or recon. Read the relevant section of `docs/directions.md` if a missing goal or
+KPI could change the assessment. Drop patterns that depend on the reference's brand, budget, or imagery.
 
 ## 4. Turn patterns into directions
 

@@ -27,7 +27,7 @@ $hero_action_shop = [
   'label' => 'Shop Products',
   'href'  => asset_url('shop/'),
   'size'  => 'large',
-  'color' => 'secondary',
+  'color' => 'default',
 ];
 
 $hero_results = [

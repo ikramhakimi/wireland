@@ -20,6 +20,6 @@ if (empty($action)) {
     'href'       => 'https://wa.me/601116741858',
     'variant'    => 'icon-only',
     'icon'       => 'whatsapp-line',
-    'color'      => 'secondary',
+    'color'      => 'default',
   ]); ?>
 </div>

@@ -4,7 +4,10 @@
  * Data: Assessments (demo)
  * Purpose: Statuses, care plan decisions, rules and fictional seed assessments for the doctor review queue.
  * Structure: signed_in (demo doctor ID for Mine), account_patient, patients (extra patient records), rules,
- *            statuses, decisions, outcomes (review form actions), answer_groups and answer_labels (review page:
+ *            prescription (Care Plan form limits and prescription statuses),
+ *            statuses, decisions, plan_parts, renewal (photo angles), consultation (modes and WhatsApp text),
+ *            outcomes (review form
+ *            actions), answer_groups and answer_labels (review page:
  *            short label and group per quiz question ID; the full question shows in a tooltip), flags
  *            ("<question ID>:<option>" => tooltip text for options to check first),
  *            photo_views, demo_reply, records.
@@ -14,6 +17,11 @@
  *            reply '' means the patient has not answered yet.
  *            replied: the patient answered the last question; the case is back In Review.
  *            message: shown to the patient with the decision. notes: internal, staff only.
+ *            prescription (decision prescription): items (product_id, dosage, supply_days), refills, valid_months,
+ *            used (orders placed; default 0); issued on decided_on. products: recommended product IDs (any plan).
+ *            consultation: mode (clinic | video), status (pending | done), done_on offset, message (outcome).
+ *            Renewals (created from /account/renewal) add type 'renewal', renewal_of (assessment ID) and checkin
+ *            (check-in answers by question ID).
  * Flow and rules: docs/flow-assessment.md.
  * Used by: includes/assessments-state.php.
  */
@@ -42,6 +50,25 @@ return [
   'rules'           => [
     'reviewed_days' => 14,
     'text_max'      => 1000,
+    // Workflow Desk: days since submission before an open case shows as warm, late or critical.
+    // Placeholder values until the clinic agrees an SLA. Late and critical count as running late.
+    'waiting_days'  => ['warm' => 3, 'late' => 5, 'critical' => 7],
+  ],
+  // Prescription limits on the Care Plan form. It expires when the refills are used or after valid_months.
+  'prescription'    => [
+    'refills_default' => 5,
+    'refills_max'     => 12,
+    'supply_max'      => 180,
+    'dosage_max'      => 200,
+    'months_default'  => 6,
+    'months'          => [3, 6, 12],
+    // ready: issued, not ordered. active: ordered, orders left. expired: no orders left or past valid_until.
+    'statuses'        => [
+      'ready'   => ['label' => 'Ready to Order', 'tone' => 'positive'],
+      'active'  => ['label' => 'Active', 'tone' => 'info'],
+      'expired' => ['label' => 'Expired', 'tone' => 'neutral'],
+      'stopped' => ['label' => 'Stopped', 'tone' => 'negative'],
+    ],
   ],
   'statuses'        => [
     'new'          => ['label' => 'New', 'tone' => 'info'],
@@ -50,10 +77,35 @@ return [
     'reviewed'     => ['label' => 'Reviewed', 'tone' => 'positive'],
     'not_suitable' => ['label' => 'Not Suitable', 'tone' => 'neutral'],
   ],
+  // Plan type, derived from the Care Plan switches: prescription if it has prescription items, basic if it has
+  // only recommended products, consultation if it has only a consultation.
   'decisions'       => [
     'prescription' => 'Prescription',
     'basic'        => 'Basic Products Only',
     'consultation' => 'Consultation',
+  ],
+  // Care Plan parts, joined with " + " for the plan label (e.g. "Prescription + Video Call").
+  'plan_parts'      => [
+    'prescription' => 'Prescription',
+    'products'     => 'Products',
+  ],
+  // Renewal: a short assessment after a prescription expires. Required photo angles (same as a full
+  // assessment, so the doctor can compare), then the check-in questions (includes/checkin-data.php) and the
+  // quiz Health question. Profile and hair answers are copied from the assessment being renewed.
+  'renewal'         => [
+    'label'  => 'Renewal',
+    'photos' => [
+      'top'   => ['label' => 'Top of your head', 'hint' => 'Looking down at your crown, from above.'],
+      'front' => ['label' => 'Front hairline', 'hint' => 'Face the camera with your hair pulled back.'],
+      'crown' => ['label' => 'Crown', 'hint' => 'The back of the top of your head. Ask someone to help.'],
+    ],
+  ],
+  'consultation'    => [
+    'modes'    => ['clinic' => 'Clinic Visit', 'video' => 'Video Call'],
+    'whatsapp' => [
+      'clinic' => 'Hi RR HairClinic, my doctor asked me to book a clinic visit.',
+      'video'  => 'Hi RR HairClinic, my doctor asked me to book a video call.',
+    ],
   ],
   'outcomes'        => [
     'ask'          => 'Ask Patient',
@@ -90,6 +142,40 @@ return [
   // Demo only: stands in for the patient's answer until /account replies reach the dashboard.
   'demo_reply'      => 'Thanks, doctor. Here is the extra information you asked for.',
   'records'         => [
+    // The /account patient's earlier plan: its prescription expired, so she can renew it from
+    // /account/renewal. Matches the expired sample prescription in includes/account-data.php.
+    [
+      'id'           => 'AS-2950',
+      'patient_id'   => 'PT-2001',
+      'submitted'    => -268,
+      'status'       => 'reviewed',
+      'doctor'       => 'safwan',
+      'claimed_on'   => -268,
+      'decided_on'   => -266,
+      'decision'     => 'prescription',
+      'message'      => 'Apply 1 ml to a dry scalp twice a day. Shedding in the first weeks is normal.',
+      'prescription' => [
+        'items'        => [
+          ['product_id' => 'PRD-008', 'dosage' => '1 ml on a dry scalp, twice a day.', 'supply_days' => 30],
+        ],
+        'refills'      => 6,
+        'valid_months' => 6,
+        'used'         => 6,
+      ],
+      'answers'      => [
+        'sex'      => 'female',
+        'age'      => '25-34',
+        'changes'  => ['part'],
+        'duration' => '6-12m',
+        'progress' => 'slow',
+        'family'   => ['mother'],
+        'scalp'    => ['oily'],
+        'tried'    => ['shampoo'],
+        'health'   => ['none'],
+        'goal'     => 'regrow',
+      ],
+      'photos'       => 3,
+    ],
     // The /account patient: claim it, ask a question, and reply from /account.
     [
       'id'         => 'AS-3004',
@@ -170,11 +256,11 @@ return [
     [
       'id'         => 'AS-2998',
       'patient_id' => 'PT-1007',
-      'submitted'  => -4,
+      'submitted'  => -3,
       'status'     => 'in_review',
       'doctor'     => 'rujhan',
-      'claimed_on' => -3,
-      'asked_on'   => -2,
+      'claimed_on' => -2,
+      'asked_on'   => -1,
       'replied'    => true,
       'answers'    => [
         'sex'      => 'male',
@@ -193,23 +279,23 @@ return [
         [
           'about'      => ['health'],
           'question'   => 'What was the illness or surgery, and when did the shedding start compared with it?',
-          'asked_on'   => -2,
+          'asked_on'   => -1,
           'reply'      => 'I had dengue in August and was in hospital for 5 days. The shedding started about '
             . '2 months later.',
-          'replied_on' => -1,
+          'replied_on' => 0,
         ],
       ],
       'notes'      => [
-        ['text' => 'Possible telogen effluvium. Asked about the illness timeline.', 'on' => -2],
+        ['text' => 'Possible telogen effluvium. Asked about the illness timeline.', 'on' => -1],
       ],
     ],
     [
       'id'         => 'AS-2999',
       'patient_id' => 'PT-1013',
-      'submitted'  => -3,
+      'submitted'  => -2,
       'status'     => 'in_review',
       'doctor'     => 'rujhan',
-      'claimed_on' => -1,
+      'claimed_on' => 0,
       'answers'    => [
         'sex'      => 'male',
         'age'      => '18-24',
@@ -227,11 +313,11 @@ return [
     [
       'id'         => 'AS-2995',
       'patient_id' => 'PT-1014',
-      'submitted'  => -5,
+      'submitted'  => -4,
       'status'     => 'awaiting',
       'doctor'     => 'rujhan',
-      'claimed_on' => -4,
-      'asked_on'   => -2,
+      'claimed_on' => -3,
+      'asked_on'   => -1,
       'answers'    => [
         'sex'      => 'female',
         'age'      => '25-34',
@@ -249,30 +335,65 @@ return [
         [
           'about'      => ['health'],
           'question'   => 'Are you pregnant, breastfeeding or planning a pregnancy at the moment?',
-          'asked_on'   => -4,
+          'asked_on'   => -3,
           'reply'      => 'I am breastfeeding. My baby is 4 months old.',
-          'replied_on' => -3,
+          'replied_on' => -2,
         ],
         [
           'about'      => ['changes'],
           'question'   => 'Is the scalp red, sore or scaly where the patches are? A close-up photo of one patch '
             . 'would help.',
-          'asked_on'   => -2,
+          'asked_on'   => -1,
           'reply'      => '',
         ],
       ],
     ],
     [
-      'id'         => 'AS-2990',
-      'patient_id' => 'PT-1005',
-      'submitted'  => -8,
-      'status'     => 'reviewed',
-      'doctor'     => 'rujhan',
-      'claimed_on' => -8,
-      'decided_on' => -6,
-      'decision'   => 'prescription',
-      'message'    => 'Apply the solution to a dry scalp twice a day. We’ll check in after 4 weeks.',
-      'answers'    => [
+      'id'           => 'AS-2992',
+      'patient_id'   => 'PT-1006',
+      'submitted'    => -2,
+      'status'       => 'reviewed',
+      'doctor'       => 'rujhan',
+      'claimed_on'   => -2,
+      'decided_on'   => -1,
+      'decision'     => 'consultation',
+      'message'      => 'I’d like to see your scalp on a short video call before we choose a treatment. Book a '
+        . 'time that suits you.',
+      'consultation' => ['mode' => 'video', 'status' => 'pending'],
+      'answers'      => [
+        'sex'      => 'male',
+        'age'      => '45-54',
+        'changes'  => ['overall', 'patches'],
+        'duration' => '1-3y',
+        'progress' => 'slow',
+        'family'   => ['father'],
+        'scalp'    => ['normal'],
+        'tried'    => ['supplements'],
+        'health'   => ['thyroid'],
+        'goal'     => 'regrow',
+      ],
+      'photos'       => 3,
+    ],
+    [
+      'id'           => 'AS-2990',
+      'patient_id'   => 'PT-1005',
+      'submitted'    => -32,
+      'status'       => 'reviewed',
+      'doctor'       => 'rujhan',
+      'claimed_on'   => -32,
+      'decided_on'   => -30,
+      'decision'     => 'prescription',
+      'message'      => 'Apply the solution to a dry scalp twice a day. We’ll check in after 4 weeks.',
+      'prescription' => [
+        'items'        => [
+          ['product_id' => 'PRD-006', 'dosage' => '1 ml on a dry scalp, twice a day.', 'supply_days' => 30],
+        ],
+        'refills'      => 5,
+        'valid_months' => 6,
+        // Orders placed so far; the first order is FU-2960's chain in includes/follow-ups-data.php.
+        'used'         => 1,
+      ],
+      'answers'      => [
         'sex'      => 'male',
         'age'      => '35-44',
         'changes'  => ['crown'],
@@ -284,16 +405,16 @@ return [
         'health'   => ['none'],
         'goal'     => 'regrow',
       ],
-      'photos'     => 3,
+      'photos'       => 3,
     ],
     [
       'id'         => 'AS-2987',
       'patient_id' => 'PT-1002',
-      'submitted'  => -10,
+      'submitted'  => -3,
       'status'     => 'not_suitable',
       'doctor'     => 'safwan',
-      'claimed_on' => -10,
-      'decided_on' => -9,
+      'claimed_on' => -3,
+      'decided_on' => -2,
       'message'    => 'Your hair changes need a scalp examination in person. Please book a clinic visit so we can '
         . 'check the cause.',
       'answers'    => [
@@ -313,13 +434,14 @@ return [
     [
       'id'         => 'AS-2984',
       'patient_id' => 'PT-1011',
-      'submitted'  => -13,
+      'submitted'  => -5,
       'status'     => 'reviewed',
       'doctor'     => 'safwan',
-      'claimed_on' => -12,
-      'decided_on' => -11,
+      'claimed_on' => -4,
+      'decided_on' => -3,
       'decision'   => 'basic',
       'message'    => 'Your scalp looks healthy. Use the shampoo and mask 3 times a week to reduce breakage.',
+      'products'   => ['PRD-002', 'PRD-010'],
       'answers'    => [
         'sex'      => 'female',
         'age'      => '25-34',

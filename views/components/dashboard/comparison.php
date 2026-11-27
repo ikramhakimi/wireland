@@ -22,7 +22,7 @@ $label   = $label ?? null;
     </span>
   <?php elseif (strpos($value, '+') === 0): ?>
     <span class="comparison-change inline-flex items-center gap-1 font-medium color-positive">
-      <span aria-hidden="true" class="comparison-mark flex items-center justify-center size-5 shrink-0 rounded-sm bg-green-200">
+      <span aria-hidden="true" class="comparison-mark flex items-center justify-center size-5 shrink-0 rounded-sm bg-emerald-200">
         <?php svg('arrow-right-up-line', 'comparison-icon size-4 shrink-0'); ?>
       </span>
       <span class="comparison-value"><?= e($label); ?></span>
@@ -42,7 +42,7 @@ $label   = $label ?? null;
 </span>
 <?php elseif (strpos($value, '+') === 0): ?>
 <span class="comparison inline-flex items-center gap-1 text-xs font-medium color-positive">
-  <span aria-hidden="true" class="comparison-mark flex items-center justify-center size-5 shrink-0 rounded-sm bg-green-200">
+  <span aria-hidden="true" class="comparison-mark flex items-center justify-center size-5 shrink-0 rounded-sm bg-emerald-200">
     <?php svg('arrow-right-up-line', 'comparison-icon size-4 shrink-0'); ?>
   </span>
   <span class="comparison-value"><?= e($value); ?></span>

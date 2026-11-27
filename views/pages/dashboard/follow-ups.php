@@ -4,7 +4,8 @@
  * Page: Dashboard follow-ups
  * Purpose: Queue of patients to contact after delivery, for operations and doctors.
  * Structure: Header; team filter; recorded-outcome status; Overdue, Due Today, Upcoming and Completed groups;
- *            one drawer per follow-up with its history and the record form.
+ *            one drawer per follow-up with its history and the record form. A prescription refill request
+ *            (Needs Approval) shows the patient's prescription and Approve Refill or Review Again.
  * Data: includes/follow-ups-state.php (session demo records, rules, POST handling).
  */
 
@@ -41,12 +42,12 @@ $filter_button = [
   'label'   => 'Filter',
   'element' => 'button',
   'type'    => 'submit',
-  'color'   => 'secondary',
+  'color'   => 'default',
 ];
 $reset_button = [
   'label' => 'Reset',
   'href'  => asset_url('dashboard/follow-ups/') . '?reset=1',
-  'color' => 'secondary',
+  'color' => 'default',
 ];
 $groups = [
   'overdue'   => 'Overdue',
@@ -64,17 +65,25 @@ $row_item = static function (array $record) use ($follow_ups, $config, $products
   $parent     = $follow_ups['records'][$record['parent_id']] ?? null;
   $can_refill = $record['outcome'] === 'ok' && in_array($record['refill'], ['yes', 'later'], true);
   $outcome    = $config['outcomes'][$record['outcome']] ?? [];
+  $is_request = $record['request'] === 'refill';
+  $is_rx      = ($product['requirement'] ?? '') === 'Prescription Required';
+  $approved   = $is_request && $record['outcome'] === 'ok';
 
   return [
     'record'          => $record,
     'patient'         => $patient,
     'product'         => $product,
-    'is_prescription' => ($product['requirement'] ?? '') === 'Prescription Required',
+    'is_prescription' => $is_rx,
+    // Prescription refill request: Needs Approval while open, Refill Approved once approved.
+    'is_request'      => $is_request,
+    'approval'        => $is_request && $record['outcome'] === '' ? $config['approval']['pending'] : [],
+    'prescription'    => $is_rx
+      ? ($follow_ups['prescription_of'])($record['patient_id'], $record['product_id']) : null,
     'team'            => $config['teams'][$record['team']],
-    'outcome'         => $outcome === [] ? [] : [
+    'outcome'         => $outcome === [] ? [] : ($approved ? $config['approval']['approved'] : [
       'label' => $record['team'] === 'doctor' ? ($outcome['doctor_label'] ?? $outcome['label']) : $outcome['label'],
       'tone'  => $outcome['tone'],
-    ],
+    ]),
     'refill'          => $config['refills'][$record['refill']] ?? '',
     'max_attempts'    => $config['rules']['max_attempts'],
     'due_label'       => follow_up_label_date($record['due']),
@@ -90,7 +99,7 @@ $row_item = static function (array $record) use ($follow_ups, $config, $products
       follow_up_message($record, $first_name, $product['name'], $follow_ups['doctor']),
     ),
     'refill_href'     => $can_refill
-      ? follow_up_whatsapp($patient['phone'], follow_up_refill_message($first_name, $product)) : '',
+      ? follow_up_whatsapp($patient['phone'], follow_up_refill_message($first_name, $product, $approved)) : '',
     'drawer_id'       => 'follow-up-' . $record['id'],
   ];
 };
@@ -175,12 +184,12 @@ $open_count = count($follow_ups['queue']['overdue']) + count($follow_ups['queue'
         component('button', [
           'label'         => 'WhatsApp',
           'href'          => $item['whatsapp_href'],
-          'color'         => 'secondary',
+          'color'         => 'default',
           'icon'          => 'whatsapp-line',
           'icon_position' => 'start',
         ]);
         component('button', [
-          'label'   => 'Save Follow-up',
+          'label'   => $item['is_request'] ? 'Save Decision' : 'Save Follow-up',
           'element' => 'button',
           'type'    => 'submit',
           'color'   => 'primary',

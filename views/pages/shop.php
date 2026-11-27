@@ -59,7 +59,7 @@ component('navbar', ['cart_href' => asset_url('cart/')]);
             'label' => $category . ' (' . count($shop_groups[$category]) . ')',
             'href'  => '#' . $shop_group_id($index),
             'size'  => 'small',
-            'color' => 'secondary',
+            'color' => 'default',
           ]); ?>
         <?php endforeach; ?>
       </nav>

@@ -20,14 +20,14 @@ $tones   = [
     'neutral'   => 'border-zinc-200 bg-zinc-50 color-default',
     'info'      => 'border-blue-200 bg-blue-50 text-blue-600',
     'attention' => 'border-amber-200 bg-amber-50 text-amber-600',
-    'positive'  => 'border-green-200 bg-green-50 text-green-600',
+    'positive'  => 'border-emerald-200 bg-emerald-50 text-emerald-600',
     'negative'  => 'border-red-200 bg-red-50 text-red-600',
   ],
   'solid'   => [
     'neutral'   => 'border-transparent bg-zinc-600 text-white',
     'info'      => 'border-transparent bg-blue-600 text-white',
     'attention' => 'border-transparent bg-amber-600 text-white',
-    'positive'  => 'border-transparent bg-green-600 text-white',
+    'positive'  => 'border-transparent bg-emerald-600 text-white',
     'negative'  => 'border-transparent bg-red-600 text-white',
   ],
 ];
@@ -38,7 +38,7 @@ if ($label === '') {
 }
 ?>
 <span class="badge badge-<?= $variant; ?> badge-<?= e($tone); ?> inline-flex items-center gap-1.5 px-2 py-0.5 text-xs
-  font-medium rounded-md border <?= $tones[$variant][$tone]; ?><?= $class !== '' ? ' ' . e($class) : ''; ?>">
+  font-medium rounded-full border <?= $tones[$variant][$tone]; ?><?= $class !== '' ? ' ' . e($class) : ''; ?>">
   <?php if ($icon !== ''): ?>
     <?php svg($icon, 'badge-icon size-3.5 shrink-0'); ?>
   <?php endif; ?>

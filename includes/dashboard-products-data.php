@@ -171,6 +171,9 @@ return [
     'ingredients'       => 'Minoxidil 5%; vehicle as specified on the dispensing label.',
     'usage'             => 'Follow the prescribing doctor’s directions and dispensing label.',
     'precautions'       => 'Prescription review required. Refer to the approved product information.',
+    // Prescribing defaults for the assessment Care Plan form; the doctor can change them per prescription.
+    'rx_dosage'         => '1 ml on a dry scalp, twice a day.',
+    'rx_supply_days'    => 30,
     'image'             => 'assets/images/mockup-bottle-01.webp',
     'follow_up'         => 'Use Category Default',
     'interval'          => '',
@@ -196,6 +199,9 @@ return [
     'ingredients'       => 'Finasteride 1 mg per tablet.',
     'usage'             => 'Follow the prescribing doctor’s directions and dispensing label.',
     'precautions'       => 'Prescription review required. Refer to the approved product information.',
+    // Prescribing defaults for the assessment Care Plan form; the doctor can change them per prescription.
+    'rx_dosage'         => 'One tablet a day, with or without food.',
+    'rx_supply_days'    => 30,
     'image'             => 'assets/images/mockup-bottle-01.webp',
     'follow_up'         => 'Use Category Default',
     'interval'          => '',
@@ -221,6 +227,9 @@ return [
     'ingredients'       => 'Minoxidil 2%; vehicle as specified on the dispensing label.',
     'usage'             => 'Follow the prescribing doctor’s directions and dispensing label.',
     'precautions'       => 'Prescription review required. Refer to the approved product information.',
+    // Prescribing defaults for the assessment Care Plan form; the doctor can change them per prescription.
+    'rx_dosage'         => '1 ml on a dry scalp, twice a day.',
+    'rx_supply_days'    => 30,
     'image'             => 'assets/images/mockup-bottle-01.webp',
     'follow_up'         => 'Use Category Default',
     'interval'          => '',

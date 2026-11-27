@@ -164,16 +164,26 @@ $order_whatsapp_button = [
   'label'         => $mode === 'received' ? 'Report a Problem with My Order' : 'Ask About My Order',
   'href'          => $whatsapp_href('Hi RR HairClinic, I have a question about my order ' . ($plan_order['id'] ?? '') . '.'),
   'size'          => 'large',
-  'color'         => 'secondary',
+  'color'         => 'default',
   'icon'          => 'whatsapp-line',
   'icon_position' => 'start',
   'class'         => 'account-order-chat w-full sm:w-auto',
 ];
+// Live /account: a consultation the doctor asked for (Clinic Visit or Video Call), booked on WhatsApp.
+$consult_button = ($current['consultation'] ?? null) !== null ? [
+  'label'         => $current['consultation']['label'],
+  'href'          => $whatsapp_href($current['consultation']['text']),
+  'size'          => 'large',
+  'color'         => 'primary',
+  'icon'          => 'whatsapp-line',
+  'icon_position' => 'start',
+  'class'         => 'account-consult w-full sm:w-auto',
+] : null;
 $whatsapp_button = [
   'label'         => 'Ask Our Team on WhatsApp',
   'href'          => $whatsapp_href('Hi RR HairClinic, I have a question about my hair assessment.'),
   'size'          => 'large',
-  'color'         => 'secondary',
+  'color'         => 'default',
   'icon'          => 'whatsapp-line',
   'icon_position' => 'start',
   'class'         => 'account-chat w-full sm:w-auto',
@@ -388,9 +398,25 @@ $supply_alert = $supply_low && $mode !== 'plan_updated'
       'label' => 'Order Your Refill',
       'href'  => asset_url('account/prescriptions') . preview_query('patient'),
       'size'  => 'small',
-      'color' => 'secondary',
+      'color' => 'default',
     ],
     'class'  => 'account-supply-alert',
+  ]
+  : [];
+// Live /account: the doctor stopped the plan's prescription; renew it when a renewal can be sent.
+$stopped            = $current['stopped'] ?? null;
+$prescription_alert = $stopped !== null
+  ? [
+    'tone'   => 'negative',
+    'title'  => 'Your doctor stopped prescription ' . $stopped['id'] . ' on ' . $stopped['date'],
+    'text'   => $stopped['reason'],
+    'action' => $stopped['renew_url'] !== '' ? [
+      'label' => 'Renew Prescription',
+      'href'  => $stopped['renew_url'],
+      'size'  => 'small',
+      'color' => 'default',
+    ] : [],
+    'class'  => 'account-prescription-alert',
   ]
   : [];
 $supply_progress = $treatment !== null
@@ -454,6 +480,7 @@ $status_view = compact(
   'plan_total',
   'start_button',
   'order_button',
+  'consult_button',
   'received_steps',
   'track_button',
   'start_treatment_button',
@@ -462,6 +489,7 @@ $status_view = compact(
   'delivery_steps',
   'status_facts',
   'supply_alert',
+  'prescription_alert',
   'supply_progress',
   'plan_changes_alert',
   'start_field',

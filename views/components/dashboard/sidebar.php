@@ -15,7 +15,6 @@ $nav_groups   = [
     'links' => [
       ['label' => t('dashboard.nav.clinical.assessments'), 'href' => asset_url('dashboard/assessments/'), 'current' => ['assessments']],
       ['label' => t('dashboard.nav.clinical.patients'), 'href' => asset_url('dashboard/patients/'), 'current' => ['patients']],
-      ['label' => t('dashboard.nav.clinical.prescriptions'), 'href' => '#', 'current' => []],
       ['label' => t('dashboard.nav.clinical.follow_ups'), 'href' => asset_url('dashboard/follow-ups/'), 'current' => ['follow-ups']],
       ['label' => t('dashboard.nav.clinical.doctors'), 'href' => asset_url('dashboard/doctors/'), 'current' => ['doctors']],
     ],
@@ -28,6 +27,42 @@ $nav_groups   = [
       ['label' => t('dashboard.nav.commerce.treatments'), 'href' => asset_url('dashboard/treatments/'), 'current' => ['treatments']],
     ],
   ],
+  [
+    'title' => t('dashboard.nav.system.title'),
+    'links' => [
+      ['label' => t('dashboard.nav.system.ui_overview'), 'href' => asset_url('dashboard/ui-overview/'), 'current' => ['ui-overview']],
+      [
+        'label'   => t('dashboard.nav.system.datatable_base'),
+        'href'    => asset_url('dashboard/datatable-base/'),
+        'current' => ['datatable-base'],
+      ],
+      [
+        'label'   => t('dashboard.nav.system.datatable_thumbnail'),
+        'href'    => asset_url('dashboard/datatable-thumbnail/'),
+        'current' => ['datatable-thumbnail'],
+      ],
+      [
+        'label'   => t('dashboard.nav.system.workflow_board'),
+        'href'    => asset_url('dashboard/workflow-board/'),
+        'current' => ['workflow-board'],
+      ],
+      [
+        'label'   => t('dashboard.nav.system.workflow_list'),
+        'href'    => asset_url('dashboard/workflow-list/'),
+        'current' => ['workflow-list'],
+      ],
+      [
+        'label'   => t('dashboard.nav.system.workflow_list_2'),
+        'href'    => asset_url('dashboard/workflow-list-2/'),
+        'current' => ['workflow-list-2'],
+      ],
+      [
+        'label'   => t('dashboard.nav.system.workflow_desk'),
+        'href'    => asset_url('dashboard/workflow-desk/'),
+        'current' => ['workflow-desk'],
+      ],
+    ],
+  ],
 ];
 $nav_settings = ['label' => t('dashboard.nav.settings'), 'href' => asset_url('dashboard/settings/'), 'current' => ['settings']];
 
@@ -36,10 +71,10 @@ $render_link = static function (array $link) use ($page_current): void {
   ?>
   <a href="<?= e($link['href']); ?>" <?= $is_current ? 'aria-current="page"' : ''; ?>
     class="sidebar-link flex items-center gap-2 min-h-8 px-3 rounded-md color-default
-      hover:bg-zinc-200 hover:color-strong
+      hover:bg-zinc-100 hover:color-strong
       focus-visible:outline-2 focus-visible:outline-blue-800
-      aria-[current=page]:bg-zinc-200 aria-[current=page]:color-strong">
-    <span aria-hidden="true" class="sidebar-icon size-5 shrink-0 rounded-md bg-zinc-300"></span>
+      aria-[current=page]:bg-zinc-100 aria-[current=page]:color-strong">
+    <span aria-hidden="true" class="sidebar-icon size-4 shrink-0 rounded-sm bg-zinc-300"></span>
     <?= e($link['label']); ?>
   </a>
   <?php

@@ -57,7 +57,11 @@ if ($preview === 'live') {
       return null;
     }
 
-    usort($own, static fn (array $a, array $b): int => strcmp($b['submitted'], $a['submitted']));
+    // Newest first; a renewal sent today sorts above an assessment from the same day by its higher ID.
+    usort(
+      $own,
+      static fn (array $a, array $b): int => [$b['submitted'], $b['id']] <=> [$a['submitted'], $a['id']],
+    );
     $record   = $own[0];
     $question = end($record['thread']) ?: [];
     // The patient's own answer a doctor question is about (ticked in the dashboard); '' if general.
@@ -79,12 +83,24 @@ if ($preview === 'live') {
       'text'  => $item['text'],
       'photo' => !empty($item['photo']),
     ], $round['items'] ?? [['about' => (array) ($round['about'] ?? []), 'text' => $round['question']]]);
-    // Care plan types without stored items: sample products until prescription items are recorded.
-    $products = [
+    // The doctor's plan products: prescription items or recommended products. Sample products only for plans
+    // saved without items.
+    $samples  = [
       'prescription' => ['PRD-006', 'PRD-002'],
       'basic'        => $quiz_default_products ?? ['PRD-005', 'PRD-004'],
       'consultation' => [],
     ];
+    // A stopped prescription leaves the plan: its items can't be ordered, the recommended products stay.
+    $rx       = $record['prescription'];
+    $stopped  = $rx !== null && assessment_prescription_status($rx, $assessments['today']) === 'stopped';
+    $saved    = array_values(array_unique(array_merge(
+      $rx !== null && !$stopped ? array_column($rx['items'], 'product_id') : [],
+      $record['products'],
+    )));
+    $products = $saved !== [] || $stopped ? [$record['decision'] => $saved] + $samples : $samples;
+    // A consultation the patient still has to book (Clinic Visit or Video Call); its outcome replaces the note.
+    $consult  = $record['consultation'] ?? null;
+    $is_done  = ($consult['status'] ?? '') === 'done';
 
     return [
       'id'             => $record['id'],
@@ -103,8 +119,19 @@ if ($preview === 'live') {
       'message_items'  => $record['status'] === 'awaiting' && $question !== [] ? $items_of($question) : [],
       'plan'           => [
         'product_ids' => $products[$record['decision']] ?? [],
-        'note'        => $record['message'],
+        'note'        => $is_done ? $consult['message'] : $record['message'],
       ],
+      'consultation'   => $consult !== null && !$is_done ? [
+        'label' => 'Book a ' . $config['consultation']['modes'][$consult['mode']],
+        'text'  => $config['consultation']['whatsapp'][$consult['mode']],
+      ] : null,
+      // Stopped prescription: ID, date and the doctor's reason; renew_url while a renewal can be sent.
+      'stopped'        => $stopped ? [
+        'id'        => $rx['id'],
+        'date'      => assessment_label_date($rx['stopped_on']),
+        'reason'    => $rx['stop_reason'],
+        'renew_url' => $assessments['renewal']['can_start'] ? $assessments['renewal']['url'] : '',
+      ] : null,
       'answers'        => array_map(static fn ($answer): array => (array) $answer, $record['answers']),
       'flags'          => [],
       'follow_ups'     => [],
@@ -479,14 +506,14 @@ $cards = array_map(static function (array $record) use (
     'offer'       => $offer_text === '' ? null : [
       'label' => 'Start Assessment',
       'href'  => $quiz_routes['start'],
-      'color' => 'secondary',
+      'color' => 'default',
       'class' => 'treatment-offer w-full sm:w-auto',
     ],
     'message'     => [
       'label'         => 'Message Us',
       'href'          => $clinic_whatsapp . rawurlencode('Hi RR HairClinic, I have a question about my '
         . $product['name'] . '.'),
-      'color'         => 'secondary',
+      'color'         => 'default',
       'icon'          => 'whatsapp-line',
       'icon_position' => 'start',
       'class'         => 'treatment-message w-full sm:w-auto',
@@ -525,7 +552,7 @@ $empty_state = [
     'label' => 'Shop Products',
     'href'  => asset_url('shop'),
     'size'  => 'large',
-    'color' => 'secondary',
+    'color' => 'default',
     'class' => 'account-treatment-shop w-full sm:w-auto',
   ]],
   'class'   => 'account-empty mt-8',

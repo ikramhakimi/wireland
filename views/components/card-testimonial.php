@@ -83,7 +83,7 @@ if ($total === 0) {
       <?php component('button', [
         'element' => 'button',
         'size'    => 'medium',
-        'color'   => 'secondary',
+        'color'   => 'default',
         'variant' => 'icon-only',
         'icon'    => 'arrow-left-line',
         'label'   => 'Previous testimonial',
@@ -93,7 +93,7 @@ if ($total === 0) {
       <?php component('button', [
         'element' => 'button',
         'size'    => 'medium',
-        'color'   => 'secondary',
+        'color'   => 'default',
         'variant' => 'icon-only',
         'icon'    => 'arrow-right-line',
         'label'   => 'Next testimonial',

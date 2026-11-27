@@ -51,7 +51,7 @@ $item_card = static fn (array $line): array => [
 $buy_again_button = static fn (string $product_id): array => [
   'label' => 'Buy Again',
   'href'  => asset_url('product/?id=' . rawurlencode($product_id)),
-  'color' => 'secondary',
+  'color' => 'default',
   'class' => 'account-order-again w-full sm:w-auto',
 ];
 $empty_shop_button = [
@@ -65,7 +65,7 @@ $empty_start_button = [
   'label' => 'Start Your Assessment',
   'href'  => asset_url('assessment'),
   'size'  => 'large',
-  'color' => 'secondary',
+  'color' => 'default',
   'class' => 'account-orders-start w-full sm:w-auto',
 ];
 $empty_state = [

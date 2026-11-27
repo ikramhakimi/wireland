@@ -46,17 +46,16 @@ $order_button = static fn (string $product_id, bool $is_refill = false): array =
   'class' => 'account-prescription-order w-full sm:w-auto',
 ];
 $renew_button = [
-  'label'   => 'Start New Assessment',
-  'href'    => $quiz_routes['quiz'],
-  'color'   => 'secondary',
-  'class'   => 'account-prescription-renew w-full sm:w-auto',
-  'js_hook' => 'js-quiz-restart',
+  'label' => 'Renew Prescription',
+  'href'  => asset_url('account/renewal'),
+  'color' => 'default',
+  'class' => 'account-prescription-renew w-full sm:w-auto',
 ];
 $notice_button = [
   'label' => 'View Status',
   'href'  => asset_url('account') . $state_query,
   'size'  => 'small',
-  'color' => 'secondary',
+  'color' => 'default',
   'class' => 'account-notice-action shrink-0',
 ];
 $empty_start_button = [

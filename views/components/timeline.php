@@ -41,7 +41,7 @@ $align_class = $alignment === 'center'
 $styles      = [
   'default' => [
     'list'  => 'gap-8 ' . $cols_class,
-    'step'  => 'grid-cols-[3rem_1fr] gap-x-4 ' . $align_class . '
+    'step'  => 'gap-x-4 ' . $align_class . '
       not-last:after:top-12 not-last:after:-bottom-8 not-last:after:left-6
       lg:not-last:after:top-6 lg:not-last:after:bottom-auto lg:not-last:after:border-l-0 lg:not-last:after:border-t',
     'dot'   => 'size-12 text-lg rounded-lg',
@@ -51,7 +51,7 @@ $styles      = [
   ],
   'compact' => [
     'list'  => 'gap-5',
-    'step'  => 'grid-cols-[2rem_1fr] gap-x-3 not-last:after:top-8 not-last:after:-bottom-5 not-last:after:left-4',
+    'step'  => 'gap-x-3 not-last:after:top-8 not-last:after:-bottom-5 not-last:after:left-4',
     'dot'   => 'size-8 text-sm rounded-md',
     'body'  => 'pt-1.5',
     'title' => 'text-sm font-semibold',
@@ -73,10 +73,10 @@ if ($items === []) {
       $icon    = $item['icon'] ?? '';
       $meta    = $item['meta'] ?? '';
       ?>
-      <li class="timeline-step relative grid <?= $style['step']; ?>
+      <li class="timeline-step relative flex <?= $style['step']; ?>
         not-last:after:absolute not-last:after:border-l not-last:after:border-dashed not-last:after:border-zinc-300
         not-last:after:content-['']">
-        <span class="timeline-dot relative z-1 flex-center font-medium border <?= $style['dot']; ?>
+        <span class="timeline-dot relative z-1 flex-center shrink-0 font-medium border <?= $style['dot']; ?>
           <?= $is_done ? 'border-zinc-900 bg-zinc-900 text-white' : $dot_idle; ?>"
           aria-hidden="true">
           <?php if ($is_done): ?>
@@ -87,7 +87,7 @@ if ($items === []) {
             <?= $number; ?>
           <?php endif; ?>
         </span>
-        <div class="timeline-body <?= $style['body']; ?>">
+        <div class="timeline-body flex-1 min-w-0 <?= $style['body']; ?>">
           <h3 class="timeline-title <?= $style['title']; ?> color-strong">
             <?php if ($meta !== ''): ?>
               <span class="sr-only"><?= e($label); ?> <?= $number; ?>: </span>

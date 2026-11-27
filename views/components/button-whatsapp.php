@@ -19,7 +19,7 @@ $display_class = !empty($hide_mobile) ? 'hidden md:flex' : 'flex';
     shadow-xl shadow-zinc-900/40
     color-invert-strong transition-all duration-300 ease-out motion-reduce:transition-none
     hover:bg-zinc-700 focus-visible:outline-2
-    focus-visible:outline-offset-2 focus-visible:outline-green-700 js-component-button-whatsapp"
+    focus-visible:outline-offset-2 focus-visible:outline-emerald-700 js-component-button-whatsapp"
   aria-label="Chat with RR Hair Clinic on WhatsApp (opens in a new tab)"
 >
   <?php svg('whatsapp-line', 'size-8'); ?>

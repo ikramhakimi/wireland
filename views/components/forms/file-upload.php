@@ -26,7 +26,7 @@ $add_button = [
   'element'       => 'button',
   'type'          => 'button',
   'size'          => 'small',
-  'color'         => 'secondary',
+  'color'         => 'default',
   'aria_controls' => $id,
   'js_hook'       => 'js-component-file-upload-add-image',
 ];
@@ -35,7 +35,7 @@ $clear_button = [
   'element'  => 'button',
   'type'     => 'button',
   'size'     => 'small',
-  'color'    => 'secondary',
+  'color'    => 'default',
   'disabled' => true,
   'js_hook'  => 'js-component-file-upload-clear-images',
 ];
@@ -44,7 +44,7 @@ $earlier_button = [
   'element' => 'button',
   'type'    => 'button',
   'size'    => 'small',
-  'color'   => 'secondary',
+  'color'   => 'default',
   'variant' => 'icon-only',
   'icon'    => 'arrow-left-s-line',
   'js_hook' => 'js-component-file-upload-image-earlier',
@@ -54,7 +54,7 @@ $later_button = [
   'element' => 'button',
   'type'    => 'button',
   'size'    => 'small',
-  'color'   => 'secondary',
+  'color'   => 'default',
   'variant' => 'icon-only',
   'icon'    => 'arrow-right-s-line',
   'js_hook' => 'js-component-file-upload-image-later',
@@ -64,7 +64,7 @@ $remove_button = [
   'element' => 'button',
   'type'    => 'button',
   'size'    => 'small',
-  'color'   => 'secondary',
+  'color'   => 'default',
   'variant' => 'icon-only',
   'icon'    => 'delete-bin-line',
   'js_hook' => 'js-component-file-upload-image-remove',
@@ -81,11 +81,11 @@ $remove_button = [
     <input id="<?= e($id); ?>" name="<?= e($name); ?>" type="file" accept="<?= e($accept); ?>" multiple
       aria-describedby="<?= e($id); ?>-help" class="uploader-input sr-only js-component-file-upload-upload">
     <ul aria-label="Selected files" class="uploader-gallery flex flex-wrap gap-3 js-component-file-upload-gallery"></ul>
-    <div class="uploader-empty grid rounded-lg bg-zinc-50 js-component-file-upload-empty">
+    <div class="uploader-empty grid rounded-md bg-zinc-50 js-component-file-upload-empty">
       <ul aria-hidden="true" inert
         class="uploader-spacer col-start-1 row-start-1 invisible pointer-events-none js-component-file-upload-spacer"></ul>
       <div class="uploader-prompt col-start-1 row-start-1 flex flex-col items-center justify-center gap-3 p-5
-        rounded-lg border border-dashed border-zinc-300">
+        rounded-md border border-dashed border-zinc-300">
         <p class="uploader-message text-xs color-muted">No files selected. Drop files here or choose below.</p>
         <div class="uploader-empty-action js-component-file-upload-empty-action"></div>
       </div>

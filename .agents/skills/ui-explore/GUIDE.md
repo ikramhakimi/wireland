@@ -1,14 +1,14 @@
 # Prompt guide
 
 Load this only for `/ui-explore guide`. Do no recon, read no project files, and load no other skill file.
-Reply in the user's language; keep keywords (`brainstorm`, `ask+`, `bold`, `x5`, `refs:`) as written.
+Reply in the user's language; keep keywords (`brainstorm`, `ask+`, `bold`, `free`, `x5`, `refs:`) as written.
 
 ## `guide` on its own
 
 Show the template, the fields table, and two examples below, then stop.
 
 ```
-/ui-explore <mode> <piece> at <url> — <problem or goal>. <ask|ask+> <safe|mixed|bold> <xN> [refs: <links/paths>]
+/ui-explore <mode> <piece> at <url> — <problem or goal>. <ask|ask+> <safe|mixed|bold|free> <xN> [refs: <links/paths>]
 ```
 
 | Field | Example | Why it matters |
@@ -18,7 +18,7 @@ Show the template, the fields table, and two examples below, then stop.
 | URL | `http://localhost/wireland/shop/` | Recon reads the rendered page |
 | Problem or goal | "users can't tell which product fits their hair problem" | Becomes the Barrier and the Job; shapes every direction |
 | `ask` / `ask+` | `ask+` for client work | Interview before directions (4 or 7 questions) |
-| Range | `safe` · `mixed` · `bold` | How far directions go. Default: mixed (one bold) |
+| Range | `safe` · `mixed` · `bold` · `free` | How far directions go. Default: mixed (one bold). `free` leaves the styleguide: one finished direction around the user's decision |
 | Count | `x5` | Directions. Default 3; build caps at 5 |
 | Refs | `refs: prototypes/inspirations/landing (hims, manual-co)` | Reference mode; name files to avoid a folder scan |
 
@@ -31,6 +31,11 @@ their hair problem, so they leave without buying. ask bold x5
 
 ```
 /ui-explore brainstorm product card at http://localhost/wireland/shop/ ask+
+```
+
+```
+/ui-explore build review queue at http://localhost/wireland/dashboard/workflow-list/ — doctors must decide
+which case to act on next and what it needs, without opening each one. free
 ```
 
 Next rounds in the same session: `build 2,4` · `riff <name> bold` · `mix <a> + <b>` · `pin` / `drop` / `keep` ·

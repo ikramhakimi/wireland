@@ -24,7 +24,7 @@ $statuses    = $account['statuses'];
 $new_assessment_button = [
   'label'   => 'Start New Assessment',
   'href'    => $quiz_routes['quiz'],
-  'color'   => 'secondary',
+  'color'   => 'default',
   'icon'    => 'add-line',
   'class'   => 'account-assessments-new w-full sm:w-auto',
   'js_hook' => 'js-quiz-restart',
@@ -48,7 +48,7 @@ $empty_state = [
 $plan_button = [
   'label' => 'View Plan',
   'href'  => asset_url('account/prescriptions') . preview_query('patient'),
-  'color' => 'secondary',
+  'color' => 'default',
   'icon'  => 'arrow-right-line',
 ];
 

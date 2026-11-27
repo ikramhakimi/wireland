@@ -11,14 +11,13 @@ Rules come in three tiers:
 
 ## Strict — Delivery
 
-- Implement what is requested. Keep diffs small and scoped; no unrelated rewrites or broad refactors.
-- No breaking changes. Keep existing structure, APIs, component APIs, and array values/order stable.
+- Keep changes scoped and compatible. Preserve existing structure, APIs,
+  component contracts, and array values/order.
 - Never run build, compile, lint, or CSS build unless explicitly asked.
-  When asked to verify: run only relevant checks and report what was verified, commands run, and failures/gaps.
+  For verification, run relevant checks only and report commands, results, and gaps.
 - No new dependencies unless asked.
-- When updating reusable components: implementation → call sites (if needed) → demos (if needed) →
-  Tailwind config (only if required). Report what changed.
-- If Tailwind classes, theme tokens, or CSS files change, remind the user to run CSS compile/watch.
+- Update reusable components in order: implementation, affected call sites,
+  relevant demos, then Tailwind config if required. Report what changed.
 
 ## Strict — CSS & JS File Management
 
@@ -36,15 +35,17 @@ Rules come in three tiers:
 
 ## Strict — Formatting
 
-- 2 spaces, never tabs.
-- Align `=` and `=>` when grouped. Align closing braces.
-- Lines ~100–120 chars. Multi-line arrays/objects when needed. Trailing commas where valid.
+- Use 2 spaces, never tabs. Align grouped `=` and `=>` and closing braces.
+  Aim for 100–120 characters per line. Use multiline arrays/objects when needed
+  and trailing commas where valid.
 
 ## Strict — Design System
 
-- `/design` and its source components are the source of truth. Reuse components with documented sizes/variants.
-- Do not override component typography, padding, radius, or colors. No arbitrary font sizes; use tokens.
-- If a pattern is missing, propose the smallest extension before implementing it.
+- `/design` and its source components are the source of truth. Reuse documented component sizes and variants.
+- Before building or changing UI, read `docs/design-reference.md`.
+  Demos live in `views/components/design/sections/<component>.php`, ordered by `includes/design-sections.php`.
+- Preserve component typography, padding, radius, and colors. Use font-size tokens only.
+- Propose the smallest extension before implementing a missing pattern.
 
 ---
 

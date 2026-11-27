@@ -7,7 +7,7 @@
   }
 
   .tabs .tabs-trigger {
-    @apply shrink-0 min-h-10 px-5 py-0 text-sm font-medium leading-normal color-muted cursor-pointer;
+    @apply shrink-0 min-h-10 px-4 py-0 text-sm font-medium leading-normal color-muted cursor-pointer;
     white-space: nowrap;
   }
 
@@ -33,11 +33,12 @@
 
   /* Underline is the default; Segmented and Pill are optional variants. */
   .tabs-underline .tabs-list {
-    @apply gap-3 border-b border-zinc-200;
+    @apply gap-5;
+    box-shadow: inset 0 -1px 0 var(--color-zinc-200);
   }
 
   .tabs-underline .tabs-trigger {
-    @apply px-1 border-b-2 border-transparent;
+    @apply px-0 border-b-2 border-transparent;
   }
 
   .tabs-underline .tabs-trigger:is([aria-selected="true"], [aria-pressed="true"], [aria-current="page"]) {
@@ -61,7 +62,7 @@
   }
 
   .tabs-pill .tabs-trigger {
-    @apply rounded-full bg-zinc-200;
+    @apply rounded-md bg-zinc-200;
   }
 
   .tabs-pill .tabs-trigger:is([aria-selected="true"], [aria-pressed="true"], [aria-current="page"]) {
@@ -71,9 +72,6 @@
   @media (hover: hover) {
     .tabs .tabs-trigger:hover {
       @apply color-strong;
-    }
-    .tabs-underline .tabs-trigger:hover {
-      @apply bg-zinc-200;
     }
     .tabs-segmented .tabs-trigger:not(:is([aria-selected="true"], [aria-pressed="true"], [aria-current="page"])):hover {
       @apply bg-white/40;

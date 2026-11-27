@@ -21,7 +21,7 @@ $hero_shop_link = [
   'label' => 'Shop products',
   'href'  => asset_url('shop'),
   'size'  => 'large',
-  'color' => 'secondary',
+  'color' => 'default',
 ];
 
 $plan_proof_stats = [

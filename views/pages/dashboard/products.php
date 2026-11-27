@@ -50,7 +50,7 @@ $list_card = [
         <div class="filter-buttons flex shrink-0 items-center gap-2
           @3xl:gap-1">
           <?php component('button', [
-            'label' => 'Reset', 'element' => 'button', 'type' => 'reset', 'color' => 'secondary',
+            'label' => 'Reset', 'element' => 'button', 'type' => 'reset', 'color' => 'default',
           ]); ?>
         </div>
       </div>
@@ -116,7 +116,7 @@ $page_header = [
   'title_id'    => 'products-title',
   'description' => 'Manage products and keep track of stock that needs restocking.',
   'actions'     => [
-    ['label' => 'Categories', 'href' => asset_url('dashboard/product-categories/'), 'color' => 'secondary'],
+    ['label' => 'Categories', 'href' => asset_url('dashboard/product-categories/'), 'color' => 'default'],
     ['label' => 'Create Product', 'href' => asset_url('dashboard/product-edit/'), 'color' => 'primary'],
   ],
 ];

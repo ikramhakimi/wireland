@@ -10,7 +10,7 @@
   }
 
   .field .field-control {
-    @apply w-full text-sm rounded-lg border border-zinc-300 bg-white color-strong;
+    @apply w-full text-sm rounded-md border border-zinc-300 bg-white color-strong;
   }
 
   .field .field-input {
@@ -125,7 +125,7 @@
   }
 
   .choice-wrapper .checkbox-box {
-    @apply rounded text-transparent;
+    @apply rounded-md text-transparent;
   }
 
   .choice-label .choice-icon {
@@ -162,7 +162,7 @@
 
   /* Image choices retain the assessment selection treatment. */
   .choice-label.choice-image-option {
-    @apply relative flex flex-col items-center justify-center gap-2 min-h-30 px-2 py-3 text-center text-sm font-medium rounded-2xl border-2 border-transparent bg-white shadow-sm cursor-pointer;
+    @apply relative flex flex-col items-center justify-center gap-2 min-h-30 px-2 py-3 text-center text-sm font-medium rounded-md border-2 border-transparent bg-white shadow-sm cursor-pointer;
   }
 
   .choice-image-option:has(:checked) {

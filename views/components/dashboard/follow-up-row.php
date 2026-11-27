@@ -7,7 +7,7 @@
  *            Stacks on small containers; four columns from @3xl. Record/View opens the follow-up drawer.
  * Data: item (row view data from views/pages/dashboard/follow-ups.php: record, patient, product, team, outcome,
  *       refill, due_label, due_hint, due_color, handover_note, handover_label, is_self, whatsapp_href, refill_href,
- *       drawer_id).
+ *       drawer_id, approval (Needs Approval badge for an open prescription refill request, or [])).
  */
 $item    = $item ?? [];
 $record  = $item['record'];
@@ -17,7 +17,7 @@ $whatsapp_button = [
   'label'         => 'WhatsApp',
   'href'          => $item['whatsapp_href'],
   'size'          => 'small',
-  'color'         => 'secondary',
+  'color'         => 'default',
   'icon'          => 'whatsapp-line',
   'icon_position' => 'start',
   'aria_label'    => 'WhatsApp ' . $item['patient']['name'],
@@ -26,7 +26,7 @@ $refill_button = [
   'label'         => 'Send Refill Link',
   'href'          => $item['refill_href'],
   'size'          => 'small',
-  'color'         => 'secondary',
+  'color'         => 'default',
   'icon'          => 'whatsapp-line',
   'icon_position' => 'start',
   'aria_label'    => 'Send refill link to ' . $item['patient']['name'],
@@ -35,7 +35,7 @@ $drawer_button = [
   'label'         => $is_open ? 'Record' : 'View',
   'element'       => 'button',
   'size'          => 'small',
-  'color'         => $is_open ? 'primary' : 'secondary',
+  'color'         => $is_open ? 'primary' : 'default',
   'aria_label'    => ($is_open ? 'Record follow-up for ' : 'View follow-up for ') . $item['patient']['name'],
   'aria_controls' => $item['drawer_id'],
   'js_hook'       => 'js-component-drawer-open',
@@ -43,8 +43,8 @@ $drawer_button = [
 ?>
 <li class="follow-up-row border-t border-dashed border-zinc-200 first:border-t-0">
   <div class="follow-up-content grid gap-4 min-w-0 p-4
-    @3xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_9rem_13rem] @3xl:items-start">
-    <div class="follow-up-patient min-w-0">
+    @3xl:flex @3xl:items-start">
+    <div class="follow-up-patient min-w-0 @3xl:flex-1">
       <p class="follow-up-reference text-xs color-muted">
         <?= e($record['id']); ?> · <?= e($record['patient_id']); ?>
       </p>
@@ -53,7 +53,7 @@ $drawer_button = [
       </h3>
       <p class="follow-up-phone mt-1 text-xs tabular-nums color-muted"><?= e($item['patient']['phone']); ?></p>
     </div>
-    <div class="follow-up-product min-w-0">
+    <div class="follow-up-product min-w-0 @3xl:flex-1">
       <p class="follow-up-product-name text-sm color-strong"><?= e($item['product']['name']); ?></p>
       <p class="follow-up-order mt-1 text-xs color-muted">
         Order <?= e($record['cycle']); ?> · Delivered <?= e(follow_up_label_date($record['delivered'])); ?>
@@ -69,6 +69,9 @@ $drawer_button = [
         <?php if ($item['is_prescription']): ?>
           <?php component('badge', ['label' => 'Prescription']); ?>
         <?php endif; ?>
+        <?php if ($item['approval'] !== []): ?>
+          <?php component('badge', $item['approval']); ?>
+        <?php endif; ?>
       </div>
       <?php if ($item['handover_note'] !== ''): ?>
         <div class="follow-up-note mt-2 text-xs text-pretty color-default">
@@ -77,7 +80,7 @@ $drawer_button = [
         </div>
       <?php endif; ?>
     </div>
-    <div class="follow-up-status min-w-0">
+    <div class="follow-up-status min-w-0 @3xl:w-36 @3xl:shrink-0">
       <?php if ($is_open): ?>
         <p class="follow-up-label text-xs color-muted">Due</p>
         <p class="follow-up-date mt-1 text-sm font-medium tabular-nums <?= e($item['due_color']); ?>">
@@ -94,7 +97,7 @@ $drawer_button = [
         </p>
       <?php endif; ?>
     </div>
-    <div class="follow-up-actions flex flex-wrap items-center gap-2 @3xl:justify-end">
+    <div class="follow-up-actions flex flex-wrap items-center gap-2 @3xl:justify-end @3xl:w-52 @3xl:shrink-0">
       <?php if ($is_open): ?>
         <?php component('button', $whatsapp_button); ?>
       <?php elseif ($item['refill_href'] !== ''): ?>

@@ -165,7 +165,7 @@ if ($product !== null) {
                 'label' => 'Add More Products',
                 'element' => 'button',
                 'type' => 'button',
-                'color' => 'default',
+                'color' => 'secondary',
                 'class' => 'js-component-products-add-item',
               ]); ?>
               <p role="status" class="product-combo-summary text-xs color-muted">
@@ -182,7 +182,7 @@ if ($product !== null) {
                       component('button', [
                         'label' => 'Remove Product', 'element' => 'button', 'type' => 'button',
                         'variant' => 'icon-only', 'icon' => 'close-line',
-                        'color' => 'secondary', 'size' => 'small', 'disabled' => true,
+                        'color' => 'default', 'size' => 'small', 'disabled' => true,
                         'js_hook' => 'js-component-tooltip-trigger',
                       ]);
                     },
@@ -349,7 +349,7 @@ $page_header = [
       </div>
       <footer class="product-actions flex flex-wrap items-center gap-3 py-4">
         <?php component('button', ['label' => $is_new ? 'Create Product' : 'Save Changes', 'element' => 'button', 'type' => 'submit', 'color' => 'primary', 'disabled' => true]); ?>
-        <?php component('button', ['label' => 'Cancel', 'href' => $cancel_url, 'color' => 'secondary']); ?>
+        <?php component('button', ['label' => 'Cancel', 'href' => $cancel_url, 'color' => 'default']); ?>
       </footer>
     </form>
   <?php endif; ?>

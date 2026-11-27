@@ -447,7 +447,7 @@ $editor_tabs = [
         <?php component('button', [
           'label' => 'Cancel',
           'href'  => asset_url('dashboard/treatments/'),
-          'color' => 'secondary',
+          'color' => 'default',
         ]); ?>
       </footer>
     </form>

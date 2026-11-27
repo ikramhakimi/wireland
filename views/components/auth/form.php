@@ -43,7 +43,7 @@ $submit_button = [
   'label'   => $is_register ? 'Create Account' : 'Log In',
   'element' => 'button',
   'type'    => 'submit',
-  'color'   => 'default',
+  'color'   => 'secondary',
   'class'   => 'auth-submit w-full bg-zinc-800 text-white hover:bg-zinc-700 active:bg-zinc-900',
 ];
 
@@ -58,12 +58,12 @@ $submit_button = [
   </header>
   <div class="auth-social flex flex-col gap-2.5 mt-6">
     <button type="button" data-auth-notice="google"
-      class="auth-provider button button-medium button-secondary w-full">
+      class="auth-provider button button-medium button-default w-full">
       <span class="button-icon" aria-hidden="true"><?php svg('google-fill', 'button-glyph'); ?></span>
       <span class="button-label">Continue with Google</span>
     </button>
     <button type="button" data-auth-notice="apple"
-      class="auth-provider button button-medium button-secondary w-full">
+      class="auth-provider button button-medium button-default w-full">
       <span class="button-icon" aria-hidden="true"><?php svg('apple-fill', 'button-glyph'); ?></span>
       <span class="button-label">Continue with Apple</span>
     </button>

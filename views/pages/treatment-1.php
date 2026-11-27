@@ -43,7 +43,7 @@ $treatment_copy = [
       'title'   => 'Pricing',
       'actions' => [
         ['label' => 'Start Free Assessment', 'href' => '#'],
-        ['label' => 'Chat With Us',          'href' => 'https://wa.me/601116741858', 'color' => 'secondary'],
+        ['label' => 'Chat With Us',          'href' => 'https://wa.me/601116741858', 'color' => 'default'],
       ],
     ],
     'faqs'        => ['title' => 'Common concerns'],

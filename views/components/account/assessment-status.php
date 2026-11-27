@@ -14,7 +14,8 @@
  *       current may carry thread_history (answered rounds): shown above the open question in needs_info, and as
  *       "Your messages with <doctor>" in the other modes.
  *       not_suitable shows the doctor's message and WhatsApp; plan_ready without plan items (Consultation)
- *       shows the note only.
+ *       shows the note only. consult_button (live, or null): a consultation to book replaces the WhatsApp button
+ *       in plan_ready. prescription_alert (live, or []): the plan's prescription was stopped, with the reason.
  */
 $section  = $status_sections[$mode];
 $reply_id = $current['id'] ?? '';
@@ -61,6 +62,10 @@ $reply_id = $current['id'] ?? '';
 
     <?php if ($supply_alert !== []): ?>
       <?php component('alert', $supply_alert); ?>
+    <?php endif; ?>
+
+    <?php if (($prescription_alert ?? []) !== []): ?>
+      <?php component('alert', $prescription_alert); ?>
     <?php endif; ?>
 
     <?php if ($mode === 'new'): ?>
@@ -178,6 +183,8 @@ $reply_id = $current['id'] ?? '';
       <?php elseif ($mode === 'plan_updated'): ?>
         <?php component('button', $refill_button); ?>
         <?php component('button', $whatsapp_button); ?>
+      <?php elseif ($mode === 'plan_ready' && ($consult_button ?? null) !== null): ?>
+        <?php component('button', $consult_button); ?>
       <?php else: ?>
         <?php component('button', $whatsapp_button); ?>
       <?php endif; ?>

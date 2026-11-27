@@ -35,7 +35,7 @@ if ($id === '' || $groups === []) {
   <?php component('button', [
     'label'         => $label,
     'element'       => 'button',
-    'color'         => 'secondary',
+    'color'         => 'default',
     'size'          => $size,
     'variant'       => $trigger === 'icon' ? 'icon-only' : '',
     'aria_label'    => $aria_label,

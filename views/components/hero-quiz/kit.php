@@ -100,7 +100,7 @@ $kit_sum     = static fn (array $items): float => array_sum(array_map(
             <?= e($money($kit_sum($items))); ?>
           </span>
         </p>
-        <button type="button" class="button button-large button-default js-component-<?= e($hook); ?>-add"
+        <button type="button" class="button button-large button-secondary js-component-<?= e($hook); ?>-add"
           data-ids="<?= e(implode(',', array_column($items, 'id'))); ?>">
           <span class="button-label">Add All <?= count($items); ?> to Cart</span>
         </button>

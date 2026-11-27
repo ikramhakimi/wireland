@@ -56,7 +56,7 @@ $note_field = [
           'element' => 'button',
           'type'    => 'submit',
           'size'    => 'small',
-          'color'   => 'secondary',
+          'color'   => 'default',
         ]); ?>
       </div>
     </form>

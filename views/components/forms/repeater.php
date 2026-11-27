@@ -105,7 +105,7 @@ $render_row = static function (string $index, array $item) use ($id, $name, $ite
                 'type'       => 'button',
                 'variant'    => 'icon-only',
                 'icon'       => $button['icon'],
-                'color'      => 'secondary',
+                'color'      => 'default',
                 'size'       => 'small',
                 'js_hook'    => 'js-component-tooltip-trigger js-component-repeater-' . $action,
               ]);
@@ -145,7 +145,7 @@ $render_row = static function (string $index, array $item) use ($id, $name, $ite
       'type'          => 'button',
       'icon'          => 'add-line',
       'icon_position' => 'start',
-      'color'         => 'default',
+      'color'         => 'secondary',
       'size'          => 'small',
       'disabled'      => $max > 0 && $count >= $max,
       'js_hook'       => 'js-component-repeater-add',

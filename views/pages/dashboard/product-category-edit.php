@@ -180,7 +180,7 @@ $preview_card = [
         <?php component('button', [
           'label' => 'Cancel',
           'href'  => asset_url('dashboard/product-categories/'),
-          'color' => 'secondary',
+          'color' => 'default',
         ]); ?>
       </footer>
     </form>

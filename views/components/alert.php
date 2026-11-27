@@ -19,7 +19,7 @@ $tones  = [
   'neutral'   => ['box' => 'border-zinc-100 bg-zinc-50', 'title' => 'color-strong', 'icon' => 'information-line'],
   'info'      => ['box' => 'border-blue-100 bg-blue-50', 'title' => 'color-primary', 'icon' => 'information-line'],
   'attention' => ['box' => 'border-amber-100 bg-amber-50', 'title' => 'color-warning', 'icon' => 'error-warning-line'],
-  'positive'  => ['box' => 'border-green-100 bg-green-50', 'title' => 'color-positive', 'icon' => 'checkbox-circle-line'],
+  'positive'  => ['box' => 'border-emerald-100 bg-emerald-50', 'title' => 'color-positive', 'icon' => 'checkbox-circle-line'],
   'negative'  => ['box' => 'border-red-100 bg-red-50', 'title' => 'color-negative', 'icon' => 'close-line'],
 ];
 $tone  = isset($tones[$tone ?? '']) ? $tone : 'info';
